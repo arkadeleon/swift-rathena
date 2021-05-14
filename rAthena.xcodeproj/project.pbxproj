@@ -8,12 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		35FD0B92264E765C00BB0968 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35FD0E6F264E79BF00BB0968 /* scanner.c in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0D88264E79BE00BB0968 /* scanner.c */; };
+		35FD0E70264E79BF00BB0968 /* strbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D89264E79BE00BB0968 /* strbuf.h */; };
+		35FD0E73264E79BF00BB0968 /* parsectx.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D8C264E79BE00BB0968 /* parsectx.h */; };
+		35FD0E74264E79BF00BB0968 /* grammar.c in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0D8D264E79BE00BB0968 /* grammar.c */; };
+		35FD0E75264E79BF00BB0968 /* libconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D8E264E79BE00BB0968 /* libconfig.h */; };
+		35FD0E76264E79BF00BB0968 /* scanctx.c in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0D8F264E79BE00BB0968 /* scanctx.c */; };
+		35FD0E78264E79BF00BB0968 /* strbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0D91264E79BE00BB0968 /* strbuf.c */; };
+		35FD0E79264E79BF00BB0968 /* scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D92264E79BE00BB0968 /* scanner.h */; };
+		35FD0E7A264E79BF00BB0968 /* grammar.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D93264E79BE00BB0968 /* grammar.h */; };
+		35FD0E7C264E79BF00BB0968 /* scanctx.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D95264E79BE00BB0968 /* scanctx.h */; };
+		35FD0E7D264E79BF00BB0968 /* libconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0D96264E79BE00BB0968 /* libconfig.c */; };
+		35FD0E7F264E79BF00BB0968 /* wincompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D98264E79BE00BB0968 /* wincompat.h */; };
+		35FD0F4E264E7EF200BB0968 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35FD0B8D264E765C00BB0968 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FD0B90264E765C00BB0968 /* rAthena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rAthena.h; sourceTree = "<group>"; };
 		35FD0B91264E765C00BB0968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35FD0D88264E79BE00BB0968 /* scanner.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanner.c; sourceTree = "<group>"; };
+		35FD0D89264E79BE00BB0968 /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuf.h; sourceTree = "<group>"; };
+		35FD0D8C264E79BE00BB0968 /* parsectx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parsectx.h; sourceTree = "<group>"; };
+		35FD0D8D264E79BE00BB0968 /* grammar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = grammar.c; sourceTree = "<group>"; };
+		35FD0D8E264E79BE00BB0968 /* libconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libconfig.h; sourceTree = "<group>"; };
+		35FD0D8F264E79BE00BB0968 /* scanctx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanctx.c; sourceTree = "<group>"; };
+		35FD0D91264E79BE00BB0968 /* strbuf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strbuf.c; sourceTree = "<group>"; };
+		35FD0D92264E79BE00BB0968 /* scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanner.h; sourceTree = "<group>"; };
+		35FD0D93264E79BE00BB0968 /* grammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grammar.h; sourceTree = "<group>"; };
+		35FD0D95264E79BE00BB0968 /* scanctx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanctx.h; sourceTree = "<group>"; };
+		35FD0D96264E79BE00BB0968 /* libconfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libconfig.c; sourceTree = "<group>"; };
+		35FD0D98264E79BE00BB0968 /* wincompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wincompat.h; sourceTree = "<group>"; };
+		35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cbasetypes.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,9 +73,54 @@
 			isa = PBXGroup;
 			children = (
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
+				35FD0D7C264E79BE00BB0968 /* 3rdparty */,
+				35FD0B9C264E789100BB0968 /* src */,
 				35FD0B91264E765C00BB0968 /* Info.plist */,
 			);
 			name = rAthena;
+			sourceTree = "<group>";
+		};
+		35FD0B9C264E789100BB0968 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35FD0BCF264E789100BB0968 /* common */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		35FD0BCF264E789100BB0968 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		35FD0D7C264E79BE00BB0968 /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+				35FD0D87264E79BE00BB0968 /* libconfig */,
+			);
+			path = 3rdparty;
+			sourceTree = SOURCE_ROOT;
+		};
+		35FD0D87264E79BE00BB0968 /* libconfig */ = {
+			isa = PBXGroup;
+			children = (
+				35FD0D8D264E79BE00BB0968 /* grammar.c */,
+				35FD0D93264E79BE00BB0968 /* grammar.h */,
+				35FD0D96264E79BE00BB0968 /* libconfig.c */,
+				35FD0D8E264E79BE00BB0968 /* libconfig.h */,
+				35FD0D8C264E79BE00BB0968 /* parsectx.h */,
+				35FD0D8F264E79BE00BB0968 /* scanctx.c */,
+				35FD0D95264E79BE00BB0968 /* scanctx.h */,
+				35FD0D88264E79BE00BB0968 /* scanner.c */,
+				35FD0D92264E79BE00BB0968 /* scanner.h */,
+				35FD0D91264E79BE00BB0968 /* strbuf.c */,
+				35FD0D89264E79BE00BB0968 /* strbuf.h */,
+				35FD0D98264E79BE00BB0968 /* wincompat.h */,
+			);
+			path = libconfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +130,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD0E70264E79BF00BB0968 /* strbuf.h in Headers */,
+				35FD0E79264E79BF00BB0968 /* scanner.h in Headers */,
+				35FD0E7A264E79BF00BB0968 /* grammar.h in Headers */,
+				35FD0E7C264E79BF00BB0968 /* scanctx.h in Headers */,
+				35FD0E73264E79BF00BB0968 /* parsectx.h in Headers */,
+				35FD0F4E264E7EF200BB0968 /* cbasetypes.hpp in Headers */,
 				35FD0B92264E765C00BB0968 /* rAthena.h in Headers */,
+				35FD0E75264E79BF00BB0968 /* libconfig.h in Headers */,
+				35FD0E7F264E79BF00BB0968 /* wincompat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD0E76264E79BF00BB0968 /* scanctx.c in Sources */,
+				35FD0E74264E79BF00BB0968 /* grammar.c in Sources */,
+				35FD0E6F264E79BF00BB0968 /* scanner.c in Sources */,
+				35FD0E7D264E79BF00BB0968 /* libconfig.c in Sources */,
+				35FD0E78264E79BF00BB0968 /* strbuf.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +346,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"HAVE_XLOCALE_H=1",
+				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -284,6 +372,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
