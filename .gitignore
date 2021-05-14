@@ -105,6 +105,9 @@ Thumbs.db
 *.VC.db
 *.VC.opendb
 
+# Xcode
+xcuserdata/
+
 /.idea/.name
 /.idea/misc.xml
 /.idea/modules.xml

@@ -1,0 +1,18 @@
+//
+//  rAthena.h
+//  rAthena
+//
+//  Created by Li, Junlin on 2021/5/14.
+//
+
+#import <Foundation/Foundation.h>
+
+//! Project version number for rAthena.
+FOUNDATION_EXPORT double rAthenaVersionNumber;
+
+//! Project version string for rAthena.
+FOUNDATION_EXPORT const unsigned char rAthenaVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <rAthena/PublicHeader.h>
+
+
