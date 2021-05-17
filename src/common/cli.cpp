@@ -96,7 +96,7 @@ int cli_get_options(int argc, char ** argv) {
 			arg++;
 
 			if (strcmp(arg, "help") == 0) {
-				display_helpscreen(true);
+//				display_helpscreen(true);
 			}
 			else if (strcmp(arg, "version") == 0) {
 				display_versionscreen(true);
@@ -173,7 +173,7 @@ int cli_get_options(int argc, char ** argv) {
 			switch (arg[0]) {// short option
 				case '?':
 				case 'h':
-					display_helpscreen(true);
+//					display_helpscreen(true);
 					break;
 				case 'v':
 					display_versionscreen(true);
@@ -210,17 +210,17 @@ bool cli_hasevent(){
  * @param data: unused
  * @return 0
  */
-TIMER_FUNC(parse_console_timer){
-	char buf[MAX_CONSOLE_IN]; //max cmd atm is 63+63+63+3+3
-
-	memset(buf,0,MAX_CONSOLE_IN); //clear out buf
-
-	if(cli_hasevent()){
-		if(fgets(buf, MAX_CONSOLE_IN, stdin)==NULL)
-			return -1;
-		else if(strlen(buf)>MIN_CONSOLE_IN)
-			parse_console(buf);
-	}
-	return 0;
-}
+//TIMER_FUNC(parse_console_timer){
+//	char buf[MAX_CONSOLE_IN]; //max cmd atm is 63+63+63+3+3
+//
+//	memset(buf,0,MAX_CONSOLE_IN); //clear out buf
+//
+//	if(cli_hasevent()){
+//		if(fgets(buf, MAX_CONSOLE_IN, stdin)==NULL)
+//			return -1;
+//		else if(strlen(buf)>MIN_CONSOLE_IN)
+//			parse_console(buf);
+//	}
+//	return 0;
+//}
 

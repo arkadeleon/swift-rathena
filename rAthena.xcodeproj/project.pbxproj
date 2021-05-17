@@ -110,6 +110,49 @@
 		35FD1079264E809000BB0968 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD101C264E808F00BB0968 /* parser.cpp */; };
 		35FD107A264E809000BB0968 /* setting.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD101D264E808F00BB0968 /* setting.h */; };
 		35FD107B264E809000BB0968 /* directives.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD101E264E808F00BB0968 /* directives.h */; };
+		35FD10B5264E81EC00BB0968 /* mapindex.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1082264E81E600BB0968 /* mapindex.hpp */; };
+		35FD10B7264E81EC00BB0968 /* nullpo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1084264E81E600BB0968 /* nullpo.cpp */; };
+		35FD10B8264E81EC00BB0968 /* strlib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1085264E81E600BB0968 /* strlib.hpp */; };
+		35FD10B9264E81EC00BB0968 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1086264E81E600BB0968 /* utils.cpp */; };
+		35FD10BA264E81EC00BB0968 /* utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1087264E81E600BB0968 /* utils.hpp */; };
+		35FD10BB264E81EC00BB0968 /* mmo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1088264E81E600BB0968 /* mmo.hpp */; };
+		35FD10BC264E81EC00BB0968 /* socket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1089264E81E700BB0968 /* socket.hpp */; };
+		35FD10BD264E81EC00BB0968 /* malloc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD108A264E81E700BB0968 /* malloc.hpp */; };
+		35FD10BE264E81EC00BB0968 /* malloc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD108B264E81E700BB0968 /* malloc.cpp */; };
+		35FD10BF264E81EC00BB0968 /* grfio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD108C264E81E700BB0968 /* grfio.cpp */; };
+		35FD10C0264E81EC00BB0968 /* core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD108D264E81E700BB0968 /* core.cpp */; };
+		35FD10C1264E81EC00BB0968 /* des.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD108E264E81E700BB0968 /* des.cpp */; };
+		35FD10C2264E81EC00BB0968 /* showmsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD108F264E81E700BB0968 /* showmsg.cpp */; };
+		35FD10C3264E81EC00BB0968 /* database.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1090264E81E700BB0968 /* database.hpp */; };
+		35FD10C4264E81EC00BB0968 /* nullpo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1091264E81E800BB0968 /* nullpo.hpp */; };
+		35FD10C6264E81EC00BB0968 /* cli.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1093264E81E800BB0968 /* cli.hpp */; };
+		35FD10C8264E81EC00BB0968 /* md5calc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1095264E81E800BB0968 /* md5calc.hpp */; };
+		35FD10CA264E81EC00BB0968 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1097264E81E800BB0968 /* socket.cpp */; };
+		35FD10CB264E81EC00BB0968 /* msg_conf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1098264E81E800BB0968 /* msg_conf.cpp */; };
+		35FD10CC264E81EC00BB0968 /* msg_conf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1099264E81E900BB0968 /* msg_conf.hpp */; };
+		35FD10CD264E81EC00BB0968 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD109A264E81E900BB0968 /* timer.cpp */; };
+		35FD10CE264E81EC00BB0968 /* mapindex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD109B264E81E900BB0968 /* mapindex.cpp */; };
+		35FD10CF264E81EC00BB0968 /* strlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD109C264E81E900BB0968 /* strlib.cpp */; };
+		35FD10D1264E81ED00BB0968 /* showmsg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD109E264E81E900BB0968 /* showmsg.hpp */; };
+		35FD10D2264E81ED00BB0968 /* utilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD109F264E81E900BB0968 /* utilities.hpp */; };
+		35FD10D3264E81ED00BB0968 /* ers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10A0264E81E900BB0968 /* ers.cpp */; };
+		35FD10D4264E81ED00BB0968 /* sql.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10A1264E81EA00BB0968 /* sql.hpp */; };
+		35FD10D5264E81ED00BB0968 /* conf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10A2264E81EA00BB0968 /* conf.cpp */; };
+		35FD10D6264E81ED00BB0968 /* timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10A3264E81EA00BB0968 /* timer.hpp */; };
+		35FD10D7264E81ED00BB0968 /* db.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10A4264E81EA00BB0968 /* db.hpp */; };
+		35FD10D8264E81ED00BB0968 /* md5calc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10A5264E81EA00BB0968 /* md5calc.cpp */; };
+		35FD10D9264E81ED00BB0968 /* grfio.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10A6264E81EA00BB0968 /* grfio.hpp */; };
+		35FD10DA264E81ED00BB0968 /* db.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10A7264E81EA00BB0968 /* db.cpp */; };
+		35FD10DD264E81ED00BB0968 /* ers.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10AA264E81EB00BB0968 /* ers.hpp */; };
+		35FD10DE264E81ED00BB0968 /* cli.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10AB264E81EB00BB0968 /* cli.cpp */; };
+		35FD10DF264E81ED00BB0968 /* des.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10AC264E81EB00BB0968 /* des.hpp */; };
+		35FD10E0264E81ED00BB0968 /* random.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10AD264E81EB00BB0968 /* random.hpp */; };
+		35FD10E3264E81ED00BB0968 /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10B0264E81EC00BB0968 /* core.hpp */; };
+		35FD10E4264E81ED00BB0968 /* random.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10B1264E81EC00BB0968 /* random.cpp */; };
+		35FD10E5264E81ED00BB0968 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10B2264E81EC00BB0968 /* database.cpp */; };
+		35FD10E6264E81ED00BB0968 /* utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD10B3264E81EC00BB0968 /* utilities.cpp */; };
+		35FD10E7264E81ED00BB0968 /* conf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD10B4264E81EC00BB0968 /* conf.hpp */; };
+		35FD10F4265203B200BB0968 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD10EF2652031400BB0968 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -218,6 +261,50 @@
 		35FD101C264E808F00BB0968 /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
 		35FD101D264E808F00BB0968 /* setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setting.h; sourceTree = "<group>"; };
 		35FD101E264E808F00BB0968 /* directives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = directives.h; sourceTree = "<group>"; };
+		35FD1082264E81E600BB0968 /* mapindex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mapindex.hpp; sourceTree = "<group>"; };
+		35FD1084264E81E600BB0968 /* nullpo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nullpo.cpp; sourceTree = "<group>"; };
+		35FD1085264E81E600BB0968 /* strlib.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = strlib.hpp; sourceTree = "<group>"; };
+		35FD1086264E81E600BB0968 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		35FD1087264E81E600BB0968 /* utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hpp; sourceTree = "<group>"; };
+		35FD1088264E81E600BB0968 /* mmo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mmo.hpp; sourceTree = "<group>"; };
+		35FD1089264E81E700BB0968 /* socket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = socket.hpp; sourceTree = "<group>"; };
+		35FD108A264E81E700BB0968 /* malloc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = malloc.hpp; sourceTree = "<group>"; };
+		35FD108B264E81E700BB0968 /* malloc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = malloc.cpp; sourceTree = "<group>"; };
+		35FD108C264E81E700BB0968 /* grfio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grfio.cpp; sourceTree = "<group>"; };
+		35FD108D264E81E700BB0968 /* core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core.cpp; sourceTree = "<group>"; };
+		35FD108E264E81E700BB0968 /* des.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = des.cpp; sourceTree = "<group>"; };
+		35FD108F264E81E700BB0968 /* showmsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = showmsg.cpp; sourceTree = "<group>"; };
+		35FD1090264E81E700BB0968 /* database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = database.hpp; sourceTree = "<group>"; };
+		35FD1091264E81E800BB0968 /* nullpo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = nullpo.hpp; sourceTree = "<group>"; };
+		35FD1092264E81E800BB0968 /* sql.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sql.cpp; sourceTree = "<group>"; };
+		35FD1093264E81E800BB0968 /* cli.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cli.hpp; sourceTree = "<group>"; };
+		35FD1095264E81E800BB0968 /* md5calc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = md5calc.hpp; sourceTree = "<group>"; };
+		35FD1097264E81E800BB0968 /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
+		35FD1098264E81E800BB0968 /* msg_conf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = msg_conf.cpp; sourceTree = "<group>"; };
+		35FD1099264E81E900BB0968 /* msg_conf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = msg_conf.hpp; sourceTree = "<group>"; };
+		35FD109A264E81E900BB0968 /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
+		35FD109B264E81E900BB0968 /* mapindex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mapindex.cpp; sourceTree = "<group>"; };
+		35FD109C264E81E900BB0968 /* strlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strlib.cpp; sourceTree = "<group>"; };
+		35FD109E264E81E900BB0968 /* showmsg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = showmsg.hpp; sourceTree = "<group>"; };
+		35FD109F264E81E900BB0968 /* utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utilities.hpp; sourceTree = "<group>"; };
+		35FD10A0264E81E900BB0968 /* ers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ers.cpp; sourceTree = "<group>"; };
+		35FD10A1264E81EA00BB0968 /* sql.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sql.hpp; sourceTree = "<group>"; };
+		35FD10A2264E81EA00BB0968 /* conf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = conf.cpp; sourceTree = "<group>"; };
+		35FD10A3264E81EA00BB0968 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timer.hpp; sourceTree = "<group>"; };
+		35FD10A4264E81EA00BB0968 /* db.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = db.hpp; sourceTree = "<group>"; };
+		35FD10A5264E81EA00BB0968 /* md5calc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5calc.cpp; sourceTree = "<group>"; };
+		35FD10A6264E81EA00BB0968 /* grfio.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grfio.hpp; sourceTree = "<group>"; };
+		35FD10A7264E81EA00BB0968 /* db.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = db.cpp; sourceTree = "<group>"; };
+		35FD10AA264E81EB00BB0968 /* ers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ers.hpp; sourceTree = "<group>"; };
+		35FD10AB264E81EB00BB0968 /* cli.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cli.cpp; sourceTree = "<group>"; };
+		35FD10AC264E81EB00BB0968 /* des.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = des.hpp; sourceTree = "<group>"; };
+		35FD10AD264E81EB00BB0968 /* random.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random.hpp; sourceTree = "<group>"; };
+		35FD10B0264E81EC00BB0968 /* core.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = core.hpp; sourceTree = "<group>"; };
+		35FD10B1264E81EC00BB0968 /* random.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random.cpp; sourceTree = "<group>"; };
+		35FD10B2264E81EC00BB0968 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
+		35FD10B3264E81EC00BB0968 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
+		35FD10B4264E81EC00BB0968 /* conf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conf.hpp; sourceTree = "<group>"; };
+		35FD10EF2652031400BB0968 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD10F4265203B200BB0968 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +324,7 @@
 			children = (
 				35FD0B8F264E765C00BB0968 /* rAthena */,
 				35FD0B8E264E765C00BB0968 /* Products */,
+				35FD10EE2652031400BB0968 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,6 +359,49 @@
 			isa = PBXGroup;
 			children = (
 				35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */,
+				35FD10AB264E81EB00BB0968 /* cli.cpp */,
+				35FD1093264E81E800BB0968 /* cli.hpp */,
+				35FD10A2264E81EA00BB0968 /* conf.cpp */,
+				35FD10B4264E81EC00BB0968 /* conf.hpp */,
+				35FD108D264E81E700BB0968 /* core.cpp */,
+				35FD10B0264E81EC00BB0968 /* core.hpp */,
+				35FD10B2264E81EC00BB0968 /* database.cpp */,
+				35FD1090264E81E700BB0968 /* database.hpp */,
+				35FD10A7264E81EA00BB0968 /* db.cpp */,
+				35FD10A4264E81EA00BB0968 /* db.hpp */,
+				35FD108E264E81E700BB0968 /* des.cpp */,
+				35FD10AC264E81EB00BB0968 /* des.hpp */,
+				35FD10A0264E81E900BB0968 /* ers.cpp */,
+				35FD10AA264E81EB00BB0968 /* ers.hpp */,
+				35FD108C264E81E700BB0968 /* grfio.cpp */,
+				35FD10A6264E81EA00BB0968 /* grfio.hpp */,
+				35FD108B264E81E700BB0968 /* malloc.cpp */,
+				35FD108A264E81E700BB0968 /* malloc.hpp */,
+				35FD109B264E81E900BB0968 /* mapindex.cpp */,
+				35FD1082264E81E600BB0968 /* mapindex.hpp */,
+				35FD10A5264E81EA00BB0968 /* md5calc.cpp */,
+				35FD1095264E81E800BB0968 /* md5calc.hpp */,
+				35FD1088264E81E600BB0968 /* mmo.hpp */,
+				35FD1098264E81E800BB0968 /* msg_conf.cpp */,
+				35FD1099264E81E900BB0968 /* msg_conf.hpp */,
+				35FD1084264E81E600BB0968 /* nullpo.cpp */,
+				35FD1091264E81E800BB0968 /* nullpo.hpp */,
+				35FD10B1264E81EC00BB0968 /* random.cpp */,
+				35FD10AD264E81EB00BB0968 /* random.hpp */,
+				35FD108F264E81E700BB0968 /* showmsg.cpp */,
+				35FD109E264E81E900BB0968 /* showmsg.hpp */,
+				35FD1097264E81E800BB0968 /* socket.cpp */,
+				35FD1089264E81E700BB0968 /* socket.hpp */,
+				35FD1092264E81E800BB0968 /* sql.cpp */,
+				35FD10A1264E81EA00BB0968 /* sql.hpp */,
+				35FD109C264E81E900BB0968 /* strlib.cpp */,
+				35FD1085264E81E600BB0968 /* strlib.hpp */,
+				35FD109A264E81E900BB0968 /* timer.cpp */,
+				35FD10A3264E81EA00BB0968 /* timer.hpp */,
+				35FD10B3264E81EC00BB0968 /* utilities.cpp */,
+				35FD109F264E81E900BB0968 /* utilities.hpp */,
+				35FD1086264E81E600BB0968 /* utils.cpp */,
+				35FD1087264E81E600BB0968 /* utils.hpp */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -454,6 +586,14 @@
 			path = contrib;
 			sourceTree = "<group>";
 		};
+		35FD10EE2652031400BB0968 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35FD10EF2652031400BB0968 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -463,8 +603,11 @@
 			files = (
 				35FD0E70264E79BF00BB0968 /* strbuf.h in Headers */,
 				35FD103E264E809000BB0968 /* iterator.h in Headers */,
+				35FD10C4264E81EC00BB0968 /* nullpo.hpp in Headers */,
 				35FD0E79264E79BF00BB0968 /* scanner.h in Headers */,
 				35FD105C264E809000BB0968 /* emitterutils.h in Headers */,
+				35FD10BA264E81EC00BB0968 /* utils.hpp in Headers */,
+				35FD10CC264E81EC00BB0968 /* msg_conf.hpp in Headers */,
 				35FD103B264E809000BB0968 /* node_iterator.h in Headers */,
 				35FD1062264E809000BB0968 /* graphbuilderadapter.h in Headers */,
 				35FD1044264E809000BB0968 /* ostream_wrapper.h in Headers */,
@@ -473,35 +616,49 @@
 				35FD1038264E809000BB0968 /* node.h in Headers */,
 				35FD1076264E809000BB0968 /* regex_yaml.h in Headers */,
 				35FD1042264E809000BB0968 /* emit.h in Headers */,
+				35FD10DF264E81ED00BB0968 /* des.hpp in Headers */,
 				35FD102F264E808F00BB0968 /* graphbuilder.h in Headers */,
 				35FD1027264E808F00BB0968 /* emitterdef.h in Headers */,
 				35FD102E264E808F00BB0968 /* dll.h in Headers */,
+				35FD10D9264E81ED00BB0968 /* grfio.hpp in Headers */,
 				35FD0E7A264E79BF00BB0968 /* grammar.h in Headers */,
 				35FD1041264E809000BB0968 /* impl.h in Headers */,
 				35FD0E7C264E79BF00BB0968 /* scanctx.h in Headers */,
+				35FD10B5264E81EC00BB0968 /* mapindex.hpp in Headers */,
 				35FD1032264E808F00BB0968 /* yaml.h in Headers */,
 				35FD1036264E809000BB0968 /* node_data.h in Headers */,
 				35FD102C264E808F00BB0968 /* emittermanip.h in Headers */,
+				35FD10D1264E81ED00BB0968 /* showmsg.hpp in Headers */,
 				35FD1029264E808F00BB0968 /* null.h in Headers */,
 				35FD1033264E808F00BB0968 /* type.h in Headers */,
 				35FD1070264E809000BB0968 /* collectionstack.h in Headers */,
 				35FD1040264E809000BB0968 /* convert.h in Headers */,
 				35FD1052264E809000BB0968 /* indentation.h in Headers */,
+				35FD10E3264E81ED00BB0968 /* core.hpp in Headers */,
 				35FD102B264E808F00BB0968 /* emitterstyle.h in Headers */,
 				35FD104B264E809000BB0968 /* scantag.h in Headers */,
+				35FD10BB264E81EC00BB0968 /* mmo.hpp in Headers */,
+				35FD10E7264E81ED00BB0968 /* conf.hpp in Headers */,
+				35FD10BC264E81EC00BB0968 /* socket.hpp in Headers */,
 				35FD1034264E809000BB0968 /* parse.h in Headers */,
 				35FD0E73264E79BF00BB0968 /* parsectx.h in Headers */,
 				35FD104C264E809000BB0968 /* regeximpl.h in Headers */,
 				35FD1046264E809000BB0968 /* binary.h in Headers */,
+				35FD10BD264E81EC00BB0968 /* malloc.hpp in Headers */,
 				35FD107B264E809000BB0968 /* directives.h in Headers */,
 				35FD1073264E809000BB0968 /* singledocparser.h in Headers */,
+				35FD10DD264E81ED00BB0968 /* ers.hpp in Headers */,
+				35FD10C3264E81EC00BB0968 /* database.hpp in Headers */,
+				35FD10D4264E81ED00BB0968 /* sql.hpp in Headers */,
 				35FD102A264E808F00BB0968 /* exceptions.h in Headers */,
 				35FD1025264E808F00BB0968 /* anchor.h in Headers */,
 				35FD0F4E264E7EF200BB0968 /* cbasetypes.hpp in Headers */,
+				35FD10C8264E81EC00BB0968 /* md5calc.hpp in Headers */,
 				35FD106A264E809000BB0968 /* scanner.h in Headers */,
 				35FD1023264E808F00BB0968 /* eventhandler.h in Headers */,
 				35FD103F264E809000BB0968 /* ptr.h in Headers */,
 				35FD1037264E809000BB0968 /* node_ref.h in Headers */,
+				35FD10C6264E81EC00BB0968 /* cli.hpp in Headers */,
 				35FD1048264E809000BB0968 /* scanscalar.h in Headers */,
 				35FD1030264E808F00BB0968 /* anchordict.h in Headers */,
 				35FD1072264E809000BB0968 /* ptr_vector.h in Headers */,
@@ -513,14 +670,18 @@
 				35FD1075264E809000BB0968 /* token.h in Headers */,
 				35FD107A264E809000BB0968 /* setting.h in Headers */,
 				35FD103A264E809000BB0968 /* memory.h in Headers */,
+				35FD10D2264E81ED00BB0968 /* utilities.hpp in Headers */,
 				35FD1067264E809000BB0968 /* streamcharsource.h in Headers */,
 				35FD0B92264E765C00BB0968 /* rAthena.h in Headers */,
 				35FD1031264E808F00BB0968 /* noncopyable.h in Headers */,
 				35FD1026264E808F00BB0968 /* mark.h in Headers */,
 				35FD102D264E808F00BB0968 /* emitfromevents.h in Headers */,
+				35FD10E0264E81ED00BB0968 /* random.hpp in Headers */,
+				35FD10B8264E81EC00BB0968 /* strlib.hpp in Headers */,
 				35FD0E75264E79BF00BB0968 /* libconfig.h in Headers */,
 				35FD1024264E808F00BB0968 /* emitter.h in Headers */,
 				35FD0E7F264E79BF00BB0968 /* wincompat.h in Headers */,
+				35FD10D6264E81ED00BB0968 /* timer.hpp in Headers */,
 				35FD104E264E809000BB0968 /* tag.h in Headers */,
 				35FD1039264E809000BB0968 /* bool_type.h in Headers */,
 				35FD1035264E809000BB0968 /* node.h in Headers */,
@@ -528,6 +689,7 @@
 				35FD1028264E808F00BB0968 /* parser.h in Headers */,
 				35FD106E264E809000BB0968 /* emitterstate.h in Headers */,
 				35FD1063264E809000BB0968 /* nodebuilder.h in Headers */,
+				35FD10D7264E81ED00BB0968 /* db.hpp in Headers */,
 				35FD1045264E809000BB0968 /* stlemitter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,38 +762,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FD1079264E809000BB0968 /* parser.cpp in Sources */,
+				35FD10E5264E81ED00BB0968 /* database.cpp in Sources */,
+				35FD10B7264E81EC00BB0968 /* nullpo.cpp in Sources */,
+				35FD10C2264E81EC00BB0968 /* showmsg.cpp in Sources */,
 				35FD1050264E809000BB0968 /* simplekey.cpp in Sources */,
 				35FD105A264E809000BB0968 /* node.cpp in Sources */,
 				35FD1055264E809000BB0968 /* convert.cpp in Sources */,
 				35FD1060264E809000BB0968 /* graphbuilderadapter.cpp in Sources */,
+				35FD10D5264E81ED00BB0968 /* conf.cpp in Sources */,
+				35FD10D8264E81ED00BB0968 /* md5calc.cpp in Sources */,
 				35FD105F264E809000BB0968 /* nodeevents.cpp in Sources */,
 				35FD106F264E809000BB0968 /* nodebuilder.cpp in Sources */,
 				35FD105D264E809000BB0968 /* binary.cpp in Sources */,
 				35FD105B264E809000BB0968 /* singledocparser.cpp in Sources */,
 				35FD1078264E809000BB0968 /* emitterstate.cpp in Sources */,
+				35FD10CB264E81EC00BB0968 /* msg_conf.cpp in Sources */,
 				35FD106B264E809000BB0968 /* stream.cpp in Sources */,
 				35FD1058264E809000BB0968 /* exp.cpp in Sources */,
 				35FD0E76264E79BF00BB0968 /* scanctx.c in Sources */,
+				35FD10CA264E81EC00BB0968 /* socket.cpp in Sources */,
+				35FD10D3264E81ED00BB0968 /* ers.cpp in Sources */,
 				35FD106C264E809000BB0968 /* scantag.cpp in Sources */,
+				35FD10CF264E81EC00BB0968 /* strlib.cpp in Sources */,
 				35FD1065264E809000BB0968 /* emit.cpp in Sources */,
 				35FD104A264E809000BB0968 /* memory.cpp in Sources */,
+				35FD10E6264E81ED00BB0968 /* utilities.cpp in Sources */,
 				35FD1077264E809000BB0968 /* node_data.cpp in Sources */,
+				35FD10C0264E81EC00BB0968 /* core.cpp in Sources */,
 				35FD1057264E809000BB0968 /* scanscalar.cpp in Sources */,
 				35FD104D264E809000BB0968 /* ostream_wrapper.cpp in Sources */,
 				35FD1061264E809000BB0968 /* graphbuilder.cpp in Sources */,
 				35FD1069264E809000BB0968 /* emitterutils.cpp in Sources */,
 				35FD1053264E809000BB0968 /* emitter.cpp in Sources */,
+				35FD10BE264E81EC00BB0968 /* malloc.cpp in Sources */,
+				35FD10E4264E81ED00BB0968 /* random.cpp in Sources */,
 				35FD104F264E809000BB0968 /* emitfromevents.cpp in Sources */,
 				35FD1049264E809000BB0968 /* exceptions.cpp in Sources */,
 				35FD0E74264E79BF00BB0968 /* grammar.c in Sources */,
 				35FD1066264E809000BB0968 /* tag.cpp in Sources */,
 				35FD1051264E809000BB0968 /* parse.cpp in Sources */,
+				35FD10CE264E81EC00BB0968 /* mapindex.cpp in Sources */,
 				35FD0E6F264E79BF00BB0968 /* scanner.c in Sources */,
 				35FD1064264E809000BB0968 /* scanner.cpp in Sources */,
+				35FD10DE264E81ED00BB0968 /* cli.cpp in Sources */,
+				35FD10B9264E81EC00BB0968 /* utils.cpp in Sources */,
 				35FD0E7D264E79BF00BB0968 /* libconfig.c in Sources */,
 				35FD1059264E809000BB0968 /* null.cpp in Sources */,
 				35FD1071264E809000BB0968 /* directives.cpp in Sources */,
 				35FD0E78264E79BF00BB0968 /* strbuf.c in Sources */,
+				35FD10C1264E81EC00BB0968 /* des.cpp in Sources */,
+				35FD10DA264E81ED00BB0968 /* db.cpp in Sources */,
+				35FD10BF264E81EC00BB0968 /* grfio.cpp in Sources */,
+				35FD10CD264E81EC00BB0968 /* timer.cpp in Sources */,
 				35FD1056264E809000BB0968 /* regex_yaml.cpp in Sources */,
 				35FD106D264E809000BB0968 /* scantoken.cpp in Sources */,
 			);

@@ -125,7 +125,7 @@ static void sig_proc(int sn) {
 		break;
 	case SIGSEGV:
 	case SIGFPE:
-		do_abort();
+//		do_abort();
 		// Pass the signal to the system's default handler
 		compat_signal(sn, SIG_DFL);
 		raise(sn);
@@ -358,11 +358,11 @@ int main (int argc, char **argv)
 	do_init(argc,argv);
 	do_final();
 #else// not MINICORE
-	set_server_type();
+//	set_server_type();
 	display_title();
 	usercheck();
 
-	Sql_Init();
+//	Sql_Init();
 	db_init();
 	signals_init();
 
@@ -373,7 +373,7 @@ int main (int argc, char **argv)
 	timer_init();
 	socket_init();
 
-	do_init(argc,argv);
+//	do_init(argc,argv);
 
 	// Main runtime cycle
 	while (runflag != CORE_ST_STOP) { 
@@ -381,7 +381,7 @@ int main (int argc, char **argv)
 		do_sockets(next);
 	}
 
-	do_final();
+//	do_final();
 
 	timer_final();
 	socket_final();
