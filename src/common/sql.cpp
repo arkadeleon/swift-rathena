@@ -7,7 +7,7 @@
 #include "winapi.hpp"
 #endif
 
-#include <mysql.h>
+#include <sqlite3.h>
 #include <stdlib.h>// strtoul
 
 #include "cbasetypes.hpp"
@@ -15,13 +15,6 @@
 #include "showmsg.hpp"
 #include "strlib.hpp"
 #include "timer.hpp"
-
-// MySQL 8.0 or later removed my_bool typedef.
-// Reintroduce it as a bandaid fix.
-// See https://bugs.mysql.com/?id=87337
-#if !defined(MARIADB_BASE_VERSION) && !defined(MARIADB_VERSION_ID) && MYSQL_VERSION_ID >= 80001 && MYSQL_VERSION_ID != 80002
-#define my_bool bool
-#endif
 
 #define SQL_CONF_NAME "conf/inter_athena.conf"
 
@@ -34,10 +27,10 @@ unsigned int mysql_reconnect_count;
 struct Sql
 {
 	StringBuf buf;
-	MYSQL handle;
-	MYSQL_RES* result;
-	MYSQL_ROW row;
-	unsigned long* lengths;
+	sqlite3* db;
+	sqlite3_stmt* stmt;
+	int row;
+	int nRow;
 	int keepalive;
 };
 
@@ -58,12 +51,9 @@ typedef struct s_column_length s_column_length;
 struct SqlStmt
 {
 	StringBuf buf;
-	MYSQL_STMT* stmt;
-	MYSQL_BIND* params;
-	MYSQL_BIND* columns;
-	s_column_length* column_lengths;
-	size_t max_params;
-	size_t max_columns;
+	sqlite3* db;
+	sqlite3_stmt* stmt;
+	int nRow;
 	bool bind_params;
 	bool bind_columns;
 };
@@ -82,13 +72,12 @@ Sql* Sql_Malloc(void)
 	Sql* self;
 
 	CREATE(self, Sql, 1);
-	mysql_init(&self->handle);
 	StringBuf_Init(&self->buf);
-	self->lengths = NULL;
-	self->result = NULL;
+	self->db = NULL;
+	self->stmt = NULL;
+	self->row = -1;
+	self->nRow = 0;
 	self->keepalive = INVALID_TIMER;
-	my_bool reconnect = 1;
-	mysql_options(&self->handle, MYSQL_OPT_RECONNECT, &reconnect);
 	return self;
 }
 
@@ -99,7 +88,7 @@ Sql* Sql_Malloc(void)
  * @return last error number
  */
 unsigned int Sql_GetError( Sql* self ){
-	return mysql_errno( &self->handle );
+	return sqlite3_errcode( self->db );
 }
 
 static int Sql_P_Keepalive(Sql* self);
@@ -120,9 +109,9 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 		return SQL_ERROR;
 
 	StringBuf_Clear(&self->buf);
-	if( !mysql_real_connect(&self->handle, host, user, passwd, db, (unsigned int)port, NULL/*unix_socket*/, 0/*clientflag*/) )
+	if( !sqlite3_open("", &self->db) )
 	{
-		ShowSQL("%s\n", mysql_error(&self->handle));
+		ShowSQL("%s\n", sqlite3_errmsg(self->db));
 		return SQL_ERROR;
 	}
 
@@ -203,9 +192,7 @@ int Sql_SetEncoding(Sql* self, const char* encoding)
 /// Pings the connection.
 int Sql_Ping(Sql* self)
 {
-	if( self && mysql_ping(&self->handle) == 0 )
-		return SQL_SUCCESS;
-	return SQL_ERROR;
+	return SQL_SUCCESS;
 }
 
 
@@ -250,10 +237,7 @@ static int Sql_P_Keepalive(Sql* self)
 /// Escapes a string.
 size_t Sql_EscapeString(Sql* self, char *out_to, const char *from)
 {
-	if( self )
-		return (size_t)mysql_real_escape_string(&self->handle, out_to, from, (unsigned long)strlen(from));
-	else
-		return (size_t)mysql_escape_string(out_to, from, (unsigned long)strlen(from));
+	return Sql_EscapeStringLen(self, out_to, from, strlen(from));
 }
 
 
@@ -261,10 +245,8 @@ size_t Sql_EscapeString(Sql* self, char *out_to, const char *from)
 /// Escapes a string.
 size_t Sql_EscapeStringLen(Sql* self, char *out_to, const char *from, size_t from_len)
 {
-	if( self )
-		return (size_t)mysql_real_escape_string(&self->handle, out_to, from, (unsigned long)from_len);
-	else
-		return (size_t)mysql_escape_string(out_to, from, (unsigned long)from_len);
+	memcpy(out_to, from, from_len);
+	return from_len;
 }
 
 
@@ -293,19 +275,25 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	if( mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf)) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
 	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
-		ra_mysql_error_handler(mysql_errno(&self->handle));
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-	self->result = mysql_store_result(&self->handle);
-	if( mysql_errno(&self->handle) != 0 )
-	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
-		ra_mysql_error_handler(mysql_errno(&self->handle));
-		return SQL_ERROR;
+
+	self->row = -1;
+	self->nRow = 0;
+	while(true) {
+		int res = sqlite3_step(self->stmt);
+		if( res == SQLITE_ROW )
+			self->nRow++;
+		else if( res == SQLITE_DONE )
+			break;
 	}
+
+	sqlite3_reset(self->stmt);
+
 	return SQL_SUCCESS;
 }
 
@@ -320,19 +308,25 @@ int Sql_QueryStr(Sql* self, const char* query)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	if( mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf)) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
 	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
-		ra_mysql_error_handler(mysql_errno(&self->handle));
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-	self->result = mysql_store_result(&self->handle);
-	if( mysql_errno(&self->handle) != 0 )
-	{
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
-		ra_mysql_error_handler(mysql_errno(&self->handle));
-		return SQL_ERROR;
+
+	self->row = -1;
+	self->nRow = 0;
+	while(true) {
+		int res = sqlite3_step(self->stmt);
+		if( res == SQLITE_ROW )
+			self->nRow++;
+		else if( res == SQLITE_DONE )
+			break;
 	}
+
+	sqlite3_reset(self->stmt);
+
 	return SQL_SUCCESS;
 }
 
@@ -342,7 +336,7 @@ int Sql_QueryStr(Sql* self, const char* query)
 uint64 Sql_LastInsertId(Sql* self)
 {
 	if( self )
-		return (uint64)mysql_insert_id(&self->handle);
+		return (uint64)sqlite3_last_insert_rowid(self->db);
 	else
 		return 0;
 }
@@ -352,8 +346,8 @@ uint64 Sql_LastInsertId(Sql* self)
 /// Returns the number of columns in each row of the result.
 uint32 Sql_NumColumns(Sql* self)
 {
-	if( self && self->result )
-		return (uint32)mysql_num_fields(self->result);
+	if( self && self->stmt )
+		return (uint32)sqlite3_column_count(self->stmt);
 	return 0;
 }
 
@@ -362,8 +356,8 @@ uint32 Sql_NumColumns(Sql* self)
 /// Returns the number of rows in the result.
 uint64 Sql_NumRows(Sql* self)
 {
-	if( self && self->result )
-		return (uint64)mysql_num_rows(self->result);
+	if( self && self->stmt )
+		return (uint64)self->nRow;
 	return 0;
 }
 
@@ -373,7 +367,7 @@ uint64 Sql_NumRows(Sql* self)
 uint64 Sql_NumRowsAffected(Sql* self)
 {
 	if( self )
-		return (uint64)mysql_affected_rows(&self->handle);
+		return (uint64)sqlite3_changes(self->db);
 	return 0;
 }
 
@@ -382,17 +376,18 @@ uint64 Sql_NumRowsAffected(Sql* self)
 /// Fetches the next row.
 int Sql_NextRow(Sql* self)
 {
-	if( self && self->result )
+	if( self && self->stmt )
 	{
-		self->row = mysql_fetch_row(self->result);
-		if( self->row )
+		int res = sqlite3_step(self->stmt);
+		if( res == SQLITE_ROW )
 		{
-			self->lengths = mysql_fetch_lengths(self->result);
+			self->row++;
 			return SQL_SUCCESS;
 		}
-		self->lengths = NULL;
-		if( mysql_errno(&self->handle) == 0 )
+		else if( res == SQLITE_DONE )
+		{
 			return SQL_NO_DATA;
+		}
 	}
 	return SQL_ERROR;
 }
@@ -402,12 +397,12 @@ int Sql_NextRow(Sql* self)
 /// Gets the data of a column.
 int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 {
-	if( self && self->row )
+	if( self && self->row < Sql_NumRows(self) )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
-			if( out_buf ) *out_buf = self->row[col];
-			if( out_len ) *out_len = (size_t)self->lengths[col];
+			if( out_buf ) *out_buf = (char *)sqlite3_column_text(self->stmt, (int)col);
+			if( out_len ) *out_len = sqlite3_column_bytes(self->stmt, (int)col);
 		}
 		else
 		{// out of range - ignore
@@ -424,12 +419,12 @@ int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 /// Frees the result of the query.
 void Sql_FreeResult(Sql* self)
 {
-	if( self && self->result )
+	if( self && self->stmt )
 	{
-		mysql_free_result(self->result);
-		self->result = NULL;
-		self->row = NULL;
-		self->lengths = NULL;
+		sqlite3_finalize(self->stmt);
+		self->stmt = NULL;
+		self->row = -1;
+		self->nRow = 0;
 	}
 }
 
@@ -468,159 +463,189 @@ void Sql_Free(Sql* self)
 
 
 
-/// Returns the mysql integer type for the target size.
+/// Binds a parameter.
 ///
 /// @private
-static enum enum_field_types Sql_P_SizeToMysqlIntType(int sz)
+static int Sql_P_BindSqlDataType(sqlite3_stmt* stmt, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
 {
-	switch( sz )
-	{
-	case 1: return MYSQL_TYPE_TINY;
-	case 2: return MYSQL_TYPE_SHORT;
-	case 4: return MYSQL_TYPE_LONG;
-	case 8: return MYSQL_TYPE_LONGLONG;
-	default:
-		ShowDebug("SizeToMysqlIntType: unsupported size (%d)\n", sz);
-		return MYSQL_TYPE_NULL;
-	}
-}
-
-
-
-/// Binds a parameter/result.
-///
-/// @private
-static int Sql_P_BindSqlDataType(MYSQL_BIND* bind, enum SqlDataType buffer_type, void* buffer, size_t buffer_len, unsigned long* out_length, int8* out_is_null)
-{
-	memset(bind, 0, sizeof(MYSQL_BIND));
 	switch( buffer_type )
 	{
-	case SQLDT_NULL: bind->buffer_type = MYSQL_TYPE_NULL;
-		buffer_len = 0;// FIXME length = ? [FlavioJS]
+	case SQLDT_NULL:
+		sqlite3_bind_null(stmt, (int)(idx + 1));
 		break;
 	// fixed size
-	case SQLDT_UINT8: bind->is_unsigned = 1;
-	case SQLDT_INT8: bind->buffer_type = MYSQL_TYPE_TINY;
-		buffer_len = 1;
+	case SQLDT_UINT8:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint8_t *)buffer));
 		break;
-	case SQLDT_UINT16: bind->is_unsigned = 1;
-	case SQLDT_INT16: bind->buffer_type = MYSQL_TYPE_SHORT;
-		buffer_len = 2;
+	case SQLDT_INT8:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((int8_t *)buffer));
 		break;
-	case SQLDT_UINT32: bind->is_unsigned = 1;
-	case SQLDT_INT32: bind->buffer_type = MYSQL_TYPE_LONG;
-		buffer_len = 4;
+	case SQLDT_UINT16:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint16_t *)buffer));
 		break;
-	case SQLDT_UINT64: bind->is_unsigned = 1;
-	case SQLDT_INT64: bind->buffer_type = MYSQL_TYPE_LONGLONG;
-		buffer_len = 8;
+	case SQLDT_INT16:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((int16_t *)buffer));
+		break;
+	case SQLDT_UINT32:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint32_t *)buffer));
+		break;
+	case SQLDT_INT32:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((int32_t *)buffer));
+		break;
+	case SQLDT_UINT64:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((uint64_t *)buffer));
+		break;
+	case SQLDT_INT64:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((int64_t *)buffer));
 		break;
 	// platform dependent size
-	case SQLDT_UCHAR: bind->is_unsigned = 1;
-	case SQLDT_CHAR: bind->buffer_type = Sql_P_SizeToMysqlIntType(sizeof(char));
-		buffer_len = sizeof(char);
+	case SQLDT_UCHAR:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned char *)buffer));
 		break;
-	case SQLDT_USHORT: bind->is_unsigned = 1;
-	case SQLDT_SHORT: bind->buffer_type = Sql_P_SizeToMysqlIntType(sizeof(short));
-		buffer_len = sizeof(short);
+	case SQLDT_CHAR:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((char *)buffer));
 		break;
-	case SQLDT_UINT: bind->is_unsigned = 1;
-	case SQLDT_INT: bind->buffer_type = Sql_P_SizeToMysqlIntType(sizeof(int));
-		buffer_len = sizeof(int);
+	case SQLDT_USHORT:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned short *)buffer));
 		break;
-	case SQLDT_ULONG: bind->is_unsigned = 1;
-	case SQLDT_LONG: bind->buffer_type = Sql_P_SizeToMysqlIntType(sizeof(long));
-		buffer_len = sizeof(long);
+	case SQLDT_SHORT:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((short *)buffer));
 		break;
-	case SQLDT_ULONGLONG: bind->is_unsigned = 1;
-	case SQLDT_LONGLONG: bind->buffer_type = Sql_P_SizeToMysqlIntType(sizeof(int64));
-		buffer_len = sizeof(int64);
+	case SQLDT_UINT:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned int *)buffer));
+		break;
+	case SQLDT_INT:
+		sqlite3_bind_int(stmt, (int)(idx + 1), *((int *)buffer));
+		break;
+	case SQLDT_ULONG:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long *)buffer));
+		break;
+	case SQLDT_LONG:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((long *)buffer));
+		break;
+	case SQLDT_ULONGLONG:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long long *)buffer));
+		break;
+	case SQLDT_LONGLONG:
+		sqlite3_bind_int64(stmt, (int)(idx + 1), *((long long *)buffer));
 		break;
 	// floating point
-	case SQLDT_FLOAT: bind->buffer_type = MYSQL_TYPE_FLOAT;
-		buffer_len = 4;
+	case SQLDT_FLOAT:
+		sqlite3_bind_double(stmt, (int)(idx + 1), *((float *)buffer));
 		break;
-	case SQLDT_DOUBLE: bind->buffer_type = MYSQL_TYPE_DOUBLE;
-		buffer_len = 8;
+	case SQLDT_DOUBLE:
+		sqlite3_bind_double(stmt, (int)(idx + 1), *((double *)buffer));
 		break;
 	// other
 	case SQLDT_STRING:
-	case SQLDT_ENUM: bind->buffer_type = MYSQL_TYPE_STRING;
+	case SQLDT_ENUM:
+		sqlite3_bind_text(stmt, (int)(idx + 1), (char *)buffer, (int)buffer_len, NULL);
 		break;
-	case SQLDT_BLOB: bind->buffer_type = MYSQL_TYPE_BLOB;
+	case SQLDT_BLOB:
+		sqlite3_bind_blob(stmt, (int)(idx + 1), buffer, (int)buffer_len, NULL);
 		break;
 	default:
 		ShowDebug("Sql_P_BindSqlDataType: unsupported buffer type (%d)\n", buffer_type);
 		return SQL_ERROR;
 	}
-	bind->buffer = buffer;
-	bind->buffer_length = (unsigned long)buffer_len;
-	bind->length = out_length;
-	bind->is_null = (my_bool*)out_is_null;
 	return SQL_SUCCESS;
 }
 
 
 
-/// Prints debug information about a field (type and length).
+/// Binds a result.
 ///
 /// @private
-static void Sql_P_ShowDebugMysqlFieldInfo(const char* prefix, enum enum_field_types type, int is_unsigned, unsigned long length, const char* length_postfix)
+static int Sql_P_BindResultDataType(sqlite3_stmt* stmt, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
 {
-	const char* sign = (is_unsigned ? "UNSIGNED " : "");
-	const char* type_string;
-	switch( type )
+	switch( buffer_type )
 	{
-	default:
-		ShowDebug("%stype=%s%u, length=%lu\n", prefix, sign, type, length);
-		return;
-#define SHOW_DEBUG_OF(x) case x: type_string = #x; break
-	SHOW_DEBUG_OF(MYSQL_TYPE_TINY);
-	SHOW_DEBUG_OF(MYSQL_TYPE_SHORT);
-	SHOW_DEBUG_OF(MYSQL_TYPE_LONG);
-	SHOW_DEBUG_OF(MYSQL_TYPE_INT24);
-	SHOW_DEBUG_OF(MYSQL_TYPE_LONGLONG);
-	SHOW_DEBUG_OF(MYSQL_TYPE_DECIMAL);
-	SHOW_DEBUG_OF(MYSQL_TYPE_FLOAT);
-	SHOW_DEBUG_OF(MYSQL_TYPE_DOUBLE);
-	SHOW_DEBUG_OF(MYSQL_TYPE_TIMESTAMP);
-	SHOW_DEBUG_OF(MYSQL_TYPE_DATE);
-	SHOW_DEBUG_OF(MYSQL_TYPE_TIME);
-	SHOW_DEBUG_OF(MYSQL_TYPE_DATETIME);
-	SHOW_DEBUG_OF(MYSQL_TYPE_YEAR);
-	SHOW_DEBUG_OF(MYSQL_TYPE_STRING);
-	SHOW_DEBUG_OF(MYSQL_TYPE_VAR_STRING);
-	SHOW_DEBUG_OF(MYSQL_TYPE_BLOB);
-	SHOW_DEBUG_OF(MYSQL_TYPE_SET);
-	SHOW_DEBUG_OF(MYSQL_TYPE_ENUM);
-	SHOW_DEBUG_OF(MYSQL_TYPE_NULL);
-#undef SHOW_DEBUG_TYPE_OF
+	case SQLDT_NULL:
+		
+		buffer_len = 0;// FIXME length = ? [FlavioJS]
+		break;
+	// fixed size
+	case SQLDT_UINT8:
+		*((uint8_t *)buffer) = (uint8_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_INT8:
+		*((int8_t *)buffer) = (int8_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_UINT16:
+		*((uint16_t *)buffer) = (uint16_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_INT16:
+		*((int16_t *)buffer) = (int16_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_UINT32:
+		*((uint32_t *)buffer) = (uint32_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_INT32:
+		*((int32_t *)buffer) = (int32_t)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_UINT64:
+		*((uint64_t *)buffer) = (uint64_t)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	case SQLDT_INT64:
+		*((int64_t *)buffer) = (int64_t)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	// platform dependent size
+	case SQLDT_UCHAR:
+		*((unsigned char *)buffer) = (unsigned char)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_CHAR:
+		*((char *)buffer) = (char)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_USHORT:
+		*((unsigned short *)buffer) = (unsigned short)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_SHORT:
+		*((short *)buffer) = (short)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_UINT:
+		*((unsigned int *)buffer) = (unsigned int)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_INT:
+		*((int *)buffer) = (int)sqlite3_column_int(stmt, (int)idx);
+		break;
+	case SQLDT_ULONG:
+		*((unsigned long *)buffer) = (unsigned long)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	case SQLDT_LONG:
+		*((long *)buffer) = (long)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	case SQLDT_ULONGLONG:
+		*((unsigned long long *)buffer) = (unsigned long long)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	case SQLDT_LONGLONG:
+		*((long long *)buffer) = (long long)sqlite3_column_int64(stmt, (int)idx);
+		break;
+	// floating point
+	case SQLDT_FLOAT:
+		*((float *)buffer) = (float)sqlite3_column_double(stmt, (int)idx);
+		break;
+	case SQLDT_DOUBLE:
+		*((double *)buffer) = (double)sqlite3_column_double(stmt, (int)idx);
+		break;
+	// other
+	case SQLDT_STRING:
+	case SQLDT_ENUM: {
+		const void *text = (const void *)sqlite3_column_text(stmt, (int)idx);
+		size_t len = zmin(buffer_len, sqlite3_column_bytes(stmt, (int)idx));
+		memcpy(buffer, text, len);
+		break;
 	}
-	ShowDebug("%stype=%s%s, length=%lu%s\n", prefix, sign, type_string, length, length_postfix);
-}
-
-
-
-/// Reports debug information about a truncated column.
-///
-/// @private
-static void SqlStmt_P_ShowDebugTruncatedColumn(SqlStmt* self, size_t i)
-{
-	MYSQL_RES* meta;
-	MYSQL_FIELD* field;
-	MYSQL_BIND* column;
-
-	meta = mysql_stmt_result_metadata(self->stmt);
-	field = mysql_fetch_field_direct(meta, (unsigned int)i);
-	ShowSQL("DB error - data of field '%s' was truncated.\n", field->name);
-	ShowDebug("column - %lu\n", (unsigned long)i);
-	Sql_P_ShowDebugMysqlFieldInfo("data   - ", field->type, field->flags&UNSIGNED_FLAG, self->column_lengths[i].length, "");
-	column = &self->columns[i];
-	if( column->buffer_type == MYSQL_TYPE_STRING )
-		Sql_P_ShowDebugMysqlFieldInfo("buffer - ", column->buffer_type, column->is_unsigned, column->buffer_length, "+1(nul-terminator)");
-	else
-		Sql_P_ShowDebugMysqlFieldInfo("buffer - ", column->buffer_type, column->is_unsigned, column->buffer_length, "");
-	mysql_free_result(meta);
+	case SQLDT_BLOB: {
+		const void *blob = sqlite3_column_blob(stmt, (int)idx);
+		size_t len = zmin(buffer_len, sqlite3_column_bytes(stmt, (int)idx));
+		memcpy(buffer, blob, len);
+		break;
+	}
+	default:
+		ShowDebug("Sql_P_BindResultDataType: unsupported buffer type (%d)\n", buffer_type);
+		return SQL_ERROR;
+	}
+	return SQL_SUCCESS;
 }
 
 
@@ -629,25 +654,15 @@ static void SqlStmt_P_ShowDebugTruncatedColumn(SqlStmt* self, size_t i)
 SqlStmt* SqlStmt_Malloc(Sql* sql)
 {
 	SqlStmt* self;
-	MYSQL_STMT* stmt;
 
 	if( sql == NULL )
 		return NULL;
 
-	stmt = mysql_stmt_init(&sql->handle);
-	if( stmt == NULL )
-	{
-		ShowSQL("DB error - %s\n", mysql_error(&sql->handle));
-		return NULL;
-	}
 	CREATE(self, SqlStmt, 1);
 	StringBuf_Init(&self->buf);
-	self->stmt = stmt;
-	self->params = NULL;
-	self->columns = NULL;
-	self->column_lengths = NULL;
-	self->max_params = 0;
-	self->max_columns = 0;
+	self->db = sql->db;
+	self->stmt = NULL;
+	self->nRow = 0;
 	self->bind_params = false;
 	self->bind_columns = false;
 
@@ -680,13 +695,24 @@ int SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
 	SqlStmt_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	if( mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf)) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
 	{
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
-		ra_mysql_error_handler(mysql_stmt_errno(self->stmt));
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
+
+	self->nRow = 0;
+	while(true) {
+		int res = sqlite3_step(self->stmt);
+		if( res == SQLITE_ROW )
+			self->nRow++;
+		else if( res == SQLITE_DONE )
+			break;
+	}
+
+	sqlite3_reset(self->stmt);
 
 	return SQL_SUCCESS;
 }
@@ -702,13 +728,24 @@ int SqlStmt_PrepareStr(SqlStmt* self, const char* query)
 	SqlStmt_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	if( mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf)) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
 	{
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
-		ra_mysql_error_handler(mysql_stmt_errno(self->stmt));
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
+
+	self->nRow = 0;
+	while(true) {
+		int res = sqlite3_step(self->stmt);
+		if( res == SQLITE_ROW )
+			self->nRow++;
+		else if( res == SQLITE_DONE )
+			break;
+	}
+
+	sqlite3_reset(self->stmt);
 
 	return SQL_SUCCESS;
 }
@@ -719,7 +756,7 @@ int SqlStmt_PrepareStr(SqlStmt* self, const char* query)
 size_t SqlStmt_NumParams(SqlStmt* self)
 {
 	if( self )
-		return (size_t)mysql_stmt_param_count(self->stmt);
+		return (size_t)sqlite3_bind_parameter_count(self->stmt);
 	else
 		return 0;
 }
@@ -733,23 +770,11 @@ int SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, v
 		return SQL_ERROR;
 
 	if( !self->bind_params )
-	{// initialize the bindings
-		size_t i;
-		size_t count;
-
-		count = SqlStmt_NumParams(self);
-		if( self->max_params < count )
-		{
-			self->max_params = count;
-			RECREATE(self->params, MYSQL_BIND, count);
-		}
-		memset(self->params, 0, count*sizeof(MYSQL_BIND));
-		for( i = 0; i < count; ++i )
-			self->params[i].buffer_type = MYSQL_TYPE_NULL;
+	{
 		self->bind_params = true;
 	}
-	if( idx < self->max_params )
-		return Sql_P_BindSqlDataType(self->params+idx, buffer_type, buffer, buffer_len, NULL, NULL);
+	if( idx < SqlStmt_NumParams(self) )
+		return Sql_P_BindSqlDataType(self->stmt, idx, buffer_type, buffer, buffer_len);
 	else
 		return SQL_SUCCESS;// out of range - ignore
 }
@@ -763,20 +788,15 @@ int SqlStmt_Execute(SqlStmt* self)
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
-	if( (self->bind_params && mysql_stmt_bind_param(self->stmt, self->params)) ||
-		mysql_stmt_execute(self->stmt) )
+	if( self->bind_params )
 	{
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
-		ra_mysql_error_handler(mysql_stmt_errno(self->stmt));
-		return SQL_ERROR;
+		if( sqlite3_step(self->stmt) == SQLITE_ERROR ) {
+			ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+			ra_mysql_error_handler(sqlite3_errcode(self->db));
+			return SQL_ERROR;
+		}
 	}
 	self->bind_columns = false;
-	if( mysql_stmt_store_result(self->stmt) )// store all the data
-	{
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
-		ra_mysql_error_handler(mysql_stmt_errno(self->stmt));
-		return SQL_ERROR;
-	}
 
 	return SQL_SUCCESS;
 }
@@ -787,7 +807,7 @@ int SqlStmt_Execute(SqlStmt* self)
 uint64 SqlStmt_LastInsertId(SqlStmt* self)
 {
 	if( self )
-		return (uint64)mysql_stmt_insert_id(self->stmt);
+		return (uint64)sqlite3_last_insert_rowid(self->db);
 	else
 		return 0;
 }
@@ -798,7 +818,7 @@ uint64 SqlStmt_LastInsertId(SqlStmt* self)
 size_t SqlStmt_NumColumns(SqlStmt* self)
 {
 	if( self )
-		return (size_t)mysql_stmt_field_count(self->stmt);
+		return (size_t)sqlite3_column_count(self->stmt);
 	else
 		return 0;
 }
@@ -821,27 +841,12 @@ int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, 
 		--buffer_len;// nul-terminator
 	}
 	if( !self->bind_columns )
-	{// initialize the bindings
-		size_t i;
-		size_t cols;
-
-		cols = SqlStmt_NumColumns(self);
-		if( self->max_columns < cols )
-		{
-			self->max_columns = cols;
-			RECREATE(self->columns, MYSQL_BIND, cols);
-			RECREATE(self->column_lengths, s_column_length, cols);
-		}
-		memset(self->columns, 0, cols*sizeof(MYSQL_BIND));
-		memset(self->column_lengths, 0, cols*sizeof(s_column_length));
-		for( i = 0; i < cols; ++i )
-			self->columns[i].buffer_type = MYSQL_TYPE_NULL;
+	{
 		self->bind_columns = true;
 	}
-	if( idx < self->max_columns )
+	if( idx < SqlStmt_NumColumns(self) )
 	{
-		self->column_lengths[idx].out_length = out_length;
-		return Sql_P_BindSqlDataType(self->columns+idx, buffer_type, buffer, buffer_len, &self->column_lengths[idx].length, out_is_null);
+		return Sql_P_BindResultDataType(self->stmt, idx, buffer_type, buffer, buffer_len);
 	}
 	else
 	{
@@ -855,7 +860,7 @@ int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, 
 uint64 SqlStmt_NumRows(SqlStmt* self)
 {
 	if( self )
-		return (uint64)mysql_stmt_num_rows(self->stmt);
+		return (uint64)self->nRow;
 	else
 		return 0;
 }
@@ -866,86 +871,24 @@ uint64 SqlStmt_NumRows(SqlStmt* self)
 int SqlStmt_NextRow(SqlStmt* self)
 {
 	int err;
-	size_t i;
-	size_t cols;
 
 	if( self == NULL )
 		return SQL_ERROR;
 
-	// bind columns
-	if( self->bind_columns && mysql_stmt_bind_result(self->stmt, self->columns) )
-		err = 1;// error binding columns
+	if( self->bind_columns )
+		err = sqlite3_step(self->stmt);// fetch row
 	else
-		err = mysql_stmt_fetch(self->stmt);// fetch row
+		err = 1;
 
 	// check for errors
-	if( err == MYSQL_NO_DATA )
+	if( err == SQLITE_DONE )
 		return SQL_NO_DATA;
-#if defined(MYSQL_DATA_TRUNCATED)
-	// MySQL 5.0/5.1 defines and returns MYSQL_DATA_TRUNCATED [FlavioJS]
-	if( err == MYSQL_DATA_TRUNCATED )
+
+	if( err == SQLITE_ERROR )
 	{
-		my_bool truncated;
-
-		if( !self->bind_columns )
-		{
-			ShowSQL("DB error - data truncated (unknown source, columns are not bound)\n");
-			return SQL_ERROR;
-		}
-
-		// find truncated column
-		cols = SqlStmt_NumColumns(self);
-		for( i = 0; i < cols; ++i )
-		{
-			MYSQL_BIND* column = &self->columns[i];
-			column->error = &truncated;
-			mysql_stmt_fetch_column(self->stmt, column, (unsigned int)i, 0);
-			column->error = NULL;
-			if( truncated )
-			{// report truncated column
-				SqlStmt_P_ShowDebugTruncatedColumn(self, i);
-				return SQL_ERROR;
-			}
-		}
-		ShowSQL("DB error - data truncated (unknown source)\n");
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
-	}
-#endif
-	if( err )
-	{
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
-		ra_mysql_error_handler(mysql_stmt_errno(self->stmt));
-		return SQL_ERROR;
-	}
-
-	// propagate column lengths and clear unused parts of string/enum/blob buffers
-	cols = SqlStmt_NumColumns(self);
-	for( i = 0; i < cols; ++i )
-	{
-		unsigned long length = self->column_lengths[i].length;
-		MYSQL_BIND* column = &self->columns[i];
-#if !defined(MYSQL_DATA_TRUNCATED)
-		// MySQL 4.1/(below?) returns success even if data is truncated, so we test truncation manually [FlavioJS]
-		if( column->buffer_length < length )
-		{// report truncated column
-			if( column->buffer_type == MYSQL_TYPE_STRING || column->buffer_type == MYSQL_TYPE_BLOB )
-			{// string/enum/blob column
-				SqlStmt_P_ShowDebugTruncatedColumn(self, i);
-				return SQL_ERROR;
-			}
-			// FIXME numeric types and null [FlavioJS]
-		}
-#endif
-		if( self->column_lengths[i].out_length )
-			*self->column_lengths[i].out_length = (uint32)length;
-		if( column->buffer_type == MYSQL_TYPE_STRING )
-		{// clear unused part of the string/enum buffer (and nul-terminate)
-			memset((char*)column->buffer + length, 0, column->buffer_length - length + 1);
-		}
-		else if( column->buffer_type == MYSQL_TYPE_BLOB && length < column->buffer_length )
-		{// clear unused part of the blob buffer
-			memset((char*)column->buffer + length, 0, column->buffer_length - length);
-		}
 	}
 
 	return SQL_SUCCESS;
@@ -956,8 +899,6 @@ int SqlStmt_NextRow(SqlStmt* self)
 /// Frees the result of the statement execution.
 void SqlStmt_FreeResult(SqlStmt* self)
 {
-	if( self )
-		mysql_stmt_free_result(self->stmt);
 }
 
 
@@ -982,14 +923,7 @@ void SqlStmt_Free(SqlStmt* self)
 	{
 		SqlStmt_FreeResult(self);
 		StringBuf_Destroy(&self->buf);
-		mysql_stmt_close(self->stmt);
-		if( self->params )
-			aFree(self->params);
-		if( self->columns )
-		{
-			aFree(self->columns);
-			aFree(self->column_lengths);
-		}
+		sqlite3_finalize(self->stmt);
 		aFree(self);
 	}
 }
@@ -1056,7 +990,3 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 void Sql_Init(void) {
 	Sql_inter_server_read(SQL_CONF_NAME,true);
 }
-
-#ifdef my_bool
-#undef my_bool
-#endif

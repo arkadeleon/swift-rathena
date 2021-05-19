@@ -445,6 +445,26 @@
 		35FD12C62652096400BB0968 /* regex_yaml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD0FF8264E808F00BB0968 /* regex_yaml.cpp */; };
 		35FD12C72652096400BB0968 /* scantoken.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1010264E808F00BB0968 /* scantoken.cpp */; };
 		35FD12C92652096400BB0968 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD10EF2652031400BB0968 /* libz.tbd */; };
+		35FD13032652150400BB0968 /* login.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12F12652150300BB0968 /* login.hpp */; };
+		35FD13042652150400BB0968 /* loginlog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12F22652150300BB0968 /* loginlog.cpp */; };
+		35FD13052652150400BB0968 /* ipban.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12F32652150300BB0968 /* ipban.cpp */; };
+		35FD13072652150400BB0968 /* logincnslif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12F52652150300BB0968 /* logincnslif.hpp */; };
+		35FD13082652150400BB0968 /* loginchrif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12F62652150300BB0968 /* loginchrif.cpp */; };
+		35FD13092652150400BB0968 /* loginclif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12F72652150300BB0968 /* loginclif.cpp */; };
+		35FD130A2652150400BB0968 /* account.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12F82652150300BB0968 /* account.hpp */; };
+		35FD130B2652150400BB0968 /* loginchrif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12F92652150300BB0968 /* loginchrif.hpp */; };
+		35FD130D2652150400BB0968 /* loginclif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12FB2652150400BB0968 /* loginclif.hpp */; };
+		35FD130E2652150400BB0968 /* account.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12FC2652150400BB0968 /* account.cpp */; };
+		35FD130F2652150400BB0968 /* login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD12FD2652150400BB0968 /* login.cpp */; };
+		35FD13102652150400BB0968 /* loginlog.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD12FE2652150400BB0968 /* loginlog.hpp */; };
+		35FD13122652150400BB0968 /* ipban.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD13002652150400BB0968 /* ipban.hpp */; };
+		35FD13142652150400BB0968 /* logincnslif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD13022652150400BB0968 /* logincnslif.cpp */; };
+		35FD131E2652174C00BB0968 /* sql.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1092264E81E800BB0968 /* sql.cpp */; };
+		35FD13222652174D00BB0968 /* sql.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1092264E81E800BB0968 /* sql.cpp */; };
+		35FD13262652174D00BB0968 /* sql.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FD1092264E81E800BB0968 /* sql.cpp */; };
+		35FD132E26526F2E00BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
+		35FD133226526F3200BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
+		35FD133626526F3400BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -601,6 +621,21 @@
 		35FD12302652095000BB0968 /* RALoginServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RALoginServer-Info.plist"; path = "/Users/leon/Repositories/rathena/RALoginServer-Info.plist"; sourceTree = "<absolute>"; };
 		35FD12CE2652096400BB0968 /* RAMapServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RAMapServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FD12CF2652096400BB0968 /* RAMapServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RAMapServer-Info.plist"; path = "/Users/leon/Repositories/rathena/RAMapServer-Info.plist"; sourceTree = "<absolute>"; };
+		35FD12F12652150300BB0968 /* login.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = login.hpp; sourceTree = "<group>"; };
+		35FD12F22652150300BB0968 /* loginlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loginlog.cpp; sourceTree = "<group>"; };
+		35FD12F32652150300BB0968 /* ipban.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipban.cpp; sourceTree = "<group>"; };
+		35FD12F52652150300BB0968 /* logincnslif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = logincnslif.hpp; sourceTree = "<group>"; };
+		35FD12F62652150300BB0968 /* loginchrif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loginchrif.cpp; sourceTree = "<group>"; };
+		35FD12F72652150300BB0968 /* loginclif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loginclif.cpp; sourceTree = "<group>"; };
+		35FD12F82652150300BB0968 /* account.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = account.hpp; sourceTree = "<group>"; };
+		35FD12F92652150300BB0968 /* loginchrif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = loginchrif.hpp; sourceTree = "<group>"; };
+		35FD12FB2652150400BB0968 /* loginclif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = loginclif.hpp; sourceTree = "<group>"; };
+		35FD12FC2652150400BB0968 /* account.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = account.cpp; sourceTree = "<group>"; };
+		35FD12FD2652150400BB0968 /* login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = login.cpp; sourceTree = "<group>"; };
+		35FD12FE2652150400BB0968 /* loginlog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = loginlog.hpp; sourceTree = "<group>"; };
+		35FD13002652150400BB0968 /* ipban.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ipban.hpp; sourceTree = "<group>"; };
+		35FD13022652150400BB0968 /* logincnslif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logincnslif.cpp; sourceTree = "<group>"; };
+		35FD132D26526F2E00BB0968 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -608,6 +643,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD133226526F3200BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD118C2652094300BB0968 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +652,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD132E26526F2E00BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD122A2652094F00BB0968 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,6 +661,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD133626526F3400BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD12C92652096400BB0968 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -667,6 +705,7 @@
 			isa = PBXGroup;
 			children = (
 				35FD0BCF264E789100BB0968 /* common */,
+				35FD12F02652150300BB0968 /* login */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -905,9 +944,31 @@
 		35FD10EE2652031400BB0968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35FD132D26526F2E00BB0968 /* libsqlite3.tbd */,
 				35FD10EF2652031400BB0968 /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35FD12F02652150300BB0968 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				35FD12FC2652150400BB0968 /* account.cpp */,
+				35FD12F82652150300BB0968 /* account.hpp */,
+				35FD12F32652150300BB0968 /* ipban.cpp */,
+				35FD13002652150400BB0968 /* ipban.hpp */,
+				35FD12FD2652150400BB0968 /* login.cpp */,
+				35FD12F12652150300BB0968 /* login.hpp */,
+				35FD12F62652150300BB0968 /* loginchrif.cpp */,
+				35FD12F92652150300BB0968 /* loginchrif.hpp */,
+				35FD12F72652150300BB0968 /* loginclif.cpp */,
+				35FD12FB2652150400BB0968 /* loginclif.hpp */,
+				35FD13022652150400BB0968 /* logincnslif.cpp */,
+				35FD12F52652150300BB0968 /* logincnslif.hpp */,
+				35FD12F22652150300BB0968 /* loginlog.cpp */,
+				35FD12FE2652150400BB0968 /* loginlog.hpp */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1028,6 +1089,7 @@
 				35FD11A22652094F00BB0968 /* stream.h in Headers */,
 				35FD11A32652094F00BB0968 /* node.h in Headers */,
 				35FD11A42652094F00BB0968 /* regex_yaml.h in Headers */,
+				35FD130D2652150400BB0968 /* loginclif.hpp in Headers */,
 				35FD11A52652094F00BB0968 /* emit.h in Headers */,
 				35FD11A62652094F00BB0968 /* des.hpp in Headers */,
 				35FD11A72652094F00BB0968 /* graphbuilder.h in Headers */,
@@ -1037,6 +1099,7 @@
 				35FD11AB2652094F00BB0968 /* grammar.h in Headers */,
 				35FD11AC2652094F00BB0968 /* impl.h in Headers */,
 				35FD11AD2652094F00BB0968 /* scanctx.h in Headers */,
+				35FD130B2652150400BB0968 /* loginchrif.hpp in Headers */,
 				35FD11AE2652094F00BB0968 /* mapindex.hpp in Headers */,
 				35FD11AF2652094F00BB0968 /* yaml.h in Headers */,
 				35FD11B02652094F00BB0968 /* node_data.h in Headers */,
@@ -1048,6 +1111,7 @@
 				35FD11B62652094F00BB0968 /* convert.h in Headers */,
 				35FD11B72652094F00BB0968 /* indentation.h in Headers */,
 				35FD11B82652094F00BB0968 /* core.hpp in Headers */,
+				35FD130A2652150400BB0968 /* account.hpp in Headers */,
 				35FD11B92652094F00BB0968 /* emitterstyle.h in Headers */,
 				35FD11BA2652094F00BB0968 /* scantag.h in Headers */,
 				35FD11BB2652094F00BB0968 /* mmo.hpp in Headers */,
@@ -1071,13 +1135,16 @@
 				35FD11CD2652094F00BB0968 /* eventhandler.h in Headers */,
 				35FD11CE2652094F00BB0968 /* ptr.h in Headers */,
 				35FD11CF2652094F00BB0968 /* node_ref.h in Headers */,
+				35FD13072652150400BB0968 /* logincnslif.hpp in Headers */,
 				35FD11D02652094F00BB0968 /* cli.hpp in Headers */,
 				35FD11D12652094F00BB0968 /* scanscalar.h in Headers */,
 				35FD11D22652094F00BB0968 /* anchordict.h in Headers */,
 				35FD11D32652094F00BB0968 /* ptr_vector.h in Headers */,
 				35FD11D42652094F00BB0968 /* iterator_fwd.h in Headers */,
 				35FD11D52652094F00BB0968 /* impl.h in Headers */,
+				35FD13122652150400BB0968 /* ipban.hpp in Headers */,
 				35FD11D62652094F00BB0968 /* traits.h in Headers */,
+				35FD13032652150400BB0968 /* login.hpp in Headers */,
 				35FD11D72652094F00BB0968 /* nodeevents.h in Headers */,
 				35FD11D82652094F00BB0968 /* exp.h in Headers */,
 				35FD11D92652094F00BB0968 /* token.h in Headers */,
@@ -1102,6 +1169,7 @@
 				35FD11EC2652094F00BB0968 /* parser.h in Headers */,
 				35FD11ED2652094F00BB0968 /* emitterstate.h in Headers */,
 				35FD11EE2652094F00BB0968 /* nodebuilder.h in Headers */,
+				35FD13102652150400BB0968 /* loginlog.hpp in Headers */,
 				35FD11EF2652094F00BB0968 /* db.hpp in Headers */,
 				35FD11F02652094F00BB0968 /* stlemitter.h in Headers */,
 			);
@@ -1326,6 +1394,7 @@
 				35FD11592652094300BB0968 /* node.cpp in Sources */,
 				35FD115A2652094300BB0968 /* convert.cpp in Sources */,
 				35FD115B2652094300BB0968 /* graphbuilderadapter.cpp in Sources */,
+				35FD131E2652174C00BB0968 /* sql.cpp in Sources */,
 				35FD115C2652094300BB0968 /* conf.cpp in Sources */,
 				35FD115D2652094300BB0968 /* md5calc.cpp in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
@@ -1380,6 +1449,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FD13142652150400BB0968 /* logincnslif.cpp in Sources */,
+				35FD13082652150400BB0968 /* loginchrif.cpp in Sources */,
+				35FD13042652150400BB0968 /* loginlog.cpp in Sources */,
 				35FD11F22652094F00BB0968 /* parser.cpp in Sources */,
 				35FD11F32652094F00BB0968 /* database.cpp in Sources */,
 				35FD11F42652094F00BB0968 /* nullpo.cpp in Sources */,
@@ -1401,8 +1473,10 @@
 				35FD12042652094F00BB0968 /* scanctx.c in Sources */,
 				35FD12052652094F00BB0968 /* socket.cpp in Sources */,
 				35FD12062652094F00BB0968 /* ers.cpp in Sources */,
+				35FD130F2652150400BB0968 /* login.cpp in Sources */,
 				35FD12072652094F00BB0968 /* scantag.cpp in Sources */,
 				35FD12082652094F00BB0968 /* strlib.cpp in Sources */,
+				35FD130E2652150400BB0968 /* account.cpp in Sources */,
 				35FD12092652094F00BB0968 /* emit.cpp in Sources */,
 				35FD120A2652094F00BB0968 /* memory.cpp in Sources */,
 				35FD120B2652094F00BB0968 /* utilities.cpp in Sources */,
@@ -1411,6 +1485,7 @@
 				35FD120E2652094F00BB0968 /* scanscalar.cpp in Sources */,
 				35FD120F2652094F00BB0968 /* ostream_wrapper.cpp in Sources */,
 				35FD12102652094F00BB0968 /* graphbuilder.cpp in Sources */,
+				35FD13052652150400BB0968 /* ipban.cpp in Sources */,
 				35FD12112652094F00BB0968 /* emitterutils.cpp in Sources */,
 				35FD12122652094F00BB0968 /* emitter.cpp in Sources */,
 				35FD12132652094F00BB0968 /* malloc.cpp in Sources */,
@@ -1423,6 +1498,7 @@
 				35FD121A2652094F00BB0968 /* mapindex.cpp in Sources */,
 				35FD121B2652094F00BB0968 /* scanner.c in Sources */,
 				35FD121C2652094F00BB0968 /* scanner.cpp in Sources */,
+				35FD13092652150400BB0968 /* loginclif.cpp in Sources */,
 				35FD121D2652094F00BB0968 /* cli.cpp in Sources */,
 				35FD121E2652094F00BB0968 /* utils.cpp in Sources */,
 				35FD121F2652094F00BB0968 /* libconfig.c in Sources */,
@@ -1430,6 +1506,7 @@
 				35FD12212652094F00BB0968 /* directives.cpp in Sources */,
 				35FD12222652094F00BB0968 /* strbuf.c in Sources */,
 				35FD12232652094F00BB0968 /* des.cpp in Sources */,
+				35FD13222652174D00BB0968 /* sql.cpp in Sources */,
 				35FD12242652094F00BB0968 /* db.cpp in Sources */,
 				35FD12252652094F00BB0968 /* grfio.cpp in Sources */,
 				35FD12262652094F00BB0968 /* timer.cpp in Sources */,
@@ -1450,6 +1527,7 @@
 				35FD12962652096400BB0968 /* node.cpp in Sources */,
 				35FD12972652096400BB0968 /* convert.cpp in Sources */,
 				35FD12982652096400BB0968 /* graphbuilderadapter.cpp in Sources */,
+				35FD13262652174D00BB0968 /* sql.cpp in Sources */,
 				35FD12992652096400BB0968 /* conf.cpp in Sources */,
 				35FD129A2652096400BB0968 /* md5calc.cpp in Sources */,
 				35FD129B2652096400BB0968 /* nodeevents.cpp in Sources */,
