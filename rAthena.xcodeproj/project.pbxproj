@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35218447265563A9002FAE2C /* RACharServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521843D265563A1002FAE2C /* RACharServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3521844E265563AD002FAE2C /* RACharServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3521843E265563A1002FAE2C /* RACharServer.m */; };
+		35218454265563CD002FAE2C /* RAMapServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218452265563CD002FAE2C /* RAMapServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35218455265563CD002FAE2C /* RAMapServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35218453265563CD002FAE2C /* RAMapServer.m */; };
+		35218466265563EA002FAE2C /* RAServerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218459265563E1002FAE2C /* RAServerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3521846D265563EE002FAE2C /* RAServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3521845A265563E1002FAE2C /* RAServerManager.m */; };
+		3599687B2655571A006AECE6 /* RALoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* RALoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3599687C2655571A006AECE6 /* RALoginServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3599687A2655571A006AECE6 /* RALoginServer.m */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -611,6 +619,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3521843D265563A1002FAE2C /* RACharServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACharServer.h; sourceTree = "<group>"; };
+		3521843E265563A1002FAE2C /* RACharServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACharServer.m; sourceTree = "<group>"; };
+		35218452265563CD002FAE2C /* RAMapServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMapServer.h; sourceTree = "<group>"; };
+		35218453265563CD002FAE2C /* RAMapServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMapServer.m; sourceTree = "<group>"; };
+		35218459265563E1002FAE2C /* RAServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAServerManager.h; sourceTree = "<group>"; };
+		3521845A265563E1002FAE2C /* RAServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAServerManager.m; sourceTree = "<group>"; };
+		359968792655571A006AECE6 /* RALoginServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginServer.h; sourceTree = "<group>"; };
+		3599687A2655571A006AECE6 /* RALoginServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginServer.m; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -944,6 +960,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3599687826555662006AECE6 /* xcode */ = {
+			isa = PBXGroup;
+			children = (
+				3521843D265563A1002FAE2C /* RACharServer.h */,
+				3521843E265563A1002FAE2C /* RACharServer.m */,
+				359968792655571A006AECE6 /* RALoginServer.h */,
+				3599687A2655571A006AECE6 /* RALoginServer.m */,
+				35218452265563CD002FAE2C /* RAMapServer.h */,
+				35218453265563CD002FAE2C /* RAMapServer.m */,
+				35218459265563E1002FAE2C /* RAServerManager.h */,
+				3521845A265563E1002FAE2C /* RAServerManager.m */,
+			);
+			path = xcode;
+			sourceTree = "<group>";
+		};
 		35E6BD612654D94600DD3426 /* map */ = {
 			isa = PBXGroup;
 			children = (
@@ -1119,6 +1150,7 @@
 				35FD0BCF264E789100BB0968 /* common */,
 				35FD12F02652150300BB0968 /* login */,
 				35E6BD612654D94600DD3426 /* map */,
+				3599687826555662006AECE6 /* xcode */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1391,6 +1423,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35218466265563EA002FAE2C /* RAServerManager.h in Headers */,
 				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1463,6 +1496,7 @@
 				35FD112A2652094300BB0968 /* exceptions.h in Headers */,
 				35FD112B2652094300BB0968 /* anchor.h in Headers */,
 				35FD112C2652094300BB0968 /* cbasetypes.hpp in Headers */,
+				35218447265563A9002FAE2C /* RACharServer.h in Headers */,
 				35FD112D2652094300BB0968 /* md5calc.hpp in Headers */,
 				35FD112E2652094300BB0968 /* scanner.h in Headers */,
 				35E6BE662654DA3E00DD3426 /* int_elemental.hpp in Headers */,
@@ -1599,6 +1633,7 @@
 				35FD11E52652094F00BB0968 /* emitter.h in Headers */,
 				35FD11E62652094F00BB0968 /* wincompat.h in Headers */,
 				35FD11E72652094F00BB0968 /* timer.hpp in Headers */,
+				3599687B2655571A006AECE6 /* RALoginServer.h in Headers */,
 				35FD11E82652094F00BB0968 /* tag.h in Headers */,
 				35FD11E92652094F00BB0968 /* bool_type.h in Headers */,
 				35FD11EA2652094F00BB0968 /* node.h in Headers */,
@@ -1707,6 +1742,7 @@
 				35FD12742652096400BB0968 /* impl.h in Headers */,
 				35FD12752652096400BB0968 /* traits.h in Headers */,
 				35E6BDF12654D94700DD3426 /* clif_obfuscation.hpp in Headers */,
+				35218454265563CD002FAE2C /* RAMapServer.h in Headers */,
 				35FD12762652096400BB0968 /* nodeevents.h in Headers */,
 				35FD12772652096400BB0968 /* exp.h in Headers */,
 				35FD12782652096400BB0968 /* token.h in Headers */,
@@ -1900,6 +1936,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3521846D265563EE002FAE2C /* RAServerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1921,6 +1958,7 @@
 				35FD115B2652094300BB0968 /* graphbuilderadapter.cpp in Sources */,
 				35FD131E2652174C00BB0968 /* sql.cpp in Sources */,
 				35FD115C2652094300BB0968 /* conf.cpp in Sources */,
+				3521844E265563AD002FAE2C /* RACharServer.m in Sources */,
 				35FD115D2652094300BB0968 /* md5calc.cpp in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
@@ -2033,6 +2071,7 @@
 				35FD12162652094F00BB0968 /* exceptions.cpp in Sources */,
 				35FD12172652094F00BB0968 /* grammar.c in Sources */,
 				35FD12182652094F00BB0968 /* tag.cpp in Sources */,
+				3599687C2655571A006AECE6 /* RALoginServer.m in Sources */,
 				35FD12192652094F00BB0968 /* parse.cpp in Sources */,
 				35FD121A2652094F00BB0968 /* mapindex.cpp in Sources */,
 				35FD121B2652094F00BB0968 /* scanner.c in Sources */,
@@ -2080,6 +2119,7 @@
 				35FD12992652096400BB0968 /* conf.cpp in Sources */,
 				35FD129A2652096400BB0968 /* md5calc.cpp in Sources */,
 				35FD129B2652096400BB0968 /* nodeevents.cpp in Sources */,
+				35218455265563CD002FAE2C /* RAMapServer.m in Sources */,
 				35FD129C2652096400BB0968 /* nodebuilder.cpp in Sources */,
 				35E6BDBF2654D94700DD3426 /* elemental.cpp in Sources */,
 				35E6BDF92654D94800DD3426 /* intif.cpp in Sources */,

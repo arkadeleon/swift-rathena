@@ -362,7 +362,7 @@ int main (int argc, char **argv)
 	display_title();
 	usercheck();
 
-//	Sql_Init();
+	Sql_Init();
 	db_init();
 	signals_init();
 
