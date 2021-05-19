@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35FD10F92652094300BB0968 /* strbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D89264E79BE00BB0968 /* strbuf.h */; };
 		35FD10FA2652094300BB0968 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDF264E808F00BB0968 /* iterator.h */; };
 		35FD10FB2652094300BB0968 /* nullpo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1091264E81E800BB0968 /* nullpo.hpp */; };
@@ -78,7 +79,6 @@
 		35FD113D2652094300BB0968 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDB264E808F00BB0968 /* memory.h */; };
 		35FD113E2652094300BB0968 /* utilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD109F264E81E900BB0968 /* utilities.hpp */; };
 		35FD113F2652094300BB0968 /* streamcharsource.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD100A264E808F00BB0968 /* streamcharsource.h */; };
-		35FD11402652094300BB0968 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35FD11412652094300BB0968 /* noncopyable.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FD0264E808F00BB0968 /* noncopyable.h */; };
 		35FD11422652094300BB0968 /* mark.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FC4264E808F00BB0968 /* mark.h */; };
 		35FD11432652094300BB0968 /* emitfromevents.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FCB264E808F00BB0968 /* emitfromevents.h */; };
@@ -224,7 +224,6 @@
 		35FD11DB2652094F00BB0968 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDB264E808F00BB0968 /* memory.h */; };
 		35FD11DC2652094F00BB0968 /* utilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD109F264E81E900BB0968 /* utilities.hpp */; };
 		35FD11DD2652094F00BB0968 /* streamcharsource.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD100A264E808F00BB0968 /* streamcharsource.h */; };
-		35FD11DE2652094F00BB0968 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35FD11DF2652094F00BB0968 /* noncopyable.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FD0264E808F00BB0968 /* noncopyable.h */; };
 		35FD11E02652094F00BB0968 /* mark.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FC4264E808F00BB0968 /* mark.h */; };
 		35FD11E12652094F00BB0968 /* emitfromevents.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FCB264E808F00BB0968 /* emitfromevents.h */; };
@@ -370,7 +369,6 @@
 		35FD127A2652096400BB0968 /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDB264E808F00BB0968 /* memory.h */; };
 		35FD127B2652096400BB0968 /* utilities.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD109F264E81E900BB0968 /* utilities.hpp */; };
 		35FD127C2652096400BB0968 /* streamcharsource.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD100A264E808F00BB0968 /* streamcharsource.h */; };
-		35FD127D2652096400BB0968 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35FD127E2652096400BB0968 /* noncopyable.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FD0264E808F00BB0968 /* noncopyable.h */; };
 		35FD127F2652096400BB0968 /* mark.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FC4264E808F00BB0968 /* mark.h */; };
 		35FD12802652096400BB0968 /* emitfromevents.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FCB264E808F00BB0968 /* emitfromevents.h */; };
@@ -467,7 +465,32 @@
 		35FD133626526F3400BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		35E6BD4F2654D79500DD3426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD10F72652094300BB0968;
+			remoteInfo = rAthenaChar;
+		};
+		35E6BD512654D79500DD3426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD11952652094F00BB0968;
+			remoteInfo = rAthenaLogin;
+		};
+		35E6BD532654D79500DD3426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD12342652096400BB0968;
+			remoteInfo = rAthenaMap;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FD0B90264E765C00BB0968 /* rAthena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rAthena.h; sourceTree = "<group>"; };
 		35FD0D88264E79BE00BB0968 /* scanner.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanner.c; sourceTree = "<group>"; };
 		35FD0D89264E79BE00BB0968 /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuf.h; sourceTree = "<group>"; };
@@ -637,6 +660,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		35E6BD1F2654D6ED00DD3426 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35FD118B2652094300BB0968 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,6 +709,7 @@
 		35FD0B8E264E765C00BB0968 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				35E6BD222654D6ED00DD3426 /* rAthena.framework */,
 				35FD11912652094300BB0968 /* rAthenaChar.framework */,
 				35FD122F2652094F00BB0968 /* rAthenaLogin.framework */,
 				35FD12CE2652096400BB0968 /* rAthenaMap.framework */,
@@ -970,6 +1001,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		35E6BD1D2654D6ED00DD3426 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35FD10F82652094300BB0968 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1045,7 +1084,6 @@
 				35FD113D2652094300BB0968 /* memory.h in Headers */,
 				35FD113E2652094300BB0968 /* utilities.hpp in Headers */,
 				35FD113F2652094300BB0968 /* streamcharsource.h in Headers */,
-				35FD11402652094300BB0968 /* rAthena.h in Headers */,
 				35FD11412652094300BB0968 /* noncopyable.h in Headers */,
 				35FD11422652094300BB0968 /* mark.h in Headers */,
 				35FD11432652094300BB0968 /* emitfromevents.h in Headers */,
@@ -1148,7 +1186,6 @@
 				35FD11DB2652094F00BB0968 /* memory.h in Headers */,
 				35FD11DC2652094F00BB0968 /* utilities.hpp in Headers */,
 				35FD11DD2652094F00BB0968 /* streamcharsource.h in Headers */,
-				35FD11DE2652094F00BB0968 /* rAthena.h in Headers */,
 				35FD11DF2652094F00BB0968 /* noncopyable.h in Headers */,
 				35FD11E02652094F00BB0968 /* mark.h in Headers */,
 				35FD11E12652094F00BB0968 /* emitfromevents.h in Headers */,
@@ -1246,7 +1283,6 @@
 				35FD127A2652096400BB0968 /* memory.h in Headers */,
 				35FD127B2652096400BB0968 /* utilities.hpp in Headers */,
 				35FD127C2652096400BB0968 /* streamcharsource.h in Headers */,
-				35FD127D2652096400BB0968 /* rAthena.h in Headers */,
 				35FD127E2652096400BB0968 /* noncopyable.h in Headers */,
 				35FD127F2652096400BB0968 /* mark.h in Headers */,
 				35FD12802652096400BB0968 /* emitfromevents.h in Headers */,
@@ -1271,6 +1307,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		35E6BD212654D6ED00DD3426 /* rAthena */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35E6BD272654D6ED00DD3426 /* Build configuration list for PBXNativeTarget "rAthena" */;
+			buildPhases = (
+				35E6BD1D2654D6ED00DD3426 /* Headers */,
+				35E6BD1E2654D6ED00DD3426 /* Sources */,
+				35E6BD1F2654D6ED00DD3426 /* Frameworks */,
+				35E6BD202654D6ED00DD3426 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35E6BD502654D79500DD3426 /* PBXTargetDependency */,
+				35E6BD522654D79500DD3426 /* PBXTargetDependency */,
+				35E6BD542654D79500DD3426 /* PBXTargetDependency */,
+			);
+			name = rAthena;
+			productName = rAthena;
+			productReference = 35E6BD222654D6ED00DD3426 /* rAthena.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		35FD10F72652094300BB0968 /* rAthenaChar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35FD118E2652094300BB0968 /* Build configuration list for PBXNativeTarget "rAthenaChar" */;
@@ -1332,6 +1389,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					35E6BD212654D6ED00DD3426 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
 			};
 			buildConfigurationList = 35FD0B87264E765C00BB0968 /* Build configuration list for PBXProject "rAthena" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -1346,6 +1408,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				35E6BD212654D6ED00DD3426 /* rAthena */,
 				35FD10F72652094300BB0968 /* rAthenaChar */,
 				35FD11952652094F00BB0968 /* rAthenaLogin */,
 				35FD12342652096400BB0968 /* rAthenaMap */,
@@ -1354,6 +1417,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		35E6BD202654D6ED00DD3426 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35FD118D2652094300BB0968 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1378,6 +1448,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		35E6BD1E2654D6ED00DD3426 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35FD11532652094300BB0968 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1576,7 +1653,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		35E6BD502654D79500DD3426 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD10F72652094300BB0968 /* rAthenaChar */;
+			targetProxy = 35E6BD4F2654D79500DD3426 /* PBXContainerItemProxy */;
+		};
+		35E6BD522654D79500DD3426 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD11952652094F00BB0968 /* rAthenaLogin */;
+			targetProxy = 35E6BD512654D79500DD3426 /* PBXContainerItemProxy */;
+		};
+		35E6BD542654D79500DD3426 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD12342652096400BB0968 /* rAthenaMap */;
+			targetProxy = 35E6BD532654D79500DD3426 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		35E6BD282654D6ED00DD3426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		35E6BD292654D6ED00DD3426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		35FD0B93264E765C00BB0968 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1629,7 +1768,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1685,7 +1824,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1851,6 +1990,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		35E6BD272654D6ED00DD3426 /* Build configuration list for PBXNativeTarget "rAthena" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35E6BD282654D6ED00DD3426 /* Debug */,
+				35E6BD292654D6ED00DD3426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		35FD0B87264E765C00BB0968 /* Build configuration list for PBXProject "rAthena" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
