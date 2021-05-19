@@ -95,6 +95,42 @@
 		35E6BE152654D94800DD3426 /* chat.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BDBA2654D94700DD3426 /* chat.hpp */; };
 		35E6BE162654D94800DD3426 /* battle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BDBB2654D94700DD3426 /* battle.hpp */; };
 		35E6BE172654D94800DD3426 /* clan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BDBC2654D94700DD3426 /* clan.cpp */; };
+		35E6BE512654DA3D00DD3426 /* int_quest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE292654DA3D00DD3426 /* int_quest.cpp */; };
+		35E6BE522654DA3D00DD3426 /* int_storage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE2A2654DA3D00DD3426 /* int_storage.hpp */; };
+		35E6BE532654DA3D00DD3426 /* char_logif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE2B2654DA3D00DD3426 /* char_logif.cpp */; };
+		35E6BE542654DA3D00DD3426 /* int_guild.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE2C2654DA3D00DD3426 /* int_guild.hpp */; };
+		35E6BE552654DA3D00DD3426 /* int_mail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE2D2654DA3D00DD3426 /* int_mail.cpp */; };
+		35E6BE562654DA3D00DD3426 /* char.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE2E2654DA3D00DD3426 /* char.cpp */; };
+		35E6BE572654DA3D00DD3426 /* int_clan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE2F2654DA3D00DD3426 /* int_clan.cpp */; };
+		35E6BE592654DA3D00DD3426 /* char_mapif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE312654DA3D00DD3426 /* char_mapif.hpp */; };
+		35E6BE5A2654DA3D00DD3426 /* int_mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE322654DA3D00DD3426 /* int_mercenary.hpp */; };
+		35E6BE5B2654DA3D00DD3426 /* char_clif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE332654DA3D00DD3426 /* char_clif.hpp */; };
+		35E6BE5C2654DA3E00DD3426 /* int_auction.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE342654DA3D00DD3426 /* int_auction.hpp */; };
+		35E6BE5D2654DA3E00DD3426 /* int_achievement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE352654DA3D00DD3426 /* int_achievement.cpp */; };
+		35E6BE5E2654DA3E00DD3426 /* int_elemental.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE362654DA3D00DD3426 /* int_elemental.cpp */; };
+		35E6BE5F2654DA3E00DD3426 /* int_pet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE372654DA3D00DD3426 /* int_pet.cpp */; };
+		35E6BE602654DA3E00DD3426 /* int_party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE382654DA3D00DD3426 /* int_party.cpp */; };
+		35E6BE612654DA3E00DD3426 /* char_cnslif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE392654DA3D00DD3426 /* char_cnslif.cpp */; };
+		35E6BE622654DA3E00DD3426 /* inter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE3A2654DA3D00DD3426 /* inter.hpp */; };
+		35E6BE632654DA3E00DD3426 /* int_homun.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE3B2654DA3D00DD3426 /* int_homun.hpp */; };
+		35E6BE642654DA3E00DD3426 /* int_mercenary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE3C2654DA3D00DD3426 /* int_mercenary.cpp */; };
+		35E6BE652654DA3E00DD3426 /* char_clif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE3D2654DA3D00DD3426 /* char_clif.cpp */; };
+		35E6BE662654DA3E00DD3426 /* int_elemental.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE3E2654DA3D00DD3426 /* int_elemental.hpp */; };
+		35E6BE672654DA3E00DD3426 /* int_auction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE3F2654DA3D00DD3426 /* int_auction.cpp */; };
+		35E6BE682654DA3E00DD3426 /* int_achievement.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE402654DA3D00DD3426 /* int_achievement.hpp */; };
+		35E6BE692654DA3E00DD3426 /* int_party.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE412654DA3D00DD3426 /* int_party.hpp */; };
+		35E6BE6A2654DA3E00DD3426 /* int_pet.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE422654DA3D00DD3426 /* int_pet.hpp */; };
+		35E6BE6B2654DA3E00DD3426 /* inter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE432654DA3D00DD3426 /* inter.cpp */; };
+		35E6BE6C2654DA3E00DD3426 /* char_cnslif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE442654DA3D00DD3426 /* char_cnslif.hpp */; };
+		35E6BE6E2654DA3E00DD3426 /* int_homun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE462654DA3D00DD3426 /* int_homun.cpp */; };
+		35E6BE6F2654DA3E00DD3426 /* int_quest.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE472654DA3D00DD3426 /* int_quest.hpp */; };
+		35E6BE702654DA3E00DD3426 /* int_guild.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE482654DA3D00DD3426 /* int_guild.cpp */; };
+		35E6BE712654DA3E00DD3426 /* int_storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE492654DA3D00DD3426 /* int_storage.cpp */; };
+		35E6BE722654DA3E00DD3426 /* char_logif.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE4A2654DA3D00DD3426 /* char_logif.hpp */; };
+		35E6BE732654DA3E00DD3426 /* int_mail.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE4B2654DA3D00DD3426 /* int_mail.hpp */; };
+		35E6BE742654DA3E00DD3426 /* char.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE4C2654DA3D00DD3426 /* char.hpp */; };
+		35E6BE752654DA3E00DD3426 /* int_clan.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE4D2654DA3D00DD3426 /* int_clan.hpp */; };
+		35E6BE772654DA3E00DD3426 /* char_mapif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE4F2654DA3D00DD3426 /* char_mapif.cpp */; };
 		35FD10F92652094300BB0968 /* strbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D89264E79BE00BB0968 /* strbuf.h */; };
 		35FD10FA2652094300BB0968 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDF264E808F00BB0968 /* iterator.h */; };
 		35FD10FB2652094300BB0968 /* nullpo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1091264E81E800BB0968 /* nullpo.hpp */; };
@@ -665,6 +701,42 @@
 		35E6BDBA2654D94700DD3426 /* chat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = chat.hpp; sourceTree = "<group>"; };
 		35E6BDBB2654D94700DD3426 /* battle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = battle.hpp; sourceTree = "<group>"; };
 		35E6BDBC2654D94700DD3426 /* clan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clan.cpp; sourceTree = "<group>"; };
+		35E6BE292654DA3D00DD3426 /* int_quest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_quest.cpp; sourceTree = "<group>"; };
+		35E6BE2A2654DA3D00DD3426 /* int_storage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_storage.hpp; sourceTree = "<group>"; };
+		35E6BE2B2654DA3D00DD3426 /* char_logif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char_logif.cpp; sourceTree = "<group>"; };
+		35E6BE2C2654DA3D00DD3426 /* int_guild.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_guild.hpp; sourceTree = "<group>"; };
+		35E6BE2D2654DA3D00DD3426 /* int_mail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_mail.cpp; sourceTree = "<group>"; };
+		35E6BE2E2654DA3D00DD3426 /* char.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char.cpp; sourceTree = "<group>"; };
+		35E6BE2F2654DA3D00DD3426 /* int_clan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_clan.cpp; sourceTree = "<group>"; };
+		35E6BE312654DA3D00DD3426 /* char_mapif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char_mapif.hpp; sourceTree = "<group>"; };
+		35E6BE322654DA3D00DD3426 /* int_mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_mercenary.hpp; sourceTree = "<group>"; };
+		35E6BE332654DA3D00DD3426 /* char_clif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char_clif.hpp; sourceTree = "<group>"; };
+		35E6BE342654DA3D00DD3426 /* int_auction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_auction.hpp; sourceTree = "<group>"; };
+		35E6BE352654DA3D00DD3426 /* int_achievement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_achievement.cpp; sourceTree = "<group>"; };
+		35E6BE362654DA3D00DD3426 /* int_elemental.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_elemental.cpp; sourceTree = "<group>"; };
+		35E6BE372654DA3D00DD3426 /* int_pet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_pet.cpp; sourceTree = "<group>"; };
+		35E6BE382654DA3D00DD3426 /* int_party.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_party.cpp; sourceTree = "<group>"; };
+		35E6BE392654DA3D00DD3426 /* char_cnslif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char_cnslif.cpp; sourceTree = "<group>"; };
+		35E6BE3A2654DA3D00DD3426 /* inter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = inter.hpp; sourceTree = "<group>"; };
+		35E6BE3B2654DA3D00DD3426 /* int_homun.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_homun.hpp; sourceTree = "<group>"; };
+		35E6BE3C2654DA3D00DD3426 /* int_mercenary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_mercenary.cpp; sourceTree = "<group>"; };
+		35E6BE3D2654DA3D00DD3426 /* char_clif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char_clif.cpp; sourceTree = "<group>"; };
+		35E6BE3E2654DA3D00DD3426 /* int_elemental.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_elemental.hpp; sourceTree = "<group>"; };
+		35E6BE3F2654DA3D00DD3426 /* int_auction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_auction.cpp; sourceTree = "<group>"; };
+		35E6BE402654DA3D00DD3426 /* int_achievement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_achievement.hpp; sourceTree = "<group>"; };
+		35E6BE412654DA3D00DD3426 /* int_party.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_party.hpp; sourceTree = "<group>"; };
+		35E6BE422654DA3D00DD3426 /* int_pet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_pet.hpp; sourceTree = "<group>"; };
+		35E6BE432654DA3D00DD3426 /* inter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inter.cpp; sourceTree = "<group>"; };
+		35E6BE442654DA3D00DD3426 /* char_cnslif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char_cnslif.hpp; sourceTree = "<group>"; };
+		35E6BE462654DA3D00DD3426 /* int_homun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_homun.cpp; sourceTree = "<group>"; };
+		35E6BE472654DA3D00DD3426 /* int_quest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_quest.hpp; sourceTree = "<group>"; };
+		35E6BE482654DA3D00DD3426 /* int_guild.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_guild.cpp; sourceTree = "<group>"; };
+		35E6BE492654DA3D00DD3426 /* int_storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_storage.cpp; sourceTree = "<group>"; };
+		35E6BE4A2654DA3D00DD3426 /* char_logif.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char_logif.hpp; sourceTree = "<group>"; };
+		35E6BE4B2654DA3D00DD3426 /* int_mail.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_mail.hpp; sourceTree = "<group>"; };
+		35E6BE4C2654DA3D00DD3426 /* char.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char.hpp; sourceTree = "<group>"; };
+		35E6BE4D2654DA3D00DD3426 /* int_clan.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = int_clan.hpp; sourceTree = "<group>"; };
+		35E6BE4F2654DA3D00DD3426 /* char_mapif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char_mapif.cpp; sourceTree = "<group>"; };
 		35FD0B90264E765C00BB0968 /* rAthena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rAthena.h; sourceTree = "<group>"; };
 		35FD0D88264E79BE00BB0968 /* scanner.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = scanner.c; sourceTree = "<group>"; };
 		35FD0D89264E79BE00BB0968 /* strbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strbuf.h; sourceTree = "<group>"; };
@@ -965,6 +1037,49 @@
 			path = map;
 			sourceTree = "<group>";
 		};
+		35E6BE282654DA3D00DD3426 /* char */ = {
+			isa = PBXGroup;
+			children = (
+				35E6BE3D2654DA3D00DD3426 /* char_clif.cpp */,
+				35E6BE332654DA3D00DD3426 /* char_clif.hpp */,
+				35E6BE392654DA3D00DD3426 /* char_cnslif.cpp */,
+				35E6BE442654DA3D00DD3426 /* char_cnslif.hpp */,
+				35E6BE2B2654DA3D00DD3426 /* char_logif.cpp */,
+				35E6BE4A2654DA3D00DD3426 /* char_logif.hpp */,
+				35E6BE4F2654DA3D00DD3426 /* char_mapif.cpp */,
+				35E6BE312654DA3D00DD3426 /* char_mapif.hpp */,
+				35E6BE2E2654DA3D00DD3426 /* char.cpp */,
+				35E6BE4C2654DA3D00DD3426 /* char.hpp */,
+				35E6BE352654DA3D00DD3426 /* int_achievement.cpp */,
+				35E6BE402654DA3D00DD3426 /* int_achievement.hpp */,
+				35E6BE3F2654DA3D00DD3426 /* int_auction.cpp */,
+				35E6BE342654DA3D00DD3426 /* int_auction.hpp */,
+				35E6BE2F2654DA3D00DD3426 /* int_clan.cpp */,
+				35E6BE4D2654DA3D00DD3426 /* int_clan.hpp */,
+				35E6BE362654DA3D00DD3426 /* int_elemental.cpp */,
+				35E6BE3E2654DA3D00DD3426 /* int_elemental.hpp */,
+				35E6BE482654DA3D00DD3426 /* int_guild.cpp */,
+				35E6BE2C2654DA3D00DD3426 /* int_guild.hpp */,
+				35E6BE462654DA3D00DD3426 /* int_homun.cpp */,
+				35E6BE3B2654DA3D00DD3426 /* int_homun.hpp */,
+				35E6BE2D2654DA3D00DD3426 /* int_mail.cpp */,
+				35E6BE4B2654DA3D00DD3426 /* int_mail.hpp */,
+				35E6BE3C2654DA3D00DD3426 /* int_mercenary.cpp */,
+				35E6BE322654DA3D00DD3426 /* int_mercenary.hpp */,
+				35E6BE382654DA3D00DD3426 /* int_party.cpp */,
+				35E6BE412654DA3D00DD3426 /* int_party.hpp */,
+				35E6BE372654DA3D00DD3426 /* int_pet.cpp */,
+				35E6BE422654DA3D00DD3426 /* int_pet.hpp */,
+				35E6BE292654DA3D00DD3426 /* int_quest.cpp */,
+				35E6BE472654DA3D00DD3426 /* int_quest.hpp */,
+				35E6BE492654DA3D00DD3426 /* int_storage.cpp */,
+				35E6BE2A2654DA3D00DD3426 /* int_storage.hpp */,
+				35E6BE432654DA3D00DD3426 /* inter.cpp */,
+				35E6BE3A2654DA3D00DD3426 /* inter.hpp */,
+			);
+			path = char;
+			sourceTree = "<group>";
+		};
 		35FD0B83264E765C00BB0968 = {
 			isa = PBXGroup;
 			children = (
@@ -999,6 +1114,7 @@
 		35FD0B9C264E789100BB0968 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				35E6BE282654DA3D00DD3426 /* char */,
 				35FD0BCF264E789100BB0968 /* common */,
 				35FD12F02652150300BB0968 /* login */,
 				35E6BD612654D94600DD3426 /* map */,
@@ -1283,20 +1399,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FD10F92652094300BB0968 /* strbuf.h in Headers */,
+				35E6BE5C2654DA3E00DD3426 /* int_auction.hpp in Headers */,
+				35E6BE722654DA3E00DD3426 /* char_logif.hpp in Headers */,
 				35FD10FA2652094300BB0968 /* iterator.h in Headers */,
 				35FD10FB2652094300BB0968 /* nullpo.hpp in Headers */,
 				35FD10FC2652094300BB0968 /* scanner.h in Headers */,
+				35E6BE692654DA3E00DD3426 /* int_party.hpp in Headers */,
 				35FD10FD2652094300BB0968 /* emitterutils.h in Headers */,
 				35FD10FE2652094300BB0968 /* utils.hpp in Headers */,
 				35FD10FF2652094300BB0968 /* msg_conf.hpp in Headers */,
 				35FD11002652094300BB0968 /* node_iterator.h in Headers */,
+				35E6BE632654DA3E00DD3426 /* int_homun.hpp in Headers */,
 				35FD11012652094300BB0968 /* graphbuilderadapter.h in Headers */,
 				35FD11022652094300BB0968 /* ostream_wrapper.h in Headers */,
 				35FD11032652094300BB0968 /* iterator.h in Headers */,
 				35FD11042652094300BB0968 /* stream.h in Headers */,
 				35FD11052652094300BB0968 /* node.h in Headers */,
 				35FD11062652094300BB0968 /* regex_yaml.h in Headers */,
+				35E6BE6C2654DA3E00DD3426 /* char_cnslif.hpp in Headers */,
 				35FD11072652094300BB0968 /* emit.h in Headers */,
+				35E6BE682654DA3E00DD3426 /* int_achievement.hpp in Headers */,
 				35FD11082652094300BB0968 /* des.hpp in Headers */,
 				35FD11092652094300BB0968 /* graphbuilder.h in Headers */,
 				35FD110A2652094300BB0968 /* emitterdef.h in Headers */,
@@ -1312,13 +1434,18 @@
 				35FD11142652094300BB0968 /* showmsg.hpp in Headers */,
 				35FD11152652094300BB0968 /* null.h in Headers */,
 				35FD11162652094300BB0968 /* type.h in Headers */,
+				35E6BE742654DA3E00DD3426 /* char.hpp in Headers */,
 				35FD11172652094300BB0968 /* collectionstack.h in Headers */,
 				35FD11182652094300BB0968 /* convert.h in Headers */,
+				35E6BE5A2654DA3D00DD3426 /* int_mercenary.hpp in Headers */,
 				35FD11192652094300BB0968 /* indentation.h in Headers */,
+				35E6BE542654DA3D00DD3426 /* int_guild.hpp in Headers */,
 				35FD111A2652094300BB0968 /* core.hpp in Headers */,
+				35E6BE6F2654DA3E00DD3426 /* int_quest.hpp in Headers */,
 				35FD111B2652094300BB0968 /* emitterstyle.h in Headers */,
 				35FD111C2652094300BB0968 /* scantag.h in Headers */,
 				35FD111D2652094300BB0968 /* mmo.hpp in Headers */,
+				35E6BE6A2654DA3E00DD3426 /* int_pet.hpp in Headers */,
 				35FD111E2652094300BB0968 /* conf.hpp in Headers */,
 				35FD111F2652094300BB0968 /* socket.hpp in Headers */,
 				35FD11202652094300BB0968 /* parse.h in Headers */,
@@ -1330,12 +1457,14 @@
 				35FD11262652094300BB0968 /* singledocparser.h in Headers */,
 				35FD11272652094300BB0968 /* ers.hpp in Headers */,
 				35FD11282652094300BB0968 /* database.hpp in Headers */,
+				35E6BE752654DA3E00DD3426 /* int_clan.hpp in Headers */,
 				35FD11292652094300BB0968 /* sql.hpp in Headers */,
 				35FD112A2652094300BB0968 /* exceptions.h in Headers */,
 				35FD112B2652094300BB0968 /* anchor.h in Headers */,
 				35FD112C2652094300BB0968 /* cbasetypes.hpp in Headers */,
 				35FD112D2652094300BB0968 /* md5calc.hpp in Headers */,
 				35FD112E2652094300BB0968 /* scanner.h in Headers */,
+				35E6BE662654DA3E00DD3426 /* int_elemental.hpp in Headers */,
 				35FD112F2652094300BB0968 /* eventhandler.h in Headers */,
 				35FD11302652094300BB0968 /* ptr.h in Headers */,
 				35FD11312652094300BB0968 /* node_ref.h in Headers */,
@@ -1344,6 +1473,8 @@
 				35FD11342652094300BB0968 /* anchordict.h in Headers */,
 				35FD11352652094300BB0968 /* ptr_vector.h in Headers */,
 				35FD11362652094300BB0968 /* iterator_fwd.h in Headers */,
+				35E6BE622654DA3E00DD3426 /* inter.hpp in Headers */,
+				35E6BE732654DA3E00DD3426 /* int_mail.hpp in Headers */,
 				35FD11372652094300BB0968 /* impl.h in Headers */,
 				35FD11382652094300BB0968 /* traits.h in Headers */,
 				35FD11392652094300BB0968 /* nodeevents.h in Headers */,
@@ -1351,13 +1482,16 @@
 				35FD113B2652094300BB0968 /* token.h in Headers */,
 				35FD113C2652094300BB0968 /* setting.h in Headers */,
 				35FD113D2652094300BB0968 /* memory.h in Headers */,
+				35E6BE592654DA3D00DD3426 /* char_mapif.hpp in Headers */,
 				35FD113E2652094300BB0968 /* utilities.hpp in Headers */,
 				35FD113F2652094300BB0968 /* streamcharsource.h in Headers */,
+				35E6BE5B2654DA3D00DD3426 /* char_clif.hpp in Headers */,
 				35FD11412652094300BB0968 /* noncopyable.h in Headers */,
 				35FD11422652094300BB0968 /* mark.h in Headers */,
 				35FD11432652094300BB0968 /* emitfromevents.h in Headers */,
 				35FD11442652094300BB0968 /* random.hpp in Headers */,
 				35FD11452652094300BB0968 /* strlib.hpp in Headers */,
+				35E6BE522654DA3D00DD3426 /* int_storage.hpp in Headers */,
 				35FD11462652094300BB0968 /* libconfig.h in Headers */,
 				35FD11472652094300BB0968 /* emitter.h in Headers */,
 				35FD11482652094300BB0968 /* wincompat.h in Headers */,
@@ -1775,10 +1909,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FD11542652094300BB0968 /* parser.cpp in Sources */,
+				35E6BE712654DA3E00DD3426 /* int_storage.cpp in Sources */,
 				35FD11552652094300BB0968 /* database.cpp in Sources */,
 				35FD11562652094300BB0968 /* nullpo.cpp in Sources */,
+				35E6BE572654DA3D00DD3426 /* int_clan.cpp in Sources */,
 				35FD11572652094300BB0968 /* showmsg.cpp in Sources */,
+				35E6BE602654DA3E00DD3426 /* int_party.cpp in Sources */,
 				35FD11582652094300BB0968 /* simplekey.cpp in Sources */,
+				35E6BE532654DA3D00DD3426 /* char_logif.cpp in Sources */,
 				35FD11592652094300BB0968 /* node.cpp in Sources */,
 				35FD115A2652094300BB0968 /* convert.cpp in Sources */,
 				35FD115B2652094300BB0968 /* graphbuilderadapter.cpp in Sources */,
@@ -1788,13 +1926,18 @@
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
 				35FD11602652094300BB0968 /* binary.cpp in Sources */,
+				35E6BE552654DA3D00DD3426 /* int_mail.cpp in Sources */,
 				35FD11612652094300BB0968 /* singledocparser.cpp in Sources */,
 				35FD11622652094300BB0968 /* emitterstate.cpp in Sources */,
 				35FD11632652094300BB0968 /* msg_conf.cpp in Sources */,
 				35FD11642652094300BB0968 /* stream.cpp in Sources */,
+				35E6BE642654DA3E00DD3426 /* int_mercenary.cpp in Sources */,
+				35E6BE5E2654DA3E00DD3426 /* int_elemental.cpp in Sources */,
 				35FD11652652094300BB0968 /* exp.cpp in Sources */,
 				35FD11662652094300BB0968 /* scanctx.c in Sources */,
 				35FD11672652094300BB0968 /* socket.cpp in Sources */,
+				35E6BE612654DA3E00DD3426 /* char_cnslif.cpp in Sources */,
+				35E6BE562654DA3D00DD3426 /* char.cpp in Sources */,
 				35FD11682652094300BB0968 /* ers.cpp in Sources */,
 				35FD11692652094300BB0968 /* scantag.cpp in Sources */,
 				35FD116A2652094300BB0968 /* strlib.cpp in Sources */,
@@ -1807,15 +1950,22 @@
 				35FD11712652094300BB0968 /* ostream_wrapper.cpp in Sources */,
 				35FD11722652094300BB0968 /* graphbuilder.cpp in Sources */,
 				35FD11732652094300BB0968 /* emitterutils.cpp in Sources */,
+				35E6BE5D2654DA3E00DD3426 /* int_achievement.cpp in Sources */,
+				35E6BE512654DA3D00DD3426 /* int_quest.cpp in Sources */,
 				35FD11742652094300BB0968 /* emitter.cpp in Sources */,
+				35E6BE672654DA3E00DD3426 /* int_auction.cpp in Sources */,
 				35FD11752652094300BB0968 /* malloc.cpp in Sources */,
 				35FD11762652094300BB0968 /* random.cpp in Sources */,
 				35FD11772652094300BB0968 /* emitfromevents.cpp in Sources */,
 				35FD11782652094300BB0968 /* exceptions.cpp in Sources */,
 				35FD11792652094300BB0968 /* grammar.c in Sources */,
+				35E6BE652654DA3E00DD3426 /* char_clif.cpp in Sources */,
 				35FD117A2652094300BB0968 /* tag.cpp in Sources */,
+				35E6BE5F2654DA3E00DD3426 /* int_pet.cpp in Sources */,
 				35FD117B2652094300BB0968 /* parse.cpp in Sources */,
+				35E6BE772654DA3E00DD3426 /* char_mapif.cpp in Sources */,
 				35FD117C2652094300BB0968 /* mapindex.cpp in Sources */,
+				35E6BE6E2654DA3E00DD3426 /* int_homun.cpp in Sources */,
 				35FD117D2652094300BB0968 /* scanner.c in Sources */,
 				35FD117E2652094300BB0968 /* scanner.cpp in Sources */,
 				35FD117F2652094300BB0968 /* cli.cpp in Sources */,
@@ -1827,7 +1977,9 @@
 				35FD11852652094300BB0968 /* des.cpp in Sources */,
 				35FD11862652094300BB0968 /* db.cpp in Sources */,
 				35FD11872652094300BB0968 /* grfio.cpp in Sources */,
+				35E6BE6B2654DA3E00DD3426 /* inter.cpp in Sources */,
 				35FD11882652094300BB0968 /* timer.cpp in Sources */,
+				35E6BE702654DA3E00DD3426 /* int_guild.cpp in Sources */,
 				35FD11892652094300BB0968 /* regex_yaml.cpp in Sources */,
 				35FD118A2652094300BB0968 /* scantoken.cpp in Sources */,
 			);
