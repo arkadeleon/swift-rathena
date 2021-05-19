@@ -615,12 +615,10 @@
 		35FD10B3264E81EC00BB0968 /* utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utilities.cpp; sourceTree = "<group>"; };
 		35FD10B4264E81EC00BB0968 /* conf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conf.hpp; sourceTree = "<group>"; };
 		35FD10EF2652031400BB0968 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
-		35FD11912652094300BB0968 /* RACharServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RACharServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35FD11922652094300BB0968 /* RACharServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RACharServer-Info.plist"; path = "/Users/leon/Repositories/rathena/RACharServer-Info.plist"; sourceTree = "<absolute>"; };
-		35FD122F2652094F00BB0968 /* RALoginServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RALoginServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35FD12302652095000BB0968 /* RALoginServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RALoginServer-Info.plist"; path = "/Users/leon/Repositories/rathena/RALoginServer-Info.plist"; sourceTree = "<absolute>"; };
-		35FD12CE2652096400BB0968 /* RAMapServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RAMapServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35FD12CF2652096400BB0968 /* RAMapServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RAMapServer-Info.plist"; path = "/Users/leon/Repositories/rathena/RAMapServer-Info.plist"; sourceTree = "<absolute>"; };
+		35FD11912652094300BB0968 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FD11922652094300BB0968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/leon/Repositories/rathena/Info.plist; sourceTree = "<absolute>"; };
+		35FD122F2652094F00BB0968 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FD12CE2652096400BB0968 /* rAthenaMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthenaMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FD12F12652150300BB0968 /* login.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = login.hpp; sourceTree = "<group>"; };
 		35FD12F22652150300BB0968 /* loginlog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loginlog.cpp; sourceTree = "<group>"; };
 		35FD12F32652150300BB0968 /* ipban.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipban.cpp; sourceTree = "<group>"; };
@@ -681,9 +679,9 @@
 		35FD0B8E264E765C00BB0968 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35FD11912652094300BB0968 /* RACharServer.framework */,
-				35FD122F2652094F00BB0968 /* RALoginServer.framework */,
-				35FD12CE2652096400BB0968 /* RAMapServer.framework */,
+				35FD11912652094300BB0968 /* rAthenaChar.framework */,
+				35FD122F2652094F00BB0968 /* rAthenaLogin.framework */,
+				35FD12CE2652096400BB0968 /* rAthenaMap.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -694,9 +692,7 @@
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
 				35FD0D7C264E79BE00BB0968 /* 3rdparty */,
 				35FD0B9C264E789100BB0968 /* src */,
-				35FD11922652094300BB0968 /* RACharServer-Info.plist */,
-				35FD12302652095000BB0968 /* RALoginServer-Info.plist */,
-				35FD12CF2652096400BB0968 /* RAMapServer-Info.plist */,
+				35FD11922652094300BB0968 /* Info.plist */,
 			);
 			name = rAthena;
 			sourceTree = "<group>";
@@ -1275,9 +1271,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		35FD10F72652094300BB0968 /* RACharServer */ = {
+		35FD10F72652094300BB0968 /* rAthenaChar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35FD118E2652094300BB0968 /* Build configuration list for PBXNativeTarget "RACharServer" */;
+			buildConfigurationList = 35FD118E2652094300BB0968 /* Build configuration list for PBXNativeTarget "rAthenaChar" */;
 			buildPhases = (
 				35FD10F82652094300BB0968 /* Headers */,
 				35FD11532652094300BB0968 /* Sources */,
@@ -1288,14 +1284,14 @@
 			);
 			dependencies = (
 			);
-			name = RACharServer;
+			name = rAthenaChar;
 			productName = rAthena;
-			productReference = 35FD11912652094300BB0968 /* RACharServer.framework */;
+			productReference = 35FD11912652094300BB0968 /* rAthenaChar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		35FD11952652094F00BB0968 /* RALoginServer */ = {
+		35FD11952652094F00BB0968 /* rAthenaLogin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35FD122C2652094F00BB0968 /* Build configuration list for PBXNativeTarget "RALoginServer" */;
+			buildConfigurationList = 35FD122C2652094F00BB0968 /* Build configuration list for PBXNativeTarget "rAthenaLogin" */;
 			buildPhases = (
 				35FD11962652094F00BB0968 /* Headers */,
 				35FD11F12652094F00BB0968 /* Sources */,
@@ -1306,14 +1302,14 @@
 			);
 			dependencies = (
 			);
-			name = RALoginServer;
+			name = rAthenaLogin;
 			productName = rAthena;
-			productReference = 35FD122F2652094F00BB0968 /* RALoginServer.framework */;
+			productReference = 35FD122F2652094F00BB0968 /* rAthenaLogin.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		35FD12342652096400BB0968 /* RAMapServer */ = {
+		35FD12342652096400BB0968 /* rAthenaMap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 35FD12CB2652096400BB0968 /* Build configuration list for PBXNativeTarget "RAMapServer" */;
+			buildConfigurationList = 35FD12CB2652096400BB0968 /* Build configuration list for PBXNativeTarget "rAthenaMap" */;
 			buildPhases = (
 				35FD12352652096400BB0968 /* Headers */,
 				35FD12902652096400BB0968 /* Sources */,
@@ -1324,9 +1320,9 @@
 			);
 			dependencies = (
 			);
-			name = RAMapServer;
+			name = rAthenaMap;
 			productName = rAthena;
-			productReference = 35FD12CE2652096400BB0968 /* RAMapServer.framework */;
+			productReference = 35FD12CE2652096400BB0968 /* rAthenaMap.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1350,9 +1346,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				35FD10F72652094300BB0968 /* RACharServer */,
-				35FD11952652094F00BB0968 /* RALoginServer */,
-				35FD12342652096400BB0968 /* RAMapServer */,
+				35FD10F72652094300BB0968 /* rAthenaChar */,
+				35FD11952652094F00BB0968 /* rAthenaLogin */,
+				35FD12342652096400BB0968 /* rAthenaMap */,
 			);
 		};
 /* End PBXProject section */
@@ -1712,14 +1708,14 @@
 					"HAVE_XLOCALE_H=1",
 				);
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RACharServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.char-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.char;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1736,14 +1732,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RACharServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.char-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.char;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1763,14 +1759,14 @@
 					"HAVE_XLOCALE_H=1",
 				);
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RALoginServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.login-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.login;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1787,14 +1783,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RALoginServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.login-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.login;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1814,14 +1810,14 @@
 					"HAVE_XLOCALE_H=1",
 				);
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RAMapServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.map-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1838,14 +1834,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
 				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
-				INFOPLIST_FILE = "RAMapServer-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "data.leonandvane.rathena.map-server";
+				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena.map;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1864,7 +1860,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35FD118E2652094300BB0968 /* Build configuration list for PBXNativeTarget "RACharServer" */ = {
+		35FD118E2652094300BB0968 /* Build configuration list for PBXNativeTarget "rAthenaChar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35FD118F2652094300BB0968 /* Debug */,
@@ -1873,7 +1869,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35FD122C2652094F00BB0968 /* Build configuration list for PBXNativeTarget "RALoginServer" */ = {
+		35FD122C2652094F00BB0968 /* Build configuration list for PBXNativeTarget "rAthenaLogin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35FD122D2652094F00BB0968 /* Debug */,
@@ -1882,7 +1878,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35FD12CB2652096400BB0968 /* Build configuration list for PBXNativeTarget "RAMapServer" */ = {
+		35FD12CB2652096400BB0968 /* Build configuration list for PBXNativeTarget "rAthenaMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				35FD12CC2652096400BB0968 /* Debug */,

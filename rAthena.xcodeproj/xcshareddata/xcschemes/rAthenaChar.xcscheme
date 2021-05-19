@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "35FD11952652094F00BB0968"
-               BuildableName = "RALoginServer.framework"
-               BlueprintName = "RALoginServer"
+               BlueprintIdentifier = "35FD10F72652094300BB0968"
+               BuildableName = "rAthenaChar.framework"
+               BlueprintName = "rAthenaChar"
                ReferencedContainer = "container:rAthena.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "35FD11952652094F00BB0968"
-            BuildableName = "RALoginServer.framework"
-            BlueprintName = "RALoginServer"
+            BlueprintIdentifier = "35FD10F72652094300BB0968"
+            BuildableName = "rAthenaChar.framework"
+            BlueprintName = "rAthenaChar"
             ReferencedContainer = "container:rAthena.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

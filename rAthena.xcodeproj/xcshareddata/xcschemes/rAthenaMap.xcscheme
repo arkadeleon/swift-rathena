@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "35FD12342652096400BB0968"
-               BuildableName = "RAMapServer.framework"
-               BlueprintName = "RAMapServer"
+               BuildableName = "rAthenaMap.framework"
+               BlueprintName = "rAthenaMap"
                ReferencedContainer = "container:rAthena.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -51,8 +51,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "35FD12342652096400BB0968"
-            BuildableName = "RAMapServer.framework"
-            BlueprintName = "RAMapServer"
+            BuildableName = "rAthenaMap.framework"
+            BlueprintName = "rAthenaMap"
             ReferencedContainer = "container:rAthena.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
