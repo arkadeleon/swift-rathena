@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <rAthenaChar/RACharServer.h>
-#import <rAthenaLogin/RALoginServer.h>
-#import <rAthenaMap/RAMapServer.h>
+
+@import rAthenaChar;
+@import rAthenaLogin;
+@import rAthenaMap;
 
 NS_ASSUME_NONNULL_BEGIN
 
