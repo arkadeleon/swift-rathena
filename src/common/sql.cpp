@@ -561,8 +561,6 @@ static int Sql_P_BindResultDataType(sqlite3_stmt* stmt, size_t idx, enum SqlData
 	switch( buffer_type )
 	{
 	case SQLDT_NULL:
-		
-		buffer_len = 0;// FIXME length = ? [FlavioJS]
 		break;
 	// fixed size
 	case SQLDT_UINT8:

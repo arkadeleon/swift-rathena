@@ -27,6 +27,9 @@
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
 
+    const char *cwd = [[[NSBundle bundleForClass:[RAServerManager class]] bundlePath] UTF8String];
+    chdir(cwd);
+
     [[[RAServerManager sharedManager] loginServer] start];
 
     [self waitForExpectationsWithTimeout:MAXFLOAT handler:nil];
