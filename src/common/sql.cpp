@@ -641,7 +641,7 @@ static int Sql_P_BindResultDataType(sqlite3_stmt* stmt, size_t idx, enum SqlData
 	case SQLDT_STRING:
 	case SQLDT_ENUM: {
 		const char *text = (const char *)sqlite3_column_text(stmt, (int)idx);
-		strcpy((char *)buffer, text);
+		strcpy((char *)buffer, text ?: "\0");
 		break;
 	}
 	case SQLDT_BLOB: {

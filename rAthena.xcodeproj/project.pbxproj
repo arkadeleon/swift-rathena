@@ -20,6 +20,14 @@
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
+		3521864826582330002FAE2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352186472658232F002FAE2C /* AppDelegate.swift */; };
+		3521864A26582330002FAE2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521864926582330002FAE2C /* SceneDelegate.swift */; };
+		3521864C26582330002FAE2C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521864B26582330002FAE2C /* DashboardViewController.swift */; };
+		3521864F26582330002FAE2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521864D26582330002FAE2C /* Main.storyboard */; };
+		3521865126582331002FAE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3521865026582331002FAE2C /* Assets.xcassets */; };
+		3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521865226582331002FAE2C /* LaunchScreen.storyboard */; };
+		3521865E26582384002FAE2C /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; };
+		3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3599687B2655571A006AECE6 /* RALoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* RALoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3599687C2655571A006AECE6 /* RALoginServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3599687A2655571A006AECE6 /* RALoginServer.m */; };
@@ -618,9 +626,27 @@
 			remoteGlobalIDString = 35E6BD212654D6ED00DD3426;
 			remoteInfo = rAthena;
 		};
+		3521866026582384002FAE2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35E6BD212654D6ED00DD3426;
+			remoteInfo = rAthena;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3521866226582384002FAE2C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35E6BE9E2654DB2A00DD3426 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -651,6 +677,14 @@
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
+		352186452658232F002FAE2C /* rAthenaDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rAthenaDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		352186472658232F002FAE2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3521864926582330002FAE2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3521864B26582330002FAE2C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		3521864E26582330002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3521865026582331002FAE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3521865326582331002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3521865526582331002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3556523426578AD700EAA323 /* db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db; sourceTree = SOURCE_ROOT; };
 		359968792655571A006AECE6 /* RALoginServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginServer.h; sourceTree = "<group>"; };
 		3599687A2655571A006AECE6 /* RALoginServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginServer.m; sourceTree = "<group>"; };
@@ -955,6 +989,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		352186422658232F002FAE2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3521865E26582384002FAE2C /* rAthena.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		35E6BD1F2654D6ED00DD3426 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1002,6 +1044,20 @@
 				3521848226556846002FAE2C /* Info.plist */,
 			);
 			path = rAthenaTests;
+			sourceTree = "<group>";
+		};
+		352186462658232F002FAE2C /* rAthenaDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				352186472658232F002FAE2C /* AppDelegate.swift */,
+				3521864926582330002FAE2C /* SceneDelegate.swift */,
+				3521864B26582330002FAE2C /* DashboardViewController.swift */,
+				3521864D26582330002FAE2C /* Main.storyboard */,
+				3521865026582331002FAE2C /* Assets.xcassets */,
+				3521865226582331002FAE2C /* LaunchScreen.storyboard */,
+				3521865526582331002FAE2C /* Info.plist */,
+			);
+			path = rAthenaDashboard;
 			sourceTree = "<group>";
 		};
 		3599687826555662006AECE6 /* xcode */ = {
@@ -1161,6 +1217,7 @@
 			children = (
 				35FD0B8F264E765C00BB0968 /* rAthena */,
 				3521847F26556846002FAE2C /* rAthenaTests */,
+				352186462658232F002FAE2C /* rAthenaDashboard */,
 				35FD0B8E264E765C00BB0968 /* Products */,
 				35FD10EE2652031400BB0968 /* Frameworks */,
 			);
@@ -1174,6 +1231,7 @@
 				35FD122F2652094F00BB0968 /* rAthenaLogin.framework */,
 				35FD12CE2652096400BB0968 /* rAthenaMap.framework */,
 				3521847E26556846002FAE2C /* rAthenaTests.xctest */,
+				352186452658232F002FAE2C /* rAthenaDashboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1866,6 +1924,25 @@
 			productReference = 3521847E26556846002FAE2C /* rAthenaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		352186442658232F002FAE2C /* rAthenaDashboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaDashboard" */;
+			buildPhases = (
+				352186412658232F002FAE2C /* Sources */,
+				352186422658232F002FAE2C /* Frameworks */,
+				352186432658232F002FAE2C /* Resources */,
+				3521866226582384002FAE2C /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3521866126582384002FAE2C /* PBXTargetDependency */,
+			);
+			name = rAthenaDashboard;
+			productName = rAthenaDashboard;
+			productReference = 352186452658232F002FAE2C /* rAthenaDashboard.app */;
+			productType = "com.apple.product-type.application";
+		};
 		35E6BD212654D6ED00DD3426 /* rAthena */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35E6BD272654D6ED00DD3426 /* Build configuration list for PBXNativeTarget "rAthena" */;
@@ -1945,9 +2022,13 @@
 		35FD0B84264E765C00BB0968 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					3521847D26556846002FAE2C = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					352186442658232F002FAE2C = {
 						CreatedOnToolsVersion = 12.4;
 					};
 					35E6BD212654D6ED00DD3426 = {
@@ -1973,6 +2054,7 @@
 				35FD11952652094F00BB0968 /* rAthenaLogin */,
 				35FD12342652096400BB0968 /* rAthenaMap */,
 				3521847D26556846002FAE2C /* rAthenaTests */,
+				352186442658232F002FAE2C /* rAthenaDashboard */,
 			);
 		};
 /* End PBXProject section */
@@ -1982,6 +2064,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		352186432658232F002FAE2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */,
+				3521865126582331002FAE2C /* Assets.xcassets in Resources */,
+				3521864F26582330002FAE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2024,6 +2116,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3521848126556846002FAE2C /* rAthenaTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		352186412658232F002FAE2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3521864C26582330002FAE2C /* DashboardViewController.swift in Sources */,
+				3521864826582330002FAE2C /* AppDelegate.swift in Sources */,
+				3521864A26582330002FAE2C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2301,7 +2403,31 @@
 			target = 35E6BD212654D6ED00DD3426 /* rAthena */;
 			targetProxy = 3521848426556846002FAE2C /* PBXContainerItemProxy */;
 		};
+		3521866126582384002FAE2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35E6BD212654D6ED00DD3426 /* rAthena */;
+			targetProxy = 3521866026582384002FAE2C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3521864D26582330002FAE2C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3521864E26582330002FAE2C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3521865226582331002FAE2C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3521865326582331002FAE2C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3521848726556846002FAE2C /* Debug */ = {
@@ -2335,6 +2461,48 @@
 				PRODUCT_BUNDLE_IDENTIFIER = date.leonandvane.rathena.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3521865626582331002FAE2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = rAthenaDashboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = date.leonandvane.rathena.dashboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3521865726582331002FAE2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = rAthenaDashboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = date.leonandvane.rathena.dashboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -2661,6 +2829,15 @@
 			buildConfigurations = (
 				3521848726556846002FAE2C /* Debug */,
 				3521848826556846002FAE2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaDashboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3521865626582331002FAE2C /* Debug */,
+				3521865726582331002FAE2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
