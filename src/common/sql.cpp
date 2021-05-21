@@ -60,6 +60,17 @@ struct SqlStmt
 
 
 
+void MYSQL_NOW(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+	char formatted_tm[40];
+	strftime(formatted_tm, 40, "%Y-%m-%d %H:%M:%S", &tm);
+	sqlite3_result_text(context, formatted_tm, -1, SQLITE_TRANSIENT);
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 // Sql Handle
 ///////////////////////////////////////////////////////////////////////////////
@@ -109,11 +120,16 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 		return SQL_ERROR;
 
 	StringBuf_Clear(&self->buf);
-	if( !sqlite3_open("", &self->db) )
+	char filename[80];
+	strcpy(filename, db);
+	strcat(filename, ".sqlite3");
+	if( sqlite3_open(filename, &self->db) != SQLITE_OK )
 	{
 		ShowSQL("%s\n", sqlite3_errmsg(self->db));
 		return SQL_ERROR;
 	}
+
+	sqlite3_create_function(self->db, "NOW", 0, SQLITE_UTF8, NULL, MYSQL_NOW, NULL, NULL);
 
 	self->keepalive = Sql_P_Keepalive(self);
 	if( self->keepalive == INVALID_TIMER )
@@ -130,18 +146,10 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 /// Retrieves the timeout of the connection.
 int Sql_GetTimeout(Sql* self, uint32* out_timeout)
 {
-	if( self && out_timeout && SQL_SUCCESS == Sql_Query(self, "SHOW VARIABLES LIKE 'wait_timeout'") )
+	if( self && out_timeout )
 	{
-		char* data;
-		size_t len;
-		if( SQL_SUCCESS == Sql_NextRow(self) &&
-			SQL_SUCCESS == Sql_GetData(self, 1, &data, &len) )
-		{
-			*out_timeout = (uint32)strtoul(data, NULL, 10);
-			Sql_FreeResult(self);
-			return SQL_SUCCESS;
-		}
-		Sql_FreeResult(self);
+		*out_timeout = 28800;
+		return SQL_SUCCESS;
 	}
 	return SQL_ERROR;
 }
@@ -245,8 +253,8 @@ size_t Sql_EscapeString(Sql* self, char *out_to, const char *from)
 /// Escapes a string.
 size_t Sql_EscapeStringLen(Sql* self, char *out_to, const char *from, size_t from_len)
 {
-	memcpy(out_to, from, from_len);
-	return from_len;
+	strcpy(out_to, from);
+	return strlen(out_to);
 }
 
 
@@ -290,6 +298,8 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 			self->nRow++;
 		else if( res == SQLITE_DONE )
 			break;
+		else
+			return SQL_ERROR;
 	}
 
 	sqlite3_reset(self->stmt);
@@ -323,6 +333,8 @@ int Sql_QueryStr(Sql* self, const char* query)
 			self->nRow++;
 		else if( res == SQLITE_DONE )
 			break;
+		else
+			return SQL_ERROR;
 	}
 
 	sqlite3_reset(self->stmt);
@@ -628,9 +640,8 @@ static int Sql_P_BindResultDataType(sqlite3_stmt* stmt, size_t idx, enum SqlData
 	// other
 	case SQLDT_STRING:
 	case SQLDT_ENUM: {
-		const void *text = (const void *)sqlite3_column_text(stmt, (int)idx);
-		size_t len = zmin(buffer_len, sqlite3_column_bytes(stmt, (int)idx));
-		memcpy(buffer, text, len);
+		const char *text = (const char *)sqlite3_column_text(stmt, (int)idx);
+		strcpy((char *)buffer, text);
 		break;
 	}
 	case SQLDT_BLOB: {
@@ -708,6 +719,8 @@ int SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
 			self->nRow++;
 		else if( res == SQLITE_DONE )
 			break;
+		else
+			return SQL_ERROR;
 	}
 
 	sqlite3_reset(self->stmt);
@@ -741,6 +754,8 @@ int SqlStmt_PrepareStr(SqlStmt* self, const char* query)
 			self->nRow++;
 		else if( res == SQLITE_DONE )
 			break;
+		else
+			return SQL_ERROR;
 	}
 
 	sqlite3_reset(self->stmt);

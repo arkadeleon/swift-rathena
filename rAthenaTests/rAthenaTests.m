@@ -30,9 +30,11 @@
     const char *cwd = [[[NSBundle bundleForClass:[RAServerManager class]] bundlePath] UTF8String];
     chdir(cwd);
 
+    [[[RAServerManager sharedManager] charServer] start];
     [[[RAServerManager sharedManager] loginServer] start];
+    [[[RAServerManager sharedManager] mapServer] start];
 
-    [self waitForExpectationsWithTimeout:MAXFLOAT handler:nil];
+    usleep(USEC_PER_SEC * 100);
 }
 
 @end

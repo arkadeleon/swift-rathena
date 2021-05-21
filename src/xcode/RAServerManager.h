@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, strong) RALoginServer *loginServer;
 @property (nonatomic, readonly, strong) RAMapServer *mapServer;
 
+- (void)copyBundleResourcesAndChangeDirectory;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,6 +20,7 @@
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
+		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3599687B2655571A006AECE6 /* RALoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* RALoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3599687C2655571A006AECE6 /* RALoginServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3599687A2655571A006AECE6 /* RALoginServer.m */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -650,6 +651,7 @@
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
+		3556523426578AD700EAA323 /* db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db; sourceTree = SOURCE_ROOT; };
 		359968792655571A006AECE6 /* RALoginServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginServer.h; sourceTree = "<group>"; };
 		3599687A2655571A006AECE6 /* RALoginServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginServer.m; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1186,6 +1188,7 @@
 				35FD0D7C264E79BE00BB0968 /* 3rdparty */,
 				35FD0B9C264E789100BB0968 /* src */,
 				352185E226556FA5002FAE2C /* conf */,
+				3556523426578AD700EAA323 /* db */,
 				352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */,
 				35FD11922652094300BB0968 /* Info.plist */,
 			);
@@ -1986,6 +1989,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3556523526578AD700EAA323 /* db in Resources */,
 				352185FC2656D6DD002FAE2C /* conf in Resources */,
 				352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */,
 			);
