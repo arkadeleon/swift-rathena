@@ -13,8 +13,6 @@
 		35218455265563CD002FAE2C /* RAMapServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35218453265563CD002FAE2C /* RAMapServer.m */; };
 		35218466265563EA002FAE2C /* RAServerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218459265563E1002FAE2C /* RAServerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3521846D265563EE002FAE2C /* RAServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3521845A265563E1002FAE2C /* RAServerManager.m */; };
-		3521848126556846002FAE2C /* rAthenaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3521848026556846002FAE2C /* rAthenaTests.m */; };
-		3521848326556846002FAE2C /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; };
 		3521849026556985002FAE2C /* rAthenaMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848D26556984002FAE2C /* rAthenaMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3521849F265569E6002FAE2C /* rAthenaChar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848E26556984002FAE2C /* rAthenaChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -619,13 +617,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3521848426556846002FAE2C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 35E6BD212654D6ED00DD3426;
-			remoteInfo = rAthena;
-		};
 		3521866026582384002FAE2C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
@@ -669,9 +660,6 @@
 		35218453265563CD002FAE2C /* RAMapServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMapServer.m; sourceTree = "<group>"; };
 		35218459265563E1002FAE2C /* RAServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAServerManager.h; sourceTree = "<group>"; };
 		3521845A265563E1002FAE2C /* RAServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAServerManager.m; sourceTree = "<group>"; };
-		3521847E26556846002FAE2C /* rAthenaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rAthenaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3521848026556846002FAE2C /* rAthenaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = rAthenaTests.m; sourceTree = "<group>"; };
-		3521848226556846002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3521848D26556984002FAE2C /* rAthenaMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaMap.h; sourceTree = "<group>"; };
 		3521848E26556984002FAE2C /* rAthenaChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaChar.h; sourceTree = "<group>"; };
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
@@ -981,14 +969,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3521847B26556846002FAE2C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3521848326556846002FAE2C /* rAthena.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		352186422658232F002FAE2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1037,15 +1017,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3521847F26556846002FAE2C /* rAthenaTests */ = {
-			isa = PBXGroup;
-			children = (
-				3521848026556846002FAE2C /* rAthenaTests.m */,
-				3521848226556846002FAE2C /* Info.plist */,
-			);
-			path = rAthenaTests;
-			sourceTree = "<group>";
-		};
 		352186462658232F002FAE2C /* rAthenaDashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1216,7 +1187,6 @@
 			isa = PBXGroup;
 			children = (
 				35FD0B8F264E765C00BB0968 /* rAthena */,
-				3521847F26556846002FAE2C /* rAthenaTests */,
 				352186462658232F002FAE2C /* rAthenaDashboard */,
 				35FD0B8E264E765C00BB0968 /* Products */,
 				35FD10EE2652031400BB0968 /* Frameworks */,
@@ -1230,7 +1200,6 @@
 				35FD11912652094300BB0968 /* rAthenaChar.framework */,
 				35FD122F2652094F00BB0968 /* rAthenaLogin.framework */,
 				35FD12CE2652096400BB0968 /* rAthenaMap.framework */,
-				3521847E26556846002FAE2C /* rAthenaTests.xctest */,
 				352186452658232F002FAE2C /* rAthenaDashboard.app */,
 			);
 			name = Products;
@@ -1906,24 +1875,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3521847D26556846002FAE2C /* rAthenaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3521848626556846002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaTests" */;
-			buildPhases = (
-				3521847A26556846002FAE2C /* Sources */,
-				3521847B26556846002FAE2C /* Frameworks */,
-				3521847C26556846002FAE2C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3521848526556846002FAE2C /* PBXTargetDependency */,
-			);
-			name = rAthenaTests;
-			productName = rAthenaTests;
-			productReference = 3521847E26556846002FAE2C /* rAthenaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		352186442658232F002FAE2C /* rAthenaDashboard */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaDashboard" */;
@@ -2025,9 +1976,6 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					3521847D26556846002FAE2C = {
-						CreatedOnToolsVersion = 12.4;
-					};
 					352186442658232F002FAE2C = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -2053,20 +2001,12 @@
 				35FD10F72652094300BB0968 /* rAthenaChar */,
 				35FD11952652094F00BB0968 /* rAthenaLogin */,
 				35FD12342652096400BB0968 /* rAthenaMap */,
-				3521847D26556846002FAE2C /* rAthenaTests */,
 				352186442658232F002FAE2C /* rAthenaDashboard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3521847C26556846002FAE2C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		352186432658232F002FAE2C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2111,14 +2051,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3521847A26556846002FAE2C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3521848126556846002FAE2C /* rAthenaTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		352186412658232F002FAE2C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2398,11 +2330,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3521848526556846002FAE2C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 35E6BD212654D6ED00DD3426 /* rAthena */;
-			targetProxy = 3521848426556846002FAE2C /* PBXContainerItemProxy */;
-		};
 		3521866126582384002FAE2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 35E6BD212654D6ED00DD3426 /* rAthena */;
@@ -2430,40 +2357,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3521848726556846002FAE2C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = rAthenaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = date.leonandvane.rathena.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3521848826556846002FAE2C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = rAthenaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = date.leonandvane.rathena.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		3521865626582331002FAE2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2824,15 +2717,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3521848626556846002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3521848726556846002FAE2C /* Debug */,
-				3521848826556846002FAE2C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "rAthenaDashboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
