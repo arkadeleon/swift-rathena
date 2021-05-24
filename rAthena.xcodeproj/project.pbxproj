@@ -1109,6 +1109,36 @@
 			path = custom;
 			sourceTree = "<group>";
 		};
+		35136461265C060900039D6C /* rAthenaLogin */ = {
+			isa = PBXGroup;
+			children = (
+				3521848F26556985002FAE2C /* rAthenaLogin.h */,
+				359968792655571A006AECE6 /* RALoginServer.h */,
+				3599687A2655571A006AECE6 /* RALoginServer.m */,
+			);
+			path = rAthenaLogin;
+			sourceTree = "<group>";
+		};
+		35136462265C062B00039D6C /* rAthenaChar */ = {
+			isa = PBXGroup;
+			children = (
+				3521848E26556984002FAE2C /* rAthenaChar.h */,
+				3521843D265563A1002FAE2C /* RACharServer.h */,
+				3521843E265563A1002FAE2C /* RACharServer.m */,
+			);
+			path = rAthenaChar;
+			sourceTree = "<group>";
+		};
+		35136463265C063500039D6C /* rAthenaMap */ = {
+			isa = PBXGroup;
+			children = (
+				3521848D26556984002FAE2C /* rAthenaMap.h */,
+				35218452265563CD002FAE2C /* RAMapServer.h */,
+				35218453265563CD002FAE2C /* RAMapServer.m */,
+			);
+			path = rAthenaMap;
+			sourceTree = "<group>";
+		};
 		352186462658232F002FAE2C /* rAthenaDashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1121,21 +1151,6 @@
 				3521865526582331002FAE2C /* Info.plist */,
 			);
 			path = rAthenaDashboard;
-			sourceTree = "<group>";
-		};
-		3599687826555662006AECE6 /* xcode */ = {
-			isa = PBXGroup;
-			children = (
-				3521843D265563A1002FAE2C /* RACharServer.h */,
-				3521843E265563A1002FAE2C /* RACharServer.m */,
-				359968792655571A006AECE6 /* RALoginServer.h */,
-				3599687A2655571A006AECE6 /* RALoginServer.m */,
-				35218452265563CD002FAE2C /* RAMapServer.h */,
-				35218453265563CD002FAE2C /* RAMapServer.m */,
-				35218459265563E1002FAE2C /* RAServerManager.h */,
-				3521845A265563E1002FAE2C /* RAServerManager.m */,
-			);
-			path = xcode;
 			sourceTree = "<group>";
 		};
 		35E6BD612654D94600DD3426 /* map */ = {
@@ -1278,6 +1293,11 @@
 		35FD0B83264E765C00BB0968 = {
 			isa = PBXGroup;
 			children = (
+				352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */,
+				352185E226556FA5002FAE2C /* conf */,
+				3556523426578AD700EAA323 /* db */,
+				35FD0D7C264E79BE00BB0968 /* 3rdparty */,
+				35FD0B9C264E789100BB0968 /* src */,
 				35FD0B8F264E765C00BB0968 /* rAthena */,
 				352186462658232F002FAE2C /* rAthenaDashboard */,
 				35FD0B8E264E765C00BB0968 /* Products */,
@@ -1301,14 +1321,11 @@
 			isa = PBXGroup;
 			children = (
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
-				3521848E26556984002FAE2C /* rAthenaChar.h */,
-				3521848F26556985002FAE2C /* rAthenaLogin.h */,
-				3521848D26556984002FAE2C /* rAthenaMap.h */,
-				35FD0D7C264E79BE00BB0968 /* 3rdparty */,
-				35FD0B9C264E789100BB0968 /* src */,
-				352185E226556FA5002FAE2C /* conf */,
-				3556523426578AD700EAA323 /* db */,
-				352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */,
+				35218459265563E1002FAE2C /* RAServerManager.h */,
+				3521845A265563E1002FAE2C /* RAServerManager.m */,
+				35136462265C062B00039D6C /* rAthenaChar */,
+				35136461265C060900039D6C /* rAthenaLogin */,
+				35136463265C063500039D6C /* rAthenaMap */,
 				35FD11922652094300BB0968 /* Info.plist */,
 			);
 			path = rAthena;
@@ -1323,7 +1340,6 @@
 				3513644026596D6D00039D6C /* custom */,
 				35FD12F02652150300BB0968 /* login */,
 				35E6BD612654D94600DD3426 /* map */,
-				3599687826555662006AECE6 /* xcode */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
