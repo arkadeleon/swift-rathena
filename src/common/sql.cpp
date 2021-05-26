@@ -29,8 +29,6 @@ struct Sql
 	StringBuf buf;
 	sqlite3* db;
 	sqlite3_stmt* stmt;
-	int row;
-	int nRow;
 	int keepalive;
 };
 
@@ -53,7 +51,6 @@ struct SqlStmt
 	StringBuf buf;
 	sqlite3* db;
 	sqlite3_stmt* stmt;
-	int nRow;
 	bool bind_params;
 	bool bind_columns;
 };
@@ -86,8 +83,6 @@ Sql* Sql_Malloc(void)
 	StringBuf_Init(&self->buf);
 	self->db = NULL;
 	self->stmt = NULL;
-	self->row = -1;
-	self->nRow = 0;
 	self->keepalive = INVALID_TIMER;
 	return self;
 }
@@ -289,21 +284,6 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-
-	self->row = -1;
-	self->nRow = 0;
-	while(true) {
-		int res = sqlite3_step(self->stmt);
-		if( res == SQLITE_ROW )
-			self->nRow++;
-		else if( res == SQLITE_DONE )
-			break;
-		else
-			return SQL_ERROR;
-	}
-
-	sqlite3_reset(self->stmt);
-
 	return SQL_SUCCESS;
 }
 
@@ -324,21 +304,6 @@ int Sql_QueryStr(Sql* self, const char* query)
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-
-	self->row = -1;
-	self->nRow = 0;
-	while(true) {
-		int res = sqlite3_step(self->stmt);
-		if( res == SQLITE_ROW )
-			self->nRow++;
-		else if( res == SQLITE_DONE )
-			break;
-		else
-			return SQL_ERROR;
-	}
-
-	sqlite3_reset(self->stmt);
-
 	return SQL_SUCCESS;
 }
 
@@ -369,7 +334,18 @@ uint32 Sql_NumColumns(Sql* self)
 uint64 Sql_NumRows(Sql* self)
 {
 	if( self && self->stmt )
-		return (uint64)self->nRow;
+	{
+		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
+		char sql[strlen(expanded_sql) + 64];
+		sprintf(sql, "SELECT COUNT(*) as count FROM (%s)", expanded_sql);
+		sqlite3_stmt *stmt;
+		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
+		sqlite3_step(stmt);
+		int count = sqlite3_column_int(stmt, 0);
+		sqlite3_finalize(stmt);
+		sqlite3_free(expanded_sql);
+		return count;
+	}
 	return 0;
 }
 
@@ -392,14 +368,9 @@ int Sql_NextRow(Sql* self)
 	{
 		int res = sqlite3_step(self->stmt);
 		if( res == SQLITE_ROW )
-		{
-			self->row++;
 			return SQL_SUCCESS;
-		}
 		else if( res == SQLITE_DONE )
-		{
 			return SQL_NO_DATA;
-		}
 	}
 	return SQL_ERROR;
 }
@@ -409,7 +380,7 @@ int Sql_NextRow(Sql* self)
 /// Gets the data of a column.
 int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 {
-	if( self && self->row < Sql_NumRows(self) )
+	if( self && sqlite3_data_count(self->stmt) > 0 )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
@@ -435,8 +406,6 @@ void Sql_FreeResult(Sql* self)
 	{
 		sqlite3_finalize(self->stmt);
 		self->stmt = NULL;
-		self->row = -1;
-		self->nRow = 0;
 	}
 }
 
@@ -671,7 +640,6 @@ SqlStmt* SqlStmt_Malloc(Sql* sql)
 	StringBuf_Init(&self->buf);
 	self->db = sql->db;
 	self->stmt = NULL;
-	self->nRow = 0;
 	self->bind_params = false;
 	self->bind_columns = false;
 
@@ -711,20 +679,6 @@ int SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
-
-	self->nRow = 0;
-	while(true) {
-		int res = sqlite3_step(self->stmt);
-		if( res == SQLITE_ROW )
-			self->nRow++;
-		else if( res == SQLITE_DONE )
-			break;
-		else
-			return SQL_ERROR;
-	}
-
-	sqlite3_reset(self->stmt);
-
 	return SQL_SUCCESS;
 }
 
@@ -746,20 +700,6 @@ int SqlStmt_PrepareStr(SqlStmt* self, const char* query)
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
-
-	self->nRow = 0;
-	while(true) {
-		int res = sqlite3_step(self->stmt);
-		if( res == SQLITE_ROW )
-			self->nRow++;
-		else if( res == SQLITE_DONE )
-			break;
-		else
-			return SQL_ERROR;
-	}
-
-	sqlite3_reset(self->stmt);
-
 	return SQL_SUCCESS;
 }
 
@@ -872,10 +812,20 @@ int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, 
 /// Returns the number of rows in the result.
 uint64 SqlStmt_NumRows(SqlStmt* self)
 {
-	if( self )
-		return (uint64)self->nRow;
-	else
-		return 0;
+	if( self && self->stmt )
+	{
+		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
+		char sql[strlen(expanded_sql) + 64];
+		sprintf(sql, "SELECT COUNT(*) as count FROM (%s)", expanded_sql);
+		sqlite3_stmt *stmt;
+		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
+		sqlite3_step(stmt);
+		int count = sqlite3_column_int(stmt, 0);
+		sqlite3_finalize(stmt);
+		sqlite3_free(expanded_sql);
+		return count;
+	}
+	return 0;
 }
 
 
