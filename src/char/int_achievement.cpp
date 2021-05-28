@@ -127,12 +127,12 @@ bool mapif_achievement_add(uint32 char_id, struct achievement* ad)
 	StringBuf_AppendStr(&buf, ")");
 	StringBuf_Printf(&buf, " VALUES ('%u', '%d',", char_id, ad->achievement_id, (uint32)ad->completed, (uint32)ad->rewarded);
 	if( ad->completed ){
-		StringBuf_Printf(&buf, "FROM_UNIXTIME('%u'),", (uint32)ad->completed);
+		StringBuf_Printf(&buf, "datetime(%u, 'unixepoch'),", (uint32)ad->completed);
 	}else{
 		StringBuf_AppendStr(&buf, "NULL,");
 	}
 	if( ad->rewarded ){
-		StringBuf_Printf(&buf, "FROM_UNIXTIME('%u')", (uint32)ad->rewarded);
+		StringBuf_Printf(&buf, "datetime(%u, 'unixepoch')", (uint32)ad->rewarded);
 	}else{
 		StringBuf_AppendStr(&buf, "NULL");
 	}
@@ -165,12 +165,12 @@ bool mapif_achievement_update(uint32 char_id, struct achievement* ad)
 	StringBuf_Init(&buf);
 	StringBuf_Printf(&buf, "UPDATE `%s` SET ", schema_config.achievement_table);
 	if( ad->completed ){
-		StringBuf_Printf(&buf, "`completed` = FROM_UNIXTIME('%u'),", (uint32)ad->completed);
+		StringBuf_Printf(&buf, "`completed` = datetime(%u, 'unixepoch'),", (uint32)ad->completed);
 	}else{
 		StringBuf_AppendStr(&buf, "`completed` = NULL,");
 	}
 	if( ad->rewarded ){
-		StringBuf_Printf(&buf, "`rewarded` = FROM_UNIXTIME('%u')", (uint32)ad->rewarded);
+		StringBuf_Printf(&buf, "`rewarded` = datetime(%u, 'unixepoch')", (uint32)ad->rewarded);
 	}else{
 		StringBuf_AppendStr(&buf, "`rewarded` = NULL");
 	}
@@ -309,7 +309,7 @@ int mapif_parse_achievement_reward(int fd){
 	uint32 char_id = RFIFOL(fd, 2);
 	int32 achievement_id = RFIFOL(fd, 6);
 
-	if( Sql_Query( sql_handle, "UPDATE `%s` SET `rewarded` = FROM_UNIXTIME('%u') WHERE `char_id`='%u' AND `id` = '%d' AND `completed` IS NOT NULL AND `rewarded` IS NULL", schema_config.achievement_table, (uint32)current, char_id, achievement_id ) == SQL_ERROR ||
+	if( Sql_Query( sql_handle, "UPDATE `%s` SET `rewarded` = datetime(%u, 'unixepoch') WHERE `char_id`='%u' AND `id` = '%d' AND `completed` IS NOT NULL AND `rewarded` IS NULL", schema_config.achievement_table, (uint32)current, char_id, achievement_id ) == SQL_ERROR ||
 		Sql_NumRowsAffected(sql_handle) <= 0 ){
 		current = 0;
 	}else if( RFIFOW(fd,10) > 0 ){ // Do not send a mail if no item reward

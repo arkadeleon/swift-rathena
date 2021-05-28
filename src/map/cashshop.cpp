@@ -299,7 +299,7 @@ enum e_sale_add_result sale_add_item( t_itemid nameid, int32 count, time_t from,
 		return SALE_ADD_DUPLICATE;
 	}
 	
-	if( SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `%s`(`nameid`,`start`,`end`,`amount`) VALUES ( '%u', FROM_UNIXTIME(%d), FROM_UNIXTIME(%d), '%d' )", sales_table, nameid, (uint32)from, (uint32)to, count) ){
+	if( SQL_ERROR == Sql_Query(mmysql_handle, "INSERT INTO `%s`(`nameid`,`start`,`end`,`amount`) VALUES ( '%u', datetime(%d, 'unixepoch'), datetime(%d, 'unixepoch'), '%d' )", sales_table, nameid, (uint32)from, (uint32)to, count) ){
 		Sql_ShowDebug(mmysql_handle);
 		return SALE_ADD_FAILED;
 	}
@@ -441,7 +441,7 @@ static void cashshop_read_db( void ){
 	sale_read_db_sql();
 
 	// Clean outdated sales
-	if( SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `end` < FROM_UNIXTIME(%d)", sales_table, (uint32)now ) ){
+	if( SQL_ERROR == Sql_Query(mmysql_handle, "DELETE FROM `%s` WHERE `end` < datetime(%d, 'unixepoch')", sales_table, (uint32)now ) ){
 		Sql_ShowDebug(mmysql_handle);
 	}
 

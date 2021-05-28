@@ -191,7 +191,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 			StringBuf_Printf(&buf, "`name`='%s', `master`='%s', `char_id`=%d", esc_name, esc_master, g->member[0].char_id);
 
 			if (g->last_leader_change)
-				StringBuf_Printf(&buf, ", `last_master_change`=FROM_UNIXTIME(%d)", g->last_leader_change);
+				StringBuf_Printf(&buf, ", `last_master_change`=datetime(%d, 'unixepoch')", g->last_leader_change);
 		}
 		if (flag & GS_CONNECT)
 		{
