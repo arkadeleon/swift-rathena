@@ -57,17 +57,6 @@ struct SqlStmt
 
 
 
-void MYSQL_NOW(sqlite3_context *context, int argc, sqlite3_value **argv)
-{
-	time_t t = time(NULL);
-	struct tm tm = *localtime(&t);
-	char formatted_tm[40];
-	strftime(formatted_tm, 40, "%Y-%m-%d %H:%M:%S", &tm);
-	sqlite3_result_text(context, formatted_tm, -1, SQLITE_TRANSIENT);
-}
-
-
-
 ///////////////////////////////////////////////////////////////////////////////
 // Sql Handle
 ///////////////////////////////////////////////////////////////////////////////
@@ -123,8 +112,6 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 		ShowSQL("%s\n", sqlite3_errmsg(self->db));
 		return SQL_ERROR;
 	}
-
-	sqlite3_create_function(self->db, "NOW", 0, SQLITE_UTF8, NULL, MYSQL_NOW, NULL, NULL);
 
 	self->keepalive = Sql_P_Keepalive(self);
 	if( self->keepalive == INVALID_TIMER )

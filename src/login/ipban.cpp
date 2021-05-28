@@ -45,7 +45,7 @@ bool ipban_check(uint32 ip) {
 	if( !login_config.ipban )
 		return false;// ipban disabled
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT count(*) FROM `%s` WHERE `rtime` > NOW() AND (`list` = '%u.*.*.*' OR `list` = '%u.%u.*.*' OR `list` = '%u.%u.%u.*' OR `list` = '%u.%u.%u.%u')",
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT count(*) FROM `%s` WHERE `rtime` > datetime('now') AND (`list` = '%u.*.*.*' OR `list` = '%u.%u.*.*' OR `list` = '%u.%u.%u.*' OR `list` = '%u.%u.%u.%u')",
 		ipban_table, p[3], p[3], p[2], p[3], p[2], p[1], p[3], p[2], p[1], p[0]) )
 	{
 		Sql_ShowDebug(sql_handle);
@@ -80,7 +80,7 @@ void ipban_log(uint32 ip) {
 	if( failures >= login_config.dynamic_pass_failure_ban_limit )
 	{
 		uint8* p = (uint8*)&ip;
-		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`list`,`btime`,`rtime`,`reason`) VALUES ('%u.%u.%u.*', NOW() , NOW() +  INTERVAL %d MINUTE ,'Password error ban')",
+		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`list`,`btime`,`rtime`,`reason`) VALUES ('%u.%u.%u.*', datetime('now'), datetime('now', '+%d minute'), 'Password error ban')",
 			ipban_table, p[3], p[2], p[1], login_config.dynamic_pass_failure_ban_duration) )
 			Sql_ShowDebug(sql_handle);
 	}
@@ -100,7 +100,7 @@ TIMER_FUNC(ipban_cleanup){
 	if( !login_config.ipban )
 		return 0;// ipban disabled
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `rtime` <= NOW()", ipban_table) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `rtime` <= datetime('now')", ipban_table) )
 		Sql_ShowDebug(sql_handle);
 
 	return 0;

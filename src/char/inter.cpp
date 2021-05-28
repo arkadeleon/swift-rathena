@@ -845,7 +845,7 @@ int inter_log(const char* fmt, ...)
 	va_end(ap);
 
 	Sql_EscapeStringLen(sql_handle, esc_str, str, strnlen(str, sizeof(str)));
-	if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `log`) VALUES (NOW(),  '%s')", schema_config.interlog_db, esc_str) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `log`) VALUES (datetime('now'),  '%s')", schema_config.interlog_db, esc_str) )
 		Sql_ShowDebug(sql_handle);
 
 	return 0;

@@ -620,7 +620,7 @@ void storage_guild_log( struct map_session_data* sd, struct item* item, int16 am
 		StringBuf_Printf(&buf, ", `option_val%d`", i);
 		StringBuf_Printf(&buf, ", `option_parm%d`", i);
 	}
-	StringBuf_Printf(&buf, ") VALUES(NOW(),'%u','%u', '%s', '%u', '%d','%d','%d','%d','%" PRIu64 "','%d','%d'",
+	StringBuf_Printf(&buf, ") VALUES(datetime('now'),'%u','%u', '%s', '%u', '%d','%d','%d','%d','%" PRIu64 "','%d','%d'",
 		sd->status.guild_id, sd->status.char_id, sd->status.name, item->nameid, amount, item->identify, item->refine,item->attribute, item->unique_id, item->bound, item->enchantgrade);
 
 	for (i = 0; i < MAX_SLOTS; i++)

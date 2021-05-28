@@ -174,7 +174,7 @@ void log_branch(struct map_session_data* sd)
 	if( log_config.sql_logs ) {
 		SqlStmt* stmt;
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`branch_date`, `account_id`, `char_id`, `char_name`, `map`) VALUES (NOW(), '%d', '%d', ?, '%s')", log_config.log_branch, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`branch_date`, `account_id`, `char_id`, `char_name`, `map`) VALUES (datetime('now'), '%d', '%d', ?, '%s')", log_config.log_branch, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
 		{
@@ -226,7 +226,7 @@ void log_pick(int id, int16 m, e_log_pick_type type, int amount, struct item* it
 			StringBuf_Printf(&buf, ", `option_val%d`", i);
 			StringBuf_Printf(&buf, ", `option_parm%d`", i);
 		}
-		StringBuf_Printf(&buf, ") VALUES(NOW(),'%u','%c','%u','%d','%d','%s','%" PRIu64 "','%d','%d'",
+		StringBuf_Printf(&buf, ") VALUES(datetime('now'),'%u','%c','%u','%d','%d','%s','%" PRIu64 "','%d','%d'",
 			id, log_picktype2char(type), itm->nameid, amount, itm->refine, map_getmapdata(m)->name[0] ? map_getmapdata(m)->name : "", itm->unique_id, itm->bound, itm->enchantgrade);
 
 		for (i = 0; i < MAX_SLOTS; i++)
@@ -281,7 +281,7 @@ void log_zeny(struct map_session_data* sd, e_log_pick_type type, struct map_sess
 
 	if( log_config.sql_logs )
 	{
-		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `src_id`, `type`, `amount`, `map`) VALUES (NOW(), '%d', '%d', '%c', '%d', '%s')",
+		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `src_id`, `type`, `amount`, `map`) VALUES (datetime('now'), '%d', '%d', '%c', '%d', '%s')",
 			log_config.log_zeny, sd->status.char_id, src_sd->status.char_id, log_picktype2char(type), amount, mapindex_id2name(sd->mapindex)) )
 		{
 			Sql_ShowDebug(logmysql_handle);
@@ -314,7 +314,7 @@ void log_mvpdrop(struct map_session_data* sd, int monster_id, t_itemid nameid, t
 
 	if( log_config.sql_logs )
 	{
-		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`mvp_date`, `kill_char_id`, `monster_id`, `prize`, `mvpexp`, `map`) VALUES (NOW(), '%d', '%d', '%u', '%" PRIu64 "', '%s') ",
+		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`mvp_date`, `kill_char_id`, `monster_id`, `prize`, `mvpexp`, `map`) VALUES (datetime('now'), '%d', '%d', '%u', '%" PRIu64 "', '%s') ",
 			log_config.log_mvpdrop, sd->status.char_id, monster_id, nameid, exp, mapindex_id2name(sd->mapindex)) )
 		{
 			Sql_ShowDebug(logmysql_handle);
@@ -351,7 +351,7 @@ void log_atcommand(struct map_session_data* sd, const char* message)
 		SqlStmt* stmt;
 
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`atcommand_date`, `account_id`, `char_id`, `char_name`, `map`, `command`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_gm, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`atcommand_date`, `account_id`, `char_id`, `char_name`, `map`, `command`) VALUES (datetime('now'), '%d', '%d', ?, '%s', ?)", log_config.log_gm, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, 255))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -388,7 +388,7 @@ void log_npc( struct npc_data* nd, const char* message ){
 	{
 		SqlStmt* stmt;
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`npc_date`, `char_name`, `map`, `mes`) VALUES (NOW(), ?, '%s', ?)", log_config.log_npc, map_mapid2mapname(nd->bl.m) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`npc_date`, `char_name`, `map`, `mes`) VALUES (datetime('now'), ?, '%s', ?)", log_config.log_npc, map_mapid2mapname(nd->bl.m) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, nd->name, strnlen(nd->name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, 255))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -426,7 +426,7 @@ void log_npc(struct map_session_data* sd, const char* message)
 	{
 		SqlStmt* stmt;
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`npc_date`, `account_id`, `char_id`, `char_name`, `map`, `mes`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_npc, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`npc_date`, `account_id`, `char_id`, `char_name`, `map`, `mes`) VALUES (datetime('now'), '%d', '%d', ?, '%s', ?)", log_config.log_npc, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, 255))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -474,7 +474,7 @@ void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, 
 		SqlStmt* stmt;
 
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`time`, `type`, `type_id`, `src_charid`, `src_accountid`, `src_map`, `src_map_x`, `src_map_y`, `dst_charname`, `message`) VALUES (NOW(), '%c', '%d', '%d', '%d', '%s', '%d', '%d', ?, ?)", log_config.log_chat, log_chattype2char(type), type_id, src_charid, src_accid, mapname, x, y)
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`time`, `type`, `type_id`, `src_charid`, `src_accountid`, `src_map`, `src_map_x`, `src_map_y`, `dst_charname`, `message`) VALUES (datetime('now'), '%c', '%d', '%d', '%d', '%s', '%d', '%d', ?, ?)", log_config.log_chat, log_chattype2char(type), type_id, src_charid, src_accid, mapname, x, y)
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, (char*)dst_charname, safestrnlen(dst_charname, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, CHAT_SIZE_MAX))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -508,7 +508,7 @@ void log_cash( struct map_session_data* sd, e_log_pick_type type, e_log_cash_typ
 		return;
 
 	if( log_config.sql_logs ){
-		if( SQL_ERROR == Sql_Query( logmysql_handle, LOG_QUERY " INTO `%s` ( `time`, `char_id`, `type`, `cash_type`, `amount`, `map` ) VALUES ( NOW(), '%d', '%c', '%c', '%d', '%s' )",
+		if( SQL_ERROR == Sql_Query( logmysql_handle, LOG_QUERY " INTO `%s` ( `time`, `char_id`, `type`, `cash_type`, `amount`, `map` ) VALUES ( datetime('now'), '%d', '%c', '%c', '%d', '%s' )",
 			log_config.log_cash, sd->status.char_id, log_picktype2char( type ), log_cashtype2char( cash_type ), amount, mapindex_id2name( sd->mapindex ) ) )
 		{
 			Sql_ShowDebug( logmysql_handle );
@@ -561,7 +561,7 @@ void log_feeding(struct map_session_data *sd, e_log_feeding_type type, t_itemid 
 	}
 
 	if (log_config.sql_logs) {
-		if (SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `target_id`, `target_class`, `type`, `intimacy`, `item_id`, `map`, `x`, `y`) VALUES ( NOW(), '%" PRIu32 "', '%" PRIu32 "', '%hu', '%c', '%" PRIu32 "', '%u', '%s', '%hu', '%hu' )",
+		if (SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `target_id`, `target_class`, `type`, `intimacy`, `item_id`, `map`, `x`, `y`) VALUES ( datetime('now'), '%" PRIu32 "', '%" PRIu32 "', '%hu', '%c', '%" PRIu32 "', '%u', '%s', '%hu', '%hu' )",
 			log_config.log_feeding, sd->status.char_id, target_id, target_class, log_feedingtype2char(type), intimacy, nameid, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y))
 		{
 			Sql_ShowDebug(logmysql_handle);

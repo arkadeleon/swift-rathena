@@ -114,7 +114,7 @@ void char_set_char_online(int map_id, uint32 char_id, uint32 account_id) {
 	struct mmo_charstatus *cp;
 
 	//Update DB
-	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1', `last_login`=NOW() WHERE `char_id`='%d' LIMIT 1", schema_config.char_db, char_id) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1', `last_login`=datetime('now') WHERE `char_id`='%d' LIMIT 1", schema_config.char_db, char_id) )
 		Sql_ShowDebug(sql_handle);
 
 	//Check to see for online conflicts
@@ -1316,7 +1316,7 @@ int char_rename_char_sql(struct char_session_data *sd, uint32 char_id)
 	if( charserv_config.log_char )
 	{
 		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
-			"VALUES (NOW(), '%s', '%d', '%d', '%s', '0', '0', '0', '0', '0', '0', '0', '0')",
+			"VALUES (datetime('now'), '%s', '%d', '%d', '%s', '0', '0', '0', '0', '0', '0', '0', '0')",
 			schema_config.charlog_db, "change char name", sd->account_id, char_dat.slot, esc_name) )
 			Sql_ShowDebug(sql_handle);
 	}
@@ -1471,7 +1471,7 @@ int char_make_new_char( struct char_session_data* sd, char* name_, int str, int 
 	// validation success, log result
 	if (charserv_config.log_char) {
 		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`time`, `char_msg`,`account_id`,`char_num`,`name`,`str`,`agi`,`vit`,`int`,`dex`,`luk`,`hair`,`hair_color`)"
-			"VALUES (NOW(), '%s', '%d', '%d', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d')",
+			"VALUES (datetime('now'), '%s', '%d', '%d', '%s', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d')",
 			schema_config.charlog_db, "make new char", sd->account_id, slot, esc_name, str, agi, vit, int_, dex, luk, hair_style, hair_color) )
 			Sql_ShowDebug(sql_handle);
 	}
@@ -1714,7 +1714,7 @@ enum e_char_del_response char_delete(struct char_session_data* sd, uint32 char_i
 		Sql_ShowDebug(sql_handle);
 
 	if (charserv_config.log_char) {
-		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`char_msg`,`name`) VALUES (NOW(), '%d', '%d', 'Deleted char (CID %d)', '%s')",
+		if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`char_msg`,`name`) VALUES (datetime('now'), '%d', '%d', 'Deleted char (CID %d)', '%s')",
 			schema_config.charlog_db, account_id, 0, char_id, esc_name) )
 			Sql_ShowDebug(sql_handle);
 	}
@@ -2219,7 +2219,7 @@ TIMER_FUNC(char_clan_member_cleanup){
 		return 0;
 	}
 
-	if( SQL_ERROR == Sql_Query( sql_handle, "UPDATE `%s` SET `clan_id`='0' WHERE `online`='0' AND `clan_id`<>'0' AND `last_login` IS NOT NULL AND `last_login` <= NOW() - INTERVAL %d DAY", schema_config.char_db, charserv_config.clan_remove_inactive_days ) ){
+	if( SQL_ERROR == Sql_Query( sql_handle, "UPDATE `%s` SET `clan_id`='0' WHERE `online`='0' AND `clan_id`<>'0' AND `last_login` IS NOT NULL AND `last_login` <= datetime('now', '-%d day')", schema_config.char_db, charserv_config.clan_remove_inactive_days ) ){
 		Sql_ShowDebug(sql_handle);
 	}
 

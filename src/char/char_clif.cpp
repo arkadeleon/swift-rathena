@@ -869,7 +869,7 @@ int chclif_parse_charselect(int fd, struct char_session_data* sd,uint32 ipl){
 			char esc_name[NAME_LENGTH*2+1];
 
 			Sql_EscapeStringLen(sql_handle, esc_name, char_dat.name, strnlen(char_dat.name, NAME_LENGTH));
-			if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`name`) VALUES (NOW(), '%d', '%d', '%s')",
+			if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s`(`time`, `account_id`,`char_num`,`name`) VALUES (datetime('now'), '%d', '%d', '%s')",
 				schema_config.charlog_db, sd->account_id, slot, esc_name) )
 				Sql_ShowDebug(sql_handle);
 		}

@@ -45,7 +45,7 @@ unsigned long loginlog_failedattempts(uint32 ip, unsigned int minutes) {
 	if( !enabled )
 		return 0;
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT count(*) FROM `%s` WHERE `ip` = '%s' AND (`rcode` = '0' OR `rcode` = '1') AND `time` > NOW() - INTERVAL %d MINUTE",
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT count(*) FROM `%s` WHERE `ip` = '%s' AND (`rcode` = '0' OR `rcode` = '1') AND `time` > datetime('now', '-%d minute')",
 		log_login_db, ip2str(ip,NULL), minutes) )// how many times failed account? in one ip.
 		Sql_ShowDebug(sql_handle);
 
@@ -79,7 +79,7 @@ void login_log(uint32 ip, const char* username, int rcode, const char* message) 
 	Sql_EscapeStringLen(sql_handle, esc_message, message, strnlen(message, 255));
 
 	retcode = Sql_Query(sql_handle,
-		"INSERT INTO `%s`(`time`,`ip`,`user`,`rcode`,`log`) VALUES (NOW(), '%s', '%s', '%d', '%s')",
+		"INSERT INTO `%s`(`time`,`ip`,`user`,`rcode`,`log`) VALUES (datetime('now'), '%s', '%s', '%d', '%s')",
 		log_login_db, ip2str(ip,NULL), esc_username, rcode, esc_message);
 
 	if( retcode != SQL_SUCCESS )
