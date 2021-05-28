@@ -39,7 +39,7 @@ struct achievement *mapif_achievements_fromsql(uint32 char_id, int *count)
 	memset(&tmp_achieve, 0, sizeof(tmp_achieve));
 
 	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`, COALESCE(UNIX_TIMESTAMP(`completed`),0), COALESCE(UNIX_TIMESTAMP(`rewarded`),0)");
+	StringBuf_AppendStr(&buf, "SELECT `id`, COALESCE(strftime('%%s',`completed`),0), COALESCE(strftime('%%s',`rewarded`),0)");
 	for (i = 0; i < MAX_ACHIEVEMENT_OBJECTIVES; ++i)
 		StringBuf_Printf(&buf, ", `count%d`", i + 1);
 	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id` = '%u'", schema_config.achievement_table, char_id);

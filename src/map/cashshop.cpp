@@ -202,7 +202,7 @@ static bool sale_parse_dbrow( char* fields[], int columns, int current ){
 static void sale_read_db_sql( void ){
 	uint32 lines = 0, count = 0;
 
-	if( SQL_ERROR == Sql_Query( mmysql_handle, "SELECT `nameid`, UNIX_TIMESTAMP(`start`), UNIX_TIMESTAMP(`end`), `amount` FROM `%s` WHERE `end` > datetime('now')", sales_table ) ){
+	if( SQL_ERROR == Sql_Query( mmysql_handle, "SELECT `nameid`, strftime('%%s', `start`), strftime('%%s', `end`), `amount` FROM `%s` WHERE `end` > datetime('now')", sales_table ) ){
 		Sql_ShowDebug(mmysql_handle);
 		return;
 	}

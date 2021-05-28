@@ -354,7 +354,7 @@ struct guild * inter_guild_fromsql(int guild_id)
 	ShowInfo("Guild load request (%d)...\n", guild_id);
 #endif
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT g.`name`,c.`name`,g.`guild_lv`,g.`connect_member`,g.`max_member`,g.`average_lv`,g.`exp`,g.`next_exp`,g.`skill_point`,g.`mes1`,g.`mes2`,g.`emblem_len`,g.`emblem_id`,COALESCE(UNIX_TIMESTAMP(g.`last_master_change`),0), g.`emblem_data` "
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT g.`name`,c.`name`,g.`guild_lv`,g.`connect_member`,g.`max_member`,g.`average_lv`,g.`exp`,g.`next_exp`,g.`skill_point`,g.`mes1`,g.`mes2`,g.`emblem_len`,g.`emblem_id`,COALESCE(strftime('%%s',g.`last_master_change`),0), g.`emblem_data` "
 		"FROM `%s` g LEFT JOIN `%s` c ON c.`char_id` = g.`char_id` WHERE g.`guild_id`='%d'", schema_config.guild_db, schema_config.char_db, guild_id) )
 	{
 		Sql_ShowDebug(sql_handle);
@@ -410,7 +410,7 @@ struct guild * inter_guild_fromsql(int guild_id)
 	}
 
 	// load guild member info
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `c`.`account_id`,`m`.`char_id`,`c`.`hair`,`c`.`hair_color`,`c`.`sex`,`c`.`class`,`c`.`base_level`,`m`.`exp`,`c`.`online`,`m`.`position`,`c`.`name`,coalesce(UNIX_TIMESTAMP(`c`.`last_login`),0) "
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT `c`.`account_id`,`m`.`char_id`,`c`.`hair`,`c`.`hair_color`,`c`.`sex`,`c`.`class`,`c`.`base_level`,`m`.`exp`,`c`.`online`,`m`.`position`,`c`.`name`,coalesce(strftime('%%s',`c`.`last_login`),0) "
 		"FROM `%s` `m` INNER JOIN `%s` `c` on `c`.`char_id`=`m`.`char_id` WHERE `m`.`guild_id`='%d' ORDER BY `position`", schema_config.guild_member_db, schema_config.char_db, guild_id) )
 	{
 		Sql_ShowDebug(sql_handle);
