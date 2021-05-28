@@ -337,7 +337,7 @@ uint64 Sql_NumRows(Sql* self)
 	{
 		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
 		char sql[strlen(expanded_sql) + 64];
-		sprintf(sql, "SELECT COUNT(*) as count FROM (%s)", expanded_sql);
+		sprintf(sql, "SELECT count(*) FROM (%s)", expanded_sql);
 		sqlite3_stmt *stmt;
 		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
 		sqlite3_step(stmt);
@@ -816,7 +816,7 @@ uint64 SqlStmt_NumRows(SqlStmt* self)
 	{
 		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
 		char sql[strlen(expanded_sql) + 64];
-		sprintf(sql, "SELECT COUNT(*) as count FROM (%s)", expanded_sql);
+		sprintf(sql, "SELECT count(*) FROM (%s)", expanded_sql);
 		sqlite3_stmt *stmt;
 		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
 		sqlite3_step(stmt);

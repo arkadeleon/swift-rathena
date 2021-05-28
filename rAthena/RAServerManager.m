@@ -31,7 +31,7 @@
 - (void)copyBundleResourcesAndChangeDirectory {
     NSURL *src = [[NSBundle bundleForClass:[RAServerManager class]] bundleURL];
     NSURL *dst = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-    NSArray<NSString *> *items = @[@"ragnarok.sqlite3", @"conf", @"db"];
+    NSArray<NSString *> *items = @[@"ragnarok.sqlite3", @"conf", @"db", @"npc"];
     for (NSString *item in items) {
         [[NSFileManager defaultManager] copyItemAtURL:[src URLByAppendingPathComponent:item] toURL:[dst URLByAppendingPathComponent:item] error:nil];
     }
