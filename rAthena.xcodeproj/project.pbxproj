@@ -72,6 +72,9 @@
 		3556527B2660B68600EAA323 /* npc in Resources */ = {isa = PBXBuildFile; fileRef = 3556527A2660B68600EAA323 /* npc */; };
 		3599687B2655571A006AECE6 /* RALoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* RALoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3599687C2655571A006AECE6 /* RALoginServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3599687A2655571A006AECE6 /* RALoginServer.m */; };
+		35AD84C22664DC5500CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
+		35AD84C32664DC6800CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
+		35AD84C42664DC6900CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -736,6 +739,7 @@
 		355652842660B80900EAA323 /* sql-files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "sql-files"; sourceTree = "<group>"; };
 		359968792655571A006AECE6 /* RALoginServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginServer.h; sourceTree = "<group>"; };
 		3599687A2655571A006AECE6 /* RALoginServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginServer.m; sourceTree = "<group>"; };
+		35AD84C12664DC5500CE1539 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -1053,6 +1057,7 @@
 			files = (
 				35FD133226526F3200BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD118C2652094300BB0968 /* libz.tbd in Frameworks */,
+				35AD84C22664DC5500CE1539 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,6 +1067,7 @@
 			files = (
 				35FD132E26526F2E00BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD122A2652094F00BB0968 /* libz.tbd in Frameworks */,
+				35AD84C32664DC6800CE1539 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,6 +1077,7 @@
 			files = (
 				35FD133626526F3400BB0968 /* libsqlite3.tbd in Frameworks */,
 				35FD12C92652096400BB0968 /* libz.tbd in Frameworks */,
+				35AD84C42664DC6900CE1539 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1585,6 +1592,7 @@
 		35FD10EE2652031400BB0968 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35AD84C12664DC5500CE1539 /* CoreFoundation.framework */,
 				35FD132D26526F2E00BB0968 /* libsqlite3.tbd */,
 				35FD10EF2652031400BB0968 /* libz.tbd */,
 			);

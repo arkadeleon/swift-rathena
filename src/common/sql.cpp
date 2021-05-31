@@ -10,6 +10,9 @@
 #include <sqlite3.h>
 #include <stdlib.h>// strtoul
 
+#include <CommonCrypto/CommonDigest.h>
+#include <CoreFoundation/CoreFoundation.h>
+
 #include "cbasetypes.hpp"
 #include "malloc.hpp"
 #include "showmsg.hpp"
@@ -54,6 +57,52 @@ struct SqlStmt
 	bool bind_params;
 	bool bind_columns;
 };
+
+
+
+void sqlite_md5(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+	const char *data = (const char *)sqlite3_value_text(argv[0]);
+	unsigned char md[CC_MD5_DIGEST_LENGTH];
+	CC_MD5(data, (uint32_t)strlen(data), md);
+
+	char result[CC_MD5_DIGEST_LENGTH * 2 + 1];
+	sprintf(result, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", md[0], md[1], md[2], md[3], md[4], md[5], md[6], md[7], md[8], md[9], md[10], md[11], md[12], md[13], md[14], md[15]);
+	sqlite3_result_text(context, result, -1, SQLITE_TRANSIENT);
+}
+
+
+
+void sqlite_rand(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+	double rand = (((double)(arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX));
+	sqlite3_result_double(context, rand);
+}
+
+
+
+void sqlite_sha256(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+	const char *data = (const char *)sqlite3_value_text(argv[0]);
+	unsigned char md[CC_SHA256_DIGEST_LENGTH];
+	CC_SHA256(data, (uint32_t)strlen(data), md);
+
+	char result[CC_SHA256_DIGEST_LENGTH * 2 + 1];
+	sprintf(result, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", md[0], md[1], md[2], md[3], md[4], md[5], md[6], md[7], md[8], md[9], md[10], md[11], md[12], md[13], md[14], md[15], md[16], md[17], md[18], md[19], md[20], md[21], md[22], md[23], md[24], md[25], md[26], md[27], md[28], md[29], md[30], md[31]);
+	sqlite3_result_text(context, result, -1, SQLITE_TRANSIENT);
+}
+
+
+
+void sqlite_uuid(sqlite3_context *context, int argc, sqlite3_value **argv)
+{
+	CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+	CFStringRef string = CFUUIDCreateString(kCFAllocatorDefault, uuid);
+	const char *cString = CFStringGetCStringPtr(string, kCFStringEncodingASCII);
+	sqlite3_result_text(context, cString, -1, SQLITE_TRANSIENT);
+	CFRelease(string);
+	CFRelease(uuid);
+}
 
 
 
@@ -112,6 +161,11 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 		ShowSQL("%s\n", sqlite3_errmsg(self->db));
 		return SQL_ERROR;
 	}
+
+	sqlite3_create_function(self->db, "md5", 1, SQLITE_UTF8, NULL, sqlite_md5, NULL, NULL);
+	sqlite3_create_function(self->db, "rand", 0, SQLITE_UTF8, NULL, sqlite_rand, NULL, NULL);
+	sqlite3_create_function(self->db, "sha256", 1, SQLITE_UTF8, NULL, sqlite_sha256, NULL, NULL);
+	sqlite3_create_function(self->db, "uuid", 0, SQLITE_UTF8, NULL, sqlite_uuid, NULL, NULL);
 
 	self->keepalive = Sql_P_Keepalive(self);
 	if( self->keepalive == INVALID_TIMER )
