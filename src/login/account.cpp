@@ -348,7 +348,7 @@ static bool account_db_sql_remove(AccountDB* self, const uint32 account_id) {
 	Sql* sql_handle = db->accounts;
 	bool result = false;
 
-	if( SQL_SUCCESS != Sql_QueryStr(sql_handle, "START TRANSACTION")
+	if( SQL_SUCCESS != Sql_QueryStr(sql_handle, "BEGIN")
 	||  SQL_SUCCESS != Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = %d", db->account_db, account_id)
 	||  SQL_SUCCESS != Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = %d", db->global_acc_reg_num_table, account_id)
 	||  SQL_SUCCESS != Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = %d", db->global_acc_reg_str_table, account_id) )
@@ -568,7 +568,7 @@ static bool mmo_auth_tosql(AccountDB_SQL* db, const struct mmo_account* acc, boo
 	do
 	{
 
-	if( SQL_SUCCESS != Sql_QueryStr(sql_handle, "START TRANSACTION") )
+	if( SQL_SUCCESS != Sql_QueryStr(sql_handle, "BEGIN") )
 	{
 		Sql_ShowDebug(sql_handle);
 		break;

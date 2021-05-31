@@ -82,7 +82,7 @@ int mail_savemessage(struct mail_message* msg)
 	int i, j;
 	bool found = false;
 
-	if( SQL_ERROR == Sql_QueryStr( sql_handle, "START TRANSACTION" ) ){
+	if( SQL_ERROR == Sql_QueryStr( sql_handle, "BEGIN" ) ){
 		Sql_ShowDebug( sql_handle );
 		return 0;
 	}
@@ -442,7 +442,7 @@ void mapif_parse_Mail_getattach(int fd)
 bool mapif_Mail_delete( int fd, uint32 char_id, int mail_id, uint32 account_id ){
 	bool failed = false;
 
-	if( SQL_ERROR == Sql_QueryStr( sql_handle, "START TRANSACTION" ) ||
+	if( SQL_ERROR == Sql_QueryStr( sql_handle, "BEGIN" ) ||
 		SQL_ERROR == Sql_Query( sql_handle, "DELETE FROM `%s` WHERE `id` = '%d'", schema_config.mail_db, mail_id ) ||
 		SQL_ERROR == Sql_Query( sql_handle, "DELETE FROM `%s` WHERE `id` = '%d'", schema_config.mail_attachment_db, mail_id ) ||
 		SQL_ERROR == Sql_QueryStr( sql_handle, "COMMIT" ) ){

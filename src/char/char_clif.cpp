@@ -71,7 +71,7 @@ int chclif_parse_moveCharSlot( int fd, struct char_session_data* sd){
 		// We want to move to a used position
 		if( charserv_config.charmove_config.char_movetoused ){ // TODO: check if the target is in deletion process
 			// Admin is friendly and uses triangle exchange
-			if( SQL_ERROR == Sql_QueryStr(sql_handle, "START TRANSACTION")
+			if( SQL_ERROR == Sql_QueryStr(sql_handle, "BEGIN")
 				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'",schema_config.char_db, to, sd->found_char[from] )
 				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", schema_config.char_db, from, sd->found_char[to] )
 				|| SQL_ERROR == Sql_QueryStr(sql_handle, "COMMIT")
