@@ -31,20 +31,12 @@ struct Sql
 {
 	StringBuf buf;
 	sqlite3* db;
-	sqlite3_stmt* stmt;
+	char** result;
+	int row;
+	int nRow;
+	int nColumn;
 	int keepalive;
 };
-
-
-
-// Column length receiver.
-// Takes care of the possible size missmatch between uint32 and unsigned long.
-struct s_column_length
-{
-	uint32* out_length;
-	unsigned long length;
-};
-typedef struct s_column_length s_column_length;
 
 
 
@@ -57,6 +49,12 @@ struct SqlStmt
 	bool bind_params;
 	bool bind_columns;
 };
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Sql Function
+///////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -120,7 +118,10 @@ Sql* Sql_Malloc(void)
 	CREATE(self, Sql, 1);
 	StringBuf_Init(&self->buf);
 	self->db = NULL;
-	self->stmt = NULL;
+	self->result = NULL;
+	self->row = -1;
+	self->nRow = 0;
+	self->nColumn = 0;
 	self->keepalive = INVALID_TIMER;
 	return self;
 }
@@ -319,10 +320,12 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
+	char* errmsg = NULL;
+	int errcode = sqlite3_get_table(self->db, StringBuf_Value(&self->buf), &self->result, &self->nRow, &self->nColumn, &errmsg);
+	if( errcode != SQLITE_OK )
 	{
-		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-		ra_mysql_error_handler(sqlite3_errcode(self->db));
+		ShowSQL("DB error - %s\n", errmsg);
+		ra_mysql_error_handler(errcode);
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -339,10 +342,12 @@ int Sql_QueryStr(Sql* self, const char* query)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
+	char* errmsg = NULL;
+	int errcode = sqlite3_get_table(self->db, StringBuf_Value(&self->buf), &self->result, &self->nRow, &self->nColumn, &errmsg);
+	if( errcode != SQLITE_OK )
 	{
-		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-		ra_mysql_error_handler(sqlite3_errcode(self->db));
+		ShowSQL("DB error - %s\n", errmsg);
+		ra_mysql_error_handler(errcode);
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -364,8 +369,8 @@ uint64 Sql_LastInsertId(Sql* self)
 /// Returns the number of columns in each row of the result.
 uint32 Sql_NumColumns(Sql* self)
 {
-	if( self && self->stmt )
-		return (uint32)sqlite3_column_count(self->stmt);
+	if( self && self->result )
+		return (uint32)self->nColumn;
 	return 0;
 }
 
@@ -374,18 +379,9 @@ uint32 Sql_NumColumns(Sql* self)
 /// Returns the number of rows in the result.
 uint64 Sql_NumRows(Sql* self)
 {
-	if( self && self->stmt )
+	if( self && self->result )
 	{
-		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
-		char sql[strlen(expanded_sql) + 64];
-		sprintf(sql, "SELECT count(*) FROM (%s)", expanded_sql);
-		sqlite3_stmt *stmt;
-		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
-		sqlite3_step(stmt);
-		int count = sqlite3_column_int(stmt, 0);
-		sqlite3_finalize(stmt);
-		sqlite3_free(expanded_sql);
-		return count;
+		return (uint64)self->nRow;
 	}
 	return 0;
 }
@@ -405,12 +401,12 @@ uint64 Sql_NumRowsAffected(Sql* self)
 /// Fetches the next row.
 int Sql_NextRow(Sql* self)
 {
-	if( self && self->stmt )
+	if( self && self->result )
 	{
-		int res = sqlite3_step(self->stmt);
-		if( res == SQLITE_ROW )
+		self->row++;
+		if( self->row < self->nRow )
 			return SQL_SUCCESS;
-		else if( res == SQLITE_DONE )
+		else
 			return SQL_NO_DATA;
 	}
 	return SQL_ERROR;
@@ -421,12 +417,13 @@ int Sql_NextRow(Sql* self)
 /// Gets the data of a column.
 int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 {
-	if( self && sqlite3_data_count(self->stmt) > 0 )
+	if( self && self->row < self->nRow )
 	{
-		if( col < Sql_NumColumns(self) )
+		if( col < self->nColumn )
 		{
-			if( out_buf ) *out_buf = (char *)sqlite3_column_text(self->stmt, (int)col);
-			if( out_len ) *out_len = sqlite3_column_bytes(self->stmt, (int)col);
+			char* text = self->result[(self->row + 1) * self->nColumn + col];
+			if( out_buf ) *out_buf = text;
+			if( out_len ) *out_len = strlen(text);
 		}
 		else
 		{// out of range - ignore
@@ -443,10 +440,13 @@ int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 /// Frees the result of the query.
 void Sql_FreeResult(Sql* self)
 {
-	if( self && self->stmt )
+	if( self && self->result )
 	{
-		sqlite3_finalize(self->stmt);
-		self->stmt = NULL;
+		sqlite3_free_table(self->result);
+		self->result = NULL;
+		self->row = -1;
+		self->nRow = 0;
+		self->nColumn = 0;
 	}
 }
 
