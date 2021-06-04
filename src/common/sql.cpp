@@ -26,15 +26,33 @@ void ra_mysql_error_handler(unsigned int ecode);
 int mysql_reconnect_type;
 unsigned int mysql_reconnect_count;
 
+/// Sql row
+struct SqlRow
+{
+	sqlite3_value** values;
+	SqlRow* next;
+};
+
+
+
+/// Sql result
+struct SqlResult
+{
+	int row_count;
+	int column_count;
+	SqlRow* rows;
+	SqlRow* current_row;
+	bool eof;
+};
+
+
+
 /// Sql handle
 struct Sql
 {
 	StringBuf buf;
 	sqlite3* db;
-	char** result;
-	int row;
-	int nRow;
-	int nColumn;
+	SqlResult* result;
 	int keepalive;
 };
 
@@ -110,6 +128,98 @@ void sqlite_uuid(sqlite3_context *context, int argc, sqlite3_value **argv)
 
 
 
+static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
+{
+	int row_count = 0;
+	int column_count = sqlite3_column_count(stmt);
+	SqlRow* first_row = NULL;
+	SqlRow* last_row = NULL;
+
+	while( sqlite3_step(stmt) == SQLITE_ROW )
+	{
+		sqlite3_value** values;
+		CREATE(values, sqlite3_value*, column_count);
+
+		for( int column = 0; column < column_count; column++ )
+		{
+			sqlite3_value* value = sqlite3_column_value(stmt, column);
+			values[column] = sqlite3_value_dup(value);
+		}
+
+		SqlRow* row;
+		CREATE(row, SqlRow, 1);
+		row->values = values;
+		row->next = NULL;
+
+		if (last_row != NULL) {
+			last_row->next = row;
+		}
+
+		if (first_row == NULL) {
+			first_row = row;
+		}
+
+		last_row = row;
+
+		row_count++;
+	}
+
+	CREATE(*result, SqlResult, 1);
+	(*result)->row_count = row_count;
+	(*result)->column_count = column_count;
+	(*result)->rows = first_row;
+	(*result)->current_row = NULL;
+	(*result)->eof = false;
+}
+
+
+
+static void Sql_P_FreeResult(SqlResult* result)
+{
+	SqlRow* row = result->rows;
+	while( row )
+	{
+		SqlRow* next = row->next;
+
+		for( int column = 0; column < result->column_count; column++ )
+		{
+			sqlite3_value* value = row->values[column];
+			sqlite3_value_free(value);
+		}
+		aFree(row->values);
+		aFree(row);
+
+		row = next;
+	}
+
+	aFree(result);
+}
+
+
+
+static void Sql_P_FetchRow(SqlResult* result)
+{
+	if( result->current_row == NULL )
+	{
+		if( result->eof == false )
+		{
+			result->current_row = result->rows;
+			if( result->current_row == NULL )
+				result->eof = true;
+		}
+	}
+	else
+	{
+		result->current_row = result->current_row->next;
+		if( result->current_row == NULL )
+			result->eof = true;
+		else
+			result->eof = false;
+	}
+}
+
+
+
 /// Allocates and initializes a new Sql handle.
 Sql* Sql_Malloc(void)
 {
@@ -119,9 +229,6 @@ Sql* Sql_Malloc(void)
 	StringBuf_Init(&self->buf);
 	self->db = NULL;
 	self->result = NULL;
-	self->row = -1;
-	self->nRow = 0;
-	self->nColumn = 0;
 	self->keepalive = INVALID_TIMER;
 	return self;
 }
@@ -320,14 +427,15 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	char* errmsg = NULL;
-	int errcode = sqlite3_get_table(self->db, StringBuf_Value(&self->buf), &self->result, &self->nRow, &self->nColumn, &errmsg);
-	if( errcode != SQLITE_OK )
+	sqlite3_stmt* stmt = NULL;
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, NULL) != SQLITE_OK )
 	{
-		ShowSQL("DB error - %s\n", errmsg);
-		ra_mysql_error_handler(errcode);
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
+	Sql_P_StmtExecute(stmt, &self->result);
+	sqlite3_finalize(stmt);
 	return SQL_SUCCESS;
 }
 
@@ -342,14 +450,15 @@ int Sql_QueryStr(Sql* self, const char* query)
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	char* errmsg = NULL;
-	int errcode = sqlite3_get_table(self->db, StringBuf_Value(&self->buf), &self->result, &self->nRow, &self->nColumn, &errmsg);
-	if( errcode != SQLITE_OK )
+	sqlite3_stmt* stmt = NULL;
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, NULL) != SQLITE_OK )
 	{
-		ShowSQL("DB error - %s\n", errmsg);
-		ra_mysql_error_handler(errcode);
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
+	Sql_P_StmtExecute(stmt, &self->result);
+	sqlite3_finalize(stmt);
 	return SQL_SUCCESS;
 }
 
@@ -370,7 +479,7 @@ uint64 Sql_LastInsertId(Sql* self)
 uint32 Sql_NumColumns(Sql* self)
 {
 	if( self && self->result )
-		return (uint32)self->nColumn;
+		return (uint32)self->result->column_count;
 	return 0;
 }
 
@@ -380,9 +489,7 @@ uint32 Sql_NumColumns(Sql* self)
 uint64 Sql_NumRows(Sql* self)
 {
 	if( self && self->result )
-	{
-		return (uint64)self->nRow;
-	}
+		return (uint64)self->result->row_count;
 	return 0;
 }
 
@@ -403,10 +510,10 @@ int Sql_NextRow(Sql* self)
 {
 	if( self && self->result )
 	{
-		self->row++;
-		if( self->row < self->nRow )
+		Sql_P_FetchRow(self->result);
+		if( self->result->current_row )
 			return SQL_SUCCESS;
-		else
+		if( self->result->eof )
 			return SQL_NO_DATA;
 	}
 	return SQL_ERROR;
@@ -417,13 +524,13 @@ int Sql_NextRow(Sql* self)
 /// Gets the data of a column.
 int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 {
-	if( self && self->row < self->nRow )
+	if( self && self->result->current_row )
 	{
-		if( col < self->nColumn )
+		if( col < Sql_NumColumns(self) )
 		{
-			char* text = self->result[(self->row + 1) * self->nColumn + col];
-			if( out_buf ) *out_buf = text;
-			if( out_len ) *out_len = strlen(text);
+			sqlite3_value* value = self->result->current_row->values[col];
+			if( out_buf ) *out_buf = (char*)sqlite3_value_text(value);
+			if( out_len ) *out_len = (size_t)sqlite3_value_bytes(value);
 		}
 		else
 		{// out of range - ignore
@@ -442,11 +549,8 @@ void Sql_FreeResult(Sql* self)
 {
 	if( self && self->result )
 	{
-		sqlite3_free_table(self->result);
+		Sql_P_FreeResult(self->result);
 		self->result = NULL;
-		self->row = -1;
-		self->nRow = 0;
-		self->nColumn = 0;
 	}
 }
 
