@@ -46,6 +46,17 @@ struct SqlResult
 };
 
 
+/// Sql bind
+struct SqlBind
+{
+	SqlDataType buffer_type;
+	void* buffer;
+	size_t buffer_length;
+	uint32* length;
+	int8* is_null;
+};
+
+
 
 /// Sql handle
 struct Sql
@@ -64,6 +75,11 @@ struct SqlStmt
 	StringBuf buf;
 	sqlite3* db;
 	sqlite3_stmt* stmt;
+	SqlResult* result;
+	SqlBind *params;
+	SqlBind *columns;
+	size_t max_params;
+	size_t max_columns;
 	bool bind_params;
 	bool bind_columns;
 };
@@ -176,6 +192,9 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 
 static void Sql_P_FreeResult(SqlResult* result)
 {
+	if( result == NULL )
+		return;
+
 	SqlRow* row = result->rows;
 	while( row )
 	{
@@ -589,184 +608,199 @@ void Sql_Free(Sql* self)
 
 
 
-/// Binds a parameter.
+/// Bind param.
 ///
 /// @private
-static int Sql_P_BindSqlDataType(sqlite3_stmt* stmt, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
+static int Sql_P_BindParam(sqlite3_stmt* stmt, SqlBind* bind)
 {
-	switch( buffer_type )
+	int count = sqlite3_bind_parameter_count(stmt);
+	for( int idx = 0; idx < count; idx++ )
 	{
-	case SQLDT_NULL:
-		sqlite3_bind_null(stmt, (int)(idx + 1));
-		break;
-	// fixed size
-	case SQLDT_UINT8:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint8_t *)buffer));
-		break;
-	case SQLDT_INT8:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((int8_t *)buffer));
-		break;
-	case SQLDT_UINT16:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint16_t *)buffer));
-		break;
-	case SQLDT_INT16:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((int16_t *)buffer));
-		break;
-	case SQLDT_UINT32:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((uint32_t *)buffer));
-		break;
-	case SQLDT_INT32:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((int32_t *)buffer));
-		break;
-	case SQLDT_UINT64:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((uint64_t *)buffer));
-		break;
-	case SQLDT_INT64:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((int64_t *)buffer));
-		break;
-	// platform dependent size
-	case SQLDT_UCHAR:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned char *)buffer));
-		break;
-	case SQLDT_CHAR:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((char *)buffer));
-		break;
-	case SQLDT_USHORT:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned short *)buffer));
-		break;
-	case SQLDT_SHORT:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((short *)buffer));
-		break;
-	case SQLDT_UINT:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned int *)buffer));
-		break;
-	case SQLDT_INT:
-		sqlite3_bind_int(stmt, (int)(idx + 1), *((int *)buffer));
-		break;
-	case SQLDT_ULONG:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long *)buffer));
-		break;
-	case SQLDT_LONG:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((long *)buffer));
-		break;
-	case SQLDT_ULONGLONG:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long long *)buffer));
-		break;
-	case SQLDT_LONGLONG:
-		sqlite3_bind_int64(stmt, (int)(idx + 1), *((long long *)buffer));
-		break;
-	// floating point
-	case SQLDT_FLOAT:
-		sqlite3_bind_double(stmt, (int)(idx + 1), *((float *)buffer));
-		break;
-	case SQLDT_DOUBLE:
-		sqlite3_bind_double(stmt, (int)(idx + 1), *((double *)buffer));
-		break;
-	// other
-	case SQLDT_STRING:
-	case SQLDT_ENUM:
-		sqlite3_bind_text(stmt, (int)(idx + 1), (char *)buffer, (int)buffer_len, NULL);
-		break;
-	case SQLDT_BLOB:
-		sqlite3_bind_blob(stmt, (int)(idx + 1), buffer, (int)buffer_len, NULL);
-		break;
-	default:
-		ShowDebug("Sql_P_BindSqlDataType: unsupported buffer type (%d)\n", buffer_type);
-		return SQL_ERROR;
+		SqlDataType buffer_type = bind[idx].buffer_type;
+		void *buffer = bind[idx].buffer;
+		size_t buffer_len = bind[idx].buffer_length;
+		switch( buffer_type )
+		{
+		case SQLDT_NULL:
+			sqlite3_bind_null(stmt, (int)(idx + 1));
+			break;
+		// fixed size
+		case SQLDT_UINT8:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((uint8_t *)buffer));
+			break;
+		case SQLDT_INT8:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((int8_t *)buffer));
+			break;
+		case SQLDT_UINT16:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((uint16_t *)buffer));
+			break;
+		case SQLDT_INT16:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((int16_t *)buffer));
+			break;
+		case SQLDT_UINT32:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((uint32_t *)buffer));
+			break;
+		case SQLDT_INT32:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((int32_t *)buffer));
+			break;
+		case SQLDT_UINT64:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((uint64_t *)buffer));
+			break;
+		case SQLDT_INT64:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((int64_t *)buffer));
+			break;
+		// platform dependent size
+		case SQLDT_UCHAR:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned char *)buffer));
+			break;
+		case SQLDT_CHAR:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((char *)buffer));
+			break;
+		case SQLDT_USHORT:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned short *)buffer));
+			break;
+		case SQLDT_SHORT:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((short *)buffer));
+			break;
+		case SQLDT_UINT:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned int *)buffer));
+			break;
+		case SQLDT_INT:
+			sqlite3_bind_int(stmt, (int)(idx + 1), *((int *)buffer));
+			break;
+		case SQLDT_ULONG:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long *)buffer));
+			break;
+		case SQLDT_LONG:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((long *)buffer));
+			break;
+		case SQLDT_ULONGLONG:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long long *)buffer));
+			break;
+		case SQLDT_LONGLONG:
+			sqlite3_bind_int64(stmt, (int)(idx + 1), *((long long *)buffer));
+			break;
+		// floating point
+		case SQLDT_FLOAT:
+			sqlite3_bind_double(stmt, (int)(idx + 1), *((float *)buffer));
+			break;
+		case SQLDT_DOUBLE:
+			sqlite3_bind_double(stmt, (int)(idx + 1), *((double *)buffer));
+			break;
+		// other
+		case SQLDT_STRING:
+		case SQLDT_ENUM:
+			sqlite3_bind_text(stmt, (int)(idx + 1), (char *)buffer, (int)buffer_len, NULL);
+			break;
+		case SQLDT_BLOB:
+			sqlite3_bind_blob(stmt, (int)(idx + 1), buffer, (int)buffer_len, NULL);
+			break;
+		default:
+			ShowDebug("Sql_P_BindParam: unsupported buffer type (%d)\n", buffer_type);
+			return SQL_ERROR;
+		}
 	}
 	return SQL_SUCCESS;
 }
 
 
 
-/// Binds a result.
+/// Bind result.
 ///
 /// @private
-static int Sql_P_BindResultDataType(sqlite3_stmt* stmt, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
+static int Sql_P_BindResult(SqlResult* result, SqlBind* bind)
 {
-	switch( buffer_type )
+	int count = result->column_count;
+	for( int idx = 0; idx < count; idx++ )
 	{
-	case SQLDT_NULL:
-		break;
-	// fixed size
-	case SQLDT_UINT8:
-		*((uint8_t *)buffer) = (uint8_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_INT8:
-		*((int8_t *)buffer) = (int8_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_UINT16:
-		*((uint16_t *)buffer) = (uint16_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_INT16:
-		*((int16_t *)buffer) = (int16_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_UINT32:
-		*((uint32_t *)buffer) = (uint32_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_INT32:
-		*((int32_t *)buffer) = (int32_t)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_UINT64:
-		*((uint64_t *)buffer) = (uint64_t)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	case SQLDT_INT64:
-		*((int64_t *)buffer) = (int64_t)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	// platform dependent size
-	case SQLDT_UCHAR:
-		*((unsigned char *)buffer) = (unsigned char)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_CHAR:
-		*((char *)buffer) = (char)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_USHORT:
-		*((unsigned short *)buffer) = (unsigned short)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_SHORT:
-		*((short *)buffer) = (short)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_UINT:
-		*((unsigned int *)buffer) = (unsigned int)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_INT:
-		*((int *)buffer) = (int)sqlite3_column_int(stmt, (int)idx);
-		break;
-	case SQLDT_ULONG:
-		*((unsigned long *)buffer) = (unsigned long)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	case SQLDT_LONG:
-		*((long *)buffer) = (long)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	case SQLDT_ULONGLONG:
-		*((unsigned long long *)buffer) = (unsigned long long)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	case SQLDT_LONGLONG:
-		*((long long *)buffer) = (long long)sqlite3_column_int64(stmt, (int)idx);
-		break;
-	// floating point
-	case SQLDT_FLOAT:
-		*((float *)buffer) = (float)sqlite3_column_double(stmt, (int)idx);
-		break;
-	case SQLDT_DOUBLE:
-		*((double *)buffer) = (double)sqlite3_column_double(stmt, (int)idx);
-		break;
-	// other
-	case SQLDT_STRING:
-	case SQLDT_ENUM: {
-		const char *text = (const char *)sqlite3_column_text(stmt, (int)idx);
-		strcpy((char *)buffer, text ?: "\0");
-		break;
-	}
-	case SQLDT_BLOB: {
-		const void *blob = sqlite3_column_blob(stmt, (int)idx);
-		size_t len = zmin(buffer_len, sqlite3_column_bytes(stmt, (int)idx));
-		memcpy(buffer, blob, len);
-		break;
-	}
-	default:
-		ShowDebug("Sql_P_BindResultDataType: unsupported buffer type (%d)\n", buffer_type);
-		return SQL_ERROR;
+		sqlite3_value* value = result->current_row->values[idx];
+		SqlDataType buffer_type = bind[idx].buffer_type;
+		void *buffer = bind[idx].buffer;
+		size_t buffer_len = bind[idx].buffer_length;
+		switch( buffer_type )
+		{
+		case SQLDT_NULL:
+			break;
+		// fixed size
+		case SQLDT_UINT8:
+			*((uint8_t *)buffer) = (uint8_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_INT8:
+			*((int8_t *)buffer) = (int8_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_UINT16:
+			*((uint16_t *)buffer) = (uint16_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_INT16:
+			*((int16_t *)buffer) = (int16_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_UINT32:
+			*((uint32_t *)buffer) = (uint32_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_INT32:
+			*((int32_t *)buffer) = (int32_t)sqlite3_value_int(value);
+			break;
+		case SQLDT_UINT64:
+			*((uint64_t *)buffer) = (uint64_t)sqlite3_value_int64(value);
+			break;
+		case SQLDT_INT64:
+			*((int64_t *)buffer) = (int64_t)sqlite3_value_int64(value);
+			break;
+		// platform dependent size
+		case SQLDT_UCHAR:
+			*((unsigned char *)buffer) = (unsigned char)sqlite3_value_int(value);
+			break;
+		case SQLDT_CHAR:
+			*((char *)buffer) = (char)sqlite3_value_int(value);
+			break;
+		case SQLDT_USHORT:
+			*((unsigned short *)buffer) = (unsigned short)sqlite3_value_int(value);
+			break;
+		case SQLDT_SHORT:
+			*((short *)buffer) = (short)sqlite3_value_int(value);
+			break;
+		case SQLDT_UINT:
+			*((unsigned int *)buffer) = (unsigned int)sqlite3_value_int(value);
+			break;
+		case SQLDT_INT:
+			*((int *)buffer) = (int)sqlite3_value_int(value);
+			break;
+		case SQLDT_ULONG:
+			*((unsigned long *)buffer) = (unsigned long)sqlite3_value_int64(value);
+			break;
+		case SQLDT_LONG:
+			*((long *)buffer) = (long)sqlite3_value_int64(value);
+			break;
+		case SQLDT_ULONGLONG:
+			*((unsigned long long *)buffer) = (unsigned long long)sqlite3_value_int64(value);
+			break;
+		case SQLDT_LONGLONG:
+			*((long long *)buffer) = (long long)sqlite3_value_int64(value);
+			break;
+		// floating point
+		case SQLDT_FLOAT:
+			*((float *)buffer) = (float)sqlite3_value_double(value);
+			break;
+		case SQLDT_DOUBLE:
+			*((double *)buffer) = (double)sqlite3_value_double(value);
+			break;
+		// other
+		case SQLDT_STRING:
+		case SQLDT_ENUM: {
+			const char *text = (const char *)sqlite3_value_text(value);
+			strcpy((char *)buffer, text ?: "\0");
+			break;
+		}
+		case SQLDT_BLOB: {
+			const void *blob = sqlite3_value_blob(value);
+			size_t len = zmin(buffer_len, sqlite3_value_bytes(value));
+			memcpy(buffer, blob, len);
+			break;
+		}
+		default:
+			ShowDebug("Sql_P_BindResult: unsupported buffer type (%d)\n", buffer_type);
+			return SQL_ERROR;
+		}
 	}
 	return SQL_SUCCESS;
 }
@@ -785,6 +819,10 @@ SqlStmt* SqlStmt_Malloc(Sql* sql)
 	StringBuf_Init(&self->buf);
 	self->db = sql->db;
 	self->stmt = NULL;
+	self->params = NULL;
+	self->columns = NULL;
+	self->max_params = 0;
+	self->max_columns = 0;
 	self->bind_params = false;
 	self->bind_columns = false;
 
@@ -868,13 +906,32 @@ int SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, v
 		return SQL_ERROR;
 
 	if( !self->bind_params )
-	{
+	{// initialize the bindings
+		size_t i;
+		size_t count;
+
+		count = SqlStmt_NumParams(self);
+		if( self->max_params < count )
+		{
+			self->max_params = count;
+			RECREATE(self->params, SqlBind, count);
+		}
+		memset(self->params, 0, count*sizeof(SqlBind));
+		for( i = 0; i < count; ++i )
+			self->params[i].buffer_type = SQLDT_NULL;
 		self->bind_params = true;
 	}
-	if( idx < SqlStmt_NumParams(self) )
-		return Sql_P_BindSqlDataType(self->stmt, idx, buffer_type, buffer, buffer_len);
+	if( idx < self->max_params )
+	{
+		self->params[idx].buffer_type = buffer_type;
+		self->params[idx].buffer = buffer;
+		self->params[idx].buffer_length = buffer_len;
+		return SQL_SUCCESS;
+	}
 	else
+	{
 		return SQL_SUCCESS;// out of range - ignore
+	}
 }
 
 
@@ -886,14 +943,8 @@ int SqlStmt_Execute(SqlStmt* self)
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
-	if( self->bind_params )
-	{
-		if( sqlite3_step(self->stmt) == SQLITE_ERROR ) {
-			ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-			ra_mysql_error_handler(sqlite3_errcode(self->db));
-			return SQL_ERROR;
-		}
-	}
+	if( self->bind_params && Sql_P_BindParam(self->stmt, self->params) == SQL_SUCCESS )
+		Sql_P_StmtExecute(self->stmt, &self->result);
 	self->bind_columns = false;
 
 	return SQL_SUCCESS;
@@ -939,12 +990,29 @@ int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, 
 		--buffer_len;// nul-terminator
 	}
 	if( !self->bind_columns )
-	{
+	{// initialize the bindings
+		size_t i;
+		size_t cols;
+
+		cols = SqlStmt_NumColumns(self);
+		if( self->max_columns < cols )
+		{
+			self->max_columns = cols;
+			RECREATE(self->columns, SqlBind, cols);
+		}
+		memset(self->columns, 0, cols*sizeof(SqlBind));
+		for( i = 0; i < cols; ++i )
+			self->columns[i].buffer_type = SQLDT_NULL;
 		self->bind_columns = true;
 	}
-	if( idx < SqlStmt_NumColumns(self) )
+	if( idx < self->max_columns )
 	{
-		return Sql_P_BindResultDataType(self->stmt, idx, buffer_type, buffer, buffer_len);
+		self->columns[idx].buffer_type = buffer_type;
+		self->columns[idx].buffer = buffer;
+		self->columns[idx].buffer_length = buffer_len;
+		self->columns[idx].length = out_length;
+		self->columns[idx].is_null = out_is_null;
+		return SQL_SUCCESS;
 	}
 	else
 	{
@@ -957,19 +1025,8 @@ int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, 
 /// Returns the number of rows in the result.
 uint64 SqlStmt_NumRows(SqlStmt* self)
 {
-	if( self && self->stmt )
-	{
-		char *expanded_sql = sqlite3_expanded_sql(self->stmt);
-		char sql[strlen(expanded_sql) + 64];
-		sprintf(sql, "SELECT count(*) FROM (%s)", expanded_sql);
-		sqlite3_stmt *stmt;
-		sqlite3_prepare_v2(self->db, sql, -1, &stmt, NULL);
-		sqlite3_step(stmt);
-		int count = sqlite3_column_int(stmt, 0);
-		sqlite3_finalize(stmt);
-		sqlite3_free(expanded_sql);
-		return count;
-	}
+	if( self )
+		return (uint64)self->result->row_count;
 	return 0;
 }
 
@@ -978,28 +1035,22 @@ uint64 SqlStmt_NumRows(SqlStmt* self)
 /// Fetches the next row.
 int SqlStmt_NextRow(SqlStmt* self)
 {
-	int err;
-
 	if( self == NULL )
 		return SQL_ERROR;
 
-	if( self->bind_columns )
-		err = sqlite3_step(self->stmt);// fetch row
-	else
-		err = 1;
-
-	// check for errors
-	if( err == SQLITE_DONE )
-		return SQL_NO_DATA;
-
-	if( err == SQLITE_ERROR )
+	if( self->bind_columns && self->result )
 	{
-		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-		ra_mysql_error_handler(sqlite3_errcode(self->db));
-		return SQL_ERROR;
+		Sql_P_FetchRow(self->result);
+		if( self->result->current_row )
+		{
+			Sql_P_BindResult(self->result, self->columns);
+			return SQL_SUCCESS;
+		}
+		if( self->result->eof )
+			return SQL_NO_DATA;
 	}
 
-	return SQL_SUCCESS;
+	return SQLITE_ERROR;
 }
 
 
@@ -1007,6 +1058,11 @@ int SqlStmt_NextRow(SqlStmt* self)
 /// Frees the result of the statement execution.
 void SqlStmt_FreeResult(SqlStmt* self)
 {
+	if( self )
+	{
+		Sql_P_FreeResult(self->result);
+		self->result = NULL;
+	}
 }
 
 
@@ -1032,6 +1088,12 @@ void SqlStmt_Free(SqlStmt* self)
 		SqlStmt_FreeResult(self);
 		StringBuf_Destroy(&self->buf);
 		sqlite3_finalize(self->stmt);
+		if( self->params )
+			aFree(self->params);
+		if( self->columns )
+		{
+			aFree(self->columns);
+		}
 		aFree(self);
 	}
 }
