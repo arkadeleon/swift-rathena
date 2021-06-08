@@ -9,7 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class RALoginConsole;
+
 @interface RALoginServer : NSThread
+
+@property (nonatomic, readonly, strong) RALoginConsole *console;
 
 @end
 

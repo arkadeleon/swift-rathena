@@ -40,6 +40,18 @@
 #include "core.hpp" //[Ind] - For SERVER_TYPE
 #include "strlib.hpp" // StringBuf
 
+#ifdef _WIN32
+
+FILE *STDOUT GetStdHandle(STD_OUTPUT_HANDLE)
+FILE *STDERR GetStdHandle(STD_ERROR_HANDLE)
+
+#else
+
+FILE *STDOUT = stdout;
+FILE *STDERR = stderr;
+
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////
 /// behavioral parameter.
 /// when redirecting output:
@@ -519,9 +531,6 @@ int	FPRINTF(HANDLE handle, const char *fmt, ...)
 
 #define FFLUSH(handle)
 
-#define STDOUT GetStdHandle(STD_OUTPUT_HANDLE)
-#define STDERR GetStdHandle(STD_ERROR_HANDLE)
-
 #else // not _WIN32
 
 
@@ -654,9 +663,6 @@ int	FPRINTF(FILE *file, const char *fmt, ...)
 }
 
 #define FFLUSH fflush
-
-#define STDOUT stdout
-#define STDERR stderr
 
 #endif// not _WIN32
 

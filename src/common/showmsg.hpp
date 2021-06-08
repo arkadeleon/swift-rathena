@@ -67,6 +67,8 @@
 
 #define CL_SPACE		"           "	// space aquivalent of the print messages
 
+extern FILE *STDOUT;
+extern FILE *STDERR;
 extern int stdout_with_ansisequence; //If the color ansi sequences are to be used. [flaviojs]
 extern int msg_silent; //Specifies how silent the console is. [Skotlex]
 extern int console_msg_log; //Specifies what error messages to log. [Ind]
