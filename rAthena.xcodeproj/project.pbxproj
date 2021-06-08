@@ -70,6 +70,12 @@
 		3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3556527B2660B68600EAA323 /* npc in Resources */ = {isa = PBXBuildFile; fileRef = 3556527A2660B68600EAA323 /* npc */; };
+		358B1915266F04E1006CA23E /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; };
+		358B1916266F04E1006CA23E /* rAthenaChar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		358B1919266F04E1006CA23E /* rAthenaLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD122F2652094F00BB0968 /* rAthenaLogin.framework */; };
+		358B191A266F04E1006CA23E /* rAthenaLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD122F2652094F00BB0968 /* rAthenaLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		358B191D266F04E1006CA23E /* rAthenaMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD12CE2652096400BB0968 /* rAthenaMap.framework */; };
+		358B191E266F04E1006CA23E /* rAthenaMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD12CE2652096400BB0968 /* rAthenaMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3599687B2655571A006AECE6 /* RALoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* RALoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3599687C2655571A006AECE6 /* RALoginServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3599687A2655571A006AECE6 /* RALoginServer.m */; };
 		35AD84C22664DC5500CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
@@ -200,11 +206,8 @@
 		35E6BE752654DA3E00DD3426 /* int_clan.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BE4D2654DA3D00DD3426 /* int_clan.hpp */; };
 		35E6BE772654DA3E00DD3426 /* char_mapif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BE4F2654DA3D00DD3426 /* char_mapif.cpp */; };
 		35E6BE9C2654DB2A00DD3426 /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; };
-		35E6BE9D2654DB2A00DD3426 /* rAthenaChar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E6BE9F2654DB2C00DD3426 /* rAthenaLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD122F2652094F00BB0968 /* rAthenaLogin.framework */; };
-		35E6BEA02654DB2C00DD3426 /* rAthenaLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD122F2652094F00BB0968 /* rAthenaLogin.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35E6BEA12654DB2D00DD3426 /* rAthenaMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD12CE2652096400BB0968 /* rAthenaMap.framework */; };
-		35E6BEA22654DB2D00DD3426 /* rAthenaMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD12CE2652096400BB0968 /* rAthenaMap.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		35FD10F92652094300BB0968 /* strbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0D89264E79BE00BB0968 /* strbuf.h */; };
 		35FD10FA2652094300BB0968 /* iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0FDF264E808F00BB0968 /* iterator.h */; };
 		35FD10FB2652094300BB0968 /* nullpo.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD1091264E81E800BB0968 /* nullpo.hpp */; };
@@ -670,6 +673,27 @@
 			remoteGlobalIDString = 35E6BD212654D6ED00DD3426;
 			remoteInfo = rAthena;
 		};
+		358B1917266F04E1006CA23E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD10F72652094300BB0968;
+			remoteInfo = rAthenaChar;
+		};
+		358B191B266F04E1006CA23E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD11952652094F00BB0968;
+			remoteInfo = rAthenaLogin;
+		};
+		358B191F266F04E1006CA23E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35FD0B84264E765C00BB0968 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35FD12342652096400BB0968;
+			remoteInfo = rAthenaMap;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -679,20 +703,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				358B1916266F04E1006CA23E /* rAthenaChar.framework in Embed Frameworks */,
+				358B191E266F04E1006CA23E /* rAthenaMap.framework in Embed Frameworks */,
+				358B191A266F04E1006CA23E /* rAthenaLogin.framework in Embed Frameworks */,
 				3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		35E6BE9E2654DB2A00DD3426 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				35E6BEA02654DB2C00DD3426 /* rAthenaLogin.framework in Embed Frameworks */,
-				35E6BE9D2654DB2A00DD3426 /* rAthenaChar.framework in Embed Frameworks */,
-				35E6BEA22654DB2D00DD3426 /* rAthenaMap.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1037,6 +1051,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				358B1915266F04E1006CA23E /* rAthenaChar.framework in Frameworks */,
+				358B191D266F04E1006CA23E /* rAthenaMap.framework in Frameworks */,
+				358B1919266F04E1006CA23E /* rAthenaLogin.framework in Frameworks */,
 				3521865E26582384002FAE2C /* rAthena.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2037,6 +2054,9 @@
 			);
 			dependencies = (
 				3521866126582384002FAE2C /* PBXTargetDependency */,
+				358B1918266F04E1006CA23E /* PBXTargetDependency */,
+				358B191C266F04E1006CA23E /* PBXTargetDependency */,
+				358B1920266F04E1006CA23E /* PBXTargetDependency */,
 			);
 			name = rAthenaDashboard;
 			productName = rAthenaDashboard;
@@ -2051,7 +2071,6 @@
 				35E6BD1E2654D6ED00DD3426 /* Sources */,
 				35E6BD1F2654D6ED00DD3426 /* Frameworks */,
 				35E6BD202654D6ED00DD3426 /* Resources */,
-				35E6BE9E2654DB2A00DD3426 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2503,6 +2522,21 @@
 			target = 35E6BD212654D6ED00DD3426 /* rAthena */;
 			targetProxy = 3521866026582384002FAE2C /* PBXContainerItemProxy */;
 		};
+		358B1918266F04E1006CA23E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD10F72652094300BB0968 /* rAthenaChar */;
+			targetProxy = 358B1917266F04E1006CA23E /* PBXContainerItemProxy */;
+		};
+		358B191C266F04E1006CA23E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD11952652094F00BB0968 /* rAthenaLogin */;
+			targetProxy = 358B191B266F04E1006CA23E /* PBXContainerItemProxy */;
+		};
+		358B1920266F04E1006CA23E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35FD12342652096400BB0968 /* rAthenaMap */;
+			targetProxy = 358B191F266F04E1006CA23E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2531,6 +2565,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GG76KD534U;
 				INFOPLIST_FILE = rAthenaDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2542,7 +2577,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2552,6 +2587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GG76KD534U;
 				INFOPLIST_FILE = rAthenaDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2563,7 +2599,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
