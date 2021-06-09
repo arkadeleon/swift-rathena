@@ -13,8 +13,9 @@ extern int main (int argc, char **argv);
 
 int console_write(void *cookie, const char *buf, int n) {
     RALoginConsole *console = (__bridge RALoginConsole *)(cookie);
-    NSString *buffer = [NSString stringWithUTF8String:buf];
-    [console write:buffer];
+    NSData *data = [NSData dataWithBytes:buf length:n];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [console write:string];
     return 0;
 }
 

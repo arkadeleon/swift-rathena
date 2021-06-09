@@ -1,28 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RtT-Wj-SOm">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="fCx-OU-2Li">
+            <objects>
+                <navigationController id="RtT-Wj-SOm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xko-ce-XCb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="I3T-bT-Pdx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUq-CB-JrE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-788" y="115"/>
+        </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DashboardViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DashboardViewController" customModule="rAthenaDashboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wt9-LT-45p">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ezw-Lb-pGc">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MAG-br-2XH">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MAG-br-2XH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1AY-zS-lLg"/>
+                            <constraint firstItem="ezw-Lb-pGc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1Bo-MV-Y2G"/>
+                            <constraint firstItem="MAG-br-2XH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="S1t-21-wz6"/>
+                            <constraint firstItem="MAG-br-2XH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WQs-UX-rZq"/>
+                            <constraint firstItem="ezw-Lb-pGc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="btj-nO-QEP"/>
+                            <constraint firstAttribute="bottom" secondItem="MAG-br-2XH" secondAttribute="bottom" id="gIZ-vM-c8Y"/>
+                            <constraint firstAttribute="bottom" secondItem="ezw-Lb-pGc" secondAttribute="bottom" id="pgj-AE-S4A"/>
+                            <constraint firstItem="wt9-LT-45p" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ugk-ko-rfF"/>
+                            <constraint firstItem="ezw-Lb-pGc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vLK-RJ-j9s"/>
+                            <constraint firstItem="wt9-LT-45p" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="vwV-tJ-2Yn"/>
+                            <constraint firstAttribute="bottom" secondItem="wt9-LT-45p" secondAttribute="bottom" id="wQo-Gj-YPi"/>
+                            <constraint firstItem="wt9-LT-45p" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zTy-zt-KUv"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="clB-O2-rR9">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Pkd-sW-pCe">
+                            <rect key="frame" x="57" y="5.5" width="300" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Login"/>
+                                <segment title="Char"/>
+                                <segment title="Map"/>
+                            </segments>
+                            <connections>
+                                <action selector="serverChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Wq6-eQ-WOA"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="charConsoleView" destination="ezw-Lb-pGc" id="p9Q-6W-jxS"/>
+                        <outlet property="loginConsoleView" destination="wt9-LT-45p" id="91t-MW-u96"/>
+                        <outlet property="mapConsoleView" destination="MAG-br-2XH" id="RA4-Y6-4LJ"/>
+                        <outlet property="segmentedControl" destination="Pkd-sW-pCe" id="NMm-9i-fgw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

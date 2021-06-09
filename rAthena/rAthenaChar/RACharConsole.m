@@ -7,24 +7,12 @@
 
 #import "RACharConsole.h"
 
-@interface RACharConsole ()
-
-@property (nonatomic, readwrite, copy) NSString *buffer;
-
-@end
-
 @implementation RACharConsole
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _buffer = [NSString string];
+- (void)write:(NSString *)text {
+    if (self.writeHandler) {
+        self.writeHandler(text);
     }
-    return self;
-}
-
-- (void)write:(NSString *)buffer {
-    self.buffer = [self.buffer stringByAppendingString:buffer];
 }
 
 @end

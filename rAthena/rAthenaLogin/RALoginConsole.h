@@ -11,9 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RALoginConsole : NSObject
 
-@property (nonatomic, readonly, copy) NSString *buffer;
+@property (nonatomic, copy) void (^writeHandler)(NSString *text);
 
-- (void)write:(NSString *)buffer;
+- (void)write:(NSString *)text;
 
 @end
 
