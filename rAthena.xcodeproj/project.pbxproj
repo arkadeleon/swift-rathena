@@ -68,6 +68,8 @@
 		3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521865226582331002FAE2C /* LaunchScreen.storyboard */; };
 		3521865E26582384002FAE2C /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; };
 		3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		354547782671FCDF00B9EA5B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
+		354547792672085C00B9EA5B /* sql-files in Resources */ = {isa = PBXBuildFile; fileRef = 355652842660B80900EAA323 /* sql-files */; };
 		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3556527B2660B68600EAA323 /* npc in Resources */ = {isa = PBXBuildFile; fileRef = 3556527A2660B68600EAA323 /* npc */; };
 		358B1915266F04E1006CA23E /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; };
@@ -1076,6 +1078,7 @@
 			files = (
 				35E6BE9C2654DB2A00DD3426 /* rAthenaChar.framework in Frameworks */,
 				35E6BE9F2654DB2C00DD3426 /* rAthenaLogin.framework in Frameworks */,
+				354547782671FCDF00B9EA5B /* libsqlite3.tbd in Frameworks */,
 				35E6BEA12654DB2D00DD3426 /* rAthenaMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2210,6 +2213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354547792672085C00B9EA5B /* sql-files in Resources */,
 				352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */,
 				352185FC2656D6DD002FAE2C /* conf in Resources */,
 				3556523526578AD700EAA323 /* db in Resources */,
