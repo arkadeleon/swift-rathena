@@ -6,39 +6,19 @@
 //
 
 #import "RAMapServer.h"
-#import "RAMapConsole.h"
 #include "showmsg.hpp"
 
 extern int main (int argc, char **argv);
 
-int console_write(void *cookie, const char *buf, int n) {
-    RAMapConsole *console = (__bridge RAMapConsole *)(cookie);
-    NSData *data = [NSData dataWithBytes:buf length:n];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    [console write:string];
-    return 0;
-}
-
 @implementation RAMapServer
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _console = [[RAMapConsole alloc] init];
-    }
-    return self;
-}
-
 - (void)main {
-    FILE *f = fwopen((__bridge const void *)(self.console), console_write);
-    STDOUT = f;
-    STDERR = f;
+    STDOUT = self.output;
+    STDERR = self.output;
 
     char *arg0 = "Map-Server";
     char *args[1] = {arg0};
     main(1, args);
-
-    fclose(f);
 }
 
 @end

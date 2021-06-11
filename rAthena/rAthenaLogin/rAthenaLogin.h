@@ -16,4 +16,3 @@ FOUNDATION_EXPORT const unsigned char rAthenaLoginVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <rAthenaLogin/PublicHeader.h>
 
 #import <rAthenaLogin/RALoginServer.h>
-#import <rAthenaLogin/RALoginConsole.h>

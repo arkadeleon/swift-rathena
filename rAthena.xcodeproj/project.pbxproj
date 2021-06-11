@@ -70,6 +70,22 @@
 		3521865F26582384002FAE2C /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6BD222654D6ED00DD3426 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		354547782671FCDF00B9EA5B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 		354547792672085C00B9EA5B /* sql-files in Resources */ = {isa = PBXBuildFile; fileRef = 355652842660B80900EAA323 /* sql-files */; };
+		354547CC267360E800B9EA5B /* NSObject+SaneKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547BD267353D300B9EA5B /* NSObject+SaneKVO.m */; };
+		354547CD267360E800B9EA5B /* term.html in Resources */ = {isa = PBXBuildFile; fileRef = 3545477F2672181600B9EA5B /* term.html */; };
+		354547CE267360E800B9EA5B /* NSObject+SaneKVO.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547BC267353D300B9EA5B /* NSObject+SaneKVO.h */; };
+		354547CF267360E800B9EA5B /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545478D267218B900B9EA5B /* Terminal.m */; };
+		354547D0267360E800B9EA5B /* DelayedUITask.h in Headers */ = {isa = PBXBuildFile; fileRef = 3545479526730B3600B9EA5B /* DelayedUITask.h */; };
+		354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547AF2673530900B9EA5B /* ScrollbarView.m */; };
+		354547D2267360E800B9EA5B /* TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547AD2673530900B9EA5B /* TerminalView.m */; };
+		354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547AE2673530900B9EA5B /* ScrollbarView.h */; };
+		354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545479426730B3500B9EA5B /* DelayedUITask.m */; };
+		354547D5267360E800B9EA5B /* term.css in Resources */ = {isa = PBXBuildFile; fileRef = 3545477D2672181600B9EA5B /* term.css */; };
+		354547D6267360E800B9EA5B /* UserPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547C42673547000B9EA5B /* UserPreferences.m */; };
+		354547D7267360E800B9EA5B /* term.js in Resources */ = {isa = PBXBuildFile; fileRef = 3545477C2672181600B9EA5B /* term.js */; };
+		354547D8267360E800B9EA5B /* UserPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547C52673547000B9EA5B /* UserPreferences.h */; };
+		354547D9267360E800B9EA5B /* hterm_all.js in Resources */ = {isa = PBXBuildFile; fileRef = 3545477E2672181600B9EA5B /* hterm_all.js */; };
+		354547DA267360E800B9EA5B /* Terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3545478C267218B900B9EA5B /* Terminal.h */; };
+		354547DB267360E800B9EA5B /* TerminalView.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547AC2673530900B9EA5B /* TerminalView.h */; };
 		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3556527B2660B68600EAA323 /* npc in Resources */ = {isa = PBXBuildFile; fileRef = 3556527A2660B68600EAA323 /* npc */; };
 		358B1915266F04E1006CA23E /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD11912652094300BB0968 /* rAthenaChar.framework */; };
@@ -83,12 +99,6 @@
 		35AD84C22664DC5500CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
 		35AD84C32664DC6800CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
 		35AD84C42664DC6900CE1539 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35AD84C12664DC5500CE1539 /* CoreFoundation.framework */; };
-		35B62A2A266F6CE800543C79 /* RACharConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B62A28266F6CE800543C79 /* RACharConsole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35B62A2B266F6CE800543C79 /* RACharConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B62A29266F6CE800543C79 /* RACharConsole.m */; };
-		35B62A30266F6D1F00543C79 /* RALoginConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B62A2C266F6D1800543C79 /* RALoginConsole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35B62A31266F6D2600543C79 /* RALoginConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B62A2D266F6D1800543C79 /* RALoginConsole.m */; };
-		35B62A34266F6D3700543C79 /* RAMapConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B62A32266F6D3700543C79 /* RAMapConsole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35B62A35266F6D3700543C79 /* RAMapConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B62A33266F6D3700543C79 /* RAMapConsole.m */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -755,6 +765,22 @@
 		3521865026582331002FAE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3521865326582331002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3521865526582331002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3545477C2672181600B9EA5B /* term.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = term.js; sourceTree = "<group>"; };
+		3545477D2672181600B9EA5B /* term.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = term.css; sourceTree = "<group>"; };
+		3545477E2672181600B9EA5B /* hterm_all.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hterm_all.js; sourceTree = "<group>"; };
+		3545477F2672181600B9EA5B /* term.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = term.html; sourceTree = "<group>"; };
+		3545478C267218B900B9EA5B /* Terminal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
+		3545478D267218B900B9EA5B /* Terminal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
+		3545479426730B3500B9EA5B /* DelayedUITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUITask.m; sourceTree = "<group>"; };
+		3545479526730B3600B9EA5B /* DelayedUITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUITask.h; sourceTree = "<group>"; };
+		354547AC2673530900B9EA5B /* TerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalView.h; sourceTree = "<group>"; };
+		354547AD2673530900B9EA5B /* TerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalView.m; sourceTree = "<group>"; };
+		354547AE2673530900B9EA5B /* ScrollbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollbarView.h; sourceTree = "<group>"; };
+		354547AF2673530900B9EA5B /* ScrollbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollbarView.m; sourceTree = "<group>"; };
+		354547BC267353D300B9EA5B /* NSObject+SaneKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SaneKVO.h"; sourceTree = "<group>"; };
+		354547BD267353D300B9EA5B /* NSObject+SaneKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SaneKVO.m"; sourceTree = "<group>"; };
+		354547C42673547000B9EA5B /* UserPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferences.m; sourceTree = "<group>"; };
+		354547C52673547000B9EA5B /* UserPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferences.h; sourceTree = "<group>"; };
 		3556523426578AD700EAA323 /* db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db; sourceTree = SOURCE_ROOT; };
 		3556527A2660B68600EAA323 /* npc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = npc; sourceTree = "<group>"; };
 		355652822660B7B100EAA323 /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
@@ -762,12 +788,6 @@
 		359968792655571A006AECE6 /* RALoginServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginServer.h; sourceTree = "<group>"; };
 		3599687A2655571A006AECE6 /* RALoginServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginServer.m; sourceTree = "<group>"; };
 		35AD84C12664DC5500CE1539 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		35B62A28266F6CE800543C79 /* RACharConsole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACharConsole.h; sourceTree = "<group>"; };
-		35B62A29266F6CE800543C79 /* RACharConsole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACharConsole.m; sourceTree = "<group>"; };
-		35B62A2C266F6D1800543C79 /* RALoginConsole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RALoginConsole.h; sourceTree = "<group>"; };
-		35B62A2D266F6D1800543C79 /* RALoginConsole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RALoginConsole.m; sourceTree = "<group>"; };
-		35B62A32266F6D3700543C79 /* RAMapConsole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RAMapConsole.h; sourceTree = "<group>"; };
-		35B62A33266F6D3700543C79 /* RAMapConsole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RAMapConsole.m; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -1158,8 +1178,6 @@
 				3521848F26556985002FAE2C /* rAthenaLogin.h */,
 				359968792655571A006AECE6 /* RALoginServer.h */,
 				3599687A2655571A006AECE6 /* RALoginServer.m */,
-				35B62A2C266F6D1800543C79 /* RALoginConsole.h */,
-				35B62A2D266F6D1800543C79 /* RALoginConsole.m */,
 			);
 			path = rAthenaLogin;
 			sourceTree = "<group>";
@@ -1170,8 +1188,6 @@
 				3521848E26556984002FAE2C /* rAthenaChar.h */,
 				3521843D265563A1002FAE2C /* RACharServer.h */,
 				3521843E265563A1002FAE2C /* RACharServer.m */,
-				35B62A28266F6CE800543C79 /* RACharConsole.h */,
-				35B62A29266F6CE800543C79 /* RACharConsole.m */,
 			);
 			path = rAthenaChar;
 			sourceTree = "<group>";
@@ -1182,8 +1198,6 @@
 				3521848D26556984002FAE2C /* rAthenaMap.h */,
 				35218452265563CD002FAE2C /* RAMapServer.h */,
 				35218453265563CD002FAE2C /* RAMapServer.m */,
-				35B62A32266F6D3700543C79 /* RAMapConsole.h */,
-				35B62A33266F6D3700543C79 /* RAMapConsole.m */,
 			);
 			path = rAthenaMap;
 			sourceTree = "<group>";
@@ -1200,6 +1214,29 @@
 				3521865526582331002FAE2C /* Info.plist */,
 			);
 			path = rAthenaDashboard;
+			sourceTree = "<group>";
+		};
+		3545477B2672181600B9EA5B /* Terminal */ = {
+			isa = PBXGroup;
+			children = (
+				354547BC267353D300B9EA5B /* NSObject+SaneKVO.h */,
+				354547BD267353D300B9EA5B /* NSObject+SaneKVO.m */,
+				354547C52673547000B9EA5B /* UserPreferences.h */,
+				354547C42673547000B9EA5B /* UserPreferences.m */,
+				3545479526730B3600B9EA5B /* DelayedUITask.h */,
+				3545479426730B3500B9EA5B /* DelayedUITask.m */,
+				354547AE2673530900B9EA5B /* ScrollbarView.h */,
+				354547AF2673530900B9EA5B /* ScrollbarView.m */,
+				354547AC2673530900B9EA5B /* TerminalView.h */,
+				354547AD2673530900B9EA5B /* TerminalView.m */,
+				3545478C267218B900B9EA5B /* Terminal.h */,
+				3545478D267218B900B9EA5B /* Terminal.m */,
+				3545477F2672181600B9EA5B /* term.html */,
+				3545477D2672181600B9EA5B /* term.css */,
+				3545477C2672181600B9EA5B /* term.js */,
+				3545477E2672181600B9EA5B /* hterm_all.js */,
+			);
+			path = Terminal;
 			sourceTree = "<group>";
 		};
 		35E6BD612654D94600DD3426 /* map */ = {
@@ -1375,9 +1412,10 @@
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
 				35218459265563E1002FAE2C /* RAServerManager.h */,
 				3521845A265563E1002FAE2C /* RAServerManager.m */,
-				35136461265C060900039D6C /* rAthenaLogin */,
 				35136462265C062B00039D6C /* rAthenaChar */,
+				35136461265C060900039D6C /* rAthenaLogin */,
 				35136463265C063500039D6C /* rAthenaMap */,
+				3545477B2672181600B9EA5B /* Terminal */,
 				35FD11922652094300BB0968 /* Info.plist */,
 			);
 			path = rAthena;
@@ -1665,8 +1703,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354547D8267360E800B9EA5B /* UserPreferences.h in Headers */,
 				35218466265563EA002FAE2C /* RAServerManager.h in Headers */,
+				354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */,
+				354547DB267360E800B9EA5B /* TerminalView.h in Headers */,
 				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
+				354547DA267360E800B9EA5B /* Terminal.h in Headers */,
+				354547D0267360E800B9EA5B /* DelayedUITask.h in Headers */,
+				354547CE267360E800B9EA5B /* NSObject+SaneKVO.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,7 +1821,6 @@
 				35FD11452652094300BB0968 /* strlib.hpp in Headers */,
 				35E6BE522654DA3D00DD3426 /* int_storage.hpp in Headers */,
 				35FD11462652094300BB0968 /* libconfig.h in Headers */,
-				35B62A2A266F6CE800543C79 /* RACharConsole.h in Headers */,
 				35FD11472652094300BB0968 /* emitter.h in Headers */,
 				3521849F265569E6002FAE2C /* rAthenaChar.h in Headers */,
 				35FD11482652094300BB0968 /* wincompat.h in Headers */,
@@ -1849,7 +1892,6 @@
 				35FD11BF2652094F00BB0968 /* parsectx.h in Headers */,
 				35FD11C02652094F00BB0968 /* regeximpl.h in Headers */,
 				35FD11C12652094F00BB0968 /* binary.h in Headers */,
-				35B62A30266F6D1F00543C79 /* RALoginConsole.h in Headers */,
 				35FD11C22652094F00BB0968 /* malloc.hpp in Headers */,
 				35FD11C32652094F00BB0968 /* directives.h in Headers */,
 				35FD11C42652094F00BB0968 /* singledocparser.h in Headers */,
@@ -2057,7 +2099,6 @@
 				35E6BDD62654D94700DD3426 /* map.hpp in Headers */,
 				35E6BDEE2654D94700DD3426 /* script.hpp in Headers */,
 				35FD128E2652096400BB0968 /* db.hpp in Headers */,
-				35B62A34266F6D3700543C79 /* RAMapConsole.h in Headers */,
 				35FD128F2652096400BB0968 /* stlemitter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2215,8 +2256,12 @@
 			files = (
 				354547792672085C00B9EA5B /* sql-files in Resources */,
 				352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */,
+				354547D7267360E800B9EA5B /* term.js in Resources */,
+				354547D9267360E800B9EA5B /* hterm_all.js in Resources */,
+				354547CD267360E800B9EA5B /* term.html in Resources */,
 				352185FC2656D6DD002FAE2C /* conf in Resources */,
 				3556523526578AD700EAA323 /* db in Resources */,
+				354547D5267360E800B9EA5B /* term.css in Resources */,
 				3556527B2660B68600EAA323 /* npc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2260,6 +2305,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3521846D265563EE002FAE2C /* RAServerManager.m in Sources */,
+				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
+				354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */,
+				354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */,
+				354547CF267360E800B9EA5B /* Terminal.m in Sources */,
+				354547CC267360E800B9EA5B /* NSObject+SaneKVO.m in Sources */,
+				354547D6267360E800B9EA5B /* UserPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2275,7 +2326,6 @@
 				35FD11572652094300BB0968 /* showmsg.cpp in Sources */,
 				35E6BE602654DA3E00DD3426 /* int_party.cpp in Sources */,
 				3513644C26596D6D00039D6C /* atcommand.inc in Sources */,
-				35B62A2B266F6CE800543C79 /* RACharConsole.m in Sources */,
 				35FD11582652094300BB0968 /* simplekey.cpp in Sources */,
 				35E6BE532654DA3D00DD3426 /* char_logif.cpp in Sources */,
 				35FD11592652094300BB0968 /* node.cpp in Sources */,
@@ -2420,7 +2470,6 @@
 				35FD12212652094F00BB0968 /* directives.cpp in Sources */,
 				35FD12222652094F00BB0968 /* strbuf.c in Sources */,
 				35FD12232652094F00BB0968 /* des.cpp in Sources */,
-				35B62A31266F6D2600543C79 /* RALoginConsole.m in Sources */,
 				35FD13222652174D00BB0968 /* sql.cpp in Sources */,
 				35FD12242652094F00BB0968 /* db.cpp in Sources */,
 				35FD12252652094F00BB0968 /* grfio.cpp in Sources */,
@@ -2446,7 +2495,6 @@
 				35FD12962652096400BB0968 /* node.cpp in Sources */,
 				35FD12972652096400BB0968 /* convert.cpp in Sources */,
 				35E6BDC52654D94700DD3426 /* guild.cpp in Sources */,
-				35B62A35266F6D3700543C79 /* RAMapConsole.m in Sources */,
 				35E6BDC02654D94700DD3426 /* vending.cpp in Sources */,
 				35FD12982652096400BB0968 /* graphbuilderadapter.cpp in Sources */,
 				35E6BDEA2654D94700DD3426 /* party.cpp in Sources */,

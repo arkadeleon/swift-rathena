@@ -11,82 +11,56 @@ import rAthena
 class DashboardViewController: UIViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var loginConsoleView: UITextView!
-    @IBOutlet weak var charConsoleView: UITextView!
-    @IBOutlet weak var mapConsoleView: UITextView!
+
+    weak var loginTerminalView: UIView!
+    weak var charTerminalView: UIView!
+    weak var mapTerminalView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         RAServerManager.shared.copyBundleResourcesAndChangeDirectory()
 
-        segmentedControl.selectedSegmentIndex = 0
-        loginConsoleView.isHidden = false
-        charConsoleView.isHidden = true
-        mapConsoleView.isHidden = true
-
         setupLoginServer()
         setupCharServer()
         setupMapServer()
+
+        segmentedControl.selectedSegmentIndex = 2
+        loginTerminalView.isHidden = true
+        charTerminalView.isHidden = true
+        mapTerminalView.isHidden = false
     }
 
     private func setupLoginServer() {
-        RAServerManager.shared.loginServer.console.writeHandler = { [weak self] text in
-            DispatchQueue.main.async {
-                guard let textView = self?.loginConsoleView else {
-                    return
-                }
-
-                textView.insertText(text)
-
-                textView.layoutManager.ensureLayout(for: textView.textContainer)
-                let offset = CGPoint(x: 0, y: (textView.contentSize.height - textView.frame.size.height))
-                textView.setContentOffset(offset, animated: false)
-            }
-        }
+        loginTerminalView = RAServerManager.shared.loginTerminalView;
+        loginTerminalView.frame = view.bounds
+        loginTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(loginTerminalView)
 
         RAServerManager.shared.loginServer.start()
     }
 
     private func setupCharServer() {
-        RAServerManager.shared.charServer.console.writeHandler = { [weak self] text in
-            DispatchQueue.main.async {
-                guard let textView = self?.charConsoleView else {
-                    return
-                }
-
-                textView.insertText(text)
-
-                textView.layoutManager.ensureLayout(for: textView.textContainer)
-                let offset = CGPoint(x: 0, y: (textView.contentSize.height - textView.frame.size.height))
-                textView.setContentOffset(offset, animated: false)
-            }
-        }
+        charTerminalView = RAServerManager.shared.charTerminalView;
+        charTerminalView.frame = view.bounds
+        charTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(charTerminalView)
 
         RAServerManager.shared.charServer.start()
     }
 
     private func setupMapServer() {
-        RAServerManager.shared.mapServer.console.writeHandler = { [weak self] text in
-            DispatchQueue.main.async {
-                guard let textView = self?.mapConsoleView else {
-                    return
-                }
-
-                textView.insertText(text)
-
-                textView.layoutManager.ensureLayout(for: textView.textContainer)
-                let offset = CGPoint(x: 0, y: (textView.contentSize.height - textView.frame.size.height))
-                textView.setContentOffset(offset, animated: false)
-            }
-        }
+        mapTerminalView = RAServerManager.shared.mapTerminalView;
+        mapTerminalView.frame = view.bounds
+        mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(mapTerminalView)
 
         RAServerManager.shared.mapServer.start()
     }
 
     @IBAction func serverChanged(_ sender: Any) {
-        loginConsoleView.isHidden = segmentedControl.selectedSegmentIndex != 0
-        charConsoleView.isHidden = segmentedControl.selectedSegmentIndex != 1
-        mapConsoleView.isHidden = segmentedControl.selectedSegmentIndex != 2
+        loginTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 0
+        charTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 1
+        mapTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 2
     }
 }

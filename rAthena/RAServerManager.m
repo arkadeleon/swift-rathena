@@ -6,6 +6,7 @@
 //
 
 #import "RAServerManager.h"
+#import "TerminalView.h"
 #import <sqlite3.h>
 
 @implementation RAServerManager
@@ -23,8 +24,16 @@
     self = [super init];
     if (self) {
         _charServer = [[RACharServer alloc] init];
+        _charTerminalView = [[TerminalView alloc] init];
+        _charServer.output = ((TerminalView *)_charTerminalView).terminal.wstream;
+
         _loginServer = [[RALoginServer alloc] init];
+        _loginTerminalView = [[TerminalView alloc] init];
+        _loginServer.output = ((TerminalView *)_loginTerminalView).terminal.wstream;
+
         _mapServer = [[RAMapServer alloc] init];
+        _mapTerminalView = [[TerminalView alloc] init];
+        _mapServer.output = ((TerminalView *)_mapTerminalView).terminal.wstream;
     }
     return self;
 }

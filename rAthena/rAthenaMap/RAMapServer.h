@@ -9,11 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RAMapConsole;
-
 @interface RAMapServer : NSThread
 
-@property (nonatomic, readonly, strong) RAMapConsole *console;
+@property (nonatomic, assign) FILE *output;
 
 @end
 
