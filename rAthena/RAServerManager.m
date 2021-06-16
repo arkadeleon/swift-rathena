@@ -58,6 +58,8 @@
         [[NSFileManager defaultManager] copyItemAtURL:srcURL toURL:dstURL error:nil];
     }
 
+    [[NSFileManager defaultManager] moveItemAtURL:[dst URLByAppendingPathComponent:@"conf/import-tmpl"] toURL:[dst URLByAppendingPathComponent:@"conf/import"] error:nil];
+
     [[NSFileManager defaultManager] changeCurrentDirectoryPath:dst.path];
 
     [self upgradeDatabaseAtURL:dstDB];

@@ -715,8 +715,8 @@ static int Sql_P_BindResult(SqlResult* result, SqlBind* bind)
 	{
 		sqlite3_value* value = result->current_row->values[idx];
 		SqlDataType buffer_type = bind[idx].buffer_type;
-		void *buffer = bind[idx].buffer;
-		size_t buffer_len = bind[idx].buffer_length;
+		void* buffer = bind[idx].buffer;
+		uint32* length = bind[idx].length;
 		switch( buffer_type )
 		{
 		case SQLDT_NULL:
@@ -788,13 +788,20 @@ static int Sql_P_BindResult(SqlResult* result, SqlBind* bind)
 		case SQLDT_STRING:
 		case SQLDT_ENUM: {
 			const char *text = (const char *)sqlite3_value_text(value);
+			int bytes = sqlite3_value_bytes(value);
 			strcpy((char *)buffer, text ?: "\0");
+			if (length) {
+				*length = bytes;
+			}
 			break;
 		}
 		case SQLDT_BLOB: {
 			const void *blob = sqlite3_value_blob(value);
-			size_t len = zmin(buffer_len, sqlite3_value_bytes(value));
-			memcpy(buffer, blob, len);
+			int bytes = sqlite3_value_bytes(value);
+			memcpy(buffer, blob, bytes);
+			if (length) {
+				*length = bytes;
+			}
 			break;
 		}
 		default:
@@ -943,9 +950,10 @@ int SqlStmt_Execute(SqlStmt* self)
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
-	if( self->bind_params && Sql_P_BindParam(self->stmt, self->params) == SQL_SUCCESS )
-		Sql_P_StmtExecute(self->stmt, &self->result);
+	if( self->bind_params && Sql_P_BindParam(self->stmt, self->params) == SQL_ERROR )
+		return SQL_ERROR;
 	self->bind_columns = false;
+	Sql_P_StmtExecute(self->stmt, &self->result);
 
 	return SQL_SUCCESS;
 }
