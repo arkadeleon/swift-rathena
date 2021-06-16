@@ -27,33 +27,13 @@ int write_function(void *cookie, const char *buf, int n) {
 @property DelayedUITask *refreshTask;
 @property DelayedUITask *scrollToBottomTask;
 
-@property BOOL applicationCursor;
-
-@end
-
-@interface CustomWebView : WKWebView
-@end
-@implementation CustomWebView
-- (BOOL)becomeFirstResponder {
-    if (@available(iOS 13.4, *)) {
-        return [super becomeFirstResponder];
-    }
-    return NO;
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(copy:) || action == @selector(paste:)) {
-        return NO;
-    }
-    return [super canPerformAction:action withSender:sender];
-}
 @end
 
 @implementation Terminal
 
 - (instancetype)init {
     if (self = [super init]) {
-        _wstream = fwopen((__bridge const void *)(self), write_function);
+        _output = fwopen((__bridge const void *)(self), write_function);
 
         self.pendingData = [NSMutableData new];
         self.refreshTask = [[DelayedUITask alloc] initWithTarget:self action:@selector(refresh)];
@@ -65,11 +45,9 @@ int write_function(void *cookie, const char *buf, int n) {
         [config.userContentController addScriptMessageHandler:self name:@"load"];
         [config.userContentController addScriptMessageHandler:self name:@"log"];
         [config.userContentController addScriptMessageHandler:self name:@"sendInput"];
-        [config.userContentController addScriptMessageHandler:self name:@"resize"];
-        [config.userContentController addScriptMessageHandler:self name:@"propUpdate"];
         // Make the web view really big so that if a program tries to write to the terminal before it's displayed, the text probably won't wrap too badly.
         CGRect webviewSize = CGRectMake(0, 0, 10000, 10000);
-        self.webView = [[CustomWebView alloc] initWithFrame:webviewSize configuration:config];
+        self.webView = [[WKWebView alloc] initWithFrame:webviewSize configuration:config];
         self.webView.scrollView.scrollEnabled = NO;
         NSURL *xtermHtmlFile = [[NSBundle bundleForClass:[Terminal class]] URLForResource:@"term" withExtension:@"html"];
         [self.webView loadFileURL:xtermHtmlFile allowingReadAccessToURL:xtermHtmlFile];
@@ -78,37 +56,19 @@ int write_function(void *cookie, const char *buf, int n) {
 }
 
 - (void)dealloc {
-    fclose(_wstream);
+    fclose(_output);
 }
 
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString:@"load"]) {
         self.loaded = YES;
         [self.refreshTask schedule];
-        // make sure this setting works if it's set before loading
-        self.enableVoiceOverAnnounce = self.enableVoiceOverAnnounce;
     } else if ([message.name isEqualToString:@"log"]) {
         NSLog(@"%@", message.body);
     } else if ([message.name isEqualToString:@"sendInput"]) {
         NSData *data = [message.body dataUsingEncoding:NSUTF8StringEncoding];
         [self sendInput:data.bytes length:data.length];
-    } else if ([message.name isEqualToString:@"resize"]) {
-        [self syncWindowSize];
-    } else if ([message.name isEqualToString:@"propUpdate"]) {
-        [self setValue:message.body[1] forKey:message.body[0]];
     }
-}
-
-- (void)syncWindowSize {
-    [self.webView evaluateJavaScript:@"exports.getSize()" completionHandler:^(NSArray<NSNumber *> *dimensions, NSError *error) {
-    }];
-}
-
-- (void)setEnableVoiceOverAnnounce:(BOOL)enableVoiceOverAnnounce {
-    _enableVoiceOverAnnounce = enableVoiceOverAnnounce;
-    [self.webView evaluateJavaScript:[NSString stringWithFormat:@"term.setAccessibilityEnabled(%@)",
-                                      enableVoiceOverAnnounce ? @"true" : @"false"]
-                   completionHandler:nil];
 }
 
 - (int)write:(const void *)buf length:(size_t)len {
@@ -133,10 +93,6 @@ int write_function(void *cookie, const char *buf, int n) {
 
 - (void)scrollToBottom {
     [self.webView evaluateJavaScript:@"exports.scrollToBottom()" completionHandler:nil];
-}
-
-- (NSString *)arrow:(char)direction {
-    return [NSString stringWithFormat:@"\x1b%c%c", self.applicationCursor ? 'O' : '[', direction];
 }
 
 - (void)refresh {

@@ -10,15 +10,12 @@
 
 @interface Terminal : NSObject
 
-@property (nonatomic, readonly, assign) FILE *wstream;
+@property (nonatomic, readonly, assign) FILE *output;
 
 - (int)write:(const void *)buf length:(size_t)len;
 - (void)sendInput:(const char *)buf length:(size_t)len;
 
-- (NSString *)arrow:(char)direction;
-
 @property (readonly) WKWebView *webView;
-@property (nonatomic) BOOL enableVoiceOverAnnounce;
 // Use KVO on this
 @property (readonly) BOOL loaded;
 

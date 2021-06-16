@@ -10,7 +10,7 @@ import rAthena
 
 class DashboardViewController: UIViewController {
 
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var stackView: UIStackView!
 
     weak var loginTerminalView: UIView!
     weak var charTerminalView: UIView!
@@ -21,46 +21,52 @@ class DashboardViewController: UIViewController {
 
         RAServerManager.shared.copyBundleResourcesAndChangeDirectory()
 
-        setupLoginServer()
-        setupCharServer()
-        setupMapServer()
+        let startAction = UIAction { action in
+            RAServerManager.shared.loginServer.start()
+            RAServerManager.shared.charServer.start()
+            RAServerManager.shared.mapServer.start()
+        }
+        let startItem = UIBarButtonItem(image: UIImage(systemName: "play"), primaryAction: startAction)
+        navigationItem.rightBarButtonItem = startItem
 
-        segmentedControl.selectedSegmentIndex = 2
-        loginTerminalView.isHidden = true
-        charTerminalView.isHidden = true
-        mapTerminalView.isHidden = false
+        addLoginTerminalView()
+        addCharTerminalView()
+        addMapTerminalView()
+
+        charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
+        mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
     }
 
-    private func setupLoginServer() {
-        loginTerminalView = RAServerManager.shared.loginTerminalView;
-        loginTerminalView.frame = view.bounds
-        loginTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(loginTerminalView)
+    private func addLoginTerminalView() {
+        var configuration = UIListContentConfiguration.plainHeader()
+        configuration.text = "Login"
+        let loginHeaderView = UIListContentView(configuration: configuration)
+        loginHeaderView.backgroundColor = UIBackgroundConfiguration.listPlainHeaderFooter().backgroundColor
+        stackView.addArrangedSubview(loginHeaderView)
 
-        RAServerManager.shared.loginServer.start()
+        loginTerminalView = RAServerManager.shared.loginTerminalView
+        stackView.addArrangedSubview(loginTerminalView)
     }
 
-    private func setupCharServer() {
-        charTerminalView = RAServerManager.shared.charTerminalView;
-        charTerminalView.frame = view.bounds
-        charTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(charTerminalView)
+    private func addCharTerminalView() {
+        var configuration = UIListContentConfiguration.plainHeader()
+        configuration.text = "Char"
+        let charHeaderView = UIListContentView(configuration: configuration)
+        charHeaderView.backgroundColor = UIBackgroundConfiguration.listPlainHeaderFooter().backgroundColor
+        stackView.addArrangedSubview(charHeaderView)
 
-        RAServerManager.shared.charServer.start()
+        charTerminalView = RAServerManager.shared.charTerminalView
+        stackView.addArrangedSubview(charTerminalView)
     }
 
-    private func setupMapServer() {
-        mapTerminalView = RAServerManager.shared.mapTerminalView;
-        mapTerminalView.frame = view.bounds
-        mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(mapTerminalView)
+    private func addMapTerminalView() {
+        var configuration = UIListContentConfiguration.plainHeader()
+        configuration.text = "Map"
+        let mapHeaderView = UIListContentView(configuration: configuration)
+        mapHeaderView.backgroundColor = UIBackgroundConfiguration.listPlainHeaderFooter().backgroundColor
+        stackView.addArrangedSubview(mapHeaderView)
 
-        RAServerManager.shared.mapServer.start()
-    }
-
-    @IBAction func serverChanged(_ sender: Any) {
-        loginTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 0
-        charTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 1
-        mapTerminalView.isHidden = segmentedControl.selectedSegmentIndex != 2
+        mapTerminalView = RAServerManager.shared.mapTerminalView
+        stackView.addArrangedSubview(mapTerminalView)
     }
 }

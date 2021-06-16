@@ -25,15 +25,15 @@
     if (self) {
         _charServer = [[RACharServer alloc] init];
         _charTerminalView = [[TerminalView alloc] init];
-        _charServer.output = ((TerminalView *)_charTerminalView).terminal.wstream;
+        _charServer.output = ((TerminalView *)_charTerminalView).terminal.output;
 
         _loginServer = [[RALoginServer alloc] init];
         _loginTerminalView = [[TerminalView alloc] init];
-        _loginServer.output = ((TerminalView *)_loginTerminalView).terminal.wstream;
+        _loginServer.output = ((TerminalView *)_loginTerminalView).terminal.output;
 
         _mapServer = [[RAMapServer alloc] init];
         _mapTerminalView = [[TerminalView alloc] init];
-        _mapServer.output = ((TerminalView *)_mapTerminalView).terminal.wstream;
+        _mapServer.output = ((TerminalView *)_mapTerminalView).terminal.output;
     }
     return self;
 }

@@ -52,29 +52,17 @@ window.exports = {};
 term.io.push();
 term.reset();
 
-let oldProps = {};
-function syncProp(name, value) {
-    if (oldProps[name] !== value)
-        native.propUpdate(name, value);
-}
 let decoder = new TextDecoder();
 exports.write = (data) => {
     term.io.writeUTF16(decoder.decode(lib.codec.stringToCodeUnitArray(data)));
-    syncProp('applicationCursor', term.keyboard.applicationCursor);
 };
 term.io.sendString = term.io.onVTKeyStroke = (data) => {
     native.sendInput(data);
 };
 
-// hterm size updates native size
-term.io.onTerminalResize = () => native.resize();
-exports.getSize = () => [term.screenSize.width, term.screenSize.height];
-
 // selection, copying
 term.scrollPort_.screen_.contentEditable = false;
 term.blur();
-term.focus();
-exports.copy = () => term.copySelectionToClipboard();
 
 // focus
 // This listener blocks blur events that come in because the webview has lost first responder
@@ -83,18 +71,6 @@ term.scrollPort_.screen_.addEventListener('blur', (e) => {
         e.stopPropagation();
     }
 }, {capture: true});
-term.scrollPort_.screen_.addEventListener('mousedown', (e) => {
-    // Taps while there is a selection should be left to the selection view
-    if (document.getSelection().rangeCount != 0) return;
-    native.focus();
-});
-exports.setFocused = (focus) => {
-    if (focus)
-        term.focus();
-    else
-        term.blur();
-};
-term.scrollPort_.screen_.addEventListener('focus', (e) => native.syncFocus());
 
 // scrolling
 // Disable hterm builtin touch scrolling
@@ -144,12 +120,10 @@ exports.getCharacterSize = () => {
     return [term.scrollPort_.characterSize.width, term.scrollPort_.characterSize.height];
 };
 
-exports.clearScrollback = () => term.clearScrollback();
 exports.setUserGesture = () => term.accessibilityReader_.hasUserGesture = true;
 
 hterm.openUrl = (url) => native.openLink(url);
 
 native.load();
-native.syncFocus();
 
 }

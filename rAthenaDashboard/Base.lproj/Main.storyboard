@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RtT-Wj-SOm">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController id="RtT-Wj-SOm" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xko-ce-XCb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -30,34 +30,33 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="DashboardViewController" customModule="rAthenaDashboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Op-AKG">
+                                <rect key="frame" x="0.0" y="50" width="1024" height="718"/>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Itu-Op-AKG" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="5Yt-Md-qnX"/>
+                            <constraint firstItem="Itu-Op-AKG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="agh-oT-HY4"/>
+                            <constraint firstItem="Itu-Op-AKG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="idz-8a-qNw"/>
+                            <constraint firstItem="Itu-Op-AKG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nGB-M9-tfA"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="clB-O2-rR9">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Pkd-sW-pCe">
-                            <rect key="frame" x="57" y="5.5" width="300" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Login"/>
-                                <segment title="Char"/>
-                                <segment title="Map"/>
-                            </segments>
-                            <connections>
-                                <action selector="serverChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Wq6-eQ-WOA"/>
-                            </connections>
-                        </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="segmentedControl" destination="Pkd-sW-pCe" id="NMm-9i-fgw"/>
+                        <outlet property="stackView" destination="Itu-Op-AKG" id="htE-Qd-nPw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
+            <point key="canvasLocation" x="131.8359375" y="114.0625"/>
         </scene>
     </scenes>
     <resources>
