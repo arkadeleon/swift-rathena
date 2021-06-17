@@ -12,6 +12,14 @@ extern int main (int argc, char **argv);
 
 @implementation RAMapServer
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.name = @"Map Server";
+    }
+    return self;
+}
+
 - (void)main {
     STDOUT = self.output;
     STDERR = self.output;

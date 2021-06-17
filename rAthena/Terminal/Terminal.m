@@ -16,7 +16,6 @@ int write_function(void *cookie, const char *buf, int n) {
 
 @interface Terminal () <WKScriptMessageHandler> {
     NSLock *_dataLock;
-    NSCondition *_dataConsumed;
 }
 
 @property WKWebView *webView;
@@ -39,7 +38,6 @@ int write_function(void *cookie, const char *buf, int n) {
         self.refreshTask = [[DelayedUITask alloc] initWithTarget:self action:@selector(refresh)];
         self.scrollToBottomTask = [[DelayedUITask alloc] initWithTarget:self action:@selector(scrollToBottom)];
         _dataLock = [[NSLock alloc] init];
-        _dataConsumed = [[NSCondition alloc] init];
         
         WKWebViewConfiguration *config = [WKWebViewConfiguration new];
         [config.userContentController addScriptMessageHandler:self name:@"load"];
@@ -73,12 +71,6 @@ int write_function(void *cookie, const char *buf, int n) {
 
 - (int)write:(const void *)buf length:(size_t)len {
     [_dataLock lock];
-//    if (!NSThread.isMainThread) {
-//        // The main thread is the only one that can unblock this, so sleeping here would be a deadlock.
-//        // The only reason for this to be called on the main thread is if input is echoed.
-//        while (_processingPendingData || _pendingData.length > 10000)
-//            [_dataConsumed wait];
-//    }
     [self.pendingData appendData:[NSData dataWithBytes:buf length:len]];
     [self.refreshTask schedule];
     [_dataLock unlock];
@@ -86,7 +78,6 @@ int write_function(void *cookie, const char *buf, int n) {
 }
 
 - (void)sendInput:(const char *)buf length:(size_t)len {
-//    parse_console(buf);
     [self.webView evaluateJavaScript:@"exports.setUserGesture()" completionHandler:nil];
     [self.scrollToBottomTask schedule];
 }
@@ -120,7 +111,6 @@ int write_function(void *cookie, const char *buf, int n) {
     [self.webView evaluateJavaScript:jsToEvaluate completionHandler:^(id result, NSError *error) {
         [self->_dataLock lock];
         self->_processingPendingData = NO;
-        [self->_dataConsumed broadcast];
         [self->_dataLock unlock];
         if (error != nil) {
             NSLog(@"error sending bytes to the terminal: %@", error);
