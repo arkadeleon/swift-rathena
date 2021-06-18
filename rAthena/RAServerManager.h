@@ -8,24 +8,23 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@import rAthenaChar;
-@import rAthenaLogin;
-@import rAthenaMap;
-
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_OPTIONS(NSUInteger, RAServerMask) {
+    RAServerMaskChar = (1 << 0),
+    RAServerMaskLogin = (1 << 1),
+    RAServerMaskMap = (1 << 2),
+};
 
 @interface RAServerManager : NSObject
 
 @property (class, nonatomic, readonly) RAServerManager *sharedManager;
 
-@property (nonatomic, readonly, strong) RACharServer *charServer;
-@property (nonatomic, readonly, strong) UIView *charTerminalView;
+- (NSString *)nameForServer:(RAServerMask)server;
+- (UIView *)terminalViewForServer:(RAServerMask)server;
 
-@property (nonatomic, readonly, strong) RALoginServer *loginServer;
-@property (nonatomic, readonly, strong) UIView *loginTerminalView;
-
-@property (nonatomic, readonly, strong) RAMapServer *mapServer;
-@property (nonatomic, readonly, strong) UIView *mapTerminalView;
+- (void)startServers:(RAServerMask)servers;
+- (void)clearTerminalForServers:(RAServerMask)servers;
 
 - (void)copyBundleResourcesAndChangeDirectory;
 

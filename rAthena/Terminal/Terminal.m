@@ -82,6 +82,11 @@ int write_function(void *cookie, const char *buf, int n) {
     [self.scrollToBottomTask schedule];
 }
 
+- (void)clear {
+    [self.webView evaluateJavaScript:@"term.wipeContents()" completionHandler:nil];
+    [self.scrollToBottomTask schedule];
+}
+
 - (void)scrollToBottom {
     [self.webView evaluateJavaScript:@"exports.scrollToBottom()" completionHandler:nil];
 }

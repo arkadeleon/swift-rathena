@@ -30,27 +30,27 @@ class TerminalViewController: UIViewController {
     }
 
     private func addLoginTerminalView() {
-        addTerminalHeaderView(for: RAServerManager.shared.loginServer)
+        addTerminalHeaderView(for: .login)
 
-        loginTerminalView = RAServerManager.shared.loginTerminalView
+        loginTerminalView = RAServerManager.shared.terminalView(for: .login)
         stackView.addArrangedSubview(loginTerminalView)
     }
 
     private func addCharTerminalView() {
-        addTerminalHeaderView(for: RAServerManager.shared.charServer)
+        addTerminalHeaderView(for: .char)
 
-        charTerminalView = RAServerManager.shared.charTerminalView
+        charTerminalView = RAServerManager.shared.terminalView(for: .char)
         stackView.addArrangedSubview(charTerminalView)
     }
 
     private func addMapTerminalView() {
-        addTerminalHeaderView(for: RAServerManager.shared.mapServer)
+        addTerminalHeaderView(for: .map)
 
-        mapTerminalView = RAServerManager.shared.mapTerminalView
+        mapTerminalView = RAServerManager.shared.terminalView(for: .map)
         stackView.addArrangedSubview(mapTerminalView)
     }
 
-    private func addTerminalHeaderView(for server: Thread) {
+    private func addTerminalHeaderView(for server: RAServerMask) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -69,7 +69,7 @@ class TerminalViewController: UIViewController {
         contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
 
         let titleLabel = UILabel()
-        titleLabel.text = server.name?.uppercased()
+        titleLabel.text = RAServerManager.shared.name(for: server).uppercased()
         titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = .secondaryLabel
         contentView.addArrangedSubview(titleLabel)
@@ -77,11 +77,7 @@ class TerminalViewController: UIViewController {
         let configuration = UIImage.SymbolConfiguration(pointSize: 12)
 
         let startButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "play", withConfiguration: configuration), handler: { action in
-            if !server.isExecuting {
-                server.start()
-            } else {
-                server.cancel()
-            }
+            RAServerManager.shared.startServers(server)
         }))
         startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(startButton)
@@ -93,7 +89,7 @@ class TerminalViewController: UIViewController {
         contentView.addArrangedSubview(sendButton)
 
         let clearButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "trash", withConfiguration: configuration), handler: { action in
-
+            RAServerManager.shared.clearTerminal(forServers: server)
         }))
         clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(clearButton)

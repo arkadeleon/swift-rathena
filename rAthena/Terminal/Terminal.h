@@ -14,6 +14,7 @@
 
 - (int)write:(const void *)buf length:(size_t)len;
 - (void)sendInput:(const char *)buf length:(size_t)len;
+- (void)clear;
 
 @property (readonly) WKWebView *webView;
 // Use KVO on this

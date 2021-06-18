@@ -9,6 +9,22 @@
 #import "TerminalView.h"
 #import <sqlite3.h>
 
+@import rAthenaChar;
+@import rAthenaLogin;
+@import rAthenaMap;
+
+@interface RAServerManager ()
+
+@property (nonatomic, readonly, strong) RACharServer *charServer;
+@property (nonatomic, readonly, strong) RALoginServer *loginServer;
+@property (nonatomic, readonly, strong) RAMapServer *mapServer;
+
+@property (nonatomic, readonly, strong) TerminalView *charTerminalView;
+@property (nonatomic, readonly, strong) TerminalView *loginTerminalView;
+@property (nonatomic, readonly, strong) TerminalView *mapTerminalView;
+
+@end
+
 @implementation RAServerManager
 
 + (RAServerManager *)sharedManager {
@@ -25,17 +41,71 @@
     if (self) {
         _charServer = [[RACharServer alloc] init];
         _charTerminalView = [[TerminalView alloc] init];
-        _charServer.output = ((TerminalView *)_charTerminalView).terminal.output;
+        _charServer.output = _charTerminalView.terminal.output;
 
         _loginServer = [[RALoginServer alloc] init];
         _loginTerminalView = [[TerminalView alloc] init];
-        _loginServer.output = ((TerminalView *)_loginTerminalView).terminal.output;
+        _loginServer.output = _loginTerminalView.terminal.output;
 
         _mapServer = [[RAMapServer alloc] init];
         _mapTerminalView = [[TerminalView alloc] init];
-        _mapServer.output = ((TerminalView *)_mapTerminalView).terminal.output;
+        _mapServer.output = _mapTerminalView.terminal.output;
     }
     return self;
+}
+
+- (NSString *)nameForServer:(RAServerMask)server {
+    if ((server & RAServerMaskChar) != 0) {
+        return self.charServer.name;
+    } else if ((server & RAServerMaskLogin) != 0) {
+        return self.loginServer.name;
+    } else if ((server & RAServerMaskMap) != 0) {
+        return self.mapServer.name;
+    } else {
+        return nil;
+    }
+}
+
+- (UIView *)terminalViewForServer:(RAServerMask)server {
+    if ((server & RAServerMaskChar) != 0) {
+        return self.charTerminalView;
+    } else if ((server & RAServerMaskLogin) != 0) {
+        return self.loginTerminalView;
+    } else if ((server & RAServerMaskMap) != 0) {
+        return self.mapTerminalView;
+    } else {
+        return nil;
+    }
+}
+
+- (void)startServers:(RAServerMask)servers {
+    if ((servers & RAServerMaskChar) != 0) {
+        if (!self.charServer.isExecuting) {
+            [self.charServer start];
+        }
+    }
+    if ((servers & RAServerMaskLogin) != 0) {
+        if (!self.loginServer.isExecuting) {
+            [self.loginServer start];
+        }
+    }
+    if ((servers & RAServerMaskMap) != 0) {
+        if (!self.mapServer.isExecuting) {
+            [self.mapServer start];
+        }
+    }
+}
+
+- (void)clearTerminalForServers:(RAServerMask)servers {
+    if ((servers & RAServerMaskChar) != 0) {
+        [self.charTerminalView.terminal clear];
+    }
+    if ((servers & RAServerMaskLogin) != 0) {
+        [self.loginTerminalView.terminal clear];
+    }
+    if ((servers & RAServerMaskMap) != 0) {
+        [self.mapTerminalView.terminal clear];
+    }
 }
 
 - (void)copyBundleResourcesAndChangeDirectory {
