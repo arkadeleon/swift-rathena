@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  rAthenaDashboard
+//  rAthenaTerm
 //
 //  Created by Leon Li on 2021/5/22.
 //

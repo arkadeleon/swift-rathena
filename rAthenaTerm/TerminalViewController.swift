@@ -1,6 +1,6 @@
 //
-//  DashboardViewController.swift
-//  rAthenaDashboard
+//  TerminalViewController.swift
+//  rAthenaTerm
 //
 //  Created by Leon Li on 2021/5/22.
 //
@@ -8,7 +8,7 @@
 import UIKit
 import rAthena
 
-class DashboardViewController: UIViewController {
+class TerminalViewController: UIViewController {
 
     @IBOutlet weak var stackView: UIStackView!
 
@@ -18,8 +18,6 @@ class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "rAthena"
 
         addLoginTerminalView()
         addCharTerminalView()
