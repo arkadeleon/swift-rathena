@@ -19,6 +19,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
 
+    self.backgroundColor = UIColor.systemBackgroundColor;
+
     ScrollbarView *scrollbarView = self.scrollbarView = [[ScrollbarView alloc] initWithFrame:self.bounds];
     self.scrollbarView = scrollbarView;
     scrollbarView.delegate = self;
@@ -40,6 +42,13 @@
         if (self.terminal.loaded) {
             [self _updateStyle];
         }
+    }
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (self.traitCollection.userInterfaceStyle != previousTraitCollection.userInterfaceStyle) {
+        [self _updateStyle];
     }
 }
 
@@ -91,8 +100,8 @@
     id themeInfo = @{
         @"fontFamily": @"Menlo",
         @"fontSize": @(12),
-        @"foregroundColor": [self cssColor:UIColor.blackColor],
-        @"backgroundColor": [self cssColor:UIColor.whiteColor],
+        @"foregroundColor": [self cssColor:UIColor.labelColor],
+        @"backgroundColor": [self cssColor:UIColor.systemBackgroundColor],
     };
     NSString *json = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:themeInfo options:0 error:nil] encoding:NSUTF8StringEncoding];
     [self.terminal.webView evaluateJavaScript:[NSString stringWithFormat:@"exports.updateStyle(%@)", json] completionHandler:nil];

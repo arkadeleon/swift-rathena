@@ -12,16 +12,16 @@ class TerminalViewController: UIViewController {
 
     @IBOutlet weak var stackView: UIStackView!
 
-    weak var loginTerminalView: UIView!
-    weak var charTerminalView: UIView!
-    weak var mapTerminalView: UIView!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addLoginTerminalView()
-        addCharTerminalView()
-        addMapTerminalView()
+        addTerminalView(for: .login)
+        addTerminalView(for: .char)
+        addTerminalView(for: .map)
+
+        let loginTerminalView = RAServerManager.shared.terminalView(for: .login)
+        let charTerminalView = RAServerManager.shared.terminalView(for: .char)
+        let mapTerminalView = RAServerManager.shared.terminalView(for: .map)
 
         charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
         mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
@@ -29,32 +29,14 @@ class TerminalViewController: UIViewController {
         RAServerManager.shared.copyBundleResourcesAndChangeDirectory()
     }
 
-    private func addLoginTerminalView() {
-        addTerminalHeaderView(for: .login)
-
-        loginTerminalView = RAServerManager.shared.terminalView(for: .login)
-        stackView.addArrangedSubview(loginTerminalView)
-    }
-
-    private func addCharTerminalView() {
-        addTerminalHeaderView(for: .char)
-
-        charTerminalView = RAServerManager.shared.terminalView(for: .char)
-        stackView.addArrangedSubview(charTerminalView)
-    }
-
-    private func addMapTerminalView() {
-        addTerminalHeaderView(for: .map)
-
-        mapTerminalView = RAServerManager.shared.terminalView(for: .map)
-        stackView.addArrangedSubview(mapTerminalView)
-    }
-
-    private func addTerminalHeaderView(for server: RAServerMask) {
+    private func addTerminalView(for server: RAServerMask) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         stackView.addArrangedSubview(headerView)
+
+        let terminalView = RAServerManager.shared.terminalView(for: server)
+        stackView.addArrangedSubview(terminalView)
 
         let contentView = UIStackView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +53,7 @@ class TerminalViewController: UIViewController {
         let titleLabel = UILabel()
         titleLabel.text = RAServerManager.shared.name(for: server).uppercased()
         titleLabel.font = UIFont.systemFont(ofSize: 12)
-        titleLabel.textColor = .secondaryLabel
+        titleLabel.textColor = .label
         contentView.addArrangedSubview(titleLabel)
 
         let configuration = UIImage.SymbolConfiguration(pointSize: 12)
@@ -94,8 +76,12 @@ class TerminalViewController: UIViewController {
         clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(clearButton)
 
-        let hideButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration), handler: { action in
-
+        let hideButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration), handler: { _ in
+            if self.stackView.arrangedSubviews.filter({ $0.isHidden }).count < 2 || terminalView.isHidden {
+                UIView.animate(withDuration: 0.25) {
+                    terminalView.isHidden = !terminalView.isHidden
+                }
+            }
         }))
         hideButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(hideButton)
