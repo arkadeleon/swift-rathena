@@ -24,6 +24,7 @@ typedef NS_OPTIONS(NSUInteger, RAServerMask) {
 - (UIView *)terminalViewForServer:(RAServerMask)server;
 
 - (void)startServers:(RAServerMask)servers;
+- (void)send:(NSString *)input toServers:(RAServerMask)servers;
 - (void)clearTerminalForServers:(RAServerMask)servers;
 
 - (void)copyBundleResourcesAndChangeDirectory;

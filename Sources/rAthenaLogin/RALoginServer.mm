@@ -1,21 +1,22 @@
 //
-//  RAMapServer.m
-//  rAthenaMap
+//  RALoginServer.m
+//  rAthenaLogin
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "RAMapServer.h"
+#import "RALoginServer.h"
+#include "core.hpp"
 #include "showmsg.hpp"
 
 extern int main (int argc, char **argv);
 
-@implementation RAMapServer
+@implementation RALoginServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Map Server";
+        self.name = @"Login Server";
     }
     return self;
 }
@@ -24,9 +25,13 @@ extern int main (int argc, char **argv);
     STDOUT = self.output;
     STDERR = self.output;
 
-    char *arg0 = "Map-Server";
+    char arg0[] = "Login-Server";
     char *args[1] = {arg0};
     main(1, args);
+}
+
+- (void)send:(NSString *)input {
+    parse_console(input.UTF8String);
 }
 
 @end

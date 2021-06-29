@@ -96,6 +96,18 @@
     }
 }
 
+- (void)send:(NSString *)input toServers:(RAServerMask)servers {
+    if ((servers & RAServerMaskChar) != 0) {
+        [self.charServer send:input];
+    }
+    if ((servers & RAServerMaskLogin) != 0) {
+        [self.loginServer send:input];
+    }
+    if ((servers & RAServerMaskMap) != 0) {
+        [self.mapServer send:input];
+    }
+}
+
 - (void)clearTerminalForServers:(RAServerMask)servers {
     if ((servers & RAServerMaskChar) != 0) {
         [self.charTerminalView.terminal clear];

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) FILE *output;
 
+- (void)send:(NSString *)input;
+
 @end
 
 NS_ASSUME_NONNULL_END

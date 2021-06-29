@@ -1,21 +1,22 @@
 //
-//  RACharServer.m
-//  rAthenaChar
+//  RAMapServer.m
+//  rAthenaMap
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "RACharServer.h"
+#import "RAMapServer.h"
+#include "core.hpp"
 #include "showmsg.hpp"
 
 extern int main (int argc, char **argv);
 
-@implementation RACharServer
+@implementation RAMapServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Char Server";
+        self.name = @"Map Server";
     }
     return self;
 }
@@ -24,9 +25,13 @@ extern int main (int argc, char **argv);
     STDOUT = self.output;
     STDERR = self.output;
 
-    char *arg0 = "Char-Server";
+    char arg0[] = "Map-Server";
     char *args[1] = {arg0};
     main(1, args);
+}
+
+- (void)send:(NSString *)input {
+    parse_console(input.UTF8String);
 }
 
 @end
