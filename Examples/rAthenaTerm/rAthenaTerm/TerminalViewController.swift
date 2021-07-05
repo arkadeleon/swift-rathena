@@ -19,23 +19,23 @@ class TerminalViewController: UIViewController {
         addTerminalView(for: .char)
         addTerminalView(for: .map)
 
-        let loginTerminalView = RAServerManager.shared.terminalView(for: .login)
-        let charTerminalView = RAServerManager.shared.terminalView(for: .char)
-        let mapTerminalView = RAServerManager.shared.terminalView(for: .map)
+        let loginTerminalView = ServerManager.shared.terminalView(for: .login)
+        let charTerminalView = ServerManager.shared.terminalView(for: .char)
+        let mapTerminalView = ServerManager.shared.terminalView(for: .map)
 
         charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
         mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
 
-        RAServerManager.shared.copyBundleResourcesAndChangeDirectory()
+        ServerManager.shared.copyBundleResourcesAndChangeDirectory()
     }
 
-    private func addTerminalView(for server: RAServerMask) {
+    private func addTerminalView(for server: ServerMask) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         stackView.addArrangedSubview(headerView)
 
-        let terminalView = RAServerManager.shared.terminalView(for: server)
+        let terminalView = ServerManager.shared.terminalView(for: server)
         stackView.addArrangedSubview(terminalView)
 
         let contentView = UIStackView()
@@ -51,7 +51,7 @@ class TerminalViewController: UIViewController {
         contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
 
         let titleLabel = UILabel()
-        titleLabel.text = RAServerManager.shared.name(for: server).uppercased()
+        titleLabel.text = ServerManager.shared.name(for: server).uppercased()
         titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = .label
         contentView.addArrangedSubview(titleLabel)
@@ -59,20 +59,20 @@ class TerminalViewController: UIViewController {
         let configuration = UIImage.SymbolConfiguration(pointSize: 12)
 
         let startButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "play", withConfiguration: configuration), handler: { action in
-            RAServerManager.shared.startServers(server)
+            ServerManager.shared.startServers(server)
         }))
         startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(startButton)
 
         let sendButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "keyboard", withConfiguration: configuration), handler: { action in
-            let alert = UIAlertController(title: RAServerManager.shared.name(for: server), message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: ServerManager.shared.name(for: server), message: nil, preferredStyle: .alert)
             alert.addTextField { textField in
                 textField.font = UIFont(name: "Menlo", size: 12)
                 textField.placeholder = ">"
             }
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { [weak alert] _ in
-                RAServerManager.shared.send(alert?.textFields?.first?.text ?? "", toServers: server)
+                ServerManager.shared.send(alert?.textFields?.first?.text ?? "", toServers: server)
             }))
             self.present(alert, animated: true, completion: nil)
         }))
@@ -80,7 +80,7 @@ class TerminalViewController: UIViewController {
         contentView.addArrangedSubview(sendButton)
 
         let clearButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "trash", withConfiguration: configuration), handler: { action in
-            RAServerManager.shared.clearTerminal(forServers: server)
+            ServerManager.shared.clearTerminal(forServers: server)
         }))
         clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(clearButton)

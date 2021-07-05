@@ -1,22 +1,22 @@
 //
-//  RACharServer.m
-//  rAthenaChar
+//  LoginServer.m
+//  rAthenaLogin
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "RACharServer.h"
+#import "LoginServer.h"
 #include "core.hpp"
 #include "showmsg.hpp"
 
 extern int main (int argc, char **argv);
 
-@implementation RACharServer
+@implementation LoginServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Char Server";
+        self.name = @"Login Server";
     }
     return self;
 }
@@ -25,7 +25,7 @@ extern int main (int argc, char **argv);
     STDOUT = self.output;
     STDERR = self.output;
 
-    char arg0[] = "Char-Server";
+    char arg0[] = "Login-Server";
     char *args[1] = {arg0};
     main(1, args);
 }

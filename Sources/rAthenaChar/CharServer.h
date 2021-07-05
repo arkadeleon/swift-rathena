@@ -1,5 +1,5 @@
 //
-//  RACharServer.h
+//  CharServer.h
 //  rAthenaChar
 //
 //  Created by Leon Li on 2021/5/19.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RACharServer : NSThread
+@interface CharServer : NSThread
 
 @property (nonatomic, assign) FILE *output;
 

@@ -1,17 +1,17 @@
 //
-//  RAMapServer.m
+//  MapServer.m
 //  rAthenaMap
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "RAMapServer.h"
+#import "MapServer.h"
 #include "core.hpp"
 #include "showmsg.hpp"
 
 extern int main (int argc, char **argv);
 
-@implementation RAMapServer
+@implementation MapServer
 
 - (instancetype)init {
     self = [super init];

@@ -15,4 +15,4 @@ FOUNDATION_EXPORT const unsigned char rAthenaVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <rAthena/PublicHeader.h>
 
-#import <rAthena/RAServerManager.h>
+#import <rAthena/ServerManager.h>

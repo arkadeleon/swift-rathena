@@ -15,4 +15,4 @@ FOUNDATION_EXPORT const unsigned char rAthenaMapVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <rAthenaMap/PublicHeader.h>
 
-#import <rAthenaMap/RAMapServer.h>
+#import <rAthenaMap/MapServer.h>
