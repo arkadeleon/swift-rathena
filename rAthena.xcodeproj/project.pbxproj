@@ -60,6 +60,14 @@
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
+		35439C622693088B007EBA61 /* Packet0064.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C612693088B007EBA61 /* Packet0064.swift */; };
+		35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C632693093E007EBA61 /* PacketEndpoint.swift */; };
+		35439C6626930ABE007EBA61 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6526930ABE007EBA61 /* Packet.swift */; };
+		35439C6926930DFE007EBA61 /* BinaryDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6726930DFE007EBA61 /* BinaryDecodable.swift */; };
+		35439C6A26930DFE007EBA61 /* BinaryEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6826930DFE007EBA61 /* BinaryEncodable.swift */; };
+		35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6B269422B3007EBA61 /* PacketEncoder.swift */; };
+		35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6C269422B4007EBA61 /* PacketDecoder.swift */; };
+		35439C7026942871007EBA61 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6F26942871007EBA61 /* Packets.swift */; };
 		354547782671FCDF00B9EA5B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 		354547792672085C00B9EA5B /* sql-files in Resources */ = {isa = PBXBuildFile; fileRef = 355652842660B80900EAA323 /* sql-files */; };
 		354547CD267360E800B9EA5B /* term.html in Resources */ = {isa = PBXBuildFile; fileRef = 3545477F2672181600B9EA5B /* term.html */; };
@@ -691,6 +699,14 @@
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
+		35439C612693088B007EBA61 /* Packet0064.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0064.swift; sourceTree = "<group>"; };
+		35439C632693093E007EBA61 /* PacketEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketEndpoint.swift; sourceTree = "<group>"; };
+		35439C6526930ABE007EBA61 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
+		35439C6726930DFE007EBA61 /* BinaryDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryDecodable.swift; sourceTree = "<group>"; };
+		35439C6826930DFE007EBA61 /* BinaryEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryEncodable.swift; sourceTree = "<group>"; };
+		35439C6B269422B3007EBA61 /* PacketEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketEncoder.swift; sourceTree = "<group>"; };
+		35439C6C269422B4007EBA61 /* PacketDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketDecoder.swift; sourceTree = "<group>"; };
+		35439C6F26942871007EBA61 /* Packets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packets.swift; sourceTree = "<group>"; };
 		3545477C2672181600B9EA5B /* term.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = term.js; sourceTree = "<group>"; };
 		3545477D2672181600B9EA5B /* term.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = term.css; sourceTree = "<group>"; };
 		3545477E2672181600B9EA5B /* hterm_all.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hterm_all.js; sourceTree = "<group>"; };
@@ -1122,6 +1138,21 @@
 			path = Sources/rAthenaMap;
 			sourceTree = "<group>";
 		};
+		35439C6026930871007EBA61 /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				35439C6526930ABE007EBA61 /* Packet.swift */,
+				35439C6F26942871007EBA61 /* Packets.swift */,
+				35439C612693088B007EBA61 /* Packet0064.swift */,
+				35439C632693093E007EBA61 /* PacketEndpoint.swift */,
+				35439C6C269422B4007EBA61 /* PacketDecoder.swift */,
+				35439C6B269422B3007EBA61 /* PacketEncoder.swift */,
+				35439C6726930DFE007EBA61 /* BinaryDecodable.swift */,
+				35439C6826930DFE007EBA61 /* BinaryEncodable.swift */,
+			);
+			path = Packet;
+			sourceTree = "<group>";
+		};
 		3545477B2672181600B9EA5B /* Terminal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1315,6 +1346,7 @@
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
 				35218459265563E1002FAE2C /* ServerManager.h */,
 				3521845A265563E1002FAE2C /* ServerManager.m */,
+				35439C6026930871007EBA61 /* Packet */,
 				3545477B2672181600B9EA5B /* Terminal */,
 				35FD11922652094300BB0968 /* Info.plist */,
 			);
@@ -2088,6 +2120,7 @@
 				TargetAttributes = {
 					35E6BD212654D6ED00DD3426 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -2157,11 +2190,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */,
+				35439C6A26930DFE007EBA61 /* BinaryEncodable.swift in Sources */,
 				3521846D265563EE002FAE2C /* ServerManager.m in Sources */,
 				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
+				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
 				354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */,
+				35439C622693088B007EBA61 /* Packet0064.swift in Sources */,
 				354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */,
 				354547CF267360E800B9EA5B /* Terminal.m in Sources */,
+				35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */,
+				35439C7026942871007EBA61 /* Packets.swift in Sources */,
+				35439C6626930ABE007EBA61 /* Packet.swift in Sources */,
+				35439C6926930DFE007EBA61 /* BinaryDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2447,6 +2488,7 @@
 		35E6BD282654D6ED00DD3426 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2462,6 +2504,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2469,6 +2513,7 @@
 		35E6BD292654D6ED00DD3426 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2484,6 +2529,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = data.leonandvane.rathena;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
