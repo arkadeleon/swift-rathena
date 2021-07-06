@@ -7,14 +7,6 @@
 
 public struct Packet0065: Packet {
 
-    public let packetType: UInt16 = 0x0065
-
-    public let packetName: String = "PACKET_CH_ENTER"
-
-    public let source: PacketEndpoint = .client
-
-    public let destination: PacketEndpoint = .charServer
-
     public var aid: UInt32
 
     public var authCode: UInt32
@@ -24,6 +16,26 @@ public struct Packet0065: Packet {
     public var clientType: UInt16
 
     public var sex: UInt8
+
+    public var packetName: String {
+        return "PACKET_CH_ENTER"
+    }
+
+    public var packetType: UInt16 {
+        return 0x0065
+    }
+
+    public var packetLength: UInt16 {
+        return 2 + 4 + 4 + 4 + 2 + 1
+    }
+
+    public var source: PacketEndpoint {
+        return .client
+    }
+
+    public var destination: PacketEndpoint {
+        return .charServer
+    }
 
     public init() {
         aid = 0

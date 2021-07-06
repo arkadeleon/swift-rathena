@@ -49,14 +49,6 @@ public struct Packet0069: Packet {
         }
     }
 
-    public let packetType: UInt16 = 0x0069
-
-    public let packetName: String = "PACKET_AC_ACCEPT_LOGIN"
-
-    public let source: PacketEndpoint = .loginServer
-
-    public let destination: PacketEndpoint = .client
-
     public var authCode: UInt32
 
     public var aid: UInt32
@@ -70,6 +62,26 @@ public struct Packet0069: Packet {
     public var sex: UInt8
 
     public var serverList: [Server]
+
+    public var packetName: String {
+        return "PACKET_AC_ACCEPT_LOGIN"
+    }
+
+    public var packetType: UInt16 {
+        return 0x0069
+    }
+
+    public var packetLength: UInt16 {
+        return 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + 32 * UInt16(serverList.count)
+    }
+
+    public var source: PacketEndpoint {
+        return .loginServer
+    }
+
+    public var destination: PacketEndpoint {
+        return .client
+    }
 
     public init() {
         authCode = 0
@@ -100,8 +112,6 @@ public struct Packet0069: Packet {
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        let packetLength: UInt16 = 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + 32 * UInt16(serverList.count)
-
         try encoder.encode(packetLength)
         try encoder.encode(authCode)
         try encoder.encode(aid)

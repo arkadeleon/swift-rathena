@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350808B12694A4DF00FEEBEF /* Packet006A.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350808B02694A4DF00FEEBEF /* Packet006A.swift */; };
 		3513642E26593D6900039D6C /* const.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642726593D6900039D6C /* const.hpp */; };
 		3513642F26593D6900039D6C /* const.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642726593D6900039D6C /* const.hpp */; };
 		3513643026593D6900039D6C /* const.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642726593D6900039D6C /* const.hpp */; };
@@ -679,6 +680,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350808B02694A4DF00FEEBEF /* Packet006A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet006A.swift; sourceTree = "<group>"; };
 		3513642726593D6900039D6C /* const.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = const.hpp; sourceTree = "<group>"; };
 		3513642926593D6900039D6C /* general.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = general.hpp; sourceTree = "<group>"; };
 		3513642A26593D6900039D6C /* packets.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = packets.hpp; sourceTree = "<group>"; };
@@ -1159,6 +1161,7 @@
 				35B45473269451120088D360 /* Packet0067.swift */,
 				35B45475269457A90088D360 /* Packet0068.swift */,
 				35B4547726945B4B0088D360 /* Packet0069.swift */,
+				350808B02694A4DF00FEEBEF /* Packet006A.swift */,
 				35439C632693093E007EBA61 /* PacketEndpoint.swift */,
 				35439C6C269422B4007EBA61 /* PacketDecoder.swift */,
 				35439C6B269422B3007EBA61 /* PacketEncoder.swift */,
@@ -2223,6 +2226,7 @@
 				35439C7226943865007EBA61 /* Packet0065.swift in Sources */,
 				35B45476269457A90088D360 /* Packet0068.swift in Sources */,
 				35439C6926930DFE007EBA61 /* BinaryDecodable.swift in Sources */,
+				350808B12694A4DF00FEEBEF /* Packet006A.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

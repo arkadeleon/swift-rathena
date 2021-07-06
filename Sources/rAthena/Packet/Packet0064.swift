@@ -7,14 +7,6 @@
 
 public struct Packet0064: Packet {
 
-    public let packetType: UInt16 = 0x0064
-
-    public let packetName: String = "PACKET_CA_LOGIN"
-
-    public let source: PacketEndpoint = .client
-
-    public let destination: PacketEndpoint = .loginServer
-
     public var version: UInt32
 
     public var id: String
@@ -22,6 +14,26 @@ public struct Packet0064: Packet {
     public var passwd: String
 
     public var clientType: UInt8
+
+    public var packetName: String {
+        return "PACKET_CA_LOGIN"
+    }
+
+    public var packetType: UInt16 {
+        return 0x0064
+    }
+
+    public var packetLength: UInt16 {
+        return 2 + 4 + 24 + 24 + 1
+    }
+
+    public var source: PacketEndpoint {
+        return .client
+    }
+
+    public var destination: PacketEndpoint {
+        return .loginServer
+    }
 
     public init() {
         version = 0

@@ -15,6 +15,7 @@ public enum Packets {
             0x0067: Packet0067.self,
             0x0068: Packet0068.self,
             0x0069: Packet0069.self,
+            0x006A: Packet006A.self,
         ]
     }
 }

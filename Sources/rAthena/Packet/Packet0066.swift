@@ -7,15 +7,27 @@
 
 public struct Packet0066: Packet {
 
-    public let packetType: UInt16 = 0x0066
-
-    public let packetName: String = "PACKET_CH_SELECT_CHAR"
-
-    public let source: PacketEndpoint = .client
-
-    public let destination: PacketEndpoint = .charServer
-
     public var charNum: UInt8
+
+    public var packetName: String {
+        return "PACKET_CH_SELECT_CHAR"
+    }
+
+    public var packetType: UInt16 {
+        return 0x0066
+    }
+
+    public var packetLength: UInt16 {
+        return 2 + 1
+    }
+
+    public var source: PacketEndpoint {
+        return .client
+    }
+
+    public var destination: PacketEndpoint {
+        return .charServer
+    }
 
     public init() {
         charNum = 0

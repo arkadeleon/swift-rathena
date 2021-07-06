@@ -7,9 +7,11 @@
 
 public protocol Packet: BinaryDecodable, BinaryEncodable {
 
+    var packetName: String { get }
+
     var packetType: UInt16 { get }
 
-    var packetName: String { get }
+    var packetLength: UInt16 { get }
 
     var source: PacketEndpoint { get }
 
