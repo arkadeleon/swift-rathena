@@ -12,8 +12,7 @@ public class PacketDecoder {
 
     public func decode(from data: Data) throws -> Packet {
         let decoder = _PacketDecoder(data: data)
-        let container = decoder.container()
-        let packetType = try container.decode(UInt16.self)
+        let packetType = try decoder.decode(UInt16.self)
         guard let packet = Packets.all[packetType] else {
             throw PacketDecodingError.unknownPacket
         }
@@ -36,26 +35,13 @@ private class _PacketDecoder: BinaryDecoder {
         self.data = data
     }
 
-    func container() -> BinaryDecodingContainer {
-        return _PacketDecodingContainer(decoder: self)
-    }
-}
-
-private class _PacketDecodingContainer: BinaryDecodingContainer {
-
-    let decoder: _PacketDecoder
-
-    init(decoder: _PacketDecoder) {
-        self.decoder = decoder
-    }
-
     func decode(_ type: String.Type, length: Int) throws -> String {
-        let data = decoder.data.prefix(length)
+        let data = self.data.prefix(length)
         if data.count != length {
             throw PacketDecodingError.dataCorrupted
         }
 
-        decoder.data.removeFirst(length)
+        self.data.removeFirst(length)
 
         if let string = String(data: data, encoding: .utf8) {
             return string
@@ -66,12 +52,12 @@ private class _PacketDecodingContainer: BinaryDecodingContainer {
 
     func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T {
         let length = type.bitWidth / 8
-        let data = decoder.data.prefix(length)
+        let data = self.data.prefix(length)
         if data.count != length {
             throw PacketDecodingError.dataCorrupted
         }
 
-        decoder.data.removeFirst(length)
+        self.data.removeFirst(length)
 
         let values = data.withUnsafeBytes { pointer in
             pointer.bindMemory(to: type)

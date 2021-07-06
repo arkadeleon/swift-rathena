@@ -12,11 +12,6 @@ public protocol BinaryEncodable {
 
 public protocol BinaryEncoder {
 
-    func container() -> BinaryEncodingContaner
-}
-
-public protocol BinaryEncodingContaner {
-
     func encode(_ value: String, length: Int) throws
 
     func encode<T: FixedWidthInteger>(_ value: T) throws

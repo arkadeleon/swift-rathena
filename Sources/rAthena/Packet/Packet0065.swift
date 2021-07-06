@@ -34,20 +34,18 @@ public struct Packet0065: Packet {
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        let container = decoder.container()
-        aid = try container.decode(UInt32.self)
-        authCode = try container.decode(UInt32.self)
-        userLevel = try container.decode(UInt32.self)
-        clientType = try container.decode(UInt16.self)
-        sex = try container.decode(UInt8.self)
+        aid = try decoder.decode(UInt32.self)
+        authCode = try decoder.decode(UInt32.self)
+        userLevel = try decoder.decode(UInt32.self)
+        clientType = try decoder.decode(UInt16.self)
+        sex = try decoder.decode(UInt8.self)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        let container = encoder.container()
-        try container.encode(aid)
-        try container.encode(authCode)
-        try container.encode(userLevel)
-        try container.encode(clientType)
-        try container.encode(sex)
+        try encoder.encode(aid)
+        try encoder.encode(authCode)
+        try encoder.encode(userLevel)
+        try encoder.encode(clientType)
+        try encoder.encode(sex)
     }
 }

@@ -12,11 +12,6 @@ public protocol BinaryDecodable {
 
 public protocol BinaryDecoder {
 
-    func container() -> BinaryDecodingContainer
-}
-
-public protocol BinaryDecodingContainer {
-
     func decode(_ type: String.Type, length: Int) throws -> String
 
     func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T

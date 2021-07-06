@@ -22,12 +22,10 @@ public struct Packet0066: Packet {
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        let container = decoder.container()
-        charNum = try container.decode(UInt8.self)
+        charNum = try decoder.decode(UInt8.self)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        let container = encoder.container()
-        try container.encode(charNum)
+        try encoder.encode(charNum)
     }
 }

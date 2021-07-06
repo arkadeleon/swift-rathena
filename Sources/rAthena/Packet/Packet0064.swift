@@ -31,18 +31,16 @@ public struct Packet0064: Packet {
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        let container = decoder.container()
-        version = try container.decode(UInt32.self)
-        id = try container.decode(String.self, length: 24)
-        passwd = try container.decode(String.self, length: 24)
-        clientType = try container.decode(UInt8.self)
+        version = try decoder.decode(UInt32.self)
+        id = try decoder.decode(String.self, length: 24)
+        passwd = try decoder.decode(String.self, length: 24)
+        clientType = try decoder.decode(UInt8.self)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        let container = encoder.container()
-        try container.encode(version)
-        try container.encode(id, length: 24)
-        try container.encode(passwd, length: 24)
-        try container.encode(clientType)
+        try encoder.encode(version)
+        try encoder.encode(id, length: 24)
+        try encoder.encode(passwd, length: 24)
+        try encoder.encode(clientType)
     }
 }
