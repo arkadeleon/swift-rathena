@@ -7,31 +7,27 @@
 
 public struct Packet0064: Packet {
 
-    public var version: UInt32 = 0
+    public let packetType: UInt16 = 0x0064
 
-    public var id: String = ""
+    public let packetName: String = "PACKET_CA_LOGIN"
 
-    public var passwd: String = ""
+    public let source: PacketEndpoint = .client
 
-    public var clientType: UInt8 = 0
+    public let destination: PacketEndpoint = .loginServer
 
-    public var packetType: UInt16 {
-        return 0x0064
-    }
+    public var version: UInt32
 
-    public var packetName: String {
-        return "PACKET_CA_LOGIN"
-    }
+    public var id: String
 
-    public var source: PacketEndpoint {
-        return .client
-    }
+    public var passwd: String
 
-    public var destination: PacketEndpoint {
-        return .loginServer
-    }
+    public var clientType: UInt8
 
     public init() {
+        version = 0
+        id = ""
+        passwd = ""
+        clientType = 0
     }
 
     public init(from decoder: BinaryDecoder) throws {
