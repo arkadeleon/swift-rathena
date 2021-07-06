@@ -11,7 +11,10 @@ public enum Packets {
         return [
             0x0064: Packet0064.self,
             0x0065: Packet0065.self,
-            0x0066: Packet0066.self
+            0x0066: Packet0066.self,
+            0x0067: Packet0067.self,
+            0x0068: Packet0068.self,
+            0x0069: Packet0069.self,
         ]
     }
 }
