@@ -112,6 +112,7 @@
 		35B4549126956D180088D360 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B4548F26956D180088D360 /* Config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35B4549226956D180088D360 /* Config.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35B4549026956D180088D360 /* Config.mm */; };
 		35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
+		35B45499269576B60088D360 /* Packet006B.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B45498269576B60088D360 /* Packet006B.swift */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -757,6 +758,7 @@
 		35B4547726945B4B0088D360 /* Packet0069.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0069.swift; sourceTree = "<group>"; };
 		35B4548F26956D180088D360 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		35B4549026956D180088D360 /* Config.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Config.mm; sourceTree = "<group>"; };
+		35B45498269576B60088D360 /* Packet006B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet006B.swift; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 				35B45475269457A90088D360 /* Packet0068.swift */,
 				35B4547726945B4B0088D360 /* Packet0069.swift */,
 				350808B02694A4DF00FEEBEF /* Packet006A.swift */,
+				35B45498269576B60088D360 /* Packet006B.swift */,
 				35439C632693093E007EBA61 /* PacketEndpoint.swift */,
 				35439C6C269422B4007EBA61 /* PacketDecoder.swift */,
 				35439C6B269422B3007EBA61 /* PacketEncoder.swift */,
@@ -2265,6 +2268,7 @@
 				35B45476269457A90088D360 /* Packet0068.swift in Sources */,
 				35439C6926930DFE007EBA61 /* BinaryDecodable.swift in Sources */,
 				350808B12694A4DF00FEEBEF /* Packet006A.swift in Sources */,
+				35B45499269576B60088D360 /* Packet006B.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

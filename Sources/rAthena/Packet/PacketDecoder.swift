@@ -35,6 +35,21 @@ private class _PacketDecoder: BinaryDecoder {
         self.data = data
     }
 
+    func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T {
+        let length = type.bitWidth / 8
+        let data = self.data.prefix(length)
+        if data.count != length {
+            throw PacketDecodingError.dataCorrupted
+        }
+
+        self.data.removeFirst(length)
+
+        let values = data.withUnsafeBytes { pointer in
+            pointer.bindMemory(to: type)
+        }
+        return values[0]
+    }
+
     func decode(_ type: String.Type, length: Int) throws -> String {
         let data = self.data.prefix(length)
         if data.count != length {
@@ -50,8 +65,7 @@ private class _PacketDecoder: BinaryDecoder {
         }
     }
 
-    func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T {
-        let length = type.bitWidth / 8
+    func decode<T: BinaryDecodable>(_ type: T.Type, length: Int) throws -> T {
         let data = self.data.prefix(length)
         if data.count != length {
             throw PacketDecodingError.dataCorrupted
@@ -59,9 +73,8 @@ private class _PacketDecoder: BinaryDecoder {
 
         self.data.removeFirst(length)
 
-        let values = data.withUnsafeBytes { pointer in
-            pointer.bindMemory(to: type)
-        }
-        return values[0]
+        let decoder = _PacketDecoder(data: data)
+        let value = try type.init(from: decoder)
+        return value
     }
 }

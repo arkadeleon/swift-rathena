@@ -12,7 +12,9 @@ public protocol BinaryEncodable {
 
 public protocol BinaryEncoder {
 
+    func encode<T: FixedWidthInteger>(_ value: T) throws
+
     func encode(_ value: String, length: Int) throws
 
-    func encode<T: FixedWidthInteger>(_ value: T) throws
+    func encode<T: BinaryEncodable>(_ value: T, length: Int) throws
 }
