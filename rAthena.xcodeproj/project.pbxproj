@@ -95,6 +95,23 @@
 		35B45474269451120088D360 /* Packet0067.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B45473269451120088D360 /* Packet0067.swift */; };
 		35B45476269457A90088D360 /* Packet0068.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B45475269457A90088D360 /* Packet0068.swift */; };
 		35B4547826945B4B0088D360 /* Packet0069.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B4547726945B4B0088D360 /* Packet0069.swift */; };
+		35B45479269551C70088D360 /* general.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642926593D6900039D6C /* general.hpp */; };
+		35B4547A269551D00088D360 /* const.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642726593D6900039D6C /* const.hpp */; };
+		35B4547B269551D00088D360 /* packets.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642A26593D6900039D6C /* packets.hpp */; };
+		35B4547C269551D00088D360 /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642D26593D6900039D6C /* core.hpp */; };
+		35B4547D269551D00088D360 /* renewal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642C26593D6900039D6C /* renewal.hpp */; };
+		35B4547E269551D00088D360 /* secure.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642B26593D6900039D6C /* secure.hpp */; };
+		35B4547F269551E00088D360 /* defines_post.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644526596D6D00039D6C /* defines_post.hpp */; };
+		35B45480269551E00088D360 /* script.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644826596D6D00039D6C /* script.inc */; };
+		35B45481269551E00088D360 /* battle_config_init.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644726596D6D00039D6C /* battle_config_init.inc */; };
+		35B45482269551E00088D360 /* battle_config_struct.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644326596D6D00039D6C /* battle_config_struct.inc */; };
+		35B45483269551E00088D360 /* script_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644126596D6D00039D6C /* script_def.inc */; };
+		35B45484269551E00088D360 /* atcommand_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644426596D6D00039D6C /* atcommand_def.inc */; };
+		35B45485269551E00088D360 /* defines_pre.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644626596D6D00039D6C /* defines_pre.hpp */; };
+		35B45486269551E00088D360 /* atcommand.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644226596D6D00039D6C /* atcommand.inc */; };
+		35B4549126956D180088D360 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B4548F26956D180088D360 /* Config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35B4549226956D180088D360 /* Config.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35B4549026956D180088D360 /* Config.mm */; };
+		35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -738,6 +755,8 @@
 		35B45473269451120088D360 /* Packet0067.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0067.swift; sourceTree = "<group>"; };
 		35B45475269457A90088D360 /* Packet0068.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0068.swift; sourceTree = "<group>"; };
 		35B4547726945B4B0088D360 /* Packet0069.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0069.swift; sourceTree = "<group>"; };
+		35B4548F26956D180088D360 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		35B4549026956D180088D360 /* Config.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Config.mm; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -1362,6 +1381,8 @@
 			isa = PBXGroup;
 			children = (
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
+				35B4548F26956D180088D360 /* Config.h */,
+				35B4549026956D180088D360 /* Config.mm */,
 				35218459265563E1002FAE2C /* ServerManager.h */,
 				3521845A265563E1002FAE2C /* ServerManager.m */,
 				35439C6026930871007EBA61 /* Packet */,
@@ -1654,11 +1675,21 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35B4549126956D180088D360 /* Config.h in Headers */,
+				35B45479269551C70088D360 /* general.hpp in Headers */,
 				35218466265563EA002FAE2C /* ServerManager.h in Headers */,
 				354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */,
+				35B4547C269551D00088D360 /* core.hpp in Headers */,
 				354547DB267360E800B9EA5B /* TerminalView.h in Headers */,
+				35B4547D269551D00088D360 /* renewal.hpp in Headers */,
+				35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */,
+				35B4547F269551E00088D360 /* defines_post.hpp in Headers */,
+				35B4547B269551D00088D360 /* packets.hpp in Headers */,
+				35B4547E269551D00088D360 /* secure.hpp in Headers */,
+				35B45485269551E00088D360 /* defines_pre.hpp in Headers */,
 				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
 				354547DA267360E800B9EA5B /* Terminal.h in Headers */,
+				35B4547A269551D00088D360 /* const.hpp in Headers */,
 				354547D0267360E800B9EA5B /* DelayedUITask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2209,19 +2240,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				35B45474269451120088D360 /* Packet0067.swift in Sources */,
+				35B4549226956D180088D360 /* Config.mm in Sources */,
 				35439C7426943AC8007EBA61 /* Packet0066.swift in Sources */,
 				35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */,
+				35B45484269551E00088D360 /* atcommand_def.inc in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncodable.swift in Sources */,
 				3521846D265563EE002FAE2C /* ServerManager.m in Sources */,
+				35B45483269551E00088D360 /* script_def.inc in Sources */,
 				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
+				35B45486269551E00088D360 /* atcommand.inc in Sources */,
 				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
 				354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */,
 				35B4547826945B4B0088D360 /* Packet0069.swift in Sources */,
 				35439C622693088B007EBA61 /* Packet0064.swift in Sources */,
 				354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */,
+				35B45480269551E00088D360 /* script.inc in Sources */,
 				354547CF267360E800B9EA5B /* Terminal.m in Sources */,
+				35B45482269551E00088D360 /* battle_config_struct.inc in Sources */,
 				35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */,
 				35439C7026942871007EBA61 /* Packets.swift in Sources */,
+				35B45481269551E00088D360 /* battle_config_init.inc in Sources */,
 				35439C6626930ABE007EBA61 /* Packet.swift in Sources */,
 				35439C7226943865007EBA61 /* Packet0065.swift in Sources */,
 				35B45476269457A90088D360 /* Packet0068.swift in Sources */,
