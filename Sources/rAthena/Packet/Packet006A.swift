@@ -8,7 +8,6 @@
 public struct Packet006A: Packet {
 
     public var errorCode: UInt8
-
     public var blockDate: String
 
     public var packetName: String {
@@ -32,17 +31,22 @@ public struct Packet006A: Packet {
     }
     
     public init() {
-        errorCode = 0
-        blockDate = ""
+        self.errorCode = 0
+        self.blockDate = ""
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        errorCode = try decoder.decode(UInt8.self)
-        blockDate = try decoder.decode(String.self, length: 20)
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x006A else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
+        self.errorCode = try decoder.decode(UInt8.self)
+        self.blockDate = try decoder.decode(String.self, length: 20)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(errorCode)
-        try encoder.encode(blockDate, length: 20)
+        try encoder.encode(self.packetType)
+        try encoder.encode(self.errorCode)
+        try encoder.encode(self.blockDate, length: 20)
     }
 }

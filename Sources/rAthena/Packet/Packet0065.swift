@@ -8,13 +8,9 @@
 public struct Packet0065: Packet {
 
     public var aid: UInt32
-
     public var authCode: UInt32
-
     public var userLevel: UInt32
-
     public var clientType: UInt16
-
     public var sex: UInt8
 
     public var packetName: String {
@@ -38,26 +34,31 @@ public struct Packet0065: Packet {
     }
 
     public init() {
-        aid = 0
-        authCode = 0
-        userLevel = 0
-        clientType = 0
-        sex = 0
+        self.aid = 0
+        self.authCode = 0
+        self.userLevel = 0
+        self.clientType = 0
+        self.sex = 0
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        aid = try decoder.decode(UInt32.self)
-        authCode = try decoder.decode(UInt32.self)
-        userLevel = try decoder.decode(UInt32.self)
-        clientType = try decoder.decode(UInt16.self)
-        sex = try decoder.decode(UInt8.self)
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x0065 else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
+        self.aid = try decoder.decode(UInt32.self)
+        self.authCode = try decoder.decode(UInt32.self)
+        self.userLevel = try decoder.decode(UInt32.self)
+        self.clientType = try decoder.decode(UInt16.self)
+        self.sex = try decoder.decode(UInt8.self)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(aid)
-        try encoder.encode(authCode)
-        try encoder.encode(userLevel)
-        try encoder.encode(clientType)
-        try encoder.encode(sex)
+        try encoder.encode(self.packetType)
+        try encoder.encode(self.aid)
+        try encoder.encode(self.authCode)
+        try encoder.encode(self.userLevel)
+        try encoder.encode(self.clientType)
+        try encoder.encode(self.sex)
     }
 }

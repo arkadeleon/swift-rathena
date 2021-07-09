@@ -8,7 +8,6 @@
 public struct Packet0068: Packet {
 
     public var gid: UInt32
-
     public var key: String
 
     public var packetName: String {
@@ -32,17 +31,22 @@ public struct Packet0068: Packet {
     }
 
     public init() {
-        gid = 0
-        key = ""
+        self.gid = 0
+        self.key = ""
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        gid = try decoder.decode(UInt32.self)
-        key = try decoder.decode(String.self, length: 40)
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x0068 else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
+        self.gid = try decoder.decode(UInt32.self)
+        self.key = try decoder.decode(String.self, length: 40)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(gid)
-        try encoder.encode(key, length: 40)
+        try encoder.encode(self.packetType)
+        try encoder.encode(self.gid)
+        try encoder.encode(self.key, length: 40)
     }
 }

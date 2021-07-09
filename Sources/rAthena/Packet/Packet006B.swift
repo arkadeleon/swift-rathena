@@ -38,13 +38,17 @@ public struct Packet006B: Packet {
     }
 
     public init() {
-        totalSlotNum = 0
-        premiumStartSlot = 0
-        premiumEndSlot = 0
-        charList = []
+        self.totalSlotNum = 0
+        self.premiumStartSlot = 0
+        self.premiumEndSlot = 0
+        self.charList = []
     }
 
     public init(from decoder: BinaryDecoder) throws {
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x006B else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
         let packetLength = try decoder.decode(UInt16.self)
         let charCount: UInt16
         if CONFIG_PACKETVER >= 20100413 {
@@ -54,32 +58,32 @@ public struct Packet006B: Packet {
         }
 
         if CONFIG_PACKETVER >= 20100413 {
-            totalSlotNum = try decoder.decode(UInt8.self)
-            premiumStartSlot = try decoder.decode(UInt8.self)
-            premiumEndSlot = try decoder.decode(UInt8.self)
+            self.totalSlotNum = try decoder.decode(UInt8.self)
+            self.premiumStartSlot = try decoder.decode(UInt8.self)
+            self.premiumEndSlot = try decoder.decode(UInt8.self)
         } else {
-            totalSlotNum = 0
-            premiumStartSlot = 0
-            premiumEndSlot = 0
+            self.totalSlotNum = 0
+            self.premiumStartSlot = 0
+            self.premiumEndSlot = 0
         }
         let _ = try decoder.decode(String.self, length: 20)
 
-        charList = []
+        self.charList = []
         for _ in 0..<charCount {
             let charInfo = try decoder.decode(CharInfo.self, length: Int(CharInfo.size))
-            charList.append(charInfo)
+            self.charList.append(charInfo)
         }
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(packetLength)
+        try encoder.encode(self.packetLength)
         if CONFIG_PACKETVER >= 20100413 {
-            try encoder.encode(totalSlotNum)
-            try encoder.encode(premiumStartSlot)
-            try encoder.encode(premiumEndSlot)
+            try encoder.encode(self.totalSlotNum)
+            try encoder.encode(self.premiumStartSlot)
+            try encoder.encode(self.premiumEndSlot)
         }
         try encoder.encode("", length: 20)  // unknown bytes
-        for charInfo in charList {
+        for charInfo in self.charList {
             try encoder.encode(charInfo, length: Int(CharInfo.size))
         }
     }

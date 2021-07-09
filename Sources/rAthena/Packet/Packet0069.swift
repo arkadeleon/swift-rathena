@@ -7,61 +7,13 @@
 
 public struct Packet0069: Packet {
 
-    public struct Server: BinaryDecodable, BinaryEncodable {
-
-        public var ip: UInt32
-
-        public var port: UInt16
-
-        public var name: String
-
-        public var userCount: UInt16
-
-        public var state: UInt16
-
-        public var property: UInt16
-
-        public init() {
-            ip = 0
-            port = 0
-            name = ""
-            userCount = 0
-            state = 0
-            property = 0
-        }
-
-        public init(from decoder: BinaryDecoder) throws {
-            ip = try decoder.decode(UInt32.self)
-            port = try decoder.decode(UInt16.self)
-            name = try decoder.decode(String.self, length: 20)
-            userCount = try decoder.decode(UInt16.self)
-            state = try decoder.decode(UInt16.self)
-            property = try decoder.decode(UInt16.self)
-        }
-
-        public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(ip)
-            try encoder.encode(port)
-            try encoder.encode(name, length: 20)
-            try encoder.encode(userCount)
-            try encoder.encode(state)
-            try encoder.encode(property)
-        }
-    }
-
     public var authCode: UInt32
-
     public var aid: UInt32
-
     public var userLevel: UInt32
-
     public var lastLoginIP: UInt32
-
     public var lastLoginTime: String
-
     public var sex: UInt8
-
-    public var serverList: [Server]
+    public var serverList: [ServerInfo]
 
     public var packetName: String {
         return "PACKET_AC_ACCEPT_LOGIN"
@@ -72,7 +24,7 @@ public struct Packet0069: Packet {
     }
 
     public var packetLength: UInt16 {
-        return 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + 32 * UInt16(serverList.count)
+        return 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size * UInt16(serverList.count)
     }
 
     public var source: PacketEndpoint {
@@ -84,44 +36,92 @@ public struct Packet0069: Packet {
     }
 
     public init() {
-        authCode = 0
-        aid = 0
-        userLevel = 0
-        lastLoginIP = 0
-        lastLoginTime = ""
-        sex = 0
-        serverList = []
+        self.authCode = 0
+        self.aid = 0
+        self.userLevel = 0
+        self.lastLoginIP = 0
+        self.lastLoginTime = ""
+        self.sex = 0
+        self.serverList = []
     }
 
     public init(from decoder: BinaryDecoder) throws {
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x0069 else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
         let packetLength = try decoder.decode(UInt16.self)
-        let serverCount = (packetLength - 2 - 2 - 4 - 4 - 4 - 4 - 26 - 1) / 32
+        let serverCount = (packetLength - 2 - 2 - 4 - 4 - 4 - 4 - 26 - 1) / ServerInfo.size
 
-        authCode = try decoder.decode(UInt32.self)
-        aid = try decoder.decode(UInt32.self)
-        userLevel = try decoder.decode(UInt32.self)
-        lastLoginIP = try decoder.decode(UInt32.self)
-        lastLoginTime = try decoder.decode(String.self, length: 26)
-        sex = try decoder.decode(UInt8.self)
+        self.authCode = try decoder.decode(UInt32.self)
+        self.aid = try decoder.decode(UInt32.self)
+        self.userLevel = try decoder.decode(UInt32.self)
+        self.lastLoginIP = try decoder.decode(UInt32.self)
+        self.lastLoginTime = try decoder.decode(String.self, length: 26)
+        self.sex = try decoder.decode(UInt8.self)
 
-        serverList = []
+        self.serverList = []
         for _ in 0..<serverCount {
-            let server = try Server(from: decoder)
-            serverList.append(server)
+            let serverInfo = try decoder.decode(ServerInfo.self, length: Int(ServerInfo.size))
+            self.serverList.append(serverInfo)
         }
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(packetLength)
-        try encoder.encode(authCode)
-        try encoder.encode(aid)
-        try encoder.encode(userLevel)
-        try encoder.encode(lastLoginIP)
-        try encoder.encode(lastLoginTime, length: 26)
-        try encoder.encode(sex)
+        try encoder.encode(self.packetType)
+        try encoder.encode(self.packetLength)
+        try encoder.encode(self.authCode)
+        try encoder.encode(self.aid)
+        try encoder.encode(self.userLevel)
+        try encoder.encode(self.lastLoginIP)
+        try encoder.encode(self.lastLoginTime, length: 26)
+        try encoder.encode(self.sex)
+        for serverInfo in self.serverList {
+            try encoder.encode(serverInfo, length: Int(ServerInfo.size))
+        }
+    }
+}
 
-        for server in serverList {
-            try server.encode(to: encoder)
+extension Packet0069 {
+
+    public struct ServerInfo: BinaryDecodable, BinaryEncodable {
+
+        public var ip: UInt32
+        public var port: UInt16
+        public var name: String
+        public var userCount: UInt16
+        public var state: UInt16
+        public var property: UInt16
+
+        public static var size: UInt16 {
+            return 32
+        }
+
+        public init() {
+            self.ip = 0
+            self.port = 0
+            self.name = ""
+            self.userCount = 0
+            self.state = 0
+            self.property = 0
+        }
+
+        public init(from decoder: BinaryDecoder) throws {
+            self.ip = try decoder.decode(UInt32.self)
+            self.port = try decoder.decode(UInt16.self)
+            self.name = try decoder.decode(String.self, length: 20)
+            self.userCount = try decoder.decode(UInt16.self)
+            self.state = try decoder.decode(UInt16.self)
+            self.property = try decoder.decode(UInt16.self)
+        }
+
+        public func encode(to encoder: BinaryEncoder) throws {
+            try encoder.encode(self.ip)
+            try encoder.encode(self.port)
+            try encoder.encode(self.name, length: 20)
+            try encoder.encode(self.userCount)
+            try encoder.encode(self.state)
+            try encoder.encode(self.property)
         }
     }
 }

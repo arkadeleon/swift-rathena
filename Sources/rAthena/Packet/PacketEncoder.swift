@@ -12,7 +12,6 @@ public class PacketEncoder {
 
     public func encode(_ packet: Packet) throws -> Data {
         let encoder = BinaryEncoder()
-        try encoder.encode(packet.packetType)
         try packet.encode(to: encoder)
         return encoder.data
     }

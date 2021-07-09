@@ -30,14 +30,19 @@ public struct Packet0066: Packet {
     }
 
     public init() {
-        charNum = 0
+        self.charNum = 0
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        charNum = try decoder.decode(UInt8.self)
+        let packetType = try decoder.decode(UInt16.self)
+        guard packetType == 0x0066 else {
+            throw PacketDecodingError.packetMismatch(packetType)
+        }
+        self.charNum = try decoder.decode(UInt8.self)
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(charNum)
+        try encoder.encode(self.packetType)
+        try encoder.encode(self.charNum)
     }
 }

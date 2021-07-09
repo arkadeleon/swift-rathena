@@ -7,6 +7,7 @@
 
 public enum PacketDecodingError: Error {
 
+    case packetMismatch(UInt16)
     case unknownPacket(UInt16)
 }
 
@@ -16,11 +17,12 @@ public class PacketDecoder {
     }
 
     public func decode(from data: Data) throws -> Packet {
-        let decoder = BinaryDecoder(data: data)
-        let packetType = try decoder.decode(UInt16.self)
+        let packetTypeDecoder = BinaryDecoder(data: data)
+        let packetType = try packetTypeDecoder.decode(UInt16.self)
         guard let packet = Packets.all[packetType] else {
             throw PacketDecodingError.unknownPacket(packetType)
         }
+        let decoder = BinaryDecoder(data: data)
         return try packet.init(from: decoder)
     }
 }
