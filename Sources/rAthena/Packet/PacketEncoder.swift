@@ -11,46 +11,9 @@ public class PacketEncoder {
     }
 
     public func encode(_ packet: Packet) throws -> Data {
-        let encoder = _PacketEncoder()
+        let encoder = BinaryEncoder()
         try encoder.encode(packet.packetType)
         try packet.encode(to: encoder)
         return encoder.data
-    }
-}
-
-public enum PacketEncodingError: Error {
-
-    case cannotConvertFromString
-    case outOfRange
-}
-
-private class _PacketEncoder: BinaryEncoder {
-
-    var data = Data()
-
-    func encode<T: FixedWidthInteger>(_ value: T) throws {
-        let bytes = withUnsafeBytes(of: value, Array<UInt8>.init)
-        self.data.append(contentsOf: bytes)
-    }
-
-    func encode(_ value: String, length: Int) throws {
-        if var data = value.data(using: .utf8), data.count <= length {
-            data.append(contentsOf: [UInt8](repeating: 0, count: length - data.count))
-            self.data.append(data)
-        } else {
-            throw PacketEncodingError.cannotConvertFromString
-        }
-    }
-
-    func encode<T: BinaryEncodable>(_ value: T, length: Int) throws {
-        let encoder = _PacketEncoder()
-        try value.encode(to: encoder)
-        var data = encoder.data
-        if data.count > length {
-            throw PacketEncodingError.outOfRange
-        } else {
-            data.append(contentsOf: [UInt8](repeating: 0, count: length - data.count))
-        }
-        self.data.append(data)
     }
 }
