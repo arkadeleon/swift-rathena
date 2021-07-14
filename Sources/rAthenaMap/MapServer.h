@@ -9,9 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapServer : NSThread
+@interface MapServer : NSObject
+
+@property (nonatomic, readonly, copy) NSString *name;
 
 @property (nonatomic, assign) FILE *output;
+
+- (BOOL)start;
+- (BOOL)stop;
 
 - (void)send:(NSString *)input;
 

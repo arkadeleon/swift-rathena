@@ -9,9 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginServer : NSThread
+@interface LoginServer : NSObject
+
+@property (nonatomic, readonly, copy) NSString *name;
 
 @property (nonatomic, assign) FILE *output;
+
+- (BOOL)start;
+- (BOOL)stop;
 
 - (void)send:(NSString *)input;
 

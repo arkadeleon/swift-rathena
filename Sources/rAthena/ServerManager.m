@@ -80,19 +80,13 @@
 
 - (void)startServers:(ServerMask)servers {
     if ((servers & ServerMaskChar) != 0) {
-        if (!self.charServer.isExecuting) {
-            [self.charServer start];
-        }
+        [self.charServer start];
     }
     if ((servers & ServerMaskLogin) != 0) {
-        if (!self.loginServer.isExecuting) {
-            [self.loginServer start];
-        }
+        [self.loginServer start];
     }
     if ((servers & ServerMaskMap) != 0) {
-        if (!self.mapServer.isExecuting) {
-            [self.mapServer start];
-        }
+        [self.mapServer start];
     }
 }
 
