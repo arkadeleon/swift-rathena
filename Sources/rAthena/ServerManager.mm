@@ -8,16 +8,15 @@
 #import "ServerManager.h"
 #import "TerminalView.h"
 #import <sqlite3.h>
-
-@import rAthenaChar;
-@import rAthenaLogin;
-@import rAthenaMap;
+#import <rAthenaChar/rAthenaChar.h>
+#import <rAthenaLogin/rAthenaLogin.h>
+#import <rAthenaMap/rAthenaMap.h>
 
 @interface ServerManager ()
 
-@property (nonatomic, readonly, strong) CharServer *charServer;
-@property (nonatomic, readonly, strong) LoginServer *loginServer;
-@property (nonatomic, readonly, strong) MapServer *mapServer;
+@property (nonatomic, readonly, strong) NSThread *charServer;
+@property (nonatomic, readonly, strong) NSThread *loginServer;
+@property (nonatomic, readonly, strong) NSThread *mapServer;
 
 @property (nonatomic, readonly, strong) TerminalView *charTerminalView;
 @property (nonatomic, readonly, strong) TerminalView *loginTerminalView;
@@ -39,28 +38,34 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _charServer = [[CharServer alloc] init];
+        _charServer = [[NSThread alloc] initWithBlock:^{
+            CharServerMain();
+        }];
         _charTerminalView = [[TerminalView alloc] init];
-        _charServer.output = _charTerminalView.terminal.output;
+        CharServerSetOutput(_charTerminalView.terminal.output);
 
-        _loginServer = [[LoginServer alloc] init];
+        _loginServer = [[NSThread alloc] initWithBlock:^{
+            LoginServerMain();
+        }];
         _loginTerminalView = [[TerminalView alloc] init];
-        _loginServer.output = _loginTerminalView.terminal.output;
+        LoginServerSetOutput(_loginTerminalView.terminal.output);
 
-        _mapServer = [[MapServer alloc] init];
+        _mapServer = [[NSThread alloc] initWithBlock:^{
+            MapServerMain();
+        }];
         _mapTerminalView = [[TerminalView alloc] init];
-        _mapServer.output = _mapTerminalView.terminal.output;
+        MapServerSetOutput(_mapTerminalView.terminal.output);
     }
     return self;
 }
 
 - (NSString *)nameForServer:(ServerMask)server {
     if ((server & ServerMaskChar) != 0) {
-        return self.charServer.name;
+        return CharServerGetName();
     } else if ((server & ServerMaskLogin) != 0) {
-        return self.loginServer.name;
+        return LoginServerGetName();
     } else if ((server & ServerMaskMap) != 0) {
-        return self.mapServer.name;
+        return MapServerGetName();
     } else {
         return nil;
     }
@@ -80,25 +85,19 @@
 
 - (void)startServers:(ServerMask)servers {
     if ((servers & ServerMaskChar) != 0) {
-        [self.charServer start];
+        if (!self.charServer.isExecuting) {
+            [self.charServer start];
+        }
     }
     if ((servers & ServerMaskLogin) != 0) {
-        [self.loginServer start];
+        if (!self.loginServer.isExecuting) {
+            [self.loginServer start];
+        }
     }
     if ((servers & ServerMaskMap) != 0) {
-        [self.mapServer start];
-    }
-}
-
-- (void)send:(NSString *)input toServers:(ServerMask)servers {
-    if ((servers & ServerMaskChar) != 0) {
-        [self.charServer send:input];
-    }
-    if ((servers & ServerMaskLogin) != 0) {
-        [self.loginServer send:input];
-    }
-    if ((servers & ServerMaskMap) != 0) {
-        [self.mapServer send:input];
+        if (!self.mapServer.isExecuting) {
+            [self.mapServer start];
+        }
     }
 }
 

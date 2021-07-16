@@ -9,17 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MapServer : NSObject
+extern NSString *MapServerGetName();
 
-@property (nonatomic, readonly, copy) NSString *name;
+extern void MapServerSetOutput(FILE *output);
 
-@property (nonatomic, assign) FILE *output;
-
-- (BOOL)start;
-- (BOOL)stop;
-
-- (void)send:(NSString *)input;
-
-@end
+extern void MapServerMain();
 
 NS_ASSUME_NONNULL_END

@@ -55,7 +55,7 @@
 		35218454265563CD002FAE2C /* MapServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218452265563CD002FAE2C /* MapServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35218455265563CD002FAE2C /* MapServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35218453265563CD002FAE2C /* MapServer.mm */; };
 		35218466265563EA002FAE2C /* ServerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218459265563E1002FAE2C /* ServerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3521846D265563EE002FAE2C /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3521845A265563E1002FAE2C /* ServerManager.m */; };
+		3521846D265563EE002FAE2C /* ServerManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3521845A265563E1002FAE2C /* ServerManager.mm */; };
 		3521849026556985002FAE2C /* rAthenaMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848D26556984002FAE2C /* rAthenaMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3521849F265569E6002FAE2C /* rAthenaChar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848E26556984002FAE2C /* rAthenaChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -718,7 +718,7 @@
 		35218452265563CD002FAE2C /* MapServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapServer.h; sourceTree = "<group>"; };
 		35218453265563CD002FAE2C /* MapServer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MapServer.mm; sourceTree = "<group>"; };
 		35218459265563E1002FAE2C /* ServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
-		3521845A265563E1002FAE2C /* ServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
+		3521845A265563E1002FAE2C /* ServerManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ServerManager.mm; sourceTree = "<group>"; };
 		3521848D26556984002FAE2C /* rAthenaMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaMap.h; sourceTree = "<group>"; };
 		3521848E26556984002FAE2C /* rAthenaChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaChar.h; sourceTree = "<group>"; };
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
@@ -1387,7 +1387,7 @@
 				35B4548F26956D180088D360 /* Config.h */,
 				35B4549026956D180088D360 /* Config.mm */,
 				35218459265563E1002FAE2C /* ServerManager.h */,
-				3521845A265563E1002FAE2C /* ServerManager.m */,
+				3521845A265563E1002FAE2C /* ServerManager.mm */,
 				35439C6026930871007EBA61 /* Packet */,
 				3545477B2672181600B9EA5B /* Terminal */,
 				35FD11922652094300BB0968 /* Info.plist */,
@@ -2248,7 +2248,7 @@
 				35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */,
 				35B45484269551E00088D360 /* atcommand_def.inc in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncoder.swift in Sources */,
-				3521846D265563EE002FAE2C /* ServerManager.m in Sources */,
+				3521846D265563EE002FAE2C /* ServerManager.mm in Sources */,
 				35B45483269551E00088D360 /* script_def.inc in Sources */,
 				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
 				35B45486269551E00088D360 /* atcommand.inc in Sources */,

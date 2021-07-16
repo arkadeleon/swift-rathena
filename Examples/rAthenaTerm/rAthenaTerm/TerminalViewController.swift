@@ -64,21 +64,6 @@ class TerminalViewController: UIViewController {
         startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(startButton)
 
-        let sendButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "keyboard", withConfiguration: configuration), handler: { action in
-            let alert = UIAlertController(title: ServerManager.shared.name(for: server), message: nil, preferredStyle: .alert)
-            alert.addTextField { textField in
-                textField.font = UIFont(name: "Menlo", size: 12)
-                textField.placeholder = ">"
-            }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Send", style: .default, handler: { [weak alert] _ in
-                ServerManager.shared.send(alert?.textFields?.first?.text ?? "", toServers: server)
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }))
-        sendButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        contentView.addArrangedSubview(sendButton)
-
         let clearButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "trash", withConfiguration: configuration), handler: { action in
             ServerManager.shared.clearTerminal(forServers: server)
         }))
