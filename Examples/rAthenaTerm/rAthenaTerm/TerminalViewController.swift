@@ -26,10 +26,10 @@ class TerminalViewController: UIViewController {
         charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
         mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
 
-        ServerManager.shared.copyBundleResourcesAndChangeDirectory()
+        ResourceManager.shared.copyBundleResourcesAndChangeDirectory()
     }
 
-    private func addTerminalView(for server: ServerMask) {
+    private func addTerminalView(for server: Server) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
@@ -59,13 +59,13 @@ class TerminalViewController: UIViewController {
         let configuration = UIImage.SymbolConfiguration(pointSize: 12)
 
         let startButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "play", withConfiguration: configuration), handler: { action in
-            ServerManager.shared.startServers(server)
+            ServerManager.shared.start(server)
         }))
         startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(startButton)
 
         let clearButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "trash", withConfiguration: configuration), handler: { action in
-            ServerManager.shared.clearTerminal(forServers: server)
+            ServerManager.shared.clearTerminal(for: server)
         }))
         clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(clearButton)

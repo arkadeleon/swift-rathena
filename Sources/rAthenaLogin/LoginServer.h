@@ -7,7 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern NSString *LoginServerGetName();
 
@@ -15,4 +17,6 @@ extern void LoginServerSetOutput(FILE *output);
 
 extern void LoginServerMain();
 
-NS_ASSUME_NONNULL_END
+#ifdef __cplusplus
+}
+#endif

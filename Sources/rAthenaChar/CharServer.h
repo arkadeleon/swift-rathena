@@ -7,7 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 extern NSString *CharServerGetName();
 
@@ -15,4 +17,6 @@ extern void CharServerSetOutput(FILE *output);
 
 extern void CharServerMain();
 
-NS_ASSUME_NONNULL_END
+#ifdef __cplusplus
+}
+#endif
