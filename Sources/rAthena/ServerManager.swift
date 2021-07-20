@@ -23,7 +23,6 @@ public class ServerManager {
 
     private let charServer = Thread {
         CharServerMain()
-        let x: UIInterfaceOrientationMask
     }
 
     private let loginServer = Thread {
