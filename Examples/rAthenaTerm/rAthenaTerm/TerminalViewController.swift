@@ -15,13 +15,13 @@ class TerminalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addTerminalView(for: .login)
-        addTerminalView(for: .char)
-        addTerminalView(for: .map)
+        let loginTerminalView = ServerManager.shared.loginTerminalView
+        let charTerminalView = ServerManager.shared.charTerminalView
+        let mapTerminalView = ServerManager.shared.mapTerminalView
 
-        let loginTerminalView = ServerManager.shared.terminalView(for: .login)
-        let charTerminalView = ServerManager.shared.terminalView(for: .char)
-        let mapTerminalView = ServerManager.shared.terminalView(for: .map)
+        addTerminalView(loginTerminalView, forServer: ServerManager.shared.loginServer)
+        addTerminalView(charTerminalView, forServer: ServerManager.shared.charServer)
+        addTerminalView(mapTerminalView, forServer: ServerManager.shared.mapServer)
 
         charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
         mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
@@ -29,13 +29,12 @@ class TerminalViewController: UIViewController {
         ResourceManager.shared.copyBundleResourcesAndChangeDirectory()
     }
 
-    private func addTerminalView(for server: Server) {
+    private func addTerminalView(_ terminalView: TerminalView, forServer server: Thread) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         stackView.addArrangedSubview(headerView)
 
-        let terminalView = ServerManager.shared.terminalView(for: server)
         stackView.addArrangedSubview(terminalView)
 
         let contentView = UIStackView()
@@ -51,32 +50,40 @@ class TerminalViewController: UIViewController {
         contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
 
         let titleLabel = UILabel()
-        titleLabel.text = ServerManager.shared.name(for: server).uppercased()
+        titleLabel.text = server.name?.uppercased()
         titleLabel.font = UIFont.systemFont(ofSize: 12)
         titleLabel.textColor = .label
         contentView.addArrangedSubview(titleLabel)
 
         let configuration = UIImage.SymbolConfiguration(pointSize: 12)
 
-        let startButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "play", withConfiguration: configuration), handler: { action in
-            ServerManager.shared.start(server)
-        }))
+        let startImage = UIImage(systemName: "play", withConfiguration: configuration)
+        let startAction = UIAction(image: startImage) { _ in
+            if !server.isExecuting {
+                server.start()
+            }
+        }
+        let startButton = UIButton(primaryAction: startAction)
         startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(startButton)
 
-        let clearButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "trash", withConfiguration: configuration), handler: { action in
-            ServerManager.shared.clearTerminal(for: server)
-        }))
+        let clearImage = UIImage(systemName: "trash", withConfiguration: configuration)
+        let clearAction = UIAction(image: clearImage) { _ in
+            terminalView.terminal.clear()
+        }
+        let clearButton = UIButton(primaryAction: clearAction)
         clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(clearButton)
 
-        let hideButton = UIButton(primaryAction: UIAction(image: UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration), handler: { _ in
+        let hideImage = UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration)
+        let hideAction = UIAction(image: hideImage) { _ in
             if self.stackView.arrangedSubviews.filter({ $0.isHidden }).count < 2 || terminalView.isHidden {
                 UIView.animate(withDuration: 0.25) {
                     terminalView.isHidden = !terminalView.isHidden
                 }
             }
-        }))
+        }
+        let hideButton = UIButton(primaryAction: hideAction)
         hideButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
         contentView.addArrangedSubview(hideButton)
     }
