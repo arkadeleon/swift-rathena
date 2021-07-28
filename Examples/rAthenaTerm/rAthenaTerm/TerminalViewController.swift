@@ -37,6 +37,11 @@ class TerminalViewController: UIViewController {
         mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.addSubview(mapTerminalView)
 
+        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
+        sessionsTerminalView.frame = sessionsView.bounds
+        sessionsTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        sessionsView.addSubview(sessionsTerminalView)
+
         ResourceManager.shared.copyBundleResourcesAndChangeDirectory()
     }
 
@@ -101,6 +106,8 @@ class TerminalViewController: UIViewController {
     }
 
     @IBAction func clearSessionsTerminal(_ sender: Any) {
+        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
+        sessionsTerminalView.terminal.clear()
     }
 
     @IBAction func showHideSessionsTerminal(_ sender: Any) {
