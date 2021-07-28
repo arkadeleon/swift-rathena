@@ -10,32 +10,63 @@ import rAthena
 
 class TerminalViewController: UIViewController {
 
-    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var splitView: UIStackView!
+    @IBOutlet weak var primaryView: UIStackView!
+    @IBOutlet weak var secondaryView: UIStackView!
+
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var charView: UIView!
+    @IBOutlet weak var mapView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let loginTerminalView = ServerManager.shared.loginTerminalView
+        loginTerminalView.frame = loginView.bounds
+        loginTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        loginView.addSubview(loginTerminalView)
+
         let charTerminalView = ServerManager.shared.charTerminalView
+        charTerminalView.frame = charView.bounds
+        charTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        charView.addSubview(charTerminalView)
+
         let mapTerminalView = ServerManager.shared.mapTerminalView
-
-        addTerminalView(loginTerminalView, forServer: ServerManager.shared.loginServer)
-        addTerminalView(charTerminalView, forServer: ServerManager.shared.charServer)
-        addTerminalView(mapTerminalView, forServer: ServerManager.shared.mapServer)
-
-        charTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
-        mapTerminalView.heightAnchor.constraint(equalTo: loginTerminalView.heightAnchor).isActive = true
+        mapTerminalView.frame = mapView.bounds
+        mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.addSubview(mapTerminalView)
 
         ResourceManager.shared.copyBundleResourcesAndChangeDirectory()
+    }
+
+    @IBAction func startLoginServer(_ sender: Any) {
+        let loginServer = ServerManager.shared.loginServer
+        if !loginServer.isExecuting {
+            loginServer.start()
+        }
+    }
+
+    @IBAction func startCharServer(_ sender: Any) {
+        let charServer = ServerManager.shared.loginServer
+        if !charServer.isExecuting {
+            charServer.start()
+        }
+    }
+
+    @IBAction func startMapServer(_ sender: Any) {
+        let mapServer = ServerManager.shared.loginServer
+        if !mapServer.isExecuting {
+            mapServer.start()
+        }
     }
 
     private func addTerminalView(_ terminalView: TerminalView, forServer server: Thread) {
         let headerView = UIView()
         headerView.backgroundColor = .secondarySystemBackground
         headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        stackView.addArrangedSubview(headerView)
+        primaryView.addArrangedSubview(headerView)
 
-        stackView.addArrangedSubview(terminalView)
+        primaryView.addArrangedSubview(terminalView)
 
         let contentView = UIStackView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +108,7 @@ class TerminalViewController: UIViewController {
 
         let hideImage = UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration)
         let hideAction = UIAction(image: hideImage) { _ in
-            if self.stackView.arrangedSubviews.filter({ $0.isHidden }).count < 2 || terminalView.isHidden {
+            if self.primaryView.arrangedSubviews.filter({ $0.isHidden }).count < 2 || terminalView.isHidden {
                 UIView.animate(withDuration: 0.25) {
                     terminalView.isHidden = !terminalView.isHidden
                 }
