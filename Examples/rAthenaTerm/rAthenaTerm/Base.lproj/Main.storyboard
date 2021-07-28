@@ -65,6 +65,9 @@
                                                             <constraint firstAttribute="width" constant="32" id="nLf-tj-ddQ"/>
                                                         </constraints>
                                                         <state key="normal" image="trash" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="clearLoginTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Auw-6i-aMe"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Pp-YQ-8gi">
                                                         <rect key="frame" x="642" y="0.0" width="32" height="32"/>
@@ -73,6 +76,9 @@
                                                             <constraint firstAttribute="height" constant="32" id="Lgj-bO-TGz"/>
                                                         </constraints>
                                                         <state key="normal" image="rectangle.topthird.inset" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="showHideLoginTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDF-qs-9iq"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -119,6 +125,9 @@
                                                             <constraint firstAttribute="width" constant="32" id="em1-3z-aQE"/>
                                                         </constraints>
                                                         <state key="normal" image="trash" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="clearCharTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JmA-tL-egj"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTi-RJ-05y">
                                                         <rect key="frame" x="642" y="0.0" width="32" height="32"/>
@@ -127,6 +136,9 @@
                                                             <constraint firstAttribute="width" constant="32" id="iew-TD-arL"/>
                                                         </constraints>
                                                         <state key="normal" image="rectangle.topthird.inset" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="showHideCharTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2M5-Fd-Dsg"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="jCF-IA-8zV"/>
@@ -174,6 +186,9 @@
                                                             <constraint firstAttribute="width" constant="32" id="Ek0-is-gcR"/>
                                                         </constraints>
                                                         <state key="normal" image="trash" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="clearMapTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bnL-EU-ama"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p81-Nv-MOf">
                                                         <rect key="frame" x="642" y="0.0" width="32" height="32"/>
@@ -182,6 +197,9 @@
                                                             <constraint firstAttribute="height" constant="32" id="tEc-pu-Th2"/>
                                                         </constraints>
                                                         <state key="normal" image="rectangle.topthird.inset" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="showHideMapTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qzg-md-tYE"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="ufG-g2-bFl"/>
@@ -212,11 +230,47 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="YaH-kh-t4D">
                                         <rect key="frame" x="683" y="0.0" width="341" height="718"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzb-Z9-hgj">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTD-zx-kSl">
                                                 <rect key="frame" x="0.0" y="0.0" width="341" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SESSIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDp-j3-4AM">
+                                                        <rect key="frame" x="8" y="9.5" width="55" height="13.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfr-Os-s3v">
+                                                        <rect key="frame" x="261" y="0.0" width="32" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="32" id="0bY-C0-Fxj"/>
+                                                            <constraint firstAttribute="height" constant="32" id="FQq-dK-5Bl"/>
+                                                        </constraints>
+                                                        <state key="normal" image="trash" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="clearSessionsTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3V1-M9-mYg"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXe-dH-QNL">
+                                                        <rect key="frame" x="301" y="0.0" width="32" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="32" id="LXw-1R-fF9"/>
+                                                            <constraint firstAttribute="height" constant="32" id="cJj-XK-0og"/>
+                                                        </constraints>
+                                                        <state key="normal" image="rectangle.rightthird.inset.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="showHideSessionsTerminal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FrP-TK-y7P"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="8Bx-dW-Fje"/>
+                                                    <constraint firstItem="Bfr-Os-s3v" firstAttribute="centerY" secondItem="hTD-zx-kSl" secondAttribute="centerY" id="0fY-B6-oBk"/>
+                                                    <constraint firstItem="aXe-dH-QNL" firstAttribute="leading" secondItem="Bfr-Os-s3v" secondAttribute="trailing" constant="8" id="2AE-jW-dsw"/>
+                                                    <constraint firstItem="aDp-j3-4AM" firstAttribute="leading" secondItem="hTD-zx-kSl" secondAttribute="leading" constant="8" id="2qM-y9-SkA"/>
+                                                    <constraint firstItem="aDp-j3-4AM" firstAttribute="centerY" secondItem="hTD-zx-kSl" secondAttribute="centerY" id="33P-uX-emI"/>
+                                                    <constraint firstAttribute="height" constant="32" id="44F-vD-moW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="aXe-dH-QNL" secondAttribute="trailing" constant="8" id="Hc7-BB-6vU"/>
+                                                    <constraint firstItem="aXe-dH-QNL" firstAttribute="centerY" secondItem="hTD-zx-kSl" secondAttribute="centerY" id="gGF-hX-IfW"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psg-7b-gzv">
@@ -236,7 +290,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="vnv-BV-aR4" secondAttribute="trailing" id="OA7-Xf-Bfb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vnv-BV-aR4" secondAttribute="trailing" id="OA7-Xf-Bfb"/>
                             <constraint firstItem="vnv-BV-aR4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QaW-zn-yJU"/>
                             <constraint firstItem="vnv-BV-aR4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vt7-KG-VLS"/>
                             <constraint firstItem="vnv-BV-aR4" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bIP-e6-ybq"/>
@@ -250,6 +304,7 @@
                         <outlet property="mapView" destination="mRx-fd-mwG" id="KqW-4M-wur"/>
                         <outlet property="primaryView" destination="Itu-Op-AKG" id="htE-Qd-nPw"/>
                         <outlet property="secondaryView" destination="YaH-kh-t4D" id="4GW-gj-H5E"/>
+                        <outlet property="sessionsView" destination="Psg-7b-gzv" id="vfl-J8-ftY"/>
                         <outlet property="splitView" destination="vnv-BV-aR4" id="0WF-of-bea"/>
                     </connections>
                 </viewController>
@@ -260,6 +315,7 @@
     </scenes>
     <resources>
         <image name="play" catalog="system" width="120" height="128"/>
+        <image name="rectangle.rightthird.inset.fill" catalog="system" width="128" height="93"/>
         <image name="rectangle.topthird.inset" catalog="system" width="128" height="93"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="secondarySystemBackgroundColor">

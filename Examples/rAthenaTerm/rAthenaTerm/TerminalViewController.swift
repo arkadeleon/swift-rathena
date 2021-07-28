@@ -17,6 +17,7 @@ class TerminalViewController: UIViewController {
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var charView: UIView!
     @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var sessionsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,76 +47,62 @@ class TerminalViewController: UIViewController {
         }
     }
 
+    @IBAction func clearLoginTerminal(_ sender: Any) {
+        let loginTerminalView = ServerManager.shared.loginTerminalView
+        loginTerminalView.terminal.clear()
+    }
+
+    @IBAction func showHideLoginTerminal(_ sender: Any) {
+        if !charView.isHidden || !mapView.isHidden {
+            UIView.animate(withDuration: 0.25) {
+                self.loginView.isHidden = !self.loginView.isHidden
+            }
+        }
+    }
+
     @IBAction func startCharServer(_ sender: Any) {
-        let charServer = ServerManager.shared.loginServer
+        let charServer = ServerManager.shared.charServer
         if !charServer.isExecuting {
             charServer.start()
         }
     }
 
+    @IBAction func clearCharTerminal(_ sender: Any) {
+        let charTerminalView = ServerManager.shared.charTerminalView
+        charTerminalView.terminal.clear()
+    }
+
+    @IBAction func showHideCharTerminal(_ sender: Any) {
+        if !loginView.isHidden || !mapView.isHidden {
+            UIView.animate(withDuration: 0.25) {
+                self.charView.isHidden = !self.charView.isHidden
+            }
+        }
+    }
+
     @IBAction func startMapServer(_ sender: Any) {
-        let mapServer = ServerManager.shared.loginServer
+        let mapServer = ServerManager.shared.mapServer
         if !mapServer.isExecuting {
             mapServer.start()
         }
     }
 
-    private func addTerminalView(_ terminalView: TerminalView, forServer server: Thread) {
-        let headerView = UIView()
-        headerView.backgroundColor = .secondarySystemBackground
-        headerView.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        primaryView.addArrangedSubview(headerView)
+    @IBAction func clearMapTerminal(_ sender: Any) {
+        let mapTerminalView = ServerManager.shared.mapTerminalView
+        mapTerminalView.terminal.clear()
+    }
 
-        primaryView.addArrangedSubview(terminalView)
-
-        let contentView = UIStackView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.axis = .horizontal
-        contentView.distribution = .fill
-        contentView.alignment = .fill
-        contentView.spacing = 8
-        headerView.addSubview(contentView)
-        contentView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 8).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -8).isActive = true
-        contentView.topAnchor.constraint(equalTo: headerView.topAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
-
-        let titleLabel = UILabel()
-        titleLabel.text = server.name?.uppercased()
-        titleLabel.font = UIFont.systemFont(ofSize: 12)
-        titleLabel.textColor = .label
-        contentView.addArrangedSubview(titleLabel)
-
-        let configuration = UIImage.SymbolConfiguration(pointSize: 12)
-
-        let startImage = UIImage(systemName: "play", withConfiguration: configuration)
-        let startAction = UIAction(image: startImage) { _ in
-            if !server.isExecuting {
-                server.start()
+    @IBAction func showHideMapTerminal(_ sender: Any) {
+        if !loginView.isHidden || !charView.isHidden {
+            UIView.animate(withDuration: 0.25) {
+                self.mapView.isHidden = !self.mapView.isHidden
             }
         }
-        let startButton = UIButton(primaryAction: startAction)
-        startButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        contentView.addArrangedSubview(startButton)
+    }
 
-        let clearImage = UIImage(systemName: "trash", withConfiguration: configuration)
-        let clearAction = UIAction(image: clearImage) { _ in
-            terminalView.terminal.clear()
-        }
-        let clearButton = UIButton(primaryAction: clearAction)
-        clearButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        contentView.addArrangedSubview(clearButton)
+    @IBAction func clearSessionsTerminal(_ sender: Any) {
+    }
 
-        let hideImage = UIImage(systemName: "rectangle.topthird.inset" , withConfiguration: configuration)
-        let hideAction = UIAction(image: hideImage) { _ in
-            if self.primaryView.arrangedSubviews.filter({ $0.isHidden }).count < 2 || terminalView.isHidden {
-                UIView.animate(withDuration: 0.25) {
-                    terminalView.isHidden = !terminalView.isHidden
-                }
-            }
-        }
-        let hideButton = UIButton(primaryAction: hideAction)
-        hideButton.widthAnchor.constraint(equalToConstant: 32).isActive = true
-        contentView.addArrangedSubview(hideButton)
+    @IBAction func showHideSessionsTerminal(_ sender: Any) {
     }
 }
