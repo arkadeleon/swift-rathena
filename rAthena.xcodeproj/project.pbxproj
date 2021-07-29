@@ -55,13 +55,12 @@
 		3521844E265563AD002FAE2C /* CharServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3521843E265563A1002FAE2C /* CharServer.mm */; };
 		35218454265563CD002FAE2C /* MapServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218452265563CD002FAE2C /* MapServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35218455265563CD002FAE2C /* MapServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35218453265563CD002FAE2C /* MapServer.mm */; };
-		35218466265563EA002FAE2C /* ResourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218459265563E1002FAE2C /* ResourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3521846D265563EE002FAE2C /* ResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3521845A265563E1002FAE2C /* ResourceManager.mm */; };
 		3521849026556985002FAE2C /* rAthenaMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848D26556984002FAE2C /* rAthenaMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3521849F265569E6002FAE2C /* rAthenaChar.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848E26556984002FAE2C /* rAthenaChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
+		353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FE9C926B257FC00D75FEE /* ResourceManager.swift */; };
 		35439C622693088B007EBA61 /* Packet0064.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C612693088B007EBA61 /* Packet0064.swift */; };
 		35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C632693093E007EBA61 /* PacketEndpoint.swift */; };
 		35439C6626930ABE007EBA61 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6526930ABE007EBA61 /* Packet.swift */; };
@@ -719,13 +718,12 @@
 		3521843E265563A1002FAE2C /* CharServer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CharServer.mm; sourceTree = "<group>"; };
 		35218452265563CD002FAE2C /* MapServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapServer.h; sourceTree = "<group>"; };
 		35218453265563CD002FAE2C /* MapServer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MapServer.mm; sourceTree = "<group>"; };
-		35218459265563E1002FAE2C /* ResourceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceManager.h; sourceTree = "<group>"; };
-		3521845A265563E1002FAE2C /* ResourceManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourceManager.mm; sourceTree = "<group>"; };
 		3521848D26556984002FAE2C /* rAthenaMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaMap.h; sourceTree = "<group>"; };
 		3521848E26556984002FAE2C /* rAthenaChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaChar.h; sourceTree = "<group>"; };
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
+		353FE9C926B257FC00D75FEE /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
 		35439C612693088B007EBA61 /* Packet0064.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0064.swift; sourceTree = "<group>"; };
 		35439C632693093E007EBA61 /* PacketEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketEndpoint.swift; sourceTree = "<group>"; };
 		35439C6526930ABE007EBA61 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
@@ -1388,9 +1386,8 @@
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
 				35B4548F26956D180088D360 /* Config.h */,
 				35B4549026956D180088D360 /* Config.mm */,
-				35218459265563E1002FAE2C /* ResourceManager.h */,
-				3521845A265563E1002FAE2C /* ResourceManager.mm */,
 				350808C526A1EB2A00FEEBEF /* ServerManager.swift */,
+				353FE9C926B257FC00D75FEE /* ResourceManager.swift */,
 				35439C6026930871007EBA61 /* Packet */,
 				3545477B2672181600B9EA5B /* Terminal */,
 				35FD11922652094300BB0968 /* Info.plist */,
@@ -1683,7 +1680,6 @@
 			files = (
 				35B4549126956D180088D360 /* Config.h in Headers */,
 				35B45479269551C70088D360 /* general.hpp in Headers */,
-				35218466265563EA002FAE2C /* ResourceManager.h in Headers */,
 				354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */,
 				35B4547C269551D00088D360 /* core.hpp in Headers */,
 				354547DB267360E800B9EA5B /* TerminalView.h in Headers */,
@@ -2252,11 +2248,11 @@
 				350808C626A1EB2A00FEEBEF /* ServerManager.swift in Sources */,
 				35B45484269551E00088D360 /* atcommand_def.inc in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncoder.swift in Sources */,
-				3521846D265563EE002FAE2C /* ResourceManager.mm in Sources */,
 				35B45483269551E00088D360 /* script_def.inc in Sources */,
 				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
 				35B45486269551E00088D360 /* atcommand.inc in Sources */,
 				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
+				353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */,
 				354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */,
 				35B4547826945B4B0088D360 /* Packet0069.swift in Sources */,
 				35439C622693088B007EBA61 /* Packet0064.swift in Sources */,

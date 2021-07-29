@@ -42,7 +42,7 @@ class TerminalViewController: UIViewController {
         sessionsTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         sessionsView.addSubview(sessionsTerminalView)
 
-        ResourceManager.shared.copyBundleResourcesAndChangeDirectory()
+        try? ResourceManager.shared.copyBundleResourceFiles()
     }
 
     @IBAction func startLoginServer(_ sender: Any) {
