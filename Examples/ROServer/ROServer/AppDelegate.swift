@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  rAthenaTerm
+//  ROServer
 //
 //  Created by Leon Li on 2021/5/22.
 //

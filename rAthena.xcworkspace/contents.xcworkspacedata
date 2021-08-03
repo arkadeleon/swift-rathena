@@ -5,6 +5,6 @@
       location = "group:rAthena.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Examples/rAthenaTerm/rAthenaTerm.xcodeproj">
+      location = "group:Examples/ROServer/ROServer.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,6 +1,6 @@
 //
-//  TerminalViewController.swift
-//  rAthenaTerm
+//  ServerViewController.swift
+//  ROServer
 //
 //  Created by Leon Li on 2021/5/22.
 //
@@ -8,7 +8,7 @@
 import UIKit
 import rAthena
 
-class TerminalViewController: UIViewController {
+class ServerViewController: UIViewController {
 
     @IBOutlet weak var splitView: UIStackView!
     @IBOutlet weak var primaryView: UIStackView!

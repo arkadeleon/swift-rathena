@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-788" y="115"/>
         </scene>
-        <!--rAthena-->
+        <!--Server-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TerminalViewController" customModule="rAthenaTerm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ServerViewController" customModule="ROServer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,7 +297,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="rAthena" id="clB-O2-rR9"/>
+                    <navigationItem key="navigationItem" title="Server" id="clB-O2-rR9"/>
                     <connections>
                         <outlet property="charView" destination="eXj-qx-74z" id="CTp-4x-jza"/>
                         <outlet property="loginView" destination="lKJ-co-Rky" id="CKA-sm-Fet"/>
