@@ -11,20 +11,28 @@
 
 extern int main (int argc, char **argv);
 
-LoginServerDataReceiveHandler loginServerDataReceiveHandler = nil;
-LoginServerDataSendHandler loginServerDataSendHandler = nil;
+int write_function(void *cookie, const char *buf, int n) {
+    LoginServerOutputHandler handler = LoginServerHandlers.sharedHandlers.outputHandler;
+    if (handler) {
+        NSString *message = [[NSString alloc] initWithBytes:buf length:n encoding:NSUTF8StringEncoding];
+        handler(message);
+    }
+    return 0;
+}
 
 void do_recv(int fd) {
-    if (loginServerDataReceiveHandler) {
+    LoginServerDataReceiveHandler handler = LoginServerHandlers.sharedHandlers.dataReceiveHandler;
+    if (handler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        loginServerDataReceiveHandler(data);
+        handler(data);
     }
 }
 
 void do_send(int fd) {
-    if (loginServerDataSendHandler) {
+    LoginServerDataSendHandler handler = LoginServerHandlers.sharedHandlers.dataSendHandler;
+    if (handler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        loginServerDataSendHandler(data);
+        handler(data);
     }
 }
 
@@ -32,18 +40,24 @@ NSString *LoginServerGetName() {
     return @"Login Server";
 }
 
-void LoginServerSetOutput(FILE *output) {
-    STDOUT = output;
-    STDERR = output;
+void LoginServerSetOutputHandler(LoginServerOutputHandler handler) {
+    LoginServerHandlers.sharedHandlers.outputHandler = handler;
+
+    static FILE *output = nil;
+    if (output == nil) {
+        output = fwopen(0, write_function);
+        STDOUT = output;
+        STDERR = output;
+    }
 }
 
 void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler handler) {
-    loginServerDataReceiveHandler = handler;
+    LoginServerHandlers.sharedHandlers.dataReceiveHandler = handler;
     recv_callback = do_recv;
 }
 
 void LoginServerSetDataSendHandler(LoginServerDataSendHandler handler) {
-    loginServerDataSendHandler = handler;
+    LoginServerHandlers.sharedHandlers.dataSendHandler = handler;
     send_callback = do_send;
 }
 

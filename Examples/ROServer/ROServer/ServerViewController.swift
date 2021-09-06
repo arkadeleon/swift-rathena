@@ -22,25 +22,41 @@ class ServerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let loginTerminalView = ServerManager.shared.loginTerminalView
-        loginTerminalView.frame = loginView.bounds
+        let loginTerminalView = TerminalView(frame: loginView.bounds)
         loginTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         loginView.addSubview(loginTerminalView)
 
-        let charTerminalView = ServerManager.shared.charTerminalView
-        charTerminalView.frame = charView.bounds
+        let charTerminalView = TerminalView(frame: charView.bounds)
         charTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         charView.addSubview(charTerminalView)
 
-        let mapTerminalView = ServerManager.shared.mapTerminalView
-        mapTerminalView.frame = mapView.bounds
+        let mapTerminalView = TerminalView(frame: mapView.bounds)
         mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.addSubview(mapTerminalView)
 
-        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
-        sessionsTerminalView.frame = sessionsView.bounds
+        let sessionsTerminalView = TerminalView(frame: sessionsView.bounds)
         sessionsTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         sessionsView.addSubview(sessionsTerminalView)
+
+        ServerManager.shared.loginServerOutputHandler = { message in
+            let data = message.data(using: .utf8)!
+            loginTerminalView.terminal.write(data)
+        }
+
+        ServerManager.shared.charServerOutputHandler = { message in
+            let data = message.data(using: .utf8)!
+            charTerminalView.terminal.write(data)
+        }
+
+        ServerManager.shared.mapServerOutputHandler = { message in
+            let data = message.data(using: .utf8)!
+            mapTerminalView.terminal.write(data)
+        }
+
+        ServerManager.shared.sessionsOutputHandler = { message in
+            let data = message.data(using: .utf8)!
+            sessionsTerminalView.terminal.write(data)
+        }
 
         try? ResourceManager.shared.copyBundleResourceFiles()
     }
@@ -53,8 +69,8 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearLoginTerminal(_ sender: Any) {
-        let loginTerminalView = ServerManager.shared.loginTerminalView
-        loginTerminalView.terminal.clear()
+//        let loginTerminalView = ServerManager.shared.loginTerminalView
+//        loginTerminalView.terminal.clear()
     }
 
     @IBAction func showHideLoginTerminal(_ sender: Any) {
@@ -73,8 +89,8 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearCharTerminal(_ sender: Any) {
-        let charTerminalView = ServerManager.shared.charTerminalView
-        charTerminalView.terminal.clear()
+//        let charTerminalView = ServerManager.shared.charTerminalView
+//        charTerminalView.terminal.clear()
     }
 
     @IBAction func showHideCharTerminal(_ sender: Any) {
@@ -93,8 +109,8 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearMapTerminal(_ sender: Any) {
-        let mapTerminalView = ServerManager.shared.mapTerminalView
-        mapTerminalView.terminal.clear()
+//        let mapTerminalView = ServerManager.shared.mapTerminalView
+//        mapTerminalView.terminal.clear()
     }
 
     @IBAction func showHideMapTerminal(_ sender: Any) {
@@ -106,8 +122,8 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearSessionsTerminal(_ sender: Any) {
-        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
-        sessionsTerminalView.terminal.clear()
+//        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
+//        sessionsTerminalView.terminal.clear()
     }
 
     @IBAction func showHideSessionsTerminal(_ sender: Any) {

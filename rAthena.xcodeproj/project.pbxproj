@@ -61,6 +61,12 @@
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
 		353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FE9C926B257FC00D75FEE /* ResourceManager.swift */; };
+		35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C0726E6652200F42F92 /* CharServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C0826E6652200F42F92 /* CharServerHandlers.m */; };
+		35435C0F26E6693800F42F92 /* LoginServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C0B26E6693100F42F92 /* LoginServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35435C1026E6693F00F42F92 /* LoginServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C0C26E6693100F42F92 /* LoginServerHandlers.m */; };
+		35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C1126E66DA100F42F92 /* MapServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35435C1426E66DA100F42F92 /* MapServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C1226E66DA100F42F92 /* MapServerHandlers.m */; };
 		35439C622693088B007EBA61 /* Packet0064.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C612693088B007EBA61 /* Packet0064.swift */; };
 		35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C632693093E007EBA61 /* PacketEndpoint.swift */; };
 		35439C6626930ABE007EBA61 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6526930ABE007EBA61 /* Packet.swift */; };
@@ -73,18 +79,6 @@
 		35439C7426943AC8007EBA61 /* Packet0066.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C7326943AC8007EBA61 /* Packet0066.swift */; };
 		354547782671FCDF00B9EA5B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 		354547792672085C00B9EA5B /* sql-files in Resources */ = {isa = PBXBuildFile; fileRef = 355652842660B80900EAA323 /* sql-files */; };
-		354547CD267360E800B9EA5B /* term.html in Resources */ = {isa = PBXBuildFile; fileRef = 3545477F2672181600B9EA5B /* term.html */; };
-		354547CF267360E800B9EA5B /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545478D267218B900B9EA5B /* Terminal.m */; };
-		354547D0267360E800B9EA5B /* DelayedUITask.h in Headers */ = {isa = PBXBuildFile; fileRef = 3545479526730B3600B9EA5B /* DelayedUITask.h */; };
-		354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547AF2673530900B9EA5B /* ScrollbarView.m */; };
-		354547D2267360E800B9EA5B /* TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 354547AD2673530900B9EA5B /* TerminalView.m */; };
-		354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547AE2673530900B9EA5B /* ScrollbarView.h */; };
-		354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3545479426730B3500B9EA5B /* DelayedUITask.m */; };
-		354547D5267360E800B9EA5B /* term.css in Resources */ = {isa = PBXBuildFile; fileRef = 3545477D2672181600B9EA5B /* term.css */; };
-		354547D7267360E800B9EA5B /* term.js in Resources */ = {isa = PBXBuildFile; fileRef = 3545477C2672181600B9EA5B /* term.js */; };
-		354547D9267360E800B9EA5B /* hterm_all.js in Resources */ = {isa = PBXBuildFile; fileRef = 3545477E2672181600B9EA5B /* hterm_all.js */; };
-		354547DA267360E800B9EA5B /* Terminal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3545478C267218B900B9EA5B /* Terminal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		354547DB267360E800B9EA5B /* TerminalView.h in Headers */ = {isa = PBXBuildFile; fileRef = 354547AC2673530900B9EA5B /* TerminalView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3556523526578AD700EAA323 /* db in Resources */ = {isa = PBXBuildFile; fileRef = 3556523426578AD700EAA323 /* db */; };
 		3556527B2660B68600EAA323 /* npc in Resources */ = {isa = PBXBuildFile; fileRef = 3556527A2660B68600EAA323 /* npc */; };
 		3599687B2655571A006AECE6 /* LoginServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 359968792655571A006AECE6 /* LoginServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -724,6 +718,12 @@
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
 		353FE9C926B257FC00D75FEE /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
+		35435C0726E6652200F42F92 /* CharServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharServerHandlers.h; sourceTree = "<group>"; };
+		35435C0826E6652200F42F92 /* CharServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharServerHandlers.m; sourceTree = "<group>"; };
+		35435C0B26E6693100F42F92 /* LoginServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginServerHandlers.h; sourceTree = "<group>"; };
+		35435C0C26E6693100F42F92 /* LoginServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginServerHandlers.m; sourceTree = "<group>"; };
+		35435C1126E66DA100F42F92 /* MapServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapServerHandlers.h; sourceTree = "<group>"; };
+		35435C1226E66DA100F42F92 /* MapServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapServerHandlers.m; sourceTree = "<group>"; };
 		35439C612693088B007EBA61 /* Packet0064.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0064.swift; sourceTree = "<group>"; };
 		35439C632693093E007EBA61 /* PacketEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketEndpoint.swift; sourceTree = "<group>"; };
 		35439C6526930ABE007EBA61 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
@@ -734,18 +734,6 @@
 		35439C6F26942871007EBA61 /* Packets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packets.swift; sourceTree = "<group>"; };
 		35439C7126943865007EBA61 /* Packet0065.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0065.swift; sourceTree = "<group>"; };
 		35439C7326943AC8007EBA61 /* Packet0066.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0066.swift; sourceTree = "<group>"; };
-		3545477C2672181600B9EA5B /* term.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = term.js; sourceTree = "<group>"; };
-		3545477D2672181600B9EA5B /* term.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = term.css; sourceTree = "<group>"; };
-		3545477E2672181600B9EA5B /* hterm_all.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hterm_all.js; sourceTree = "<group>"; };
-		3545477F2672181600B9EA5B /* term.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = term.html; sourceTree = "<group>"; };
-		3545478C267218B900B9EA5B /* Terminal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		3545478D267218B900B9EA5B /* Terminal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
-		3545479426730B3500B9EA5B /* DelayedUITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUITask.m; sourceTree = "<group>"; };
-		3545479526730B3600B9EA5B /* DelayedUITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUITask.h; sourceTree = "<group>"; };
-		354547AC2673530900B9EA5B /* TerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalView.h; sourceTree = "<group>"; };
-		354547AD2673530900B9EA5B /* TerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalView.m; sourceTree = "<group>"; };
-		354547AE2673530900B9EA5B /* ScrollbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollbarView.h; sourceTree = "<group>"; };
-		354547AF2673530900B9EA5B /* ScrollbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollbarView.m; sourceTree = "<group>"; };
 		3556523426578AD700EAA323 /* db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db; sourceTree = SOURCE_ROOT; };
 		3556527A2660B68600EAA323 /* npc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = npc; sourceTree = "<group>"; };
 		355652822660B7B100EAA323 /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
@@ -1141,6 +1129,8 @@
 				3521848F26556985002FAE2C /* rAthenaLogin.h */,
 				359968792655571A006AECE6 /* LoginServer.h */,
 				3599687A2655571A006AECE6 /* LoginServer.mm */,
+				35435C0B26E6693100F42F92 /* LoginServerHandlers.h */,
+				35435C0C26E6693100F42F92 /* LoginServerHandlers.m */,
 				35FFBB2F268620BD0026D40A /* Info.plist */,
 			);
 			name = rAthenaLogin;
@@ -1153,6 +1143,8 @@
 				3521848E26556984002FAE2C /* rAthenaChar.h */,
 				3521843D265563A1002FAE2C /* CharServer.h */,
 				3521843E265563A1002FAE2C /* CharServer.mm */,
+				35435C0726E6652200F42F92 /* CharServerHandlers.h */,
+				35435C0826E6652200F42F92 /* CharServerHandlers.m */,
 				35FFBB2E2686209E0026D40A /* Info.plist */,
 			);
 			name = rAthenaChar;
@@ -1165,6 +1157,8 @@
 				3521848D26556984002FAE2C /* rAthenaMap.h */,
 				35218452265563CD002FAE2C /* MapServer.h */,
 				35218453265563CD002FAE2C /* MapServer.mm */,
+				35435C1126E66DA100F42F92 /* MapServerHandlers.h */,
+				35435C1226E66DA100F42F92 /* MapServerHandlers.m */,
 				35FFBB30268620CF0026D40A /* Info.plist */,
 			);
 			name = rAthenaMap;
@@ -1191,25 +1185,6 @@
 				35439C6826930DFE007EBA61 /* BinaryEncoder.swift */,
 			);
 			path = Packet;
-			sourceTree = "<group>";
-		};
-		3545477B2672181600B9EA5B /* Terminal */ = {
-			isa = PBXGroup;
-			children = (
-				3545479526730B3600B9EA5B /* DelayedUITask.h */,
-				3545479426730B3500B9EA5B /* DelayedUITask.m */,
-				354547AE2673530900B9EA5B /* ScrollbarView.h */,
-				354547AF2673530900B9EA5B /* ScrollbarView.m */,
-				354547AC2673530900B9EA5B /* TerminalView.h */,
-				354547AD2673530900B9EA5B /* TerminalView.m */,
-				3545478C267218B900B9EA5B /* Terminal.h */,
-				3545478D267218B900B9EA5B /* Terminal.m */,
-				3545477F2672181600B9EA5B /* term.html */,
-				3545477D2672181600B9EA5B /* term.css */,
-				3545477C2672181600B9EA5B /* term.js */,
-				3545477E2672181600B9EA5B /* hterm_all.js */,
-			);
-			path = Terminal;
 			sourceTree = "<group>";
 		};
 		35E6BD612654D94600DD3426 /* map */ = {
@@ -1389,7 +1364,6 @@
 				350808C526A1EB2A00FEEBEF /* ServerManager.swift */,
 				353FE9C926B257FC00D75FEE /* ResourceManager.swift */,
 				35439C6026930871007EBA61 /* Packet */,
-				3545477B2672181600B9EA5B /* Terminal */,
 				35FD11922652094300BB0968 /* Info.plist */,
 			);
 			name = rAthena;
@@ -1680,9 +1654,7 @@
 			files = (
 				35B4549126956D180088D360 /* Config.h in Headers */,
 				35B45479269551C70088D360 /* general.hpp in Headers */,
-				354547D3267360E800B9EA5B /* ScrollbarView.h in Headers */,
 				35B4547C269551D00088D360 /* core.hpp in Headers */,
-				354547DB267360E800B9EA5B /* TerminalView.h in Headers */,
 				35B4547D269551D00088D360 /* renewal.hpp in Headers */,
 				35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */,
 				35B4547F269551E00088D360 /* defines_post.hpp in Headers */,
@@ -1690,9 +1662,7 @@
 				35B4547E269551D00088D360 /* secure.hpp in Headers */,
 				35B45485269551E00088D360 /* defines_pre.hpp in Headers */,
 				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
-				354547DA267360E800B9EA5B /* Terminal.h in Headers */,
 				35B4547A269551D00088D360 /* const.hpp in Headers */,
-				354547D0267360E800B9EA5B /* DelayedUITask.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1776,6 +1746,7 @@
 				35FD112F2652094300BB0968 /* eventhandler.h in Headers */,
 				35FD11302652094300BB0968 /* ptr.h in Headers */,
 				35FD11312652094300BB0968 /* node_ref.h in Headers */,
+				35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */,
 				35FD11322652094300BB0968 /* cli.hpp in Headers */,
 				35FD11332652094300BB0968 /* scanscalar.h in Headers */,
 				35FD11342652094300BB0968 /* anchordict.h in Headers */,
@@ -1866,6 +1837,7 @@
 				35FD11B82652094F00BB0968 /* core.hpp in Headers */,
 				35FD130A2652150400BB0968 /* account.hpp in Headers */,
 				35FD11B92652094F00BB0968 /* emitterstyle.h in Headers */,
+				35435C0F26E6693800F42F92 /* LoginServerHandlers.h in Headers */,
 				35FD11BA2652094F00BB0968 /* scantag.h in Headers */,
 				35FD11BB2652094F00BB0968 /* mmo.hpp in Headers */,
 				35FD11BC2652094F00BB0968 /* conf.hpp in Headers */,
@@ -1966,6 +1938,7 @@
 				35FD12452652096400BB0968 /* des.hpp in Headers */,
 				35FD12462652096400BB0968 /* graphbuilder.h in Headers */,
 				3513645A26596D6D00039D6C /* defines_pre.hpp in Headers */,
+				35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */,
 				35FD12472652096400BB0968 /* emitterdef.h in Headers */,
 				35FD12482652096400BB0968 /* dll.h in Headers */,
 				35FD12492652096400BB0968 /* grfio.hpp in Headers */,
@@ -2203,12 +2176,8 @@
 			files = (
 				354547792672085C00B9EA5B /* sql-files in Resources */,
 				352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */,
-				354547D7267360E800B9EA5B /* term.js in Resources */,
-				354547D9267360E800B9EA5B /* hterm_all.js in Resources */,
-				354547CD267360E800B9EA5B /* term.html in Resources */,
 				352185FC2656D6DD002FAE2C /* conf in Resources */,
 				3556523526578AD700EAA323 /* db in Resources */,
-				354547D5267360E800B9EA5B /* term.css in Resources */,
 				3556527B2660B68600EAA323 /* npc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2249,16 +2218,12 @@
 				35B45484269551E00088D360 /* atcommand_def.inc in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncoder.swift in Sources */,
 				35B45483269551E00088D360 /* script_def.inc in Sources */,
-				354547D2267360E800B9EA5B /* TerminalView.m in Sources */,
 				35B45486269551E00088D360 /* atcommand.inc in Sources */,
 				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
 				353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */,
-				354547D1267360E800B9EA5B /* ScrollbarView.m in Sources */,
 				35B4547826945B4B0088D360 /* Packet0069.swift in Sources */,
 				35439C622693088B007EBA61 /* Packet0064.swift in Sources */,
-				354547D4267360E800B9EA5B /* DelayedUITask.m in Sources */,
 				35B45480269551E00088D360 /* script.inc in Sources */,
-				354547CF267360E800B9EA5B /* Terminal.m in Sources */,
 				35B45482269551E00088D360 /* battle_config_struct.inc in Sources */,
 				35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */,
 				35439C7026942871007EBA61 /* Packets.swift in Sources */,
@@ -2293,6 +2258,7 @@
 				35FD115C2652094300BB0968 /* conf.cpp in Sources */,
 				3521844E265563AD002FAE2C /* CharServer.mm in Sources */,
 				35FD115D2652094300BB0968 /* md5calc.cpp in Sources */,
+				35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
 				3513645B26596D6D00039D6C /* battle_config_init.inc in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
@@ -2380,6 +2346,7 @@
 				35FD11FB2652094F00BB0968 /* md5calc.cpp in Sources */,
 				35FD11FC2652094F00BB0968 /* nodeevents.cpp in Sources */,
 				35FD11FD2652094F00BB0968 /* nodebuilder.cpp in Sources */,
+				35435C1026E6693F00F42F92 /* LoginServerHandlers.m in Sources */,
 				35FD11FE2652094F00BB0968 /* binary.cpp in Sources */,
 				35FD11FF2652094F00BB0968 /* singledocparser.cpp in Sources */,
 				35FD12002652094F00BB0968 /* emitterstate.cpp in Sources */,
@@ -2492,6 +2459,7 @@
 				35FD12A62652096400BB0968 /* scantag.cpp in Sources */,
 				35FD12A72652096400BB0968 /* strlib.cpp in Sources */,
 				35FD12A82652096400BB0968 /* emit.cpp in Sources */,
+				35435C1426E66DA100F42F92 /* MapServerHandlers.m in Sources */,
 				35FD12A92652096400BB0968 /* memory.cpp in Sources */,
 				35FD12AA2652096400BB0968 /* utilities.cpp in Sources */,
 				35FD12AB2652096400BB0968 /* node_data.cpp in Sources */,

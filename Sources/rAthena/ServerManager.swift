@@ -18,10 +18,59 @@ public class ServerManager {
     public let loginServer: Thread
     public let mapServer: Thread
 
-    public let charTerminalView = TerminalView()
-    public let loginTerminalView = TerminalView()
-    public let mapTerminalView = TerminalView()
-    public let sessionsTerminalView = TerminalView()
+    public var charServerOutputHandler: ((String) -> Void)? {
+        didSet {
+            if let handler = charServerOutputHandler {
+                CharServerSetOutputHandler(handler)
+            }
+        }
+    }
+
+    public var loginServerOutputHandler: ((String) -> Void)? {
+        didSet {
+            if let handler = loginServerOutputHandler {
+                LoginServerSetOutputHandler(handler)
+            }
+        }
+    }
+
+    public var mapServerOutputHandler: ((String) -> Void)? {
+        didSet {
+            if let handler = mapServerOutputHandler {
+                MapServerSetOutputHandler(handler)
+            }
+        }
+    }
+
+    public var sessionsOutputHandler: ((String) -> Void)? {
+        didSet {
+            if let handler = sessionsOutputHandler {
+                let print: (Data, String, String) -> Void = { (data, flow, server) in
+                    let data = data.map({ String(format: "%02X", $0) }).joined()
+                    let message = "[\(server)|\(flow)]: 0x\(data)\n"
+                    handler(message)
+                }
+                CharServerSetDataReceiveHandler { data in
+                    print(data, "Receive", "Char")
+                }
+                CharServerSetDataSendHandler { data in
+                    print(data, "Send", "Char")
+                }
+                LoginServerSetDataReceiveHandler { data in
+                    print(data, "Receive", "Login")
+                }
+                LoginServerSetDataSendHandler { data in
+                    print(data, "Send", "Login")
+                }
+                MapServerSetDataReceiveHandler { data in
+                    print(data, "Receive", "Map")
+                }
+                MapServerSetDataSendHandler { data in
+                    print(data, "Send", "Map")
+                }
+            }
+        }
+    }
 
     private init() {
         charServer = Thread {
@@ -38,34 +87,5 @@ public class ServerManager {
             MapServerMain()
         }
         mapServer.name = MapServerGetName()
-
-        CharServerSetOutput(charTerminalView.terminal.output)
-        LoginServerSetOutput(loginTerminalView.terminal.output)
-        MapServerSetOutput(mapTerminalView.terminal.output)
-
-        CharServerSetDataReceiveHandler { data in
-            self.print(data: data, flow: "Receive", fromServer: "Char")
-        }
-        CharServerSetDataSendHandler { data in
-            self.print(data: data, flow: "Send", fromServer: "Char")
-        }
-        LoginServerSetDataReceiveHandler { data in
-            self.print(data: data, flow: "Receive", fromServer: "Login")
-        }
-        LoginServerSetDataSendHandler { data in
-            self.print(data: data, flow: "Send", fromServer: "Login")
-        }
-        MapServerSetDataReceiveHandler { data in
-            self.print(data: data, flow: "Receive", fromServer: "Map")
-        }
-        MapServerSetDataSendHandler { data in
-            self.print(data: data, flow: "Send", fromServer: "Map")
-        }
-    }
-
-    private func print(data: Data, flow: String, fromServer server: String) {
-        let data = data.map({ String(format: "%02X", $0) }).joined()
-        let text = "[\(server)|\(flow)]: 0x\(data)\n"
-        sessionsTerminalView.terminal.write(text, length: text.count)
     }
 }

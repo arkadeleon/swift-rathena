@@ -10,9 +10,7 @@
 
 @interface Terminal : NSObject
 
-@property (nonatomic, readonly, assign) FILE *output;
-
-- (int)write:(const void *)buf length:(size_t)len;
+- (int)write:(NSData *)buf;
 - (void)sendInput:(const char *)buf length:(size_t)len;
 - (void)clear;
 

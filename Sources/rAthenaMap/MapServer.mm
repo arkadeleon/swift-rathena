@@ -11,20 +11,28 @@
 
 extern int main (int argc, char **argv);
 
-MapServerDataReceiveHandler mapServerDataReceiveHandler = nil;
-MapServerDataSendHandler mapServerDataSendHandler = nil;
+int write_function(void *cookie, const char *buf, int n) {
+    MapServerOutputHandler handler = MapServerHandlers.sharedHandlers.outputHandler;
+    if (handler) {
+        NSString *message = [[NSString alloc] initWithBytes:buf length:n encoding:NSUTF8StringEncoding];
+        handler(message);
+    }
+    return 0;
+}
 
 void do_recv(int fd) {
-    if (mapServerDataReceiveHandler) {
+    MapServerDataReceiveHandler handler = MapServerHandlers.sharedHandlers.dataReceiveHandler;
+    if (handler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        mapServerDataReceiveHandler(data);
+        handler(data);
     }
 }
 
 void do_send(int fd) {
-    if (mapServerDataSendHandler) {
+    MapServerDataSendHandler handler = MapServerHandlers.sharedHandlers.dataSendHandler;
+    if (handler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        mapServerDataSendHandler(data);
+        handler(data);
     }
 }
 
@@ -32,18 +40,24 @@ NSString *MapServerGetName() {
     return @"Map Server";
 }
 
-void MapServerSetOutput(FILE *output) {
-    STDOUT = output;
-    STDERR = output;
+void MapServerSetOutputHandler(MapServerOutputHandler handler) {
+    MapServerHandlers.sharedHandlers.outputHandler = handler;
+
+    static FILE *output = nil;
+    if (output == nil) {
+        output = fwopen(0, write_function);
+        STDOUT = output;
+        STDERR = output;
+    }
 }
 
 void MapServerSetDataReceiveHandler(MapServerDataReceiveHandler handler) {
-    mapServerDataReceiveHandler = handler;
+    MapServerHandlers.sharedHandlers.dataReceiveHandler = handler;
     recv_callback = do_recv;
 }
 
 void MapServerSetDataSendHandler(MapServerDataSendHandler handler) {
-    mapServerDataSendHandler = handler;
+    MapServerHandlers.sharedHandlers.dataSendHandler = handler;
     send_callback = do_send;
 }
 

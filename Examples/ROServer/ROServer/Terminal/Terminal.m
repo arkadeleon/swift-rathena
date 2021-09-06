@@ -8,12 +8,6 @@
 #import "Terminal.h"
 #import "DelayedUITask.h"
 
-int write_function(void *cookie, const char *buf, int n) {
-    Terminal *terminal = (__bridge Terminal *)(cookie);
-    [terminal write:buf length:n];
-    return 0;
-}
-
 @interface Terminal () <WKScriptMessageHandler> {
     NSLock *_dataLock;
 }
@@ -32,8 +26,6 @@ int write_function(void *cookie, const char *buf, int n) {
 
 - (instancetype)init {
     if (self = [super init]) {
-        _output = fwopen((__bridge const void *)(self), write_function);
-
         self.pendingData = [NSMutableData new];
         self.refreshTask = [[DelayedUITask alloc] initWithTarget:self action:@selector(refresh)];
         self.scrollToBottomTask = [[DelayedUITask alloc] initWithTarget:self action:@selector(scrollToBottom)];
@@ -53,10 +45,6 @@ int write_function(void *cookie, const char *buf, int n) {
     return self;
 }
 
-- (void)dealloc {
-    fclose(_output);
-}
-
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     if ([message.name isEqualToString:@"load"]) {
         self.loaded = YES;
@@ -69,9 +57,9 @@ int write_function(void *cookie, const char *buf, int n) {
     }
 }
 
-- (int)write:(const void *)buf length:(size_t)len {
+- (int)write:(NSData *)buf {
     [_dataLock lock];
-    [self.pendingData appendData:[NSData dataWithBytes:buf length:len]];
+    [self.pendingData appendData:buf];
     [self.refreshTask schedule];
     [_dataLock unlock];
     return 0;

@@ -6,11 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LoginServerHandlers.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^LoginServerDataReceiveHandler)(NSData *data);
-typedef void (^LoginServerDataSendHandler)(NSData *data);
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,8 +16,7 @@ extern "C" {
 
 extern NSString *LoginServerGetName();
 
-extern void LoginServerSetOutput(FILE *output);
-
+extern void LoginServerSetOutputHandler(LoginServerOutputHandler handler);
 extern void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler handler);
 extern void LoginServerSetDataSendHandler(LoginServerDataSendHandler handler);
 

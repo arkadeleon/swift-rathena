@@ -6,11 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CharServerHandlers.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^CharServerDataReceiveHandler)(NSData *data);
-typedef void (^CharServerDataSendHandler)(NSData *data);
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,8 +16,7 @@ extern "C" {
 
 extern NSString *CharServerGetName();
 
-extern void CharServerSetOutput(FILE *output);
-
+extern void CharServerSetOutputHandler(CharServerOutputHandler handler);
 extern void CharServerSetDataReceiveHandler(CharServerDataReceiveHandler handler);
 extern void CharServerSetDataSendHandler(CharServerDataSendHandler handler);
 

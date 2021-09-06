@@ -6,11 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MapServerHandlers.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^MapServerDataReceiveHandler)(NSData *data);
-typedef void (^MapServerDataSendHandler)(NSData *data);
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,8 +16,7 @@ extern "C" {
 
 extern NSString *MapServerGetName();
 
-extern void MapServerSetOutput(FILE *output);
-
+extern void MapServerSetOutputHandler(MapServerOutputHandler handler);
 extern void MapServerSetDataReceiveHandler(MapServerDataReceiveHandler handler);
 extern void MapServerSetDataSendHandler(MapServerDataSendHandler handler);
 
