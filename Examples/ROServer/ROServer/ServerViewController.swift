@@ -38,24 +38,28 @@ class ServerViewController: UIViewController {
         sessionsTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         sessionsView.addSubview(sessionsTerminalView)
 
-        ServerManager.shared.loginServerOutputHandler = { message in
-            let data = message.data(using: .utf8)!
-            loginTerminalView.terminal.write(data)
+        ServerManager.shared.loginServerOutputHandler = { buffer in
+            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
+            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
+            loginTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
         }
 
-        ServerManager.shared.charServerOutputHandler = { message in
-            let data = message.data(using: .utf8)!
-            charTerminalView.terminal.write(data)
+        ServerManager.shared.charServerOutputHandler = { buffer in
+            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
+            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
+            charTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
         }
 
-        ServerManager.shared.mapServerOutputHandler = { message in
-            let data = message.data(using: .utf8)!
-            mapTerminalView.terminal.write(data)
+        ServerManager.shared.mapServerOutputHandler = { buffer in
+            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
+            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
+            mapTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
         }
 
-        ServerManager.shared.sessionsOutputHandler = { message in
-            let data = message.data(using: .utf8)!
-            sessionsTerminalView.terminal.write(data)
+        ServerManager.shared.sessionsOutputHandler = { buffer in
+            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
+            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
+            sessionsTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
         }
 
         try? ResourceManager.shared.copyBundleResourceFiles()

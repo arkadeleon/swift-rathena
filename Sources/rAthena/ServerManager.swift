@@ -18,7 +18,7 @@ public class ServerManager {
     public let loginServer: Thread
     public let mapServer: Thread
 
-    public var charServerOutputHandler: ((String) -> Void)? {
+    public var charServerOutputHandler: ((Data) -> Void)? {
         didSet {
             if let handler = charServerOutputHandler {
                 CharServerSetOutputHandler(handler)
@@ -26,7 +26,7 @@ public class ServerManager {
         }
     }
 
-    public var loginServerOutputHandler: ((String) -> Void)? {
+    public var loginServerOutputHandler: ((Data) -> Void)? {
         didSet {
             if let handler = loginServerOutputHandler {
                 LoginServerSetOutputHandler(handler)
@@ -34,7 +34,7 @@ public class ServerManager {
         }
     }
 
-    public var mapServerOutputHandler: ((String) -> Void)? {
+    public var mapServerOutputHandler: ((Data) -> Void)? {
         didSet {
             if let handler = mapServerOutputHandler {
                 MapServerSetOutputHandler(handler)
@@ -42,13 +42,13 @@ public class ServerManager {
         }
     }
 
-    public var sessionsOutputHandler: ((String) -> Void)? {
+    public var sessionsOutputHandler: ((Data) -> Void)? {
         didSet {
             if let handler = sessionsOutputHandler {
                 let print: (Data, String, String) -> Void = { (data, flow, server) in
                     let data = data.map({ String(format: "%02X", $0) }).joined()
                     let message = "[\(server)|\(flow)]: 0x\(data)\n"
-                    handler(message)
+                    handler(message.data(using: .isoLatin1) ?? Data())
                 }
                 CharServerSetDataReceiveHandler { data in
                     print(data, "Receive", "Char")

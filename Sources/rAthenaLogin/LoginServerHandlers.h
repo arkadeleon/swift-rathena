@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^LoginServerOutputHandler)(NSString *message);
+typedef void (^LoginServerOutputHandler)(NSData *buffer);
 typedef void (^LoginServerDataReceiveHandler)(NSData *data);
 typedef void (^LoginServerDataSendHandler)(NSData *data);
 

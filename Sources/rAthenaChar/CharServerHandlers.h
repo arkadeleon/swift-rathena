@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^CharServerOutputHandler)(NSString *message);
+typedef void (^CharServerOutputHandler)(NSData *buffer);
 typedef void (^CharServerDataReceiveHandler)(NSData *data);
 typedef void (^CharServerDataSendHandler)(NSData *data);
 

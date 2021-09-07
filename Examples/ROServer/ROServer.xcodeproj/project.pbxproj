@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,14 +13,8 @@
 		3521864F26582330002FAE2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521864D26582330002FAE2C /* Main.storyboard */; };
 		3521865126582331002FAE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3521865026582331002FAE2C /* Assets.xcassets */; };
 		3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521865226582331002FAE2C /* LaunchScreen.storyboard */; };
-		35435BF926E656D000F42F92 /* term.js in Resources */ = {isa = PBXBuildFile; fileRef = 35435BEE26E656CF00F42F92 /* term.js */; };
-		35435BFA26E656D000F42F92 /* term.css in Resources */ = {isa = PBXBuildFile; fileRef = 35435BEF26E656CF00F42F92 /* term.css */; };
-		35435BFB26E656D000F42F92 /* hterm_all.js in Resources */ = {isa = PBXBuildFile; fileRef = 35435BF026E656CF00F42F92 /* hterm_all.js */; };
-		35435BFC26E656D000F42F92 /* Terminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435BF126E656CF00F42F92 /* Terminal.m */; };
-		35435BFD26E656D000F42F92 /* ScrollbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435BF226E656CF00F42F92 /* ScrollbarView.m */; };
-		35435BFE26E656D000F42F92 /* DelayedUITask.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435BF426E656CF00F42F92 /* DelayedUITask.m */; };
-		35435BFF26E656D000F42F92 /* TerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435BF626E656CF00F42F92 /* TerminalView.m */; };
-		35435C0026E656D000F42F92 /* term.html in Resources */ = {isa = PBXBuildFile; fileRef = 35435BF826E656CF00F42F92 /* term.html */; };
+		35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; };
+		35641CFE26E7012A0065F955 /* Terminal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; };
 		35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896422685C75500A2FBA1 /* rAthenaChar.framework */; };
@@ -38,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				35641CFE26E7012A0065F955 /* Terminal.xcframework in Embed Frameworks */,
 				35E896482685C75500A2FBA1 /* rAthenaChar.framework in Embed Frameworks */,
 				35E8964C2685C75500A2FBA1 /* rAthenaMap.framework in Embed Frameworks */,
 				35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */,
@@ -57,19 +52,8 @@
 		3521865026582331002FAE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3521865326582331002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3521865526582331002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35435BED26E656CF00F42F92 /* DelayedUITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayedUITask.h; sourceTree = "<group>"; };
-		35435BEE26E656CF00F42F92 /* term.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = term.js; sourceTree = "<group>"; };
-		35435BEF26E656CF00F42F92 /* term.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = term.css; sourceTree = "<group>"; };
-		35435BF026E656CF00F42F92 /* hterm_all.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = hterm_all.js; sourceTree = "<group>"; };
-		35435BF126E656CF00F42F92 /* Terminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Terminal.m; sourceTree = "<group>"; };
-		35435BF226E656CF00F42F92 /* ScrollbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollbarView.m; sourceTree = "<group>"; };
-		35435BF326E656CF00F42F92 /* TerminalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalView.h; sourceTree = "<group>"; };
-		35435BF426E656CF00F42F92 /* DelayedUITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayedUITask.m; sourceTree = "<group>"; };
-		35435BF526E656CF00F42F92 /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terminal.h; sourceTree = "<group>"; };
-		35435BF626E656CF00F42F92 /* TerminalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalView.m; sourceTree = "<group>"; };
-		35435BF726E656CF00F42F92 /* ScrollbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollbarView.h; sourceTree = "<group>"; };
-		35435BF826E656CF00F42F92 /* term.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = term.html; sourceTree = "<group>"; };
 		35435C0626E6578500F42F92 /* ROServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ROServer-Bridging-Header.h"; sourceTree = "<group>"; };
+		35641CFC26E7012A0065F955 /* Terminal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Terminal.xcframework; path = ../../Carthage/Build/Terminal.xcframework; sourceTree = "<group>"; };
 		35E896412685C75500A2FBA1 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896422685C75500A2FBA1 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896432685C75500A2FBA1 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */,
 				35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */,
 				35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */,
 				35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */,
@@ -97,7 +82,6 @@
 				352186472658232F002FAE2C /* AppDelegate.swift */,
 				3521864926582330002FAE2C /* SceneDelegate.swift */,
 				3521864B26582330002FAE2C /* ServerViewController.swift */,
-				35435BEC26E656CF00F42F92 /* Terminal */,
 				3521864D26582330002FAE2C /* Main.storyboard */,
 				3521865026582331002FAE2C /* Assets.xcassets */,
 				3521865226582331002FAE2C /* LaunchScreen.storyboard */,
@@ -107,25 +91,6 @@
 			path = ROServer;
 			sourceTree = "<group>";
 		};
-		35435BEC26E656CF00F42F92 /* Terminal */ = {
-			isa = PBXGroup;
-			children = (
-				35435BED26E656CF00F42F92 /* DelayedUITask.h */,
-				35435BF426E656CF00F42F92 /* DelayedUITask.m */,
-				35435BF726E656CF00F42F92 /* ScrollbarView.h */,
-				35435BF226E656CF00F42F92 /* ScrollbarView.m */,
-				35435BF526E656CF00F42F92 /* Terminal.h */,
-				35435BF126E656CF00F42F92 /* Terminal.m */,
-				35435BF326E656CF00F42F92 /* TerminalView.h */,
-				35435BF626E656CF00F42F92 /* TerminalView.m */,
-				35435BEF26E656CF00F42F92 /* term.css */,
-				35435BF826E656CF00F42F92 /* term.html */,
-				35435BEE26E656CF00F42F92 /* term.js */,
-				35435BF026E656CF00F42F92 /* hterm_all.js */,
-			);
-			path = Terminal;
-			sourceTree = "<group>";
-		};
 		35E896402685C75400A2FBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +98,7 @@
 				35E896422685C75500A2FBA1 /* rAthenaChar.framework */,
 				35E896432685C75500A2FBA1 /* rAthenaLogin.framework */,
 				35E896442685C75500A2FBA1 /* rAthenaMap.framework */,
+				35641CFC26E7012A0065F955 /* Terminal.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,11 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */,
-				35435BFA26E656D000F42F92 /* term.css in Resources */,
-				35435C0026E656D000F42F92 /* term.html in Resources */,
 				3521865126582331002FAE2C /* Assets.xcassets in Resources */,
-				35435BFB26E656D000F42F92 /* hterm_all.js in Resources */,
-				35435BF926E656D000F42F92 /* term.js in Resources */,
 				3521864F26582330002FAE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,10 +192,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3521864C26582330002FAE2C /* ServerViewController.swift in Sources */,
-				35435BFF26E656D000F42F92 /* TerminalView.m in Sources */,
-				35435BFD26E656D000F42F92 /* ScrollbarView.m in Sources */,
-				35435BFC26E656D000F42F92 /* Terminal.m in Sources */,
-				35435BFE26E656D000F42F92 /* DelayedUITask.m in Sources */,
 				3521864826582330002FAE2C /* AppDelegate.swift in Sources */,
 				3521864A26582330002FAE2C /* SceneDelegate.swift in Sources */,
 			);

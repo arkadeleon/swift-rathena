@@ -14,8 +14,8 @@ extern int main (int argc, char **argv);
 int write_function(void *cookie, const char *buf, int n) {
     CharServerOutputHandler handler = CharServerHandlers.sharedHandlers.outputHandler;
     if (handler) {
-        NSString *message = [[NSString alloc] initWithBytes:buf length:n encoding:NSUTF8StringEncoding];
-        handler(message);
+        NSData *data = [NSData dataWithBytes:buf length:n];
+        handler(data);
     }
     return 0;
 }

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^MapServerOutputHandler)(NSString *message);
+typedef void (^MapServerOutputHandler)(NSData *buffer);
 typedef void (^MapServerDataReceiveHandler)(NSData *data);
 typedef void (^MapServerDataSendHandler)(NSData *data);
 
