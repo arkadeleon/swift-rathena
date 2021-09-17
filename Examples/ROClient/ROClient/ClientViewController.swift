@@ -7,17 +7,23 @@
 
 import UIKit
 import WebKit
+import GCDWebServers
 
 class ClientViewController: UIViewController {
+
+    private let server = GCDWebServer()
 
     @IBOutlet weak var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let baseURL = Bundle.main.resourceURL!.appendingPathComponent("ROBrowser")
-        let url = baseURL.appendingPathComponent("index.html")
-        let html = try! String(contentsOf: url)
-        webView.loadHTMLString(html, baseURL: baseURL)
+        let directory = Bundle.main.resourceURL!.appendingPathComponent("ROBrowser").path
+        server.addGETHandler(forBasePath: "/", directoryPath: directory, indexFilename: nil, cacheAge: 3600, allowRangeRequests: true)
+        server.start(withPort: 8000, bonjourName: nil)
+
+        let url = URL(string: "http://127.0.0.1:8000/index.html")!
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
 }
