@@ -36,7 +36,10 @@ public class ResourceManager {
         for path in paths {
             let sourceURL = sourceURL.appendingPathComponent(path)
             let destinationURL = destinationURL.appendingPathComponent(path)
-            let _ = try fileManager.replaceItemAt(destinationURL, withItemAt: sourceURL)
+            if fileManager.fileExists(atPath: destinationURL.path) {
+                try fileManager.removeItem(at: destinationURL)
+            }
+            try fileManager.copyItem(at: sourceURL, to: destinationURL)
         }
 
         try fileManager.moveItem(at: destinationURL.appendingPathComponent("conf/import-tmpl"), to: destinationURL.appendingPathComponent("conf/import"))
