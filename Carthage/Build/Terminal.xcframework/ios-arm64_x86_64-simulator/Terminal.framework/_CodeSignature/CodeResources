@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Terminal-Swift.h</key>
 		<data>
-		Cc5SqgqPavW0nv3TYPO/B3qDvz0=
+		gG7sK8aLdzVcFtCgMrrNOa3LrTg=
 		</data>
 		<key>Headers/Terminal.h</key>
 		<data>
@@ -14,55 +14,55 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		h0StGCZofSTWcwM+eOann0qA5ms=
+		zycWkEuBfbWsoPxjhomTuWN1wd8=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		o2ubauepTDK3IQeE5AAO/9baYQc=
+		QNG8YYSiH0nsGI5e86UPcwURDpA=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		o2ubauepTDK3IQeE5AAO/9baYQc=
+		QNG8YYSiH0nsGI5e86UPcwURDpA=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		Ye0HSJm41RghQ5aLeaQabDw3giQ=
+		hdYM9DPr3cagAhzfHkSCCPt1NmI=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		Ye0HSJm41RghQ5aLeaQabDw3giQ=
+		hdYM9DPr3cagAhzfHkSCCPt1NmI=
 		</data>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		pgKoBkDNnJYoNxwIxMuTIGK+HLo=
+		gGZtfwbHZxRzNwncYbyotIKnBHQ=
 		</data>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ZpXEHvJ69umd/UluAkW4uMC88qM=
+		SgHwGzDrQbnx6LH0kfAE6olLkzY=
 		</data>
 		<key>Modules/Terminal.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		pgKoBkDNnJYoNxwIxMuTIGK+HLo=
+		gGZtfwbHZxRzNwncYbyotIKnBHQ=
 		</data>
 		<key>Modules/Terminal.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		ZpXEHvJ69umd/UluAkW4uMC88qM=
+		SgHwGzDrQbnx6LH0kfAE6olLkzY=
 		</data>
 		<key>Modules/Terminal.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		BwpSOiDsIvA41trF6FyxE0nll6Q=
+		0VGBuyLpcPqf4cbe684IG5YPRYw=
 		</data>
 		<key>Modules/Terminal.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		+L1JhEVqbzgv6xSJrj35kL9IiF4=
+		erNVHbuE0ew1auMc7YfcQrfkQJM=
 		</data>
 		<key>Modules/Terminal.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		BwpSOiDsIvA41trF6FyxE0nll6Q=
+		0VGBuyLpcPqf4cbe684IG5YPRYw=
 		</data>
 		<key>Modules/Terminal.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		+L1JhEVqbzgv6xSJrj35kL9IiF4=
+		erNVHbuE0ew1auMc7YfcQrfkQJM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -91,7 +91,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cedZN+pUihhG+BofX3Qzp1ZZ5+77AUxYVWc4qVJFg7Q=
+			eCHNjNBOQvrMdRbf+P+nOdY1wvmXB2ImpRWl/rSG6hc=
 			</data>
 		</dict>
 		<key>Headers/Terminal.h</key>
@@ -105,84 +105,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qecO14h7THLKm5mPZwfj6mpSOF69JaeaHT5udd0g/qQ=
+			WwXEpdMjOus86UudcfPs0StWsemj4OnYsTOuoOD5nd8=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qecO14h7THLKm5mPZwfj6mpSOF69JaeaHT5udd0g/qQ=
+			WwXEpdMjOus86UudcfPs0StWsemj4OnYsTOuoOD5nd8=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+9cu+8oXnchqZx+JrX3880bmZhj5vg1N046dpyK/UFs=
+			zGSPS3QZRcxsdCEVm7phyvIL42q4tE+uqhqsfXeNcSI=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+9cu+8oXnchqZx+JrX3880bmZhj5vg1N046dpyK/UFs=
+			zGSPS3QZRcxsdCEVm7phyvIL42q4tE+uqhqsfXeNcSI=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8JNGGg7vjQyAz2hZeuPaQwugXPXrM2Ld+wtNDxU7tPI=
+			EK9i2/qNLWExgzYSDZ5s8DaXQqxd0sc1W8B5tv0L+8Y=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mu8B8qmceoA3A6mle9D7dpMAUU4mQa3W51LzdLgKXAs=
+			5YdcTILRi0ce/g/9JViahi46VLE25Sx7vT16gLpBLys=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8JNGGg7vjQyAz2hZeuPaQwugXPXrM2Ld+wtNDxU7tPI=
+			EK9i2/qNLWExgzYSDZ5s8DaXQqxd0sc1W8B5tv0L+8Y=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Mu8B8qmceoA3A6mle9D7dpMAUU4mQa3W51LzdLgKXAs=
+			5YdcTILRi0ce/g/9JViahi46VLE25Sx7vT16gLpBLys=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sRILxjM0x1ldycMnJqT1//SDNSFRxeGPpb7dB/RZLj0=
+			vhOuMGyFEsNvt0scNgl6hIgDL6g7UnMGLiXoZffM39w=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/KiukOxu5M/8zhpvGqsdCUJYsbJRunxtCFotrMO1J3w=
+			812jm9EM2eM5XpNkRE29uBw/2zB3aa0PWWJZ5s2ZYm8=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sRILxjM0x1ldycMnJqT1//SDNSFRxeGPpb7dB/RZLj0=
+			vhOuMGyFEsNvt0scNgl6hIgDL6g7UnMGLiXoZffM39w=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/KiukOxu5M/8zhpvGqsdCUJYsbJRunxtCFotrMO1J3w=
+			812jm9EM2eM5XpNkRE29uBw/2zB3aa0PWWJZ5s2ZYm8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

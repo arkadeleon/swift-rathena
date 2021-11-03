@@ -2,13 +2,13 @@
   "commitish" : "3.5.4",
   "iOS" : [
     {
-      "hash" : "8cab42029000249394ddf346bbf8fba24addc4c3b03755f2d0e31824e48dd2c3",
+      "hash" : "c907fbbb0bef5f99582894e1aa5e79958289aeda8c90d18da737ff4209fb4552",
       "name" : "GCDWebServers",
       "container" : "GCDWebServers.xcframework",
       "identifier" : "ios-arm64_i386_x86_64-simulator"
     },
     {
-      "hash" : "a3d89214e28874f81bfa0e8ecbe60adf5bf75acfed8df7eb568ad53172015480",
+      "hash" : "b8c088c3e5e490bd5146832e7ffb6f73cd3c806b7d0e022b31cdd92b6d4ddea5",
       "name" : "GCDWebServers",
       "container" : "GCDWebServers.xcframework",
       "identifier" : "ios-arm64_armv7"

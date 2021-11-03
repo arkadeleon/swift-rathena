@@ -2,15 +2,15 @@
   "commitish" : "0.3.4",
   "iOS" : [
     {
-      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
-      "hash" : "e64a54bcbda72bc947231af937bdab73875ed5b6ef427141af27f81ca0e157fc",
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "5e6478c6d830f45e628f9b0cbae265b2d462076dce4431f4a8f087183ea1badc",
       "name" : "Terminal",
       "container" : "Terminal.xcframework",
       "identifier" : "ios-arm64_x86_64-simulator"
     },
     {
-      "swiftToolchainVersion" : "5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)",
-      "hash" : "9ff9be0c0d0fbc9117e943d45169b677af64e8bfd215d442dddd0e954885294c",
+      "swiftToolchainVersion" : "5.5.1 (swiftlang-1300.0.31.4 clang-1300.0.29.6)",
+      "hash" : "813f6bc96733f7275b891dee1a77d3a313724f251983e71dda7447763c8f64c3",
       "name" : "Terminal",
       "container" : "Terminal.xcframework",
       "identifier" : "ios-arm64"
