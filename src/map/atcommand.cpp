@@ -2362,7 +2362,9 @@ ACMD_FUNC(refine)
 			clif_additem(sd, i, 1, 0);
 			pc_equipitem(sd, i, current_position);
 			clif_misceffect(&sd->bl, 3);
-			achievement_update_objective(sd, AG_ENCHANT_SUCCESS, 2, sd->inventory_data[i]->wlv, sd->inventory.u.items_inventory[i].refine);
+			if( sd->inventory_data[i]->type == IT_WEAPON ){
+				achievement_update_objective(sd, AG_ENCHANT_SUCCESS, 2, sd->inventory_data[i]->weapon_level, sd->inventory.u.items_inventory[i].refine);
+			}
 			count++;
 		}
 	}
@@ -4744,8 +4746,10 @@ ACMD_FUNC(shownpc)
 		return -1;
 	}
 
-	if (npc_name2id(NPCname) != NULL) {
-		npc_enable(NPCname, 1);
+	npc_data* nd = npc_name2id(NPCname);
+
+	if (nd) {
+		npc_enable(*nd, NPCVIEW_ENABLE);
 		clif_displaymessage(fd, msg_txt(sd,110)); // Npc Enabled.
 	} else {
 		clif_displaymessage(fd, msg_txt(sd,111)); // This NPC doesn't exist.
@@ -4770,12 +4774,14 @@ ACMD_FUNC(hidenpc)
 		return -1;
 	}
 
-	if (npc_name2id(NPCname) == NULL) {
+	npc_data* nd = npc_name2id(NPCname);
+
+	if (!nd) {
 		clif_displaymessage(fd, msg_txt(sd,111)); // This NPC doesn't exist.
 		return -1;
 	}
 
-	npc_enable(NPCname, 0);
+	npc_enable(*nd, NPCVIEW_DISABLE);
 	clif_displaymessage(fd, msg_txt(sd,112)); // Npc Disabled.
 	return 0;
 }
@@ -8414,7 +8420,7 @@ ACMD_FUNC(mapflag) {
 												MF_SKILL_DAMAGE,
 												MF_SKILL_DURATION };
 
-			if (flag && std::find(disabled_mf.begin(), disabled_mf.end(), mapflag) != disabled_mf.end()) {
+			if (flag > 0 && util::vector_exists(disabled_mf, mapflag)) {
 				sprintf(atcmd_output,"[ @mapflag ] %s flag cannot be enabled as it requires unique values.", flag_name);
 				clif_displaymessage(sd->fd,atcmd_output);
 			} else {
