@@ -19,47 +19,60 @@ class ServerViewController: UIViewController {
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var sessionsView: UIView!
 
+    var loginTerminalView: TerminalView!
+    var charTerminalView: TerminalView!
+    var mapTerminalView: TerminalView!
+    var sessionsTerminalView: TerminalView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let loginTerminalView = TerminalView(frame: loginView.bounds)
+        loginTerminalView = TerminalView(frame: loginView.bounds)
         loginTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         loginView.addSubview(loginTerminalView)
 
-        let charTerminalView = TerminalView(frame: charView.bounds)
+        charTerminalView = TerminalView(frame: charView.bounds)
         charTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         charView.addSubview(charTerminalView)
 
-        let mapTerminalView = TerminalView(frame: mapView.bounds)
+        mapTerminalView = TerminalView(frame: mapView.bounds)
         mapTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.addSubview(mapTerminalView)
 
-        let sessionsTerminalView = TerminalView(frame: sessionsView.bounds)
+        sessionsTerminalView = TerminalView(frame: sessionsView.bounds)
         sessionsTerminalView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         sessionsView.addSubview(sessionsTerminalView)
 
         ServerManager.shared.loginServerOutputHandler = { buffer in
-            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
-            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
-            loginTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
+            if let buffer = String(data: buffer, encoding: .isoLatin1)?
+                .replacingOccurrences(of: "\n", with: "\r\n")
+                .data(using: .isoLatin1) {
+                self.loginTerminalView.appendBuffer(buffer)
+            }
         }
 
         ServerManager.shared.charServerOutputHandler = { buffer in
-            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
-            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
-            charTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
+            if let buffer = String(data: buffer, encoding: .isoLatin1)?
+                .replacingOccurrences(of: "\n", with: "\r\n")
+                .data(using: .isoLatin1) {
+                self.charTerminalView.appendBuffer(buffer)
+            }
         }
 
         ServerManager.shared.mapServerOutputHandler = { buffer in
-            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
-            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
-            mapTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
+            if let buffer = String(data: buffer, encoding: .isoLatin1)?
+                .replacingOccurrences(of: "\n", with: "\r\n")
+                .data(using: .isoLatin1) {
+                self.mapTerminalView.appendBuffer(buffer)
+            }
         }
 
         ServerManager.shared.sessionsOutputHandler = { buffer in
-            let string1 = String(data: buffer, encoding: .isoLatin1) ?? ""
-            let string2 = string1.replacingOccurrences(of: "\n", with: "\r\n")
-            sessionsTerminalView.appendBuffer(string2.data(using: .isoLatin1) ?? Data())
+            if let buffer = String(data: buffer, encoding: .isoLatin1)?
+                .replacingOccurrences(of: "\n", with: "\r\n")
+                .data(using: .isoLatin1) {
+                self.sessionsTerminalView.appendBuffer(buffer)
+            }
         }
 
         try? ResourceManager.shared.copyBundleResourceFiles()
@@ -73,8 +86,7 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearLoginTerminal(_ sender: Any) {
-//        let loginTerminalView = ServerManager.shared.loginTerminalView
-//        loginTerminalView.terminal.clear()
+        loginTerminalView.terminalClear(.reset)
     }
 
     @IBAction func showHideLoginTerminal(_ sender: Any) {
@@ -93,8 +105,7 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearCharTerminal(_ sender: Any) {
-//        let charTerminalView = ServerManager.shared.charTerminalView
-//        charTerminalView.terminal.clear()
+        charTerminalView.terminalClear(.reset)
     }
 
     @IBAction func showHideCharTerminal(_ sender: Any) {
@@ -113,8 +124,7 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearMapTerminal(_ sender: Any) {
-//        let mapTerminalView = ServerManager.shared.mapTerminalView
-//        mapTerminalView.terminal.clear()
+        mapTerminalView.terminalClear(.reset)
     }
 
     @IBAction func showHideMapTerminal(_ sender: Any) {
@@ -126,8 +136,7 @@ class ServerViewController: UIViewController {
     }
 
     @IBAction func clearSessionsTerminal(_ sender: Any) {
-//        let sessionsTerminalView = ServerManager.shared.sessionsTerminalView
-//        sessionsTerminalView.terminal.clear()
+        sessionsTerminalView.terminalClear(.reset)
     }
 
     @IBAction func showHideSessionsTerminal(_ sender: Any) {
