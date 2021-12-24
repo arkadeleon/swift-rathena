@@ -7,20 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^LoginServerOutputHandler)(NSData *buffer);
-typedef void (^LoginServerDataReceiveHandler)(NSData *data);
-typedef void (^LoginServerDataSendHandler)(NSData *data);
+typedef void (^LoginServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^LoginServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^LoginServerDataSendHandler)(NSData * _Nonnull data);
 
 @interface LoginServerHandlers : NSObject
 
-@property (class, nonatomic, readonly) LoginServerHandlers *sharedHandlers;
+@property (class, nonatomic, readonly) LoginServerHandlers * _Nonnull sharedHandlers;
 
-@property (nonatomic, copy) LoginServerOutputHandler outputHandler;
-@property (nonatomic, copy) LoginServerDataReceiveHandler dataReceiveHandler;
-@property (nonatomic, copy) LoginServerDataSendHandler dataSendHandler;
+@property (nonatomic, copy) LoginServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) LoginServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) LoginServerDataSendHandler _Nullable dataSendHandler;
 
 @end
-
-NS_ASSUME_NONNULL_END

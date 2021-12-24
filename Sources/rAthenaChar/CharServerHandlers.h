@@ -7,20 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^CharServerOutputHandler)(NSData *buffer);
-typedef void (^CharServerDataReceiveHandler)(NSData *data);
-typedef void (^CharServerDataSendHandler)(NSData *data);
+typedef void (^CharServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^CharServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^CharServerDataSendHandler)(NSData * _Nonnull data);
 
 @interface CharServerHandlers : NSObject
 
-@property (class, nonatomic, readonly) CharServerHandlers *sharedHandlers;
+@property (class, nonatomic, readonly) CharServerHandlers * _Nonnull sharedHandlers;
 
-@property (nonatomic, copy) CharServerOutputHandler outputHandler;
-@property (nonatomic, copy) CharServerDataReceiveHandler dataReceiveHandler;
-@property (nonatomic, copy) CharServerDataSendHandler dataSendHandler;
+@property (nonatomic, copy) CharServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) CharServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) CharServerDataSendHandler _Nullable dataSendHandler;
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -8,22 +8,18 @@
 #import <Foundation/Foundation.h>
 #import "LoginServerHandlers.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern NSString *LoginServerGetName();
+extern NSString * _Nonnull LoginServerGetName();
 
-extern void LoginServerSetOutputHandler(LoginServerOutputHandler handler);
-extern void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler handler);
-extern void LoginServerSetDataSendHandler(LoginServerDataSendHandler handler);
+extern void LoginServerSetOutputHandler(LoginServerOutputHandler _Nullable handler);
+extern void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler _Nullable handler);
+extern void LoginServerSetDataSendHandler(LoginServerDataSendHandler _Nullable handler);
 
 extern void LoginServerMain();
 
 #ifdef __cplusplus
 }
 #endif
-
-NS_ASSUME_NONNULL_END

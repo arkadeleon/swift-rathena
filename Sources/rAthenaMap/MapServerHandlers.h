@@ -7,20 +7,16 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^MapServerOutputHandler)(NSData *buffer);
-typedef void (^MapServerDataReceiveHandler)(NSData *data);
-typedef void (^MapServerDataSendHandler)(NSData *data);
+typedef void (^MapServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^MapServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^MapServerDataSendHandler)(NSData * _Nonnull data);
 
 @interface MapServerHandlers : NSObject
 
-@property (class, nonatomic, readonly) MapServerHandlers *sharedHandlers;
+@property (class, nonatomic, readonly) MapServerHandlers * _Nonnull sharedHandlers;
 
-@property (nonatomic, copy) MapServerOutputHandler outputHandler;
-@property (nonatomic, copy) MapServerDataReceiveHandler dataReceiveHandler;
-@property (nonatomic, copy) MapServerDataSendHandler dataSendHandler;
+@property (nonatomic, copy) MapServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) MapServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) MapServerDataSendHandler _Nullable dataSendHandler;
 
 @end
-
-NS_ASSUME_NONNULL_END

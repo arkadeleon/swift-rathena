@@ -12,62 +12,57 @@ import rAthenaMap
 
 public class ServerManager {
 
+    public typealias OutputHandler = (Data) -> Void
+
     public static let shared = ServerManager()
 
     public let charServer: Thread
     public let loginServer: Thread
     public let mapServer: Thread
 
-    public var charServerOutputHandler: ((Data) -> Void)? {
+    public var charServerOutputHandler: OutputHandler? {
         didSet {
-            if let handler = charServerOutputHandler {
-                CharServerSetOutputHandler(handler)
-            }
+            CharServerSetOutputHandler(charServerOutputHandler)
         }
     }
 
-    public var loginServerOutputHandler: ((Data) -> Void)? {
+    public var loginServerOutputHandler: OutputHandler? {
         didSet {
-            if let handler = loginServerOutputHandler {
-                LoginServerSetOutputHandler(handler)
-            }
+            LoginServerSetOutputHandler(loginServerOutputHandler)
         }
     }
 
-    public var mapServerOutputHandler: ((Data) -> Void)? {
+    public var mapServerOutputHandler: OutputHandler? {
         didSet {
-            if let handler = mapServerOutputHandler {
-                MapServerSetOutputHandler(handler)
-            }
+            MapServerSetOutputHandler(mapServerOutputHandler)
         }
     }
 
-    public var sessionsOutputHandler: ((Data) -> Void)? {
+    public var sessionsOutputHandler: OutputHandler? {
         didSet {
-            if let handler = sessionsOutputHandler {
-                let print: (Data, String, String) -> Void = { (data, flow, server) in
-                    let data = data.map({ String(format: "%02X", $0) }).joined()
-                    let message = "[\(server)|\(flow)]: 0x\(data)\n"
-                    handler(message.data(using: .isoLatin1) ?? Data())
-                }
-                CharServerSetDataReceiveHandler { data in
-                    print(data, "Receive", "Char")
-                }
-                CharServerSetDataSendHandler { data in
-                    print(data, "Send", "Char")
-                }
-                LoginServerSetDataReceiveHandler { data in
-                    print(data, "Receive", "Login")
-                }
-                LoginServerSetDataSendHandler { data in
-                    print(data, "Send", "Login")
-                }
-                MapServerSetDataReceiveHandler { data in
-                    print(data, "Receive", "Map")
-                }
-                MapServerSetDataSendHandler { data in
-                    print(data, "Send", "Map")
-                }
+            let handler = sessionsOutputHandler
+            let print: (Data, String, String) -> Void = { (data, flow, server) in
+                let data = data.map({ String(format: "%02X", $0) }).joined()
+                let message = "[\(server)|\(flow)]: 0x\(data)\n"
+                handler?(message.data(using: .isoLatin1) ?? Data())
+            }
+            CharServerSetDataReceiveHandler { data in
+                print(data, "Receive", "Char")
+            }
+            CharServerSetDataSendHandler { data in
+                print(data, "Send", "Char")
+            }
+            LoginServerSetDataReceiveHandler { data in
+                print(data, "Receive", "Login")
+            }
+            LoginServerSetDataSendHandler { data in
+                print(data, "Send", "Login")
+            }
+            MapServerSetDataReceiveHandler { data in
+                print(data, "Receive", "Map")
+            }
+            MapServerSetDataSendHandler { data in
+                print(data, "Send", "Map")
             }
         }
     }

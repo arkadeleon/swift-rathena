@@ -8,22 +8,18 @@
 #import <Foundation/Foundation.h>
 #import "MapServerHandlers.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern NSString *MapServerGetName();
+extern NSString * _Nonnull MapServerGetName();
 
-extern void MapServerSetOutputHandler(MapServerOutputHandler handler);
-extern void MapServerSetDataReceiveHandler(MapServerDataReceiveHandler handler);
-extern void MapServerSetDataSendHandler(MapServerDataSendHandler handler);
+extern void MapServerSetOutputHandler(MapServerOutputHandler _Nullable handler);
+extern void MapServerSetDataReceiveHandler(MapServerDataReceiveHandler _Nullable handler);
+extern void MapServerSetDataSendHandler(MapServerDataSendHandler _Nullable handler);
 
 extern void MapServerMain();
 
 #ifdef __cplusplus
 }
 #endif
-
-NS_ASSUME_NONNULL_END
