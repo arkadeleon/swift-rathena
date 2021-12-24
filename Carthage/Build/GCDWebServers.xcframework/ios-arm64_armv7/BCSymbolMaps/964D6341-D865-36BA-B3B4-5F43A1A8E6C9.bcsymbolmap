@@ -125,11 +125,11 @@ _OBJC_IVAR_$_GCDWebServerRequest._byteRange
 __OBJC_$_INSTANCE_VARIABLES_GCDWebServerRequest
 __OBJC_$_PROP_LIST_GCDWebServerRequest
 __OBJC_CLASS_RO_$_GCDWebServerRequest
-Apple clang version 13.0.0 (clang-1300.0.29.3)
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk
-iPhoneOS15.0.sdk
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerRequest.m
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer
+Apple clang version 13.0.0 (clang-1300.0.29.30)
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk
+iPhoneOS15.2.sdk
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerRequest.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer
 GCDWebServer/Core/GCDWebServerRequest.m
 GCDWebServer/Core/GCDWebServerPrivate.h
 GCDWebServer/Core/GCDWebServerRequest.h
@@ -157,7 +157,7 @@ __OBJC_$_INSTANCE_METHODS_GCDWebServerURLEncodedFormRequest
 __OBJC_$_INSTANCE_VARIABLES_GCDWebServerURLEncodedFormRequest
 __OBJC_$_PROP_LIST_GCDWebServerURLEncodedFormRequest
 __OBJC_CLASS_RO_$_GCDWebServerURLEncodedFormRequest
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.m
 GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.m
 GCDWebServer/Requests/GCDWebServerURLEncodedFormRequest.h
 +[GCDWebServerConnection initialize]
@@ -377,7 +377,7 @@ _OBJC_SELECTOR_REFERENCES_.409
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebServerConnection_$_Subclassing
 __OBJC_$_CATEGORY_GCDWebServerConnection_$_Subclassing
 _OBJC_SELECTOR_REFERENCES_.419
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerConnection.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerConnection.m
 GCDWebServer/Core/GCDWebServerConnection.m
 __67-[GCDWebServerConnection(Subclassing) abortRequest:withStatusCode:]_block_invoke
 _CompareResources
@@ -394,7 +394,7 @@ __63-[GCDWebServerConnection(Write) writeData:withCompletionBlock:]_block_invoke
 __66-[GCDWebServerConnection(Read) readNextBodyChunk:completionBlock:]_block_invoke
 _ScanHexNumber
 NSMakeRange
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSRange.h
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSRange.h
 __76-[GCDWebServerConnection(Read) readBodyWithRemainingLength:completionBlock:]_block_invoke
 __64-[GCDWebServerConnection(Read) readHeaders:withCompletionBlock:]_block_invoke
 __destroy_helper_block_e8_32s40s48s
@@ -446,7 +446,7 @@ _OBJC_CLASSLIST_REFERENCES_$_.62
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebServerDataRequest_$_Extensions
 __OBJC_$_PROP_LIST_GCDWebServerDataRequest_$_Extensions
 __OBJC_$_CATEGORY_GCDWebServerDataRequest_$_Extensions
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerDataRequest.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerDataRequest.m
 GCDWebServer/Requests/GCDWebServerDataRequest.m
 GCDWebServer/Requests/GCDWebServerDataRequest.h
 -[GCDWebServerMultiPart initWithControlName:contentType:]
@@ -575,7 +575,7 @@ __OBJC_$_INSTANCE_METHODS_GCDWebServerMultiPartFormRequest
 __OBJC_$_INSTANCE_VARIABLES_GCDWebServerMultiPartFormRequest
 __OBJC_$_PROP_LIST_GCDWebServerMultiPartFormRequest
 __OBJC_CLASS_RO_$_GCDWebServerMultiPartFormRequest
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.m
 GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.m
 GCDWebServer/Requests/GCDWebServerMultiPartFormRequest.h
 -[GCDWebServerFileRequest initWithMethod:url:headers:path:query:]
@@ -601,7 +601,7 @@ __OBJC_CLASS_RO_$_GCDWebServerFileRequest
 _OBJC_CLASSLIST_REFERENCES_$_.53
 _OBJC_CLASSLIST_REFERENCES_$_.54
 _OBJC_SELECTOR_REFERENCES_.58
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerFileRequest.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Requests/GCDWebServerFileRequest.m
 GCDWebServer/Requests/GCDWebServerFileRequest.m
 GCDWebServer/Requests/GCDWebServerFileRequest.h
 GCDWebServerMakePosixError
@@ -706,7 +706,7 @@ _OBJC_SELECTOR_REFERENCES_.211
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebServerResponse_$_Extensions
 __OBJC_$_CATEGORY_CLASS_METHODS_GCDWebServerResponse_$_Extensions
 __OBJC_$_CATEGORY_GCDWebServerResponse_$_Extensions
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerResponse.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerResponse.m
 GCDWebServer/Core/GCDWebServerResponse.m
 GCDWebServer/Core/GCDWebServerResponse.h
 llvm.loop.mustprogress
@@ -747,7 +747,7 @@ _OBJC_CLASSLIST_REFERENCES_$_.95
 _OBJC_SELECTOR_REFERENCES_.97
 _OBJC_CLASSLIST_REFERENCES_$_.98
 _OBJC_CLASSLIST_REFERENCES_$_.101
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerFileResponse.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerFileResponse.m
 GCDWebServer/Responses/GCDWebServerFileResponse.m
 _NSDateFromTimeSpec
 +[GCDWebServerStreamedResponse responseWithContentType:streamBlock:]
@@ -766,7 +766,7 @@ __OBJC_$_INSTANCE_METHODS_GCDWebServerStreamedResponse
 __OBJC_$_INSTANCE_VARIABLES_GCDWebServerStreamedResponse
 __OBJC_$_PROP_LIST_GCDWebServerStreamedResponse
 __OBJC_CLASS_RO_$_GCDWebServerStreamedResponse
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerStreamedResponse.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerStreamedResponse.m
 GCDWebServer/Responses/GCDWebServerStreamedResponse.m
 __64-[GCDWebServerStreamedResponse initWithContentType:streamBlock:]_block_invoke
 +[GCDWebServerDataResponse responseWithData:contentType:]
@@ -801,7 +801,7 @@ _OBJC_CLASSLIST_REFERENCES_$_.64
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebServerDataResponse_$_Extensions
 __OBJC_$_CATEGORY_CLASS_METHODS_GCDWebServerDataResponse_$_Extensions
 __OBJC_$_CATEGORY_GCDWebServerDataResponse_$_Extensions
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerDataResponse.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerDataResponse.m
 GCDWebServer/Responses/GCDWebServerDataResponse.m
 __71-[GCDWebServerDataResponse(Extensions) initWithHTMLTemplate:variables:]_block_invoke
 -[GCDWebDAVServer initWithUploadDirectory:]
@@ -904,7 +904,7 @@ __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebDAVServer_$_Methods
 __OBJC_$_CATEGORY_GCDWebDAVServer_$_Methods
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebDAVServer_$_Subclassing
 __OBJC_$_CATEGORY_GCDWebDAVServer_$_Subclassing
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebDAVServer/GCDWebDAVServer.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebDAVServer/GCDWebDAVServer.m
 GCDWebDAVServer/GCDWebDAVServer.m
 _IsMacFinder
 _XMLChildWithName
@@ -1185,7 +1185,7 @@ _OBJC_CLASSLIST_REFERENCES_$_.570
 _OBJC_SELECTOR_REFERENCES_.572
 _OBJC_SELECTOR_REFERENCES_.574
 _OBJC_SELECTOR_REFERENCES_.576
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServer.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServer.m
 _LogResult
 GCDWebServer/Core/GCDWebServer.m
 _CreateHTTPMessageFromData
@@ -1245,7 +1245,7 @@ _OBJC_CLASSLIST_REFERENCES_$_.88
 _OBJC_SELECTOR_REFERENCES_.116
 _OBJC_SELECTOR_REFERENCES_.138
 _OBJC_SELECTOR_REFERENCES_.142
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerFunctions.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Core/GCDWebServerFunctions.m
 GCDWebServerNormalizePath
 GCDWebServer/Core/GCDWebServerFunctions.m
 GCDWebServerComputeMD5Digest
@@ -1286,7 +1286,7 @@ __OBJC_METACLASS_RO_$_GCDWebServerErrorResponse
 __OBJC_$_INSTANCE_METHODS_GCDWebServerErrorResponse
 __OBJC_CLASS_RO_$_GCDWebServerErrorResponse
 _OBJC_SELECTOR_REFERENCES_.36
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerErrorResponse.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebServer/Responses/GCDWebServerErrorResponse.m
 GCDWebServer/Responses/GCDWebServerErrorResponse.m
 _EscapeHTMLString
 -[GCDWebUploader initWithUploadDirectory:]
@@ -1383,7 +1383,7 @@ __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebUploader_$_Methods
 __OBJC_$_CATEGORY_GCDWebUploader_$_Methods
 __OBJC_$_CATEGORY_INSTANCE_METHODS_GCDWebUploader_$_Subclassing
 __OBJC_$_CATEGORY_GCDWebUploader_$_Subclassing
-/Users/Leon/Repositories/rAthena/Carthage/Checkouts/GCDWebServer/GCDWebUploader/GCDWebUploader.m
+/Users/Leon/Repositories/rathena-ios/Carthage/Checkouts/GCDWebServer/GCDWebUploader/GCDWebUploader.m
 GCDWebUploader/GCDWebUploader.m
 __43-[GCDWebUploader(Methods) createDirectory:]_block_invoke
 __38-[GCDWebUploader(Methods) deleteItem:]_block_invoke
@@ -1474,9 +1474,9 @@ __ZL25original_protocol_getName
 __ZL36original_objc_copyClassNamesForImage
 __ZL12demangleLock
 __ZL9Demangled
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ --target=arm64-apple-ios4.3 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-objc-interface-ivars -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -D OBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -Wno-semicolon-before-method-body -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources-normal/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.o -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Xclang -clang-vendor-feature=+nullptrToBoolConversion -Xclang -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -Xclang -clang-vendor-feature=+disableInferNewAvailabilityFromInit -Xclang -clang-vendor-feature=+disableNeonImmediateRangeCheck -Xclang -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -Xclang -fno-odr-hash-protocols -Xclang -clang-vendor-feature=+revert09abecef7bbf -mlinker-version=711
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.Internal.sdk
-iPhoneOS15.0.Internal.sdk
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ --target=arm64-apple-ios4.3 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-objc-interface-ivars -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -D OBJC_OLD_DISPATCH_PROTOTYPES=0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -Wno-semicolon-before-method-body -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources-normal/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=deprecated-declarations -Wno-error=documentation -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.o -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Xclang -clang-vendor-feature=+nullptrToBoolConversion -Xclang -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -Xclang -clang-vendor-feature=+disableInferNewAvailabilityFromInit -Xclang -clang-vendor-feature=+disableNeonImmediateRangeCheck -Xclang -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -Xclang -fno-odr-hash-protocols -Xclang -clang-vendor-feature=+revert09abecef7bbf -mlinker-version=711
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.Internal.sdk
+iPhoneOS15.2.Internal.sdk
 /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76/source/arclite.mm
 /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-76
 fixStringForCoreData
@@ -1484,7 +1484,7 @@ source/arclite.mm
 cxxConstruct
 arclite_uninitialized_function
 scanMangledField
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.Internal.sdk/usr/include/_ctype.h
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.Internal.sdk/usr/include/_ctype.h
 __isctype
 demangledName
 copySwiftV1DemangledName
