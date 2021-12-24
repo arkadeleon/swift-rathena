@@ -44,11 +44,12 @@ void LoginServerSetOutputHandler(LoginServerOutputHandler handler) {
     LoginServerHandlers.sharedHandlers.outputHandler = handler;
 
     static FILE *output = nil;
-    if (output == nil) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         output = fwopen(0, write_function);
         STDOUT = output;
         STDERR = output;
-    }
+    });
 }
 
 void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler handler) {
