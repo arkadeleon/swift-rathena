@@ -27,9 +27,9 @@ public struct Packet006A: Packet {
     }
 
     public var destination: PacketEndpoint {
-        .client
+        return .client
     }
-    
+
     public init() {
         self.errorCode = 0
         self.blockDate = ""
