@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		IasA5W+U7c4G8ZfzvG+IWvEJCHQ=
+		CpbZ+6aXzyE1K3EHwSzutq7GZgs=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		gyWDni8RnQViWQm0nTDRb0aKhf4=
+		eMZrZJw2uTRgM7wBbnic5NQCU38=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<data>
-		gyWDni8RnQViWQm0nTDRb0aKhf4=
+		eMZrZJw2uTRgM7wBbnic5NQCU38=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		aOxCImwVNFmcRn5Plpnd5mBc8AI=
+		iQGlG/tZqvWeYUARfnkVNvArwrM=
 		</data>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		aOxCImwVNFmcRn5Plpnd5mBc8AI=
+		iQGlG/tZqvWeYUARfnkVNvArwrM=
 		</data>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -105,28 +105,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			k/cA3vQv8RH34ZxZYnhgliSQC9oR8D5ZxEbTyYFgSw0=
+			Ooyafa1WfEcxWB66fjLWNSe7gSpeDG4M77625joynHA=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/arm64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			k/cA3vQv8RH34ZxZYnhgliSQC9oR8D5ZxEbTyYFgSw0=
+			Ooyafa1WfEcxWB66fjLWNSe7gSpeDG4M77625joynHA=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EORhIm2suDLzhO4VrmoR0Z7lWvbTTLpdh+TyLJBRMt0=
+			LlpvJ8f6tcrq5CdkaPP18AgTKZGSzbMi83/nezByznI=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EORhIm2suDLzhO4VrmoR0Z7lWvbTTLpdh+TyLJBRMt0=
+			LlpvJ8f6tcrq5CdkaPP18AgTKZGSzbMi83/nezByznI=
 			</data>
 		</dict>
 		<key>Modules/Terminal.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
