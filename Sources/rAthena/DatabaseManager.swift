@@ -16,6 +16,7 @@ public class DatabaseManager {
         try create_acc_reg_str(db)
         try create_achievement(db)
         try create_auction(db)
+        try create_db_roulette(db)
     }
 
     private func create_acc_reg_num(_ db: Connection) throws {
@@ -164,6 +165,72 @@ public class DatabaseManager {
             t.column(unique_id, defaultValue: 0)
             t.column(enchantgrade, defaultValue: 0)
         })
+    }
+
+    private func create_db_roulette(_ db: Connection) throws {
+        let db_roulette = Table("db_roulette")
+        let index = Expression<Int64>("index");
+        let level = Expression<Int64>("level")
+        let item_id = Expression<Int64>("item_id")
+        let amount = Expression<Int64>("amount")
+        let flag = Expression<Int64>("flag")
+
+        try db.run(db_roulette.create(ifNotExists: true) { t in
+            t.column(index, primaryKey: true, defaultValue: 0)
+            t.column(level)
+            t.column(item_id)
+            t.column(amount, defaultValue: 1)
+            t.column(flag, defaultValue: 1)
+        })
+
+        try db.run(db_roulette.insert(index <- 0, level <- 1, item_id <- 675, amount <- 1, flag <- 1 ))     // Silver_Coin
+        try db.run(db_roulette.insert(index <- 1, level <- 1, item_id <- 671, amount <- 1, flag <- 0 ))     // Gold_Coin
+        try db.run(db_roulette.insert(index <- 2, level <- 1, item_id <- 678, amount <- 1, flag <- 0 ))     // Poison_Bottle
+        try db.run(db_roulette.insert(index <- 3, level <- 1, item_id <- 604, amount <- 1, flag <- 0 ))     // Branch_Of_Dead_Tree
+        try db.run(db_roulette.insert(index <- 4, level <- 1, item_id <- 522, amount <- 1, flag <- 0 ))     // Fruit_Of_Mastela
+        try db.run(db_roulette.insert(index <- 5, level <- 1, item_id <- 12609, amount <- 1, flag <- 0 ))   // Old_Ore_Box
+        try db.run(db_roulette.insert(index <- 6, level <- 1, item_id <- 12523, amount <- 1, flag <- 0 ))   // E_Inc_Agi_10_Scroll
+        try db.run(db_roulette.insert(index <- 7, level <- 1, item_id <- 985, amount <- 1, flag <- 0 ))     // Elunium
+        try db.run(db_roulette.insert(index <- 8, level <- 1, item_id <- 984, amount <- 1, flag <- 0 ))     // Oridecon
+
+        try db.run(db_roulette.insert(index <- 9, level <- 2, item_id <- 675, amount <- 1, flag <- 1 ))     // Silver_Coin
+        try db.run(db_roulette.insert(index <- 10, level <- 2, item_id <- 671, amount <- 1, flag <- 0 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 11, level <- 2, item_id <- 603, amount <- 1, flag <- 0 ))    // Old_Blue_Box
+        try db.run(db_roulette.insert(index <- 12, level <- 2, item_id <- 608, amount <- 1, flag <- 0 ))    // Seed_Of_Yggdrasil
+        try db.run(db_roulette.insert(index <- 13, level <- 2, item_id <- 607, amount <- 1, flag <- 0 ))    // Yggdrasilberry
+        try db.run(db_roulette.insert(index <- 14, level <- 2, item_id <- 12522, amount <- 1, flag <- 0 ))  // E_Blessing_10_Scroll
+        try db.run(db_roulette.insert(index <- 15, level <- 2, item_id <- 6223, amount <- 1, flag <- 0 ))   // Carnium
+        try db.run(db_roulette.insert(index <- 16, level <- 2, item_id <- 6224, amount <- 1, flag <- 0 ))   // Bradium
+
+        try db.run(db_roulette.insert(index <- 17, level <- 3, item_id <- 675, amount <- 1, flag <- 1 ))    // Silver_Coin
+        try db.run(db_roulette.insert(index <- 18, level <- 3, item_id <- 671, amount <- 1, flag <- 0 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 19, level <- 3, item_id <- 12108, amount <- 1, flag <- 0 ))  // Bundle_Of_Magic_Scroll
+        try db.run(db_roulette.insert(index <- 20, level <- 3, item_id <- 617, amount <- 1, flag <- 0 ))    // Old_Violet_Box
+        try db.run(db_roulette.insert(index <- 21, level <- 3, item_id <- 12514, amount <- 1, flag <- 0 ))  // E_Abrasive
+        try db.run(db_roulette.insert(index <- 22, level <- 3, item_id <- 7444, amount <- 1, flag <- 0 ))   // Treasure_Box
+        try db.run(db_roulette.insert(index <- 23, level <- 3, item_id <- 969, amount <- 1, flag <- 0 ))    // Gold
+
+        try db.run(db_roulette.insert(index <- 24, level <- 4, item_id <- 675, amount <- 1, flag <- 1 ))    // Silver_Coin
+        try db.run(db_roulette.insert(index <- 25, level <- 4, item_id <- 671, amount <- 1, flag <- 0 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 26, level <- 4, item_id <- 616, amount <- 1, flag <- 0 ))    // Old_Card_Album
+        try db.run(db_roulette.insert(index <- 27, level <- 4, item_id <- 12516, amount <- 1, flag <- 0 ))  // E_Small_Life_Potion
+        try db.run(db_roulette.insert(index <- 28, level <- 4, item_id <- 22777, amount <- 1, flag <- 0 ))  // Gift_Buff_Set
+        try db.run(db_roulette.insert(index <- 29, level <- 4, item_id <- 6231, amount <- 1, flag <- 0 ))   // Guarantee_Weapon_6Up
+
+        try db.run(db_roulette.insert(index <- 30, level <- 5, item_id <- 671, amount <- 1, flag <- 1 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 31, level <- 5, item_id <- 12246, amount <- 1, flag <- 0 ))  // Magic_Card_Album
+        try db.run(db_roulette.insert(index <- 32, level <- 5, item_id <- 12263, amount <- 1, flag <- 0 ))  // Comp_Battle_Manual
+        try db.run(db_roulette.insert(index <- 33, level <- 5, item_id <- 12831, amount <- 1, flag <- 0 ))  // Potion_Box
+        try db.run(db_roulette.insert(index <- 34, level <- 5, item_id <- 6235, amount <- 1, flag <- 0 ))   // Guarantee_Armor_6Up
+
+        try db.run(db_roulette.insert(index <- 35, level <- 6, item_id <- 671, amount <- 1, flag <- 1 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 36, level <- 6, item_id <- 12766, amount <- 1, flag <- 0 ))  // Reward_Job_BM25
+        try db.run(db_roulette.insert(index <- 37, level <- 6, item_id <- 6234, amount <- 1, flag <- 0 ))   // Guarantee_Armor_7Up
+        try db.run(db_roulette.insert(index <- 38, level <- 6, item_id <- 6233, amount <- 1, flag <- 0 ))   // Guarantee_Armor_8Up
+
+        try db.run(db_roulette.insert(index <- 39, level <- 7, item_id <- 671, amount <- 1, flag <- 1 ))    // Gold_Coin
+        try db.run(db_roulette.insert(index <- 40, level <- 7, item_id <- 6233, amount <- 1, flag <- 0 ))   // Guarantee_Armor_8Up
+        try db.run(db_roulette.insert(index <- 41, level <- 7, item_id <- 6233, amount <- 1, flag <- 0 ))   // Guarantee_Armor_8Up (KRO lists this twice)
     }
 }
 
