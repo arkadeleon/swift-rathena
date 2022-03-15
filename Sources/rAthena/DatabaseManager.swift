@@ -17,6 +17,9 @@ public class DatabaseManager {
         try create_achievement(db)
         try create_auction(db)
         try create_db_roulette(db)
+        try create_bonus_script(db)
+        try create_buyingstore_items(db)
+        try create_buyingstores(db)
     }
 
     private func create_acc_reg_num(_ db: Connection) throws {
@@ -231,6 +234,77 @@ public class DatabaseManager {
         try db.run(db_roulette.insert(index <- 39, level <- 7, item_id <- 671, amount <- 1, flag <- 1 ))    // Gold_Coin
         try db.run(db_roulette.insert(index <- 40, level <- 7, item_id <- 6233, amount <- 1, flag <- 0 ))   // Guarantee_Armor_8Up
         try db.run(db_roulette.insert(index <- 41, level <- 7, item_id <- 6233, amount <- 1, flag <- 0 ))   // Guarantee_Armor_8Up (KRO lists this twice)
+    }
+
+    private func create_bonus_script(_ db: Connection) throws {
+        let bonus_script = Table("bonus_script")
+        let char_id = Expression<Int64>("char_id")
+        let script = Expression<String>("script")
+        let tick = Expression<Int64>("tick")
+        let flag = Expression<Int64>("flag")
+        let type = Expression<Int64>("type")
+        let icon = Expression<Int64>("icon")
+
+        try db.run(bonus_script.create(ifNotExists: true) { t in
+            t.column(char_id)
+            t.column(script)
+            t.column(tick, defaultValue: 0)
+            t.column(flag, defaultValue: 0)
+            t.column(type, defaultValue: 0)
+            t.column(icon, defaultValue: -1)
+        })
+
+        try db.run(bonus_script.createIndex(char_id, ifNotExists: true))
+    }
+
+    private func create_buyingstore_items(_ db: Connection) throws {
+        let buyingstore_items = Table("buyingstore_items")
+        let buyingstore_id = Expression<Int64>("buyingstore_id")
+        let index = Expression<Int64>("index")
+        let item_id = Expression<Int64>("item_id")
+        let amount = Expression<Int64>("amount")
+        let price = Expression<Int64>("price")
+
+        try db.run(buyingstore_items.create(ifNotExists: true) { t in
+            t.column(buyingstore_id, primaryKey: true)
+            t.column(index, primaryKey: true)
+            t.column(item_id)
+            t.column(amount)
+            t.column(price)
+        })
+    }
+
+    private func create_buyingstores(_ db: Connection) throws {
+        let buyingstores = Table("buyingstores")
+        let id = Expression<Int64>("id")
+        let account_id = Expression<Int64>("account_id")
+        let char_id = Expression<Int64>("char_id")
+        let sex = Expression<String>("sex")
+        let map = Expression<String>("map")
+        let x = Expression<Int64>("x")
+        let y = Expression<Int64>("y")
+        let title = Expression<String>("title")
+        let limit = Expression<Int64>("limit")
+        let body_direction = Expression<String>("body_direction")
+        let head_direction = Expression<String>("head_direction")
+        let sit = Expression<String>("sit")
+        let autotrade = Expression<Int64>("autotrade")
+
+        try db.run(buyingstores.create(ifNotExists: true) { t in
+            t.column(id, primaryKey: true)
+            t.column(account_id)
+            t.column(char_id)
+            t.column(sex, defaultValue: "M")
+            t.column(map)
+            t.column(x)
+            t.column(y)
+            t.column(title)
+            t.column(limit)
+            t.column(body_direction, defaultValue: "4")
+            t.column(head_direction, defaultValue: "0")
+            t.column(sit, defaultValue: "1")
+            t.column(autotrade)
+        })
     }
 }
 
