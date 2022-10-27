@@ -60,6 +60,258 @@
 		352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521848F26556985002FAE2C /* rAthenaLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		352185EF2656D6C8002FAE2C /* ragnarok.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */; };
 		352185FC2656D6DD002FAE2C /* conf in Resources */ = {isa = PBXBuildFile; fileRef = 352185E226556FA5002FAE2C /* conf */; };
+		353451CC290AD2BA0053C79F /* ryml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F40290AD2B80053C79F /* ryml.hpp */; };
+		353451CD290AD2BA0053C79F /* ryml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F40290AD2B80053C79F /* ryml.hpp */; };
+		353451CE290AD2BA0053C79F /* ryml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F40290AD2B80053C79F /* ryml.hpp */; };
+		353451D2290AD2BA0053C79F /* ryml_std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F42290AD2B80053C79F /* ryml_std.hpp */; };
+		353451D3290AD2BA0053C79F /* ryml_std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F42290AD2B80053C79F /* ryml_std.hpp */; };
+		353451D4290AD2BA0053C79F /* ryml_std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F42290AD2B80053C79F /* ryml_std.hpp */; };
+		353451D5290AD2BA0053C79F /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F45290AD2B80053C79F /* common.cpp */; };
+		353451D6290AD2BA0053C79F /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F45290AD2B80053C79F /* common.cpp */; };
+		353451D7290AD2BA0053C79F /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F45290AD2B80053C79F /* common.cpp */; };
+		353451D8290AD2BA0053C79F /* yml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F46290AD2B80053C79F /* yml.hpp */; };
+		353451D9290AD2BA0053C79F /* yml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F46290AD2B80053C79F /* yml.hpp */; };
+		353451DA290AD2BA0053C79F /* yml.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F46290AD2B80053C79F /* yml.hpp */; };
+		353451DB290AD2BA0053C79F /* preprocess.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F47290AD2B80053C79F /* preprocess.hpp */; };
+		353451DC290AD2BA0053C79F /* preprocess.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F47290AD2B80053C79F /* preprocess.hpp */; };
+		353451DD290AD2BA0053C79F /* preprocess.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F47290AD2B80053C79F /* preprocess.hpp */; };
+		353451DE290AD2BA0053C79F /* parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F48290AD2B80053C79F /* parse.cpp */; };
+		353451DF290AD2BA0053C79F /* parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F48290AD2B80053C79F /* parse.cpp */; };
+		353451E0290AD2BA0053C79F /* parse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F48290AD2B80053C79F /* parse.cpp */; };
+		353451E1290AD2BA0053C79F /* writer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F49290AD2B80053C79F /* writer.hpp */; };
+		353451E2290AD2BA0053C79F /* writer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F49290AD2B80053C79F /* writer.hpp */; };
+		353451E3290AD2BA0053C79F /* writer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F49290AD2B80053C79F /* writer.hpp */; };
+		353451E4290AD2BA0053C79F /* emit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4A290AD2B80053C79F /* emit.hpp */; };
+		353451E5290AD2BA0053C79F /* emit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4A290AD2B80053C79F /* emit.hpp */; };
+		353451E6290AD2BA0053C79F /* emit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4A290AD2B80053C79F /* emit.hpp */; };
+		353451E7290AD2BA0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4B290AD2B80053C79F /* export.hpp */; };
+		353451E8290AD2BA0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4B290AD2B80053C79F /* export.hpp */; };
+		353451E9290AD2BA0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4B290AD2B80053C79F /* export.hpp */; };
+		353451EA290AD2BA0053C79F /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F4C290AD2B80053C79F /* node.cpp */; };
+		353451EB290AD2BA0053C79F /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F4C290AD2B80053C79F /* node.cpp */; };
+		353451EC290AD2BA0053C79F /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F4C290AD2B80053C79F /* node.cpp */; };
+		353451ED290AD2BA0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4E290AD2B80053C79F /* std.hpp */; };
+		353451EE290AD2BA0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4E290AD2B80053C79F /* std.hpp */; };
+		353451EF290AD2BA0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4E290AD2B80053C79F /* std.hpp */; };
+		353451F0290AD2BA0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4F290AD2B80053C79F /* vector.hpp */; };
+		353451F1290AD2BA0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4F290AD2B80053C79F /* vector.hpp */; };
+		353451F2290AD2BA0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F4F290AD2B80053C79F /* vector.hpp */; };
+		353451F3290AD2BA0053C79F /* map.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F50290AD2B80053C79F /* map.hpp */; };
+		353451F4290AD2BA0053C79F /* map.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F50290AD2B80053C79F /* map.hpp */; };
+		353451F5290AD2BA0053C79F /* map.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F50290AD2B80053C79F /* map.hpp */; };
+		353451F6290AD2BA0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F51290AD2B80053C79F /* string.hpp */; };
+		353451F7290AD2BA0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F51290AD2B80053C79F /* string.hpp */; };
+		353451F8290AD2BA0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F51290AD2B80053C79F /* string.hpp */; };
+		353451F9290AD2BA0053C79F /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F52290AD2B80053C79F /* tree.cpp */; };
+		353451FA290AD2BA0053C79F /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F52290AD2B80053C79F /* tree.cpp */; };
+		353451FB290AD2BA0053C79F /* tree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F52290AD2B80053C79F /* tree.cpp */; };
+		353451FC290AD2BA0053C79F /* parser_dbg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F54290AD2B80053C79F /* parser_dbg.hpp */; };
+		353451FD290AD2BA0053C79F /* parser_dbg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F54290AD2B80053C79F /* parser_dbg.hpp */; };
+		353451FE290AD2BA0053C79F /* parser_dbg.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F54290AD2B80053C79F /* parser_dbg.hpp */; };
+		353451FF290AD2BA0053C79F /* checks.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F55290AD2B80053C79F /* checks.hpp */; };
+		35345200290AD2BA0053C79F /* checks.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F55290AD2B80053C79F /* checks.hpp */; };
+		35345201290AD2BA0053C79F /* checks.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F55290AD2B80053C79F /* checks.hpp */; };
+		35345202290AD2BA0053C79F /* print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F56290AD2B80053C79F /* print.hpp */; };
+		35345203290AD2BA0053C79F /* print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F56290AD2B80053C79F /* print.hpp */; };
+		35345204290AD2BA0053C79F /* print.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F56290AD2B80053C79F /* print.hpp */; };
+		35345205290AD2BA0053C79F /* stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F57290AD2B80053C79F /* stack.hpp */; };
+		35345206290AD2BA0053C79F /* stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F57290AD2B80053C79F /* stack.hpp */; };
+		35345207290AD2BA0053C79F /* stack.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F57290AD2B80053C79F /* stack.hpp */; };
+		35345208290AD2BA0053C79F /* node.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F58290AD2B80053C79F /* node.hpp */; };
+		35345209290AD2BA0053C79F /* node.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F58290AD2B80053C79F /* node.hpp */; };
+		3534520A290AD2BA0053C79F /* node.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F58290AD2B80053C79F /* node.hpp */; };
+		3534520B290AD2BA0053C79F /* tree.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F59290AD2B80053C79F /* tree.hpp */; };
+		3534520C290AD2BA0053C79F /* tree.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F59290AD2B80053C79F /* tree.hpp */; };
+		3534520D290AD2BA0053C79F /* tree.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F59290AD2B80053C79F /* tree.hpp */; };
+		3534520E290AD2BA0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5A290AD2B80053C79F /* common.hpp */; };
+		3534520F290AD2BA0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5A290AD2B80053C79F /* common.hpp */; };
+		35345210290AD2BA0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5A290AD2B80053C79F /* common.hpp */; };
+		35345211290AD2BA0053C79F /* emit.def.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5B290AD2B80053C79F /* emit.def.hpp */; };
+		35345212290AD2BA0053C79F /* emit.def.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5B290AD2B80053C79F /* emit.def.hpp */; };
+		35345213290AD2BA0053C79F /* emit.def.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5B290AD2B80053C79F /* emit.def.hpp */; };
+		35345214290AD2BA0053C79F /* preprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F5C290AD2B80053C79F /* preprocess.cpp */; };
+		35345215290AD2BA0053C79F /* preprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F5C290AD2B80053C79F /* preprocess.cpp */; };
+		35345216290AD2BA0053C79F /* preprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35344F5C290AD2B80053C79F /* preprocess.cpp */; };
+		35345217290AD2BA0053C79F /* parse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5D290AD2B80053C79F /* parse.hpp */; };
+		35345218290AD2BA0053C79F /* parse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5D290AD2B80053C79F /* parse.hpp */; };
+		35345219290AD2BA0053C79F /* parse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35344F5D290AD2B80053C79F /* parse.hpp */; };
+		353453D3290AD6BE0053C79F /* bitmask.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527A290AD6BD0053C79F /* bitmask.hpp */; };
+		353453D4290AD6BE0053C79F /* bitmask.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527A290AD6BD0053C79F /* bitmask.hpp */; };
+		353453D5290AD6BE0053C79F /* bitmask.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527A290AD6BD0053C79F /* bitmask.hpp */; };
+		353453D6290AD6BE0053C79F /* cpu.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527B290AD6BD0053C79F /* cpu.hpp */; };
+		353453D7290AD6BE0053C79F /* cpu.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527B290AD6BD0053C79F /* cpu.hpp */; };
+		353453D8290AD6BE0053C79F /* cpu.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527B290AD6BD0053C79F /* cpu.hpp */; };
+		353453D9290AD6BE0053C79F /* hash.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527C290AD6BD0053C79F /* hash.hpp */; };
+		353453DA290AD6BE0053C79F /* hash.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527C290AD6BD0053C79F /* hash.hpp */; };
+		353453DB290AD6BE0053C79F /* hash.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527C290AD6BD0053C79F /* hash.hpp */; };
+		353453DC290AD6BE0053C79F /* ctor_dtor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527D290AD6BD0053C79F /* ctor_dtor.hpp */; };
+		353453DD290AD6BE0053C79F /* ctor_dtor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527D290AD6BD0053C79F /* ctor_dtor.hpp */; };
+		353453DE290AD6BE0053C79F /* ctor_dtor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527D290AD6BD0053C79F /* ctor_dtor.hpp */; };
+		353453DF290AD6BE0053C79F /* utf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527E290AD6BD0053C79F /* utf.hpp */; };
+		353453E0290AD6BE0053C79F /* utf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527E290AD6BD0053C79F /* utf.hpp */; };
+		353453E1290AD6BE0053C79F /* utf.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527E290AD6BD0053C79F /* utf.hpp */; };
+		353453E2290AD6BE0053C79F /* span.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527F290AD6BD0053C79F /* span.hpp */; };
+		353453E3290AD6BE0053C79F /* span.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527F290AD6BD0053C79F /* span.hpp */; };
+		353453E4290AD6BE0053C79F /* span.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534527F290AD6BD0053C79F /* span.hpp */; };
+		353453E5290AD6BE0053C79F /* substr_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345280290AD6BD0053C79F /* substr_fwd.hpp */; };
+		353453E6290AD6BE0053C79F /* substr_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345280290AD6BD0053C79F /* substr_fwd.hpp */; };
+		353453E7290AD6BE0053C79F /* substr_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345280290AD6BD0053C79F /* substr_fwd.hpp */; };
+		353453E8290AD6BE0053C79F /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345281290AD6BD0053C79F /* format.cpp */; };
+		353453E9290AD6BE0053C79F /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345281290AD6BD0053C79F /* format.cpp */; };
+		353453EA290AD6BE0053C79F /* format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345281290AD6BD0053C79F /* format.cpp */; };
+		353453EB290AD6BE0053C79F /* c4_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345282290AD6BD0053C79F /* c4_push.hpp */; };
+		353453EC290AD6BE0053C79F /* c4_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345282290AD6BD0053C79F /* c4_push.hpp */; };
+		353453ED290AD6BE0053C79F /* c4_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345282290AD6BD0053C79F /* c4_push.hpp */; };
+		353453EE290AD6BE0053C79F /* dump.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345283290AD6BD0053C79F /* dump.hpp */; };
+		353453EF290AD6BE0053C79F /* dump.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345283290AD6BD0053C79F /* dump.hpp */; };
+		353453F0290AD6BE0053C79F /* dump.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345283290AD6BD0053C79F /* dump.hpp */; };
+		353453F1290AD6BE0053C79F /* unrestrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345284290AD6BD0053C79F /* unrestrict.hpp */; };
+		353453F2290AD6BE0053C79F /* unrestrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345284290AD6BD0053C79F /* unrestrict.hpp */; };
+		353453F3290AD6BE0053C79F /* unrestrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345284290AD6BD0053C79F /* unrestrict.hpp */; };
+		353453F4290AD6BE0053C79F /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345285290AD6BD0053C79F /* base64.cpp */; };
+		353453F5290AD6BE0053C79F /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345285290AD6BD0053C79F /* base64.cpp */; };
+		353453F6290AD6BE0053C79F /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345285290AD6BD0053C79F /* base64.cpp */; };
+		353453F7290AD6BE0053C79F /* type_name.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345286290AD6BD0053C79F /* type_name.hpp */; };
+		353453F8290AD6BE0053C79F /* type_name.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345286290AD6BD0053C79F /* type_name.hpp */; };
+		353453F9290AD6BE0053C79F /* type_name.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345286290AD6BD0053C79F /* type_name.hpp */; };
+		353453FA290AD6BE0053C79F /* time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345287290AD6BD0053C79F /* time.hpp */; };
+		353453FB290AD6BE0053C79F /* time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345287290AD6BD0053C79F /* time.hpp */; };
+		353453FC290AD6BE0053C79F /* time.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35345287290AD6BD0053C79F /* time.hpp */; };
+		353453FD290AD6BE0053C79F /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345288290AD6BD0053C79F /* error.cpp */; };
+		353453FE290AD6BE0053C79F /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345288290AD6BD0053C79F /* error.cpp */; };
+		353453FF290AD6BE0053C79F /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345288290AD6BD0053C79F /* error.cpp */; };
+		35345400290AD6BE0053C79F /* char_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345289290AD6BD0053C79F /* char_traits.cpp */; };
+		35345401290AD6BE0053C79F /* char_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345289290AD6BD0053C79F /* char_traits.cpp */; };
+		35345402290AD6BE0053C79F /* char_traits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35345289290AD6BD0053C79F /* char_traits.cpp */; };
+		35345403290AD6BE0053C79F /* memory_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3534528A290AD6BD0053C79F /* memory_resource.cpp */; };
+		35345404290AD6BE0053C79F /* memory_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3534528A290AD6BD0053C79F /* memory_resource.cpp */; };
+		35345405290AD6BE0053C79F /* memory_resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3534528A290AD6BD0053C79F /* memory_resource.cpp */; };
+		35345406290AD6BE0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534528B290AD6BD0053C79F /* export.hpp */; };
+		35345407290AD6BE0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534528B290AD6BD0053C79F /* export.hpp */; };
+		35345408290AD6BE0053C79F /* export.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3534528B290AD6BD0053C79F /* export.hpp */; };
+		35345472290AD6BE0053C79F /* fast_float_all.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452B8290AD6BD0053C79F /* fast_float_all.h */; };
+		35345473290AD6BE0053C79F /* fast_float_all.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452B8290AD6BD0053C79F /* fast_float_all.h */; };
+		35345474290AD6BE0053C79F /* fast_float_all.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452B8290AD6BD0053C79F /* fast_float_all.h */; };
+		35345478290AD6BE0053C79F /* inplace_function.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452BB290AD6BD0053C79F /* inplace_function.h */; };
+		35345479290AD6BE0053C79F /* inplace_function.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452BB290AD6BD0053C79F /* inplace_function.h */; };
+		3534547A290AD6BE0053C79F /* inplace_function.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452BB290AD6BD0053C79F /* inplace_function.h */; };
+		3534547B290AD6BE0053C79F /* fast_float.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452BC290AD6BD0053C79F /* fast_float.hpp */; };
+		3534547C290AD6BE0053C79F /* fast_float.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452BC290AD6BD0053C79F /* fast_float.hpp */; };
+		3534547D290AD6BE0053C79F /* fast_float.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452BC290AD6BD0053C79F /* fast_float.hpp */; };
+		35345490290AD6BE0053C79F /* debugbreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452C4290AD6BD0053C79F /* debugbreak.h */; };
+		35345491290AD6BE0053C79F /* debugbreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452C4290AD6BD0053C79F /* debugbreak.h */; };
+		35345492290AD6BE0053C79F /* debugbreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 353452C4290AD6BD0053C79F /* debugbreak.h */; };
+		35345493290AD6BE0053C79F /* rng.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C6290AD6BD0053C79F /* rng.hpp */; };
+		35345494290AD6BE0053C79F /* rng.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C6290AD6BD0053C79F /* rng.hpp */; };
+		35345495290AD6BE0053C79F /* rng.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C6290AD6BD0053C79F /* rng.hpp */; };
+		35345496290AD6BE0053C79F /* c4core.natvis in Resources */ = {isa = PBXBuildFile; fileRef = 353452C7290AD6BD0053C79F /* c4core.natvis */; };
+		35345497290AD6BE0053C79F /* c4core.natvis in Resources */ = {isa = PBXBuildFile; fileRef = 353452C7290AD6BD0053C79F /* c4core.natvis */; };
+		35345498290AD6BE0053C79F /* c4core.natvis in Resources */ = {isa = PBXBuildFile; fileRef = 353452C7290AD6BD0053C79F /* c4core.natvis */; };
+		35345499290AD6BE0053C79F /* substr.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C8290AD6BD0053C79F /* substr.hpp */; };
+		3534549A290AD6BE0053C79F /* substr.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C8290AD6BD0053C79F /* substr.hpp */; };
+		3534549B290AD6BE0053C79F /* substr.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C8290AD6BD0053C79F /* substr.hpp */; };
+		3534549C290AD6BE0053C79F /* enum.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C9290AD6BD0053C79F /* enum.hpp */; };
+		3534549D290AD6BE0053C79F /* enum.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C9290AD6BD0053C79F /* enum.hpp */; };
+		3534549E290AD6BE0053C79F /* enum.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452C9290AD6BD0053C79F /* enum.hpp */; };
+		3534549F290AD6BE0053C79F /* allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CA290AD6BD0053C79F /* allocator.hpp */; };
+		353454A0290AD6BE0053C79F /* allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CA290AD6BD0053C79F /* allocator.hpp */; };
+		353454A1290AD6BE0053C79F /* allocator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CA290AD6BD0053C79F /* allocator.hpp */; };
+		353454A2290AD6BE0053C79F /* config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CB290AD6BD0053C79F /* config.hpp */; };
+		353454A3290AD6BE0053C79F /* config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CB290AD6BD0053C79F /* config.hpp */; };
+		353454A4290AD6BE0053C79F /* config.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CB290AD6BD0053C79F /* config.hpp */; };
+		353454A5290AD6BE0053C79F /* language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452CC290AD6BD0053C79F /* language.cpp */; };
+		353454A6290AD6BE0053C79F /* language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452CC290AD6BD0053C79F /* language.cpp */; };
+		353454A7290AD6BE0053C79F /* language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452CC290AD6BD0053C79F /* language.cpp */; };
+		353454A8290AD6BE0053C79F /* c4_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CD290AD6BD0053C79F /* c4_pop.hpp */; };
+		353454A9290AD6BE0053C79F /* c4_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CD290AD6BD0053C79F /* c4_pop.hpp */; };
+		353454AA290AD6BE0053C79F /* c4_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CD290AD6BD0053C79F /* c4_pop.hpp */; };
+		353454AB290AD6BE0053C79F /* string_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CF290AD6BD0053C79F /* string_fwd.hpp */; };
+		353454AC290AD6BE0053C79F /* string_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CF290AD6BD0053C79F /* string_fwd.hpp */; };
+		353454AD290AD6BE0053C79F /* string_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452CF290AD6BD0053C79F /* string_fwd.hpp */; };
+		353454AE290AD6BE0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D0290AD6BD0053C79F /* std.hpp */; };
+		353454AF290AD6BE0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D0290AD6BD0053C79F /* std.hpp */; };
+		353454B0290AD6BE0053C79F /* std.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D0290AD6BD0053C79F /* std.hpp */; };
+		353454B1290AD6BE0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D1290AD6BD0053C79F /* vector.hpp */; };
+		353454B2290AD6BE0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D1290AD6BD0053C79F /* vector.hpp */; };
+		353454B3290AD6BE0053C79F /* vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D1290AD6BD0053C79F /* vector.hpp */; };
+		353454B4290AD6BE0053C79F /* tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D2290AD6BD0053C79F /* tuple.hpp */; };
+		353454B5290AD6BE0053C79F /* tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D2290AD6BD0053C79F /* tuple.hpp */; };
+		353454B6290AD6BE0053C79F /* tuple.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D2290AD6BD0053C79F /* tuple.hpp */; };
+		353454B7290AD6BE0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D3290AD6BD0053C79F /* string.hpp */; };
+		353454B8290AD6BE0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D3290AD6BD0053C79F /* string.hpp */; };
+		353454B9290AD6BE0053C79F /* string.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D3290AD6BD0053C79F /* string.hpp */; };
+		353454BA290AD6BE0053C79F /* vector_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D4290AD6BD0053C79F /* vector_fwd.hpp */; };
+		353454BB290AD6BE0053C79F /* vector_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D4290AD6BD0053C79F /* vector_fwd.hpp */; };
+		353454BC290AD6BE0053C79F /* vector_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D4290AD6BD0053C79F /* vector_fwd.hpp */; };
+		353454BD290AD6BE0053C79F /* std_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D5290AD6BD0053C79F /* std_fwd.hpp */; };
+		353454BE290AD6BE0053C79F /* std_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D5290AD6BD0053C79F /* std_fwd.hpp */; };
+		353454BF290AD6BE0053C79F /* std_fwd.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D5290AD6BD0053C79F /* std_fwd.hpp */; };
+		353454C0290AD6BE0053C79F /* windows_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D6290AD6BD0053C79F /* windows_pop.hpp */; };
+		353454C1290AD6BE0053C79F /* windows_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D6290AD6BD0053C79F /* windows_pop.hpp */; };
+		353454C2290AD6BE0053C79F /* windows_pop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D6290AD6BD0053C79F /* windows_pop.hpp */; };
+		353454C3290AD6BE0053C79F /* memory_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452D7290AD6BD0053C79F /* memory_util.cpp */; };
+		353454C4290AD6BE0053C79F /* memory_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452D7290AD6BD0053C79F /* memory_util.cpp */; };
+		353454C5290AD6BE0053C79F /* memory_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452D7290AD6BD0053C79F /* memory_util.cpp */; };
+		353454C6290AD6BE0053C79F /* platform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D8290AD6BD0053C79F /* platform.hpp */; };
+		353454C7290AD6BE0053C79F /* platform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D8290AD6BD0053C79F /* platform.hpp */; };
+		353454C8290AD6BE0053C79F /* platform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D8290AD6BD0053C79F /* platform.hpp */; };
+		353454C9290AD6BE0053C79F /* error.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D9290AD6BD0053C79F /* error.hpp */; };
+		353454CA290AD6BE0053C79F /* error.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D9290AD6BD0053C79F /* error.hpp */; };
+		353454CB290AD6BE0053C79F /* error.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452D9290AD6BD0053C79F /* error.hpp */; };
+		353454CC290AD6BE0053C79F /* char_traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DA290AD6BD0053C79F /* char_traits.hpp */; };
+		353454CD290AD6BE0053C79F /* char_traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DA290AD6BD0053C79F /* char_traits.hpp */; };
+		353454CE290AD6BE0053C79F /* char_traits.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DA290AD6BD0053C79F /* char_traits.hpp */; };
+		353454CF290AD6BE0053C79F /* blob.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DB290AD6BD0053C79F /* blob.hpp */; };
+		353454D0290AD6BE0053C79F /* blob.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DB290AD6BD0053C79F /* blob.hpp */; };
+		353454D1290AD6BE0053C79F /* blob.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DB290AD6BD0053C79F /* blob.hpp */; };
+		353454D2290AD6BE0053C79F /* memory_resource.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DC290AD6BD0053C79F /* memory_resource.hpp */; };
+		353454D3290AD6BE0053C79F /* memory_resource.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DC290AD6BD0053C79F /* memory_resource.hpp */; };
+		353454D4290AD6BE0053C79F /* memory_resource.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DC290AD6BD0053C79F /* memory_resource.hpp */; };
+		353454D5290AD6BE0053C79F /* restrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DD290AD6BD0053C79F /* restrict.hpp */; };
+		353454D6290AD6BE0053C79F /* restrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DD290AD6BD0053C79F /* restrict.hpp */; };
+		353454D7290AD6BE0053C79F /* restrict.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DD290AD6BD0053C79F /* restrict.hpp */; };
+		353454D8290AD6BE0053C79F /* windows_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DE290AD6BD0053C79F /* windows_push.hpp */; };
+		353454D9290AD6BE0053C79F /* windows_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DE290AD6BD0053C79F /* windows_push.hpp */; };
+		353454DA290AD6BE0053C79F /* windows_push.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DE290AD6BD0053C79F /* windows_push.hpp */; };
+		353454DB290AD6BE0053C79F /* language.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DF290AD6BD0053C79F /* language.hpp */; };
+		353454DC290AD6BE0053C79F /* language.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DF290AD6BD0053C79F /* language.hpp */; };
+		353454DD290AD6BE0053C79F /* language.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452DF290AD6BD0053C79F /* language.hpp */; };
+		353454DE290AD6BE0053C79F /* memory_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E0290AD6BD0053C79F /* memory_util.hpp */; };
+		353454DF290AD6BE0053C79F /* memory_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E0290AD6BD0053C79F /* memory_util.hpp */; };
+		353454E0290AD6BE0053C79F /* memory_util.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E0290AD6BD0053C79F /* memory_util.hpp */; };
+		353454E1290AD6BE0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E1290AD6BD0053C79F /* common.hpp */; };
+		353454E2290AD6BE0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E1290AD6BD0053C79F /* common.hpp */; };
+		353454E3290AD6BE0053C79F /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E1290AD6BD0053C79F /* common.hpp */; };
+		353454E4290AD6BE0053C79F /* windows.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E2290AD6BD0053C79F /* windows.hpp */; };
+		353454E5290AD6BF0053C79F /* windows.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E2290AD6BD0053C79F /* windows.hpp */; };
+		353454E6290AD6BF0053C79F /* windows.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E2290AD6BD0053C79F /* windows.hpp */; };
+		353454E7290AD6BF0053C79F /* szconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E3290AD6BD0053C79F /* szconv.hpp */; };
+		353454E8290AD6BF0053C79F /* szconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E3290AD6BD0053C79F /* szconv.hpp */; };
+		353454E9290AD6BF0053C79F /* szconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E3290AD6BD0053C79F /* szconv.hpp */; };
+		353454EA290AD6BF0053C79F /* utf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452E4290AD6BD0053C79F /* utf.cpp */; };
+		353454EB290AD6BF0053C79F /* utf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452E4290AD6BD0053C79F /* utf.cpp */; };
+		353454EC290AD6BF0053C79F /* utf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452E4290AD6BD0053C79F /* utf.cpp */; };
+		353454ED290AD6BF0053C79F /* types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E5290AD6BD0053C79F /* types.hpp */; };
+		353454EE290AD6BF0053C79F /* types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E5290AD6BD0053C79F /* types.hpp */; };
+		353454EF290AD6BF0053C79F /* types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E5290AD6BD0053C79F /* types.hpp */; };
+		353454F0290AD6BF0053C79F /* charconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E6290AD6BD0053C79F /* charconv.hpp */; };
+		353454F1290AD6BF0053C79F /* charconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E6290AD6BD0053C79F /* charconv.hpp */; };
+		353454F2290AD6BF0053C79F /* charconv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E6290AD6BD0053C79F /* charconv.hpp */; };
+		353454F3290AD6BF0053C79F /* preprocessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E7290AD6BD0053C79F /* preprocessor.hpp */; };
+		353454F4290AD6BF0053C79F /* preprocessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E7290AD6BD0053C79F /* preprocessor.hpp */; };
+		353454F5290AD6BF0053C79F /* preprocessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E7290AD6BD0053C79F /* preprocessor.hpp */; };
+		353454F6290AD6BF0053C79F /* format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E8290AD6BD0053C79F /* format.hpp */; };
+		353454F7290AD6BF0053C79F /* format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E8290AD6BD0053C79F /* format.hpp */; };
+		353454F8290AD6BF0053C79F /* format.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E8290AD6BD0053C79F /* format.hpp */; };
+		353454F9290AD6BF0053C79F /* base64.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E9290AD6BD0053C79F /* base64.hpp */; };
+		353454FA290AD6BF0053C79F /* base64.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E9290AD6BD0053C79F /* base64.hpp */; };
+		353454FB290AD6BF0053C79F /* base64.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452E9290AD6BD0053C79F /* base64.hpp */; };
+		353454FC290AD6BF0053C79F /* compiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452EA290AD6BD0053C79F /* compiler.hpp */; };
+		353454FD290AD6BF0053C79F /* compiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452EA290AD6BD0053C79F /* compiler.hpp */; };
+		353454FE290AD6BF0053C79F /* compiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 353452EA290AD6BD0053C79F /* compiler.hpp */; };
+		353454FF290AD6BF0053C79F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452EB290AD6BD0053C79F /* time.cpp */; };
+		35345500290AD6BF0053C79F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452EB290AD6BD0053C79F /* time.cpp */; };
+		35345501290AD6BF0053C79F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452EB290AD6BD0053C79F /* time.cpp */; };
 		353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FE9C926B257FC00D75FEE /* ResourceManager.swift */; };
 		35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C0726E6652200F42F92 /* CharServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C0826E6652200F42F92 /* CharServerHandlers.m */; };
@@ -719,6 +971,90 @@
 		3521848F26556985002FAE2C /* rAthenaLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rAthenaLogin.h; sourceTree = "<group>"; };
 		352185E226556FA5002FAE2C /* conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = conf; sourceTree = SOURCE_ROOT; };
 		352185EE2656D6C8002FAE2C /* ragnarok.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ragnarok.sqlite3; sourceTree = SOURCE_ROOT; };
+		35344F40290AD2B80053C79F /* ryml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ryml.hpp; sourceTree = "<group>"; };
+		35344F42290AD2B80053C79F /* ryml_std.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ryml_std.hpp; sourceTree = "<group>"; };
+		35344F45290AD2B80053C79F /* common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
+		35344F46290AD2B80053C79F /* yml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = yml.hpp; sourceTree = "<group>"; };
+		35344F47290AD2B80053C79F /* preprocess.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = preprocess.hpp; sourceTree = "<group>"; };
+		35344F48290AD2B80053C79F /* parse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parse.cpp; sourceTree = "<group>"; };
+		35344F49290AD2B80053C79F /* writer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = writer.hpp; sourceTree = "<group>"; };
+		35344F4A290AD2B80053C79F /* emit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = emit.hpp; sourceTree = "<group>"; };
+		35344F4B290AD2B80053C79F /* export.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = export.hpp; sourceTree = "<group>"; };
+		35344F4C290AD2B80053C79F /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
+		35344F4E290AD2B80053C79F /* std.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = std.hpp; sourceTree = "<group>"; };
+		35344F4F290AD2B80053C79F /* vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector.hpp; sourceTree = "<group>"; };
+		35344F50290AD2B80053C79F /* map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map.hpp; sourceTree = "<group>"; };
+		35344F51290AD2B80053C79F /* string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = string.hpp; sourceTree = "<group>"; };
+		35344F52290AD2B80053C79F /* tree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tree.cpp; sourceTree = "<group>"; };
+		35344F54290AD2B80053C79F /* parser_dbg.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parser_dbg.hpp; sourceTree = "<group>"; };
+		35344F55290AD2B80053C79F /* checks.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = checks.hpp; sourceTree = "<group>"; };
+		35344F56290AD2B80053C79F /* print.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = print.hpp; sourceTree = "<group>"; };
+		35344F57290AD2B80053C79F /* stack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = stack.hpp; sourceTree = "<group>"; };
+		35344F58290AD2B80053C79F /* node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = node.hpp; sourceTree = "<group>"; };
+		35344F59290AD2B80053C79F /* tree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tree.hpp; sourceTree = "<group>"; };
+		35344F5A290AD2B80053C79F /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		35344F5B290AD2B80053C79F /* emit.def.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = emit.def.hpp; sourceTree = "<group>"; };
+		35344F5C290AD2B80053C79F /* preprocess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = preprocess.cpp; sourceTree = "<group>"; };
+		35344F5D290AD2B80053C79F /* parse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parse.hpp; sourceTree = "<group>"; };
+		3534527A290AD6BD0053C79F /* bitmask.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmask.hpp; sourceTree = "<group>"; };
+		3534527B290AD6BD0053C79F /* cpu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cpu.hpp; sourceTree = "<group>"; };
+		3534527C290AD6BD0053C79F /* hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hash.hpp; sourceTree = "<group>"; };
+		3534527D290AD6BD0053C79F /* ctor_dtor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ctor_dtor.hpp; sourceTree = "<group>"; };
+		3534527E290AD6BD0053C79F /* utf.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utf.hpp; sourceTree = "<group>"; };
+		3534527F290AD6BD0053C79F /* span.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = span.hpp; sourceTree = "<group>"; };
+		35345280290AD6BD0053C79F /* substr_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = substr_fwd.hpp; sourceTree = "<group>"; };
+		35345281290AD6BD0053C79F /* format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = format.cpp; sourceTree = "<group>"; };
+		35345282290AD6BD0053C79F /* c4_push.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c4_push.hpp; sourceTree = "<group>"; };
+		35345283290AD6BD0053C79F /* dump.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = dump.hpp; sourceTree = "<group>"; };
+		35345284290AD6BD0053C79F /* unrestrict.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unrestrict.hpp; sourceTree = "<group>"; };
+		35345285290AD6BD0053C79F /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
+		35345286290AD6BD0053C79F /* type_name.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = type_name.hpp; sourceTree = "<group>"; };
+		35345287290AD6BD0053C79F /* time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = time.hpp; sourceTree = "<group>"; };
+		35345288290AD6BD0053C79F /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		35345289290AD6BD0053C79F /* char_traits.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = char_traits.cpp; sourceTree = "<group>"; };
+		3534528A290AD6BD0053C79F /* memory_resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_resource.cpp; sourceTree = "<group>"; };
+		3534528B290AD6BD0053C79F /* export.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = export.hpp; sourceTree = "<group>"; };
+		353452B8290AD6BD0053C79F /* fast_float_all.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fast_float_all.h; sourceTree = "<group>"; };
+		353452BB290AD6BD0053C79F /* inplace_function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inplace_function.h; sourceTree = "<group>"; };
+		353452BC290AD6BD0053C79F /* fast_float.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fast_float.hpp; sourceTree = "<group>"; };
+		353452C4290AD6BD0053C79F /* debugbreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debugbreak.h; sourceTree = "<group>"; };
+		353452C6290AD6BD0053C79F /* rng.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rng.hpp; sourceTree = "<group>"; };
+		353452C7290AD6BD0053C79F /* c4core.natvis */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = c4core.natvis; sourceTree = "<group>"; };
+		353452C8290AD6BD0053C79F /* substr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = substr.hpp; sourceTree = "<group>"; };
+		353452C9290AD6BD0053C79F /* enum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = enum.hpp; sourceTree = "<group>"; };
+		353452CA290AD6BD0053C79F /* allocator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = allocator.hpp; sourceTree = "<group>"; };
+		353452CB290AD6BD0053C79F /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		353452CC290AD6BD0053C79F /* language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = language.cpp; sourceTree = "<group>"; };
+		353452CD290AD6BD0053C79F /* c4_pop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = c4_pop.hpp; sourceTree = "<group>"; };
+		353452CF290AD6BD0053C79F /* string_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = string_fwd.hpp; sourceTree = "<group>"; };
+		353452D0290AD6BD0053C79F /* std.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = std.hpp; sourceTree = "<group>"; };
+		353452D1290AD6BD0053C79F /* vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector.hpp; sourceTree = "<group>"; };
+		353452D2290AD6BD0053C79F /* tuple.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tuple.hpp; sourceTree = "<group>"; };
+		353452D3290AD6BD0053C79F /* string.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = string.hpp; sourceTree = "<group>"; };
+		353452D4290AD6BD0053C79F /* vector_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_fwd.hpp; sourceTree = "<group>"; };
+		353452D5290AD6BD0053C79F /* std_fwd.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = std_fwd.hpp; sourceTree = "<group>"; };
+		353452D6290AD6BD0053C79F /* windows_pop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = windows_pop.hpp; sourceTree = "<group>"; };
+		353452D7290AD6BD0053C79F /* memory_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory_util.cpp; sourceTree = "<group>"; };
+		353452D8290AD6BD0053C79F /* platform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = platform.hpp; sourceTree = "<group>"; };
+		353452D9290AD6BD0053C79F /* error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
+		353452DA290AD6BD0053C79F /* char_traits.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = char_traits.hpp; sourceTree = "<group>"; };
+		353452DB290AD6BD0053C79F /* blob.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = blob.hpp; sourceTree = "<group>"; };
+		353452DC290AD6BD0053C79F /* memory_resource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = memory_resource.hpp; sourceTree = "<group>"; };
+		353452DD290AD6BD0053C79F /* restrict.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = restrict.hpp; sourceTree = "<group>"; };
+		353452DE290AD6BD0053C79F /* windows_push.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = windows_push.hpp; sourceTree = "<group>"; };
+		353452DF290AD6BD0053C79F /* language.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = language.hpp; sourceTree = "<group>"; };
+		353452E0290AD6BD0053C79F /* memory_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = memory_util.hpp; sourceTree = "<group>"; };
+		353452E1290AD6BD0053C79F /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		353452E2290AD6BD0053C79F /* windows.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = windows.hpp; sourceTree = "<group>"; };
+		353452E3290AD6BD0053C79F /* szconv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = szconv.hpp; sourceTree = "<group>"; };
+		353452E4290AD6BD0053C79F /* utf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utf.cpp; sourceTree = "<group>"; };
+		353452E5290AD6BD0053C79F /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
+		353452E6290AD6BD0053C79F /* charconv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = charconv.hpp; sourceTree = "<group>"; };
+		353452E7290AD6BD0053C79F /* preprocessor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = preprocessor.hpp; sourceTree = "<group>"; };
+		353452E8290AD6BD0053C79F /* format.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = format.hpp; sourceTree = "<group>"; };
+		353452E9290AD6BD0053C79F /* base64.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = base64.hpp; sourceTree = "<group>"; };
+		353452EA290AD6BD0053C79F /* compiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = compiler.hpp; sourceTree = "<group>"; };
+		353452EB290AD6BD0053C79F /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		353FE9C926B257FC00D75FEE /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
 		35435C0726E6652200F42F92 /* CharServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharServerHandlers.h; sourceTree = "<group>"; };
 		35435C0826E6652200F42F92 /* CharServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharServerHandlers.m; sourceTree = "<group>"; };
@@ -1170,6 +1506,209 @@
 			path = Sources/rAthenaMap;
 			sourceTree = "<group>";
 		};
+		35344E4F290AD2B80053C79F /* rapidyaml */ = {
+			isa = PBXGroup;
+			children = (
+				3534521D290AD6BC0053C79F /* ext */,
+				35344F3F290AD2B80053C79F /* src */,
+			);
+			path = rapidyaml;
+			sourceTree = "<group>";
+		};
+		35344F3F290AD2B80053C79F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35344F40290AD2B80053C79F /* ryml.hpp */,
+				35344F42290AD2B80053C79F /* ryml_std.hpp */,
+				35344F43290AD2B80053C79F /* c4 */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		35344F43290AD2B80053C79F /* c4 */ = {
+			isa = PBXGroup;
+			children = (
+				35344F44290AD2B80053C79F /* yml */,
+			);
+			path = c4;
+			sourceTree = "<group>";
+		};
+		35344F44290AD2B80053C79F /* yml */ = {
+			isa = PBXGroup;
+			children = (
+				35344F45290AD2B80053C79F /* common.cpp */,
+				35344F5A290AD2B80053C79F /* common.hpp */,
+				35344F53290AD2B80053C79F /* detail */,
+				35344F5B290AD2B80053C79F /* emit.def.hpp */,
+				35344F4A290AD2B80053C79F /* emit.hpp */,
+				35344F4B290AD2B80053C79F /* export.hpp */,
+				35344F4C290AD2B80053C79F /* node.cpp */,
+				35344F58290AD2B80053C79F /* node.hpp */,
+				35344F48290AD2B80053C79F /* parse.cpp */,
+				35344F5D290AD2B80053C79F /* parse.hpp */,
+				35344F5C290AD2B80053C79F /* preprocess.cpp */,
+				35344F47290AD2B80053C79F /* preprocess.hpp */,
+				35344F4D290AD2B80053C79F /* std */,
+				35344F52290AD2B80053C79F /* tree.cpp */,
+				35344F59290AD2B80053C79F /* tree.hpp */,
+				35344F49290AD2B80053C79F /* writer.hpp */,
+				35344F46290AD2B80053C79F /* yml.hpp */,
+			);
+			path = yml;
+			sourceTree = "<group>";
+		};
+		35344F4D290AD2B80053C79F /* std */ = {
+			isa = PBXGroup;
+			children = (
+				35344F50290AD2B80053C79F /* map.hpp */,
+				35344F4E290AD2B80053C79F /* std.hpp */,
+				35344F51290AD2B80053C79F /* string.hpp */,
+				35344F4F290AD2B80053C79F /* vector.hpp */,
+			);
+			path = std;
+			sourceTree = "<group>";
+		};
+		35344F53290AD2B80053C79F /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				35344F55290AD2B80053C79F /* checks.hpp */,
+				35344F54290AD2B80053C79F /* parser_dbg.hpp */,
+				35344F56290AD2B80053C79F /* print.hpp */,
+				35344F57290AD2B80053C79F /* stack.hpp */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		3534521D290AD6BC0053C79F /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				3534521E290AD6BC0053C79F /* c4core */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		3534521E290AD6BC0053C79F /* c4core */ = {
+			isa = PBXGroup;
+			children = (
+				35345278290AD6BD0053C79F /* src */,
+			);
+			path = c4core;
+			sourceTree = "<group>";
+		};
+		35345278290AD6BD0053C79F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35345279290AD6BD0053C79F /* c4 */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		35345279290AD6BD0053C79F /* c4 */ = {
+			isa = PBXGroup;
+			children = (
+				353452CA290AD6BD0053C79F /* allocator.hpp */,
+				35345285290AD6BD0053C79F /* base64.cpp */,
+				353452E9290AD6BD0053C79F /* base64.hpp */,
+				3534527A290AD6BD0053C79F /* bitmask.hpp */,
+				353452DB290AD6BD0053C79F /* blob.hpp */,
+				353452CD290AD6BD0053C79F /* c4_pop.hpp */,
+				35345282290AD6BD0053C79F /* c4_push.hpp */,
+				353452C7290AD6BD0053C79F /* c4core.natvis */,
+				35345289290AD6BD0053C79F /* char_traits.cpp */,
+				353452DA290AD6BD0053C79F /* char_traits.hpp */,
+				353452E6290AD6BD0053C79F /* charconv.hpp */,
+				353452E1290AD6BD0053C79F /* common.hpp */,
+				353452EA290AD6BD0053C79F /* compiler.hpp */,
+				353452CB290AD6BD0053C79F /* config.hpp */,
+				3534527B290AD6BD0053C79F /* cpu.hpp */,
+				3534527D290AD6BD0053C79F /* ctor_dtor.hpp */,
+				35345283290AD6BD0053C79F /* dump.hpp */,
+				353452C9290AD6BD0053C79F /* enum.hpp */,
+				35345288290AD6BD0053C79F /* error.cpp */,
+				353452D9290AD6BD0053C79F /* error.hpp */,
+				3534528B290AD6BD0053C79F /* export.hpp */,
+				3534528C290AD6BD0053C79F /* ext */,
+				35345281290AD6BD0053C79F /* format.cpp */,
+				353452E8290AD6BD0053C79F /* format.hpp */,
+				3534527C290AD6BD0053C79F /* hash.hpp */,
+				353452CC290AD6BD0053C79F /* language.cpp */,
+				353452DF290AD6BD0053C79F /* language.hpp */,
+				3534528A290AD6BD0053C79F /* memory_resource.cpp */,
+				353452DC290AD6BD0053C79F /* memory_resource.hpp */,
+				353452D7290AD6BD0053C79F /* memory_util.cpp */,
+				353452E0290AD6BD0053C79F /* memory_util.hpp */,
+				353452D8290AD6BD0053C79F /* platform.hpp */,
+				353452E7290AD6BD0053C79F /* preprocessor.hpp */,
+				353452DD290AD6BD0053C79F /* restrict.hpp */,
+				3534527F290AD6BD0053C79F /* span.hpp */,
+				353452CE290AD6BD0053C79F /* std */,
+				35345280290AD6BD0053C79F /* substr_fwd.hpp */,
+				353452C8290AD6BD0053C79F /* substr.hpp */,
+				353452E3290AD6BD0053C79F /* szconv.hpp */,
+				353452EB290AD6BD0053C79F /* time.cpp */,
+				35345287290AD6BD0053C79F /* time.hpp */,
+				35345286290AD6BD0053C79F /* type_name.hpp */,
+				353452E5290AD6BD0053C79F /* types.hpp */,
+				35345284290AD6BD0053C79F /* unrestrict.hpp */,
+				353452E4290AD6BD0053C79F /* utf.cpp */,
+				3534527E290AD6BD0053C79F /* utf.hpp */,
+				353452D6290AD6BD0053C79F /* windows_pop.hpp */,
+				353452DE290AD6BD0053C79F /* windows_push.hpp */,
+				353452E2290AD6BD0053C79F /* windows.hpp */,
+			);
+			path = c4;
+			sourceTree = "<group>";
+		};
+		3534528C290AD6BD0053C79F /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				353452BD290AD6BD0053C79F /* debugbreak */,
+				353452B8290AD6BD0053C79F /* fast_float_all.h */,
+				353452BC290AD6BD0053C79F /* fast_float.hpp */,
+				353452C5290AD6BD0053C79F /* rng */,
+				353452B9290AD6BD0053C79F /* sg14 */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		353452B9290AD6BD0053C79F /* sg14 */ = {
+			isa = PBXGroup;
+			children = (
+				353452BB290AD6BD0053C79F /* inplace_function.h */,
+			);
+			path = sg14;
+			sourceTree = "<group>";
+		};
+		353452BD290AD6BD0053C79F /* debugbreak */ = {
+			isa = PBXGroup;
+			children = (
+				353452C4290AD6BD0053C79F /* debugbreak.h */,
+			);
+			path = debugbreak;
+			sourceTree = "<group>";
+		};
+		353452C5290AD6BD0053C79F /* rng */ = {
+			isa = PBXGroup;
+			children = (
+				353452C6290AD6BD0053C79F /* rng.hpp */,
+			);
+			path = rng;
+			sourceTree = "<group>";
+		};
+		353452CE290AD6BD0053C79F /* std */ = {
+			isa = PBXGroup;
+			children = (
+				353452D5290AD6BD0053C79F /* std_fwd.hpp */,
+				353452D0290AD6BD0053C79F /* std.hpp */,
+				353452CF290AD6BD0053C79F /* string_fwd.hpp */,
+				353452D3290AD6BD0053C79F /* string.hpp */,
+				353452D2290AD6BD0053C79F /* tuple.hpp */,
+				353452D4290AD6BD0053C79F /* vector_fwd.hpp */,
+				353452D1290AD6BD0053C79F /* vector.hpp */,
+			);
+			path = std;
+			sourceTree = "<group>";
+		};
 		35439C6026930871007EBA61 /* Packet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,6 +1983,7 @@
 			isa = PBXGroup;
 			children = (
 				35FD0D87264E79BE00BB0968 /* libconfig */,
+				35344E4F290AD2B80053C79F /* rapidyaml */,
 				35FD0FBA264E808F00BB0968 /* yaml-cpp */,
 			);
 			path = 3rdparty;
@@ -1682,62 +2222,100 @@
 				3513645826596D6D00039D6C /* defines_pre.hpp in Headers */,
 				35E6BE722654DA3E00DD3426 /* char_logif.hpp in Headers */,
 				35FD10FA2652094300BB0968 /* iterator.h in Headers */,
+				35345472290AD6BE0053C79F /* fast_float_all.h in Headers */,
 				35FD10FB2652094300BB0968 /* nullpo.hpp in Headers */,
+				353453DC290AD6BE0053C79F /* ctor_dtor.hpp in Headers */,
 				35FD10FC2652094300BB0968 /* scanner.h in Headers */,
+				353453EB290AD6BE0053C79F /* c4_push.hpp in Headers */,
 				35E6BE692654DA3E00DD3426 /* int_party.hpp in Headers */,
+				353454D5290AD6BE0053C79F /* restrict.hpp in Headers */,
+				353454F6290AD6BF0053C79F /* format.hpp in Headers */,
 				35FD10FD2652094300BB0968 /* emitterutils.h in Headers */,
+				353454CF290AD6BE0053C79F /* blob.hpp in Headers */,
+				353451D2290AD2BA0053C79F /* ryml_std.hpp in Headers */,
 				35FD10FE2652094300BB0968 /* utils.hpp in Headers */,
 				35FD10FF2652094300BB0968 /* msg_conf.hpp in Headers */,
 				35FD11002652094300BB0968 /* node_iterator.h in Headers */,
+				353451E4290AD2BA0053C79F /* emit.hpp in Headers */,
+				353454D8290AD6BE0053C79F /* windows_push.hpp in Headers */,
 				35E6BE632654DA3E00DD3426 /* int_homun.hpp in Headers */,
 				35FD11012652094300BB0968 /* graphbuilderadapter.h in Headers */,
 				35FD11022652094300BB0968 /* ostream_wrapper.h in Headers */,
+				3534520E290AD2BA0053C79F /* common.hpp in Headers */,
+				353454F3290AD6BF0053C79F /* preprocessor.hpp in Headers */,
 				35FD11032652094300BB0968 /* iterator.h in Headers */,
 				35FD11042652094300BB0968 /* stream.h in Headers */,
 				3513642E26593D6900039D6C /* const.hpp in Headers */,
+				353454C6290AD6BE0053C79F /* platform.hpp in Headers */,
+				353453F1290AD6BE0053C79F /* unrestrict.hpp in Headers */,
+				353451E7290AD2BA0053C79F /* export.hpp in Headers */,
 				35FD11052652094300BB0968 /* node.h in Headers */,
 				35FD11062652094300BB0968 /* regex_yaml.h in Headers */,
+				353454B4290AD6BE0053C79F /* tuple.hpp in Headers */,
+				353454A8290AD6BE0053C79F /* c4_pop.hpp in Headers */,
 				35E6BE6C2654DA3E00DD3426 /* char_cnslif.hpp in Headers */,
 				35FD11072652094300BB0968 /* emit.h in Headers */,
 				35E6BE682654DA3E00DD3426 /* int_achievement.hpp in Headers */,
 				35FD11082652094300BB0968 /* des.hpp in Headers */,
 				35FD11092652094300BB0968 /* graphbuilder.h in Headers */,
+				35345493290AD6BE0053C79F /* rng.hpp in Headers */,
 				35FD110A2652094300BB0968 /* emitterdef.h in Headers */,
 				35FD110B2652094300BB0968 /* dll.h in Headers */,
 				35FD110C2652094300BB0968 /* grfio.hpp in Headers */,
 				35FD110D2652094300BB0968 /* grammar.h in Headers */,
 				35FD110E2652094300BB0968 /* impl.h in Headers */,
+				353454DB290AD6BE0053C79F /* language.hpp in Headers */,
+				353454F9290AD6BF0053C79F /* base64.hpp in Headers */,
 				35FD110F2652094300BB0968 /* scanctx.h in Headers */,
+				353451E1290AD2BA0053C79F /* writer.hpp in Headers */,
 				35FD11102652094300BB0968 /* mapindex.hpp in Headers */,
+				35345211290AD2BA0053C79F /* emit.def.hpp in Headers */,
+				353451FF290AD2BA0053C79F /* checks.hpp in Headers */,
 				35FD11112652094300BB0968 /* yaml.h in Headers */,
 				35FD11122652094300BB0968 /* node_data.h in Headers */,
 				35FD11132652094300BB0968 /* emittermanip.h in Headers */,
+				353454C0290AD6BE0053C79F /* windows_pop.hpp in Headers */,
+				353454A2290AD6BE0053C79F /* config.hpp in Headers */,
+				353453F7290AD6BE0053C79F /* type_name.hpp in Headers */,
 				35FD11142652094300BB0968 /* showmsg.hpp in Headers */,
 				3513643726593D6900039D6C /* secure.hpp in Headers */,
 				35FD11152652094300BB0968 /* null.h in Headers */,
 				35FD11162652094300BB0968 /* type.h in Headers */,
+				353453E5290AD6BE0053C79F /* substr_fwd.hpp in Headers */,
 				35E6BE742654DA3E00DD3426 /* char.hpp in Headers */,
 				35FD11172652094300BB0968 /* collectionstack.h in Headers */,
 				35FD11182652094300BB0968 /* convert.h in Headers */,
 				35E6BE5A2654DA3D00DD3426 /* int_mercenary.hpp in Headers */,
+				35345217290AD2BA0053C79F /* parse.hpp in Headers */,
+				353451F0290AD2BA0053C79F /* vector.hpp in Headers */,
 				35FD11192652094300BB0968 /* indentation.h in Headers */,
 				35E6BE542654DA3D00DD3426 /* int_guild.hpp in Headers */,
+				35345205290AD2BA0053C79F /* stack.hpp in Headers */,
 				35FD111A2652094300BB0968 /* core.hpp in Headers */,
 				3513643426593D6900039D6C /* packets.hpp in Headers */,
 				35E6BE6F2654DA3E00DD3426 /* int_quest.hpp in Headers */,
+				353454FC290AD6BF0053C79F /* compiler.hpp in Headers */,
 				35FD111B2652094300BB0968 /* emitterstyle.h in Headers */,
 				3513643D26593D6900039D6C /* core.hpp in Headers */,
 				35FD111C2652094300BB0968 /* scantag.h in Headers */,
+				353453DF290AD6BE0053C79F /* utf.hpp in Headers */,
 				35FD111D2652094300BB0968 /* mmo.hpp in Headers */,
 				35E6BE6A2654DA3E00DD3426 /* int_pet.hpp in Headers */,
 				35FD111E2652094300BB0968 /* conf.hpp in Headers */,
 				35FD111F2652094300BB0968 /* socket.hpp in Headers */,
+				353451CC290AD2BA0053C79F /* ryml.hpp in Headers */,
 				35FD11202652094300BB0968 /* parse.h in Headers */,
 				35FD11212652094300BB0968 /* parsectx.h in Headers */,
+				353451ED290AD2BA0053C79F /* std.hpp in Headers */,
+				353454BD290AD6BE0053C79F /* std_fwd.hpp in Headers */,
 				35FD11222652094300BB0968 /* regeximpl.h in Headers */,
+				35345499290AD6BE0053C79F /* substr.hpp in Headers */,
+				353453D6290AD6BE0053C79F /* cpu.hpp in Headers */,
 				35FD11232652094300BB0968 /* binary.h in Headers */,
 				35FD11242652094300BB0968 /* malloc.hpp in Headers */,
+				3534549F290AD6BE0053C79F /* allocator.hpp in Headers */,
 				35FD11252652094300BB0968 /* directives.h in Headers */,
+				353454E7290AD6BF0053C79F /* szconv.hpp in Headers */,
 				35FD11262652094300BB0968 /* singledocparser.h in Headers */,
 				35FD11272652094300BB0968 /* ers.hpp in Headers */,
 				35FD11282652094300BB0968 /* database.hpp in Headers */,
@@ -1745,53 +2323,84 @@
 				35FD11292652094300BB0968 /* sql.hpp in Headers */,
 				35FD112A2652094300BB0968 /* exceptions.h in Headers */,
 				35FD112B2652094300BB0968 /* anchor.h in Headers */,
+				353451DB290AD2BA0053C79F /* preprocess.hpp in Headers */,
+				353454D2290AD6BE0053C79F /* memory_resource.hpp in Headers */,
+				353454B7290AD6BE0053C79F /* string.hpp in Headers */,
 				35FD112C2652094300BB0968 /* cbasetypes.hpp in Headers */,
 				35218447265563A9002FAE2C /* CharServer.h in Headers */,
+				353454BA290AD6BE0053C79F /* vector_fwd.hpp in Headers */,
 				35FD112D2652094300BB0968 /* md5calc.hpp in Headers */,
 				35FD112E2652094300BB0968 /* scanner.h in Headers */,
+				3534549C290AD6BE0053C79F /* enum.hpp in Headers */,
 				35E6BE662654DA3E00DD3426 /* int_elemental.hpp in Headers */,
+				353454ED290AD6BF0053C79F /* types.hpp in Headers */,
 				35FD112F2652094300BB0968 /* eventhandler.h in Headers */,
 				35FD11302652094300BB0968 /* ptr.h in Headers */,
+				35345406290AD6BE0053C79F /* export.hpp in Headers */,
 				35FD11312652094300BB0968 /* node_ref.h in Headers */,
 				35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */,
+				353453D3290AD6BE0053C79F /* bitmask.hpp in Headers */,
+				353454CC290AD6BE0053C79F /* char_traits.hpp in Headers */,
 				35FD11322652094300BB0968 /* cli.hpp in Headers */,
+				353454AB290AD6BE0053C79F /* string_fwd.hpp in Headers */,
 				35FD11332652094300BB0968 /* scanscalar.h in Headers */,
 				35FD11342652094300BB0968 /* anchordict.h in Headers */,
 				35FD11352652094300BB0968 /* ptr_vector.h in Headers */,
 				35FD11362652094300BB0968 /* iterator_fwd.h in Headers */,
+				353453FA290AD6BE0053C79F /* time.hpp in Headers */,
+				3534520B290AD2BA0053C79F /* tree.hpp in Headers */,
 				35E6BE622654DA3E00DD3426 /* inter.hpp in Headers */,
+				353451D8290AD2BA0053C79F /* yml.hpp in Headers */,
 				35E6BE732654DA3E00DD3426 /* int_mail.hpp in Headers */,
 				35FD11372652094300BB0968 /* impl.h in Headers */,
+				353454E4290AD6BE0053C79F /* windows.hpp in Headers */,
 				35FD11382652094300BB0968 /* traits.h in Headers */,
 				35FD11392652094300BB0968 /* nodeevents.h in Headers */,
+				353454B1290AD6BE0053C79F /* vector.hpp in Headers */,
+				3534547B290AD6BE0053C79F /* fast_float.hpp in Headers */,
 				35FD113A2652094300BB0968 /* exp.h in Headers */,
+				35345478290AD6BE0053C79F /* inplace_function.h in Headers */,
 				35FD113B2652094300BB0968 /* token.h in Headers */,
+				353451F6290AD2BA0053C79F /* string.hpp in Headers */,
 				35FD113C2652094300BB0968 /* setting.h in Headers */,
+				353454AE290AD6BE0053C79F /* std.hpp in Headers */,
+				353451FC290AD2BA0053C79F /* parser_dbg.hpp in Headers */,
 				35FD113D2652094300BB0968 /* memory.h in Headers */,
+				35345208290AD2BA0053C79F /* node.hpp in Headers */,
+				353453D9290AD6BE0053C79F /* hash.hpp in Headers */,
 				3513645526596D6D00039D6C /* defines_post.hpp in Headers */,
 				35E6BE592654DA3D00DD3426 /* char_mapif.hpp in Headers */,
 				35FD113E2652094300BB0968 /* utilities.hpp in Headers */,
 				35FD113F2652094300BB0968 /* streamcharsource.h in Headers */,
 				35E6BE5B2654DA3D00DD3426 /* char_clif.hpp in Headers */,
+				35345490290AD6BE0053C79F /* debugbreak.h in Headers */,
 				35FD11412652094300BB0968 /* noncopyable.h in Headers */,
 				35FD11422652094300BB0968 /* mark.h in Headers */,
+				353454C9290AD6BE0053C79F /* error.hpp in Headers */,
 				3513643126593D6900039D6C /* general.hpp in Headers */,
 				35FD11432652094300BB0968 /* emitfromevents.h in Headers */,
+				353454F0290AD6BF0053C79F /* charconv.hpp in Headers */,
 				35FD11442652094300BB0968 /* random.hpp in Headers */,
 				35FD11452652094300BB0968 /* strlib.hpp in Headers */,
 				35E6BE522654DA3D00DD3426 /* int_storage.hpp in Headers */,
 				35FD11462652094300BB0968 /* libconfig.h in Headers */,
 				35FD11472652094300BB0968 /* emitter.h in Headers */,
 				3521849F265569E6002FAE2C /* rAthenaChar.h in Headers */,
+				353453E2290AD6BE0053C79F /* span.hpp in Headers */,
+				353451F3290AD2BA0053C79F /* map.hpp in Headers */,
 				35FD11482652094300BB0968 /* wincompat.h in Headers */,
 				35FD11492652094300BB0968 /* timer.hpp in Headers */,
+				353453EE290AD6BE0053C79F /* dump.hpp in Headers */,
 				35FD114A2652094300BB0968 /* tag.h in Headers */,
 				35FD114B2652094300BB0968 /* bool_type.h in Headers */,
 				35FD114C2652094300BB0968 /* node.h in Headers */,
+				353454DE290AD6BE0053C79F /* memory_util.hpp in Headers */,
+				35345202290AD2BA0053C79F /* print.hpp in Headers */,
 				35FD114D2652094300BB0968 /* stringsource.h in Headers */,
 				35FD114E2652094300BB0968 /* parser.h in Headers */,
 				3513643A26593D6900039D6C /* renewal.hpp in Headers */,
 				35FD114F2652094300BB0968 /* emitterstate.h in Headers */,
+				353454E1290AD6BE0053C79F /* common.hpp in Headers */,
 				35FD11502652094300BB0968 /* nodebuilder.h in Headers */,
 				35FD11512652094300BB0968 /* db.hpp in Headers */,
 				35FD11522652094300BB0968 /* stlemitter.h in Headers */,
@@ -1802,46 +2411,78 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353453E3290AD6BE0053C79F /* span.hpp in Headers */,
 				35FD11972652094F00BB0968 /* strbuf.h in Headers */,
+				353451CD290AD2BA0053C79F /* ryml.hpp in Headers */,
 				35FD11982652094F00BB0968 /* iterator.h in Headers */,
+				353453D4290AD6BE0053C79F /* bitmask.hpp in Headers */,
 				35FD11992652094F00BB0968 /* nullpo.hpp in Headers */,
 				35FD119A2652094F00BB0968 /* scanner.h in Headers */,
+				353454CD290AD6BE0053C79F /* char_traits.hpp in Headers */,
+				353454B5290AD6BE0053C79F /* tuple.hpp in Headers */,
+				353454B8290AD6BE0053C79F /* string.hpp in Headers */,
 				3513643B26593D6900039D6C /* renewal.hpp in Headers */,
 				35FD119B2652094F00BB0968 /* emitterutils.h in Headers */,
+				353453F8290AD6BE0053C79F /* type_name.hpp in Headers */,
+				353451F1290AD2BA0053C79F /* vector.hpp in Headers */,
+				353454D9290AD6BE0053C79F /* windows_push.hpp in Headers */,
 				35FD119C2652094F00BB0968 /* utils.hpp in Headers */,
 				35FD119D2652094F00BB0968 /* msg_conf.hpp in Headers */,
+				353451DC290AD2BA0053C79F /* preprocess.hpp in Headers */,
 				35FD119E2652094F00BB0968 /* node_iterator.h in Headers */,
+				353451F7290AD2BA0053C79F /* string.hpp in Headers */,
 				35FD119F2652094F00BB0968 /* graphbuilderadapter.h in Headers */,
 				35FD11A02652094F00BB0968 /* ostream_wrapper.h in Headers */,
+				353454F1290AD6BF0053C79F /* charconv.hpp in Headers */,
+				353454DC290AD6BE0053C79F /* language.hpp in Headers */,
+				353454EE290AD6BF0053C79F /* types.hpp in Headers */,
 				35FD11A12652094F00BB0968 /* iterator.h in Headers */,
 				35FD11A22652094F00BB0968 /* stream.h in Headers */,
 				35FD11A32652094F00BB0968 /* node.h in Headers */,
 				35FD11A42652094F00BB0968 /* regex_yaml.h in Headers */,
 				35FD130D2652150400BB0968 /* loginclif.hpp in Headers */,
+				353454BE290AD6BE0053C79F /* std_fwd.hpp in Headers */,
+				35345206290AD2BA0053C79F /* stack.hpp in Headers */,
+				353453F2290AD6BE0053C79F /* unrestrict.hpp in Headers */,
 				35FD11A52652094F00BB0968 /* emit.h in Headers */,
+				353454C7290AD6BE0053C79F /* platform.hpp in Headers */,
 				35FD11A62652094F00BB0968 /* des.hpp in Headers */,
+				35345479290AD6BE0053C79F /* inplace_function.h in Headers */,
+				353454AF290AD6BE0053C79F /* std.hpp in Headers */,
 				35FD11A72652094F00BB0968 /* graphbuilder.h in Headers */,
 				35FD11A82652094F00BB0968 /* emitterdef.h in Headers */,
 				3513643826593D6900039D6C /* secure.hpp in Headers */,
+				353451D3290AD2BA0053C79F /* ryml_std.hpp in Headers */,
 				35FD11A92652094F00BB0968 /* dll.h in Headers */,
 				35FD11AA2652094F00BB0968 /* grfio.hpp in Headers */,
+				353453FB290AD6BE0053C79F /* time.hpp in Headers */,
+				3534547C290AD6BE0053C79F /* fast_float.hpp in Headers */,
 				35FD11AB2652094F00BB0968 /* grammar.h in Headers */,
+				353453E6290AD6BE0053C79F /* substr_fwd.hpp in Headers */,
 				35FD11AC2652094F00BB0968 /* impl.h in Headers */,
+				353454CA290AD6BE0053C79F /* error.hpp in Headers */,
 				35FD11AD2652094F00BB0968 /* scanctx.h in Headers */,
+				353454C1290AD6BE0053C79F /* windows_pop.hpp in Headers */,
+				353451E5290AD2BA0053C79F /* emit.hpp in Headers */,
 				352184A826556A07002FAE2C /* rAthenaLogin.h in Headers */,
 				35FD130B2652150400BB0968 /* loginchrif.hpp in Headers */,
 				35FD11AE2652094F00BB0968 /* mapindex.hpp in Headers */,
 				3513642F26593D6900039D6C /* const.hpp in Headers */,
+				353454F7290AD6BF0053C79F /* format.hpp in Headers */,
+				35345212290AD2BA0053C79F /* emit.def.hpp in Headers */,
 				35FD11AF2652094F00BB0968 /* yaml.h in Headers */,
 				35FD11B02652094F00BB0968 /* node_data.h in Headers */,
 				35FD11B12652094F00BB0968 /* emittermanip.h in Headers */,
 				35FD11B22652094F00BB0968 /* showmsg.hpp in Headers */,
 				35FD11B32652094F00BB0968 /* null.h in Headers */,
+				353454B2290AD6BE0053C79F /* vector.hpp in Headers */,
 				35FD11B42652094F00BB0968 /* type.h in Headers */,
 				35FD11B52652094F00BB0968 /* collectionstack.h in Headers */,
+				353454D6290AD6BE0053C79F /* restrict.hpp in Headers */,
 				35FD11B62652094F00BB0968 /* convert.h in Headers */,
 				35FD11B72652094F00BB0968 /* indentation.h in Headers */,
 				35FD11B82652094F00BB0968 /* core.hpp in Headers */,
+				353451D9290AD2BA0053C79F /* yml.hpp in Headers */,
 				35FD130A2652150400BB0968 /* account.hpp in Headers */,
 				35FD11B92652094F00BB0968 /* emitterstyle.h in Headers */,
 				35435C0F26E6693800F42F92 /* LoginServerHandlers.h in Headers */,
@@ -1850,6 +2491,7 @@
 				35FD11BC2652094F00BB0968 /* conf.hpp in Headers */,
 				35FD11BD2652094F00BB0968 /* socket.hpp in Headers */,
 				35FD11BE2652094F00BB0968 /* parse.h in Headers */,
+				353454DF290AD6BE0053C79F /* memory_util.hpp in Headers */,
 				35FD11BF2652094F00BB0968 /* parsectx.h in Headers */,
 				35FD11C02652094F00BB0968 /* regeximpl.h in Headers */,
 				35FD11C12652094F00BB0968 /* binary.h in Headers */,
@@ -1857,19 +2499,33 @@
 				35FD11C32652094F00BB0968 /* directives.h in Headers */,
 				35FD11C42652094F00BB0968 /* singledocparser.h in Headers */,
 				35FD11C52652094F00BB0968 /* ers.hpp in Headers */,
+				35345473290AD6BE0053C79F /* fast_float_all.h in Headers */,
+				353454A9290AD6BE0053C79F /* c4_pop.hpp in Headers */,
+				353451F4290AD2BA0053C79F /* map.hpp in Headers */,
+				353453DD290AD6BE0053C79F /* ctor_dtor.hpp in Headers */,
 				35FD11C62652094F00BB0968 /* database.hpp in Headers */,
+				35345407290AD6BE0053C79F /* export.hpp in Headers */,
 				35FD11C72652094F00BB0968 /* sql.hpp in Headers */,
+				353454F4290AD6BF0053C79F /* preprocessor.hpp in Headers */,
 				35FD11C82652094F00BB0968 /* exceptions.h in Headers */,
 				35FD11C92652094F00BB0968 /* anchor.h in Headers */,
 				35FD11CA2652094F00BB0968 /* cbasetypes.hpp in Headers */,
+				353453EF290AD6BE0053C79F /* dump.hpp in Headers */,
 				35FD11CB2652094F00BB0968 /* md5calc.hpp in Headers */,
 				35FD11CC2652094F00BB0968 /* scanner.h in Headers */,
 				35FD11CD2652094F00BB0968 /* eventhandler.h in Headers */,
 				35FD11CE2652094F00BB0968 /* ptr.h in Headers */,
 				3513643E26593D6900039D6C /* core.hpp in Headers */,
+				35345491290AD6BE0053C79F /* debugbreak.h in Headers */,
+				3534549A290AD6BE0053C79F /* substr.hpp in Headers */,
+				353453E0290AD6BE0053C79F /* utf.hpp in Headers */,
+				353454FA290AD6BF0053C79F /* base64.hpp in Headers */,
 				35FD11CF2652094F00BB0968 /* node_ref.h in Headers */,
 				35FD13072652150400BB0968 /* logincnslif.hpp in Headers */,
 				35FD11D02652094F00BB0968 /* cli.hpp in Headers */,
+				353454D3290AD6BE0053C79F /* memory_resource.hpp in Headers */,
+				353454E8290AD6BF0053C79F /* szconv.hpp in Headers */,
+				3534549D290AD6BE0053C79F /* enum.hpp in Headers */,
 				35FD11D12652094F00BB0968 /* scanscalar.h in Headers */,
 				35FD11D22652094F00BB0968 /* anchordict.h in Headers */,
 				35FD11D32652094F00BB0968 /* ptr_vector.h in Headers */,
@@ -1879,10 +2535,16 @@
 				35FD11D62652094F00BB0968 /* traits.h in Headers */,
 				35FD13032652150400BB0968 /* login.hpp in Headers */,
 				35FD11D72652094F00BB0968 /* nodeevents.h in Headers */,
+				3534520F290AD2BA0053C79F /* common.hpp in Headers */,
+				35345200290AD2BA0053C79F /* checks.hpp in Headers */,
 				35FD11D82652094F00BB0968 /* exp.h in Headers */,
+				353454E5290AD6BF0053C79F /* windows.hpp in Headers */,
 				35FD11D92652094F00BB0968 /* token.h in Headers */,
+				353453D7290AD6BE0053C79F /* cpu.hpp in Headers */,
 				3513643526593D6900039D6C /* packets.hpp in Headers */,
+				353451E8290AD2BA0053C79F /* export.hpp in Headers */,
 				35FD11DA2652094F00BB0968 /* setting.h in Headers */,
+				35345203290AD2BA0053C79F /* print.hpp in Headers */,
 				35FD11DB2652094F00BB0968 /* memory.h in Headers */,
 				35FD11DC2652094F00BB0968 /* utilities.hpp in Headers */,
 				35FD11DD2652094F00BB0968 /* streamcharsource.h in Headers */,
@@ -1892,23 +2554,39 @@
 				35FD11E22652094F00BB0968 /* random.hpp in Headers */,
 				35FD11E32652094F00BB0968 /* strlib.hpp in Headers */,
 				35FD11E42652094F00BB0968 /* libconfig.h in Headers */,
+				353454FD290AD6BF0053C79F /* compiler.hpp in Headers */,
 				35FD11E52652094F00BB0968 /* emitter.h in Headers */,
+				353454A0290AD6BE0053C79F /* allocator.hpp in Headers */,
 				3513645626596D6D00039D6C /* defines_post.hpp in Headers */,
+				353454E2290AD6BE0053C79F /* common.hpp in Headers */,
+				353451E2290AD2BA0053C79F /* writer.hpp in Headers */,
+				35345494290AD6BE0053C79F /* rng.hpp in Headers */,
 				35FD11E62652094F00BB0968 /* wincompat.h in Headers */,
+				353453DA290AD6BE0053C79F /* hash.hpp in Headers */,
 				35FD11E72652094F00BB0968 /* timer.hpp in Headers */,
+				353451EE290AD2BA0053C79F /* std.hpp in Headers */,
 				3599687B2655571A006AECE6 /* LoginServer.h in Headers */,
 				35FD11E82652094F00BB0968 /* tag.h in Headers */,
 				35FD11E92652094F00BB0968 /* bool_type.h in Headers */,
 				35FD11EA2652094F00BB0968 /* node.h in Headers */,
 				35FD11EB2652094F00BB0968 /* stringsource.h in Headers */,
 				35FD11EC2652094F00BB0968 /* parser.h in Headers */,
+				3534520C290AD2BA0053C79F /* tree.hpp in Headers */,
+				353454D0290AD6BE0053C79F /* blob.hpp in Headers */,
 				35FD11ED2652094F00BB0968 /* emitterstate.h in Headers */,
+				35345218290AD2BA0053C79F /* parse.hpp in Headers */,
+				353453EC290AD6BE0053C79F /* c4_push.hpp in Headers */,
 				3513643226593D6900039D6C /* general.hpp in Headers */,
 				35FD11EE2652094F00BB0968 /* nodebuilder.h in Headers */,
+				353454AC290AD6BE0053C79F /* string_fwd.hpp in Headers */,
 				35FD13102652150400BB0968 /* loginlog.hpp in Headers */,
 				3513645926596D6D00039D6C /* defines_pre.hpp in Headers */,
+				353451FD290AD2BA0053C79F /* parser_dbg.hpp in Headers */,
 				35FD11EF2652094F00BB0968 /* db.hpp in Headers */,
+				35345209290AD2BA0053C79F /* node.hpp in Headers */,
 				35FD11F02652094F00BB0968 /* stlemitter.h in Headers */,
+				353454A3290AD6BE0053C79F /* config.hpp in Headers */,
+				353454BB290AD6BE0053C79F /* vector_fwd.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,34 +2594,50 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353453ED290AD6BE0053C79F /* c4_push.hpp in Headers */,
 				35E6BE0C2654D94800DD3426 /* pet.hpp in Headers */,
 				35E6BDE32654D94700DD3426 /* path.hpp in Headers */,
+				353451D4290AD2BA0053C79F /* ryml_std.hpp in Headers */,
+				353451CE290AD2BA0053C79F /* ryml.hpp in Headers */,
 				35FD12362652096400BB0968 /* strbuf.h in Headers */,
 				3521849026556985002FAE2C /* rAthenaMap.h in Headers */,
+				353453E7290AD6BE0053C79F /* substr_fwd.hpp in Headers */,
 				35FD12372652096400BB0968 /* iterator.h in Headers */,
 				35FD12382652096400BB0968 /* nullpo.hpp in Headers */,
 				35E6BDED2654D94700DD3426 /* status.hpp in Headers */,
+				353454BF290AD6BE0053C79F /* std_fwd.hpp in Headers */,
+				353454E9290AD6BF0053C79F /* szconv.hpp in Headers */,
 				35E6BDDE2654D94700DD3426 /* unit.hpp in Headers */,
 				35FD12392652096400BB0968 /* scanner.h in Headers */,
+				353451DA290AD2BA0053C79F /* yml.hpp in Headers */,
+				353454B3290AD6BE0053C79F /* vector.hpp in Headers */,
 				3513645726596D6D00039D6C /* defines_post.hpp in Headers */,
 				35E6BE162654D94800DD3426 /* battle.hpp in Headers */,
 				35FD123A2652096400BB0968 /* emitterutils.h in Headers */,
+				353451E6290AD2BA0053C79F /* emit.hpp in Headers */,
 				35FD123B2652096400BB0968 /* utils.hpp in Headers */,
 				35E6BE0D2654D94800DD3426 /* guild.hpp in Headers */,
 				35FD123C2652096400BB0968 /* msg_conf.hpp in Headers */,
 				35E6BE012654D94800DD3426 /* npc.hpp in Headers */,
+				3534520A290AD2BA0053C79F /* node.hpp in Headers */,
 				35FD123D2652096400BB0968 /* node_iterator.h in Headers */,
+				353454B6290AD6BE0053C79F /* tuple.hpp in Headers */,
 				35FD123E2652096400BB0968 /* graphbuilderadapter.h in Headers */,
 				35E6BDEF2654D94700DD3426 /* channel.hpp in Headers */,
 				35FD123F2652096400BB0968 /* ostream_wrapper.h in Headers */,
+				353453DB290AD6BE0053C79F /* hash.hpp in Headers */,
 				35FD12402652096400BB0968 /* iterator.h in Headers */,
+				353453DE290AD6BE0053C79F /* ctor_dtor.hpp in Headers */,
 				35FD12412652096400BB0968 /* stream.h in Headers */,
+				353451E3290AD2BA0053C79F /* writer.hpp in Headers */,
 				35FD12422652096400BB0968 /* node.h in Headers */,
 				35E6BDFA2654D94800DD3426 /* itemdb.hpp in Headers */,
 				35FD12432652096400BB0968 /* regex_yaml.h in Headers */,
 				35FD12442652096400BB0968 /* emit.h in Headers */,
 				35FD12452652096400BB0968 /* des.hpp in Headers */,
+				353451F8290AD2BA0053C79F /* string.hpp in Headers */,
 				35FD12462652096400BB0968 /* graphbuilder.h in Headers */,
+				353451EF290AD2BA0053C79F /* std.hpp in Headers */,
 				3513645A26596D6D00039D6C /* defines_pre.hpp in Headers */,
 				35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */,
 				35FD12472652096400BB0968 /* emitterdef.h in Headers */,
@@ -1955,52 +2649,76 @@
 				35FD124C2652096400BB0968 /* scanctx.h in Headers */,
 				35E6BDCA2654D94700DD3426 /* mail.hpp in Headers */,
 				35FD124D2652096400BB0968 /* mapindex.hpp in Headers */,
+				35345492290AD6BE0053C79F /* debugbreak.h in Headers */,
 				35E6BDC82654D94700DD3426 /* searchstore.hpp in Headers */,
+				35345210290AD2BA0053C79F /* common.hpp in Headers */,
+				353454F2290AD6BF0053C79F /* charconv.hpp in Headers */,
 				35FD124E2652096400BB0968 /* yaml.h in Headers */,
 				3513643326593D6900039D6C /* general.hpp in Headers */,
 				35FD124F2652096400BB0968 /* node_data.h in Headers */,
 				35FD12502652096400BB0968 /* emittermanip.h in Headers */,
+				353454CE290AD6BE0053C79F /* char_traits.hpp in Headers */,
 				35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */,
+				3534549B290AD6BE0053C79F /* substr.hpp in Headers */,
 				35FD12512652096400BB0968 /* showmsg.hpp in Headers */,
 				35FD12522652096400BB0968 /* null.h in Headers */,
 				3513643626593D6900039D6C /* packets.hpp in Headers */,
 				35E6BDE02654D94700DD3426 /* battleground.hpp in Headers */,
+				353453FC290AD6BE0053C79F /* time.hpp in Headers */,
 				35FD12532652096400BB0968 /* type.h in Headers */,
+				35345204290AD2BA0053C79F /* print.hpp in Headers */,
 				35FD12542652096400BB0968 /* collectionstack.h in Headers */,
 				35E6BDC12654D94700DD3426 /* instance.hpp in Headers */,
 				35FD12552652096400BB0968 /* convert.h in Headers */,
+				3534520D290AD2BA0053C79F /* tree.hpp in Headers */,
 				35FD12562652096400BB0968 /* indentation.h in Headers */,
 				35FD12572652096400BB0968 /* core.hpp in Headers */,
 				35FD12582652096400BB0968 /* emitterstyle.h in Headers */,
 				35FD12592652096400BB0968 /* scantag.h in Headers */,
+				353453E1290AD6BE0053C79F /* utf.hpp in Headers */,
 				35FD125A2652096400BB0968 /* mmo.hpp in Headers */,
+				353454E0290AD6BE0053C79F /* memory_util.hpp in Headers */,
 				35E6BDFD2654D94800DD3426 /* homunculus.hpp in Headers */,
 				35FD125B2652096400BB0968 /* conf.hpp in Headers */,
 				35FD125C2652096400BB0968 /* socket.hpp in Headers */,
 				35E6BDE42654D94700DD3426 /* skill.hpp in Headers */,
+				3534549E290AD6BE0053C79F /* enum.hpp in Headers */,
+				3534547D290AD6BE0053C79F /* fast_float.hpp in Headers */,
 				35FD125D2652096400BB0968 /* parse.h in Headers */,
 				35FD125E2652096400BB0968 /* parsectx.h in Headers */,
+				35345219290AD2BA0053C79F /* parse.hpp in Headers */,
 				35E6BDF42654D94700DD3426 /* script_constants.hpp in Headers */,
+				353454A1290AD6BE0053C79F /* allocator.hpp in Headers */,
 				35FD125F2652096400BB0968 /* regeximpl.h in Headers */,
 				35E6BDD92654D94700DD3426 /* pc_groups.hpp in Headers */,
 				35E6BE082654D94800DD3426 /* elemental.hpp in Headers */,
+				353454D7290AD6BE0053C79F /* restrict.hpp in Headers */,
 				35E6BDE72654D94700DD3426 /* clif.hpp in Headers */,
+				353454D4290AD6BE0053C79F /* memory_resource.hpp in Headers */,
 				35FD12602652096400BB0968 /* binary.h in Headers */,
+				353454F5290AD6BF0053C79F /* preprocessor.hpp in Headers */,
 				35E6BDF02654D94700DD3426 /* clif_packetdb.hpp in Headers */,
 				35FD12612652096400BB0968 /* malloc.hpp in Headers */,
+				35345474290AD6BE0053C79F /* fast_float_all.h in Headers */,
+				353454AA290AD6BE0053C79F /* c4_pop.hpp in Headers */,
 				35E6BDDD2654D94700DD3426 /* intif.hpp in Headers */,
 				35FD12622652096400BB0968 /* directives.h in Headers */,
+				353451F5290AD2BA0053C79F /* map.hpp in Headers */,
 				35FD12632652096400BB0968 /* singledocparser.h in Headers */,
 				35FD12642652096400BB0968 /* ers.hpp in Headers */,
 				35E6BE0F2654D94800DD3426 /* mapreg.hpp in Headers */,
 				35FD12652652096400BB0968 /* database.hpp in Headers */,
+				353454FB290AD6BF0053C79F /* base64.hpp in Headers */,
 				35FD12662652096400BB0968 /* sql.hpp in Headers */,
+				353451FE290AD2BA0053C79F /* parser_dbg.hpp in Headers */,
 				3513643F26593D6900039D6C /* core.hpp in Headers */,
 				35FD12672652096400BB0968 /* exceptions.h in Headers */,
 				35FD12682652096400BB0968 /* anchor.h in Headers */,
 				35FD12692652096400BB0968 /* cbasetypes.hpp in Headers */,
 				35FD126A2652096400BB0968 /* md5calc.hpp in Headers */,
+				353453F3290AD6BE0053C79F /* unrestrict.hpp in Headers */,
 				35E6BDD52654D94700DD3426 /* atcommand.hpp in Headers */,
+				35345213290AD2BA0053C79F /* emit.def.hpp in Headers */,
 				35FD126B2652096400BB0968 /* scanner.h in Headers */,
 				35FD126C2652096400BB0968 /* eventhandler.h in Headers */,
 				35FD126D2652096400BB0968 /* ptr.h in Headers */,
@@ -2009,25 +2727,36 @@
 				35FD126F2652096400BB0968 /* cli.hpp in Headers */,
 				35FD12702652096400BB0968 /* scanscalar.h in Headers */,
 				35FD12712652096400BB0968 /* anchordict.h in Headers */,
+				353454B9290AD6BE0053C79F /* string.hpp in Headers */,
 				3513643926593D6900039D6C /* secure.hpp in Headers */,
+				353451E9290AD2BA0053C79F /* export.hpp in Headers */,
 				35E6BDEC2654D94700DD3426 /* date.hpp in Headers */,
+				353454E6290AD6BF0053C79F /* windows.hpp in Headers */,
 				35E6BDF52654D94800DD3426 /* cashshop.hpp in Headers */,
 				35FD12722652096400BB0968 /* ptr_vector.h in Headers */,
+				353454BC290AD6BE0053C79F /* vector_fwd.hpp in Headers */,
 				35FD12732652096400BB0968 /* iterator_fwd.h in Headers */,
+				353454A4290AD6BE0053C79F /* config.hpp in Headers */,
 				35FD12742652096400BB0968 /* impl.h in Headers */,
+				353453D8290AD6BE0053C79F /* cpu.hpp in Headers */,
+				353454D1290AD6BE0053C79F /* blob.hpp in Headers */,
 				35FD12752652096400BB0968 /* traits.h in Headers */,
 				35E6BDF12654D94700DD3426 /* clif_obfuscation.hpp in Headers */,
 				35218454265563CD002FAE2C /* MapServer.h in Headers */,
 				35FD12762652096400BB0968 /* nodeevents.h in Headers */,
 				35FD12772652096400BB0968 /* exp.h in Headers */,
 				35FD12782652096400BB0968 /* token.h in Headers */,
+				353454E3290AD6BE0053C79F /* common.hpp in Headers */,
 				35FD12792652096400BB0968 /* setting.h in Headers */,
 				35FD127A2652096400BB0968 /* memory.h in Headers */,
 				35E6BE032654D94800DD3426 /* pc.hpp in Headers */,
 				35E6BE042654D94800DD3426 /* buyingstore.hpp in Headers */,
+				353453D5290AD6BE0053C79F /* bitmask.hpp in Headers */,
 				35E6BDCC2654D94700DD3426 /* clan.hpp in Headers */,
 				35E6BE132654D94800DD3426 /* trade.hpp in Headers */,
 				35FD127B2652096400BB0968 /* utilities.hpp in Headers */,
+				35345495290AD6BE0053C79F /* rng.hpp in Headers */,
+				353451DD290AD2BA0053C79F /* preprocess.hpp in Headers */,
 				35FD127C2652096400BB0968 /* streamcharsource.h in Headers */,
 				35E6BDCF2654D94700DD3426 /* packets.hpp in Headers */,
 				35FD127E2652096400BB0968 /* noncopyable.h in Headers */,
@@ -2035,33 +2764,51 @@
 				35E6BDD72654D94700DD3426 /* chrif.hpp in Headers */,
 				35FD127F2652096400BB0968 /* mark.h in Headers */,
 				35FD12802652096400BB0968 /* emitfromevents.h in Headers */,
+				3534547A290AD6BE0053C79F /* inplace_function.h in Headers */,
 				35FD12812652096400BB0968 /* random.hpp in Headers */,
 				35E6BE0E2654D94800DD3426 /* log.hpp in Headers */,
 				35FD12822652096400BB0968 /* strlib.hpp in Headers */,
+				353454DA290AD6BE0053C79F /* windows_push.hpp in Headers */,
 				35E6BDD02654D94700DD3426 /* party.hpp in Headers */,
+				35345408290AD6BE0053C79F /* export.hpp in Headers */,
 				35E6BDEB2654D94700DD3426 /* achievement.hpp in Headers */,
+				353454FE290AD6BF0053C79F /* compiler.hpp in Headers */,
 				35FD12832652096400BB0968 /* libconfig.h in Headers */,
+				353453F9290AD6BE0053C79F /* type_name.hpp in Headers */,
 				35E6BE092654D94800DD3426 /* vending.hpp in Headers */,
+				353454C8290AD6BE0053C79F /* platform.hpp in Headers */,
 				35FD12842652096400BB0968 /* emitter.h in Headers */,
 				35FD12852652096400BB0968 /* wincompat.h in Headers */,
+				353453E4290AD6BE0053C79F /* span.hpp in Headers */,
 				35FD12862652096400BB0968 /* timer.hpp in Headers */,
 				35FD12872652096400BB0968 /* tag.h in Headers */,
+				353453F0290AD6BE0053C79F /* dump.hpp in Headers */,
 				35E6BE152654D94800DD3426 /* chat.hpp in Headers */,
 				35FD12882652096400BB0968 /* bool_type.h in Headers */,
 				35E6BDDC2654D94700DD3426 /* duel.hpp in Headers */,
 				35E6BDDB2654D94700DD3426 /* clif_shuffle.hpp in Headers */,
+				353451F2290AD2BA0053C79F /* vector.hpp in Headers */,
+				353454F8290AD6BF0053C79F /* format.hpp in Headers */,
+				35345207290AD2BA0053C79F /* stack.hpp in Headers */,
 				35FD12892652096400BB0968 /* node.h in Headers */,
+				35345201290AD2BA0053C79F /* checks.hpp in Headers */,
 				35FD128A2652096400BB0968 /* stringsource.h in Headers */,
 				35FD128B2652096400BB0968 /* parser.h in Headers */,
 				35FD128C2652096400BB0968 /* emitterstate.h in Headers */,
 				35FD128D2652096400BB0968 /* nodebuilder.h in Headers */,
 				35E6BDC32654D94700DD3426 /* quest.hpp in Headers */,
+				353454B0290AD6BE0053C79F /* std.hpp in Headers */,
+				353454C2290AD6BE0053C79F /* windows_pop.hpp in Headers */,
 				35E6BDFE2654D94800DD3426 /* storage.hpp in Headers */,
+				353454EF290AD6BF0053C79F /* types.hpp in Headers */,
 				35E6BE062654D94800DD3426 /* packets_struct.hpp in Headers */,
 				35E6BDD62654D94700DD3426 /* map.hpp in Headers */,
+				353454CB290AD6BE0053C79F /* error.hpp in Headers */,
 				35E6BDEE2654D94700DD3426 /* script.hpp in Headers */,
 				35FD128E2652096400BB0968 /* db.hpp in Headers */,
 				35FD128F2652096400BB0968 /* stlemitter.h in Headers */,
+				353454AD290AD6BE0053C79F /* string_fwd.hpp in Headers */,
+				353454DD290AD6BE0053C79F /* language.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2193,6 +2940,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35345496290AD6BE0053C79F /* c4core.natvis in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2200,6 +2948,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35345497290AD6BE0053C79F /* c4core.natvis in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2207,6 +2956,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35345498290AD6BE0053C79F /* c4core.natvis in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2249,25 +2999,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35345403290AD6BE0053C79F /* memory_resource.cpp in Sources */,
 				35FD11542652094300BB0968 /* parser.cpp in Sources */,
 				35E6BE712654DA3E00DD3426 /* int_storage.cpp in Sources */,
+				353454EA290AD6BF0053C79F /* utf.cpp in Sources */,
 				35FD11552652094300BB0968 /* database.cpp in Sources */,
 				35FD11562652094300BB0968 /* nullpo.cpp in Sources */,
 				35E6BE572654DA3D00DD3426 /* int_clan.cpp in Sources */,
+				353454C3290AD6BE0053C79F /* memory_util.cpp in Sources */,
+				353454FF290AD6BF0053C79F /* time.cpp in Sources */,
 				35FD11572652094300BB0968 /* showmsg.cpp in Sources */,
 				35E6BE602654DA3E00DD3426 /* int_party.cpp in Sources */,
 				3513644C26596D6D00039D6C /* atcommand.inc in Sources */,
 				35FD11582652094300BB0968 /* simplekey.cpp in Sources */,
 				35E6BE532654DA3D00DD3426 /* char_logif.cpp in Sources */,
 				35FD11592652094300BB0968 /* node.cpp in Sources */,
+				353451F9290AD2BA0053C79F /* tree.cpp in Sources */,
 				35FD115A2652094300BB0968 /* convert.cpp in Sources */,
 				35FD115B2652094300BB0968 /* graphbuilderadapter.cpp in Sources */,
+				353453FD290AD6BE0053C79F /* error.cpp in Sources */,
 				35FD131E2652174C00BB0968 /* sql.cpp in Sources */,
 				35FD115C2652094300BB0968 /* conf.cpp in Sources */,
 				3521844E265563AD002FAE2C /* CharServer.mm in Sources */,
 				35FD115D2652094300BB0968 /* md5calc.cpp in Sources */,
+				353454A5290AD6BE0053C79F /* language.cpp in Sources */,
 				35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
+				353453E8290AD6BE0053C79F /* format.cpp in Sources */,
 				3513645B26596D6D00039D6C /* battle_config_init.inc in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
 				3513644F26596D6D00039D6C /* battle_config_struct.inc in Sources */,
@@ -2276,6 +3034,7 @@
 				35FD11612652094300BB0968 /* singledocparser.cpp in Sources */,
 				35FD11622652094300BB0968 /* emitterstate.cpp in Sources */,
 				35FD11632652094300BB0968 /* msg_conf.cpp in Sources */,
+				353451EA290AD2BA0053C79F /* node.cpp in Sources */,
 				35FD11642652094300BB0968 /* stream.cpp in Sources */,
 				35E6BE642654DA3E00DD3426 /* int_mercenary.cpp in Sources */,
 				35E6BE5E2654DA3E00DD3426 /* int_elemental.cpp in Sources */,
@@ -2307,11 +3066,14 @@
 				35FD11772652094300BB0968 /* emitfromevents.cpp in Sources */,
 				35FD11782652094300BB0968 /* exceptions.cpp in Sources */,
 				35FD11792652094300BB0968 /* grammar.c in Sources */,
+				35345214290AD2BA0053C79F /* preprocess.cpp in Sources */,
 				35E6BE652654DA3E00DD3426 /* char_clif.cpp in Sources */,
 				35FD117A2652094300BB0968 /* tag.cpp in Sources */,
 				35E6BE5F2654DA3E00DD3426 /* int_pet.cpp in Sources */,
 				35FD117B2652094300BB0968 /* parse.cpp in Sources */,
+				353451DE290AD2BA0053C79F /* parse.cpp in Sources */,
 				35E6BE772654DA3E00DD3426 /* char_mapif.cpp in Sources */,
+				353451D5290AD2BA0053C79F /* common.cpp in Sources */,
 				35FD117C2652094300BB0968 /* mapindex.cpp in Sources */,
 				35E6BE6E2654DA3E00DD3426 /* int_homun.cpp in Sources */,
 				35FD117D2652094300BB0968 /* scanner.c in Sources */,
@@ -2323,6 +3085,7 @@
 				35FD11832652094300BB0968 /* directives.cpp in Sources */,
 				35FD11842652094300BB0968 /* strbuf.c in Sources */,
 				35FD11852652094300BB0968 /* des.cpp in Sources */,
+				35345400290AD6BE0053C79F /* char_traits.cpp in Sources */,
 				35FD11862652094300BB0968 /* db.cpp in Sources */,
 				35FD11872652094300BB0968 /* grfio.cpp in Sources */,
 				35E6BE6B2654DA3E00DD3426 /* inter.cpp in Sources */,
@@ -2330,6 +3093,7 @@
 				35E6BE702654DA3E00DD3426 /* int_guild.cpp in Sources */,
 				35FD11892652094300BB0968 /* regex_yaml.cpp in Sources */,
 				35FD118A2652094300BB0968 /* scantoken.cpp in Sources */,
+				353453F4290AD6BE0053C79F /* base64.cpp in Sources */,
 				3513645226596D6D00039D6C /* atcommand_def.inc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2346,9 +3110,12 @@
 				35FD11F32652094F00BB0968 /* database.cpp in Sources */,
 				35FD11F42652094F00BB0968 /* nullpo.cpp in Sources */,
 				35FD11F52652094F00BB0968 /* showmsg.cpp in Sources */,
+				353453F5290AD6BE0053C79F /* base64.cpp in Sources */,
 				35FD11F62652094F00BB0968 /* simplekey.cpp in Sources */,
+				353453E9290AD6BE0053C79F /* format.cpp in Sources */,
 				35FD11F72652094F00BB0968 /* node.cpp in Sources */,
 				35FD11F82652094F00BB0968 /* convert.cpp in Sources */,
+				353451D6290AD2BA0053C79F /* common.cpp in Sources */,
 				35FD11F92652094F00BB0968 /* graphbuilderadapter.cpp in Sources */,
 				35FD11FA2652094F00BB0968 /* conf.cpp in Sources */,
 				35FD11FB2652094F00BB0968 /* md5calc.cpp in Sources */,
@@ -2358,6 +3125,7 @@
 				35FD11FE2652094F00BB0968 /* binary.cpp in Sources */,
 				35FD11FF2652094F00BB0968 /* singledocparser.cpp in Sources */,
 				35FD12002652094F00BB0968 /* emitterstate.cpp in Sources */,
+				35345215290AD2BA0053C79F /* preprocess.cpp in Sources */,
 				35FD12012652094F00BB0968 /* msg_conf.cpp in Sources */,
 				35FD12022652094F00BB0968 /* stream.cpp in Sources */,
 				35FD12032652094F00BB0968 /* exp.cpp in Sources */,
@@ -2366,20 +3134,27 @@
 				35FD12062652094F00BB0968 /* ers.cpp in Sources */,
 				35FD130F2652150400BB0968 /* login.cpp in Sources */,
 				35FD12072652094F00BB0968 /* scantag.cpp in Sources */,
+				35345404290AD6BE0053C79F /* memory_resource.cpp in Sources */,
 				35FD12082652094F00BB0968 /* strlib.cpp in Sources */,
 				35FD130E2652150400BB0968 /* account.cpp in Sources */,
 				35FD12092652094F00BB0968 /* emit.cpp in Sources */,
 				35FD120A2652094F00BB0968 /* memory.cpp in Sources */,
+				353451FA290AD2BA0053C79F /* tree.cpp in Sources */,
 				3513645F26596D6D00039D6C /* script.inc in Sources */,
 				35FD120B2652094F00BB0968 /* utilities.cpp in Sources */,
 				35FD120C2652094F00BB0968 /* node_data.cpp in Sources */,
+				353454C4290AD6BE0053C79F /* memory_util.cpp in Sources */,
 				35FD120D2652094F00BB0968 /* core.cpp in Sources */,
 				35FD120E2652094F00BB0968 /* scanscalar.cpp in Sources */,
 				35FD120F2652094F00BB0968 /* ostream_wrapper.cpp in Sources */,
+				353451DF290AD2BA0053C79F /* parse.cpp in Sources */,
 				35FD12102652094F00BB0968 /* graphbuilder.cpp in Sources */,
 				35FD13052652150400BB0968 /* ipban.cpp in Sources */,
+				35345500290AD6BF0053C79F /* time.cpp in Sources */,
 				35FD12112652094F00BB0968 /* emitterutils.cpp in Sources */,
 				3513644A26596D6D00039D6C /* script_def.inc in Sources */,
+				353453FE290AD6BE0053C79F /* error.cpp in Sources */,
+				353451EB290AD2BA0053C79F /* node.cpp in Sources */,
 				3513645326596D6D00039D6C /* atcommand_def.inc in Sources */,
 				35FD12122652094F00BB0968 /* emitter.cpp in Sources */,
 				35FD12132652094F00BB0968 /* malloc.cpp in Sources */,
@@ -2394,13 +3169,16 @@
 				35FD121B2652094F00BB0968 /* scanner.c in Sources */,
 				35FD121C2652094F00BB0968 /* scanner.cpp in Sources */,
 				3513645026596D6D00039D6C /* battle_config_struct.inc in Sources */,
+				353454A6290AD6BE0053C79F /* language.cpp in Sources */,
 				3513644D26596D6D00039D6C /* atcommand.inc in Sources */,
 				35FD13092652150400BB0968 /* loginclif.cpp in Sources */,
 				35FD121D2652094F00BB0968 /* cli.cpp in Sources */,
 				35FD121E2652094F00BB0968 /* utils.cpp in Sources */,
+				35345401290AD6BE0053C79F /* char_traits.cpp in Sources */,
 				35FD121F2652094F00BB0968 /* libconfig.c in Sources */,
 				35FD12202652094F00BB0968 /* null.cpp in Sources */,
 				35FD12212652094F00BB0968 /* directives.cpp in Sources */,
+				353454EB290AD6BF0053C79F /* utf.cpp in Sources */,
 				35FD12222652094F00BB0968 /* strbuf.c in Sources */,
 				35FD12232652094F00BB0968 /* des.cpp in Sources */,
 				35FD13222652174D00BB0968 /* sql.cpp in Sources */,
@@ -2418,8 +3196,10 @@
 			files = (
 				35FD12912652096400BB0968 /* parser.cpp in Sources */,
 				35E6BE002654D94800DD3426 /* skill.cpp in Sources */,
+				353451EC290AD2BA0053C79F /* node.cpp in Sources */,
 				35E6BE122654D94800DD3426 /* searchstore.cpp in Sources */,
 				35FD12922652096400BB0968 /* database.cpp in Sources */,
+				353454A7290AD6BE0053C79F /* language.cpp in Sources */,
 				35FD12932652096400BB0968 /* nullpo.cpp in Sources */,
 				35E6BDF62654D94800DD3426 /* chrif.cpp in Sources */,
 				35FD12942652096400BB0968 /* showmsg.cpp in Sources */,
@@ -2427,10 +3207,12 @@
 				35FD12952652096400BB0968 /* simplekey.cpp in Sources */,
 				35FD12962652096400BB0968 /* node.cpp in Sources */,
 				35FD12972652096400BB0968 /* convert.cpp in Sources */,
+				353454EC290AD6BF0053C79F /* utf.cpp in Sources */,
 				35E6BDC52654D94700DD3426 /* guild.cpp in Sources */,
 				35E6BDC02654D94700DD3426 /* vending.cpp in Sources */,
 				35FD12982652096400BB0968 /* graphbuilderadapter.cpp in Sources */,
 				35E6BDEA2654D94700DD3426 /* party.cpp in Sources */,
+				353453EA290AD6BE0053C79F /* format.cpp in Sources */,
 				35E6BDC92654D94700DD3426 /* trade.cpp in Sources */,
 				35E6BDF82654D94800DD3426 /* duel.cpp in Sources */,
 				35E6BDC22654D94700DD3426 /* pet.cpp in Sources */,
@@ -2438,6 +3220,8 @@
 				35E6BDE52654D94700DD3426 /* npc.cpp in Sources */,
 				35FD12992652096400BB0968 /* conf.cpp in Sources */,
 				35FD129A2652096400BB0968 /* md5calc.cpp in Sources */,
+				353451FB290AD2BA0053C79F /* tree.cpp in Sources */,
+				35345216290AD2BA0053C79F /* preprocess.cpp in Sources */,
 				35FD129B2652096400BB0968 /* nodeevents.cpp in Sources */,
 				35218455265563CD002FAE2C /* MapServer.mm in Sources */,
 				35FD129C2652096400BB0968 /* nodebuilder.cpp in Sources */,
@@ -2461,8 +3245,10 @@
 				35FD12A32652096400BB0968 /* scanctx.c in Sources */,
 				35E6BDC62654D94700DD3426 /* mapreg.cpp in Sources */,
 				35FD12A42652096400BB0968 /* socket.cpp in Sources */,
+				353451D7290AD2BA0053C79F /* common.cpp in Sources */,
 				35E6BE0B2654D94800DD3426 /* quest.cpp in Sources */,
 				35FD12A52652096400BB0968 /* ers.cpp in Sources */,
+				353454C5290AD6BE0053C79F /* memory_util.cpp in Sources */,
 				3513645126596D6D00039D6C /* battle_config_struct.inc in Sources */,
 				35FD12A62652096400BB0968 /* scantag.cpp in Sources */,
 				35FD12A72652096400BB0968 /* strlib.cpp in Sources */,
@@ -2473,11 +3259,14 @@
 				35FD12AB2652096400BB0968 /* node_data.cpp in Sources */,
 				35FD12AC2652096400BB0968 /* core.cpp in Sources */,
 				35E6BDCD2654D94700DD3426 /* battle.cpp in Sources */,
+				35345402290AD6BE0053C79F /* char_traits.cpp in Sources */,
 				35E6BDE92654D94700DD3426 /* pc.cpp in Sources */,
 				35E6BDC42654D94700DD3426 /* log.cpp in Sources */,
+				353453F6290AD6BE0053C79F /* base64.cpp in Sources */,
 				35FD12AD2652096400BB0968 /* scanscalar.cpp in Sources */,
 				35FD12AE2652096400BB0968 /* ostream_wrapper.cpp in Sources */,
 				35E6BE072654D94800DD3426 /* mercenary.cpp in Sources */,
+				353453FF290AD6BE0053C79F /* error.cpp in Sources */,
 				35E6BE172654D94800DD3426 /* clan.cpp in Sources */,
 				35FD12AF2652096400BB0968 /* graphbuilder.cpp in Sources */,
 				35FD12B02652096400BB0968 /* emitterutils.cpp in Sources */,
@@ -2498,10 +3287,13 @@
 				35E6BDF72654D94800DD3426 /* pc_groups.cpp in Sources */,
 				35FD12B72652096400BB0968 /* tag.cpp in Sources */,
 				35FD12B82652096400BB0968 /* parse.cpp in Sources */,
+				353451E0290AD2BA0053C79F /* parse.cpp in Sources */,
 				35E6BDD82654D94700DD3426 /* cashshop.cpp in Sources */,
+				35345405290AD6BE0053C79F /* memory_resource.cpp in Sources */,
 				35E6BDE12654D94700DD3426 /* itemdb.cpp in Sources */,
 				35FD12B92652096400BB0968 /* mapindex.cpp in Sources */,
 				35FD12BA2652096400BB0968 /* scanner.c in Sources */,
+				35345501290AD6BF0053C79F /* time.cpp in Sources */,
 				35FD12BB2652096400BB0968 /* scanner.cpp in Sources */,
 				35E6BDD32654D94700DD3426 /* script.cpp in Sources */,
 				35FD12BC2652096400BB0968 /* cli.cpp in Sources */,
@@ -2706,7 +3498,11 @@
 					"$(inherited)",
 					"HAVE_XLOCALE_H=1",
 				);
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaChar/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2730,7 +3526,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaChar/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2757,7 +3557,11 @@
 					"$(inherited)",
 					"HAVE_XLOCALE_H=1",
 				);
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaLogin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2781,7 +3585,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaLogin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2808,7 +3616,11 @@
 					"$(inherited)",
 					"HAVE_XLOCALE_H=1",
 				);
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaMap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2832,7 +3644,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREPROCESSOR_DEFINITIONS = "HAVE_XLOCALE_H=1";
-				HEADER_SEARCH_PATHS = "3rdparty/yaml-cpp/include";
+				HEADER_SEARCH_PATHS = (
+					"3rdparty/yaml-cpp/include",
+					3rdparty/rapidyaml/src,
+					3rdparty/rapidyaml/ext/c4core/src,
+				);
 				INFOPLIST_FILE = Sources/rAthenaMap/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
