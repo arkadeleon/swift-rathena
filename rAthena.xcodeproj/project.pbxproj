@@ -108,7 +108,6 @@
 		35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
 		35B45499269576B60088D360 /* Packet006B.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B45498269576B60088D360 /* Packet006B.swift */; };
 		35C5E4CC27BAA97F007D56EB /* SQLite.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5E4CB27BAA97F007D56EB /* SQLite.xcframework */; };
-		35C5E4CD27BAA97F007D56EB /* SQLite.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5E4CB27BAA97F007D56EB /* SQLite.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35C5E4D027BE9697007D56EB /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5E4CF27BE9697007D56EB /* DatabaseManager.swift */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
@@ -693,20 +692,6 @@
 		35FD133226526F3200BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 		35FD133626526F3400BB0968 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FD132D26526F2E00BB0968 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		35C5E4CE27BAA97F007D56EB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				35C5E4CD27BAA97F007D56EB /* SQLite.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		350808B02694A4DF00FEEBEF /* Packet006A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet006A.swift; sourceTree = "<group>"; };
@@ -2091,7 +2076,6 @@
 				35E6BD1E2654D6ED00DD3426 /* Sources */,
 				35E6BD1F2654D6ED00DD3426 /* Frameworks */,
 				35E6BD202654D6ED00DD3426 /* Resources */,
-				35C5E4CE27BAA97F007D56EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

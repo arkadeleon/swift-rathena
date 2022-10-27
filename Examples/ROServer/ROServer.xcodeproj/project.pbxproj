@@ -23,6 +23,8 @@
 		35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896432685C75500A2FBA1 /* rAthenaLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896442685C75500A2FBA1 /* rAthenaMap.framework */; };
 		35E8964C2685C75500A2FBA1 /* rAthenaMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896442685C75500A2FBA1 /* rAthenaMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FEC5BF290A856700133DF5 /* SQLite.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FEC5BE290A856700133DF5 /* SQLite.xcframework */; };
+		35FEC5C0290A856700133DF5 /* SQLite.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FEC5BE290A856700133DF5 /* SQLite.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,7 @@
 				35E8964C2685C75500A2FBA1 /* rAthenaMap.framework in Embed Frameworks */,
 				35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */,
 				35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */,
+				35FEC5C0290A856700133DF5 /* SQLite.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +61,7 @@
 		35E896422685C75500A2FBA1 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896432685C75500A2FBA1 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896442685C75500A2FBA1 /* rAthenaMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FEC5BE290A856700133DF5 /* SQLite.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SQLite.xcframework; path = ../../Carthage/Build/SQLite.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */,
 				35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */,
 				35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */,
+				35FEC5BF290A856700133DF5 /* SQLite.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,7 @@
 		35E896402685C75400A2FBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35FEC5BE290A856700133DF5 /* SQLite.xcframework */,
 				35E896412685C75500A2FBA1 /* rAthena.framework */,
 				35E896422685C75500A2FBA1 /* rAthenaChar.framework */,
 				35E896432685C75500A2FBA1 /* rAthenaLogin.framework */,

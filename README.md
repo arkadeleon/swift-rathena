@@ -11,10 +11,11 @@ iPad | 14.1 or later | No
 ## Installation 
 
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
-1. Install Carthage:
+1. Install Carthage & SwiftLint:
     ```shell
     brew update
     brew install carthage
+    brew install swiftlint
     ```
 1. Clone the repository:
     ```shell
@@ -23,7 +24,7 @@ iPad | 14.1 or later | No
 1. Pull in the project dependencies:
     ```shell
     cd rathena-ios
-    carthage bootstrap --platform ios
+    carthage build --use-xcframeworks --platform ios
     ```
 1. Open `rAthena.xcworkspace` in Xcode.
 1. Build the `ROServer` scheme in Xcode.
