@@ -44,7 +44,7 @@ public class ResourceManager {
 
         try fileManager.moveItem(at: destinationURL.appendingPathComponent("conf/import-tmpl"), to: destinationURL.appendingPathComponent("conf/import"))
 
-        try upgradeDatabase(at: destinationDatabaseURL)
+//        try upgradeDatabase(at: destinationDatabaseURL)
     }
 
     private func upgradeDatabase(at url: URL) throws {
