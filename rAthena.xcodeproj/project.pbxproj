@@ -27,30 +27,6 @@
 		3513643D26593D6900039D6C /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642D26593D6900039D6C /* core.hpp */; };
 		3513643E26593D6900039D6C /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642D26593D6900039D6C /* core.hpp */; };
 		3513643F26593D6900039D6C /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642D26593D6900039D6C /* core.hpp */; };
-		3513644926596D6D00039D6C /* script_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644126596D6D00039D6C /* script_def.inc */; };
-		3513644A26596D6D00039D6C /* script_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644126596D6D00039D6C /* script_def.inc */; };
-		3513644B26596D6D00039D6C /* script_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644126596D6D00039D6C /* script_def.inc */; };
-		3513644C26596D6D00039D6C /* atcommand.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644226596D6D00039D6C /* atcommand.inc */; };
-		3513644D26596D6D00039D6C /* atcommand.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644226596D6D00039D6C /* atcommand.inc */; };
-		3513644E26596D6D00039D6C /* atcommand.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644226596D6D00039D6C /* atcommand.inc */; };
-		3513644F26596D6D00039D6C /* battle_config_struct.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644326596D6D00039D6C /* battle_config_struct.inc */; };
-		3513645026596D6D00039D6C /* battle_config_struct.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644326596D6D00039D6C /* battle_config_struct.inc */; };
-		3513645126596D6D00039D6C /* battle_config_struct.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644326596D6D00039D6C /* battle_config_struct.inc */; };
-		3513645226596D6D00039D6C /* atcommand_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644426596D6D00039D6C /* atcommand_def.inc */; };
-		3513645326596D6D00039D6C /* atcommand_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644426596D6D00039D6C /* atcommand_def.inc */; };
-		3513645426596D6D00039D6C /* atcommand_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644426596D6D00039D6C /* atcommand_def.inc */; };
-		3513645526596D6D00039D6C /* defines_post.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644526596D6D00039D6C /* defines_post.hpp */; };
-		3513645626596D6D00039D6C /* defines_post.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644526596D6D00039D6C /* defines_post.hpp */; };
-		3513645726596D6D00039D6C /* defines_post.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644526596D6D00039D6C /* defines_post.hpp */; };
-		3513645826596D6D00039D6C /* defines_pre.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644626596D6D00039D6C /* defines_pre.hpp */; };
-		3513645926596D6D00039D6C /* defines_pre.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644626596D6D00039D6C /* defines_pre.hpp */; };
-		3513645A26596D6D00039D6C /* defines_pre.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644626596D6D00039D6C /* defines_pre.hpp */; };
-		3513645B26596D6D00039D6C /* battle_config_init.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644726596D6D00039D6C /* battle_config_init.inc */; };
-		3513645C26596D6D00039D6C /* battle_config_init.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644726596D6D00039D6C /* battle_config_init.inc */; };
-		3513645D26596D6D00039D6C /* battle_config_init.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644726596D6D00039D6C /* battle_config_init.inc */; };
-		3513645E26596D6D00039D6C /* script.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644826596D6D00039D6C /* script.inc */; };
-		3513645F26596D6D00039D6C /* script.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644826596D6D00039D6C /* script.inc */; };
-		3513646026596D6D00039D6C /* script.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644826596D6D00039D6C /* script.inc */; };
 		35218447265563A9002FAE2C /* CharServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3521843D265563A1002FAE2C /* CharServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3521844E265563AD002FAE2C /* CharServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3521843E265563A1002FAE2C /* CharServer.mm */; };
 		35218454265563CD002FAE2C /* MapServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 35218452265563CD002FAE2C /* MapServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -347,14 +323,6 @@
 		35B4547C269551D00088D360 /* core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642D26593D6900039D6C /* core.hpp */; };
 		35B4547D269551D00088D360 /* renewal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642C26593D6900039D6C /* renewal.hpp */; };
 		35B4547E269551D00088D360 /* secure.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513642B26593D6900039D6C /* secure.hpp */; };
-		35B4547F269551E00088D360 /* defines_post.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644526596D6D00039D6C /* defines_post.hpp */; };
-		35B45480269551E00088D360 /* script.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644826596D6D00039D6C /* script.inc */; };
-		35B45481269551E00088D360 /* battle_config_init.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644726596D6D00039D6C /* battle_config_init.inc */; };
-		35B45482269551E00088D360 /* battle_config_struct.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644326596D6D00039D6C /* battle_config_struct.inc */; };
-		35B45483269551E00088D360 /* script_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644126596D6D00039D6C /* script_def.inc */; };
-		35B45484269551E00088D360 /* atcommand_def.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644426596D6D00039D6C /* atcommand_def.inc */; };
-		35B45485269551E00088D360 /* defines_pre.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3513644626596D6D00039D6C /* defines_pre.hpp */; };
-		35B45486269551E00088D360 /* atcommand.inc in Sources */ = {isa = PBXBuildFile; fileRef = 3513644226596D6D00039D6C /* atcommand.inc */; };
 		35B4549126956D180088D360 /* Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 35B4548F26956D180088D360 /* Config.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35B4549226956D180088D360 /* Config.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35B4549026956D180088D360 /* Config.mm */; };
 		35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
@@ -2204,10 +2172,8 @@
 				35B4547C269551D00088D360 /* core.hpp in Headers */,
 				35B4547D269551D00088D360 /* renewal.hpp in Headers */,
 				35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */,
-				35B4547F269551E00088D360 /* defines_post.hpp in Headers */,
 				35B4547B269551D00088D360 /* packets.hpp in Headers */,
 				35B4547E269551D00088D360 /* secure.hpp in Headers */,
-				35B45485269551E00088D360 /* defines_pre.hpp in Headers */,
 				35E6BD362654D70A00DD3426 /* rAthena.h in Headers */,
 				35B4547A269551D00088D360 /* const.hpp in Headers */,
 			);
@@ -2219,7 +2185,6 @@
 			files = (
 				35FD10F92652094300BB0968 /* strbuf.h in Headers */,
 				35E6BE5C2654DA3E00DD3426 /* int_auction.hpp in Headers */,
-				3513645826596D6D00039D6C /* defines_pre.hpp in Headers */,
 				35E6BE722654DA3E00DD3426 /* char_logif.hpp in Headers */,
 				35FD10FA2652094300BB0968 /* iterator.h in Headers */,
 				35345472290AD6BE0053C79F /* fast_float_all.h in Headers */,
@@ -2368,7 +2333,6 @@
 				35FD113D2652094300BB0968 /* memory.h in Headers */,
 				35345208290AD2BA0053C79F /* node.hpp in Headers */,
 				353453D9290AD6BE0053C79F /* hash.hpp in Headers */,
-				3513645526596D6D00039D6C /* defines_post.hpp in Headers */,
 				35E6BE592654DA3D00DD3426 /* char_mapif.hpp in Headers */,
 				35FD113E2652094300BB0968 /* utilities.hpp in Headers */,
 				35FD113F2652094300BB0968 /* streamcharsource.h in Headers */,
@@ -2557,7 +2521,6 @@
 				353454FD290AD6BF0053C79F /* compiler.hpp in Headers */,
 				35FD11E52652094F00BB0968 /* emitter.h in Headers */,
 				353454A0290AD6BE0053C79F /* allocator.hpp in Headers */,
-				3513645626596D6D00039D6C /* defines_post.hpp in Headers */,
 				353454E2290AD6BE0053C79F /* common.hpp in Headers */,
 				353451E2290AD2BA0053C79F /* writer.hpp in Headers */,
 				35345494290AD6BE0053C79F /* rng.hpp in Headers */,
@@ -2580,7 +2543,6 @@
 				35FD11EE2652094F00BB0968 /* nodebuilder.h in Headers */,
 				353454AC290AD6BE0053C79F /* string_fwd.hpp in Headers */,
 				35FD13102652150400BB0968 /* loginlog.hpp in Headers */,
-				3513645926596D6D00039D6C /* defines_pre.hpp in Headers */,
 				353451FD290AD2BA0053C79F /* parser_dbg.hpp in Headers */,
 				35FD11EF2652094F00BB0968 /* db.hpp in Headers */,
 				35345209290AD2BA0053C79F /* node.hpp in Headers */,
@@ -2611,7 +2573,6 @@
 				35FD12392652096400BB0968 /* scanner.h in Headers */,
 				353451DA290AD2BA0053C79F /* yml.hpp in Headers */,
 				353454B3290AD6BE0053C79F /* vector.hpp in Headers */,
-				3513645726596D6D00039D6C /* defines_post.hpp in Headers */,
 				35E6BE162654D94800DD3426 /* battle.hpp in Headers */,
 				35FD123A2652096400BB0968 /* emitterutils.h in Headers */,
 				353451E6290AD2BA0053C79F /* emit.hpp in Headers */,
@@ -2638,7 +2599,6 @@
 				353451F8290AD2BA0053C79F /* string.hpp in Headers */,
 				35FD12462652096400BB0968 /* graphbuilder.h in Headers */,
 				353451EF290AD2BA0053C79F /* std.hpp in Headers */,
-				3513645A26596D6D00039D6C /* defines_pre.hpp in Headers */,
 				35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */,
 				35FD12472652096400BB0968 /* emitterdef.h in Headers */,
 				35FD12482652096400BB0968 /* dll.h in Headers */,
@@ -2894,7 +2854,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					35E6BD212654D6ED00DD3426 = {
 						CreatedOnToolsVersion = 12.4;
@@ -2972,20 +2932,14 @@
 				35439C7426943AC8007EBA61 /* Packet0066.swift in Sources */,
 				35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */,
 				350808C626A1EB2A00FEEBEF /* ServerManager.swift in Sources */,
-				35B45484269551E00088D360 /* atcommand_def.inc in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncoder.swift in Sources */,
 				35C5E4D027BE9697007D56EB /* DatabaseManager.swift in Sources */,
-				35B45483269551E00088D360 /* script_def.inc in Sources */,
-				35B45486269551E00088D360 /* atcommand.inc in Sources */,
 				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
 				353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */,
 				35B4547826945B4B0088D360 /* Packet0069.swift in Sources */,
 				35439C622693088B007EBA61 /* Packet0064.swift in Sources */,
-				35B45480269551E00088D360 /* script.inc in Sources */,
-				35B45482269551E00088D360 /* battle_config_struct.inc in Sources */,
 				35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */,
 				35439C7026942871007EBA61 /* Packets.swift in Sources */,
-				35B45481269551E00088D360 /* battle_config_init.inc in Sources */,
 				35439C6626930ABE007EBA61 /* Packet.swift in Sources */,
 				35439C7226943865007EBA61 /* Packet0065.swift in Sources */,
 				35B45476269457A90088D360 /* Packet0068.swift in Sources */,
@@ -3010,7 +2964,6 @@
 				353454FF290AD6BF0053C79F /* time.cpp in Sources */,
 				35FD11572652094300BB0968 /* showmsg.cpp in Sources */,
 				35E6BE602654DA3E00DD3426 /* int_party.cpp in Sources */,
-				3513644C26596D6D00039D6C /* atcommand.inc in Sources */,
 				35FD11582652094300BB0968 /* simplekey.cpp in Sources */,
 				35E6BE532654DA3D00DD3426 /* char_logif.cpp in Sources */,
 				35FD11592652094300BB0968 /* node.cpp in Sources */,
@@ -3026,9 +2979,7 @@
 				35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
 				353453E8290AD6BE0053C79F /* format.cpp in Sources */,
-				3513645B26596D6D00039D6C /* battle_config_init.inc in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
-				3513644F26596D6D00039D6C /* battle_config_struct.inc in Sources */,
 				35FD11602652094300BB0968 /* binary.cpp in Sources */,
 				35E6BE552654DA3D00DD3426 /* int_mail.cpp in Sources */,
 				35FD11612652094300BB0968 /* singledocparser.cpp in Sources */,
@@ -3045,7 +2996,6 @@
 				35E6BE562654DA3D00DD3426 /* char.cpp in Sources */,
 				35FD11682652094300BB0968 /* ers.cpp in Sources */,
 				35FD11692652094300BB0968 /* scantag.cpp in Sources */,
-				3513644926596D6D00039D6C /* script_def.inc in Sources */,
 				35FD116A2652094300BB0968 /* strlib.cpp in Sources */,
 				35FD116B2652094300BB0968 /* emit.cpp in Sources */,
 				35FD116C2652094300BB0968 /* memory.cpp in Sources */,
@@ -3053,7 +3003,6 @@
 				35FD116E2652094300BB0968 /* node_data.cpp in Sources */,
 				35FD116F2652094300BB0968 /* core.cpp in Sources */,
 				35FD11702652094300BB0968 /* scanscalar.cpp in Sources */,
-				3513645E26596D6D00039D6C /* script.inc in Sources */,
 				35FD11712652094300BB0968 /* ostream_wrapper.cpp in Sources */,
 				35FD11722652094300BB0968 /* graphbuilder.cpp in Sources */,
 				35FD11732652094300BB0968 /* emitterutils.cpp in Sources */,
@@ -3094,7 +3043,6 @@
 				35FD11892652094300BB0968 /* regex_yaml.cpp in Sources */,
 				35FD118A2652094300BB0968 /* scantoken.cpp in Sources */,
 				353453F4290AD6BE0053C79F /* base64.cpp in Sources */,
-				3513645226596D6D00039D6C /* atcommand_def.inc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3102,7 +3050,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3513645C26596D6D00039D6C /* battle_config_init.inc in Sources */,
 				35FD13142652150400BB0968 /* logincnslif.cpp in Sources */,
 				35FD13082652150400BB0968 /* loginchrif.cpp in Sources */,
 				35FD13042652150400BB0968 /* loginlog.cpp in Sources */,
@@ -3140,7 +3087,6 @@
 				35FD12092652094F00BB0968 /* emit.cpp in Sources */,
 				35FD120A2652094F00BB0968 /* memory.cpp in Sources */,
 				353451FA290AD2BA0053C79F /* tree.cpp in Sources */,
-				3513645F26596D6D00039D6C /* script.inc in Sources */,
 				35FD120B2652094F00BB0968 /* utilities.cpp in Sources */,
 				35FD120C2652094F00BB0968 /* node_data.cpp in Sources */,
 				353454C4290AD6BE0053C79F /* memory_util.cpp in Sources */,
@@ -3152,10 +3098,8 @@
 				35FD13052652150400BB0968 /* ipban.cpp in Sources */,
 				35345500290AD6BF0053C79F /* time.cpp in Sources */,
 				35FD12112652094F00BB0968 /* emitterutils.cpp in Sources */,
-				3513644A26596D6D00039D6C /* script_def.inc in Sources */,
 				353453FE290AD6BE0053C79F /* error.cpp in Sources */,
 				353451EB290AD2BA0053C79F /* node.cpp in Sources */,
-				3513645326596D6D00039D6C /* atcommand_def.inc in Sources */,
 				35FD12122652094F00BB0968 /* emitter.cpp in Sources */,
 				35FD12132652094F00BB0968 /* malloc.cpp in Sources */,
 				35FD12142652094F00BB0968 /* random.cpp in Sources */,
@@ -3168,9 +3112,7 @@
 				35FD121A2652094F00BB0968 /* mapindex.cpp in Sources */,
 				35FD121B2652094F00BB0968 /* scanner.c in Sources */,
 				35FD121C2652094F00BB0968 /* scanner.cpp in Sources */,
-				3513645026596D6D00039D6C /* battle_config_struct.inc in Sources */,
 				353454A6290AD6BE0053C79F /* language.cpp in Sources */,
-				3513644D26596D6D00039D6C /* atcommand.inc in Sources */,
 				35FD13092652150400BB0968 /* loginclif.cpp in Sources */,
 				35FD121D2652094F00BB0968 /* cli.cpp in Sources */,
 				35FD121E2652094F00BB0968 /* utils.cpp in Sources */,
@@ -3203,7 +3145,6 @@
 				35FD12932652096400BB0968 /* nullpo.cpp in Sources */,
 				35E6BDF62654D94800DD3426 /* chrif.cpp in Sources */,
 				35FD12942652096400BB0968 /* showmsg.cpp in Sources */,
-				3513646026596D6D00039D6C /* script.inc in Sources */,
 				35FD12952652096400BB0968 /* simplekey.cpp in Sources */,
 				35FD12962652096400BB0968 /* node.cpp in Sources */,
 				35FD12972652096400BB0968 /* convert.cpp in Sources */,
@@ -3234,13 +3175,11 @@
 				35FD12A02652096400BB0968 /* msg_conf.cpp in Sources */,
 				35E6BDE82654D94700DD3426 /* mob.cpp in Sources */,
 				35FD12A12652096400BB0968 /* stream.cpp in Sources */,
-				3513644E26596D6D00039D6C /* atcommand.inc in Sources */,
 				35FD12A22652096400BB0968 /* exp.cpp in Sources */,
 				35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */,
 				35E6BE0A2654D94800DD3426 /* instance.cpp in Sources */,
 				35E6BDE62654D94700DD3426 /* buyingstore.cpp in Sources */,
 				35E6BE052654D94800DD3426 /* clif.cpp in Sources */,
-				3513645426596D6D00039D6C /* atcommand_def.inc in Sources */,
 				35E6BDDF2654D94700DD3426 /* homunculus.cpp in Sources */,
 				35FD12A32652096400BB0968 /* scanctx.c in Sources */,
 				35E6BDC62654D94700DD3426 /* mapreg.cpp in Sources */,
@@ -3249,7 +3188,6 @@
 				35E6BE0B2654D94800DD3426 /* quest.cpp in Sources */,
 				35FD12A52652096400BB0968 /* ers.cpp in Sources */,
 				353454C5290AD6BE0053C79F /* memory_util.cpp in Sources */,
-				3513645126596D6D00039D6C /* battle_config_struct.inc in Sources */,
 				35FD12A62652096400BB0968 /* scantag.cpp in Sources */,
 				35FD12A72652096400BB0968 /* strlib.cpp in Sources */,
 				35FD12A82652096400BB0968 /* emit.cpp in Sources */,
@@ -3275,10 +3213,8 @@
 				35E6BDD42654D94700DD3426 /* date.cpp in Sources */,
 				35FD12B12652096400BB0968 /* emitter.cpp in Sources */,
 				35FD12B22652096400BB0968 /* malloc.cpp in Sources */,
-				3513644B26596D6D00039D6C /* script_def.inc in Sources */,
 				35FD12B32652096400BB0968 /* random.cpp in Sources */,
 				35FD12B42652096400BB0968 /* emitfromevents.cpp in Sources */,
-				3513645D26596D6D00039D6C /* battle_config_init.inc in Sources */,
 				35E6BDD22654D94700DD3426 /* channel.cpp in Sources */,
 				35FD12B52652096400BB0968 /* exceptions.cpp in Sources */,
 				35E6BDFC2654D94800DD3426 /* battleground.cpp in Sources */,
@@ -3480,6 +3416,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
