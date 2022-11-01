@@ -16,25 +16,25 @@ public class ServerManager {
 
     public static let shared = ServerManager()
 
-    public let charServer: Thread
-    public let loginServer: Thread
-    public let mapServer: Thread
+    public let charServer: CharServer
+    public let loginServer: LoginServer
+    public let mapServer: MapServer
 
     public var charServerOutputHandler: OutputHandler? {
         didSet {
-            CharServerSetOutputHandler(charServerOutputHandler)
+            charServer.outputHandler = charServerOutputHandler
         }
     }
 
     public var loginServerOutputHandler: OutputHandler? {
         didSet {
-            LoginServerSetOutputHandler(loginServerOutputHandler)
+            loginServer.outputHandler = loginServerOutputHandler;
         }
     }
 
     public var mapServerOutputHandler: OutputHandler? {
         didSet {
-            MapServerSetOutputHandler(mapServerOutputHandler)
+            mapServer.outputHandler = mapServerOutputHandler
         }
     }
 
@@ -46,41 +46,30 @@ public class ServerManager {
                 let message = "[\(server)|\(flow)]: 0x\(data)\n"
                 handler?(message.data(using: .isoLatin1) ?? Data())
             }
-            CharServerSetDataReceiveHandler { data in
+            charServer.dataReceiveHandler = { data in
                 print(data, "Receive", "Char")
             }
-            CharServerSetDataSendHandler { data in
+            charServer.dataSendHandler = { data in
                 print(data, "Send", "Char")
             }
-            LoginServerSetDataReceiveHandler { data in
+            loginServer.dataReceiveHandler = { data in
                 print(data, "Receive", "Login")
             }
-            LoginServerSetDataSendHandler { data in
+            loginServer.dataSendHandler = { data in
                 print(data, "Send", "Login")
             }
-            MapServerSetDataReceiveHandler { data in
+            mapServer.dataReceiveHandler = { data in
                 print(data, "Receive", "Map")
             }
-            MapServerSetDataSendHandler { data in
+            mapServer.dataSendHandler = { data in
                 print(data, "Send", "Map")
             }
         }
     }
 
     private init() {
-        charServer = Thread {
-            CharServerMain()
-        }
-        charServer.name = CharServerGetName()
-
-        loginServer = Thread {
-            LoginServerMain()
-        }
-        loginServer.name = LoginServerGetName()
-
-        mapServer = Thread {
-            MapServerMain()
-        }
-        mapServer.name = MapServerGetName()
+        charServer = CharServer()
+        loginServer = LoginServer()
+        mapServer = MapServer()
     }
 }

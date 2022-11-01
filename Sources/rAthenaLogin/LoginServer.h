@@ -6,20 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LoginServerHandlers.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef void (^LoginServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^LoginServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^LoginServerDataSendHandler)(NSData * _Nonnull data);
 
-extern NSString * _Nonnull LoginServerGetName();
+@interface LoginServer : NSThread
 
-extern void LoginServerSetOutputHandler(LoginServerOutputHandler _Nullable handler);
-extern void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler _Nullable handler);
-extern void LoginServerSetDataSendHandler(LoginServerDataSendHandler _Nullable handler);
+@property (nonatomic, copy) LoginServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) LoginServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) LoginServerDataSendHandler _Nullable dataSendHandler;
 
-extern void LoginServerMain();
-
-#ifdef __cplusplus
-}
-#endif
+@end

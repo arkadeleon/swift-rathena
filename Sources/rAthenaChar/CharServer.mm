@@ -12,58 +12,58 @@
 extern int main (int argc, char **argv);
 
 int write_function(void *cookie, const char *buf, int n) {
-    CharServerOutputHandler handler = CharServerHandlers.sharedHandlers.outputHandler;
-    if (handler) {
+    CharServer *charServer = (CharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+
+    if (charServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
-        handler(data);
+        charServer.outputHandler(data);
     }
+
     return 0;
 }
 
 void do_recv(int fd) {
-    CharServerDataReceiveHandler handler = CharServerHandlers.sharedHandlers.dataReceiveHandler;
-    if (handler) {
+    CharServer *charServer = (CharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+
+    if (charServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        handler(data);
+        charServer.dataReceiveHandler(data);
     }
 }
 
 void do_send(int fd) {
-    CharServerDataSendHandler handler = CharServerHandlers.sharedHandlers.dataSendHandler;
-    if (handler) {
+    CharServer *charServer = (CharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+
+    if (charServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        handler(data);
+        charServer.dataSendHandler(data);
     }
 }
 
-NSString *CharServerGetName() {
-    return @"Char Server";
+@implementation CharServer
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.name = @"org.rathena.char-server";
+    }
+    return self;
 }
 
-void CharServerSetOutputHandler(CharServerOutputHandler handler) {
-    CharServerHandlers.sharedHandlers.outputHandler = handler;
+- (void)main {
+    FILE *output = fwopen(0, write_function);
+    STDOUT = output;
+    STDERR = output;
 
-    static FILE *output = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        output = fwopen(0, write_function);
-        STDOUT = output;
-        STDERR = output;
-    });
-}
-
-void CharServerSetDataReceiveHandler(CharServerDataReceiveHandler handler) {
-    CharServerHandlers.sharedHandlers.dataReceiveHandler = handler;
     recv_callback = do_recv;
-}
-
-void CharServerSetDataSendHandler(CharServerDataSendHandler handler) {
-    CharServerHandlers.sharedHandlers.dataSendHandler = handler;
     send_callback = do_send;
-}
 
-void CharServerMain() {
-    char arg0[] = "Char-Server";
+    char arg0[] = "char-server";
     char *args[1] = {arg0};
     main(1, args);
 }
+
+@end

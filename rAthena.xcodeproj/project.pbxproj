@@ -289,12 +289,6 @@
 		35345500290AD6BF0053C79F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452EB290AD6BD0053C79F /* time.cpp */; };
 		35345501290AD6BF0053C79F /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 353452EB290AD6BD0053C79F /* time.cpp */; };
 		353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353FE9C926B257FC00D75FEE /* ResourceManager.swift */; };
-		35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C0726E6652200F42F92 /* CharServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C0826E6652200F42F92 /* CharServerHandlers.m */; };
-		35435C0F26E6693800F42F92 /* LoginServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C0B26E6693100F42F92 /* LoginServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35435C1026E6693F00F42F92 /* LoginServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C0C26E6693100F42F92 /* LoginServerHandlers.m */; };
-		35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 35435C1126E66DA100F42F92 /* MapServerHandlers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35435C1426E66DA100F42F92 /* MapServerHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35435C1226E66DA100F42F92 /* MapServerHandlers.m */; };
 		35439C622693088B007EBA61 /* Packet0064.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C612693088B007EBA61 /* Packet0064.swift */; };
 		35439C642693093E007EBA61 /* PacketEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C632693093E007EBA61 /* PacketEndpoint.swift */; };
 		35439C6626930ABE007EBA61 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35439C6526930ABE007EBA61 /* Packet.swift */; };
@@ -1024,12 +1018,6 @@
 		353452EA290AD6BD0053C79F /* compiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = compiler.hpp; sourceTree = "<group>"; };
 		353452EB290AD6BD0053C79F /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		353FE9C926B257FC00D75FEE /* ResourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceManager.swift; sourceTree = "<group>"; };
-		35435C0726E6652200F42F92 /* CharServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharServerHandlers.h; sourceTree = "<group>"; };
-		35435C0826E6652200F42F92 /* CharServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharServerHandlers.m; sourceTree = "<group>"; };
-		35435C0B26E6693100F42F92 /* LoginServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginServerHandlers.h; sourceTree = "<group>"; };
-		35435C0C26E6693100F42F92 /* LoginServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginServerHandlers.m; sourceTree = "<group>"; };
-		35435C1126E66DA100F42F92 /* MapServerHandlers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapServerHandlers.h; sourceTree = "<group>"; };
-		35435C1226E66DA100F42F92 /* MapServerHandlers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapServerHandlers.m; sourceTree = "<group>"; };
 		35439C612693088B007EBA61 /* Packet0064.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet0064.swift; sourceTree = "<group>"; };
 		35439C632693093E007EBA61 /* PacketEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketEndpoint.swift; sourceTree = "<group>"; };
 		35439C6526930ABE007EBA61 /* Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
@@ -1438,8 +1426,6 @@
 				3521848F26556985002FAE2C /* rAthenaLogin.h */,
 				359968792655571A006AECE6 /* LoginServer.h */,
 				3599687A2655571A006AECE6 /* LoginServer.mm */,
-				35435C0B26E6693100F42F92 /* LoginServerHandlers.h */,
-				35435C0C26E6693100F42F92 /* LoginServerHandlers.m */,
 				35FFBB2F268620BD0026D40A /* Info.plist */,
 			);
 			name = rAthenaLogin;
@@ -1452,8 +1438,6 @@
 				3521848E26556984002FAE2C /* rAthenaChar.h */,
 				3521843D265563A1002FAE2C /* CharServer.h */,
 				3521843E265563A1002FAE2C /* CharServer.mm */,
-				35435C0726E6652200F42F92 /* CharServerHandlers.h */,
-				35435C0826E6652200F42F92 /* CharServerHandlers.m */,
 				35FFBB2E2686209E0026D40A /* Info.plist */,
 			);
 			name = rAthenaChar;
@@ -1466,8 +1450,6 @@
 				3521848D26556984002FAE2C /* rAthenaMap.h */,
 				35218452265563CD002FAE2C /* MapServer.h */,
 				35218453265563CD002FAE2C /* MapServer.mm */,
-				35435C1126E66DA100F42F92 /* MapServerHandlers.h */,
-				35435C1226E66DA100F42F92 /* MapServerHandlers.m */,
 				35FFBB30268620CF0026D40A /* Info.plist */,
 			);
 			name = rAthenaMap;
@@ -2303,7 +2285,6 @@
 				35FD11302652094300BB0968 /* ptr.h in Headers */,
 				35345406290AD6BE0053C79F /* export.hpp in Headers */,
 				35FD11312652094300BB0968 /* node_ref.h in Headers */,
-				35435C0926E6652200F42F92 /* CharServerHandlers.h in Headers */,
 				353453D3290AD6BE0053C79F /* bitmask.hpp in Headers */,
 				353454CC290AD6BE0053C79F /* char_traits.hpp in Headers */,
 				35FD11322652094300BB0968 /* cli.hpp in Headers */,
@@ -2449,7 +2430,6 @@
 				353451D9290AD2BA0053C79F /* yml.hpp in Headers */,
 				35FD130A2652150400BB0968 /* account.hpp in Headers */,
 				35FD11B92652094F00BB0968 /* emitterstyle.h in Headers */,
-				35435C0F26E6693800F42F92 /* LoginServerHandlers.h in Headers */,
 				35FD11BA2652094F00BB0968 /* scantag.h in Headers */,
 				35FD11BB2652094F00BB0968 /* mmo.hpp in Headers */,
 				35FD11BC2652094F00BB0968 /* conf.hpp in Headers */,
@@ -2599,7 +2579,6 @@
 				353451F8290AD2BA0053C79F /* string.hpp in Headers */,
 				35FD12462652096400BB0968 /* graphbuilder.h in Headers */,
 				353451EF290AD2BA0053C79F /* std.hpp in Headers */,
-				35435C1326E66DA100F42F92 /* MapServerHandlers.h in Headers */,
 				35FD12472652096400BB0968 /* emitterdef.h in Headers */,
 				35FD12482652096400BB0968 /* dll.h in Headers */,
 				35FD12492652096400BB0968 /* grfio.hpp in Headers */,
@@ -2976,7 +2955,6 @@
 				3521844E265563AD002FAE2C /* CharServer.mm in Sources */,
 				35FD115D2652094300BB0968 /* md5calc.cpp in Sources */,
 				353454A5290AD6BE0053C79F /* language.cpp in Sources */,
-				35435C0A26E6652200F42F92 /* CharServerHandlers.m in Sources */,
 				35FD115E2652094300BB0968 /* nodeevents.cpp in Sources */,
 				353453E8290AD6BE0053C79F /* format.cpp in Sources */,
 				35FD115F2652094300BB0968 /* nodebuilder.cpp in Sources */,
@@ -3068,7 +3046,6 @@
 				35FD11FB2652094F00BB0968 /* md5calc.cpp in Sources */,
 				35FD11FC2652094F00BB0968 /* nodeevents.cpp in Sources */,
 				35FD11FD2652094F00BB0968 /* nodebuilder.cpp in Sources */,
-				35435C1026E6693F00F42F92 /* LoginServerHandlers.m in Sources */,
 				35FD11FE2652094F00BB0968 /* binary.cpp in Sources */,
 				35FD11FF2652094F00BB0968 /* singledocparser.cpp in Sources */,
 				35FD12002652094F00BB0968 /* emitterstate.cpp in Sources */,
@@ -3191,7 +3168,6 @@
 				35FD12A62652096400BB0968 /* scantag.cpp in Sources */,
 				35FD12A72652096400BB0968 /* strlib.cpp in Sources */,
 				35FD12A82652096400BB0968 /* emit.cpp in Sources */,
-				35435C1426E66DA100F42F92 /* MapServerHandlers.m in Sources */,
 				35FD12A92652096400BB0968 /* memory.cpp in Sources */,
 				35FD12AA2652096400BB0968 /* utilities.cpp in Sources */,
 				35FD12AB2652096400BB0968 /* node_data.cpp in Sources */,

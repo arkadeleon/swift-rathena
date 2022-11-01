@@ -12,58 +12,58 @@
 extern int main (int argc, char **argv);
 
 int write_function(void *cookie, const char *buf, int n) {
-    LoginServerOutputHandler handler = LoginServerHandlers.sharedHandlers.outputHandler;
-    if (handler) {
+    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+
+    if (loginServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
-        handler(data);
+        loginServer.outputHandler(data);
     }
+
     return 0;
 }
 
 void do_recv(int fd) {
-    LoginServerDataReceiveHandler handler = LoginServerHandlers.sharedHandlers.dataReceiveHandler;
-    if (handler) {
+    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+
+    if (loginServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        handler(data);
+        loginServer.dataReceiveHandler(data);
     }
 }
 
 void do_send(int fd) {
-    LoginServerDataSendHandler handler = LoginServerHandlers.sharedHandlers.dataSendHandler;
-    if (handler) {
+    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+
+    if (loginServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        handler(data);
+        loginServer.dataSendHandler(data);
     }
 }
 
-NSString *LoginServerGetName() {
-    return @"Login Server";
+@implementation LoginServer
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.name = @"org.rathena.login-server";
+    }
+    return self;
 }
 
-void LoginServerSetOutputHandler(LoginServerOutputHandler handler) {
-    LoginServerHandlers.sharedHandlers.outputHandler = handler;
+- (void)main {
+    FILE *output = fwopen(0, write_function);
+    STDOUT = output;
+    STDERR = output;
 
-    static FILE *output = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        output = fwopen(0, write_function);
-        STDOUT = output;
-        STDERR = output;
-    });
-}
-
-void LoginServerSetDataReceiveHandler(LoginServerDataReceiveHandler handler) {
-    LoginServerHandlers.sharedHandlers.dataReceiveHandler = handler;
     recv_callback = do_recv;
-}
-
-void LoginServerSetDataSendHandler(LoginServerDataSendHandler handler) {
-    LoginServerHandlers.sharedHandlers.dataSendHandler = handler;
     send_callback = do_send;
-}
 
-void LoginServerMain() {
-    char arg0[] = "Login-Server";
+    char arg0[] = "login-server";
     char *args[1] = {arg0};
     main(1, args);
 }
+
+@end

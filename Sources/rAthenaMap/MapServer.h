@@ -6,20 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MapServerHandlers.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef void (^MapServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^MapServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^MapServerDataSendHandler)(NSData * _Nonnull data);
 
-extern NSString * _Nonnull MapServerGetName();
+@interface MapServer : NSThread
 
-extern void MapServerSetOutputHandler(MapServerOutputHandler _Nullable handler);
-extern void MapServerSetDataReceiveHandler(MapServerDataReceiveHandler _Nullable handler);
-extern void MapServerSetDataSendHandler(MapServerDataSendHandler _Nullable handler);
+@property (nonatomic, copy) MapServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) MapServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) MapServerDataSendHandler _Nullable dataSendHandler;
 
-extern void MapServerMain();
-
-#ifdef __cplusplus
-}
-#endif
+@end

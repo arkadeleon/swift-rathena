@@ -6,20 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CharServerHandlers.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+typedef void (^CharServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^CharServerDataReceiveHandler)(NSData * _Nonnull data);
+typedef void (^CharServerDataSendHandler)(NSData * _Nonnull data);
 
-extern NSString * _Nonnull CharServerGetName();
+@interface CharServer : NSThread
 
-extern void CharServerSetOutputHandler(CharServerOutputHandler _Nullable handler);
-extern void CharServerSetDataReceiveHandler(CharServerDataReceiveHandler _Nullable handler);
-extern void CharServerSetDataSendHandler(CharServerDataSendHandler _Nullable handler);
+@property (nonatomic, copy) CharServerOutputHandler _Nullable outputHandler;
+@property (nonatomic, copy) CharServerDataReceiveHandler _Nullable dataReceiveHandler;
+@property (nonatomic, copy) CharServerDataSendHandler _Nullable dataSendHandler;
 
-extern void CharServerMain();
-
-#ifdef __cplusplus
-}
-#endif
+@end
