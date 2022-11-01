@@ -576,7 +576,7 @@ void Sql_FreeResult(Sql* self)
 /// Closes the handle
 void Sql_Close(Sql* self) {
 	if (self) {
-		mysql_close(&self->handle);
+		sqlite3_close(self->db);
 	}
 }
 
