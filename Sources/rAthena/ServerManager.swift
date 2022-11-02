@@ -9,6 +9,7 @@ import Foundation
 import rAthenaChar
 import rAthenaLogin
 import rAthenaMap
+import rAthenaWeb
 
 public class ServerManager {
 
@@ -19,6 +20,7 @@ public class ServerManager {
     public let charServer: CharServer
     public let loginServer: LoginServer
     public let mapServer: MapServer
+    public let webServer: WebServer
 
     public var charServerOutputHandler: OutputHandler? {
         didSet {
@@ -35,6 +37,12 @@ public class ServerManager {
     public var mapServerOutputHandler: OutputHandler? {
         didSet {
             mapServer.outputHandler = mapServerOutputHandler
+        }
+    }
+
+    public var webServerOutputHandler: OutputHandler? {
+        didSet {
+            webServer.outputHandler = webServerOutputHandler
         }
     }
 
@@ -64,6 +72,12 @@ public class ServerManager {
             mapServer.dataSendHandler = { data in
                 print(data, "Send", "Map")
             }
+            webServer.dataReceiveHandler = { data in
+                print(data, "Receive", "Web")
+            }
+            webServer.dataSendHandler = { data in
+                print(data, "Send", "Web")
+            }
         }
     }
 
@@ -71,5 +85,6 @@ public class ServerManager {
         charServer = CharServer()
         loginServer = LoginServer()
         mapServer = MapServer()
+        webServer = WebServer()
     }
 }

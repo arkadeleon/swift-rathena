@@ -48,7 +48,7 @@ void do_send(int fd) {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"org.rathena.char-server";
+        self.name = @"com.github.arkadeleon.rathena-ios.char-server";
     }
     return self;
 }

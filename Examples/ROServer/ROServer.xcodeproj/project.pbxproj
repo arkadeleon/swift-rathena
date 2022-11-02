@@ -15,6 +15,8 @@
 		3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521865226582331002FAE2C /* LaunchScreen.storyboard */; };
 		35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; };
 		35641CFE26E7012A0065F955 /* Terminal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35A3297229123A81003577A9 /* rAthenaWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A3297129123A81003577A9 /* rAthenaWeb.framework */; };
+		35A3297329123A81003577A9 /* rAthenaWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35A3297129123A81003577A9 /* rAthenaWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; };
 		35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896422685C75500A2FBA1 /* rAthenaChar.framework */; };
@@ -40,6 +42,7 @@
 				35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */,
 				35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */,
 				35FEC5C0290A856700133DF5 /* SQLite.xcframework in Embed Frameworks */,
+				35A3297329123A81003577A9 /* rAthenaWeb.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +60,7 @@
 		3521865526582331002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35435C0626E6578500F42F92 /* ROServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ROServer-Bridging-Header.h"; sourceTree = "<group>"; };
 		35641CFC26E7012A0065F955 /* Terminal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Terminal.xcframework; path = ../../Carthage/Build/Terminal.xcframework; sourceTree = "<group>"; };
+		35A3297129123A81003577A9 /* rAthenaWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896412685C75500A2FBA1 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896422685C75500A2FBA1 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E896432685C75500A2FBA1 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,12 +73,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */,
-				35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */,
-				35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */,
-				35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */,
 				35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */,
+				35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */,
+				35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */,
+				35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */,
+				35A3297229123A81003577A9 /* rAthenaWeb.framework in Frameworks */,
 				35FEC5BF290A856700133DF5 /* SQLite.xcframework in Frameworks */,
+				35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,11 +104,12 @@
 		35E896402685C75400A2FBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				35FEC5BE290A856700133DF5 /* SQLite.xcframework */,
 				35E896412685C75500A2FBA1 /* rAthena.framework */,
 				35E896422685C75500A2FBA1 /* rAthenaChar.framework */,
 				35E896432685C75500A2FBA1 /* rAthenaLogin.framework */,
 				35E896442685C75500A2FBA1 /* rAthenaMap.framework */,
+				35A3297129123A81003577A9 /* rAthenaWeb.framework */,
+				35FEC5BE290A856700133DF5 /* SQLite.xcframework */,
 				35641CFC26E7012A0065F955 /* Terminal.xcframework */,
 			);
 			name = Frameworks;

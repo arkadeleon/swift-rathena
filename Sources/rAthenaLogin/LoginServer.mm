@@ -48,7 +48,7 @@ void do_send(int fd) {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"org.rathena.login-server";
+        self.name = @"com.github.arkadeleon.rathena-ios.login-server";
     }
     return self;
 }
