@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -575,8 +575,6 @@
 		35B4549226956D180088D360 /* Config.mm in Sources */ = {isa = PBXBuildFile; fileRef = 35B4549026956D180088D360 /* Config.mm */; };
 		35B4549326956DCD0088D360 /* cbasetypes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0F4D264E7EF200BB0968 /* cbasetypes.hpp */; };
 		35B45499269576B60088D360 /* Packet006B.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B45498269576B60088D360 /* Packet006B.swift */; };
-		35C5E4CC27BAA97F007D56EB /* SQLite.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C5E4CB27BAA97F007D56EB /* SQLite.xcframework */; };
-		35C5E4D027BE9697007D56EB /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C5E4CF27BE9697007D56EB /* DatabaseManager.swift */; };
 		35E6BD362654D70A00DD3426 /* rAthena.h in Headers */ = {isa = PBXBuildFile; fileRef = 35FD0B90264E765C00BB0968 /* rAthena.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35E6BDBD2654D94700DD3426 /* mercenary.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 35E6BD622654D94600DD3426 /* mercenary.hpp */; };
 		35E6BDBE2654D94700DD3426 /* npc_chat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E6BD632654D94600DD3426 /* npc_chat.cpp */; };
@@ -1331,8 +1329,6 @@
 		35B4548F26956D180088D360 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		35B4549026956D180088D360 /* Config.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Config.mm; sourceTree = "<group>"; };
 		35B45498269576B60088D360 /* Packet006B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Packet006B.swift; sourceTree = "<group>"; };
-		35C5E4CB27BAA97F007D56EB /* SQLite.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SQLite.xcframework; path = Carthage/Build/SQLite.xcframework; sourceTree = "<group>"; };
-		35C5E4CF27BE9697007D56EB /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		35E6BD222654D6ED00DD3426 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E6BD622654D94600DD3426 /* mercenary.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mercenary.hpp; sourceTree = "<group>"; };
 		35E6BD632654D94600DD3426 /* npc_chat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = npc_chat.cpp; sourceTree = "<group>"; };
@@ -1647,7 +1643,6 @@
 				35E6BE9C2654DB2A00DD3426 /* rAthenaChar.framework in Frameworks */,
 				35E6BE9F2654DB2C00DD3426 /* rAthenaLogin.framework in Frameworks */,
 				35E6BEA12654DB2D00DD3426 /* rAthenaMap.framework in Frameworks */,
-				35C5E4CC27BAA97F007D56EB /* SQLite.xcframework in Frameworks */,
 				35A3296C29123607003577A9 /* rAthenaWeb.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2228,7 +2223,6 @@
 				35FD0B90264E765C00BB0968 /* rAthena.h */,
 				35B4548F26956D180088D360 /* Config.h */,
 				35B4549026956D180088D360 /* Config.mm */,
-				35C5E4CF27BE9697007D56EB /* DatabaseManager.swift */,
 				350808C526A1EB2A00FEEBEF /* ServerManager.swift */,
 				353FE9C926B257FC00D75FEE /* ResourceManager.swift */,
 				35439C6026930871007EBA61 /* Packet */,
@@ -2492,7 +2486,6 @@
 				35AD84C12664DC5500CE1539 /* CoreFoundation.framework */,
 				35FD132D26526F2E00BB0968 /* libsqlite3.tbd */,
 				35FD10EF2652031400BB0968 /* libz.tbd */,
-				35C5E4CB27BAA97F007D56EB /* SQLite.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3579,7 +3572,6 @@
 				35439C6E269422B4007EBA61 /* PacketDecoder.swift in Sources */,
 				350808C626A1EB2A00FEEBEF /* ServerManager.swift in Sources */,
 				35439C6A26930DFE007EBA61 /* BinaryEncoder.swift in Sources */,
-				35C5E4D027BE9697007D56EB /* DatabaseManager.swift in Sources */,
 				35439C6D269422B4007EBA61 /* PacketEncoder.swift in Sources */,
 				353FE9CA26B257FC00D75FEE /* ResourceManager.swift in Sources */,
 				35B4547826945B4B0088D360 /* Packet0069.swift in Sources */,
