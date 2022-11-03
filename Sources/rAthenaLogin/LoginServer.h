@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^LoginServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^LoginServerOutputHandler)(NSData * _Nonnull data);
 typedef void (^LoginServerDataReceiveHandler)(NSData * _Nonnull data);
 typedef void (^LoginServerDataSendHandler)(NSData * _Nonnull data);
 

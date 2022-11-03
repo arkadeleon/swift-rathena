@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^WebServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^WebServerOutputHandler)(NSData * _Nonnull data);
 typedef void (^WebServerDataReceiveHandler)(NSData * _Nonnull data);
 typedef void (^WebServerDataSendHandler)(NSData * _Nonnull data);
 

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^MapServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^MapServerOutputHandler)(NSData * _Nonnull data);
 typedef void (^MapServerDataReceiveHandler)(NSData * _Nonnull data);
 typedef void (^MapServerDataSendHandler)(NSData * _Nonnull data);
 

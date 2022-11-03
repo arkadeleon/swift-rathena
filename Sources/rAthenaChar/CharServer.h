@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^CharServerOutputHandler)(NSData * _Nonnull buffer);
+typedef void (^CharServerOutputHandler)(NSData * _Nonnull data);
 typedef void (^CharServerDataReceiveHandler)(NSData * _Nonnull data);
 typedef void (^CharServerDataSendHandler)(NSData * _Nonnull data);
 

@@ -3,43 +3,47 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3521864826582330002FAE2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352186472658232F002FAE2C /* AppDelegate.swift */; };
-		3521864A26582330002FAE2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521864926582330002FAE2C /* SceneDelegate.swift */; };
-		3521864C26582330002FAE2C /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3521864B26582330002FAE2C /* ServerViewController.swift */; };
-		3521864F26582330002FAE2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521864D26582330002FAE2C /* Main.storyboard */; };
-		3521865126582331002FAE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3521865026582331002FAE2C /* Assets.xcassets */; };
-		3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3521865226582331002FAE2C /* LaunchScreen.storyboard */; };
-		35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; };
-		35641CFE26E7012A0065F955 /* Terminal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35641CFC26E7012A0065F955 /* Terminal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35A3297229123A81003577A9 /* rAthenaWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A3297129123A81003577A9 /* rAthenaWeb.framework */; };
-		35A3297329123A81003577A9 /* rAthenaWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35A3297129123A81003577A9 /* rAthenaWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; };
-		35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896412685C75500A2FBA1 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896422685C75500A2FBA1 /* rAthenaChar.framework */; };
-		35E896482685C75500A2FBA1 /* rAthenaChar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896422685C75500A2FBA1 /* rAthenaChar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896432685C75500A2FBA1 /* rAthenaLogin.framework */; };
-		35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896432685C75500A2FBA1 /* rAthenaLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896442685C75500A2FBA1 /* rAthenaMap.framework */; };
-		35E8964C2685C75500A2FBA1 /* rAthenaMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35E896442685C75500A2FBA1 /* rAthenaMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC634329125B2000825452 /* ROServerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634229125B2000825452 /* ROServerApp.swift */; };
+		35FC634529125B2000825452 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634429125B2000825452 /* ContentView.swift */; };
+		35FC634729125B2000825452 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634629125B2000825452 /* Assets.xcassets */; };
+		35FC634A29125B2000825452 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634929125B2000825452 /* Preview Assets.xcassets */; };
+		35FC635729125D7600825452 /* rAthena.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635229125D7600825452 /* rAthena.framework */; };
+		35FC635829125D7600825452 /* rAthena.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635229125D7600825452 /* rAthena.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC635929125D7600825452 /* rAthenaChar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635329125D7600825452 /* rAthenaChar.framework */; };
+		35FC635A29125D7600825452 /* rAthenaChar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635329125D7600825452 /* rAthenaChar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC635B29125D7600825452 /* rAthenaLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635429125D7600825452 /* rAthenaLogin.framework */; };
+		35FC635C29125D7600825452 /* rAthenaLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635429125D7600825452 /* rAthenaLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC635D29125D7600825452 /* rAthenaMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635529125D7600825452 /* rAthenaMap.framework */; };
+		35FC635E29125D7600825452 /* rAthenaMap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635529125D7600825452 /* rAthenaMap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC635F29125D7600825452 /* rAthenaWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635629125D7600825452 /* rAthenaWeb.framework */; };
+		35FC636029125D7600825452 /* rAthenaWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC635629125D7600825452 /* rAthenaWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC636329125D9700825452 /* Terminal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC636229125D9700825452 /* Terminal.xcframework */; };
+		35FC636429125D9700825452 /* Terminal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC636229125D9700825452 /* Terminal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35FC636629125F0100825452 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636529125F0100825452 /* TerminalView.swift */; };
+		35FC63682912685000825452 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC63672912685000825452 /* ServerView.swift */; };
+		35FC636A291275D900825452 /* LoginServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC6369291275D900825452 /* LoginServerView.swift */; };
+		35FC636C2912764500825452 /* CharServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636B2912764500825452 /* CharServerView.swift */; };
+		35FC636E2912765500825452 /* MapServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636D2912765500825452 /* MapServerView.swift */; };
+		35FC63702912766000825452 /* WebServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636F2912766000825452 /* WebServerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3521866226582384002FAE2C /* Embed Frameworks */ = {
+		35FC636129125D7600825452 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				35641CFE26E7012A0065F955 /* Terminal.xcframework in Embed Frameworks */,
-				35E896482685C75500A2FBA1 /* rAthenaChar.framework in Embed Frameworks */,
-				35E8964C2685C75500A2FBA1 /* rAthenaMap.framework in Embed Frameworks */,
-				35E8964A2685C75500A2FBA1 /* rAthenaLogin.framework in Embed Frameworks */,
-				35E896462685C75500A2FBA1 /* rAthena.framework in Embed Frameworks */,
-				35A3297329123A81003577A9 /* rAthenaWeb.framework in Embed Frameworks */,
+				35FC635829125D7600825452 /* rAthena.framework in Embed Frameworks */,
+				35FC635A29125D7600825452 /* rAthenaChar.framework in Embed Frameworks */,
+				35FC635C29125D7600825452 /* rAthenaLogin.framework in Embed Frameworks */,
+				35FC635E29125D7600825452 /* rAthenaMap.framework in Embed Frameworks */,
+				35FC636029125D7600825452 /* rAthenaWeb.framework in Embed Frameworks */,
+				35FC636429125D9700825452 /* Terminal.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,96 +51,110 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		352186452658232F002FAE2C /* ROServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ROServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		352186472658232F002FAE2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3521864926582330002FAE2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3521864B26582330002FAE2C /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
-		3521864E26582330002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3521865026582331002FAE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3521865326582331002FAE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3521865526582331002FAE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		35435C0626E6578500F42F92 /* ROServer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ROServer-Bridging-Header.h"; sourceTree = "<group>"; };
-		35641CFC26E7012A0065F955 /* Terminal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Terminal.xcframework; path = ../../Carthage/Build/Terminal.xcframework; sourceTree = "<group>"; };
-		35A3297129123A81003577A9 /* rAthenaWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35E896412685C75500A2FBA1 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35E896422685C75500A2FBA1 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35E896432685C75500A2FBA1 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		35E896442685C75500A2FBA1 /* rAthenaMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC633F29125B2000825452 /* ROServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ROServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC634229125B2000825452 /* ROServerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROServerApp.swift; sourceTree = "<group>"; };
+		35FC634429125B2000825452 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		35FC634629125B2000825452 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		35FC634929125B2000825452 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		35FC635029125CEA00825452 /* ROServer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ROServer-Bridging-Header.h"; sourceTree = "<group>"; };
+		35FC635229125D7600825452 /* rAthena.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthena.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC635329125D7600825452 /* rAthenaChar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaChar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC635429125D7600825452 /* rAthenaLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC635529125D7600825452 /* rAthenaMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC635629125D7600825452 /* rAthenaWeb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = rAthenaWeb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35FC636229125D9700825452 /* Terminal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Terminal.xcframework; path = ../../Carthage/Build/Terminal.xcframework; sourceTree = "<group>"; };
+		35FC636529125F0100825452 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
+		35FC63672912685000825452 /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
+		35FC6369291275D900825452 /* LoginServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServerView.swift; sourceTree = "<group>"; };
+		35FC636B2912764500825452 /* CharServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharServerView.swift; sourceTree = "<group>"; };
+		35FC636D2912765500825452 /* MapServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServerView.swift; sourceTree = "<group>"; };
+		35FC636F2912766000825452 /* WebServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		352186422658232F002FAE2C /* Frameworks */ = {
+		35FC633C29125B2000825452 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35E896452685C75500A2FBA1 /* rAthena.framework in Frameworks */,
-				35E896472685C75500A2FBA1 /* rAthenaChar.framework in Frameworks */,
-				35E896492685C75500A2FBA1 /* rAthenaLogin.framework in Frameworks */,
-				35E8964B2685C75500A2FBA1 /* rAthenaMap.framework in Frameworks */,
-				35A3297229123A81003577A9 /* rAthenaWeb.framework in Frameworks */,
-				35641CFD26E7012A0065F955 /* Terminal.xcframework in Frameworks */,
+				35FC635729125D7600825452 /* rAthena.framework in Frameworks */,
+				35FC635929125D7600825452 /* rAthenaChar.framework in Frameworks */,
+				35FC635B29125D7600825452 /* rAthenaLogin.framework in Frameworks */,
+				35FC635D29125D7600825452 /* rAthenaMap.framework in Frameworks */,
+				35FC635F29125D7600825452 /* rAthenaWeb.framework in Frameworks */,
+				35FC636329125D9700825452 /* Terminal.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		352186462658232F002FAE2C /* ROServer */ = {
+		35FC633629125B2000825452 = {
 			isa = PBXGroup;
 			children = (
-				352186472658232F002FAE2C /* AppDelegate.swift */,
-				3521864926582330002FAE2C /* SceneDelegate.swift */,
-				3521864B26582330002FAE2C /* ServerViewController.swift */,
-				3521864D26582330002FAE2C /* Main.storyboard */,
-				3521865026582331002FAE2C /* Assets.xcassets */,
-				3521865226582331002FAE2C /* LaunchScreen.storyboard */,
-				35435C0626E6578500F42F92 /* ROServer-Bridging-Header.h */,
-				3521865526582331002FAE2C /* Info.plist */,
+				35FC634129125B2000825452 /* ROServer */,
+				35FC634029125B2000825452 /* Products */,
+				35FC635129125D7600825452 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		35FC634029125B2000825452 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35FC633F29125B2000825452 /* ROServer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		35FC634129125B2000825452 /* ROServer */ = {
+			isa = PBXGroup;
+			children = (
+				35FC634229125B2000825452 /* ROServerApp.swift */,
+				35FC634429125B2000825452 /* ContentView.swift */,
+				35FC63672912685000825452 /* ServerView.swift */,
+				35FC636B2912764500825452 /* CharServerView.swift */,
+				35FC6369291275D900825452 /* LoginServerView.swift */,
+				35FC636D2912765500825452 /* MapServerView.swift */,
+				35FC636F2912766000825452 /* WebServerView.swift */,
+				35FC636529125F0100825452 /* TerminalView.swift */,
+				35FC635029125CEA00825452 /* ROServer-Bridging-Header.h */,
+				35FC634629125B2000825452 /* Assets.xcassets */,
+				35FC634829125B2000825452 /* Preview Content */,
 			);
 			path = ROServer;
 			sourceTree = "<group>";
 		};
-		35E896402685C75400A2FBA1 /* Frameworks */ = {
+		35FC634829125B2000825452 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				35E896412685C75500A2FBA1 /* rAthena.framework */,
-				35E896422685C75500A2FBA1 /* rAthenaChar.framework */,
-				35E896432685C75500A2FBA1 /* rAthenaLogin.framework */,
-				35E896442685C75500A2FBA1 /* rAthenaMap.framework */,
-				35A3297129123A81003577A9 /* rAthenaWeb.framework */,
-				35641CFC26E7012A0065F955 /* Terminal.xcframework */,
+				35FC634929125B2000825452 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		35FC635129125D7600825452 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35FC635229125D7600825452 /* rAthena.framework */,
+				35FC635329125D7600825452 /* rAthenaChar.framework */,
+				35FC635429125D7600825452 /* rAthenaLogin.framework */,
+				35FC635529125D7600825452 /* rAthenaMap.framework */,
+				35FC635629125D7600825452 /* rAthenaWeb.framework */,
+				35FC636229125D9700825452 /* Terminal.xcframework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		35FD0B83264E765C00BB0968 = {
-			isa = PBXGroup;
-			children = (
-				352186462658232F002FAE2C /* ROServer */,
-				35FD0B8E264E765C00BB0968 /* Products */,
-				35E896402685C75400A2FBA1 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		35FD0B8E264E765C00BB0968 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				352186452658232F002FAE2C /* ROServer.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		352186442658232F002FAE2C /* ROServer */ = {
+		35FC633E29125B2000825452 /* ROServer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "ROServer" */;
+			buildConfigurationList = 35FC634D29125B2000825452 /* Build configuration list for PBXNativeTarget "ROServer" */;
 			buildPhases = (
-				352186412658232F002FAE2C /* Sources */,
-				352186422658232F002FAE2C /* Frameworks */,
-				352186432658232F002FAE2C /* Resources */,
-				3521866226582384002FAE2C /* Embed Frameworks */,
+				35FC633B29125B2000825452 /* Sources */,
+				35FC633C29125B2000825452 /* Frameworks */,
+				35FC633D29125B2000825452 /* Resources */,
+				35FC636129125D7600825452 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,139 +162,80 @@
 			);
 			name = ROServer;
 			productName = ROServer;
-			productReference = 352186452658232F002FAE2C /* ROServer.app */;
+			productReference = 35FC633F29125B2000825452 /* ROServer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		35FD0B84264E765C00BB0968 /* Project object */ = {
+		35FC633729125B2000825452 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					352186442658232F002FAE2C = {
-						CreatedOnToolsVersion = 12.4;
+					35FC633E29125B2000825452 = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 35FD0B87264E765C00BB0968 /* Build configuration list for PBXProject "ROServer" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 35FC633A29125B2000825452 /* Build configuration list for PBXProject "ROServer" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 35FD0B83264E765C00BB0968;
-			productRefGroup = 35FD0B8E264E765C00BB0968 /* Products */;
+			mainGroup = 35FC633629125B2000825452;
+			productRefGroup = 35FC634029125B2000825452 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				352186442658232F002FAE2C /* ROServer */,
+				35FC633E29125B2000825452 /* ROServer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		352186432658232F002FAE2C /* Resources */ = {
+		35FC633D29125B2000825452 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3521865426582331002FAE2C /* LaunchScreen.storyboard in Resources */,
-				3521865126582331002FAE2C /* Assets.xcassets in Resources */,
-				3521864F26582330002FAE2C /* Main.storyboard in Resources */,
+				35FC634A29125B2000825452 /* Preview Assets.xcassets in Resources */,
+				35FC634729125B2000825452 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		352186412658232F002FAE2C /* Sources */ = {
+		35FC633B29125B2000825452 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3521864C26582330002FAE2C /* ServerViewController.swift in Sources */,
-				3521864826582330002FAE2C /* AppDelegate.swift in Sources */,
-				3521864A26582330002FAE2C /* SceneDelegate.swift in Sources */,
+				35FC634529125B2000825452 /* ContentView.swift in Sources */,
+				35FC63682912685000825452 /* ServerView.swift in Sources */,
+				35FC636629125F0100825452 /* TerminalView.swift in Sources */,
+				35FC636E2912765500825452 /* MapServerView.swift in Sources */,
+				35FC636C2912764500825452 /* CharServerView.swift in Sources */,
+				35FC634329125B2000825452 /* ROServerApp.swift in Sources */,
+				35FC63702912766000825452 /* WebServerView.swift in Sources */,
+				35FC636A291275D900825452 /* LoginServerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		3521864D26582330002FAE2C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3521864E26582330002FAE2C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3521865226582331002FAE2C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3521865326582331002FAE2C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		3521865626582331002FAE2C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GG76KD534U;
-				INFOPLIST_FILE = ROServer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.arkadeleon.ro-server";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "ROServer/ROServer-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		3521865726582331002FAE2C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GG76KD534U;
-				INFOPLIST_FILE = ROServer/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.arkadeleon.ro-server";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OBJC_BRIDGING_HEADER = "ROServer/ROServer-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
-		35FD0B93264E765C00BB0968 /* Debug */ = {
+		35FC634B29125B2000825452 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -286,7 +245,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -303,7 +262,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -326,19 +284,18 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		35FD0B94264E765C00BB0968 /* Release */ = {
+		35FC634C29125B2000825452 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -348,7 +305,7 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -365,7 +322,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -381,34 +337,102 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		35FC634E29125B2000825452 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ROServer/Preview Content\"";
+				DEVELOPMENT_TEAM = GG76KD534U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RO Server";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.arkadeleon.ro-server";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ROServer/ROServer-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		35FC634F29125B2000825452 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ROServer/Preview Content\"";
+				DEVELOPMENT_TEAM = GG76KD534U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "RO Server";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.arkadeleon.ro-server";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ROServer/ROServer-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3521865826582331002FAE2C /* Build configuration list for PBXNativeTarget "ROServer" */ = {
+		35FC633A29125B2000825452 /* Build configuration list for PBXProject "ROServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3521865626582331002FAE2C /* Debug */,
-				3521865726582331002FAE2C /* Release */,
+				35FC634B29125B2000825452 /* Debug */,
+				35FC634C29125B2000825452 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		35FD0B87264E765C00BB0968 /* Build configuration list for PBXProject "ROServer" */ = {
+		35FC634D29125B2000825452 /* Build configuration list for PBXNativeTarget "ROServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				35FD0B93264E765C00BB0968 /* Debug */,
-				35FD0B94264E765C00BB0968 /* Release */,
+				35FC634E29125B2000825452 /* Debug */,
+				35FC634F29125B2000825452 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 35FD0B84264E765C00BB0968 /* Project object */;
+	rootObject = 35FC633729125B2000825452 /* Project object */;
 }
