@@ -26,10 +26,7 @@ struct MapServerView: View {
     }
 
     private func startServer() {
-        let mapServer = ServerManager.shared.mapServer
-        if !mapServer.isExecuting {
-            mapServer.start()
-        }
+        ServerManager.shared.startServer(.map)
     }
 }
 

@@ -26,10 +26,7 @@ struct WebServerView: View {
     }
 
     private func startServer() {
-        let webServer = ServerManager.shared.webServer
-        if !webServer.isExecuting {
-            webServer.start()
-        }
+        ServerManager.shared.startServer(.web)
     }
 }
 

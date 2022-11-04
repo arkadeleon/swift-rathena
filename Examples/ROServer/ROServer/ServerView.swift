@@ -104,6 +104,11 @@ struct ServerView: View {
 
 struct ServerView_Previews: PreviewProvider {
     static var previews: some View {
-        ServerView("Login Server", startAction: ServerManager.shared.loginServer.start, pendingLog: .constant(Data()), pendingSession: .constant(Data()))
+        ServerView(
+            "Login Server",
+            startAction: { ServerManager.shared.startServer(.login) },
+            pendingLog: .constant(Data()),
+            pendingSession: .constant(Data())
+        )
     }
 }

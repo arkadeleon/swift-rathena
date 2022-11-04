@@ -26,10 +26,7 @@ struct CharServerView: View {
     }
 
     private func startServer() {
-        let charServer = ServerManager.shared.charServer
-        if !charServer.isExecuting {
-            charServer.start()
-        }
+        ServerManager.shared.startServer(.char)
     }
 }
 

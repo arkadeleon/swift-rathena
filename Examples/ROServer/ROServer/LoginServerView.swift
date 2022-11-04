@@ -26,10 +26,7 @@ struct LoginServerView: View {
     }
 
     private func startServer() {
-        let loginServer = ServerManager.shared.loginServer
-        if !loginServer.isExecuting {
-            loginServer.start()
-        }
+        ServerManager.shared.startServer(.login)
     }
 }
 
