@@ -6,10 +6,14 @@
 //
 
 #import "WebServer.h"
+#include "core.hpp"
 #include "showmsg.hpp"
 #include "socket.hpp"
 
+extern int runflag;
 extern int main (int argc, char **argv);
+
+extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
     WebServer *webServer = (WebServer *)[NSThread currentThread];
@@ -64,6 +68,11 @@ void do_send(int fd) {
     char arg0[] = "web-server";
     char *args[1] = {arg0};
     main(1, args);
+}
+
+- (void)cancel {
+    runflag = CORE_ST_STOP;
+    tfl_root = NULL;
 }
 
 @end

@@ -78,8 +78,10 @@ int _msg_config_read(const char* cfgName,int size, char ** msg_table)
  */
 void _do_final_msg(int size, char ** msg_table){
 	int i;
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size; i++) {
 		aFree(msg_table[i]);
+		msg_table[i] = NULL;
+	}
 }
 
 /*
