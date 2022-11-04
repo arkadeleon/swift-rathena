@@ -52,7 +52,7 @@ void do_send(int fd) {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"com.github.arkadeleon.rathena-ios.web-server";
+        self.name = @"Web Server";
     }
     return self;
 }
@@ -71,6 +71,8 @@ void do_send(int fd) {
 }
 
 - (void)cancel {
+    [super cancel];
+
     runflag = CORE_ST_STOP;
     tfl_root = NULL;
 }

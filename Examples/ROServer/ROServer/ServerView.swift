@@ -9,10 +9,14 @@ import rAthena
 import SwiftUI
 
 struct ServerView: View {
-    private let title: String
-    private let startAction: () -> Void
-    @Binding private var pendingLog: Data
-    @Binding private var pendingSession: Data
+    public let serverType: ServerType
+
+    private let serverManager = ServerManager.shared
+
+    @State private var isServerRunning = false
+
+    @State private var pendingLog = Data()
+    @State private var pendingSession = Data()
 
     @State private var clearLogs = false
     @State private var clearSessions = false
@@ -22,15 +26,26 @@ struct ServerView: View {
         HStack(spacing: 0) {
             VStack {
                 HStack(spacing: 8) {
-                    Text(title.uppercased())
+                    Text(serverManager.serverName(serverType).uppercased())
                         .font(.subheadline)
 
                     Spacer()
 
-                    Button(action: startAction) {
-                        Image(systemName: "play")
+                    if !isServerRunning {
+                        Button {
+                            serverManager.startServer(serverType)
+                        } label: {
+                            Image(systemName: "play")
+                        }
+                        .frame(width: 32, height: 32)
+                    } else {
+                        Button {
+                            serverManager.stopServer(serverType)
+                        } label: {
+                            Image(systemName: "stop")
+                        }
+                        .frame(width: 32, height: 32)
                     }
-                    .frame(width: 32, height: 32)
 
                     Button {
                         clearLogs.toggle()
@@ -92,23 +107,23 @@ struct ServerView: View {
                 .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
         }
         .animation(.easeInOut, value: showsSessions)
-    }
-
-    init(_ title: String, startAction: @escaping () -> Void, pendingLog: Binding<Data>, pendingSession: Binding<Data>) {
-        self.title = title
-        self.startAction = startAction
-        _pendingLog = pendingLog
-        _pendingSession = pendingSession
+        .task {
+            serverManager.setOutputHandler({ data in
+                if let data = String(data: data, encoding: .isoLatin1)?
+                    .replacingOccurrences(of: "\n", with: "\r\n")
+                    .data(using: .isoLatin1) {
+                    pendingLog = data
+                }
+            }, for: serverType)
+        }
+        .onReceive(serverManager.isServerRunning(serverType)) { isRunning in
+            isServerRunning = isRunning
+        }
     }
 }
 
 struct ServerView_Previews: PreviewProvider {
     static var previews: some View {
-        ServerView(
-            "Login Server",
-            startAction: { ServerManager.shared.startServer(.login) },
-            pendingLog: .constant(Data()),
-            pendingSession: .constant(Data())
-        )
+        ServerView(serverType: .login)
     }
 }

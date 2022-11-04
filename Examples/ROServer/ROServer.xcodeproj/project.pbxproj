@@ -25,10 +25,6 @@
 		35FC636429125D9700825452 /* Terminal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35FC636229125D9700825452 /* Terminal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		35FC636629125F0100825452 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636529125F0100825452 /* TerminalView.swift */; };
 		35FC63682912685000825452 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC63672912685000825452 /* ServerView.swift */; };
-		35FC636A291275D900825452 /* LoginServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC6369291275D900825452 /* LoginServerView.swift */; };
-		35FC636C2912764500825452 /* CharServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636B2912764500825452 /* CharServerView.swift */; };
-		35FC636E2912765500825452 /* MapServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636D2912765500825452 /* MapServerView.swift */; };
-		35FC63702912766000825452 /* WebServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636F2912766000825452 /* WebServerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,10 +61,6 @@
 		35FC636229125D9700825452 /* Terminal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Terminal.xcframework; path = ../../Carthage/Build/Terminal.xcframework; sourceTree = "<group>"; };
 		35FC636529125F0100825452 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
 		35FC63672912685000825452 /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
-		35FC6369291275D900825452 /* LoginServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginServerView.swift; sourceTree = "<group>"; };
-		35FC636B2912764500825452 /* CharServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharServerView.swift; sourceTree = "<group>"; };
-		35FC636D2912765500825452 /* MapServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapServerView.swift; sourceTree = "<group>"; };
-		35FC636F2912766000825452 /* WebServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,10 +103,6 @@
 				35FC634229125B2000825452 /* ROServerApp.swift */,
 				35FC634429125B2000825452 /* ContentView.swift */,
 				35FC63672912685000825452 /* ServerView.swift */,
-				35FC6369291275D900825452 /* LoginServerView.swift */,
-				35FC636B2912764500825452 /* CharServerView.swift */,
-				35FC636D2912765500825452 /* MapServerView.swift */,
-				35FC636F2912766000825452 /* WebServerView.swift */,
 				35FC636529125F0100825452 /* TerminalView.swift */,
 				35FC635029125CEA00825452 /* ROServer-Bridging-Header.h */,
 				35FC634629125B2000825452 /* Assets.xcassets */,
@@ -218,11 +206,7 @@
 				35FC634529125B2000825452 /* ContentView.swift in Sources */,
 				35FC63682912685000825452 /* ServerView.swift in Sources */,
 				35FC636629125F0100825452 /* TerminalView.swift in Sources */,
-				35FC636E2912765500825452 /* MapServerView.swift in Sources */,
-				35FC636C2912764500825452 /* CharServerView.swift in Sources */,
 				35FC634329125B2000825452 /* ROServerApp.swift in Sources */,
-				35FC63702912766000825452 /* WebServerView.swift in Sources */,
-				35FC636A291275D900825452 /* LoginServerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

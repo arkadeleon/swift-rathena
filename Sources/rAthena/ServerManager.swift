@@ -5,6 +5,7 @@
 //  Created by Leon Li on 2021/7/17.
 //
 
+import Combine
 import Foundation
 import rAthenaLogin
 import rAthenaChar
@@ -23,34 +24,10 @@ public class ServerManager {
 
     public static let shared = ServerManager()
 
-    private var loginServer: LoginServer
-    private var charServer: CharServer
-    private var mapServer: MapServer
-    private var webServer: WebServer
-
-    public var loginServerOutputHandler: OutputHandler? {
-        didSet {
-            loginServer.outputHandler = loginServerOutputHandler;
-        }
-    }
-
-    public var charServerOutputHandler: OutputHandler? {
-        didSet {
-            charServer.outputHandler = charServerOutputHandler
-        }
-    }
-
-    public var mapServerOutputHandler: OutputHandler? {
-        didSet {
-            mapServer.outputHandler = mapServerOutputHandler
-        }
-    }
-
-    public var webServerOutputHandler: OutputHandler? {
-        didSet {
-            webServer.outputHandler = webServerOutputHandler
-        }
-    }
+    private var loginServer = LoginServer()
+    private var charServer = CharServer()
+    private var mapServer = MapServer()
+    private var webServer = WebServer()
 
     public var sessionsOutputHandler: OutputHandler? {
         didSet {
@@ -87,56 +64,86 @@ public class ServerManager {
         }
     }
 
-    private init() {
-        loginServer = LoginServer()
-        charServer = CharServer()
-        mapServer = MapServer()
-        webServer = WebServer()
+    public func serverName(_ type: ServerType) -> String {
+        let server = server(for: type)
+        return server.name!
     }
 
-    public func startServer(_ serverType: ServerType) {
-        switch serverType {
-        case .login:
-            if !loginServer.isExecuting {
-                loginServer.start()
-            }
-        case .char:
-            if !charServer.isExecuting {
-                charServer.start()
-            }
-        case .map:
-            if !mapServer.isExecuting {
-                mapServer.start()
-            }
-        case .web:
-            if !webServer.isExecuting {
-                webServer.start()
-            }
+    public func startServer(_ type: ServerType) {
+        let server = server(for: type)
+
+        if !server.isExecuting {
+            server.start()
         }
     }
 
-    public func stopServer(_ serverType: ServerType) {
-        switch serverType {
+    public func stopServer(_ type: ServerType) {
+        let server = server(for: type)
+
+        if server.isExecuting {
+            server.cancel()
+            resetServer(for: type)
+        }
+    }
+
+    public func isServerRunning(_ type: ServerType) -> AnyPublisher<Bool, Never> {
+        return Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+            .map { [unowned self] _ in
+                let server = self.server(for: type)
+                return server.isExecuting
+            }
+            .replaceError(with: false)
+            .eraseToAnyPublisher()
+    }
+
+    public func setOutputHandler(_ outputHandler: OutputHandler?, for type: ServerType) {
+        switch type {
         case .login:
-            if loginServer.isExecuting {
-                loginServer.cancel()
-                loginServer = LoginServer()
-            }
+            loginServer.outputHandler = outputHandler
         case .char:
-            if charServer.isExecuting {
-                charServer.cancel()
-                charServer = CharServer()
-            }
+            charServer.outputHandler = outputHandler
         case .map:
-            if mapServer.isExecuting {
-                mapServer.cancel()
-                mapServer = MapServer()
-            }
+            mapServer.outputHandler = outputHandler
         case .web:
-            if webServer.isExecuting {
-                webServer.cancel()
-                webServer = WebServer()
-            }
+            webServer.outputHandler = outputHandler
+        }
+    }
+
+    private func server(for type: ServerType) -> Thread {
+        switch type {
+        case .login:
+            return loginServer
+        case .char:
+            return charServer
+        case .map:
+            return mapServer
+        case .web:
+            return webServer
+        }
+    }
+
+    private func resetServer(for type: ServerType) {
+        switch type {
+        case .login:
+            let outputHandler = loginServer.outputHandler
+            loginServer.outputHandler = nil
+            loginServer = LoginServer()
+            loginServer.outputHandler = outputHandler
+        case .char:
+            let outputHandler = charServer.outputHandler
+            charServer.outputHandler = nil
+            charServer = CharServer()
+            charServer.outputHandler = outputHandler
+        case .map:
+            let outputHandler = mapServer.outputHandler
+            mapServer.outputHandler = nil
+            mapServer = MapServer()
+            mapServer.outputHandler = outputHandler
+        case .web:
+            let outputHandler = webServer.outputHandler
+            webServer.outputHandler = nil
+            webServer = WebServer()
+            webServer.outputHandler = outputHandler
         }
     }
 }

@@ -12,16 +12,16 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 16) {
-                LoginServerView()
+                ServerView(serverType: .login)
                     .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
 
-                CharServerView()
+                ServerView(serverType: .char)
                     .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
 
-                MapServerView()
+                ServerView(serverType: .map)
                     .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
 
-                WebServerView()
+                ServerView(serverType: .web)
                     .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
             }
             .padding(16)
