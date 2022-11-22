@@ -6,9 +6,9 @@
 //
 
 #import "CharServer.h"
-#include "core.hpp"
-#include "showmsg.hpp"
-#include "socket.hpp"
+#include "common/core.hpp"
+#include "common/showmsg.hpp"
+#include "common/socket.hpp"
 
 extern int runflag;
 extern int main (int argc, char **argv);

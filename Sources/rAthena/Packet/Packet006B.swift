@@ -5,6 +5,8 @@
 //  Created by Leon Li on 2021/7/7.
 //
 
+import rAthenaConfig
+
 public struct Packet006B: Packet {
 
     public var totalSlotNum: UInt8

@@ -123,6 +123,13 @@ xcuserdata/
 # Carthage
 Carthage/Build/
 
+# Swift Package Manager
+.build
+Packages
+*.xcodeproj
+.swiftpm
+.netrcore
+
 /.idea/.name
 /.idea/misc.xml
 /.idea/modules.xml

@@ -6,6 +6,6 @@
 //
 
 #import "Config.h"
-#include "../../src/config/core.hpp"
+#include "config/core.hpp"
 
 const NSInteger CONFIG_PACKETVER = PACKETVER;

@@ -18,7 +18,7 @@ public class ResourceManager {
 
     private init() {
         fileManager = FileManager()
-        sourceURL = Bundle(for: ResourceManager.self).resourceURL!
+        sourceURL = Bundle.module.resourceURL!
         destinationURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("rathena")
     }
 

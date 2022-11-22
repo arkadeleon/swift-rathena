@@ -5,6 +5,8 @@
 //  Created by Leon Li on 2021/6/28.
 //
 
+import Foundation
+
 public enum PacketDecodingError: Error {
 
     case packetMismatch(UInt16)
