@@ -11,28 +11,33 @@ let package = Package(
     products: [
         .library(
             name: "rAthena",
-            type: .dynamic,
             targets: ["rAthena"]),
-    ],
-    dependencies: [
-        .package(path: "Sources/rAthenaLogin"),
-        .package(path: "Sources/rAthenaChar"),
-        .package(path: "Sources/rAthenaMap"),
-        .package(path: "Sources/rAthenaWeb"),
-        .package(path: "Sources/rAthenaConfig"),
+        .library(
+            name: "rAthenaLogin",
+            type: .dynamic,
+            targets: ["rAthenaLogin"]),
+        .library(
+            name: "rAthenaChar",
+            type: .dynamic,
+            targets: ["rAthenaChar"]),
+        .library(
+            name: "rAthenaMap",
+            type: .dynamic,
+            targets: ["rAthenaMap"]),
+        .library(
+            name: "rAthenaWeb",
+            type: .dynamic,
+            targets: ["rAthenaWeb"]),
     ],
     targets: [
         .target(
             name: "rAthena",
             dependencies: [
-                "rAthenaLogin",
-                "rAthenaChar",
-                "rAthenaMap",
-                "rAthenaWeb",
                 "rAthenaConfig",
             ],
             path: ".",
             exclude: [
+                "3rdparty",
                 "Carthage",
                 "Examples",
                 "Sources/rAthenaLogin",
@@ -41,6 +46,7 @@ let package = Package(
                 "Sources/rAthenaWeb",
                 "Sources/rAthenaConfig",
                 "src",
+                "tools",
             ],
             sources: [
                 "Sources/rAthena",
@@ -52,5 +58,131 @@ let package = Package(
                 .copy("npc"),
                 .copy("sql-files"),
             ]),
-    ]
+        .target(
+            name: "rAthenaLogin",
+            dependencies: [
+                "libconfig",
+                "ryml",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+                "rapidyaml",
+            ],
+            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath("rapidyaml/ext/c4core/src"),
+                .headerSearchPath("rapidyaml/src"),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+            ]),
+        .target(
+            name: "rAthenaChar",
+            dependencies: [
+                "libconfig",
+                "ryml",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+                "rapidyaml",
+            ],
+            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath("rapidyaml/ext/c4core/src"),
+                .headerSearchPath("rapidyaml/src"),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+            ]),
+        .target(
+            name: "rAthenaMap",
+            dependencies: [
+                "libconfig",
+                "ryml",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+                "rapidyaml",
+            ],
+            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath("rapidyaml/ext/c4core/src"),
+                .headerSearchPath("rapidyaml/src"),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+            ]),
+        .target(
+            name: "rAthenaWeb",
+            dependencies: [
+                "httplib",
+                "libconfig",
+                "ryml",
+                "yaml-cpp",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+                "httplib",
+                "json",
+                "rapidyaml",
+            ],
+            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath("httplib"),
+                .headerSearchPath("json/include"),
+                .headerSearchPath("rapidyaml/ext/c4core/src"),
+                .headerSearchPath("rapidyaml/src"),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+            ]),
+        .target(
+            name: "rAthenaConfig",
+            publicHeadersPath: ""),
+        .target(
+            name: "httplib",
+            path: "3rdparty/httplib",
+            publicHeadersPath: ""),
+        .target(
+            name: "libconfig",
+            path: "3rdparty/libconfig",
+            publicHeadersPath: "",
+            cSettings: [
+                .define("HAVE_XLOCALE_H"),
+            ]),
+        .target(
+            name: "ryml",
+            path: "3rdparty/rapidyaml",
+            sources: [
+                "ext/c4core/src",
+                "src",
+            ],
+            publicHeadersPath: "src",
+            cxxSettings: [
+                .headerSearchPath("ext/c4core/src"),
+                .headerSearchPath("src"),
+            ]),
+        .target(
+            name: "yaml-cpp",
+            path: "3rdparty/yaml-cpp",
+            sources: ["src"],
+            publicHeadersPath: "include"),
+    ],
+    cxxLanguageStandard: .cxx11
 )
