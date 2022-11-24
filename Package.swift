@@ -38,7 +38,6 @@ let package = Package(
             path: ".",
             exclude: [
                 "3rdparty",
-                "Carthage",
                 "Examples",
                 "Sources/rAthenaLogin",
                 "Sources/rAthenaChar",

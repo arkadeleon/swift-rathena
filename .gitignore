@@ -120,9 +120,6 @@ Thumbs.db
 # Xcode
 xcuserdata/
 
-# Carthage
-Carthage/Build/
-
 # Swift Package Manager
 .build
 Packages

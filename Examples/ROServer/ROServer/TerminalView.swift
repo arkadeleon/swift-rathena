@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Terminal
 
 struct TerminalView: UIViewRepresentable {
     @Binding var clear: Bool

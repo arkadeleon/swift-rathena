@@ -14,23 +14,8 @@
 		35B8AF7D26F4CF5500CB0F2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B8AF7C26F4CF5500CB0F2A /* Assets.xcassets */; };
 		35B8AF8026F4CF5500CB0F2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B8AF7E26F4CF5500CB0F2A /* LaunchScreen.storyboard */; };
 		35B8AF8826F4D2DF00CB0F2A /* ROBrowser in Resources */ = {isa = PBXBuildFile; fileRef = 35B8AF8726F4D2DF00CB0F2A /* ROBrowser */; };
-		35B8AF8B26F4DDEB00CB0F2A /* GCDWebServers.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B8AF8A26F4DDEB00CB0F2A /* GCDWebServers.xcframework */; };
-		35B8AF8C26F4DDEB00CB0F2A /* GCDWebServers.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 35B8AF8A26F4DDEB00CB0F2A /* GCDWebServers.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		35CA7B6E292F427A006EFFA1 /* GCDWebServer in Frameworks */ = {isa = PBXBuildFile; productRef = 35CA7B6D292F427A006EFFA1 /* GCDWebServer */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		35B8AF8D26F4DDEB00CB0F2A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				35B8AF8C26F4DDEB00CB0F2A /* GCDWebServers.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		35B8AF7026F4CF5200CB0F2A /* ROClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ROClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +27,6 @@
 		35B8AF7F26F4CF5500CB0F2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35B8AF8126F4CF5500CB0F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B8AF8726F4D2DF00CB0F2A /* ROBrowser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ROBrowser; sourceTree = "<group>"; };
-		35B8AF8A26F4DDEB00CB0F2A /* GCDWebServers.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GCDWebServers.xcframework; path = ../../Carthage/Build/GCDWebServers.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B8AF8B26F4DDEB00CB0F2A /* GCDWebServers.xcframework in Frameworks */,
+				35CA7B6E292F427A006EFFA1 /* GCDWebServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +46,6 @@
 			children = (
 				35B8AF7226F4CF5200CB0F2A /* ROClient */,
 				35B8AF7126F4CF5200CB0F2A /* Products */,
-				35B8AF8926F4DDEB00CB0F2A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,14 +72,6 @@
 			path = ROClient;
 			sourceTree = "<group>";
 		};
-		35B8AF8926F4DDEB00CB0F2A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				35B8AF8A26F4DDEB00CB0F2A /* GCDWebServers.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,13 +82,15 @@
 				35B8AF6C26F4CF5200CB0F2A /* Sources */,
 				35B8AF6D26F4CF5200CB0F2A /* Frameworks */,
 				35B8AF6E26F4CF5200CB0F2A /* Resources */,
-				35B8AF8D26F4DDEB00CB0F2A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = ROClient;
+			packageProductDependencies = (
+				35CA7B6D292F427A006EFFA1 /* GCDWebServer */,
+			);
 			productName = ROClient;
 			productReference = 35B8AF7026F4CF5200CB0F2A /* ROClient.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +118,9 @@
 				Base,
 			);
 			mainGroup = 35B8AF6726F4CF5200CB0F2A;
+			packageReferences = (
+				35CA7B6C292F427A006EFFA1 /* XCRemoteSwiftPackageReference "GCDWebServer" */,
+			);
 			productRefGroup = 35B8AF7126F4CF5200CB0F2A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,6 +353,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35CA7B6C292F427A006EFFA1 /* XCRemoteSwiftPackageReference "GCDWebServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SlaunchaMan/GCDWebServer.git";
+			requirement = {
+				branch = "swift-package-manager";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35CA7B6D292F427A006EFFA1 /* GCDWebServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CA7B6C292F427A006EFFA1 /* XCRemoteSwiftPackageReference "GCDWebServer" */;
+			productName = GCDWebServer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35B8AF6826F4CF5200CB0F2A /* Project object */;
 }

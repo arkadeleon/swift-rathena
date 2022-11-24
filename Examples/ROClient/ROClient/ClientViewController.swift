@@ -7,7 +7,7 @@
 
 import UIKit
 import WebKit
-import GCDWebServers
+import GCDWebServer
 
 class ClientViewController: UIViewController {
 
