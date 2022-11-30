@@ -1,6 +1,6 @@
 //
 //  WebServer.m
-//  rAthenaWeb
+//  rAthena
 //
 //  Created by Leon Li on 2022/11/1.
 //

@@ -1,6 +1,6 @@
 //
 //  CharServer.h
-//  rAthenaChar
+//  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
 //

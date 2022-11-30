@@ -1,6 +1,6 @@
 //
 //  ServerManager.swift
-//  rAthena
+//  ROServer
 //
 //  Created by Leon Li on 2021/7/17.
 //
@@ -11,6 +11,7 @@ import rAthenaLogin
 import rAthenaChar
 import rAthenaMap
 import rAthenaWeb
+import rAthenaResource
 
 public enum ServerType {
     case login
@@ -28,6 +29,11 @@ public class ServerManager {
     private var charServer = CharServer()
     private var mapServer = MapServer()
     private var webServer = WebServer()
+
+    private init() {
+        let resourceManager = ResourceManager()
+        try? resourceManager.copyBundleResourceFiles()
+    }
 
     public var sessionsOutputHandler: OutputHandler? {
         didSet {

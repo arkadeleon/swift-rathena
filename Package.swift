@@ -10,53 +10,37 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "rAthena",
-            targets: ["rAthena"]),
-        .library(
             name: "rAthenaLogin",
             type: .dynamic,
-            targets: ["rAthenaLogin"]),
+            targets: ["rAthenaLogin"]
+        ),
         .library(
             name: "rAthenaChar",
             type: .dynamic,
-            targets: ["rAthenaChar"]),
+            targets: ["rAthenaChar"]
+        ),
         .library(
             name: "rAthenaMap",
             type: .dynamic,
-            targets: ["rAthenaMap"]),
+            targets: ["rAthenaMap"]
+        ),
         .library(
             name: "rAthenaWeb",
             type: .dynamic,
-            targets: ["rAthenaWeb"]),
+            targets: ["rAthenaWeb"]
+        ),
+        .library(
+            name: "rAthenaPacket",
+            type: .dynamic,
+            targets: ["rAthenaPacket"]
+        ),
+        .library(
+            name: "rAthenaResource",
+            type: .dynamic,
+            targets: ["rAthenaResource"]
+        ),
     ],
     targets: [
-        .target(
-            name: "rAthena",
-            dependencies: [
-                "rAthenaConfig",
-            ],
-            path: ".",
-            exclude: [
-                "3rdparty",
-                "Examples",
-                "Sources/rAthenaLogin",
-                "Sources/rAthenaChar",
-                "Sources/rAthenaMap",
-                "Sources/rAthenaWeb",
-                "Sources/rAthenaConfig",
-                "src",
-                "tools",
-            ],
-            sources: [
-                "Sources/rAthena",
-            ],
-            resources: [
-                .copy("ragnarok.sqlite3"),
-                .copy("conf"),
-                .copy("db"),
-                .copy("npc"),
-                .copy("sql-files"),
-            ]),
         .target(
             name: "rAthenaLogin",
             dependencies: [
@@ -152,8 +136,34 @@ let package = Package(
                 .linkedLibrary("z"),
             ]),
         .target(
+            name: "rAthenaPacket",
+            dependencies: [
+                "rAthenaConfig",
+            ]),
+        .target(
             name: "rAthenaConfig",
             publicHeadersPath: ""),
+        .target(
+            name: "rAthenaResource",
+            path: ".",
+            exclude: [
+                "3rdparty",
+                "doc",
+                "Examples",
+                "src",
+                "tools",
+            ],
+            sources: [
+                "Sources/rAthenaResource",
+            ],
+            resources: [
+                .copy("ragnarok.sqlite3"),
+                .copy("conf"),
+                .copy("db"),
+                .copy("npc"),
+                .copy("sql-files"),
+            ],
+            publicHeadersPath: "Sources/rAthenaResource"),
         .target(
             name: "httplib",
             path: "3rdparty/httplib",

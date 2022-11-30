@@ -8,20 +8,21 @@
 import Foundation
 import SQLite3
 
-public class ResourceManager {
+@objc
+public class ResourceManager: NSObject {
 
     private let fileManager: FileManager
     private let sourceURL: URL
     private let destinationURL: URL
 
-    public static let shared = ResourceManager()
-
-    private init() {
+    @objc
+    public override init() {
         fileManager = FileManager()
         sourceURL = Bundle.module.resourceURL!
         destinationURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("rathena")
     }
 
+    @objc
     public func copyBundleResourceFiles() throws {
         try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(destinationURL.path)

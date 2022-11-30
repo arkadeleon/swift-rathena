@@ -5,7 +5,6 @@
 //  Created by Leon Li on 2022/11/2.
 //
 
-import rAthena
 import SwiftUI
 
 struct ContentView: View {
@@ -25,9 +24,6 @@ struct ContentView: View {
                     .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
             }
             .padding(16)
-            .task {
-                try? ResourceManager.shared.copyBundleResourceFiles()
-            }
         }
     }
 }
