@@ -9,25 +9,26 @@ import SwiftUI
 import Terminal
 
 struct TerminalView: UIViewRepresentable {
-    @Binding var clear: Bool
-    @Binding var pendingData: Data
+    private let terminalView = Terminal.TerminalView()
 
     func makeUIView(context: Context) -> Terminal.TerminalView {
-        Terminal.TerminalView()
+        return terminalView
     }
 
     func updateUIView(_ uiView: Terminal.TerminalView, context: Context) {
-        if clear {
-            uiView.terminalClear(.reset)
-            clear.toggle()
-        }
+    }
 
-        uiView.appendBuffer(pendingData)
+    func appendBuffer(_ buffer: Data) {
+        terminalView.appendBuffer(buffer)
+    }
+
+    func clear() {
+        terminalView.terminalClear(.reset)
     }
 }
 
 struct TerminalView_Previews: PreviewProvider {
     static var previews: some View {
-        TerminalView(clear: .constant(false), pendingData: .constant(Data()))
+        TerminalView()
     }
 }

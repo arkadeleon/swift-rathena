@@ -12,13 +12,11 @@ struct ServerView: View {
 
     private let serverManager = ServerManager.shared
 
+    private let logView = TerminalView()
+    private let sessionView = TerminalView()
+
     @State private var isServerRunning = false
 
-    @State private var pendingLog = Data()
-    @State private var pendingSession = Data()
-
-    @State private var clearLogs = false
-    @State private var clearSessions = false
     @State private var showsSessions = true
 
     var body: some View {
@@ -47,7 +45,7 @@ struct ServerView: View {
                     }
 
                     Button {
-                        clearLogs.toggle()
+                        logView.clear()
                     } label: {
                         Image(systemName: "trash")
                     }
@@ -66,7 +64,7 @@ struct ServerView: View {
                 .padding(.horizontal, 8)
                 .background(Color(uiColor: .secondarySystemBackground))
 
-                TerminalView(clear: $clearLogs, pendingData: $pendingLog)
+                logView
             }
 
             Color(uiColor: .secondarySystemBackground)
@@ -78,7 +76,7 @@ struct ServerView: View {
                         Spacer()
 
                         Button {
-                            clearSessions.toggle()
+                            sessionView.clear()
                         } label: {
                             Image(systemName: "trash")
                         }
@@ -96,7 +94,7 @@ struct ServerView: View {
                     .background(Color(uiColor: .secondarySystemBackground))
                 }
 
-                TerminalView(clear: $clearSessions, pendingData: $pendingSession)
+                sessionView
             }
             .frame(width: showsSessions ? 320 : 0)
         }
@@ -111,7 +109,7 @@ struct ServerView: View {
                 if let data = String(data: data, encoding: .isoLatin1)?
                     .replacingOccurrences(of: "\n", with: "\r\n")
                     .data(using: .isoLatin1) {
-                    pendingLog = data
+                    logView.appendBuffer(data)
                 }
             }, for: serverType)
         }
