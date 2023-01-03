@@ -10,7 +10,6 @@
 #include "common/showmsg.hpp"
 #include "common/socket.hpp"
 
-extern int runflag;
 extern int main (int argc, char **argv);
 
 extern void *tfl_root;
@@ -73,7 +72,8 @@ void do_send(int fd) {
 - (void)cancel {
     [super cancel];
 
-    runflag = CORE_ST_STOP;
+    global_core->signal_shutdown();
+
     tfl_root = NULL;
 }
 
