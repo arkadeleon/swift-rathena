@@ -10516,9 +10516,6 @@ Body:
           Amount: 90
         - Level: 5
           Amount: 100
-      ItemCost:
-        - Item: Poison_Bottle
-          Amount: 1
     Status: Edp
   - Id: 379
     Name: ASC_BREAKER
@@ -17022,7 +17019,7 @@ Body:
     Range: 11
     Hit: Multi_Hit
     HitCount: -20
-    Duration1: 18000
+    Duration2: 18000
     SplashArea: 9
     Knockback: 2
     CastCancel: true
@@ -17164,11 +17161,12 @@ Body:
     Name: NPC_MAXPAIN_ATK
     Description: Max Pain Attack
     MaxLevel: 10
-    Type: Misc
+    Type: Weapon
     TargetType: Attack
     DamageFlags:
       Splash: true
       IgnoreElement: true
+      IgnoreDefense: true
       IgnoreFlee: true
       IgnoreDefCard: true
     Flags:
@@ -27607,8 +27605,8 @@ Body:
     DamageFlags:
       Splash: true
     Range: 9
-    Hit: Single
-    HitCount: -3
+    Hit: Multi_Hit
+    HitCount: 3
     Element: Wind
     SplashArea:
       - Level: 1
