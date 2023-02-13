@@ -46,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3557DB1B299A03C900ABB683 /* rathena-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "rathena-ios"; path = ../..; sourceTree = "<group>"; };
 		35D8D017292E79C80062AB92 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		35FC633F29125B2000825452 /* ROServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ROServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FC634229125B2000825452 /* ROServerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROServerApp.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		35FC633629125B2000825452 = {
 			isa = PBXGroup;
 			children = (
+				3557DB1B299A03C900ABB683 /* rathena-ios */,
 				35FC634129125B2000825452 /* ROServer */,
 				35FC634029125B2000825452 /* Products */,
 				3513B3EB293DED680023DB88 /* Frameworks */,
