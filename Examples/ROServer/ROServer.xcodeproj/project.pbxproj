@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3513B3ED293DED680023DB88 /* rAthenaResource in Frameworks */ = {isa = PBXBuildFile; productRef = 3513B3EC293DED680023DB88 /* rAthenaResource */; };
-		3513B3EE293DED680023DB88 /* rAthenaResource in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 3513B3EC293DED680023DB88 /* rAthenaResource */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 35CD6D15292F4A9700D484E8 /* Terminal */; };
 		35D8D018292E79C80062AB92 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8D017292E79C80062AB92 /* ServerManager.swift */; };
 		35D8D01C292E79FC0062AB92 /* rAthenaChar in Frameworks */ = {isa = PBXBuildFile; productRef = 35D8D01B292E79FC0062AB92 /* rAthenaChar */; };
@@ -37,7 +35,6 @@
 				35D8D020292E79FC0062AB92 /* rAthenaLogin in Embed Frameworks */,
 				35D8D01D292E79FC0062AB92 /* rAthenaChar in Embed Frameworks */,
 				35D8D026292E79FC0062AB92 /* rAthenaWeb in Embed Frameworks */,
-				3513B3EE293DED680023DB88 /* rAthenaResource in Embed Frameworks */,
 				35D8D023292E79FC0062AB92 /* rAthenaMap in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -64,7 +61,6 @@
 			files = (
 				35D8D01F292E79FC0062AB92 /* rAthenaLogin in Frameworks */,
 				35D8D01C292E79FC0062AB92 /* rAthenaChar in Frameworks */,
-				3513B3ED293DED680023DB88 /* rAthenaResource in Frameworks */,
 				35D8D022292E79FC0062AB92 /* rAthenaMap in Frameworks */,
 				35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */,
 				35D8D025292E79FC0062AB92 /* rAthenaWeb in Frameworks */,
@@ -144,7 +140,6 @@
 				35D8D021292E79FC0062AB92 /* rAthenaMap */,
 				35D8D024292E79FC0062AB92 /* rAthenaWeb */,
 				35CD6D15292F4A9700D484E8 /* Terminal */,
-				3513B3EC293DED680023DB88 /* rAthenaResource */,
 			);
 			productName = ROServer;
 			productReference = 35FC633F29125B2000825452 /* ROServer.app */;
@@ -429,10 +424,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3513B3EC293DED680023DB88 /* rAthenaResource */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = rAthenaResource;
-		};
 		35CD6D15292F4A9700D484E8 /* Terminal */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35CD6D14292F4A9700D484E8 /* XCRemoteSwiftPackageReference "Terminal" */;

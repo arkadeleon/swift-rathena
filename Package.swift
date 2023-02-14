@@ -39,11 +39,6 @@ let package = Package(
             type: .dynamic,
             targets: ["rAthenaDatabase"]
         ),
-        .library(
-            name: "rAthenaResource",
-            type: .dynamic,
-            targets: ["rAthenaResource"]
-        ),
     ],
     dependencies: [
         .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.3")
@@ -54,6 +49,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -76,6 +72,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -98,6 +95,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -122,6 +120,7 @@ let package = Package(
                 "libconfig",
                 "ryml",
                 "yaml-cpp",
+                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -217,6 +216,18 @@ let package = Package(
             path: "3rdparty/yaml-cpp",
             sources: ["src"],
             publicHeadersPath: "include"),
+        .testTarget(
+            name: "rAthenaLoginTests",
+            dependencies: ["rAthenaLogin"]),
+        .testTarget(
+            name: "rAthenaCharTests",
+            dependencies: ["rAthenaChar"]),
+        .testTarget(
+            name: "rAthenaMapTests",
+            dependencies: ["rAthenaMap"]),
+        .testTarget(
+            name: "rAthenaWebTests",
+            dependencies: ["rAthenaWeb"]),
         .testTarget(
             name: "rAthenaDatabaseTests",
             dependencies: ["rAthenaDatabase"]),
