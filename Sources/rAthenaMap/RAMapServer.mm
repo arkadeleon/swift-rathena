@@ -1,11 +1,11 @@
 //
-//  CharServer.m
+//  RAMapServer.m
 //  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "CharServer.h"
+#import "RAMapServer.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
 #include "common/socket.hpp"
@@ -15,43 +15,43 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    CharServer *charServer = (CharServer *)[NSThread currentThread];
-    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
+    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
 
-    if (charServer.outputHandler) {
+    if (mapServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
-        charServer.outputHandler(data);
+        mapServer.outputHandler(data);
     }
 
     return 0;
 }
 
 void do_recv(int fd) {
-    CharServer *charServer = (CharServer *)[NSThread currentThread];
-    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
+    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
 
-    if (charServer.dataReceiveHandler) {
+    if (mapServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        charServer.dataReceiveHandler(data);
+        mapServer.dataReceiveHandler(data);
     }
 }
 
 void do_send(int fd) {
-    CharServer *charServer = (CharServer *)[NSThread currentThread];
-    NSCAssert([charServer isKindOfClass:[CharServer class]], @"Current thread is not char server.");
+    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
+    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
 
-    if (charServer.dataSendHandler) {
+    if (mapServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        charServer.dataSendHandler(data);
+        mapServer.dataSendHandler(data);
     }
 }
 
-@implementation CharServer
+@implementation RAMapServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Char Server";
+        self.name = @"Map Server";
     }
     return self;
 }
@@ -64,7 +64,7 @@ void do_send(int fd) {
     recv_callback = do_recv;
     send_callback = do_send;
 
-    char arg0[] = "char-server";
+    char arg0[] = "map-server";
     char *args[1] = {arg0};
     main(1, args);
 }

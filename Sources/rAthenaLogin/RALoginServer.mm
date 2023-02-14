@@ -1,11 +1,11 @@
 //
-//  WebServer.m
+//  RALoginServer.m
 //  rAthena
 //
-//  Created by Leon Li on 2022/11/1.
+//  Created by Leon Li on 2021/5/19.
 //
 
-#import "WebServer.h"
+#import "RALoginServer.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
 #include "common/socket.hpp"
@@ -15,43 +15,43 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    WebServer *webServer = (WebServer *)[NSThread currentThread];
-    NSCAssert([webServer isKindOfClass:[WebServer class]], @"Current thread is not web server.");
+    RALoginServer *loginServer = (RALoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[RALoginServer class]], @"Current thread is not login server.");
 
-    if (webServer.outputHandler) {
+    if (loginServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
-        webServer.outputHandler(data);
+        loginServer.outputHandler(data);
     }
 
     return 0;
 }
 
 void do_recv(int fd) {
-    WebServer *webServer = (WebServer *)[NSThread currentThread];
-    NSCAssert([webServer isKindOfClass:[WebServer class]], @"Current thread is not web server.");
+    RALoginServer *loginServer = (RALoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[RALoginServer class]], @"Current thread is not login server.");
 
-    if (webServer.dataReceiveHandler) {
+    if (loginServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        webServer.dataReceiveHandler(data);
+        loginServer.dataReceiveHandler(data);
     }
 }
 
 void do_send(int fd) {
-    WebServer *webServer = (WebServer *)[NSThread currentThread];
-    NSCAssert([webServer isKindOfClass:[WebServer class]], @"Current thread is not web server.");
+    RALoginServer *loginServer = (RALoginServer *)[NSThread currentThread];
+    NSCAssert([loginServer isKindOfClass:[RALoginServer class]], @"Current thread is not login server.");
 
-    if (webServer.dataSendHandler) {
+    if (loginServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        webServer.dataSendHandler(data);
+        loginServer.dataSendHandler(data);
     }
 }
 
-@implementation WebServer
+@implementation RALoginServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Web Server";
+        self.name = @"Login Server";
     }
     return self;
 }
@@ -64,7 +64,7 @@ void do_send(int fd) {
     recv_callback = do_recv;
     send_callback = do_send;
 
-    char arg0[] = "web-server";
+    char arg0[] = "login-server";
     char *args[1] = {arg0};
     main(1, args);
 }

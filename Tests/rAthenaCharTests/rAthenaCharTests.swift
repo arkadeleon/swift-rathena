@@ -15,7 +15,7 @@ class rAthenaCharTests: XCTestCase {
         let resourceManager = ResourceManager()
         try! resourceManager.copyBundleResourceFiles()
 
-        let charServer = CharServer()
+        let charServer = RACharServer()
         charServer.start()
 
         XCTAssert(charServer.name == "Char Server")

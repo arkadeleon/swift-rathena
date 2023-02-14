@@ -1,11 +1,11 @@
 //
-//  Config.m
+//  RAConfig.m
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/7.
 //
 
-#import "Config.h"
+#import "RAConfig.h"
 #include "config/core.hpp"
 
-const NSInteger CONFIG_PACKETVER = PACKETVER;
+const NSInteger RA_CONFIG_PACKETVER = PACKETVER;

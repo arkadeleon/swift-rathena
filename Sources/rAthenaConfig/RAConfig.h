@@ -1,5 +1,5 @@
 //
-//  Config.h
+//  RAConfig.h
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/7.
@@ -7,4 +7,4 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSInteger CONFIG_PACKETVER;
+extern const NSInteger RA_CONFIG_PACKETVER;

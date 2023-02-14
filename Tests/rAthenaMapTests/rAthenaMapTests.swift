@@ -15,7 +15,7 @@ class rAthenaMapTests: XCTestCase {
         let resourceManager = ResourceManager()
         try! resourceManager.copyBundleResourceFiles()
 
-        let mapServer = MapServer()
+        let mapServer = RAMapServer()
         mapServer.start()
 
         XCTAssert(mapServer.name == "Map Server")

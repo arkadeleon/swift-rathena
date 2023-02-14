@@ -1,11 +1,11 @@
 //
-//  LoginServer.m
+//  RACharServer.m
 //  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
 //
 
-#import "LoginServer.h"
+#import "RACharServer.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
 #include "common/socket.hpp"
@@ -15,43 +15,43 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
-    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+    RACharServer *charServer = (RACharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[RACharServer class]], @"Current thread is not char server.");
 
-    if (loginServer.outputHandler) {
+    if (charServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
-        loginServer.outputHandler(data);
+        charServer.outputHandler(data);
     }
 
     return 0;
 }
 
 void do_recv(int fd) {
-    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
-    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+    RACharServer *charServer = (RACharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[RACharServer class]], @"Current thread is not char server.");
 
-    if (loginServer.dataReceiveHandler) {
+    if (charServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        loginServer.dataReceiveHandler(data);
+        charServer.dataReceiveHandler(data);
     }
 }
 
 void do_send(int fd) {
-    LoginServer *loginServer = (LoginServer *)[NSThread currentThread];
-    NSCAssert([loginServer isKindOfClass:[LoginServer class]], @"Current thread is not login server.");
+    RACharServer *charServer = (RACharServer *)[NSThread currentThread];
+    NSCAssert([charServer isKindOfClass:[RACharServer class]], @"Current thread is not char server.");
 
-    if (loginServer.dataSendHandler) {
+    if (charServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        loginServer.dataSendHandler(data);
+        charServer.dataSendHandler(data);
     }
 }
 
-@implementation LoginServer
+@implementation RACharServer
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.name = @"Login Server";
+        self.name = @"Char Server";
     }
     return self;
 }
@@ -64,7 +64,7 @@ void do_send(int fd) {
     recv_callback = do_recv;
     send_callback = do_send;
 
-    char arg0[] = "login-server";
+    char arg0[] = "char-server";
     char *args[1] = {arg0};
     main(1, args);
 }

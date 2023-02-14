@@ -15,7 +15,7 @@ class rAthenaWebTests: XCTestCase {
         let resourceManager = ResourceManager()
         try! resourceManager.copyBundleResourceFiles()
 
-        let webServer = WebServer()
+        let webServer = RAWebServer()
 //        webServer.start()
 
         XCTAssert(webServer.name == "Web Server")

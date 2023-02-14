@@ -15,7 +15,7 @@ class rAthenaLoginTests: XCTestCase {
         let resourceManager = ResourceManager()
         try! resourceManager.copyBundleResourceFiles()
 
-        let loginServer = LoginServer()
+        let loginServer = RALoginServer()
         loginServer.start()
 
         XCTAssert(loginServer.name == "Login Server")

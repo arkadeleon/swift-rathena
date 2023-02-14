@@ -25,10 +25,10 @@ public class ServerManager {
 
     public static let shared = ServerManager()
 
-    private var loginServer = LoginServer()
-    private var charServer = CharServer()
-    private var mapServer = MapServer()
-    private var webServer = WebServer()
+    private var loginServer = RALoginServer()
+    private var charServer = RACharServer()
+    private var mapServer = RAMapServer()
+    private var webServer = RAWebServer()
 
     private init() {
         let resourceManager = ResourceManager()
@@ -133,22 +133,22 @@ public class ServerManager {
         case .login:
             let outputHandler = loginServer.outputHandler
             loginServer.outputHandler = nil
-            loginServer = LoginServer()
+            loginServer = RALoginServer()
             loginServer.outputHandler = outputHandler
         case .char:
             let outputHandler = charServer.outputHandler
             charServer.outputHandler = nil
-            charServer = CharServer()
+            charServer = RACharServer()
             charServer.outputHandler = outputHandler
         case .map:
             let outputHandler = mapServer.outputHandler
             mapServer.outputHandler = nil
-            mapServer = MapServer()
+            mapServer = RAMapServer()
             mapServer.outputHandler = outputHandler
         case .web:
             let outputHandler = webServer.outputHandler
             webServer.outputHandler = nil
-            webServer = WebServer()
+            webServer = RAWebServer()
             webServer.outputHandler = outputHandler
         }
     }
