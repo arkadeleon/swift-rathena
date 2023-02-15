@@ -7,14 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^RALoginServerOutputHandler)(NSData * _Nonnull data);
-typedef void (^RALoginServerDataReceiveHandler)(NSData * _Nonnull data);
-typedef void (^RALoginServerDataSendHandler)(NSData * _Nonnull data);
+@import rAthenaCommon;
 
-@interface RALoginServer : NSThread
+@interface RALoginServer : RAServer
 
-@property (nonatomic, copy) RALoginServerOutputHandler _Nullable outputHandler;
-@property (nonatomic, copy) RALoginServerDataReceiveHandler _Nullable dataReceiveHandler;
-@property (nonatomic, copy) RALoginServerDataSendHandler _Nullable dataSendHandler;
+@property (nonatomic, class, readonly, strong) RALoginServer *sharedServer;
 
 @end

@@ -49,6 +49,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaCommon",
                 "rAthenaResource",
             ],
             exclude: [
@@ -60,6 +61,7 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("rapidyaml/ext/c4core/src"),
                 .headerSearchPath("rapidyaml/src"),
+                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -72,6 +74,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaCommon",
                 "rAthenaResource",
             ],
             exclude: [
@@ -83,6 +86,7 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("rapidyaml/ext/c4core/src"),
                 .headerSearchPath("rapidyaml/src"),
+                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -95,6 +99,7 @@ let package = Package(
             dependencies: [
                 "libconfig",
                 "ryml",
+                "rAthenaCommon",
                 "rAthenaResource",
             ],
             exclude: [
@@ -106,6 +111,7 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("rapidyaml/ext/c4core/src"),
                 .headerSearchPath("rapidyaml/src"),
+                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -120,6 +126,7 @@ let package = Package(
                 "libconfig",
                 "ryml",
                 "yaml-cpp",
+                "rAthenaCommon",
                 "rAthenaResource",
             ],
             exclude: [
@@ -135,6 +142,7 @@ let package = Package(
                 .headerSearchPath("json/include"),
                 .headerSearchPath("rapidyaml/ext/c4core/src"),
                 .headerSearchPath("rapidyaml/src"),
+                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -145,10 +153,13 @@ let package = Package(
         .target(
             name: "rAthenaPacket",
             dependencies: [
-                "rAthenaConfig",
+                "rAthenaCommon",
             ]),
         .target(
-            name: "rAthenaConfig",
+            name: "rAthenaCommon",
+            exclude: [
+                "common",
+            ],
             publicHeadersPath: ""),
         .target(
             name: "rAthenaDatabase",

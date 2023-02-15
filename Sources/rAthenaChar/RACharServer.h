@@ -7,14 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^RACharServerOutputHandler)(NSData * _Nonnull data);
-typedef void (^RACharServerDataReceiveHandler)(NSData * _Nonnull data);
-typedef void (^RACharServerDataSendHandler)(NSData * _Nonnull data);
+@import rAthenaCommon;
 
-@interface RACharServer : NSThread
+@interface RACharServer : RAServer
 
-@property (nonatomic, copy) RACharServerOutputHandler _Nullable outputHandler;
-@property (nonatomic, copy) RACharServerDataReceiveHandler _Nullable dataReceiveHandler;
-@property (nonatomic, copy) RACharServerDataSendHandler _Nullable dataSendHandler;
+@property (nonatomic, class, readonly, strong) RACharServer *sharedServer;
 
 @end

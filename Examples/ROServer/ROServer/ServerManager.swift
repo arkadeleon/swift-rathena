@@ -25,10 +25,10 @@ public class ServerManager {
 
     public static let shared = ServerManager()
 
-    private var loginServer = RALoginServer()
-    private var charServer = RACharServer()
-    private var mapServer = RAMapServer()
-    private var webServer = RAWebServer()
+    private var loginServer = RALoginServer.shared!
+    private var charServer = RACharServer.shared!
+    private var mapServer = RAMapServer.shared!
+    private var webServer = RAWebServer.shared!
 
     private init() {
         let resourceManager = ResourceManager()
@@ -72,31 +72,24 @@ public class ServerManager {
 
     public func serverName(_ type: ServerType) -> String {
         let server = server(for: type)
-        return server.name!
+        return server.name
     }
 
     public func startServer(_ type: ServerType) {
         let server = server(for: type)
-
-        if !server.isExecuting {
-            server.start()
-        }
+        server.start()
     }
 
     public func stopServer(_ type: ServerType) {
         let server = server(for: type)
-
-        if server.isExecuting {
-            server.cancel()
-            resetServer(for: type)
-        }
+        server.stop()
     }
 
     public func isServerRunning(_ type: ServerType) -> AnyPublisher<Bool, Never> {
         return Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
             .map { [unowned self] _ in
                 let server = self.server(for: type)
-                return server.isExecuting
+                return server.status == .running
             }
             .replaceError(with: false)
             .eraseToAnyPublisher()
@@ -115,7 +108,7 @@ public class ServerManager {
         }
     }
 
-    private func server(for type: ServerType) -> Thread {
+    private func server(for type: ServerType) -> RAServer {
         switch type {
         case .login:
             return loginServer
@@ -125,31 +118,6 @@ public class ServerManager {
             return mapServer
         case .web:
             return webServer
-        }
-    }
-
-    private func resetServer(for type: ServerType) {
-        switch type {
-        case .login:
-            let outputHandler = loginServer.outputHandler
-            loginServer.outputHandler = nil
-            loginServer = RALoginServer()
-            loginServer.outputHandler = outputHandler
-        case .char:
-            let outputHandler = charServer.outputHandler
-            charServer.outputHandler = nil
-            charServer = RACharServer()
-            charServer.outputHandler = outputHandler
-        case .map:
-            let outputHandler = mapServer.outputHandler
-            mapServer.outputHandler = nil
-            mapServer = RAMapServer()
-            mapServer.outputHandler = outputHandler
-        case .web:
-            let outputHandler = webServer.outputHandler
-            webServer.outputHandler = nil
-            webServer = RAWebServer()
-            webServer.outputHandler = outputHandler
         }
     }
 }

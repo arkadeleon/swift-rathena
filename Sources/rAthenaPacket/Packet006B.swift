@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2021/7/7.
 //
 
-import rAthenaConfig
+import rAthenaCommon
 
 public struct Packet006B: Packet {
 

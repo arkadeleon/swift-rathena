@@ -15,8 +15,7 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
-    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
+    RAMapServer *mapServer = RAMapServer.sharedServer;
 
     if (mapServer.outputHandler) {
         NSData *data = [NSData dataWithBytes:buf length:n];
@@ -27,8 +26,7 @@ int write_function(void *cookie, const char *buf, int n) {
 }
 
 void do_recv(int fd) {
-    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
-    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
+    RAMapServer *mapServer = RAMapServer.sharedServer;
 
     if (mapServer.dataReceiveHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
@@ -37,8 +35,7 @@ void do_recv(int fd) {
 }
 
 void do_send(int fd) {
-    RAMapServer *mapServer = (RAMapServer *)[NSThread currentThread];
-    NSCAssert([mapServer isKindOfClass:[RAMapServer class]], @"Current thread is not map server.");
+    RAMapServer *mapServer = RAMapServer.sharedServer;
 
     if (mapServer.dataSendHandler) {
         NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
@@ -46,35 +43,64 @@ void do_send(int fd) {
     }
 }
 
+@interface RAMapServer ()
+
+@property (nonatomic, strong) NSThread *thread;
+
+@end
+
 @implementation RAMapServer
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.name = @"Map Server";
++ (RAMapServer *)sharedServer {
+    static RAMapServer *sharedServer = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedServer = [[RAMapServer alloc] init];
+    });
+    return sharedServer;
+}
+
+- (NSString *)name {
+    return @"Map Server";
+}
+
+- (void)start {
+    if (self.thread == nil) {
+        self.thread = [[NSThread alloc] initWithBlock:^{
+            FILE *output = fwopen(0, write_function);
+            STDOUT = output;
+            STDERR = output;
+
+            recv_callback = do_recv;
+            send_callback = do_send;
+
+            char arg0[] = "map-server";
+            char *args[1] = {arg0};
+            main(1, args);
+        }];
     }
-    return self;
+
+    if (self.thread.isExecuting) {
+        return;
+    }
+
+    [self.thread start];
 }
 
-- (void)main {
-    FILE *output = fwopen(0, write_function);
-    STDOUT = output;
-    STDERR = output;
+- (void)stop {
+    if (self.thread == nil) {
+        return;
+    }
 
-    recv_callback = do_recv;
-    send_callback = do_send;
-
-    char arg0[] = "map-server";
-    char *args[1] = {arg0};
-    main(1, args);
-}
-
-- (void)cancel {
-    [super cancel];
+    if (!self.thread.isExecuting) {
+        return;
+    }
 
     global_core->signal_shutdown();
 
     tfl_root = NULL;
+
+    self.thread = nil;
 }
 
 @end

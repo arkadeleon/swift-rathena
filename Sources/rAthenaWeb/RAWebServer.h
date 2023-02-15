@@ -7,14 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^RAWebServerOutputHandler)(NSData * _Nonnull data);
-typedef void (^RAWebServerDataReceiveHandler)(NSData * _Nonnull data);
-typedef void (^RAWebServerDataSendHandler)(NSData * _Nonnull data);
+@import rAthenaCommon;
 
-@interface RAWebServer : NSThread
+@interface RAWebServer : RAServer
 
-@property (nonatomic, copy) RAWebServerOutputHandler _Nullable outputHandler;
-@property (nonatomic, copy) RAWebServerDataReceiveHandler _Nullable dataReceiveHandler;
-@property (nonatomic, copy) RAWebServerDataSendHandler _Nullable dataSendHandler;
+@property (nonatomic, class, readonly, strong) RAWebServer *sharedServer;
 
 @end
