@@ -6,14 +6,13 @@
 //
 
 import XCTest
+@testable import rAthenaCommon
 @testable import rAthenaChar
-@testable import rAthenaResource
 
 class rAthenaCharTests: XCTestCase {
 
     func testCharServer() {
-        let resourceManager = ResourceManager()
-        try! resourceManager.copyBundleResourceFiles()
+        RAResourceManager.shared.copyResourcesToLibraryDirectory()
 
         let charServer = RACharServer()
         charServer.start()

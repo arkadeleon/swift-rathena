@@ -7,11 +7,11 @@
 
 import Combine
 import Foundation
+import rAthenaCommon
 import rAthenaLogin
 import rAthenaChar
 import rAthenaMap
 import rAthenaWeb
-import rAthenaResource
 
 public enum ServerType {
     case login
@@ -31,8 +31,7 @@ public class ServerManager {
     private var webServer = RAWebServer.shared!
 
     private init() {
-        let resourceManager = ResourceManager()
-        try? resourceManager.copyBundleResourceFiles()
+        RAResourceManager.shared.copyResourcesToLibraryDirectory()
     }
 
     public var sessionsOutputHandler: OutputHandler? {

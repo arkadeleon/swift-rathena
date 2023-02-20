@@ -6,14 +6,13 @@
 //
 
 import XCTest
+@testable import rAthenaCommon
 @testable import rAthenaMap
-@testable import rAthenaResource
 
 class rAthenaMapTests: XCTestCase {
 
     func testMapServer() {
-        let resourceManager = ResourceManager()
-        try! resourceManager.copyBundleResourceFiles()
+        RAResourceManager.shared.copyResourcesToLibraryDirectory()
 
         let mapServer = RAMapServer()
         mapServer.start()

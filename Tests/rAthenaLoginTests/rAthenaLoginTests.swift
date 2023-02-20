@@ -6,14 +6,13 @@
 //
 
 import XCTest
+@testable import rAthenaCommon
 @testable import rAthenaLogin
-@testable import rAthenaResource
 
 class rAthenaLoginTests: XCTestCase {
 
     func testLoginServer() {
-        let resourceManager = ResourceManager()
-        try! resourceManager.copyBundleResourceFiles()
+        RAResourceManager.shared.copyResourcesToLibraryDirectory()
 
         let loginServer = RALoginServer()
         loginServer.start()

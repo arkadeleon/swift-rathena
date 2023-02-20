@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3557DB20299FEFC900ABB683 /* rAthenaCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 3557DB1F299FEFC900ABB683 /* rAthenaCommon */; };
 		35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 35CD6D15292F4A9700D484E8 /* Terminal */; };
 		35D8D018292E79C80062AB92 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8D017292E79C80062AB92 /* ServerManager.swift */; };
 		35D8D01C292E79FC0062AB92 /* rAthenaChar in Frameworks */ = {isa = PBXBuildFile; productRef = 35D8D01B292E79FC0062AB92 /* rAthenaChar */; };
@@ -60,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35D8D01F292E79FC0062AB92 /* rAthenaLogin in Frameworks */,
+				3557DB20299FEFC900ABB683 /* rAthenaCommon in Frameworks */,
 				35D8D01C292E79FC0062AB92 /* rAthenaChar in Frameworks */,
 				35D8D022292E79FC0062AB92 /* rAthenaMap in Frameworks */,
 				35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */,
@@ -140,6 +142,7 @@
 				35D8D021292E79FC0062AB92 /* rAthenaMap */,
 				35D8D024292E79FC0062AB92 /* rAthenaWeb */,
 				35CD6D15292F4A9700D484E8 /* Terminal */,
+				3557DB1F299FEFC900ABB683 /* rAthenaCommon */,
 			);
 			productName = ROServer;
 			productReference = 35FC633F29125B2000825452 /* ROServer.app */;
@@ -424,6 +427,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3557DB1F299FEFC900ABB683 /* rAthenaCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = rAthenaCommon;
+		};
 		35CD6D15292F4A9700D484E8 /* Terminal */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 35CD6D14292F4A9700D484E8 /* XCRemoteSwiftPackageReference "Terminal" */;

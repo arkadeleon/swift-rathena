@@ -6,14 +6,13 @@
 //
 
 import XCTest
+@testable import rAthenaCommon
 @testable import rAthenaWeb
-@testable import rAthenaResource
 
 class rAthenaWebTests: XCTestCase {
 
     func testWebServer() {
-        let resourceManager = ResourceManager()
-        try! resourceManager.copyBundleResourceFiles()
+        RAResourceManager.shared.copyResourcesToLibraryDirectory()
 
         let webServer = RAWebServer()
 //        webServer.start()

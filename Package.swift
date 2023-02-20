@@ -10,6 +10,10 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "rAthenaCommon",
+            targets: ["rAthenaCommon"]
+        ),
+        .library(
             name: "rAthenaLogin",
             type: .dynamic,
             targets: ["rAthenaLogin"]
@@ -45,12 +49,33 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "rAthenaCommon",
+            path: ".",
+            exclude: [
+                "3rdparty",
+                "doc",
+                "Examples",
+                "src",
+                "tools",
+            ],
+            sources: [
+                "Sources/rAthenaCommon",
+            ],
+            resources: [
+                .copy("ragnarok.sqlite3"),
+                .copy("conf"),
+                .copy("db"),
+                .copy("npc"),
+                .copy("sql-files"),
+            ],
+            publicHeadersPath: "Sources/rAthenaCommon"
+        ),
+        .target(
             name: "rAthenaLogin",
             dependencies: [
                 "libconfig",
                 "ryml",
                 "rAthenaCommon",
-                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -68,14 +93,14 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]),
+            ]
+        ),
         .target(
             name: "rAthenaChar",
             dependencies: [
                 "libconfig",
                 "ryml",
                 "rAthenaCommon",
-                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -93,14 +118,14 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]),
+            ]
+        ),
         .target(
             name: "rAthenaMap",
             dependencies: [
                 "libconfig",
                 "ryml",
                 "rAthenaCommon",
-                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -118,7 +143,8 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]),
+            ]
+        ),
         .target(
             name: "rAthenaWeb",
             dependencies: [
@@ -127,7 +153,6 @@ let package = Package(
                 "ryml",
                 "yaml-cpp",
                 "rAthenaCommon",
-                "rAthenaResource",
             ],
             exclude: [
                 "common/winapi.hpp",
@@ -149,23 +174,19 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]),
+            ]
+        ),
         .target(
             name: "rAthenaPacket",
             dependencies: [
                 "rAthenaCommon",
-            ]),
-        .target(
-            name: "rAthenaCommon",
-            exclude: [
-                "common",
-            ],
-            publicHeadersPath: ""),
+            ]
+        ),
         .target(
             name: "rAthenaDatabase",
             dependencies: [
                 "Yams",
-                "rAthenaResource",
+                "rAthenaCommon",
             ],
             path: ".",
             exclude: [
@@ -177,39 +198,21 @@ let package = Package(
             ],
             sources: [
                 "Sources/rAthenaDatabase",
-            ]),
-        .target(
-            name: "rAthenaResource",
-            path: ".",
-            exclude: [
-                "3rdparty",
-                "doc",
-                "Examples",
-                "src",
-                "tools",
-            ],
-            sources: [
-                "Sources/rAthenaResource",
-            ],
-            resources: [
-                .copy("ragnarok.sqlite3"),
-                .copy("conf"),
-                .copy("db"),
-                .copy("npc"),
-                .copy("sql-files"),
-            ],
-            publicHeadersPath: "Sources/rAthenaResource"),
+            ]
+        ),
         .target(
             name: "httplib",
             path: "3rdparty/httplib",
-            publicHeadersPath: ""),
+            publicHeadersPath: ""
+        ),
         .target(
             name: "libconfig",
             path: "3rdparty/libconfig",
             publicHeadersPath: "",
             cSettings: [
                 .define("HAVE_XLOCALE_H"),
-            ]),
+            ]
+        ),
         .target(
             name: "ryml",
             path: "3rdparty/rapidyaml",
@@ -221,27 +224,34 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("ext/c4core/src"),
                 .headerSearchPath("src"),
-            ]),
+            ]
+        ),
         .target(
             name: "yaml-cpp",
             path: "3rdparty/yaml-cpp",
             sources: ["src"],
-            publicHeadersPath: "include"),
+            publicHeadersPath: "include"
+        ),
         .testTarget(
             name: "rAthenaLoginTests",
-            dependencies: ["rAthenaLogin"]),
+            dependencies: ["rAthenaLogin"]
+        ),
         .testTarget(
             name: "rAthenaCharTests",
-            dependencies: ["rAthenaChar"]),
+            dependencies: ["rAthenaChar"]
+        ),
         .testTarget(
             name: "rAthenaMapTests",
-            dependencies: ["rAthenaMap"]),
+            dependencies: ["rAthenaMap"]
+        ),
         .testTarget(
             name: "rAthenaWebTests",
-            dependencies: ["rAthenaWeb"]),
+            dependencies: ["rAthenaWeb"]
+        ),
         .testTarget(
             name: "rAthenaDatabaseTests",
-            dependencies: ["rAthenaDatabase"]),
+            dependencies: ["rAthenaDatabase"]
+        ),
     ],
     cxxLanguageStandard: .cxx11
 )
