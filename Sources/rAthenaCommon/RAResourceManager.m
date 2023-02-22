@@ -18,6 +18,10 @@
     return sharedManager;
 }
 
+- (NSString *)pathForResource:(NSString *)name {
+    return [SWIFTPM_MODULE_BUNDLE.resourcePath stringByAppendingPathComponent:name];
+}
+
 - (NSData *)dataForResource:(NSString *)name {
     NSURL *url = [SWIFTPM_MODULE_BUNDLE.resourceURL URLByAppendingPathComponent:name];
     NSData *data = [NSData dataWithContentsOfURL:url];

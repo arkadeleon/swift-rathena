@@ -1,6 +1,6 @@
 //
 //  RAResourceManager.h
-//  
+//  rAthena
 //
 //  Created by Leon Li on 2023/2/16.
 //
@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly, strong) RAResourceManager *sharedManager;
 
+- (NSString *)pathForResource:(NSString *)name;
 - (NSData *)dataForResource:(NSString *)name;
 
 - (void)copyResourcesToLibraryDirectory;

@@ -50,6 +50,9 @@ let package = Package(
     targets: [
         .target(
             name: "rAthenaCommon",
+            dependencies: [
+                "ryml",
+            ],
             path: ".",
             exclude: [
                 "3rdparty",
@@ -68,7 +71,11 @@ let package = Package(
                 .copy("npc"),
                 .copy("sql-files"),
             ],
-            publicHeadersPath: "Sources/rAthenaCommon"
+            publicHeadersPath: "Sources/rAthenaCommon",
+            cxxSettings: [
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
+            ]
         ),
         .target(
             name: "rAthenaLogin",
@@ -231,6 +238,10 @@ let package = Package(
             path: "3rdparty/yaml-cpp",
             sources: ["src"],
             publicHeadersPath: "include"
+        ),
+        .testTarget(
+            name: "rAthenaCommonTests",
+            dependencies: ["rAthenaCommon"]
         ),
         .testTarget(
             name: "rAthenaLoginTests",
