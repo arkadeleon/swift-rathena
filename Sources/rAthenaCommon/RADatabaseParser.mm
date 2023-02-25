@@ -55,7 +55,12 @@
 //    const char* fileName = this->currentFile.c_str();
 
     for( const ryml::NodeRef &node : bodyNode ){
-        count += [self parseBodyNode:node];
+        NSDictionary *element = [self parseMapNode:node];
+        count++;
+
+        if (self.delegate && [self.delegate respondsToSelector:@selector(parser:foundElement:)]) {
+            [self.delegate parser:self foundElement:element];
+        }
 
 //        ShowStatus( "Loading [%" PRIdPTR "/%" PRIdPTR "] entries from '" CL_WHITE "%s" CL_RESET "'" CL_CLL "\r", ++childNodesProgressed, childNodesCount, fileName );
         }
@@ -63,30 +68,41 @@
 //    ShowStatus( "Done reading '" CL_WHITE "%" PRIu64 CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'" CL_CLL "\n", count, fileName );
 }
 
-- (int)parseBodyNode:(const ryml::NodeRef&)node1 {
-    NSMutableDictionary *element = [[NSMutableDictionary alloc] init];
+- (NSDictionary *)parseMapNode:(const ryml::NodeRef&)mapNode {
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    for (const ryml::NodeRef& node : mapNode) {
+        c4::csubstr key = node.key();
+        NSData *keyData = [[NSData alloc] initWithBytes:(void *)key.data() length:key.size()];
+        NSString *keyString = [[NSString alloc] initWithData:keyData encoding:NSASCIIStringEncoding];
 
-    for (const ryml::NodeRef& node : node1) {
         if (node.is_map()) {
-            // TODO: Parse map
+            dictionary[keyString] = [self parseMapNode:node];
         } else if (node.is_seq()) {
-            // TODO: Parse seq
+            dictionary[keyString] = [self parseSeqNode:node];
         } else if (node.is_keyval()) {
-            c4::csubstr key = node.key();
-            NSData *keyData = [[NSData alloc] initWithBytes:(void *)key.data() length:key.size()];
-            NSString *keyString = [[NSString alloc] initWithData:keyData encoding:NSASCIIStringEncoding];
-
-            c4::csubstr val = node.val();
-            NSData *valData = [[NSData alloc] initWithBytes:(void *)val.data() length:val.size()];
-            NSString *valString = [[NSString alloc] initWithData:valData encoding:NSASCIIStringEncoding];
-
-            element[keyString] = valString;
+            dictionary[keyString] = [self parseValNode:node];
         }
     }
+    return [dictionary copy];
+}
 
-    if (self.delegate && [self.delegate respondsToSelector:@selector(parser:foundElement:)]) {
-        [self.delegate parser:self foundElement:[element copy]];
+- (NSArray *)parseSeqNode:(const ryml::NodeRef&)seqNode {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (const ryml::NodeRef& node : seqNode) {
+        if (node.is_map()) {
+            [array addObject:[self parseMapNode:node]];
+        } else if (node.is_val()) {
+            [array addObject:[self parseValNode:node]];
+        }
     }
+    return [array copy];
+}
+
+- (NSString *)parseValNode:(const ryml::NodeRef&)valNode {
+    c4::csubstr val = valNode.val();
+    NSData *valData = [[NSData alloc] initWithBytes:(void *)val.data() length:val.size()];
+    NSString *valString = [[NSString alloc] initWithData:valData encoding:NSASCIIStringEncoding];
+    return valString;
 }
 
 @end
