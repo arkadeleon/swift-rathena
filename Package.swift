@@ -38,14 +38,6 @@ let package = Package(
             type: .dynamic,
             targets: ["rAthenaPacket"]
         ),
-        .library(
-            name: "rAthenaDatabase",
-            type: .dynamic,
-            targets: ["rAthenaDatabase"]
-        ),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.3")
     ],
     targets: [
         .target(
@@ -190,24 +182,6 @@ let package = Package(
             ]
         ),
         .target(
-            name: "rAthenaDatabase",
-            dependencies: [
-                "Yams",
-                "rAthenaCommon",
-            ],
-            path: ".",
-            exclude: [
-                "3rdparty",
-                "doc",
-                "Examples",
-                "src",
-                "tools",
-            ],
-            sources: [
-                "Sources/rAthenaDatabase",
-            ]
-        ),
-        .target(
             name: "httplib",
             path: "3rdparty/httplib",
             publicHeadersPath: ""
@@ -258,10 +232,6 @@ let package = Package(
         .testTarget(
             name: "rAthenaWebTests",
             dependencies: ["rAthenaWeb"]
-        ),
-        .testTarget(
-            name: "rAthenaDatabaseTests",
-            dependencies: ["rAthenaDatabase"]
         ),
     ],
     cxxLanguageStandard: .cxx11
