@@ -189,6 +189,43 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     return element;
 }
 
++ (NSNumber *)aiFromString:(NSString *)string {
+    static NSDictionary<NSString *, NSNumber *> *aiMap = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        aiMap = @{
+            @"01" : @(RAMonsterAi01),
+            @"02" : @(RAMonsterAi02),
+            @"03" : @(RAMonsterAi03),
+            @"04" : @(RAMonsterAi04),
+            @"05" : @(RAMonsterAi05),
+            @"06" : @(RAMonsterAi06),
+            @"07" : @(RAMonsterAi07),
+            @"08" : @(RAMonsterAi08),
+            @"09" : @(RAMonsterAi09),
+            @"10" : @(RAMonsterAi10),
+            @"11" : @(RAMonsterAi11),
+            @"12" : @(RAMonsterAi12),
+            @"13" : @(RAMonsterAi13),
+            @"17" : @(RAMonsterAi17),
+            @"19" : @(RAMonsterAi19),
+            @"20" : @(RAMonsterAi20),
+            @"21" : @(RAMonsterAi21),
+            @"24" : @(RAMonsterAi24),
+            @"25" : @(RAMonsterAi25),
+            @"26" : @(RAMonsterAi26),
+            @"27" : @(RAMonsterAi27),
+        };
+    });
+
+    if (string == nil) {
+        return nil;
+    }
+
+    NSNumber *ai = aiMap[string];
+    return ai;
+}
+
 + (NSNumber *)monsterClassFromString:(NSString *)string {
     static NSDictionary<NSString *, NSNumber *> *monsterClassMap = nil;
     static dispatch_once_t onceToken;
@@ -293,7 +330,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _attackMotion = 0;
         _damageMotion = 0;
         _damageTaken = 100;
-        _ai = RAMonsterAI06;
+        _ai = RAMonsterAi06;
         _monsterClass = RAMonsterClassNormal;
         _modes = 0;
     }
@@ -316,6 +353,11 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     NSNumber *element = [RAMonster elementFromString:dic[@"Element"]];
     if (element) {
         _element = element.integerValue;
+    }
+
+    NSNumber *ai = [RAMonster aiFromString:dic[@"Ai"]];
+    if (ai) {
+        _ai = ai.integerValue;
     }
 
     NSNumber *monsterClass = [RAMonster monsterClassFromString:dic[@"Class"]];

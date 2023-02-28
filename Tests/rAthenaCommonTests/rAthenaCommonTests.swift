@@ -127,7 +127,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssert(poring.attackDelay == 1872)
         XCTAssert(poring.attackMotion == 672)
         XCTAssert(poring.damageMotion == 480)
-//        XCTAssert(poring.ai == .AI02)
+        XCTAssert(poring.ai == .ai02)
         XCTAssert(poring.drops?.count == 8)
     }
 
