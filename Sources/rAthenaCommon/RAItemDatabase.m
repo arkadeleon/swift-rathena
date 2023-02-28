@@ -16,6 +16,8 @@
         @"itemID"       : @"Id",
         @"aegisName"    : @"AegisName",
         @"name"         : @"Name",
+        @"type"         : @"Type",
+        @"subType"      : @"SubType",
         @"buy"          : @"Buy",
         @"sell"         : @"Sell",
         @"weight"       : @"Weight",
@@ -24,6 +26,10 @@
         @"defense"      : @"Defense",
         @"range"        : @"Range",
         @"slots"        : @"Slots",
+        @"jobs"         : @"Jobs",
+        @"classes"      : @"Classes",
+        @"gender"       : @"Gender",
+        @"locations"    : @"Locations",
         @"weaponLevel"  : @"WeaponLevel",
         @"armorLevel"   : @"ArmorLevel",
         @"equipLevelMin": @"EquipLevelMin",
@@ -48,18 +54,18 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         typeMap = @{
-            @"healing"      : @(RAItemTypeHealing),
-            @"usable"       : @(RAItemTypeUsable),
-            @"etc"          : @(RAItemTypeEtc),
-            @"armor"        : @(RAItemTypeArmor),
-            @"weapon"       : @(RAItemTypeWeapon),
-            @"card"         : @(RAItemTypeCard),
-            @"petegg"       : @(RAItemTypePetEgg),
-            @"petarmor"     : @(RAItemTypePetArmor),
-            @"ammo"         : @(RAItemTypeAmmo),
-            @"delayconsume" : @(RAItemTypeDelayConsume),
-            @"shadowgear"   : @(RAItemTypeShadowGear),
-            @"cash"         : @(RAItemTypeCash),
+            @"Healing"     .lowercaseString : @(RAItemTypeHealing),
+            @"Usable"      .lowercaseString : @(RAItemTypeUsable),
+            @"Etc"         .lowercaseString : @(RAItemTypeEtc),
+            @"Armor"       .lowercaseString : @(RAItemTypeArmor),
+            @"Weapon"      .lowercaseString : @(RAItemTypeWeapon),
+            @"Card"        .lowercaseString : @(RAItemTypeCard),
+            @"PetEgg"      .lowercaseString : @(RAItemTypePetEgg),
+            @"PetArmor"    .lowercaseString : @(RAItemTypePetArmor),
+            @"Ammo"        .lowercaseString : @(RAItemTypeAmmo),
+            @"DelayConsume".lowercaseString : @(RAItemTypeDelayConsume),
+            @"ShadowGear"  .lowercaseString : @(RAItemTypeShadowGear),
+            @"Cash"        .lowercaseString : @(RAItemTypeCash),
         };
     });
 
@@ -67,7 +73,8 @@
         return nil;
     }
 
-    return typeMap[string.lowercaseString];
+    NSNumber *type = typeMap[string.lowercaseString];
+    return type;
 }
 
 + (NSNumber *)subTypeFromString:(NSString *)string {
@@ -75,38 +82,38 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         subTypeMap = @{
-            @"fist"             : @(RAItemSubTypeFist),
-            @"dagger"           : @(RAItemSubTypeDagger),
-            @"1hsword"          : @(RAItemSubTypeOneHandedSword),
-            @"2hsword"          : @(RAItemSubTypeTwoHandedSword),
-            @"1hspear"          : @(RAItemSubTypeOneHandedSpear),
-            @"2hspear"          : @(RAItemSubTypeTwoHandedSpear),
-            @"1haxe"            : @(RAItemSubTypeOneHandedAxe),
-            @"2haxe"            : @(RAItemSubTypeTwoHandedAxe),
-            @"mace"             : @(RAItemSubTypeMace),
-            @"staff"            : @(RAItemSubTypeStaff),
-            @"bow"              : @(RAItemSubTypeBow),
-            @"knuckle"          : @(RAItemSubTypeKnuckle),
-            @"musical"          : @(RAItemSubTypeMusical),
-            @"whip"             : @(RAItemSubTypeWhip),
-            @"book"             : @(RAItemSubTypeBook),
-            @"katar"            : @(RAItemSubTypeKatar),
-            @"revolver"         : @(RAItemSubTypeRevolver),
-            @"rifle"            : @(RAItemSubTypeRifle),
-            @"gatling"          : @(RAItemSubTypeGatling),
-            @"shotgun"          : @(RAItemSubTypeShotgun),
-            @"grenade"          : @(RAItemSubTypeGrenade),
-            @"huuma"            : @(RAItemSubTypeHuuma),
-            @"2hstaff"          : @(RAItemSubTypeTwoHandedStaff),
-            @"arrow"            : @(RAItemSubTypeArrow),
-            @"bullet"           : @(RAItemSubTypeBullet),
-            @"shell"            : @(RAItemSubTypeShell),
-            @"shuriken"         : @(RAItemSubTypeShuriken),
-            @"kunai"            : @(RAItemSubTypeKunai),
-            @"cannonball"       : @(RAItemSubTypeCannonball),
-            @"throwweapon"      : @(RAItemSubTypeThrowWeapon),
-            @"normal"           : @(RAItemClassNormal),
-            @"enchant"          : @(RAItemSubTypeEnchant),
+            @"Fist"       .lowercaseString : @(RAItemSubTypeFist),
+            @"Dagger"     .lowercaseString : @(RAItemSubTypeDagger),
+            @"1hsword"    .lowercaseString : @(RAItemSubTypeOneHandedSword),
+            @"2hsword"    .lowercaseString : @(RAItemSubTypeTwoHandedSword),
+            @"1hspear"    .lowercaseString : @(RAItemSubTypeOneHandedSpear),
+            @"2hspear"    .lowercaseString : @(RAItemSubTypeTwoHandedSpear),
+            @"1haxe"      .lowercaseString : @(RAItemSubTypeOneHandedAxe),
+            @"2haxe"      .lowercaseString : @(RAItemSubTypeTwoHandedAxe),
+            @"Mace"       .lowercaseString : @(RAItemSubTypeMace),
+            @"Staff"      .lowercaseString : @(RAItemSubTypeStaff),
+            @"Bow"        .lowercaseString : @(RAItemSubTypeBow),
+            @"Knuckle"    .lowercaseString : @(RAItemSubTypeKnuckle),
+            @"Musical"    .lowercaseString : @(RAItemSubTypeMusical),
+            @"Whip"       .lowercaseString : @(RAItemSubTypeWhip),
+            @"Book"       .lowercaseString : @(RAItemSubTypeBook),
+            @"Katar"      .lowercaseString : @(RAItemSubTypeKatar),
+            @"Revolver"   .lowercaseString : @(RAItemSubTypeRevolver),
+            @"Rifle"      .lowercaseString : @(RAItemSubTypeRifle),
+            @"Gatling"    .lowercaseString : @(RAItemSubTypeGatling),
+            @"Shotgun"    .lowercaseString : @(RAItemSubTypeShotgun),
+            @"Grenade"    .lowercaseString : @(RAItemSubTypeGrenade),
+            @"Huuma"      .lowercaseString : @(RAItemSubTypeHuuma),
+            @"2hstaff"    .lowercaseString : @(RAItemSubTypeTwoHandedStaff),
+            @"Arrow"      .lowercaseString : @(RAItemSubTypeArrow),
+            @"Bullet"     .lowercaseString : @(RAItemSubTypeBullet),
+            @"Shell"      .lowercaseString : @(RAItemSubTypeShell),
+            @"Shuriken"   .lowercaseString : @(RAItemSubTypeShuriken),
+            @"Kunai"      .lowercaseString : @(RAItemSubTypeKunai),
+            @"Cannonball" .lowercaseString : @(RAItemSubTypeCannonball),
+            @"ThrowWeapon".lowercaseString : @(RAItemSubTypeThrowWeapon),
+            @"Normal"     .lowercaseString : @(RAItemSubTypeNormal),
+            @"Enchant"    .lowercaseString : @(RAItemSubTypeEnchant),
         };
     });
 
@@ -114,7 +121,8 @@
         return nil;
     }
 
-    return subTypeMap[string.lowercaseString];
+    NSNumber *subType = subTypeMap[string.lowercaseString];
+    return subType;
 }
 
 + (RAItemJob)jobsFromDictionary:(NSDictionary *)dictionary {
@@ -122,35 +130,35 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         jobMap = @{
-            @"Acolyte"          : @(RAItemJobAcolyte),
-            @"Alchemist"        : @(RAItemJobAlchemist),
-            @"Archer"           : @(RAItemJobArcher),
-            @"Assassin"         : @(RAItemJobAssassin),
-            @"BardDancer"       : @(RAItemJobBardDancer),
-            @"Blacksmith"       : @(RAItemJobBlacksmith),
-            @"Crusader"         : @(RAItemJobCrusader),
-            @"Gunslinger"       : @(RAItemJobGunslinger),
-            @"Hunter"           : @(RAItemJobHunter),
-            @"KagerouOboro"     : @(RAItemJobKagerouOboro),
-            @"Knight"           : @(RAItemJobKnight),
-            @"Mage"             : @(RAItemJobMage),
-            @"Merchant"         : @(RAItemJobMerchant),
-            @"Monk"             : @(RAItemJobMonk),
-            @"Ninja"            : @(RAItemJobNinja),
-            @"Novice"           : @(RAItemJobNovice),
-            @"Priest"           : @(RAItemJobPriest),
-            @"Rebellion"        : @(RAItemJobRebellion),
-            @"Rogue"            : @(RAItemJobRogue),
-            @"Sage"             : @(RAItemJobSage),
-            @"SoulLinker"       : @(RAItemJobSoulLinker),
-            @"StarGladiator"    : @(RAItemJobStarGladiator),
-            @"Summoner"         : @(RAItemJobSummoner),
-            @"SuperNovice"      : @(RAItemJobSuperNovice),
-            @"Swordman"         : @(RAItemJobSwordman),
-            @"Taekwon"          : @(RAItemJobTaekwon),
-            @"Thief"            : @(RAItemJobThief),
-            @"Wizard"           : @(RAItemJobWizard),
-            @"All"              : @(RAItemJobAll),
+            @"Acolyte"      .lowercaseString : @(RAItemJobAcolyte),
+            @"Alchemist"    .lowercaseString : @(RAItemJobAlchemist),
+            @"Archer"       .lowercaseString : @(RAItemJobArcher),
+            @"Assassin"     .lowercaseString : @(RAItemJobAssassin),
+            @"BardDancer"   .lowercaseString : @(RAItemJobBardDancer),
+            @"Blacksmith"   .lowercaseString : @(RAItemJobBlacksmith),
+            @"Crusader"     .lowercaseString : @(RAItemJobCrusader),
+            @"Gunslinger"   .lowercaseString : @(RAItemJobGunslinger),
+            @"Hunter"       .lowercaseString : @(RAItemJobHunter),
+            @"KagerouOboro" .lowercaseString : @(RAItemJobKagerouOboro),
+            @"Knight"       .lowercaseString : @(RAItemJobKnight),
+            @"Mage"         .lowercaseString : @(RAItemJobMage),
+            @"Merchant"     .lowercaseString : @(RAItemJobMerchant),
+            @"Monk"         .lowercaseString : @(RAItemJobMonk),
+            @"Ninja"        .lowercaseString : @(RAItemJobNinja),
+            @"Novice"       .lowercaseString : @(RAItemJobNovice),
+            @"Priest"       .lowercaseString : @(RAItemJobPriest),
+            @"Rebellion"    .lowercaseString : @(RAItemJobRebellion),
+            @"Rogue"        .lowercaseString : @(RAItemJobRogue),
+            @"Sage"         .lowercaseString : @(RAItemJobSage),
+            @"SoulLinker"   .lowercaseString : @(RAItemJobSoulLinker),
+            @"StarGladiator".lowercaseString : @(RAItemJobStarGladiator),
+            @"Summoner"     .lowercaseString : @(RAItemJobSummoner),
+            @"SuperNovice"  .lowercaseString : @(RAItemJobSuperNovice),
+            @"Swordman"     .lowercaseString : @(RAItemJobSwordman),
+            @"Taekwon"      .lowercaseString : @(RAItemJobTaekwon),
+            @"Thief"        .lowercaseString : @(RAItemJobThief),
+            @"Wizard"       .lowercaseString : @(RAItemJobWizard),
+            @"All"          .lowercaseString : @(RAItemJobAll),
         };
     });
 
@@ -159,8 +167,9 @@
     }
 
     __block RAItemJob jobs = 0;
-    [jobMap enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *job, BOOL *stop) {
-        if (dictionary[key] && [dictionary[key] boolValue] == YES) {
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
+        NSNumber *job = jobMap[key.lowercaseString];
+        if (job && obj.boolValue == YES) {
             jobs |= job.unsignedIntegerValue;
         }
     }];
@@ -173,17 +182,17 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         classMap = @{
-            @"All"          : @(RAItemClassAll),
-            @"Normal"       : @(RAItemClassNormal),
-            @"Upper"        : @(RAItemClassUpper),
-            @"Baby"         : @(RAItemClassBaby),
-            @"Third"        : @(RAItemClassThird),
-            @"Third_Upper"  : @(RAItemClassThirdUpper),
-            @"Third_Baby"   : @(RAItemClassThirdBaby),
-            @"Fourth"       : @(RAItemClassFourth),
-            @"All_Upper"    : @(RAItemClassAllUpper),
-            @"All_Baby"     : @(RAItemClassAllBaby),
-            @"All_Third"    : @(RAItemClassAllThird),
+            @"Normal"     .lowercaseString : @(RAItemClassNormal),
+            @"Upper"      .lowercaseString : @(RAItemClassUpper),
+            @"Baby"       .lowercaseString : @(RAItemClassBaby),
+            @"Third"      .lowercaseString : @(RAItemClassThird),
+            @"Third_Upper".lowercaseString : @(RAItemClassThirdUpper),
+            @"Third_Baby" .lowercaseString : @(RAItemClassThirdBaby),
+            @"Fourth"     .lowercaseString : @(RAItemClassFourth),
+            @"All_Upper"  .lowercaseString : @(RAItemClassAllUpper),
+            @"All_Baby"   .lowercaseString : @(RAItemClassAllBaby),
+            @"All_Third"  .lowercaseString : @(RAItemClassAllThird),
+            @"All"        .lowercaseString : @(RAItemClassAll),
         };
     });
 
@@ -192,9 +201,10 @@
     }
 
     __block RAItemClass classes = 0;
-    [classMap enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *class, BOOL *stop) {
-        if (dictionary[key] && [dictionary[key] boolValue] == YES) {
-            classes |= class.unsignedIntegerValue;
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
+        NSNumber *itemClass = classMap[key.lowercaseString];
+        if (itemClass && obj.boolValue == YES) {
+            classes |= itemClass.unsignedIntegerValue;
         }
     }];
 
@@ -206,9 +216,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         genderMap = @{
-            @"female"   : @(RAItemGenderFemale),
-            @"male"     : @(RAItemGenderMale),
-            @"both"     : @(RAItemGenderBoth),
+            @"Female".lowercaseString : @(RAItemGenderFemale),
+            @"Male"  .lowercaseString : @(RAItemGenderMale),
+            @"Both"  .lowercaseString : @(RAItemGenderBoth),
         };
     });
 
@@ -216,7 +226,8 @@
         return nil;
     }
 
-    return genderMap[string.lowercaseString];
+    NSNumber *gender = genderMap[string.lowercaseString];
+    return gender;
 }
 
 + (RAItemLocation)locationsFromDictionary:(NSDictionary *)dictionary {
@@ -224,29 +235,29 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         locationMap = @{
-            @"Head_Top"                 : @(RAItemLocationHeadTop),
-            @"Head_Mid"                 : @(RAItemLocationHeadMid),
-            @"Head_Low"                 : @(RAItemLocationHeadLow),
-            @"Armor"                    : @(RAItemLocationArmor),
-            @"Right_Hand"               : @(RAItemLocationRightHand),
-            @"Left_Hand"                : @(RAItemLocationLeftHand),
-            @"Garment"                  : @(RAItemLocationGarment),
-            @"Shoes"                    : @(RAItemLocationShoes),
-            @"Right_Accessory"          : @(RAItemLocationRightAccessory),
-            @"Left_Accessory"           : @(RAItemLocationLeftAccessory),
-            @"Costume_Head_Top"         : @(RAItemLocationCostumeHeadTop),
-            @"Costume_Head_Mid"         : @(RAItemLocationCostumeHeadMid),
-            @"Costume_Head_Low"         : @(RAItemLocationCostumeHeadLow),
-            @"Costume_Garment"          : @(RAItemLocationCostumeGarment),
-            @"Ammo"                     : @(RAItemLocationAmmo),
-            @"Shadow_Armor"             : @(RAItemLocationShadowArmor),
-            @"Shadow_Weapon"            : @(RAItemLocationShadowWeapon),
-            @"Shadow_Shield"            : @(RAItemLocationShadowShield),
-            @"Shadow_Shoes"             : @(RAItemLocationShadowShoes),
-            @"Shadow_Right_Accessory"   : @(RAItemLocationShadowRightAccessory),
-            @"Shadow_Left_Accessory"    : @(RAItemLocationShadowLeftAccessory),
-            @"Both_Hand"                : @(RAItemLocationBothHand),
-            @"Both_Accessory"           : @(RAItemLocationBothAccessory),
+            @"Head_Top"              .lowercaseString : @(RAItemLocationHeadTop),
+            @"Head_Mid"              .lowercaseString : @(RAItemLocationHeadMid),
+            @"Head_Low"              .lowercaseString : @(RAItemLocationHeadLow),
+            @"Armor"                 .lowercaseString : @(RAItemLocationArmor),
+            @"Right_Hand"            .lowercaseString : @(RAItemLocationRightHand),
+            @"Left_Hand"             .lowercaseString : @(RAItemLocationLeftHand),
+            @"Garment"               .lowercaseString : @(RAItemLocationGarment),
+            @"Shoes"                 .lowercaseString : @(RAItemLocationShoes),
+            @"Right_Accessory"       .lowercaseString : @(RAItemLocationRightAccessory),
+            @"Left_Accessory"        .lowercaseString : @(RAItemLocationLeftAccessory),
+            @"Costume_Head_Top"      .lowercaseString : @(RAItemLocationCostumeHeadTop),
+            @"Costume_Head_Mid"      .lowercaseString : @(RAItemLocationCostumeHeadMid),
+            @"Costume_Head_Low"      .lowercaseString : @(RAItemLocationCostumeHeadLow),
+            @"Costume_Garment"       .lowercaseString : @(RAItemLocationCostumeGarment),
+            @"Ammo"                  .lowercaseString : @(RAItemLocationAmmo),
+            @"Shadow_Armor"          .lowercaseString : @(RAItemLocationShadowArmor),
+            @"Shadow_Weapon"         .lowercaseString : @(RAItemLocationShadowWeapon),
+            @"Shadow_Shield"         .lowercaseString : @(RAItemLocationShadowShield),
+            @"Shadow_Shoes"          .lowercaseString : @(RAItemLocationShadowShoes),
+            @"Shadow_Right_Accessory".lowercaseString : @(RAItemLocationShadowRightAccessory),
+            @"Shadow_Left_Accessory" .lowercaseString : @(RAItemLocationShadowLeftAccessory),
+            @"Both_Hand"             .lowercaseString : @(RAItemLocationBothHand),
+            @"Both_Accessory"        .lowercaseString : @(RAItemLocationBothAccessory),
         };
     });
 
@@ -255,8 +266,9 @@
     }
 
     __block RAItemLocation locations = 0;
-    [locationMap enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *location, BOOL *stop) {
-        if (dictionary[key] && [dictionary[key] boolValue] == YES) {
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
+        NSNumber *location = locationMap[key.lowercaseString];
+        if (location && obj.boolValue == YES) {
             locations |= location.unsignedIntegerValue;
         }
     }];
@@ -268,7 +280,7 @@
     self = [super init];
     if (self) {
         _type = RAItemTypeEtc;
-        _subType = 0;
+        _subType = RAItemSubTypeNone;
         _buy = 0;
         _sell = 0;
         _weight = 0;
@@ -277,6 +289,17 @@
         _defense = 0;
         _range = 0;
         _slots = 0;
+        _jobs = RAItemJobAll;
+        _classes = RAItemClassAll;
+        _gender = RAItemGenderBoth;
+        _locations = 0;
+        _weaponLevel = 1;
+        _armorLevel = 1;
+        _equipLevelMin = 0;
+        _equipLevelMax = 0;
+        _refineable = NO;
+        _gradable = NO;
+        _view = 0;
     }
     return self;
 }

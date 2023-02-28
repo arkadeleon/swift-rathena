@@ -94,7 +94,45 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssert(poringCard.script == "bonus bLuk,2;\nbonus bFlee2,1;\n")
     }
 
+    func testMonsterDatabase() async {
+        let db = RAMonsterDatabase()
+        let monsters = await db.fetchAllMonsters()
+        XCTAssert(monsters.count == 2262)
+
+        let poring = monsters.first(where: { $0.monsterID == 1002 })!
+        XCTAssert(poring.aegisName == "PORING")
+        XCTAssert(poring.name == "Poring")
+        XCTAssert(poring.level == 1)
+        XCTAssert(poring.hp == 60)
+        XCTAssert(poring.baseExp == 150)
+        XCTAssert(poring.jobExp == 40)
+        XCTAssert(poring.attack == 8)
+        XCTAssert(poring.attack2 == 1)
+        XCTAssert(poring.defense == 2)
+        XCTAssert(poring.magicDefense == 5)
+        XCTAssert(poring.strength == 6)
+        XCTAssert(poring.agility == 1)
+        XCTAssert(poring.vitality == 1)
+        XCTAssert(poring.intelligence == 1)
+        XCTAssert(poring.dexterity == 6)
+        XCTAssert(poring.luck == 5)
+        XCTAssert(poring.attackRange == 1)
+        XCTAssert(poring.skillRange == 10)
+        XCTAssert(poring.chaseRange == 12)
+        XCTAssert(poring.size == .medium)
+        XCTAssert(poring.race == .plant)
+        XCTAssert(poring.element == .water)
+        XCTAssert(poring.elementLevel == 1)
+        XCTAssert(poring.walkSpeed == 400)
+        XCTAssert(poring.attackDelay == 1872)
+        XCTAssert(poring.attackMotion == 672)
+        XCTAssert(poring.damageMotion == 480)
+//        XCTAssert(poring.ai == .AI02)
+        XCTAssert(poring.drops?.count == 8)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
+        ("testMonsterDatabase", testMonsterDatabase),
     ]
 }
