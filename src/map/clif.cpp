@@ -280,7 +280,7 @@ static uint32 map_ip;
 static uint32 bind_ip = INADDR_ANY;
 static uint16 map_port = 5121;
 static bool clif_ally_only = false;
-int map_fd;
+static int map_fd;
 
 static int clif_parse (int fd);
 

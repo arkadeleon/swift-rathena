@@ -67,6 +67,7 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
                 .headerSearchPath("3rdparty/rapidyaml/src"),
+                .headerSearchPath("src"),
             ]
         ),
         .target(
