@@ -235,5 +235,5 @@ let package = Package(
             dependencies: ["rAthenaWeb"]
         ),
     ],
-    cxxLanguageStandard: .cxx11
+    cxxLanguageStandard: .cxx14
 )
