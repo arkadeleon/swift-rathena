@@ -131,8 +131,15 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssert(poring.drops?.count == 8)
     }
 
+    func testSkillTreeDatabase() async {
+        let db = RASkillTreeDatabase()
+        let skillTrees = await db.fetchSkillTrees(in: .renewal)
+        XCTAssertEqual(skillTrees.count, 167)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
+        ("testSkillTreeDatabase", testSkillTreeDatabase),
     ]
 }
