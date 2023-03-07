@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RADatabaseMode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -350,7 +351,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 
 @interface RAItemDatabase : NSObject
 
-- (void)fetchAllItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchItemsInMode:(RADatabaseMode)mode completionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler NS_SWIFT_ASYNC(2);
 
 @end
 

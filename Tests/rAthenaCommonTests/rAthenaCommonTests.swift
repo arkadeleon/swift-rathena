@@ -12,7 +12,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testItemDatabase() async {
         let db = RAItemDatabase()
-        let items = await db.fetchAllItems()
+        let items = await db.fetchItems(in: .renewal)
         XCTAssertEqual(items.count, 21812)
 
         let redPotion = items.first(where: { $0.itemID == 501 })!
@@ -96,7 +96,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testMonsterDatabase() async {
         let db = RAMonsterDatabase()
-        let monsters = await db.fetchAllMonsters()
+        let monsters = await db.fetchMonsters(in: .renewal)
         XCTAssertEqual(monsters.count, 2286)
 
         let poring = monsters.first(where: { $0.monsterID == 1002 })!

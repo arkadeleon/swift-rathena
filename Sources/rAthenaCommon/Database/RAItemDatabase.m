@@ -6,7 +6,7 @@
 //
 
 #import "RAItemDatabase.h"
-#import "RADatabaseParser.h"
+#import "RADatabaseDecoder.h"
 #import "YYModel/YYModel.h"
 
 @implementation RAItem
@@ -440,47 +440,42 @@
 
 @end
 
-@interface RAItemDatabase () <RADatabaseParserDelegate>
-
-@property (nonatomic) NSMutableArray<RAItem *> *allItems;
-
-@end
-
 @implementation RAItemDatabase
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _allItems = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (void)fetchAllItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
+- (void)fetchItemsInMode:(RADatabaseMode)mode completionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        RADatabaseParser *parser;
+        RADatabaseDecoder *decoder = [[RADatabaseDecoder alloc] init];
+        NSMutableArray<RAItem *> *items = [[NSMutableArray alloc] init];
 
-        parser = [[RADatabaseParser alloc] initWithResource:@"db/re/item_db_usable.yml"];
-        parser.delegate = self;
-        [parser parse];
+        switch (mode) {
+            case RADatabaseModePrerenewal: {
+                NSArray<RAItem *> *usableItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/pre-re/item_db_usable.yml"];
+                [items addObjectsFromArray:usableItems];
 
-        parser = [[RADatabaseParser alloc] initWithResource:@"db/re/item_db_equip.yml"];
-        parser.delegate = self;
-        [parser parse];
+                NSArray<RAItem *> *equipItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/pre-re/item_db_equip.yml"];
+                [items addObjectsFromArray:equipItems];
 
-        parser = [[RADatabaseParser alloc] initWithResource:@"db/re/item_db_etc.yml"];
-        parser.delegate = self;
-        [parser parse];
+                NSArray<RAItem *> *etcItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/pre-re/item_db_etc.yml"];
+                [items addObjectsFromArray:etcItems];
 
-        completionHandler([self.allItems copy]);
+                break;
+            }
+            case RADatabaseModeRenewal: {
+                NSArray<RAItem *> *usableItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/re/item_db_usable.yml"];
+                [items addObjectsFromArray:usableItems];
+
+                NSArray<RAItem *> *equipItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/re/item_db_equip.yml"];
+                [items addObjectsFromArray:equipItems];
+
+                NSArray<RAItem *> *etcItems = [decoder decodeArrayOfObjectsOfClass:[RAItem class] fromResource:@"db/re/item_db_etc.yml"];
+                [items addObjectsFromArray:etcItems];
+
+                break;
+            }
+        }
+
+        completionHandler([items copy]);
     });
-}
-
-#pragma mark - RADatabaseParserDelegate
-
-- (void)parser:(RADatabaseParser *)parser foundElement:(NSDictionary *)element {
-    RAItem *item = [RAItem yy_modelWithJSON:element];
-    [self.allItems addObject:item];
 }
 
 @end

@@ -6,7 +6,7 @@
 //
 
 #import "RAMonsterDatabase.h"
-#import "RADatabaseParser.h"
+#import "RADatabaseDecoder.h"
 #import "YYModel/YYModel.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
@@ -394,37 +394,24 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 
 @end
 
-@interface RAMonsterDatabase () <RADatabaseParserDelegate>
-
-@property (nonatomic) NSMutableArray<RAMonster *> *allMonsters;
-
-@end
-
 @implementation RAMonsterDatabase
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _allMonsters = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (void)fetchAllMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
+- (void)fetchMonstersInMode:(RADatabaseMode)mode completionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        RADatabaseParser *parser = [[RADatabaseParser alloc] initWithResource:@"db/re/mob_db.yml"];
-        parser.delegate = self;
-        [parser parse];
+        RADatabaseDecoder *decoder = [[RADatabaseDecoder alloc] init];
+        NSArray<RAMonster *> *monsters;
 
-        completionHandler([self.allMonsters copy]);
+        switch (mode) {
+            case RADatabaseModePrerenewal:
+                monsters = [decoder decodeArrayOfObjectsOfClass:[RAMonster class] fromResource:@"db/pre-re/mob_db.yml"];
+                break;
+            case RADatabaseModeRenewal:
+                monsters = [decoder decodeArrayOfObjectsOfClass:[RAMonster class] fromResource:@"db/re/mob_db.yml"];
+                break;
+        }
+
+        completionHandler(monsters);
     });
-}
-
-#pragma mark - RADatabaseParserDelegate
-
-- (void)parser:(RADatabaseParser *)parser foundElement:(NSDictionary *)element {
-    RAMonster *monster = [RAMonster yy_modelWithJSON:element];
-    [self.allMonsters addObject:monster];
 }
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RADatabaseMode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -280,7 +281,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 
 @interface RAMonsterDatabase : NSObject
 
-- (void)fetchAllMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchMonstersInMode:(RADatabaseMode)mode completionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler NS_SWIFT_ASYNC(2);
 
 @end
 

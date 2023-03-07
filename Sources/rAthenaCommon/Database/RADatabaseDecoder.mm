@@ -1,36 +1,23 @@
 //
-//  RADatabaseParser.m
+//  RADatabaseDecoder.m
 //  rAthena
 //
 //  Created by Leon Li on 2023/2/20.
 //
 
-#import "RADatabaseParser.h"
+#import "RADatabaseDecoder.h"
 #import "RAResourceManager.h"
+#import "YYModel/YYModel.h"
 
 #include <ryml_std.hpp>
 #include <ryml.hpp>
 
-@interface RADatabaseParser ()
+@implementation RADatabaseDecoder
 
-@property (nonatomic, readonly, copy) NSString *resource;
+- (NSArray *)decodeArrayOfObjectsOfClass:(Class)cls fromResource:(NSString *)name {
+    NSString *path = [RAResourceManager.sharedManager pathForResource:name];
 
-@end
-
-@implementation RADatabaseParser
-
-- (instancetype)initWithResource:(NSString *)name {
-    self = [super init];
-    if (self) {
-        _resource = [name copy];
-    }
-    return self;
-}
-
-- (void)parse {
-    NSString *path = [RAResourceManager.sharedManager pathForResource:self.resource];
-
-    NSMutableData *data = [[RAResourceManager.sharedManager dataForResource:self.resource] mutableCopy];
+    NSMutableData *data = [[RAResourceManager.sharedManager dataForResource:name] mutableCopy];
     [data appendData:[@"\0" dataUsingEncoding:NSASCIIStringEncoding]];
 
     ryml::Parser parser = {};
@@ -47,6 +34,7 @@
 
     const ryml::NodeRef& header = tree["Header"];
 
+    NSMutableArray *objects = [[NSMutableArray alloc] init];
     uint64_t count = 0;
 
     const ryml::NodeRef& bodyNode = tree["Body"];
@@ -56,16 +44,17 @@
 
     for( const ryml::NodeRef &node : bodyNode ){
         NSDictionary *element = [self parseMapNode:node];
-        count++;
+        NSObject *object = [cls yy_modelWithJSON:element];
+        [objects addObject:object];
 
-        if (self.delegate && [self.delegate respondsToSelector:@selector(parser:foundElement:)]) {
-            [self.delegate parser:self foundElement:element];
-        }
+        count++;
 
 //        ShowStatus( "Loading [%" PRIdPTR "/%" PRIdPTR "] entries from '" CL_WHITE "%s" CL_RESET "'" CL_CLL "\r", ++childNodesProgressed, childNodesCount, fileName );
         }
 
 //    ShowStatus( "Done reading '" CL_WHITE "%" PRIu64 CL_RESET "' entries in '" CL_WHITE "%s" CL_RESET "'" CL_CLL "\n", count, fileName );
+
+    return [objects copy];
 }
 
 - (NSDictionary *)parseMapNode:(const ryml::NodeRef&)mapNode {
