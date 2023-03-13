@@ -47,34 +47,6 @@
     };
 }
 
-+ (NSNumber *)typeFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *typeMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        typeMap = @{
-            @"Healing"     .lowercaseString : @(RAItemTypeHealing),
-            @"Usable"      .lowercaseString : @(RAItemTypeUsable),
-            @"Etc"         .lowercaseString : @(RAItemTypeEtc),
-            @"Armor"       .lowercaseString : @(RAItemTypeArmor),
-            @"Weapon"      .lowercaseString : @(RAItemTypeWeapon),
-            @"Card"        .lowercaseString : @(RAItemTypeCard),
-            @"PetEgg"      .lowercaseString : @(RAItemTypePetEgg),
-            @"PetArmor"    .lowercaseString : @(RAItemTypePetArmor),
-            @"Ammo"        .lowercaseString : @(RAItemTypeAmmo),
-            @"DelayConsume".lowercaseString : @(RAItemTypeDelayConsume),
-            @"ShadowGear"  .lowercaseString : @(RAItemTypeShadowGear),
-            @"Cash"        .lowercaseString : @(RAItemTypeCash),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *type = typeMap[string.lowercaseString];
-    return type;
-}
-
 + (NSNumber *)subTypeFromString:(NSString *)string {
     static NSDictionary<NSString *, NSNumber *> *subTypeMap = nil;
     static dispatch_once_t onceToken;
@@ -277,7 +249,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _type = RAItemTypeEtc;
+        _type = RAItemType.etc;
         _subType = RAItemSubTypeNone;
         _buy = 0;
         _sell = 0;
@@ -303,9 +275,9 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSNumber *type = [RAItem typeFromString:dic[@"Type"]];
+    NSString *type = dic[@"Type"];
     if (type) {
-        _type = type.integerValue;
+        _type = [RAItemType itemTypeWithAegisName:type] ?: RAItemType.etc;
     }
 
     NSNumber *subType = [RAItem subTypeFromString:dic[@"SubType"]];

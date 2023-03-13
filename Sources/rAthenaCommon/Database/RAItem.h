@@ -6,24 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RAItemType.h"
 #import "YYModel/YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, RAItemType) {
-    RAItemTypeHealing,
-    RAItemTypeUsable,
-    RAItemTypeEtc,
-    RAItemTypeArmor,
-    RAItemTypeWeapon,
-    RAItemTypeCard,
-    RAItemTypePetEgg,
-    RAItemTypePetArmor,
-    RAItemTypeAmmo,
-    RAItemTypeDelayConsume,
-    RAItemTypeShadowGear,
-    RAItemTypeCash,
-};
 
 typedef NS_ENUM(NSInteger, RAItemSubType) {
     RAItemSubTypeNone,
@@ -157,7 +143,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic, copy) NSString *name;
 
 /// Item type. (Default: Etc)
-@property (nonatomic) RAItemType type;
+@property (nonatomic) RAItemType *type;
 
 /// Weapon, Ammo or Card type. (Default: 0)
 @property (nonatomic) RAItemSubType subType;
