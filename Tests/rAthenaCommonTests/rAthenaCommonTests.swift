@@ -132,7 +132,7 @@ class rAthenaCommonTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() async {
-        let db = RASkillTreeDatabase()
+        let db = RASkillDatabase()
         let skillTrees = await db.fetchSkillTrees(in: .renewal)
         XCTAssertEqual(skillTrees.count, 167)
     }

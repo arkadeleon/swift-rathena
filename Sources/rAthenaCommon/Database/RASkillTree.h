@@ -1,12 +1,11 @@
 //
-//  RASkillTreeDatabase.h
+//  RASkillTree.h
 //  rAthena
 //
-//  Created by Leon Li on 2023/3/6.
+//  Created by Leon Li on 2023/3/13.
 //
 
 #import <Foundation/Foundation.h>
-#import "RADatabaseMode.h"
 #import "YYModel/YYModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -61,12 +60,6 @@ typedef NS_OPTIONS(NSUInteger, RASkillTreeInherit) {
 
 /// Skill level required. Set to 0 to remove the skill.
 @property (nonatomic) NSInteger level;
-
-@end
-
-@interface RASkillTreeDatabase : NSObject
-
-- (void)fetchSkillTreesInMode:(RADatabaseMode)mode completionHandler:(void (^)(NSArray<RASkillTree *> *skillTrees))completionHandler NS_SWIFT_ASYNC(2);
 
 @end
 
