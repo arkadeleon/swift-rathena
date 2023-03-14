@@ -44,6 +44,7 @@ let package = Package(
             name: "rAthenaCommon",
             dependencies: [
                 "ryml",
+                "YYModel",
             ],
             path: ".",
             exclude: [
@@ -65,6 +66,7 @@ let package = Package(
             ],
             publicHeadersPath: "Sources/rAthenaCommon",
             cxxSettings: [
+                .headerSearchPath("3rdparty"),
                 .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
                 .headerSearchPath("3rdparty/rapidyaml/src"),
                 .headerSearchPath("src"),
@@ -213,6 +215,11 @@ let package = Package(
             path: "3rdparty/yaml-cpp",
             sources: ["src"],
             publicHeadersPath: "include"
+        ),
+        .target(
+            name: "YYModel",
+            path: "3rdparty/YYModel",
+            publicHeadersPath: ""
         ),
         .testTarget(
             name: "rAthenaCommonTests",

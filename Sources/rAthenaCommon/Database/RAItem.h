@@ -6,7 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YYModel/YYModel.h"
+
+@import YYModel;
 
 @class RAItemType;
 @class RAItemSubType;

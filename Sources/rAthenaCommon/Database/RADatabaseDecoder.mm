@@ -7,7 +7,8 @@
 
 #import "RADatabaseDecoder.h"
 #import "RAResourceManager.h"
-#import "YYModel/YYModel.h"
+
+#import <YYModel/YYModel.h>
 
 #include <ryml_std.hpp>
 #include <ryml.hpp>
