@@ -82,12 +82,12 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "rapidyaml",
+                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("rapidyaml/ext/c4core/src"),
-                .headerSearchPath("rapidyaml/src"),
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -107,12 +107,12 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "rapidyaml",
+                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("rapidyaml/ext/c4core/src"),
-                .headerSearchPath("rapidyaml/src"),
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -132,12 +132,12 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "rapidyaml",
+                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("rapidyaml/ext/c4core/src"),
-                .headerSearchPath("rapidyaml/src"),
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -159,16 +159,14 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "httplib",
-                "json",
-                "rapidyaml",
+                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("httplib"),
-                .headerSearchPath("json/include"),
-                .headerSearchPath("rapidyaml/ext/c4core/src"),
-                .headerSearchPath("rapidyaml/src"),
+                .headerSearchPath("3rdparty/httplib"),
+                .headerSearchPath("3rdparty/json/include"),
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [

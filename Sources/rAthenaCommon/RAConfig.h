@@ -7,4 +7,4 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSInteger RA_CONFIG_PACKETVER;
+extern const NSInteger RAPacketVersion;
