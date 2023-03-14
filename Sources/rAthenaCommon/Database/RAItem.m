@@ -6,6 +6,8 @@
 //
 
 #import "RAItem.h"
+#import "RAItemType.h"
+#import "RAItemSubType.h"
 
 @implementation RAItem
 
@@ -45,54 +47,6 @@
         @"equipScript"  : @"EquipScript",
         @"unEquipScript": @"UnEquipScript",
     };
-}
-
-+ (NSNumber *)subTypeFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *subTypeMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        subTypeMap = @{
-            @"Fist"       .lowercaseString : @(RAItemSubTypeFist),
-            @"Dagger"     .lowercaseString : @(RAItemSubTypeDagger),
-            @"1hsword"    .lowercaseString : @(RAItemSubTypeOneHandedSword),
-            @"2hsword"    .lowercaseString : @(RAItemSubTypeTwoHandedSword),
-            @"1hspear"    .lowercaseString : @(RAItemSubTypeOneHandedSpear),
-            @"2hspear"    .lowercaseString : @(RAItemSubTypeTwoHandedSpear),
-            @"1haxe"      .lowercaseString : @(RAItemSubTypeOneHandedAxe),
-            @"2haxe"      .lowercaseString : @(RAItemSubTypeTwoHandedAxe),
-            @"Mace"       .lowercaseString : @(RAItemSubTypeMace),
-            @"Staff"      .lowercaseString : @(RAItemSubTypeStaff),
-            @"Bow"        .lowercaseString : @(RAItemSubTypeBow),
-            @"Knuckle"    .lowercaseString : @(RAItemSubTypeKnuckle),
-            @"Musical"    .lowercaseString : @(RAItemSubTypeMusical),
-            @"Whip"       .lowercaseString : @(RAItemSubTypeWhip),
-            @"Book"       .lowercaseString : @(RAItemSubTypeBook),
-            @"Katar"      .lowercaseString : @(RAItemSubTypeKatar),
-            @"Revolver"   .lowercaseString : @(RAItemSubTypeRevolver),
-            @"Rifle"      .lowercaseString : @(RAItemSubTypeRifle),
-            @"Gatling"    .lowercaseString : @(RAItemSubTypeGatling),
-            @"Shotgun"    .lowercaseString : @(RAItemSubTypeShotgun),
-            @"Grenade"    .lowercaseString : @(RAItemSubTypeGrenade),
-            @"Huuma"      .lowercaseString : @(RAItemSubTypeHuuma),
-            @"2hstaff"    .lowercaseString : @(RAItemSubTypeTwoHandedStaff),
-            @"Arrow"      .lowercaseString : @(RAItemSubTypeArrow),
-            @"Bullet"     .lowercaseString : @(RAItemSubTypeBullet),
-            @"Shell"      .lowercaseString : @(RAItemSubTypeShell),
-            @"Shuriken"   .lowercaseString : @(RAItemSubTypeShuriken),
-            @"Kunai"      .lowercaseString : @(RAItemSubTypeKunai),
-            @"Cannonball" .lowercaseString : @(RAItemSubTypeCannonball),
-            @"ThrowWeapon".lowercaseString : @(RAItemSubTypeThrowWeapon),
-            @"Normal"     .lowercaseString : @(RAItemSubTypeNormal),
-            @"Enchant"    .lowercaseString : @(RAItemSubTypeEnchant),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *subType = subTypeMap[string.lowercaseString];
-    return subType;
 }
 
 + (RAItemJob)jobsFromDictionary:(NSDictionary *)dictionary {
@@ -250,7 +204,7 @@
     self = [super init];
     if (self) {
         _type = RAItemType.etc;
-        _subType = RAItemSubTypeNone;
+        _subType = nil;
         _buy = 0;
         _sell = 0;
         _weight = 0;
@@ -280,10 +234,7 @@
         _type = [RAItemType itemTypeWithAegisName:type] ?: RAItemType.etc;
     }
 
-    NSNumber *subType = [RAItem subTypeFromString:dic[@"SubType"]];
-    if (subType) {
-        _subType = subType.integerValue;
-    }
+    _subType = [RAItemSubType itemSubTypeWithType:_type aegisName:dic[@"SubType"]];
 
     _jobs = [RAItem jobsFromDictionary:dic[@"Jobs"]];
 

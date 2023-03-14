@@ -6,46 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RAItemType.h"
 #import "YYModel/YYModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@class RAItemType;
+@class RAItemSubType;
 
-typedef NS_ENUM(NSInteger, RAItemSubType) {
-    RAItemSubTypeNone,
-    RAItemSubTypeFist,
-    RAItemSubTypeDagger,
-    RAItemSubTypeOneHandedSword,
-    RAItemSubTypeTwoHandedSword,
-    RAItemSubTypeOneHandedSpear,
-    RAItemSubTypeTwoHandedSpear,
-    RAItemSubTypeOneHandedAxe,
-    RAItemSubTypeTwoHandedAxe,
-    RAItemSubTypeMace,
-    RAItemSubTypeStaff,
-    RAItemSubTypeBow,
-    RAItemSubTypeKnuckle,
-    RAItemSubTypeMusical,
-    RAItemSubTypeWhip,
-    RAItemSubTypeBook,
-    RAItemSubTypeKatar,
-    RAItemSubTypeRevolver,
-    RAItemSubTypeRifle,
-    RAItemSubTypeGatling,
-    RAItemSubTypeShotgun,
-    RAItemSubTypeGrenade,
-    RAItemSubTypeHuuma,
-    RAItemSubTypeTwoHandedStaff,
-    RAItemSubTypeArrow,
-    RAItemSubTypeBullet,
-    RAItemSubTypeShell,
-    RAItemSubTypeShuriken,
-    RAItemSubTypeKunai,
-    RAItemSubTypeCannonball,
-    RAItemSubTypeThrowWeapon,
-    RAItemSubTypeNormal,
-    RAItemSubTypeEnchant,
-};
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, RAItemJob) {
     RAItemJobAcolyte        = 1 << 0,
@@ -146,7 +112,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic) RAItemType *type;
 
 /// Weapon, Ammo or Card type. (Default: 0)
-@property (nonatomic) RAItemSubType subType;
+@property (nonatomic, nullable) RAItemSubType *subType;
 
 /// Buying price. When not specified, becomes double the sell price. (Default: 0)
 @property (nonatomic) NSInteger buy;

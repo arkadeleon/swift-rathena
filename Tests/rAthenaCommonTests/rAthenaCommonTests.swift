@@ -46,7 +46,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssert(sword.aegisName == "Sword")
         XCTAssert(sword.name == "Sword")
         XCTAssert(sword.type == .weapon)
-        XCTAssert(sword.subType == .oneHandedSword)
+        XCTAssert(sword.subType?.asWeaponType() == .oneHandedSword)
         XCTAssert(sword.buy == 100)
         XCTAssert(sword.weight == 500)
         XCTAssert(sword.attack == 25)
