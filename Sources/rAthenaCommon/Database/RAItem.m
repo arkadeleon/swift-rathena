@@ -6,8 +6,8 @@
 //
 
 #import "RAItem.h"
-#import "RAItemType.h"
-#import "RAItemSubType.h"
+#import "Enum/RAItemType.h"
+#import "Enum/RAItemSubType.h"
 
 @implementation RAItem
 

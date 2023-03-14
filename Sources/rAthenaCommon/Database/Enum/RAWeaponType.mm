@@ -7,7 +7,7 @@
 
 #import "RAWeaponType.h"
 
-#include "../../../src/map/pc.hpp"
+#include "map/pc.hpp"
 
 @implementation RAWeaponType
 

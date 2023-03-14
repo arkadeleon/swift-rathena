@@ -7,7 +7,7 @@
 
 #import "RAItemType.h"
 
-#include "../../../src/common/mmo.hpp"
+#include "common/mmo.hpp"
 
 @implementation RAItemType
 
