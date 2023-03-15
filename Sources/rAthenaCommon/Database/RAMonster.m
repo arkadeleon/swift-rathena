@@ -6,6 +6,8 @@
 //
 
 #import "RAMonster.h"
+#import "Enum/RASize.h"
+#import "Enum/RARace.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
 const NSInteger RAMonsterWalkSpeedNormal = 150;
@@ -63,51 +65,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         @"mvpDrops" : [RAMonsterDrop class],
         @"drops"    : [RAMonsterDrop class],
     };
-}
-
-+ (NSNumber *)sizeFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *sizeMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sizeMap = @{
-            @"Small" .lowercaseString : @(RAMonsterSizeSmall),
-            @"Medium".lowercaseString : @(RAMonsterSizeMedium),
-            @"Large" .lowercaseString : @(RAMonsterSizeLarge),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *size = sizeMap[string.lowercaseString];
-    return size;
-}
-
-+ (NSNumber *)raceFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *raceMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        raceMap = @{
-            @"Formless" .lowercaseString : @(RAMonsterRaceFormless),
-            @"Undead"   .lowercaseString : @(RAMonsterRaceUndead),
-            @"Brute"    .lowercaseString : @(RAMonsterRaceBrute),
-            @"Plant"    .lowercaseString : @(RAMonsterRacePlant),
-            @"Insect"   .lowercaseString : @(RAMonsterRaceInsect),
-            @"Fish"     .lowercaseString : @(RAMonsterRaceFish),
-            @"Demon"    .lowercaseString : @(RAMonsterRaceDemon),
-            @"Demihuman".lowercaseString : @(RAMonsterRaceDemihuman),
-            @"Angel"    .lowercaseString : @(RAMonsterRaceAngel),
-            @"Dragon"   .lowercaseString : @(RAMonsterRaceDragon),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *race = raceMap[string.lowercaseString];
-    return race;
 }
 
 + (RAMonsterRaceGroup)raceGroupsFromDictionary:(NSDictionary *)dictionary {
@@ -318,8 +275,8 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _attackRange = 0;
         _skillRange = 0;
         _chaseRange = 0;
-        _size = RAMonsterSizeSmall;
-        _race = RAMonsterRaceFormless;
+        _size = RASize.small;
+        _race = RARace.formless;
         _raceGroups = 0;
         _element = RAMonsterElementNeutral;
         _elementLevel = 1;
@@ -336,14 +293,20 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSNumber *size = [RAMonster sizeFromString:dic[@"Size"]];
-    if (size) {
-        _size = size.integerValue;
+    NSString *sizeName = dic[@"Size"];
+    if (sizeName) {
+        RASize *size = [RASize caseOfName:sizeName];
+        if (size) {
+            _size = size;
+        }
     }
 
-    NSNumber *race = [RAMonster raceFromString:dic[@"Race"]];
-    if (race) {
-        _race = race.integerValue;
+    NSString *raceName = dic[@"Race"];
+    if (raceName) {
+        RARace *race = [RARace caseOfName:raceName];
+        if (race) {
+            _race = race;
+        }
     }
 
     _raceGroups = [RAMonster raceGroupsFromDictionary:dic[@"RaceGroups"]];

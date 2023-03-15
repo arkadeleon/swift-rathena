@@ -9,26 +9,10 @@
 
 @import YYModel;
 
+@class RASize;
+@class RARace;
+
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, RAMonsterSize) {
-    RAMonsterSizeSmall,
-    RAMonsterSizeMedium,
-    RAMonsterSizeLarge,
-};
-
-typedef NS_ENUM(NSInteger, RAMonsterRace) {
-    RAMonsterRaceFormless,
-    RAMonsterRaceUndead,
-    RAMonsterRaceBrute,
-    RAMonsterRacePlant,
-    RAMonsterRaceInsect,
-    RAMonsterRaceFish,
-    RAMonsterRaceDemon,
-    RAMonsterRaceDemihuman,
-    RAMonsterRaceAngel,
-    RAMonsterRaceDragon,
-};
 
 typedef NS_OPTIONS(NSUInteger, RAMonsterRaceGroup) {
     RAMonsterRaceGroupGoblin                = 1 << 0,
@@ -215,10 +199,10 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) NSInteger chaseRange;
 
 /// Size. (Default: Small)
-@property (nonatomic) RAMonsterSize size;
+@property (nonatomic) RASize *size;
 
 /// Race. (Default: Formless)
-@property (nonatomic) RAMonsterRace race;
+@property (nonatomic) RARace *race;
 
 /// List of secondary groups the monster may be part of. (Optional)
 @property (nonatomic) RAMonsterRaceGroup raceGroups;
