@@ -6,19 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RAEnum.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RACardType : NSObject
+@interface RACardType : RAEnum
 
 @property (nonatomic, class, readonly) RACardType *normal;
 @property (nonatomic, class, readonly) RACardType *enchant;
-
-@property (nonatomic) NSInteger typeID;
-@property (nonatomic, copy) NSString *aegisName;
-@property (nonatomic, copy) NSString *name;
-
-+ (nullable instancetype)cardTypeWithAegisName:(NSString *)aegisName;
 
 @end
 

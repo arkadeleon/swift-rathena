@@ -16,9 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         none = [[RAAmmoType alloc] init];
-        none.typeID = AMMO_NONE;
-        none.aegisName = @"";
+        none.value = AMMO_NONE;
         none.name = @"";
+        none.englishName = @"";
     });
     return none;
 }
@@ -28,9 +28,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         arrow = [[RAAmmoType alloc] init];
-        arrow.typeID = AMMO_ARROW;
-        arrow.aegisName = @"Arrow";
+        arrow.value = AMMO_ARROW;
         arrow.name = @"Arrow";
+        arrow.englishName = @"Arrow";
     });
     return arrow;
 }
@@ -40,9 +40,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dagger = [[RAAmmoType alloc] init];
-        dagger.typeID = AMMO_DAGGER;
-        dagger.aegisName = @"Dagger";
+        dagger.value = AMMO_DAGGER;
         dagger.name = @"Dagger";
+        dagger.englishName = @"Dagger";
     });
     return dagger;
 }
@@ -52,9 +52,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         bullet = [[RAAmmoType alloc] init];
-        bullet.typeID = AMMO_BULLET;
-        bullet.aegisName = @"Bullet";
+        bullet.value = AMMO_BULLET;
         bullet.name = @"Bullet";
+        bullet.englishName = @"Bullet";
     });
     return bullet;
 }
@@ -64,9 +64,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shell = [[RAAmmoType alloc] init];
-        shell.typeID = AMMO_SHELL;
-        shell.aegisName = @"Shell";
+        shell.value = AMMO_SHELL;
         shell.name = @"Shell";
+        shell.englishName = @"Shell";
     });
     return shell;
 }
@@ -76,9 +76,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         grenade = [[RAAmmoType alloc] init];
-        grenade.typeID = AMMO_GRENADE;
-        grenade.aegisName = @"Grenade";
+        grenade.value = AMMO_GRENADE;
         grenade.name = @"Grenade";
+        grenade.englishName = @"Grenade";
     });
     return grenade;
 }
@@ -88,9 +88,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shuriken = [[RAAmmoType alloc] init];
-        shuriken.typeID = AMMO_SHURIKEN;
-        shuriken.aegisName = @"Shuriken";
+        shuriken.value = AMMO_SHURIKEN;
         shuriken.name = @"Shuriken";
+        shuriken.englishName = @"Shuriken";
     });
     return shuriken;
 }
@@ -100,9 +100,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         kunai = [[RAAmmoType alloc] init];
-        kunai.typeID = AMMO_KUNAI;
-        kunai.aegisName = @"Kunai";
+        kunai.value = AMMO_KUNAI;
         kunai.name = @"Kunai";
+        kunai.englishName = @"Kunai";
     });
     return kunai;
 }
@@ -112,9 +112,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cannonBall = [[RAAmmoType alloc] init];
-        cannonBall.typeID = AMMO_CANNONBALL;
-        cannonBall.aegisName = @"Cannonball";
-        cannonBall.name = @"Cannon Ball";
+        cannonBall.value = AMMO_CANNONBALL;
+        cannonBall.name = @"Cannonball";
+        cannonBall.englishName = @"Cannon Ball";
     });
     return cannonBall;
 }
@@ -124,14 +124,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         throwWeapon = [[RAAmmoType alloc] init];
-        throwWeapon.typeID = AMMO_THROWWEAPON;
-        throwWeapon.aegisName = @"Throwweapon";
-        throwWeapon.name = @"Throw Weapon";
+        throwWeapon.value = AMMO_THROWWEAPON;
+        throwWeapon.name = @"Throwweapon";
+        throwWeapon.englishName = @"Throw Weapon";
     });
     return throwWeapon;
 }
 
-+ (instancetype)ammoTypeWithAegisName:(NSString *)aegisName {
++ (instancetype)caseOfName:(NSString *)name {
     static NSArray<RAAmmoType *> *allAmmoTypes = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -149,7 +149,7 @@
     });
 
     for (RAAmmoType *ammoType in allAmmoTypes) {
-        if ([ammoType.aegisName caseInsensitiveCompare:aegisName] == NSOrderedSame) {
+        if ([ammoType.name caseInsensitiveCompare:name] == NSOrderedSame) {
             return ammoType;
         }
     }

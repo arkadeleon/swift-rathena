@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RAItemSubType : NSObject
 
-+ (nullable instancetype)itemSubTypeWithType:(RAItemType *)type aegisName:(nullable NSString *)aegisName;
++ (nullable instancetype)itemSubTypeOfType:(RAItemType *)type name:(nullable NSString *)name;
 
 - (nullable RAWeaponType *)asWeaponType;
 - (nullable RAAmmoType *)asAmmoType;

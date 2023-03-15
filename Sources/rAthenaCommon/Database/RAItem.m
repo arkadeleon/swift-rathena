@@ -7,7 +7,7 @@
 
 #import "RAItem.h"
 #import "Enum/RAItemType.h"
-#import "Enum/RAItemSubType.h"
+#import "RAItemSubType.h"
 
 @implementation RAItem
 
@@ -231,10 +231,10 @@
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     NSString *type = dic[@"Type"];
     if (type) {
-        _type = [RAItemType itemTypeWithAegisName:type] ?: RAItemType.etc;
+        _type = [RAItemType caseOfName:type] ?: RAItemType.etc;
     }
 
-    _subType = [RAItemSubType itemSubTypeWithType:_type aegisName:dic[@"SubType"]];
+    _subType = [RAItemSubType itemSubTypeOfType:_type name:dic[@"SubType"]];
 
     _jobs = [RAItem jobsFromDictionary:dic[@"Jobs"]];
 

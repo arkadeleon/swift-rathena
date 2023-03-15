@@ -6,10 +6,10 @@
 //
 
 #import "RAItemSubType.h"
-#import "RAItemType.h"
-#import "RAWeaponType.h"
-#import "RAAmmoType.h"
-#import "RACardType.h"
+#import "Enum/RAItemType.h"
+#import "Enum/RAWeaponType.h"
+#import "Enum/RAAmmoType.h"
+#import "Enum/RACardType.h"
 
 @interface RAItemSubType ()
 
@@ -21,18 +21,18 @@
 
 @implementation RAItemSubType
 
-+ (instancetype)itemSubTypeWithType:(RAItemType *)type aegisName:(nullable NSString *)aegisName {
++ (instancetype)itemSubTypeOfType:(RAItemType *)type name:(nullable NSString *)name {
     if (type == RAItemType.weapon) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.weaponType = aegisName ? [RAWeaponType weaponTypeWithAegisName:aegisName] : nil;
+        subType.weaponType = name ? [RAWeaponType caseOfName:name] : nil;
         return subType;
     } else if (type == RAItemType.ammo) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.ammoType = aegisName ? [RAAmmoType ammoTypeWithAegisName:aegisName] : RAAmmoType.none;
+        subType.ammoType = name ? [RAAmmoType caseOfName:name] : RAAmmoType.none;
         return subType;
     } else if (type == RAItemType.card) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.cardType = aegisName ? [RACardType cardTypeWithAegisName:aegisName] : RACardType.normal;
+        subType.cardType = name ? [RACardType caseOfName:name] : RACardType.normal;
         return subType;
     } else {
         return nil;

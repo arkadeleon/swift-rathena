@@ -16,9 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         healing = [[RAItemType alloc] init];
-        healing.typeID = IT_HEALING;
-        healing.aegisName = @"Healing";
+        healing.value = IT_HEALING;
         healing.name = @"Healing";
+        healing.englishName = @"Healing";
     });
     return healing;
 }
@@ -28,9 +28,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         unknown = [[RAItemType alloc] init];
-        unknown.typeID = IT_UNKNOWN;
-        unknown.aegisName = @"Unknown";
+        unknown.value = IT_UNKNOWN;
         unknown.name = @"Unknown";
+        unknown.englishName = @"Unknown";
     });
     return unknown;
 }
@@ -40,9 +40,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         usable = [[RAItemType alloc] init];
-        usable.typeID = IT_USABLE;
-        usable.aegisName = @"Usable";
+        usable.value = IT_USABLE;
         usable.name = @"Usable";
+        usable.englishName = @"Usable";
     });
     return usable;
 }
@@ -52,9 +52,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         etc = [[RAItemType alloc] init];
-        etc.typeID = IT_ETC;
-        etc.aegisName = @"Etc";
+        etc.value = IT_ETC;
         etc.name = @"Etc";
+        etc.englishName = @"Etc";
     });
     return etc;
 }
@@ -64,9 +64,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         armor = [[RAItemType alloc] init];
-        armor.typeID = IT_ARMOR;
-        armor.aegisName = @"Armor";
+        armor.value = IT_ARMOR;
         armor.name = @"Armor";
+        armor.englishName = @"Armor";
     });
     return armor;
 }
@@ -76,9 +76,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         weapon = [[RAItemType alloc] init];
-        weapon.typeID = IT_WEAPON;
-        weapon.aegisName = @"Weapon";
+        weapon.value = IT_WEAPON;
         weapon.name = @"Weapon";
+        weapon.englishName = @"Weapon";
     });
     return weapon;
 }
@@ -88,9 +88,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         card = [[RAItemType alloc] init];
-        card.typeID = IT_CARD;
-        card.aegisName = @"Card";
+        card.value = IT_CARD;
         card.name = @"Card";
+        card.englishName = @"Card";
     });
     return card;
 }
@@ -100,9 +100,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         petEgg = [[RAItemType alloc] init];
-        petEgg.typeID = IT_PETEGG;
-        petEgg.aegisName = @"PetEgg";
-        petEgg.name = @"Pet Egg";
+        petEgg.value = IT_PETEGG;
+        petEgg.name = @"PetEgg";
+        petEgg.englishName = @"Pet Egg";
     });
     return petEgg;
 }
@@ -112,9 +112,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         petArmor = [[RAItemType alloc] init];
-        petArmor.typeID = IT_PETARMOR;
-        petArmor.aegisName = @"PetArmor";
-        petArmor.name = @"Pet Armor";
+        petArmor.value = IT_PETARMOR;
+        petArmor.name = @"PetArmor";
+        petArmor.englishName = @"Pet Armor";
     });
     return petArmor;
 }
@@ -124,9 +124,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         unknown2 = [[RAItemType alloc] init];
-        unknown2.typeID = IT_UNKNOWN2;
-        unknown2.aegisName = @"Unknown2";
+        unknown2.value = IT_UNKNOWN2;
         unknown2.name = @"Unknown2";
+        unknown2.englishName = @"Unknown2";
     });
     return unknown2;
 }
@@ -136,9 +136,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         ammo = [[RAItemType alloc] init];
-        ammo.typeID = IT_AMMO;
-        ammo.aegisName = @"Ammo";
+        ammo.value = IT_AMMO;
         ammo.name = @"Ammo";
+        ammo.englishName = @"Ammo";
     });
     return ammo;
 }
@@ -148,9 +148,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         delayConsume = [[RAItemType alloc] init];
-        delayConsume.typeID = IT_DELAYCONSUME;
-        delayConsume.aegisName = @"DelayConsume";
-        delayConsume.name = @"Delay Consume";
+        delayConsume.value = IT_DELAYCONSUME;
+        delayConsume.name = @"DelayConsume";
+        delayConsume.englishName = @"Delay Consume";
     });
     return delayConsume;
 }
@@ -160,9 +160,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shadowGear = [[RAItemType alloc] init];
-        shadowGear.typeID = IT_SHADOWGEAR;
-        shadowGear.aegisName = @"ShadowGear";
-        shadowGear.name = @"Shadow Gear";
+        shadowGear.value = IT_SHADOWGEAR;
+        shadowGear.name = @"ShadowGear";
+        shadowGear.englishName = @"Shadow Gear";
     });
     return shadowGear;
 }
@@ -172,14 +172,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         cash = [[RAItemType alloc] init];
-        cash.typeID = IT_CASH;
-        cash.aegisName = @"Cash";
+        cash.value = IT_CASH;
         cash.name = @"Cash";
+        cash.englishName = @"Cash";
     });
     return cash;
 }
 
-+ (instancetype)itemTypeWithAegisName:(NSString *)aegisName {
++ (instancetype)caseOfName:(NSString *)name {
     static NSArray<RAItemType *> *allItemTypes = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -202,7 +202,7 @@
     });
 
     for (RAItemType *itemType in allItemTypes) {
-        if ([itemType.aegisName caseInsensitiveCompare:aegisName] == NSOrderedSame) {
+        if ([itemType.name caseInsensitiveCompare:name] == NSOrderedSame) {
             return itemType;
         }
     }

@@ -16,9 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fist = [[RAWeaponType alloc] init];
-        fist.typeID = W_FIST;
-        fist.aegisName = @"Fist";
+        fist.value = W_FIST;
         fist.name = @"Fist";
+        fist.englishName = @"Fist";
     });
     return fist;
 }
@@ -28,9 +28,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dagger = [[RAWeaponType alloc] init];
-        dagger.typeID = W_DAGGER;
-        dagger.aegisName = @"Dagger";
+        dagger.value = W_DAGGER;
         dagger.name = @"Dagger";
+        dagger.englishName = @"Dagger";
     });
     return dagger;
 }
@@ -40,9 +40,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         oneHandedSword = [[RAWeaponType alloc] init];
-        oneHandedSword.typeID = W_1HSWORD;
-        oneHandedSword.aegisName = @"1hSword";
-        oneHandedSword.name = @"One-Handed Sword";
+        oneHandedSword.value = W_1HSWORD;
+        oneHandedSword.name = @"1hSword";
+        oneHandedSword.englishName = @"One-Handed Sword";
     });
     return oneHandedSword;
 }
@@ -52,9 +52,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         twoHandedSword = [[RAWeaponType alloc] init];
-        twoHandedSword.typeID = W_2HSWORD;
-        twoHandedSword.aegisName = @"2hSword";
-        twoHandedSword.name = @"Two-Handed Sword";
+        twoHandedSword.value = W_2HSWORD;
+        twoHandedSword.name = @"2hSword";
+        twoHandedSword.englishName = @"Two-Handed Sword";
     });
     return twoHandedSword;
 }
@@ -64,9 +64,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         oneHandedSpear = [[RAWeaponType alloc] init];
-        oneHandedSpear.typeID = W_1HSPEAR;
-        oneHandedSpear.aegisName = @"1hSpear";
-        oneHandedSpear.name = @"One-Handed Spear";
+        oneHandedSpear.value = W_1HSPEAR;
+        oneHandedSpear.name = @"1hSpear";
+        oneHandedSpear.englishName = @"One-Handed Spear";
     });
     return oneHandedSpear;
 }
@@ -76,9 +76,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         twoHandedSpear = [[RAWeaponType alloc] init];
-        twoHandedSpear.typeID = W_2HSPEAR;
-        twoHandedSpear.aegisName = @"2hSpear";
-        twoHandedSpear.name = @"Two-Handed Spear";
+        twoHandedSpear.value = W_2HSPEAR;
+        twoHandedSpear.name = @"2hSpear";
+        twoHandedSpear.englishName = @"Two-Handed Spear";
     });
     return twoHandedSpear;
 }
@@ -88,9 +88,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         oneHandedAxe = [[RAWeaponType alloc] init];
-        oneHandedAxe.typeID = W_1HAXE;
-        oneHandedAxe.aegisName = @"1hAxe";
-        oneHandedAxe.name = @"One-Handed Axe";
+        oneHandedAxe.value = W_1HAXE;
+        oneHandedAxe.name = @"1hAxe";
+        oneHandedAxe.englishName = @"One-Handed Axe";
     });
     return oneHandedAxe;
 }
@@ -100,9 +100,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         twoHandedAxe = [[RAWeaponType alloc] init];
-        twoHandedAxe.typeID = W_2HAXE;
-        twoHandedAxe.aegisName = @"2hAxe";
-        twoHandedAxe.name = @"Two-Handed Axe";
+        twoHandedAxe.value = W_2HAXE;
+        twoHandedAxe.name = @"2hAxe";
+        twoHandedAxe.englishName = @"Two-Handed Axe";
     });
     return twoHandedAxe;
 }
@@ -112,9 +112,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mace = [[RAWeaponType alloc] init];
-        mace.typeID = W_MACE;
-        mace.aegisName = @"Mace";
+        mace.value = W_MACE;
         mace.name = @"Mace";
+        mace.englishName = @"Mace";
     });
     return mace;
 }
@@ -124,9 +124,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         twoHandedMace = [[RAWeaponType alloc] init];
-        twoHandedMace.typeID = W_2HMACE;
-        twoHandedMace.aegisName = @"2hMace";
-        twoHandedMace.name = @"Two-Handed Mace";
+        twoHandedMace.value = W_2HMACE;
+        twoHandedMace.name = @"2hMace";
+        twoHandedMace.englishName = @"Two-Handed Mace";
     });
     return twoHandedMace;
 }
@@ -136,9 +136,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         staff = [[RAWeaponType alloc] init];
-        staff.typeID = W_STAFF;
-        staff.aegisName = @"Staff";
+        staff.value = W_STAFF;
         staff.name = @"Staff";
+        staff.englishName = @"Staff";
     });
     return staff;
 }
@@ -148,9 +148,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         bow = [[RAWeaponType alloc] init];
-        bow.typeID = W_BOW;
-        bow.aegisName = @"Bow";
+        bow.value = W_BOW;
         bow.name = @"Bow";
+        bow.englishName = @"Bow";
     });
     return bow;
 }
@@ -160,9 +160,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         knuckle = [[RAWeaponType alloc] init];
-        knuckle.typeID = W_KNUCKLE;
-        knuckle.aegisName = @"Knuckle";
+        knuckle.value = W_KNUCKLE;
         knuckle.name = @"Knuckle";
+        knuckle.englishName = @"Knuckle";
     });
     return knuckle;
 }
@@ -172,9 +172,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         musical = [[RAWeaponType alloc] init];
-        musical.typeID = W_MUSICAL;
-        musical.aegisName = @"Musical";
+        musical.value = W_MUSICAL;
         musical.name = @"Musical";
+        musical.englishName = @"Musical";
     });
     return musical;
 }
@@ -184,9 +184,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         whip = [[RAWeaponType alloc] init];
-        whip.typeID = W_WHIP;
-        whip.aegisName = @"Whip";
+        whip.value = W_WHIP;
         whip.name = @"Whip";
+        whip.englishName = @"Whip";
     });
     return whip;
 }
@@ -196,9 +196,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         book = [[RAWeaponType alloc] init];
-        book.typeID = W_BOOK;
-        book.aegisName = @"Book";
+        book.value = W_BOOK;
         book.name = @"Book";
+        book.englishName = @"Book";
     });
     return book;
 }
@@ -208,9 +208,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         katar = [[RAWeaponType alloc] init];
-        katar.typeID = W_KATAR;
-        katar.aegisName = @"Katar";
+        katar.value = W_KATAR;
         katar.name = @"Katar";
+        katar.englishName = @"Katar";
     });
     return katar;
 }
@@ -220,9 +220,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         revolver = [[RAWeaponType alloc] init];
-        revolver.typeID = W_REVOLVER;
-        revolver.aegisName = @"Revolver";
+        revolver.value = W_REVOLVER;
         revolver.name = @"Revolver";
+        revolver.englishName = @"Revolver";
     });
     return revolver;
 }
@@ -232,9 +232,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         rifle = [[RAWeaponType alloc] init];
-        rifle.typeID = W_RIFLE;
-        rifle.aegisName = @"Rifle";
+        rifle.value = W_RIFLE;
         rifle.name = @"Rifle";
+        rifle.englishName = @"Rifle";
     });
     return rifle;
 }
@@ -244,9 +244,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         gatling = [[RAWeaponType alloc] init];
-        gatling.typeID = W_GATLING;
-        gatling.aegisName = @"Gatling";
+        gatling.value = W_GATLING;
         gatling.name = @"Gatling";
+        gatling.englishName = @"Gatling";
     });
     return gatling;
 }
@@ -256,9 +256,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shotgun = [[RAWeaponType alloc] init];
-        shotgun.typeID = W_SHOTGUN;
-        shotgun.aegisName = @"Shotgun";
+        shotgun.value = W_SHOTGUN;
         shotgun.name = @"Shotgun";
+        shotgun.englishName = @"Shotgun";
     });
     return shotgun;
 }
@@ -268,9 +268,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         grenade = [[RAWeaponType alloc] init];
-        grenade.typeID = W_GRENADE;
-        grenade.aegisName = @"Grenade";
+        grenade.value = W_GRENADE;
         grenade.name = @"Grenade";
+        grenade.englishName = @"Grenade";
     });
     return grenade;
 }
@@ -280,9 +280,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         huuma = [[RAWeaponType alloc] init];
-        huuma.typeID = W_HUUMA;
-        huuma.aegisName = @"Huuma";
+        huuma.value = W_HUUMA;
         huuma.name = @"Huuma";
+        huuma.englishName = @"Huuma";
     });
     return huuma;
 }
@@ -292,14 +292,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         twoHandedStaff = [[RAWeaponType alloc] init];
-        twoHandedStaff.typeID = W_2HSTAFF;
-        twoHandedStaff.aegisName = @"2hStaff";
-        twoHandedStaff.name = @"Two-Handed Staff";
+        twoHandedStaff.value = W_2HSTAFF;
+        twoHandedStaff.name = @"2hStaff";
+        twoHandedStaff.englishName = @"Two-Handed Staff";
     });
     return twoHandedStaff;
 }
 
-+ (instancetype)weaponTypeWithAegisName:(NSString *)aegisName {
++ (instancetype)caseOfName:(NSString *)name {
     static NSArray<RAWeaponType *> *allWeaponTypes = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -332,7 +332,7 @@
     });
 
     for (RAWeaponType *weaponType in allWeaponTypes) {
-        if ([weaponType.aegisName caseInsensitiveCompare:aegisName] == NSOrderedSame) {
+        if ([weaponType.name caseInsensitiveCompare:name] == NSOrderedSame) {
             return weaponType;
         }
     }

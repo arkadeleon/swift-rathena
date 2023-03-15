@@ -16,9 +16,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         normal = [[RACardType alloc] init];
-        normal.typeID = CARD_NORMAL;
-        normal.aegisName = @"";
+        normal.value = CARD_NORMAL;
         normal.name = @"";
+        normal.englishName = @"";
     });
     return normal;
 }
@@ -28,14 +28,14 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         enchant = [[RACardType alloc] init];
-        enchant.typeID = CARD_ENCHANT;
-        enchant.aegisName = @"Enchant";
+        enchant.value = CARD_ENCHANT;
         enchant.name = @"Enchant";
+        enchant.englishName = @"Enchant";
     });
     return enchant;
 }
 
-+ (instancetype)cardTypeWithAegisName:(NSString *)aegisName {
++ (instancetype)caseOfName:(NSString *)name {
     static NSArray<RACardType *> *allCardTypes = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -45,7 +45,7 @@
     });
 
     for (RACardType *cardType in allCardTypes) {
-        if ([cardType.aegisName caseInsensitiveCompare:aegisName] == NSOrderedSame) {
+        if ([cardType.name caseInsensitiveCompare:name] == NSOrderedSame) {
             return cardType;
         }
     }

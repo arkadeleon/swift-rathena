@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RAEnum.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAItemType : NSObject
+@interface RAItemType : RAEnum
 
 @property (nonatomic, class, readonly) RAItemType *healing;
 @property (nonatomic, class, readonly) RAItemType *unknown;
@@ -25,12 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RAItemType *delayConsume;
 @property (nonatomic, class, readonly) RAItemType *shadowGear;
 @property (nonatomic, class, readonly) RAItemType *cash;
-
-@property (nonatomic) NSInteger typeID;
-@property (nonatomic, copy) NSString *aegisName;
-@property (nonatomic, copy) NSString *name;
-
-+ (nullable instancetype)itemTypeWithAegisName:(NSString *)aegisName;
 
 @end
 

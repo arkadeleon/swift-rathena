@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RAEnum.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAAmmoType : NSObject
+@interface RAAmmoType : RAEnum
 
 @property (nonatomic, class, readonly) RAAmmoType *none;
 @property (nonatomic, class, readonly) RAAmmoType *arrow;
@@ -21,12 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RAAmmoType *kunai;
 @property (nonatomic, class, readonly) RAAmmoType *cannonBall;
 @property (nonatomic, class, readonly) RAAmmoType *throwWeapon;
-
-@property (nonatomic) NSInteger typeID;
-@property (nonatomic, copy) NSString *aegisName;
-@property (nonatomic, copy) NSString *name;
-
-+ (nullable instancetype)ammoTypeWithAegisName:(NSString *)aegisName;
 
 @end
 
