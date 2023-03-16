@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RASize *medium;
 @property (nonatomic, class, readonly) RASize *large;
 
+@property (nonatomic, class, readonly) NSArray<RASize *> *allCases;
+
 @end
 
 NS_ASSUME_NONNULL_END

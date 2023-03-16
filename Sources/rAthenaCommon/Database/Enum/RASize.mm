@@ -46,19 +46,17 @@
     return large;
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSDictionary<NSString *, RASize *> *sizeMap = nil;
++ (NSArray<RASize *> *)allCases {
+    static NSArray<RASize *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sizeMap = @{
-            RASize.small.name.lowercaseString   : RASize.small,
-            RASize.medium.name.lowercaseString  : RASize.medium,
-            RASize.large.name.lowercaseString   : RASize.large,
-        };
+        allCases = @[
+            RASize.small,
+            RASize.medium,
+            RASize.large,
+        ];
     });
-
-    RASize *size = sizeMap[name.lowercaseString];
-    return size;
+    return allCases;
 }
 
 @end

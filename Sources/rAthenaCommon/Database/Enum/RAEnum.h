@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RAEnum : NSObject
 
+@property (nonatomic, class, readonly) NSArray<RAEnum *> *allCases;
+
 @property (nonatomic) NSInteger value;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *englishName;

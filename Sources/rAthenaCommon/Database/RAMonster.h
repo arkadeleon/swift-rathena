@@ -11,6 +11,7 @@
 
 @class RASize;
 @class RARace;
+@class RAElement;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,19 +44,6 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterRaceGroup) {
     RAMonsterRaceGroupTempleDemon           = 1 << 25,
     RAMonsterRaceGroupIllusionVampire       = 1 << 26,
     RAMonsterRaceGroupMalangdo              = 1 << 27,
-};
-
-typedef NS_ENUM(NSInteger, RAMonsterElement) {
-    RAMonsterElementNeutral,
-    RAMonsterElementWater,
-    RAMonsterElementEarth,
-    RAMonsterElementFire,
-    RAMonsterElementWind,
-    RAMonsterElementPoison,
-    RAMonsterElementHoly,
-    RAMonsterElementDark,
-    RAMonsterElementGhost,
-    RAMonsterElementUndead,
 };
 
 typedef NS_ENUM(NSInteger, RAMonsterAi) {
@@ -208,7 +196,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) RAMonsterRaceGroup raceGroups;
 
 /// Element. (Default: Neutral)
-@property (nonatomic) RAMonsterElement element;
+@property (nonatomic) RAElement *element;
 
 /// Level of element. (Default: 1)
 @property (nonatomic) NSInteger elementLevel;

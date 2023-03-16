@@ -6,7 +6,6 @@
 //
 
 #import "RAWeaponType.h"
-
 #include "map/pc.hpp"
 
 @implementation RAWeaponType
@@ -299,11 +298,11 @@
     return twoHandedStaff;
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSArray<RAWeaponType *> *allWeaponTypes = nil;
++ (NSArray<RAWeaponType *> *)allCases {
+    static NSArray<RAWeaponType *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        allWeaponTypes = @[
+        allCases = @[
             RAWeaponType.fist,
             RAWeaponType.dagger,
             RAWeaponType.oneHandedSword,
@@ -330,13 +329,7 @@
             RAWeaponType.twoHandedStaff,
         ];
     });
-
-    for (RAWeaponType *weaponType in allWeaponTypes) {
-        if ([weaponType.name caseInsensitiveCompare:name] == NSOrderedSame) {
-            return weaponType;
-        }
-    }
-    return nil;
+    return allCases;
 }
 
 @end

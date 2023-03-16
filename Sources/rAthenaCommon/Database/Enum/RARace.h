@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RARace : RAEnum
 
-@property (nonatomic, class, readonly) RARace *none;
 @property (nonatomic, class, readonly) RARace *formless;
 @property (nonatomic, class, readonly) RARace *undead;
 @property (nonatomic, class, readonly) RARace *brute;
@@ -23,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RARace *demiHuman;
 @property (nonatomic, class, readonly) RARace *angel;
 @property (nonatomic, class, readonly) RARace *dragon;
-@property (nonatomic, class, readonly) RARace *playerHuman;
-@property (nonatomic, class, readonly) RARace *playerDoram;
+
+@property (nonatomic, class, readonly) NSArray<RARace *> *allCases;
 
 @end
 

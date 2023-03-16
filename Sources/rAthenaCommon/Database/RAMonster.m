@@ -8,6 +8,7 @@
 #import "RAMonster.h"
 #import "Enum/RASize.h"
 #import "Enum/RARace.h"
+#import "Enum/RAElement.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
 const NSInteger RAMonsterWalkSpeedNormal = 150;
@@ -116,32 +117,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     }];
 
     return raceGroups;
-}
-
-+ (NSNumber *)elementFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *elementMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        elementMap = @{
-            @"Neutral".lowercaseString : @(RAMonsterElementNeutral),
-            @"Water"  .lowercaseString : @(RAMonsterElementWater),
-            @"Earth"  .lowercaseString : @(RAMonsterElementEarth),
-            @"Fire"   .lowercaseString : @(RAMonsterElementFire),
-            @"Wind"   .lowercaseString : @(RAMonsterElementWind),
-            @"Poison" .lowercaseString : @(RAMonsterElementPoison),
-            @"Holy"   .lowercaseString : @(RAMonsterElementHoly),
-            @"Dark"   .lowercaseString : @(RAMonsterElementDark),
-            @"Ghost"  .lowercaseString : @(RAMonsterElementGhost),
-            @"Undead" .lowercaseString : @(RAMonsterElementUndead),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *element = elementMap[string.lowercaseString];
-    return element;
 }
 
 + (NSNumber *)aiFromString:(NSString *)string {
@@ -278,7 +253,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _size = RASize.small;
         _race = RARace.formless;
         _raceGroups = 0;
-        _element = RAMonsterElementNeutral;
+        _element = RAElement.neutral;
         _elementLevel = 1;
         _walkSpeed = RAMonsterWalkSpeedNormal;
         _attackDelay = 0;
@@ -311,9 +286,12 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 
     _raceGroups = [RAMonster raceGroupsFromDictionary:dic[@"RaceGroups"]];
 
-    NSNumber *element = [RAMonster elementFromString:dic[@"Element"]];
-    if (element) {
-        _element = element.integerValue;
+    NSString *elementName = dic[@"Element"];
+    if (elementName) {
+        RAElement *element = [RAElement caseOfName:elementName];
+        if (element) {
+            _element = element;
+        }
     }
 
     NSNumber *ai = [RAMonster aiFromString:dic[@"Ai"]];

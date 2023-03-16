@@ -10,18 +10,6 @@
 
 @implementation RARace
 
-+ (RARace *)none {
-    static RARace *none = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        none = [[RARace alloc] init];
-        none.value = RC_NONE_;
-        none.name = @"";
-        none.englishName = @"";
-    });
-    return none;
-}
-
 + (RARace *)formless {
     static RARace *formless = nil;
     static dispatch_once_t onceToken;
@@ -142,50 +130,24 @@
     return dragon;
 }
 
-+ (RARace *)playerHuman {
-    static RARace *playerHuman = nil;
++ (NSArray<RARace *> *)allCases {
+    static NSArray<RARace *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        playerHuman = [[RARace alloc] init];
-        playerHuman.value = RC_PLAYER_HUMAN;
-        playerHuman.name = @"";
-        playerHuman.englishName = @"";
+        allCases = @[
+            RARace.formless,
+            RARace.undead,
+            RARace.brute,
+            RARace.plant,
+            RARace.insect,
+            RARace.fish,
+            RARace.demon,
+            RARace.demiHuman,
+            RARace.angel,
+            RARace.dragon,
+        ];
     });
-    return playerHuman;
-}
-
-+ (RARace *)playerDoram {
-    static RARace *playerDoram = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        playerDoram = [[RARace alloc] init];
-        playerDoram.value = RC_PLAYER_DORAM;
-        playerDoram.name = @"";
-        playerDoram.englishName = @"";
-    });
-    return playerDoram;
-}
-
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSDictionary<NSString *, RARace *> *raceMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        raceMap = @{
-            RARace.formless.name.lowercaseString    : RARace.formless,
-            RARace.undead.name.lowercaseString      : RARace.undead,
-            RARace.brute.name.lowercaseString       : RARace.brute,
-            RARace.plant.name.lowercaseString       : RARace.plant,
-            RARace.insect.name.lowercaseString      : RARace.insect,
-            RARace.fish.name.lowercaseString        : RARace.fish,
-            RARace.demon.name.lowercaseString       : RARace.demon,
-            RARace.demiHuman.name.lowercaseString   : RARace.demiHuman,
-            RARace.angel.name.lowercaseString       : RARace.angel,
-            RARace.dragon.name.lowercaseString      : RARace.dragon,
-        };
-    });
-
-    RARace *race = raceMap[name.lowercaseString];
-    return race;
+    return allCases;
 }
 
 @end

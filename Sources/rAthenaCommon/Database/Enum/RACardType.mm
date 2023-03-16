@@ -6,7 +6,6 @@
 //
 
 #import "RACardType.h"
-
 #include "map/pc.hpp"
 
 @implementation RACardType
@@ -18,7 +17,7 @@
         normal = [[RACardType alloc] init];
         normal.value = CARD_NORMAL;
         normal.name = @"";
-        normal.englishName = @"";
+        normal.englishName = @"Normal";
     });
     return normal;
 }
@@ -35,21 +34,16 @@
     return enchant;
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSArray<RACardType *> *allCardTypes = nil;
++ (NSArray<RACardType *> *)allCases {
+    static NSArray<RACardType *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        allCardTypes = @[
+        allCases = @[
+            RACardType.normal,
             RACardType.enchant,
         ];
     });
-
-    for (RACardType *cardType in allCardTypes) {
-        if ([cardType.name caseInsensitiveCompare:name] == NSOrderedSame) {
-            return cardType;
-        }
-    }
-    return nil;
+    return allCases;
 }
 
 @end

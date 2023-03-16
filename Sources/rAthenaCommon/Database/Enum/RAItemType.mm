@@ -6,7 +6,6 @@
 //
 
 #import "RAItemType.h"
-
 #include "common/mmo.hpp"
 
 @implementation RAItemType
@@ -21,18 +20,6 @@
         healing.englishName = @"Healing";
     });
     return healing;
-}
-
-+ (RAItemType *)unknown {
-    static RAItemType *unknown = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        unknown = [[RAItemType alloc] init];
-        unknown.value = IT_UNKNOWN;
-        unknown.name = @"Unknown";
-        unknown.englishName = @"Unknown";
-    });
-    return unknown;
 }
 
 + (RAItemType *)usable {
@@ -119,18 +106,6 @@
     return petArmor;
 }
 
-+ (RAItemType *)unknown2 {
-    static RAItemType *unknown2 = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        unknown2 = [[RAItemType alloc] init];
-        unknown2.value = IT_UNKNOWN2;
-        unknown2.name = @"Unknown2";
-        unknown2.englishName = @"Unknown2";
-    });
-    return unknown2;
-}
-
 + (RAItemType *)ammo {
     static RAItemType *ammo = nil;
     static dispatch_once_t onceToken;
@@ -179,13 +154,12 @@
     return cash;
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSArray<RAItemType *> *allItemTypes = nil;
++ (NSArray<RAItemType *> *)allCases {
+    static NSArray<RAItemType *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        allItemTypes = @[
+        allCases = @[
             RAItemType.healing,
-            RAItemType.unknown,
             RAItemType.usable,
             RAItemType.etc,
             RAItemType.armor,
@@ -193,20 +167,13 @@
             RAItemType.card,
             RAItemType.petEgg,
             RAItemType.petArmor,
-            RAItemType.unknown2,
             RAItemType.ammo,
             RAItemType.delayConsume,
             RAItemType.shadowGear,
             RAItemType.cash,
         ];
     });
-
-    for (RAItemType *itemType in allItemTypes) {
-        if ([itemType.name caseInsensitiveCompare:name] == NSOrderedSame) {
-            return itemType;
-        }
-    }
-    return nil;
+    return allCases;
 }
 
 @end

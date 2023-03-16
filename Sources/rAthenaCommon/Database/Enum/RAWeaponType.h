@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RAWeaponType *huuma;
 @property (nonatomic, class, readonly) RAWeaponType *twoHandedStaff;
 
+@property (nonatomic, class, readonly) NSArray<RAWeaponType *> *allCases;
+
 @end
 
 NS_ASSUME_NONNULL_END

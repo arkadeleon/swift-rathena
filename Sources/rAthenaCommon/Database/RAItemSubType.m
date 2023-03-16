@@ -28,11 +28,11 @@
         return subType;
     } else if (type == RAItemType.ammo) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.ammoType = name ? [RAAmmoType caseOfName:name] : RAAmmoType.none;
+        subType.ammoType = name ? [RAAmmoType caseOfName:name] : nil;
         return subType;
     } else if (type == RAItemType.card) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.cardType = name ? [RACardType caseOfName:name] : RACardType.normal;
+        subType.cardType = [RACardType caseOfName:name ?: @""];
         return subType;
     } else {
         return nil;

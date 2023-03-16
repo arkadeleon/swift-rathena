@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RACardType *normal;
 @property (nonatomic, class, readonly) RACardType *enchant;
 
+@property (nonatomic, class, readonly) NSArray<RACardType *> *allCases;
+
 @end
 
 NS_ASSUME_NONNULL_END

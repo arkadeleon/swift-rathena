@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RAAmmoType : RAEnum
 
-@property (nonatomic, class, readonly) RAAmmoType *none;
 @property (nonatomic, class, readonly) RAAmmoType *arrow;
 @property (nonatomic, class, readonly) RAAmmoType *dagger;
 @property (nonatomic, class, readonly) RAAmmoType *bullet;
@@ -22,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RAAmmoType *kunai;
 @property (nonatomic, class, readonly) RAAmmoType *cannonBall;
 @property (nonatomic, class, readonly) RAAmmoType *throwWeapon;
+
+@property (nonatomic, class, readonly) NSArray<RAAmmoType *> *allCases;
 
 @end
 

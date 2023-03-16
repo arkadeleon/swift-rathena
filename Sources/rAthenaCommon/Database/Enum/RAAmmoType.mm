@@ -6,22 +6,9 @@
 //
 
 #import "RAAmmoType.h"
-
 #include "map/pc.hpp"
 
 @implementation RAAmmoType
-
-+ (RAAmmoType *)none {
-    static RAAmmoType *none = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        none = [[RAAmmoType alloc] init];
-        none.value = AMMO_NONE;
-        none.name = @"";
-        none.englishName = @"";
-    });
-    return none;
-}
 
 + (RAAmmoType *)arrow {
     static RAAmmoType *arrow = nil;
@@ -131,11 +118,11 @@
     return throwWeapon;
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    static NSArray<RAAmmoType *> *allAmmoTypes = nil;
++ (NSArray<RAAmmoType *> *)allCases {
+    static NSArray<RAAmmoType *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        allAmmoTypes = @[
+        allCases = @[
             RAAmmoType.arrow,
             RAAmmoType.dagger,
             RAAmmoType.bullet,
@@ -147,13 +134,7 @@
             RAAmmoType.throwWeapon,
         ];
     });
-
-    for (RAAmmoType *ammoType in allAmmoTypes) {
-        if ([ammoType.name caseInsensitiveCompare:name] == NSOrderedSame) {
-            return ammoType;
-        }
-    }
-    return nil;
+    return allCases;
 }
 
 @end
