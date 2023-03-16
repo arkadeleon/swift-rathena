@@ -15,37 +15,9 @@
 @class RAElement;
 @class RAMonsterAi;
 @class RAMonsterClass;
+@class RAMonsterMode;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
-    RAMonsterModeCanMove            = 1 << 0,
-    RAMonsterModeLooter             = 1 << 1,
-    RAMonsterModeAggressive         = 1 << 2,
-    RAMonsterModeAssist             = 1 << 3,
-    RAMonsterModeCastSensorIdle     = 1 << 4,
-    RAMonsterModeNoRandomWalk       = 1 << 5,
-    RAMonsterModeNoCast             = 1 << 6,
-    RAMonsterModeCanAttack          = 1 << 7,
-    RAMonsterModeCastSensorChase    = 1 << 8,
-    RAMonsterModeChangeChase        = 1 << 9,
-    RAMonsterModeAngry              = 1 << 10,
-    RAMonsterModeChangeTargetMelee  = 1 << 11,
-    RAMonsterModeChangeTargetChase  = 1 << 12,
-    RAMonsterModeTargetWeak         = 1 << 13,
-    RAMonsterModeRandomTarget       = 1 << 14,
-    RAMonsterModeIgnoreMelee        = 1 << 15,
-    RAMonsterModeIgnoreMagic        = 1 << 16,
-    RAMonsterModeIgnoreRanged       = 1 << 17,
-    RAMonsterModeMvp                = 1 << 18,
-    RAMonsterModeIgnoreMisc         = 1 << 19,
-    RAMonsterModeKnockBackImmune    = 1 << 20,
-    RAMonsterModeTeleportBlock      = 1 << 21,
-    RAMonsterModeFixedItemDrop      = 1 << 22,
-    RAMonsterModeDetector           = 1 << 23,
-    RAMonsterModeStatusImmune       = 1 << 24,
-    RAMonsterModeSkillImmune        = 1 << 25,
-};
 
 @class RAMonsterDrop;
 
@@ -163,7 +135,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) RAMonsterClass *monsterClass;
 
 /// List of unique behavior not defined by AI, Class, or Attribute. (Optional)
-@property (nonatomic) RAMonsterMode modes;
+@property (nonatomic, copy, nullable) NSSet<RAMonsterMode *> *modes;
 
 /// List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
 @property (nonatomic, copy, nullable) NSArray<RAMonsterDrop *> *mvpDrops;

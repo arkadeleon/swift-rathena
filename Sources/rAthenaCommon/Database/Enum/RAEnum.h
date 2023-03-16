@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *englishName;
 
-+ (nullable instancetype)caseOfName:(NSString *)name;
++ (nullable instancetype)valueOfName:(NSString *)name;
 
 @end
 

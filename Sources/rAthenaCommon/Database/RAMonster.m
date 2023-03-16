@@ -12,6 +12,7 @@
 #import "Enum/RAElement.h"
 #import "Enum/RAMonsterAi.h"
 #import "Enum/RAMonsterClass.h"
+#import "Enum/RAMonsterMode.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
 const NSInteger RAMonsterWalkSpeedNormal = 150;
@@ -71,55 +72,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     };
 }
 
-+ (RAMonsterMode)modesFromDictionary:(NSDictionary *)dictionary {
-    static NSDictionary<NSString *, NSNumber *> *modeMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        modeMap = @{
-            @"CanMove"          .lowercaseString : @(RAMonsterModeCanMove),
-            @"Looter"           .lowercaseString : @(RAMonsterModeLooter),
-            @"Aggressive"       .lowercaseString : @(RAMonsterModeAggressive),
-            @"Assist"           .lowercaseString : @(RAMonsterModeAssist),
-            @"CastSensorIdle"   .lowercaseString : @(RAMonsterModeCastSensorIdle),
-            @"NoRandomWalk"     .lowercaseString : @(RAMonsterModeNoRandomWalk),
-            @"NoCast"           .lowercaseString : @(RAMonsterModeNoCast),
-            @"CanAttack"        .lowercaseString : @(RAMonsterModeCanAttack),
-            @"CastSensorChase"  .lowercaseString : @(RAMonsterModeCastSensorChase),
-            @"ChangeChase"      .lowercaseString : @(RAMonsterModeChangeChase),
-            @"Angry"            .lowercaseString : @(RAMonsterModeAngry),
-            @"ChangeTargetMelee".lowercaseString : @(RAMonsterModeChangeTargetMelee),
-            @"ChangeTargetChase".lowercaseString : @(RAMonsterModeChangeTargetChase),
-            @"TargetWeak"       .lowercaseString : @(RAMonsterModeTargetWeak),
-            @"RandomTarget"     .lowercaseString : @(RAMonsterModeRandomTarget),
-            @"IgnoreMelee"      .lowercaseString : @(RAMonsterModeIgnoreMelee),
-            @"IgnoreMagic"      .lowercaseString : @(RAMonsterModeIgnoreMagic),
-            @"IgnoreRanged"     .lowercaseString : @(RAMonsterModeIgnoreRanged),
-            @"Mvp"              .lowercaseString : @(RAMonsterModeMvp),
-            @"IgnoreMisc"       .lowercaseString : @(RAMonsterModeIgnoreMisc),
-            @"KnockBackImmune"  .lowercaseString : @(RAMonsterModeKnockBackImmune),
-            @"TeleportBlock"    .lowercaseString : @(RAMonsterModeTeleportBlock),
-            @"FixedItemDrop"    .lowercaseString : @(RAMonsterModeFixedItemDrop),
-            @"Detector"         .lowercaseString : @(RAMonsterModeDetector),
-            @"StatusImmune"     .lowercaseString : @(RAMonsterModeStatusImmune),
-            @"SkillImmune"      .lowercaseString : @(RAMonsterModeSkillImmune),
-        };
-    });
-
-    if (dictionary == nil || dictionary.count == 0) {
-        return 0;
-    }
-
-    __block RAMonsterMode modes = 0;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
-        NSNumber *mode = modeMap[key.lowercaseString];
-        if (mode && obj.boolValue == YES) {
-            modes |= mode.unsignedIntegerValue;
-        }
-    }];
-
-    return modes;
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -164,7 +116,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     NSString *sizeName = dic[@"Size"];
     if (sizeName) {
-        RASize *size = [RASize caseOfName:sizeName];
+        RASize *size = [RASize valueOfName:sizeName];
         if (size) {
             _size = size;
         }
@@ -172,7 +124,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 
     NSString *raceName = dic[@"Race"];
     if (raceName) {
-        RARace *race = [RARace caseOfName:raceName];
+        RARace *race = [RARace valueOfName:raceName];
         if (race) {
             _race = race;
         }
@@ -182,8 +134,8 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     if (raceGroupNames) {
         NSMutableSet<RARaceGroup *> *raceGroups = [[NSMutableSet alloc] init];
         [raceGroupNames enumerateKeysAndObjectsUsingBlock:^(NSString *raceGroupName, NSNumber *value, BOOL *stop) {
-            RARaceGroup *raceGroup = [RARaceGroup caseOfName:raceGroupName];
-            if (raceGroup && value.boolValue == YES) {
+            RARaceGroup *raceGroup = [RARaceGroup valueOfName:raceGroupName];
+            if (raceGroup && value.boolValue) {
                 [raceGroups addObject:raceGroup];
             }
         }];
@@ -192,7 +144,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 
     NSString *elementName = dic[@"Element"];
     if (elementName) {
-        RAElement *element = [RAElement caseOfName:elementName];
+        RAElement *element = [RAElement valueOfName:elementName];
         if (element) {
             _element = element;
         }
@@ -200,19 +152,29 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
 
     NSString *aiName = dic[@"Ai"];
     if (aiName) {
-        RAMonsterAi *ai = [RAMonsterAi caseOfName:aiName];
+        RAMonsterAi *ai = [RAMonsterAi valueOfName:aiName];
         if (ai) {
             _ai = ai;
         }
     }
 
     NSString *monsterClassName = dic[@"Class"];
-    RAMonsterClass *monsterClass = [RAMonsterClass caseOfName:monsterClassName ?: @""];
+    RAMonsterClass *monsterClass = [RAMonsterClass valueOfName:monsterClassName ?: @""];
     if (monsterClass) {
         _monsterClass = monsterClass;
     }
 
-    _modes = [RAMonster modesFromDictionary:dic[@"Modes"]];
+    NSDictionary<NSString *, NSNumber *> *modeNames = dic[@"Modes"];
+    if (modeNames) {
+        NSMutableSet<RAMonsterMode *> *modes = [[NSMutableSet alloc] init];
+        [modeNames enumerateKeysAndObjectsUsingBlock:^(NSString *modeName, NSNumber *value, BOOL *stop) {
+            RAMonsterMode *mode = [RAMonsterMode valueOfName:modeName];
+            if (mode && value.boolValue) {
+                [modes addObject:mode];
+            }
+        }];
+        _modes = [modes copy];
+    }
 
     return YES;
 }

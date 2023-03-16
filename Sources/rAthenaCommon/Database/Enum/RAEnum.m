@@ -13,10 +13,10 @@
     return @[];
 }
 
-+ (instancetype)caseOfName:(NSString *)name {
-    for (RAEnum *kase in self.allCases) {
-        if ([kase.name caseInsensitiveCompare:name] == NSOrderedSame) {
-            return kase;
++ (instancetype)valueOfName:(NSString *)name {
+    for (RAEnum *value in self.allCases) {
+        if ([value.name caseInsensitiveCompare:name] == NSOrderedSame) {
+            return value;
         }
     }
     return nil;

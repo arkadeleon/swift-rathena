@@ -24,15 +24,15 @@
 + (instancetype)itemSubTypeOfType:(RAItemType *)type name:(nullable NSString *)name {
     if (type == RAItemType.weapon) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.weaponType = name ? [RAWeaponType caseOfName:name] : nil;
+        subType.weaponType = name ? [RAWeaponType valueOfName:name] : nil;
         return subType;
     } else if (type == RAItemType.ammo) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.ammoType = name ? [RAAmmoType caseOfName:name] : nil;
+        subType.ammoType = name ? [RAAmmoType valueOfName:name] : nil;
         return subType;
     } else if (type == RAItemType.card) {
         RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.cardType = [RACardType caseOfName:name ?: @""];
+        subType.cardType = [RACardType valueOfName:name ?: @""];
         return subType;
     } else {
         return nil;

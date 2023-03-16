@@ -231,7 +231,7 @@
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     NSString *type = dic[@"Type"];
     if (type) {
-        _type = [RAItemType caseOfName:type] ?: RAItemType.etc;
+        _type = [RAItemType valueOfName:type] ?: RAItemType.etc;
     }
 
     _subType = [RAItemSubType itemSubTypeOfType:_type name:dic[@"SubType"]];
