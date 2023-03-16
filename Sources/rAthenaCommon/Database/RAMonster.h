@@ -13,6 +13,7 @@
 @class RARace;
 @class RARaceGroup;
 @class RAElement;
+@class RAMonsterClass;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,14 +39,6 @@ typedef NS_ENUM(NSInteger, RAMonsterAi) {
     RAMonsterAi25,
     RAMonsterAi26,
     RAMonsterAi27,
-};
-
-typedef NS_ENUM(NSInteger, RAMonsterClass) {
-    RAMonsterClassNormal,
-    RAMonsterClassBoss,
-    RAMonsterClassGuardian,
-    RAMonsterClassBattlefield,
-    RAMonsterClassEvent,
 };
 
 typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
@@ -190,7 +183,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) RAMonsterAi ai;
 
 /// Aegis monster class. (Default: Normal)
-@property (nonatomic) RAMonsterClass monsterClass;
+@property (nonatomic) RAMonsterClass *monsterClass;
 
 /// List of unique behavior not defined by AI, Class, or Attribute. (Optional)
 @property (nonatomic) RAMonsterMode modes;

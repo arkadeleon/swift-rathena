@@ -128,6 +128,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(poring.attackMotion, 672)
         XCTAssertEqual(poring.damageMotion, 480)
         XCTAssertEqual(poring.ai, .ai02)
+        XCTAssertEqual(poring.monsterClass, .normal)
         XCTAssertEqual(poring.drops?.count, 8)
 
         let archerSkeleton = monsters.first(where: { $0.monsterID == 1016 })!
@@ -160,7 +161,13 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(archerSkeleton.attackMotion, 864)
         XCTAssertEqual(archerSkeleton.damageMotion, 576)
         XCTAssertEqual(archerSkeleton.ai, .ai05)
+        XCTAssertEqual(archerSkeleton.monsterClass, .normal)
         XCTAssertEqual(archerSkeleton.drops?.count, 8)
+
+        let osiris = monsters.first(where: { $0.monsterID == 1038 })!
+        XCTAssertEqual(osiris.monsterClass, .boss)
+        XCTAssertEqual(osiris.modes, [.mvp])
+        XCTAssertEqual(osiris.mvpDrops?.count, 3)
     }
 
     func testSkillTreeDatabase() async {

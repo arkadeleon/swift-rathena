@@ -10,6 +10,7 @@
 #import "Enum/RARace.h"
 #import "Enum/RARaceGroup.h"
 #import "Enum/RAElement.h"
+#import "Enum/RAMonsterClass.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
 const NSInteger RAMonsterWalkSpeedNormal = 150;
@@ -106,27 +107,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
     return ai;
 }
 
-+ (NSNumber *)monsterClassFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *monsterClassMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        monsterClassMap = @{
-            @"Normal"     .lowercaseString : @(RAMonsterClassNormal),
-            @"Boss"       .lowercaseString : @(RAMonsterClassBoss),
-            @"Guardian"   .lowercaseString : @(RAMonsterClassGuardian),
-            @"Battlefield".lowercaseString : @(RAMonsterClassBattlefield),
-            @"Event"      .lowercaseString : @(RAMonsterClassEvent),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *monsterClass = monsterClassMap[string.lowercaseString];
-    return monsterClass;
-}
-
 + (RAMonsterMode)modesFromDictionary:(NSDictionary *)dictionary {
     static NSDictionary<NSString *, NSNumber *> *modeMap = nil;
     static dispatch_once_t onceToken;
@@ -211,7 +191,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _damageMotion = 0;
         _damageTaken = 100;
         _ai = RAMonsterAi06;
-        _monsterClass = RAMonsterClassNormal;
+        _monsterClass = RAMonsterClass.normal;
         _modes = 0;
     }
     return self;
@@ -259,9 +239,10 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _ai = ai.integerValue;
     }
 
-    NSNumber *monsterClass = [RAMonster monsterClassFromString:dic[@"Class"]];
+    NSString *monsterClassName = dic[@"Class"];
+    RAMonsterClass *monsterClass = [RAMonsterClass caseOfName:monsterClassName ?: @""];
     if (monsterClass) {
-        _monsterClass = monsterClass.integerValue;
+        _monsterClass = monsterClass;
     }
 
     _modes = [RAMonster modesFromDictionary:dic[@"Modes"]];
