@@ -13,33 +13,10 @@
 @class RARace;
 @class RARaceGroup;
 @class RAElement;
+@class RAMonsterAi;
 @class RAMonsterClass;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, RAMonsterAi) {
-    RAMonsterAi01,
-    RAMonsterAi02,
-    RAMonsterAi03,
-    RAMonsterAi04,
-    RAMonsterAi05,
-    RAMonsterAi06,
-    RAMonsterAi07,
-    RAMonsterAi08,
-    RAMonsterAi09,
-    RAMonsterAi10,
-    RAMonsterAi11,
-    RAMonsterAi12,
-    RAMonsterAi13,
-    RAMonsterAi17,
-    RAMonsterAi19,
-    RAMonsterAi20,
-    RAMonsterAi21,
-    RAMonsterAi24,
-    RAMonsterAi25,
-    RAMonsterAi26,
-    RAMonsterAi27,
-};
 
 typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
     RAMonsterModeCanMove            = 1 << 0,
@@ -180,7 +157,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) NSInteger damageTaken;
 
 /// Aegis monster type AI behavior. (Default: 06)
-@property (nonatomic) RAMonsterAi ai;
+@property (nonatomic) RAMonsterAi *ai;
 
 /// Aegis monster class. (Default: Normal)
 @property (nonatomic) RAMonsterClass *monsterClass;

@@ -10,6 +10,7 @@
 #import "Enum/RARace.h"
 #import "Enum/RARaceGroup.h"
 #import "Enum/RAElement.h"
+#import "Enum/RAMonsterAi.h"
 #import "Enum/RAMonsterClass.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
@@ -68,43 +69,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         @"mvpDrops" : [RAMonsterDrop class],
         @"drops"    : [RAMonsterDrop class],
     };
-}
-
-+ (NSNumber *)aiFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *aiMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        aiMap = @{
-            @"01" : @(RAMonsterAi01),
-            @"02" : @(RAMonsterAi02),
-            @"03" : @(RAMonsterAi03),
-            @"04" : @(RAMonsterAi04),
-            @"05" : @(RAMonsterAi05),
-            @"06" : @(RAMonsterAi06),
-            @"07" : @(RAMonsterAi07),
-            @"08" : @(RAMonsterAi08),
-            @"09" : @(RAMonsterAi09),
-            @"10" : @(RAMonsterAi10),
-            @"11" : @(RAMonsterAi11),
-            @"12" : @(RAMonsterAi12),
-            @"13" : @(RAMonsterAi13),
-            @"17" : @(RAMonsterAi17),
-            @"19" : @(RAMonsterAi19),
-            @"20" : @(RAMonsterAi20),
-            @"21" : @(RAMonsterAi21),
-            @"24" : @(RAMonsterAi24),
-            @"25" : @(RAMonsterAi25),
-            @"26" : @(RAMonsterAi26),
-            @"27" : @(RAMonsterAi27),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *ai = aiMap[string];
-    return ai;
 }
 
 + (RAMonsterMode)modesFromDictionary:(NSDictionary *)dictionary {
@@ -190,7 +154,7 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         _attackMotion = 0;
         _damageMotion = 0;
         _damageTaken = 100;
-        _ai = RAMonsterAi06;
+        _ai = RAMonsterAi.ai06;
         _monsterClass = RAMonsterClass.normal;
         _modes = 0;
     }
@@ -234,9 +198,12 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         }
     }
 
-    NSNumber *ai = [RAMonster aiFromString:dic[@"Ai"]];
-    if (ai) {
-        _ai = ai.integerValue;
+    NSString *aiName = dic[@"Ai"];
+    if (aiName) {
+        RAMonsterAi *ai = [RAMonsterAi caseOfName:aiName];
+        if (ai) {
+            _ai = ai;
+        }
     }
 
     NSString *monsterClassName = dic[@"Class"];
