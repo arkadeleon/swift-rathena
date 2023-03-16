@@ -8,6 +8,7 @@
 #import "RAMonster.h"
 #import "Enum/RASize.h"
 #import "Enum/RARace.h"
+#import "Enum/RARaceGroup.h"
 #import "Enum/RAElement.h"
 
 const NSInteger RAMonsterWalkSpeedFastest = 20;
@@ -66,57 +67,6 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         @"mvpDrops" : [RAMonsterDrop class],
         @"drops"    : [RAMonsterDrop class],
     };
-}
-
-+ (RAMonsterRaceGroup)raceGroupsFromDictionary:(NSDictionary *)dictionary {
-    static NSDictionary<NSString *, NSNumber *> *raceGroupMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        raceGroupMap = @{
-            @"Goblin"               .lowercaseString : @(RAMonsterRaceGroupGoblin),
-            @"Kobold"               .lowercaseString : @(RAMonsterRaceGroupKobold),
-            @"Orc"                  .lowercaseString : @(RAMonsterRaceGroupOrc),
-            @"Golem"                .lowercaseString : @(RAMonsterRaceGroupGolem),
-            @"Guardian"             .lowercaseString : @(RAMonsterRaceGroupGuardian),
-            @"Ninja"                .lowercaseString : @(RAMonsterRaceGroupNinja),
-            @"Gvg"                  .lowercaseString : @(RAMonsterRaceGroupGvg),
-            @"Battlefield"          .lowercaseString : @(RAMonsterRaceGroupBattlefield),
-            @"Treasure"             .lowercaseString : @(RAMonsterRaceGroupTreasure),
-            @"Biolab"               .lowercaseString : @(RAMonsterRaceGroupBiolab),
-            @"Manuk"                .lowercaseString : @(RAMonsterRaceGroupManuk),
-            @"Splendide"            .lowercaseString : @(RAMonsterRaceGroupSplendide),
-            @"Scaraba"              .lowercaseString : @(RAMonsterRaceGroupScaraba),
-            @"Ogh_Atk_Def"          .lowercaseString : @(RAMonsterRaceGroupOghAtkDef),
-            @"Ogh_Hidden"           .lowercaseString : @(RAMonsterRaceGroupOghHidden),
-            @"Bio5_Swordman_Thief"  .lowercaseString : @(RAMonsterRaceGroupBio5SwordmanThief),
-            @"Bio5_Acolyte_Merchant".lowercaseString : @(RAMonsterRaceGroupBio5AcolyteMerchant),
-            @"Bio5_Mage_Archer"     .lowercaseString : @(RAMonsterRaceGroupBio5MageArcher),
-            @"Bio5_Mvp"             .lowercaseString : @(RAMonsterRaceGroupBio5Mvp),
-            @"Clocktower"           .lowercaseString : @(RAMonsterRaceGroupClocktower),
-            @"Thanatos"             .lowercaseString : @(RAMonsterRaceGroupThanatos),
-            @"Faceworm"             .lowercaseString : @(RAMonsterRaceGroupFaceworm),
-            @"Hearthunter"          .lowercaseString : @(RAMonsterRaceGroupHearthunter),
-            @"Rockridge"            .lowercaseString : @(RAMonsterRaceGroupRockridge),
-            @"Werner_Lab"           .lowercaseString : @(RAMonsterRaceGroupWernerLab),
-            @"Temple_Demon"         .lowercaseString : @(RAMonsterRaceGroupTempleDemon),
-            @"Illusion_Vampire"     .lowercaseString : @(RAMonsterRaceGroupIllusionVampire),
-            @"Malangdo"             .lowercaseString : @(RAMonsterRaceGroupMalangdo),
-        };
-    });
-
-    if (dictionary == nil || dictionary.count == 0) {
-        return 0;
-    }
-
-    __block RAMonsterRaceGroup raceGroups = 0;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
-        NSNumber *raceGroup = raceGroupMap[key.lowercaseString];
-        if (raceGroup && obj.boolValue == YES) {
-            raceGroups |= raceGroup.unsignedIntegerValue;
-        }
-    }];
-
-    return raceGroups;
 }
 
 + (NSNumber *)aiFromString:(NSString *)string {
@@ -284,7 +234,17 @@ const NSInteger RAMonsterWalkSpeedSlowest = 1000;
         }
     }
 
-    _raceGroups = [RAMonster raceGroupsFromDictionary:dic[@"RaceGroups"]];
+    NSDictionary<NSString *, NSNumber *> *raceGroupNames = dic[@"RaceGroups"];
+    if (raceGroupNames) {
+        NSMutableSet<RARaceGroup *> *raceGroups = [[NSMutableSet alloc] init];
+        [raceGroupNames enumerateKeysAndObjectsUsingBlock:^(NSString *raceGroupName, NSNumber *value, BOOL *stop) {
+            RARaceGroup *raceGroup = [RARaceGroup caseOfName:raceGroupName];
+            if (raceGroup && value.boolValue == YES) {
+                [raceGroups addObject:raceGroup];
+            }
+        }];
+        _raceGroups = [raceGroups copy];
+    }
 
     NSString *elementName = dic[@"Element"];
     if (elementName) {

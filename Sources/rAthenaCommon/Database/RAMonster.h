@@ -11,40 +11,10 @@
 
 @class RASize;
 @class RARace;
+@class RARaceGroup;
 @class RAElement;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_OPTIONS(NSUInteger, RAMonsterRaceGroup) {
-    RAMonsterRaceGroupGoblin                = 1 << 0,
-    RAMonsterRaceGroupKobold                = 1 << 1,
-    RAMonsterRaceGroupOrc                   = 1 << 2,
-    RAMonsterRaceGroupGolem                 = 1 << 3,
-    RAMonsterRaceGroupGuardian              = 1 << 4,
-    RAMonsterRaceGroupNinja                 = 1 << 5,
-    RAMonsterRaceGroupGvg                   = 1 << 6,
-    RAMonsterRaceGroupBattlefield           = 1 << 7,
-    RAMonsterRaceGroupTreasure              = 1 << 8,
-    RAMonsterRaceGroupBiolab                = 1 << 9,
-    RAMonsterRaceGroupManuk                 = 1 << 10,
-    RAMonsterRaceGroupSplendide             = 1 << 11,
-    RAMonsterRaceGroupScaraba               = 1 << 12,
-    RAMonsterRaceGroupOghAtkDef             = 1 << 13,
-    RAMonsterRaceGroupOghHidden             = 1 << 14,
-    RAMonsterRaceGroupBio5SwordmanThief     = 1 << 15,
-    RAMonsterRaceGroupBio5AcolyteMerchant   = 1 << 16,
-    RAMonsterRaceGroupBio5MageArcher        = 1 << 17,
-    RAMonsterRaceGroupBio5Mvp               = 1 << 18,
-    RAMonsterRaceGroupClocktower            = 1 << 19,
-    RAMonsterRaceGroupThanatos              = 1 << 20,
-    RAMonsterRaceGroupFaceworm              = 1 << 21,
-    RAMonsterRaceGroupHearthunter           = 1 << 22,
-    RAMonsterRaceGroupRockridge             = 1 << 23,
-    RAMonsterRaceGroupWernerLab             = 1 << 24,
-    RAMonsterRaceGroupTempleDemon           = 1 << 25,
-    RAMonsterRaceGroupIllusionVampire       = 1 << 26,
-    RAMonsterRaceGroupMalangdo              = 1 << 27,
-};
 
 typedef NS_ENUM(NSInteger, RAMonsterAi) {
     RAMonsterAi01,
@@ -193,7 +163,7 @@ typedef NS_OPTIONS(NSUInteger, RAMonsterMode) {
 @property (nonatomic) RARace *race;
 
 /// List of secondary groups the monster may be part of. (Optional)
-@property (nonatomic) RAMonsterRaceGroup raceGroups;
+@property (nonatomic, copy, nullable) NSSet<RARaceGroup *> *raceGroups;
 
 /// Element. (Default: Neutral)
 @property (nonatomic) RAElement *element;
