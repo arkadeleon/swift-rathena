@@ -14,34 +14,9 @@
 @class RAItemJob;
 @class RAItemClass;
 @class RAGender;
+@class RAEquipmentLocation;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
-    RAItemLocationHeadTop               = 1 << 0,
-    RAItemLocationHeadMid               = 1 << 1,
-    RAItemLocationHeadLow               = 1 << 2,
-    RAItemLocationArmor                 = 1 << 3,
-    RAItemLocationRightHand             = 1 << 4,
-    RAItemLocationLeftHand              = 1 << 5,
-    RAItemLocationGarment               = 1 << 6,
-    RAItemLocationShoes                 = 1 << 7,
-    RAItemLocationRightAccessory        = 1 << 8,
-    RAItemLocationLeftAccessory         = 1 << 9,
-    RAItemLocationCostumeHeadTop        = 1 << 10,
-    RAItemLocationCostumeHeadMid        = 1 << 11,
-    RAItemLocationCostumeHeadLow        = 1 << 12,
-    RAItemLocationCostumeGarment        = 1 << 13,
-    RAItemLocationAmmo                  = 1 << 14,
-    RAItemLocationShadowArmor           = 1 << 15,
-    RAItemLocationShadowWeapon          = 1 << 16,
-    RAItemLocationShadowShield          = 1 << 17,
-    RAItemLocationShadowShoes           = 1 << 18,
-    RAItemLocationShadowRightAccessory  = 1 << 19,
-    RAItemLocationShadowLeftAccessory   = 1 << 20,
-    RAItemLocationBothHand              = 1 << 21,
-    RAItemLocationBothAccessory         = 1 << 22,
-};
 
 @class RAItemFlags;
 @class RAItemDelay;
@@ -100,7 +75,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic) RAGender *gender;
 
 /// Equipment's placement. (Default: None)
-@property (nonatomic) RAItemLocation locations;
+@property (nonatomic, copy) NSSet<RAEquipmentLocation *> *locations;
 
 /// Weapon level. (Default: 1 for Weapons)
 @property (nonatomic) NSInteger weaponLevel;

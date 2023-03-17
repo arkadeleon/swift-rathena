@@ -11,6 +11,7 @@
 #import "Enum/RAItemJob.h"
 #import "Enum/RAItemClass.h"
 #import "Enum/RAGender.h"
+#import "Enum/RAEquipmentLocation.h"
 
 @implementation RAItem
 
@@ -52,52 +53,6 @@
     };
 }
 
-+ (RAItemLocation)locationsFromDictionary:(NSDictionary *)dictionary {
-    static NSDictionary<NSString *, NSNumber *> *locationMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        locationMap = @{
-            @"Head_Top"              .lowercaseString : @(RAItemLocationHeadTop),
-            @"Head_Mid"              .lowercaseString : @(RAItemLocationHeadMid),
-            @"Head_Low"              .lowercaseString : @(RAItemLocationHeadLow),
-            @"Armor"                 .lowercaseString : @(RAItemLocationArmor),
-            @"Right_Hand"            .lowercaseString : @(RAItemLocationRightHand),
-            @"Left_Hand"             .lowercaseString : @(RAItemLocationLeftHand),
-            @"Garment"               .lowercaseString : @(RAItemLocationGarment),
-            @"Shoes"                 .lowercaseString : @(RAItemLocationShoes),
-            @"Right_Accessory"       .lowercaseString : @(RAItemLocationRightAccessory),
-            @"Left_Accessory"        .lowercaseString : @(RAItemLocationLeftAccessory),
-            @"Costume_Head_Top"      .lowercaseString : @(RAItemLocationCostumeHeadTop),
-            @"Costume_Head_Mid"      .lowercaseString : @(RAItemLocationCostumeHeadMid),
-            @"Costume_Head_Low"      .lowercaseString : @(RAItemLocationCostumeHeadLow),
-            @"Costume_Garment"       .lowercaseString : @(RAItemLocationCostumeGarment),
-            @"Ammo"                  .lowercaseString : @(RAItemLocationAmmo),
-            @"Shadow_Armor"          .lowercaseString : @(RAItemLocationShadowArmor),
-            @"Shadow_Weapon"         .lowercaseString : @(RAItemLocationShadowWeapon),
-            @"Shadow_Shield"         .lowercaseString : @(RAItemLocationShadowShield),
-            @"Shadow_Shoes"          .lowercaseString : @(RAItemLocationShadowShoes),
-            @"Shadow_Right_Accessory".lowercaseString : @(RAItemLocationShadowRightAccessory),
-            @"Shadow_Left_Accessory" .lowercaseString : @(RAItemLocationShadowLeftAccessory),
-            @"Both_Hand"             .lowercaseString : @(RAItemLocationBothHand),
-            @"Both_Accessory"        .lowercaseString : @(RAItemLocationBothAccessory),
-        };
-    });
-
-    if (dictionary == nil || dictionary.count == 0) {
-        return 0;
-    }
-
-    __block RAItemLocation locations = 0;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
-        NSNumber *location = locationMap[key.lowercaseString];
-        if (location && obj.boolValue == YES) {
-            locations |= location.unsignedIntegerValue;
-        }
-    }];
-
-    return locations;
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -114,7 +69,7 @@
         _jobs = [[NSSet alloc] initWithArray:RAItemJob.allCases];
         _classes = [[NSSet alloc] initWithArray:RAItemClass.allCases];
         _gender = RAGender.both;
-        _locations = 0;
+        _locations = [[NSSet alloc] init];
         _weaponLevel = 1;
         _armorLevel = 1;
         _equipLevelMin = 0;
@@ -209,7 +164,10 @@
         }
     }
 
-    _locations = [RAItem locationsFromDictionary:dic[@"Locations"]];
+    NSDictionary<NSString *, NSNumber *> *locationNames = dic[@"Locations"];
+    if (locationNames) {
+        _locations = [RAEquipmentLocation valuesOfNames:locationNames];
+    }
 
     return YES;
 }
