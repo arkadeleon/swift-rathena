@@ -10,6 +10,7 @@
 #import "RAItemSubType.h"
 #import "Enum/RAItemJob.h"
 #import "Enum/RAItemClass.h"
+#import "Enum/RAGender.h"
 
 @implementation RAItem
 
@@ -49,25 +50,6 @@
         @"equipScript"  : @"EquipScript",
         @"unEquipScript": @"UnEquipScript",
     };
-}
-
-+ (NSNumber *)genderFromString:(NSString *)string {
-    static NSDictionary<NSString *, NSNumber *> *genderMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        genderMap = @{
-            @"Female".lowercaseString : @(RAItemGenderFemale),
-            @"Male"  .lowercaseString : @(RAItemGenderMale),
-            @"Both"  .lowercaseString : @(RAItemGenderBoth),
-        };
-    });
-
-    if (string == nil) {
-        return nil;
-    }
-
-    NSNumber *gender = genderMap[string.lowercaseString];
-    return gender;
 }
 
 + (RAItemLocation)locationsFromDictionary:(NSDictionary *)dictionary {
@@ -131,7 +113,7 @@
         _slots = 0;
         _jobs = [[NSSet alloc] initWithArray:RAItemJob.allCases];
         _classes = [[NSSet alloc] initWithArray:RAItemClass.allCases];
-        _gender = RAItemGenderBoth;
+        _gender = RAGender.both;
         _locations = 0;
         _weaponLevel = 1;
         _armorLevel = 1;
@@ -219,9 +201,12 @@
         _classes = [classes copy];
     }
 
-    NSNumber *gender = [RAItem genderFromString:dic[@"Gender"]];
-    if (gender) {
-        _gender = gender.integerValue;
+    NSString *genderName = dic[@"Gender"];
+    if (genderName) {
+        RAGender *gender = [RAGender valueOfName:genderName];
+        if (gender) {
+            _gender = gender;
+        }
     }
 
     _locations = [RAItem locationsFromDictionary:dic[@"Locations"]];

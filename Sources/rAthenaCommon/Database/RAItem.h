@@ -13,14 +13,9 @@
 @class RAItemSubType;
 @class RAItemJob;
 @class RAItemClass;
+@class RAGender;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, RAItemGender) {
-    RAItemGenderFemale,
-    RAItemGenderMale,
-    RAItemGenderBoth,
-};
 
 typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
     RAItemLocationHeadTop               = 1 << 0,
@@ -102,7 +97,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic, copy) NSSet<RAItemClass *> *classes;
 
 /// Gender that can equip the item. (Default: Both)
-@property (nonatomic) RAItemGender gender;
+@property (nonatomic) RAGender *gender;
 
 /// Equipment's placement. (Default: None)
 @property (nonatomic) RAItemLocation locations;
