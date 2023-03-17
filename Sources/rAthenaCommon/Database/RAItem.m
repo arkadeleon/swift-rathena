@@ -9,6 +9,7 @@
 #import "Enum/RAItemType.h"
 #import "RAItemSubType.h"
 #import "Enum/RAItemJob.h"
+#import "Enum/RAItemClass.h"
 
 @implementation RAItem
 
@@ -48,40 +49,6 @@
         @"equipScript"  : @"EquipScript",
         @"unEquipScript": @"UnEquipScript",
     };
-}
-
-+ (RAItemClass)classesFromDictionary:(NSDictionary *)dictionary {
-    static NSDictionary<NSString *, NSNumber *> *classMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        classMap = @{
-            @"Normal"     .lowercaseString : @(RAItemClassNormal),
-            @"Upper"      .lowercaseString : @(RAItemClassUpper),
-            @"Baby"       .lowercaseString : @(RAItemClassBaby),
-            @"Third"      .lowercaseString : @(RAItemClassThird),
-            @"Third_Upper".lowercaseString : @(RAItemClassThirdUpper),
-            @"Third_Baby" .lowercaseString : @(RAItemClassThirdBaby),
-            @"Fourth"     .lowercaseString : @(RAItemClassFourth),
-            @"All_Upper"  .lowercaseString : @(RAItemClassAllUpper),
-            @"All_Baby"   .lowercaseString : @(RAItemClassAllBaby),
-            @"All_Third"  .lowercaseString : @(RAItemClassAllThird),
-            @"All"        .lowercaseString : @(RAItemClassAll),
-        };
-    });
-
-    if (dictionary == nil || dictionary.count == 0) {
-        return 0;
-    }
-
-    __block RAItemClass classes = 0;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
-        NSNumber *itemClass = classMap[key.lowercaseString];
-        if (itemClass && obj.boolValue == YES) {
-            classes |= itemClass.unsignedIntegerValue;
-        }
-    }];
-
-    return classes;
 }
 
 + (NSNumber *)genderFromString:(NSString *)string {
@@ -163,7 +130,7 @@
         _range = 0;
         _slots = 0;
         _jobs = [[NSSet alloc] initWithArray:RAItemJob.allCases];
-        _classes = RAItemClassAll;
+        _classes = [[NSSet alloc] initWithArray:RAItemClass.allCases];
         _gender = RAItemGenderBoth;
         _locations = 0;
         _weaponLevel = 1;
@@ -208,7 +175,49 @@
         _jobs = [jobs copy];
     }
 
-    _classes = [RAItem classesFromDictionary:dic[@"Classes"]];
+    NSDictionary<NSString *, NSNumber *> *classNames = dic[@"Classes"];
+    if (classNames) {
+        NSMutableSet<RAItemClass *> *classes = [[NSMutableSet alloc] init];
+        NSNumber *allValue = classNames[@"All"];
+        NSNumber *allUpperValue = classNames[@"All_Upper"];
+        NSNumber *allBabyValue = classNames[@"All_Baby"];
+        NSNumber *allThirdValue = classNames[@"All_Third"];
+        if (allValue && allValue.boolValue) {
+            [classes addObjectsFromArray:RAItemClass.allCases];
+        }
+        if (allUpperValue) {
+            if (allUpperValue.boolValue) {
+                [classes addObjectsFromArray:RAItemClass.allUpper];
+            } else {
+                [classes minusSet:[NSSet setWithArray:RAItemClass.allUpper]];
+            }
+        }
+        if (allBabyValue) {
+            if (allBabyValue.boolValue) {
+                [classes addObjectsFromArray:RAItemClass.allBaby];
+            } else {
+                [classes minusSet:[NSSet setWithArray:RAItemClass.allBaby]];
+            }
+        }
+        if (allThirdValue) {
+            if (allThirdValue.boolValue) {
+                [classes addObjectsFromArray:RAItemClass.allThird];
+            } else {
+                [classes minusSet:[NSSet setWithArray:RAItemClass.allThird]];
+            }
+        }
+        [classNames enumerateKeysAndObjectsUsingBlock:^(NSString *className, NSNumber *value, BOOL *stop) {
+            RAItemClass *itemClass = [RAItemClass valueOfName:className];
+            if (itemClass) {
+                if (value.boolValue) {
+                    [classes addObject:itemClass];
+                } else {
+                    [classes removeObject:itemClass];
+                }
+            }
+        }];
+        _classes = [classes copy];
+    }
 
     NSNumber *gender = [RAItem genderFromString:dic[@"Gender"]];
     if (gender) {

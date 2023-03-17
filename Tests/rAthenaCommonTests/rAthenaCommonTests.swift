@@ -58,6 +58,22 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(sword.equipLevelMin, 2)
         XCTAssertEqual(sword.refineable, true)
 
+        let eraser = items.first(where: { $0.itemID == 1637 })!
+        XCTAssertEqual(eraser.aegisName, "Eraser")
+        XCTAssertEqual(eraser.name, "Eraser")
+        XCTAssertEqual(eraser.type, .weapon)
+        XCTAssertEqual(eraser.subType?.asWeaponType(), .staff)
+        XCTAssertEqual(eraser.buy, 20)
+        XCTAssertEqual(eraser.weight, 500)
+        XCTAssertEqual(eraser.attack, 80)
+        XCTAssertEqual(eraser.magicAttack, 170)
+        XCTAssertEqual(eraser.range, 1)
+        XCTAssertEqual(eraser.jobs, [.acolyte, .mage, .monk, .priest, .sage, .wizard])
+        XCTAssertEqual(eraser.classes, Set(RAItemClass.allUpper))
+        XCTAssertEqual(eraser.weaponLevel, 4)
+        XCTAssertEqual(eraser.equipLevelMin, 70)
+        XCTAssertEqual(eraser.refineable, true)
+
         let sheild = items.first(where: { $0.itemID == 2105 })!
         XCTAssertEqual(sheild.aegisName, "Shield")
         XCTAssertEqual(sheild.name, "Shield")

@@ -12,22 +12,9 @@
 @class RAItemType;
 @class RAItemSubType;
 @class RAItemJob;
+@class RAItemClass;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_OPTIONS(NSUInteger, RAItemClass) {
-    RAItemClassNormal       = 1 << 0,
-    RAItemClassUpper        = 1 << 1,
-    RAItemClassBaby         = 1 << 2,
-    RAItemClassThird        = 1 << 3,
-    RAItemClassThirdUpper   = 1 << 4,
-    RAItemClassThirdBaby    = 1 << 5,
-    RAItemClassFourth       = 1 << 6,
-    RAItemClassAllUpper     = 1 << 7,
-    RAItemClassAllBaby      = 1 << 8,
-    RAItemClassAllThird     = 1 << 9,
-    RAItemClassAll          = (RAItemClassNormal | RAItemClassUpper | RAItemClassBaby | RAItemClassThird | RAItemClassThirdUpper | RAItemClassThirdBaby | RAItemClassFourth | RAItemClassAllUpper | RAItemClassAllBaby | RAItemClassAllThird),
-};
 
 typedef NS_ENUM(NSInteger, RAItemGender) {
     RAItemGenderFemale,
@@ -112,7 +99,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic, copy) NSSet<RAItemJob *> *jobs;
 
 /// Upper class types that can equip the item. (Map default is 'All: true')
-@property (nonatomic) RAItemClass classes;
+@property (nonatomic, copy) NSSet<RAItemClass *> *classes;
 
 /// Gender that can equip the item. (Default: Both)
 @property (nonatomic) RAItemGender gender;
