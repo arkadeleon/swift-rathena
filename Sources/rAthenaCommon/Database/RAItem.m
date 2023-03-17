@@ -8,6 +8,7 @@
 #import "RAItem.h"
 #import "Enum/RAItemType.h"
 #import "RAItemSubType.h"
+#import "Enum/RAItemJob.h"
 
 @implementation RAItem
 
@@ -47,58 +48,6 @@
         @"equipScript"  : @"EquipScript",
         @"unEquipScript": @"UnEquipScript",
     };
-}
-
-+ (RAItemJob)jobsFromDictionary:(NSDictionary *)dictionary {
-    static NSDictionary<NSString *, NSNumber *> *jobMap = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        jobMap = @{
-            @"Acolyte"      .lowercaseString : @(RAItemJobAcolyte),
-            @"Alchemist"    .lowercaseString : @(RAItemJobAlchemist),
-            @"Archer"       .lowercaseString : @(RAItemJobArcher),
-            @"Assassin"     .lowercaseString : @(RAItemJobAssassin),
-            @"BardDancer"   .lowercaseString : @(RAItemJobBardDancer),
-            @"Blacksmith"   .lowercaseString : @(RAItemJobBlacksmith),
-            @"Crusader"     .lowercaseString : @(RAItemJobCrusader),
-            @"Gunslinger"   .lowercaseString : @(RAItemJobGunslinger),
-            @"Hunter"       .lowercaseString : @(RAItemJobHunter),
-            @"KagerouOboro" .lowercaseString : @(RAItemJobKagerouOboro),
-            @"Knight"       .lowercaseString : @(RAItemJobKnight),
-            @"Mage"         .lowercaseString : @(RAItemJobMage),
-            @"Merchant"     .lowercaseString : @(RAItemJobMerchant),
-            @"Monk"         .lowercaseString : @(RAItemJobMonk),
-            @"Ninja"        .lowercaseString : @(RAItemJobNinja),
-            @"Novice"       .lowercaseString : @(RAItemJobNovice),
-            @"Priest"       .lowercaseString : @(RAItemJobPriest),
-            @"Rebellion"    .lowercaseString : @(RAItemJobRebellion),
-            @"Rogue"        .lowercaseString : @(RAItemJobRogue),
-            @"Sage"         .lowercaseString : @(RAItemJobSage),
-            @"SoulLinker"   .lowercaseString : @(RAItemJobSoulLinker),
-            @"StarGladiator".lowercaseString : @(RAItemJobStarGladiator),
-            @"Summoner"     .lowercaseString : @(RAItemJobSummoner),
-            @"SuperNovice"  .lowercaseString : @(RAItemJobSuperNovice),
-            @"Swordman"     .lowercaseString : @(RAItemJobSwordman),
-            @"Taekwon"      .lowercaseString : @(RAItemJobTaekwon),
-            @"Thief"        .lowercaseString : @(RAItemJobThief),
-            @"Wizard"       .lowercaseString : @(RAItemJobWizard),
-            @"All"          .lowercaseString : @(RAItemJobAll),
-        };
-    });
-
-    if (dictionary == nil || dictionary.count == 0) {
-        return 0;
-    }
-
-    __block RAItemJob jobs = 0;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSNumber *obj, BOOL *stop) {
-        NSNumber *job = jobMap[key.lowercaseString];
-        if (job && obj.boolValue == YES) {
-            jobs |= job.unsignedIntegerValue;
-        }
-    }];
-
-    return jobs;
 }
 
 + (RAItemClass)classesFromDictionary:(NSDictionary *)dictionary {
@@ -213,7 +162,7 @@
         _defense = 0;
         _range = 0;
         _slots = 0;
-        _jobs = RAItemJobAll;
+        _jobs = [[NSSet alloc] initWithArray:RAItemJob.allCases];
         _classes = RAItemClassAll;
         _gender = RAItemGenderBoth;
         _locations = 0;
@@ -229,14 +178,35 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSString *type = dic[@"Type"];
-    if (type) {
-        _type = [RAItemType valueOfName:type] ?: RAItemType.etc;
+    NSString *typeName = dic[@"Type"];
+    if (typeName) {
+        RAItemType *type = [RAItemType valueOfName:typeName];
+        if (type) {
+            _type = type;
+        }
     }
 
     _subType = [RAItemSubType itemSubTypeOfType:_type name:dic[@"SubType"]];
 
-    _jobs = [RAItem jobsFromDictionary:dic[@"Jobs"]];
+    NSDictionary<NSString *, NSNumber *> *jobNames = dic[@"Jobs"];
+    if (jobNames) {
+        NSMutableSet<RAItemJob *> *jobs = [[NSMutableSet alloc] init];
+        NSNumber *allValue = jobNames[@"All"];
+        if (allValue && allValue.boolValue) {
+            [jobs addObjectsFromArray:RAItemJob.allCases];
+        }
+        [jobNames enumerateKeysAndObjectsUsingBlock:^(NSString *jobName, NSNumber *value, BOOL *stop) {
+            RAItemJob *job = [RAItemJob valueOfName:jobName];
+            if (job) {
+                if (value.boolValue) {
+                    [jobs addObject:job];
+                } else {
+                    [jobs removeObject:job];
+                }
+            }
+        }];
+        _jobs = [jobs copy];
+    }
 
     _classes = [RAItem classesFromDictionary:dic[@"Classes"]];
 

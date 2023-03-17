@@ -11,40 +11,9 @@
 
 @class RAItemType;
 @class RAItemSubType;
+@class RAItemJob;
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_OPTIONS(NSUInteger, RAItemJob) {
-    RAItemJobAcolyte        = 1 << 0,
-    RAItemJobAlchemist      = 1 << 1,
-    RAItemJobArcher         = 1 << 2,
-    RAItemJobAssassin       = 1 << 3,
-    RAItemJobBardDancer     = 1 << 4,
-    RAItemJobBlacksmith     = 1 << 5,
-    RAItemJobCrusader       = 1 << 6,
-    RAItemJobGunslinger     = 1 << 7,
-    RAItemJobHunter         = 1 << 8,
-    RAItemJobKagerouOboro   = 1 << 9,
-    RAItemJobKnight         = 1 << 10,
-    RAItemJobMage           = 1 << 11,
-    RAItemJobMerchant       = 1 << 12,
-    RAItemJobMonk           = 1 << 13,
-    RAItemJobNinja          = 1 << 14,
-    RAItemJobNovice         = 1 << 15,
-    RAItemJobPriest         = 1 << 16,
-    RAItemJobRebellion      = 1 << 17,
-    RAItemJobRogue          = 1 << 18,
-    RAItemJobSage           = 1 << 19,
-    RAItemJobSoulLinker     = 1 << 20,
-    RAItemJobStarGladiator  = 1 << 21,
-    RAItemJobSummoner       = 1 << 22,
-    RAItemJobSuperNovice    = 1 << 23,
-    RAItemJobSwordman       = 1 << 24,
-    RAItemJobTaekwon        = 1 << 25,
-    RAItemJobThief          = 1 << 26,
-    RAItemJobWizard         = 1 << 27,
-    RAItemJobAll            = (RAItemJobAcolyte | RAItemJobAlchemist | RAItemJobArcher | RAItemJobAssassin | RAItemJobBardDancer | RAItemJobBlacksmith | RAItemJobCrusader | RAItemJobGunslinger | RAItemJobHunter | RAItemJobKagerouOboro | RAItemJobKnight | RAItemJobMage | RAItemJobMerchant | RAItemJobMonk | RAItemJobNinja | RAItemJobNovice | RAItemJobPriest | RAItemJobRebellion | RAItemJobRogue | RAItemJobSage | RAItemJobSoulLinker | RAItemJobStarGladiator | RAItemJobSummoner | RAItemJobSuperNovice | RAItemJobSwordman | RAItemJobTaekwon | RAItemJobThief | RAItemJobWizard),
-};
 
 typedef NS_OPTIONS(NSUInteger, RAItemClass) {
     RAItemClassNormal       = 1 << 0,
@@ -140,7 +109,7 @@ typedef NS_OPTIONS(NSUInteger, RAItemLocation) {
 @property (nonatomic) NSInteger slots;
 
 /// Jobs that can equip the item. (Map default is 'All: true')
-@property (nonatomic) RAItemJob jobs;
+@property (nonatomic, copy) NSSet<RAItemJob *> *jobs;
 
 /// Upper class types that can equip the item. (Map default is 'All: true')
 @property (nonatomic) RAItemClass classes;
