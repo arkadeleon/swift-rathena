@@ -729,8 +729,9 @@ struct Battle_Config
 	int mob_respawn_time;
 
 	int feature_stylist;
+	int feature_banking_state_enforce;
 
-#include "../custom/battle_config_struct.inc"
+#include <custom/battle_config_struct.inc>
 };
 
 extern struct Battle_Config battle_config;
