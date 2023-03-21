@@ -9,11 +9,9 @@
 
 @import YYModel;
 
-NS_ASSUME_NONNULL_BEGIN
+@class RAJob;
 
-typedef NS_OPTIONS(NSUInteger, RASkillTreeInherit) {
-    RASkillTreeInheritNovice,
-};
+NS_ASSUME_NONNULL_BEGIN
 
 @class RASkillTreeSkill;
 @class RASkillTreeRequiredSkill;
@@ -25,7 +23,7 @@ typedef NS_OPTIONS(NSUInteger, RASkillTreeInherit) {
 
 /// Map of job name from which Job will inherit the skill tree. (Default: null)
 /// Note that Job doesn't inherit the child skills, it only inherits the skills defined in Tree of the given job name.
-@property (nonatomic) RASkillTreeInherit inherit;
+@property (nonatomic, copy, nullable) NSSet<RAJob *> *inherit;
 
 /// List of skills available for the job. (Default: null)
 @property (nonatomic, copy, nullable) NSArray<RASkillTreeSkill *> *tree;

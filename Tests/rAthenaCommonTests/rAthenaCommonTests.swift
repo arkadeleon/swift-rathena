@@ -68,7 +68,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(eraser.attack, 80)
         XCTAssertEqual(eraser.magicAttack, 170)
         XCTAssertEqual(eraser.range, 1)
-        XCTAssertEqual(eraser.jobs, [.acolyte, .mage, .monk, .priest, .sage, .wizard])
+        XCTAssertEqual(eraser.jobs, [.acolyte, .magician, .monk, .priest, .sage, .wizard])
         XCTAssertEqual(eraser.classes, Set(RAItemClass.allUpper))
         XCTAssertEqual(eraser.weaponLevel, 4)
         XCTAssertEqual(eraser.equipLevelMin, 70)
@@ -191,6 +191,10 @@ class rAthenaCommonTests: XCTestCase {
         let db = RASkillDatabase()
         let skillTrees = await db.fetchSkillTrees(in: .renewal)
         XCTAssertEqual(skillTrees.count, 167)
+
+        let archBishop = skillTrees.first(where: { $0.job == RAJob.archBishop.name })!
+        XCTAssertEqual(archBishop.inherit, [.novice, .acolyte, .priest])
+        XCTAssertEqual(archBishop.tree?.count, 22)
     }
 
     static var allTests = [

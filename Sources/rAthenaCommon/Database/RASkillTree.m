@@ -6,6 +6,7 @@
 //
 
 #import "RASkillTree.h"
+#import "Enum/RAJob.h"
 
 @implementation RASkillTree
 
@@ -23,13 +24,13 @@
     };
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _inherit = 0;
-        _tree = nil;
+- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    NSDictionary<NSString *, NSNumber *> *inheritNames = dic[@"Inherit"];
+    if (inheritNames) {
+        _inherit = [RAJob valuesOfNames:inheritNames];
     }
-    return self;
+
+    return YES;
 }
 
 @end
@@ -51,17 +52,6 @@
     return @{
         @"requires" : [RASkillTreeRequiredSkill class],
     };
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _exclude = NO;
-        _baseLevel = 0;
-        _jobLevel = 0;
-        _requires = nil;
-    }
-    return self;
 }
 
 @end

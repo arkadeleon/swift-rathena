@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RAItemJob *hunter;
 @property (nonatomic, class, readonly) RAItemJob *kagerouOboro;
 @property (nonatomic, class, readonly) RAItemJob *knight;
-@property (nonatomic, class, readonly) RAItemJob *mage;
+@property (nonatomic, class, readonly) RAItemJob *magician;
 @property (nonatomic, class, readonly) RAItemJob *merchant;
 @property (nonatomic, class, readonly) RAItemJob *monk;
 @property (nonatomic, class, readonly) RAItemJob *ninja;

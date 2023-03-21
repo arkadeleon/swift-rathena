@@ -142,16 +142,16 @@
     return knight;
 }
 
-+ (RAItemJob *)mage {
-    static RAItemJob *mage = nil;
++ (RAItemJob *)magician {
+    static RAItemJob *magician = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        mage = [[RAItemJob alloc] init];
-        mage.value = MAPID_MAGE;
-        mage.name = @"Mage";
-        mage.englishName = @"Mage";
+        magician = [[RAItemJob alloc] init];
+        magician.value = MAPID_MAGE;
+        magician.name = @"Mage";
+        magician.englishName = @"Mage";
     });
-    return mage;
+    return magician;
 }
 
 + (RAItemJob *)merchant {
@@ -362,7 +362,7 @@
             RAItemJob.hunter,
             RAItemJob.kagerouOboro,
             RAItemJob.knight,
-            RAItemJob.mage,
+            RAItemJob.magician,
             RAItemJob.merchant,
             RAItemJob.monk,
             RAItemJob.ninja,
