@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *englishName;
 
 + (nullable instancetype)valueOfName:(NSString *)name;
++ (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names;
 
 @end
 

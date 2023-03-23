@@ -39,8 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly) NSArray<RAEquipmentLocation *> *allCases;
 
-+ (NSSet<RAEquipmentLocation *> *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names;
-
 @end
 
 NS_ASSUME_NONNULL_END

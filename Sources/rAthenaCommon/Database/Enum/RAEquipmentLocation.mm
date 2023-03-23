@@ -317,27 +317,22 @@
     return allCases;
 }
 
-+ (NSSet<RAEquipmentLocation *> *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
-    NSMutableSet<RAEquipmentLocation *> *equipmentLocations = [[NSMutableSet alloc] init];
++ (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
+    NSMutableSet<RAEquipmentLocation *> *values = [[NSMutableSet alloc] init];
 
     NSNumber *bothHandValue = names[@"Both_Hand"];
     if (bothHandValue && bothHandValue.boolValue) {
-        [equipmentLocations addObjectsFromArray:RAEquipmentLocation.bothHand];
+        [values addObjectsFromArray:RAEquipmentLocation.bothHand];
     }
 
     NSNumber *bothAccessoryValue = names[@"Both_Accessory"];
     if (bothAccessoryValue && bothAccessoryValue.boolValue) {
-        [equipmentLocations addObjectsFromArray:RAEquipmentLocation.bothAccessory];
+        [values addObjectsFromArray:RAEquipmentLocation.bothAccessory];
     }
 
-    [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *value, BOOL *stop) {
-        RAEquipmentLocation *equipmentLocation = [RAEquipmentLocation valueOfName:name];
-        if (equipmentLocation && value.boolValue) {
-            [equipmentLocations addObject:equipmentLocation];
-        }
-    }];
+    [values unionSet:[super valuesOfNames:names]];
 
-    return [equipmentLocations copy];
+    return [values copy];
 }
 
 @end

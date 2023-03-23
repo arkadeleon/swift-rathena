@@ -10,6 +10,7 @@
 #import "RAItem.h"
 #import "RAMonster.h"
 #import "RASkillTree.h"
+#import "RASkill.h"
 
 @implementation RADatabase
 
@@ -107,6 +108,22 @@
     }
 
     completionHandler(skillTrees);
+}
+
+- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *))completionHandler {
+    RADatabaseDecoder *decoder = [[RADatabaseDecoder alloc] init];
+    NSArray<RASkill *> *skills;
+
+    switch (self.mode) {
+        case RADatabaseModePrerenewal:
+            skills = [decoder decodeArrayOfObjectsOfClass:[RASkill class] fromResource:@"db/pre-re/skill_db.yml"];
+            break;
+        case RADatabaseModeRenewal:
+            skills = [decoder decodeArrayOfObjectsOfClass:[RASkill class] fromResource:@"db/re/skill_db.yml"];
+            break;
+    }
+
+    completionHandler(skills);
 }
 
 @end

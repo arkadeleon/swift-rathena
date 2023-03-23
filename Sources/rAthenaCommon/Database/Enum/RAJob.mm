@@ -2396,17 +2396,4 @@
     return allCases;
 }
 
-+ (NSSet<RAJob *> *)valuesOfNames:(NSDictionary<NSString *,NSNumber *> *)names {
-    NSMutableSet<RAJob *> *jobs = [[NSMutableSet alloc] init];
-
-    [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *value, BOOL *stop) {
-        RAJob *job = [RAJob valueOfName:name];
-        if (job && value.boolValue) {
-            [jobs addObject:job];
-        }
-    }];
-
-    return [jobs copy];
-}
-
 @end

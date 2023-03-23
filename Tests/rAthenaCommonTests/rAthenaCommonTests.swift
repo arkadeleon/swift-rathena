@@ -196,9 +196,49 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(archBishop.tree?.count, 22)
     }
 
+    func testSkillDatabase() async {
+        let skills = await db.fetchSkills()
+        XCTAssertEqual(skills.count, 1488)
+
+        let skillsWithNames = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
+
+        let napalmBeat = skillsWithNames["MG_NAPALMBEAT"]!
+        XCTAssertEqual(napalmBeat.skillID, 11)
+        XCTAssertEqual(napalmBeat.skillName, "MG_NAPALMBEAT")
+        XCTAssertEqual(napalmBeat.skillDescription, "Napalm Beat")
+        XCTAssertEqual(napalmBeat.maxLevel, 10)
+        XCTAssertEqual(napalmBeat.type, .magic)
+        XCTAssertEqual(napalmBeat.targetType, .attack)
+        XCTAssertEqual(napalmBeat.damageFlags, [.splash, .splashSplit])
+        XCTAssertEqual(napalmBeat.flags, [.isAutoShadowSpell, .targetTrap])
+        XCTAssertEqual(napalmBeat.range?.count, 1)
+        XCTAssertEqual(napalmBeat.range?[0].level, 0)
+        XCTAssertEqual(napalmBeat.range?[0].size, 9)
+
+        let spearBoomerang = skillsWithNames["KN_SPEARBOOMERANG"]!
+        XCTAssertEqual(spearBoomerang.skillID, 59)
+        XCTAssertEqual(spearBoomerang.skillName, "KN_SPEARBOOMERANG")
+        XCTAssertEqual(spearBoomerang.skillDescription, "Spear Boomerang")
+        XCTAssertEqual(spearBoomerang.maxLevel, 5)
+        XCTAssertEqual(spearBoomerang.type, .weapon)
+        XCTAssertEqual(spearBoomerang.targetType, .attack)
+        XCTAssertEqual(spearBoomerang.range?.count, 5)
+        XCTAssertEqual(spearBoomerang.range?[0].level, 1)
+        XCTAssertEqual(spearBoomerang.range?[0].size, 3)
+        XCTAssertEqual(spearBoomerang.range?[1].level, 2)
+        XCTAssertEqual(spearBoomerang.range?[1].size, 5)
+        XCTAssertEqual(spearBoomerang.range?[2].level, 3)
+        XCTAssertEqual(spearBoomerang.range?[2].size, 7)
+        XCTAssertEqual(spearBoomerang.range?[3].level, 4)
+        XCTAssertEqual(spearBoomerang.range?[3].size, 9)
+        XCTAssertEqual(spearBoomerang.range?[4].level, 5)
+        XCTAssertEqual(spearBoomerang.range?[4].size, 11)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
         ("testSkillTreeDatabase", testSkillTreeDatabase),
+        ("testSkillDatabase", testSkillDatabase),
     ]
 }

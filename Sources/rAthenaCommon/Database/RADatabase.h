@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, RADatabaseMode) {
 @class RAItem;
 @class RAMonster;
 @class RASkillTree;
+@class RASkill;
 
 @interface RADatabase : NSObject
 
@@ -32,6 +33,8 @@ typedef NS_ENUM(NSInteger, RADatabaseMode) {
 - (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler NS_SWIFT_ASYNC(1);
 
 - (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *skillTrees))completionHandler NS_SWIFT_ASYNC(1);
+
+- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *skills))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 

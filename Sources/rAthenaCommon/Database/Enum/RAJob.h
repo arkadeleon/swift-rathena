@@ -219,8 +219,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly) NSArray<RAJob *> *allCases;
 
-+ (NSSet<RAJob *> *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names;
-
 @end
 
 NS_ASSUME_NONNULL_END

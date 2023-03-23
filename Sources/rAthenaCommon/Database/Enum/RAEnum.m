@@ -22,6 +22,19 @@
     return nil;
 }
 
++ (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
+    NSMutableSet *values = [[NSMutableSet alloc] init];
+
+    [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *included, BOOL *stop) {
+        RAEnum *value = [self valueOfName:name];
+        if (value && included.boolValue) {
+            [values addObject:value];
+        }
+    }];
+
+    return [values copy];
+}
+
 - (NSString *)description {
     return self.name;
 }
