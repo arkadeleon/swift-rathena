@@ -10,9 +10,10 @@ import XCTest
 
 class rAthenaCommonTests: XCTestCase {
 
+    let db = RADatabase.renewal
+
     func testItemDatabase() async {
-        let db = RAItemDatabase()
-        let items = await db.fetchItems(in: .renewal)
+        let items = await db.fetchItems()
         XCTAssertEqual(items.count, 22152)
 
         let redPotion = items.first(where: { $0.itemID == 501 })!
@@ -112,8 +113,7 @@ class rAthenaCommonTests: XCTestCase {
     }
 
     func testMonsterDatabase() async {
-        let db = RAMonsterDatabase()
-        let monsters = await db.fetchMonsters(in: .renewal)
+        let monsters = await db.fetchMonsters()
         XCTAssertEqual(monsters.count, 2295)
 
         let poring = monsters.first(where: { $0.monsterID == 1002 })!
@@ -188,8 +188,7 @@ class rAthenaCommonTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() async {
-        let db = RASkillDatabase()
-        let skillTrees = await db.fetchSkillTrees(in: .renewal)
+        let skillTrees = await db.fetchSkillTrees()
         XCTAssertEqual(skillTrees.count, 167)
 
         let archBishop = skillTrees.first(where: { $0.job == RAJob.archBishop.name })!
