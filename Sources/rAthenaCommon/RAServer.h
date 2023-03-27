@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, RAServerStatus) {
     RAServerStatusNotStarted,
     RAServerStatusInitializing,
@@ -25,20 +27,22 @@ typedef NS_ENUM(NSInteger, RAServerType) {
     RAServerTypeWeb,
 };
 
-typedef void (^RAServerOutputHandler)(NSData * _Nonnull data);
-typedef void (^RAServerDataReceiveHandler)(NSData * _Nonnull data);
-typedef void (^RAServerDataSendHandler)(NSData * _Nonnull data);
+typedef void (^RAServerOutputHandler)(NSData *data);
+typedef void (^RAServerDataReceiveHandler)(NSData *data);
+typedef void (^RAServerDataSendHandler)(NSData *data);
 
 @interface RAServer : NSObject
 
-@property (nonatomic, readonly, copy) NSString * _Nonnull name;
-@property (nonatomic, readonly, assign) RAServerStatus status;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly) RAServerStatus status;
 
-@property (nonatomic, copy) RAServerOutputHandler _Nullable outputHandler;
-@property (nonatomic, copy) RAServerDataReceiveHandler _Nullable dataReceiveHandler;
-@property (nonatomic, copy) RAServerDataSendHandler _Nullable dataSendHandler;
+@property (nonatomic, copy, nullable) RAServerOutputHandler outputHandler;
+@property (nonatomic, copy, nullable) RAServerDataReceiveHandler dataReceiveHandler;
+@property (nonatomic, copy, nullable) RAServerDataSendHandler dataSendHandler;
 
 - (void)start;
 - (void)stop;
 
 @end
+
+NS_ASSUME_NONNULL_END

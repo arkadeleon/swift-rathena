@@ -45,7 +45,7 @@ void do_send(int fd) {
 
 @interface RAWebServer ()
 
-@property (nonatomic, strong) NSThread *thread;
+@property (nonatomic) NSThread *thread;
 
 @end
 

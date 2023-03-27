@@ -9,8 +9,12 @@
 
 @import rAthenaCommon;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RAWebServer : RAServer
 
-@property (nonatomic, class, readonly, strong) RAWebServer *sharedServer;
+@property (nonatomic, class, readonly) RAWebServer *sharedServer;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,7 +10,7 @@
 @implementation RAServer
 
 - (NSString *)name {
-    return nil;
+    return @"";
 }
 
 - (RAServerStatus)status {

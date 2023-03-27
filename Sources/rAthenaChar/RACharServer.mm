@@ -45,7 +45,7 @@ void do_send(int fd) {
 
 @interface RACharServer ()
 
-@property (nonatomic, strong) NSThread *thread;
+@property (nonatomic) NSThread *thread;
 
 @end
 

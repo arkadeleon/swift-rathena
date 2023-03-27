@@ -6,7 +6,6 @@
 //
 
 #import "RAConfig.h"
-
 #include "config/core.hpp"
 
 const NSInteger RAPacketVersion = PACKETVER;

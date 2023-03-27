@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RAResourceManager : NSObject
 
-@property (nonatomic, class, readonly, strong) RAResourceManager *sharedManager;
+@property (nonatomic, class, readonly) RAResourceManager *sharedManager;
 
 - (NSString *)pathForResource:(NSString *)name;
 - (NSData *)dataForResource:(NSString *)name;

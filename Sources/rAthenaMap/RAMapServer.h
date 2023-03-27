@@ -9,8 +9,12 @@
 
 @import rAthenaCommon;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RAMapServer : RAServer
 
-@property (nonatomic, class, readonly, strong) RAMapServer *sharedServer;
+@property (nonatomic, class, readonly) RAMapServer *sharedServer;
 
 @end
+
+NS_ASSUME_NONNULL_END
