@@ -7,6 +7,8 @@
 
 #import "RAResourceManager.h"
 
+@import SQLite3;
+
 @implementation RAResourceManager
 
 + (RAResourceManager *)sharedManager {
@@ -41,6 +43,8 @@
     [self copyResource:@"npc" atDirectory:srcDir toDirectory:dstDir replaceIfExists:YES];
 
     [NSFileManager.defaultManager moveItemAtURL:[dstDir URLByAppendingPathComponent:@"conf/import-tmpl"] toURL:[dstDir URLByAppendingPathComponent:@"conf/import"] error:nil];
+
+    [self upgradeDatabaseAtURL:[dstDir URLByAppendingPathComponent:@"ragnarok.sqlite3"]];
 }
 
 - (void)copyResource:(NSString *)name atDirectory:(NSURL *)srcDir toDirectory:(NSURL *)dstDir replaceIfExists:(BOOL)replaceIfExists {
@@ -54,6 +58,54 @@
     if (![NSFileManager.defaultManager fileExistsAtPath:dstURL.path]) {
         [NSFileManager.defaultManager copyItemAtURL:srcURL toURL:dstURL error:nil];
     }
+}
+
+- (void)upgradeDatabaseAtURL:(NSURL *)url {
+    sqlite3 *db = nil;
+    if (sqlite3_open(url.path.UTF8String, &db) != SQLITE_OK) {
+        return;
+    }
+
+    NSString *sql = @"CREATE TABLE IF NOT EXISTS `upgrades` (`id` INTEGER NOT NULL, PRIMARY KEY (id));";
+    sqlite3_stmt *stmt = nil;
+    if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+        stmt = nil;
+    }
+
+    NSDictionary<NSString *, NSString *> *upgrades = @{
+        @"20230224": @"ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';",
+    };
+
+    NSArray<NSString *> *upgradeIDs = upgrades.allKeys;
+    for (NSString *upgradeID in upgradeIDs) {
+        sql = [NSString stringWithFormat:@"SELECT count(*) FROM upgrades WHERE id = '%@' LIMIT 1", upgradeID];
+        if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
+            int count = sqlite3_column_int(stmt, 0);
+            sqlite3_finalize(stmt);
+            stmt = nil;
+            if (count == 1) {
+                continue;
+            }
+        }
+
+        sql = upgrades[upgradeID];
+        if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
+            sqlite3_step(stmt);
+            sqlite3_finalize(stmt);
+            stmt = nil;
+        }
+
+        sql = [NSString stringWithFormat:@"INSERT INTO upgrades VALUES ('%@')", upgradeID];
+        if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
+            sqlite3_step(stmt);
+            sqlite3_finalize(stmt);
+            stmt = nil;
+        }
+    }
+
+    sqlite3_close(db);
 }
 
 @end
