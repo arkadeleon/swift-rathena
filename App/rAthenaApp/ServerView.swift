@@ -12,12 +12,9 @@ struct ServerView: View {
 
     private let serverManager = ServerManager.shared
 
-    private let logView = TerminalView()
-    private let sessionView = TerminalView()
+    private let terminalView = TerminalView()
 
     @State private var isServerRunning = false
-
-    @State private var showsSessions = true
 
     var body: some View {
         HStack(spacing: 0) {
@@ -45,71 +42,30 @@ struct ServerView: View {
                     }
 
                     Button {
-                        logView.clear()
+                        terminalView.clear()
                     } label: {
                         Image(systemName: "trash")
                     }
                     .frame(width: 32, height: 32)
-
-                    if !showsSessions {
-                        Button {
-                            showsSessions.toggle()
-                        } label: {
-                            Image(systemName: "rectangle.rightthird.inset.filled")
-                        }
-                        .frame(width: 32, height: 32)
-                    }
                 }
                 .frame(height: 32)
                 .padding(.horizontal, 8)
                 .background(Color(uiColor: .secondarySystemBackground))
 
-                logView
+                terminalView
             }
-
-            Color(uiColor: .secondarySystemBackground)
-                .frame(width: showsSessions ? 1 : 0)
-
-            VStack {
-                if showsSessions {
-                    HStack(spacing: 8) {
-                        Spacer()
-
-                        Button {
-                            sessionView.clear()
-                        } label: {
-                            Image(systemName: "trash")
-                        }
-                        .frame(width: 32, height: 32)
-
-                        Button {
-                            showsSessions.toggle()
-                        } label: {
-                            Image(systemName: "rectangle.rightthird.inset.filled")
-                        }
-                        .frame(width: 32, height: 32)
-                    }
-                    .frame(height: 32)
-                    .padding(.horizontal, 8)
-                    .background(Color(uiColor: .secondarySystemBackground))
-                }
-
-                sessionView
-            }
-            .frame(width: showsSessions ? 320 : 0)
         }
         .cornerRadius(16)
         .overlay {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
         }
-        .animation(.easeInOut, value: showsSessions)
         .task {
             serverManager.setOutputHandler({ data in
                 if let data = String(data: data, encoding: .isoLatin1)?
                     .replacingOccurrences(of: "\n", with: "\r\n")
                     .data(using: .isoLatin1) {
-                    logView.appendBuffer(data)
+                    terminalView.appendBuffer(data)
                 }
             }, for: serverType)
         }
