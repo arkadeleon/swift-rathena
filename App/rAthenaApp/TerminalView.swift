@@ -1,6 +1,6 @@
 //
 //  TerminalView.swift
-//  ROServer
+//  rAthenaApp
 //
 //  Created by Leon Li on 2022/11/2.
 //

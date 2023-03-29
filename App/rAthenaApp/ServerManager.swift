@@ -1,6 +1,6 @@
 //
 //  ServerManager.swift
-//  ROServer
+//  rAthenaApp
 //
 //  Created by Leon Li on 2021/7/17.
 //
@@ -25,10 +25,10 @@ public class ServerManager {
 
     public static let shared = ServerManager()
 
-    private var loginServer = RALoginServer.shared!
-    private var charServer = RACharServer.shared!
-    private var mapServer = RAMapServer.shared!
-    private var webServer = RAWebServer.shared!
+    private var loginServer = RALoginServer.shared
+    private var charServer = RACharServer.shared
+    private var mapServer = RAMapServer.shared
+    private var webServer = RAWebServer.shared
 
     private init() {
         RAResourceManager.shared.copyResourcesToLibraryDirectory()

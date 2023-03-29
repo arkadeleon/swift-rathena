@@ -50,9 +50,9 @@ let package = Package(
             exclude: [
                 "3rdparty",
                 "doc",
-                "Examples",
                 "src",
                 "tools",
+                "App",
             ],
             sources: [
                 "Sources/rAthenaCommon",
