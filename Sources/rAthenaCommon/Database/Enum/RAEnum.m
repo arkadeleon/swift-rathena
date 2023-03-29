@@ -25,6 +25,11 @@
 + (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
     NSMutableSet *values = [[NSMutableSet alloc] init];
 
+    NSNumber *all = names[@"All"];
+    if (all && all.boolValue) {
+        [values addObjectsFromArray:[self allCases]];
+    }
+
     [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *included, BOOL *stop) {
         RAEnum *value = [self valueOfName:name];
         if (value && included.boolValue) {

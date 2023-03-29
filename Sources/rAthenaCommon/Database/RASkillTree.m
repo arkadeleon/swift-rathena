@@ -13,7 +13,6 @@
 + (NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
         @"job"      : @"Job",
-        @"inherit"  : @"Inherit",
         @"tree"     : @"Tree",
     };
 }
@@ -25,10 +24,9 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSDictionary<NSString *, NSNumber *> *inheritNames = dic[@"Inherit"];
-    if (inheritNames) {
-        _inherit = [RAJob valuesOfNames:inheritNames];
-    }
+    // Inherit
+    NSDictionary<NSString *, NSNumber *> *inherit = dic[@"Inherit"];
+    self.inherit = [RAJob valuesOfNames:inherit];
 
     return YES;
 }
@@ -39,12 +37,12 @@
 
 + (NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
-        @"name"     : @"Name",
-        @"maxLevel" : @"MaxLevel",
-        @"exclude"  : @"Exclude",
-        @"baseLevel": @"BaseLevel",
-        @"jobLevel" : @"JobLevel",
-        @"requires" : @"Requires",
+        @"name"         : @"Name",
+        @"maxLevel"     : @"MaxLevel",
+        @"exclude"      : @"Exclude",
+        @"baseLevel"    : @"BaseLevel",
+        @"jobLevel"     : @"JobLevel",
+        @"requires"     : @"Requires",
     };
 }
 
@@ -54,14 +52,23 @@
     };
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _exclude = NO;
+        _baseLevel = 0;
+        _jobLevel = 0;
+    }
+}
+
 @end
 
 @implementation RASkillTreeRequiredSkill
 
 + (NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
-        @"name" : @"Name",
-        @"level": @"Level",
+        @"name"     : @"Name",
+        @"level"    : @"Level",
     };
 }
 

@@ -70,21 +70,27 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    // Type
     NSString *type = dic[@"Type"] ?: @"";
     self.type = [RAItemType valueOfName:type] ?: RAItemType.etc;
 
+    // SubType
     NSString *subType = dic[@"SubType"] ?: @"";
     self.subType = RAItemSubTypeFromName(subType, self.type);
 
+    // Jobs
     NSDictionary<NSString *, NSNumber *> *jobs = dic[@"Jobs"] ?: @{@"All": @YES};
     self.jobs = [RAItemJob valuesOfNames:jobs];
 
+    // Classes
     NSDictionary<NSString *, NSNumber *> *classes = dic[@"Classes"] ?: @{@"All": @YES};
     self.classes = [RAItemClass valuesOfNames:classes];
 
+    // Gender
     NSString *gender = dic[@"Gender"] ?: @"";
     self.gender = [RAGender valueOfName:gender] ?: RAGender.both;
 
+    // Locations
     NSDictionary<NSString *, NSNumber *> *locations = dic[@"Locations"] ?: @{};
     self.locations = [RAEquipmentLocation valuesOfNames:locations];
 

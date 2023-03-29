@@ -105,58 +105,48 @@
     };
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _castCancel = NO;
+        _castDefenseReduction = 0;
+    }
+    return self;
+}
+
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     // Type
-    NSString *type = dic[@"Type"];
-    if (type) {
-        _type = [RASkillType valueOfName:type];
-    }
-    if (_type == nil) {
-        _type = RASkillType.none;
-    }
+    NSString *type = dic[@"Type"] ?: @"";
+    self.type = [RASkillType valueOfName:type] ?: RASkillType.none;
 
     // TargetType
-    NSString *targetType = dic[@"TargetType"];
-    if (targetType) {
-        _targetType = [RASkillTargetType valueOfName:targetType];
-    }
-    if (_targetType == nil) {
-        _targetType = RASkillTargetType.passive;
-    }
+    NSString *targetType = dic[@"TargetType"] ?: @"";
+    self.targetType = [RASkillTargetType valueOfName:targetType] ?: RASkillTargetType.passive;
 
     // DamageFlags
-    NSDictionary<NSString *, NSNumber *> *damageFlags = dic[@"DamageFlags"];
-    if (damageFlags) {
-        _damageFlags = [RASkillDamageFlag valuesOfNames:damageFlags];
-    }
+    NSDictionary<NSString *, NSNumber *> *damageFlags = dic[@"DamageFlags"] ?: @{};
+    self.damageFlags = [RASkillDamageFlag valuesOfNames:damageFlags];
 
     // Flags
-    NSDictionary<NSString *, NSNumber *> *flags = dic[@"Flags"];
-    if (flags) {
-        _flags = [RASkillFlag valuesOfNames:flags];
-    }
+    NSDictionary<NSString *, NSNumber *> *flags = dic[@"Flags"] ?: @{};
+    self.flags = [RASkillFlag valuesOfNames:flags];
 
     // Range
     NSString *range = dic[@"Range"];
     if (range && [range isKindOfClass:[NSString class]]) {
-        _range = @[
+        self.range = @[
             [[RASkillLevelSpecificSize alloc] initWithSize:range.integerValue]
         ];
     }
 
     // Hit
-    NSString *hit = dic[@"Hit"];
-    if (hit) {
-        _hit = [RASkillHitType valueOfName:hit];
-    }
-    if (_hit == nil) {
-        _hit = RASkillHitType.normal;
-    }
+    NSString *hit = dic[@"Hit"] ?: @"";
+    self.hit = [RASkillHitType valueOfName:hit] ?: RASkillHitType.normal;
 
     // HitCount
     NSString *hitCount = dic[@"HitCount"];
     if (hitCount && [hitCount isKindOfClass:[NSString class]]) {
-        _hitCount = @[
+        self.hitCount = @[
             [[RASkillLevelSpecificCount alloc] initWithCount:hitCount.integerValue]
         ];
     }
@@ -164,7 +154,7 @@
     // Element
     NSString *element = dic[@"Element"];
     if (element && [element isKindOfClass:[NSString class]]) {
-        _element = @[
+        self.element = @[
             [[RASkillLevelSpecificElement alloc] initWithElement:[RAElement valueOfName:element] ?: RAElement.neutral]
         ];
     }
@@ -172,7 +162,7 @@
     // SplashArea
     NSString *splashArea = dic[@"SplashArea"];
     if (splashArea && [splashArea isKindOfClass:[NSString class]]) {
-        _splashArea = @[
+        self.splashArea = @[
             [[RASkillLevelSpecificArea alloc] initWithArea:splashArea.integerValue]
         ];
     }
@@ -180,7 +170,7 @@
     // ActiveInstance
     NSString *activeInstance = dic[@"ActiveInstance"];
     if (activeInstance && [activeInstance isKindOfClass:[NSString class]]) {
-        _activeInstance = @[
+        self.activeInstance = @[
             [[RASkillLevelSpecificMaxAmount alloc] initWithMax:activeInstance.integerValue]
         ];
     }
@@ -188,7 +178,7 @@
     // Knockback
     NSString *knockback = dic[@"Knockback"];
     if (knockback && [knockback isKindOfClass:[NSString class]]) {
-        _knockback = @[
+        self.knockback = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:knockback.integerValue]
         ];
     }
@@ -196,7 +186,7 @@
     // GiveAp
     NSString *giveAp = dic[@"GiveAp"];
     if (giveAp && [giveAp isKindOfClass:[NSString class]]) {
-        _giveAp = @[
+        self.giveAp = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:giveAp.integerValue]
         ];
     }
@@ -208,7 +198,7 @@
     // CastTime
     NSString *castTime = dic[@"CastTime"];
     if (castTime && [castTime isKindOfClass:[NSString class]]) {
-        _castTime = @[
+        self.castTime = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:castTime.integerValue]
         ];
     }
@@ -216,7 +206,7 @@
     // AfterCastActDelay
     NSString *afterCastActDelay = dic[@"AfterCastActDelay"];
     if (afterCastActDelay && [afterCastActDelay isKindOfClass:[NSString class]]) {
-        _afterCastActDelay = @[
+        self.afterCastActDelay = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:afterCastActDelay.integerValue]
         ];
     }
@@ -224,7 +214,7 @@
     // AfterCastWalkDelay
     NSString *afterCastWalkDelay = dic[@"AfterCastWalkDelay"];
     if (afterCastWalkDelay && [afterCastWalkDelay isKindOfClass:[NSString class]]) {
-        _afterCastWalkDelay = @[
+        self.afterCastWalkDelay = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:afterCastWalkDelay.integerValue]
         ];
     }
@@ -232,7 +222,7 @@
     // Duration1
     NSString *duration1 = dic[@"Duration1"];
     if (duration1 && [duration1 isKindOfClass:[NSString class]]) {
-        _duration1 = @[
+        self.duration1 = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:duration1.integerValue]
         ];
     }
@@ -240,7 +230,7 @@
     // Duration2
     NSString *duration2 = dic[@"Duration2"];
     if (duration2 && [duration2 isKindOfClass:[NSString class]]) {
-        _duration2 = @[
+        self.duration2 = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:duration2.integerValue]
         ];
     }
@@ -248,7 +238,7 @@
     // Cooldown
     NSString *cooldown = dic[@"Cooldown"];
     if (cooldown && [cooldown isKindOfClass:[NSString class]]) {
-        _cooldown = @[
+        self.cooldown = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:cooldown.integerValue]
         ];
     }
@@ -256,7 +246,7 @@
     // FixedCastTime
     NSString *fixedCastTime = dic[@"FixedCastTime"];
     if (fixedCastTime && [fixedCastTime isKindOfClass:[NSString class]]) {
-        _fixedCastTime = @[
+        self.fixedCastTime = @[
             [[RASkillLevelSpecificTime alloc] initWithTime:fixedCastTime.integerValue]
         ];
     }
@@ -310,7 +300,7 @@
     // HpCost
     NSString *hpCost = dic[@"HpCost"];
     if (hpCost && [hpCost isKindOfClass:[NSString class]]) {
-        _hpCost = @[
+        self.hpCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:hpCost.integerValue]
         ];
     }
@@ -318,7 +308,7 @@
     // SpCost
     NSString *spCost = dic[@"SpCost"];
     if (spCost && [spCost isKindOfClass:[NSString class]]) {
-        _spCost = @[
+        self.spCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:spCost.integerValue]
         ];
     }
@@ -326,7 +316,7 @@
     // ApCost
     NSString *apCost = dic[@"ApCost"];
     if (apCost && [apCost isKindOfClass:[NSString class]]) {
-        _apCost = @[
+        self.apCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:apCost.integerValue]
         ];
     }
@@ -334,7 +324,7 @@
     // HpRateCost
     NSString *hpRateCost = dic[@"HpRateCost"];
     if (hpRateCost && [hpRateCost isKindOfClass:[NSString class]]) {
-        _hpRateCost = @[
+        self.hpRateCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:hpRateCost.integerValue]
         ];
     }
@@ -342,7 +332,7 @@
     // SpRateCost
     NSString *spRateCost = dic[@"SpRateCost"];
     if (spRateCost && [spRateCost isKindOfClass:[NSString class]]) {
-        _spRateCost = @[
+        self.spRateCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:spRateCost.integerValue]
         ];
     }
@@ -350,7 +340,7 @@
     // ApRateCost
     NSString *apRateCost = dic[@"ApRateCost"];
     if (apRateCost && [apRateCost isKindOfClass:[NSString class]]) {
-        _apRateCost = @[
+        self.apRateCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:apRateCost.integerValue]
         ];
     }
@@ -358,7 +348,7 @@
     // MaxHpTrigger
     NSString *maxHpTrigger = dic[@"MaxHpTrigger"];
     if (maxHpTrigger && [maxHpTrigger isKindOfClass:[NSString class]]) {
-        _maxHpTrigger = @[
+        self.maxHpTrigger = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:maxHpTrigger.integerValue]
         ];
     }
@@ -366,27 +356,23 @@
     // ZenyCost
     NSString *zenyCost = dic[@"ZenyCost"];
     if (zenyCost && [zenyCost isKindOfClass:[NSString class]]) {
-        _zenyCost = @[
+        self.zenyCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:zenyCost.integerValue]
         ];
     }
 
     // Weapon
-    NSDictionary<NSString *, NSNumber *> *weapon = dic[@"Weapon"];
-    if (weapon) {
-        _weapon = [RAWeaponType valuesOfNames:weapon];
-    }
+    NSDictionary<NSString *, NSNumber *> *weapon = dic[@"Weapon"] ?: @{@"All": @YES};
+    self.weapon = [RAWeaponType valuesOfNames:weapon];
 
     // Ammo
-    NSDictionary<NSString *, NSNumber *> *ammo = dic[@"Ammo"];
-    if (ammo) {
-        _ammo = [RAAmmoType valuesOfNames:ammo];
-    }
+    NSDictionary<NSString *, NSNumber *> *ammo = dic[@"Ammo"] ?: @{};
+    self.ammo = [RAAmmoType valuesOfNames:ammo];
 
     // AmmoAmount
     NSString *ammoAmount = dic[@"AmmoAmount"];
     if (ammoAmount && [ammoAmount isKindOfClass:[NSString class]]) {
-        _ammoAmount = @[
+        self.ammoAmount = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:ammoAmount.integerValue]
         ];
     }
@@ -398,7 +384,7 @@
     // SpiritSphereCost
     NSString *spiritSphereCost = dic[@"SpiritSphereCost"];
     if (spiritSphereCost && [spiritSphereCost isKindOfClass:[NSString class]]) {
-        _spiritSphereCost = @[
+        self.spiritSphereCost = @[
             [[RASkillLevelSpecificAmount alloc] initWithAmount:spiritSphereCost.integerValue]
         ];
     }
@@ -429,11 +415,19 @@
     };
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _interval = 0;
+    }
+    return self;
+}
+
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     // Layout
     NSString *layout = dic[@"Layout"];
     if (layout && [layout isKindOfClass:[NSString class]]) {
-        _layout = @[
+        self.layout = @[
             [[RASkillLevelSpecificSize alloc] initWithSize:layout.integerValue]
         ];
     }
@@ -441,7 +435,7 @@
     // Range
     NSString *range = dic[@"Range"];
     if (range && [range isKindOfClass:[NSString class]]) {
-        _range = @[
+        self.range = @[
             [[RASkillLevelSpecificSize alloc] initWithSize:range.integerValue]
         ];
     }
@@ -514,13 +508,8 @@
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     // Element
-    NSString *elementName = dic[@"Element"];
-    if (elementName) {
-        _element = [RAElement valueOfName:elementName];
-    }
-    if (_element == nil) {
-        _element = RAElement.neutral;
-    }
+    NSString *element = dic[@"Element"] ?: @"";
+    self.element = [RAElement valueOfName:element] ?: RAElement.neutral;
 
     return YES;
 }

@@ -502,7 +502,7 @@
     return toggleable;
 }
 
-+ (NSArray<RAEnum *> *)allCases {
++ (NSArray<RASkillFlag *> *)allCases {
     static NSArray<RASkillFlag *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

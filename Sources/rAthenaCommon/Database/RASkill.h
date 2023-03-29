@@ -52,10 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) RASkillTargetType *targetType;
 
 /// Skill damage properties.
-@property (nonatomic, copy, nullable) NSSet<RASkillDamageFlag *> *damageFlags;
+@property (nonatomic, copy) NSSet<RASkillDamageFlag *> *damageFlags;
 
 /// Skill information flags.
-@property (nonatomic, copy, nullable) NSSet<RASkillFlag *> *flags;
+@property (nonatomic, copy) NSSet<RASkillFlag *> *flags;
 
 /// Skill range. (Default: 0)
 @property (nonatomic, copy, nullable) NSArray<RASkillLevelSpecificSize *> *range;
@@ -158,10 +158,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSArray<RASkillLevelSpecificAmount *> *zenyCost;
 
 /// Weapon required to cast. (Default: All)
-@property (nonatomic, copy, nullable) NSSet<RAWeaponType *> *weapon;
+@property (nonatomic, copy) NSSet<RAWeaponType *> *weapon;
 
 /// Ammo required to cast. (Default: None)
-@property (nonatomic, copy, nullable) NSSet<RAAmmoType *> *ammo;
+@property (nonatomic, copy) NSSet<RAAmmoType *> *ammo;
 
 /// Ammo amount required to cast. (Default: 0)
 @property (nonatomic, copy, nullable) NSArray<RASkillLevelSpecificAmount *> *ammoAmount;

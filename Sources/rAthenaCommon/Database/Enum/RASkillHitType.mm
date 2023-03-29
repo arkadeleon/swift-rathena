@@ -46,7 +46,7 @@
     return multiple;
 }
 
-+ (NSArray<RAEnum *> *)allCases {
++ (NSArray<RASkillHitType *> *)allCases {
     static NSArray<RASkillHitType *> *allCases = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

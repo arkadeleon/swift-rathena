@@ -9,6 +9,8 @@
 
 @import YYModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RASize;
 @class RARace;
 @class RARaceGroup;
@@ -16,8 +18,6 @@
 @class RAMonsterAi;
 @class RAMonsterClass;
 @class RAMonsterMode;
-
-NS_ASSUME_NONNULL_BEGIN
 
 @class RAMonsterDrop;
 
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) RARace *race;
 
 /// List of secondary groups the monster may be part of. (Optional)
-@property (nonatomic, copy, nullable) NSSet<RARaceGroup *> *raceGroups;
+@property (nonatomic, copy) NSSet<RARaceGroup *> *raceGroups;
 
 /// Element. (Default: Neutral)
 @property (nonatomic) RAElement *element;
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) RAMonsterClass *monsterClass;
 
 /// List of unique behavior not defined by AI, Class, or Attribute. (Optional)
-@property (nonatomic, copy, nullable) NSSet<RAMonsterMode *> *modes;
+@property (nonatomic, copy) NSSet<RAMonsterMode *> *modes;
 
 /// List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
 @property (nonatomic, copy, nullable) NSArray<RAMonsterDrop *> *mvpDrops;
@@ -160,7 +160,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *randomOptionGroup;
 
 /// Index used for overwriting item. (Optional)
-@property (nonatomic) NSNumber *index;
+@property (nonatomic, nullable) NSNumber *index;
 
 @end
 

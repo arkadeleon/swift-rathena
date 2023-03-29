@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RASkillHitType *single;
 @property (nonatomic, class, readonly) RASkillHitType *multiple;
 
+@property (nonatomic, class, readonly) NSArray<RASkillHitType *> *allCases;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RASkillFlag *ignoreGtb;
 @property (nonatomic, class, readonly) RASkillFlag *toggleable;
 
+@property (nonatomic, class, readonly) NSArray<RASkillFlag *> *allCases;
+
 @end
 
 NS_ASSUME_NONNULL_END
