@@ -9,20 +9,21 @@
 
 @import YYModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class RAItemType;
-@class RAItemSubType;
 @class RAItemJob;
 @class RAItemClass;
 @class RAGender;
 @class RAEquipmentLocation;
-
-NS_ASSUME_NONNULL_BEGIN
 
 @class RAItemFlags;
 @class RAItemDelay;
 @class RAItemStack;
 @class RAItemNoUse;
 @class RAItemTrade;
+
+@protocol RAItemSubType;
 
 @interface RAItem : NSObject <YYModel>
 
@@ -39,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) RAItemType *type;
 
 /// Weapon, Ammo or Card type. (Default: 0)
-@property (nonatomic, nullable) RAItemSubType *subType;
+@property (nonatomic, nullable) id<RAItemSubType> subType;
 
 /// Buying price. When not specified, becomes double the sell price. (Default: 0)
 @property (nonatomic) NSInteger buy;

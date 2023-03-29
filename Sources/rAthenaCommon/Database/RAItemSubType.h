@@ -6,21 +6,30 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class RAItemType;
-@class RAWeaponType;
-@class RAAmmoType;
-@class RACardType;
+#import "Enum/RAWeaponType.h"
+#import "Enum/RAAmmoType.h"
+#import "Enum/RACardType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAItemSubType : NSObject
+@class RAItemType;
+@protocol RAItemSubType;
 
-+ (nullable instancetype)itemSubTypeOfType:(RAItemType *)type name:(nullable NSString *)name;
+extern id<RAItemSubType> _Nullable RAItemSubTypeFromName(NSString *name, RAItemType *type);
 
-- (nullable RAWeaponType *)asWeaponType;
-- (nullable RAAmmoType *)asAmmoType;
-- (nullable RACardType *)asCardType;
+@protocol RAItemSubType <NSObject>
+
+@end
+
+@interface RAWeaponType (RAItemSubType) <RAItemSubType>
+
+@end
+
+@interface RAAmmoType (RAItemSubType) <RAItemSubType>
+
+@end
+
+@interface RACardType (RAItemSubType) <RAItemSubType>
 
 @end
 

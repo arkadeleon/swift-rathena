@@ -384,4 +384,26 @@
     return allCases;
 }
 
++ (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
+    NSMutableSet<RAItemJob *> *values = [[NSMutableSet alloc] init];
+
+    NSNumber *all = names[@"All"];
+    if (all && all.boolValue) {
+        [values addObjectsFromArray:RAItemJob.allCases];
+    }
+
+    [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *included, BOOL *stop) {
+        RAItemJob *value = [RAItemJob valueOfName:name];
+        if (value) {
+            if (included.boolValue) {
+                [values addObject:value];
+            } else {
+                [values removeObject:value];
+            }
+        }
+    }];
+
+    return [values copy];
+}
+
 @end

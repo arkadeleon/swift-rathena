@@ -7,57 +7,49 @@
 
 #import "RAItem.h"
 #import "Enum/RAItemType.h"
-#import "RAItemSubType.h"
 #import "Enum/RAItemJob.h"
 #import "Enum/RAItemClass.h"
 #import "Enum/RAGender.h"
 #import "Enum/RAEquipmentLocation.h"
+#import "RAItemSubType.h"
 
 @implementation RAItem
 
 + (NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
-        @"itemID"       : @"Id",
-        @"aegisName"    : @"AegisName",
-        @"name"         : @"Name",
-        @"type"         : @"Type",
-        @"subType"      : @"SubType",
-        @"buy"          : @"Buy",
-        @"sell"         : @"Sell",
-        @"weight"       : @"Weight",
-        @"attack"       : @"Attack",
-        @"magicAttack"  : @"MagicAttack",
-        @"defense"      : @"Defense",
-        @"range"        : @"Range",
-        @"slots"        : @"Slots",
-        @"jobs"         : @"Jobs",
-        @"classes"      : @"Classes",
-        @"gender"       : @"Gender",
-        @"locations"    : @"Locations",
-        @"weaponLevel"  : @"WeaponLevel",
-        @"armorLevel"   : @"ArmorLevel",
-        @"equipLevelMin": @"EquipLevelMin",
-        @"equipLevelMax": @"EquipLevelMax",
-        @"refineable"   : @"Refineable",
-        @"gradable"     : @"Gradable",
-        @"view"         : @"View",
-        @"aliasName"    : @"AliasName",
-        @"flags"        : @"Flags",
-        @"delay"        : @"Delay",
-        @"stack"        : @"Stack",
-        @"noUse"        : @"NoUse",
-        @"trade"        : @"Trade",
-        @"script"       : @"Script",
-        @"equipScript"  : @"EquipScript",
-        @"unEquipScript": @"UnEquipScript",
+        @"itemID"           : @"Id",
+        @"aegisName"        : @"AegisName",
+        @"name"             : @"Name",
+        @"buy"              : @"Buy",
+        @"sell"             : @"Sell",
+        @"weight"           : @"Weight",
+        @"attack"           : @"Attack",
+        @"magicAttack"      : @"MagicAttack",
+        @"defense"          : @"Defense",
+        @"range"            : @"Range",
+        @"slots"            : @"Slots",
+        @"weaponLevel"      : @"WeaponLevel",
+        @"armorLevel"       : @"ArmorLevel",
+        @"equipLevelMin"    : @"EquipLevelMin",
+        @"equipLevelMax"    : @"EquipLevelMax",
+        @"refineable"       : @"Refineable",
+        @"gradable"         : @"Gradable",
+        @"view"             : @"View",
+        @"aliasName"        : @"AliasName",
+        @"flags"            : @"Flags",
+        @"delay"            : @"Delay",
+        @"stack"            : @"Stack",
+        @"noUse"            : @"NoUse",
+        @"trade"            : @"Trade",
+        @"script"           : @"Script",
+        @"equipScript"      : @"EquipScript",
+        @"unEquipScript"    : @"UnEquipScript",
     };
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _type = RAItemType.etc;
-        _subType = nil;
         _buy = 0;
         _sell = 0;
         _weight = 0;
@@ -66,10 +58,6 @@
         _defense = 0;
         _range = 0;
         _slots = 0;
-        _jobs = [[NSSet alloc] initWithArray:RAItemJob.allCases];
-        _classes = [[NSSet alloc] initWithArray:RAItemClass.allCases];
-        _gender = RAGender.both;
-        _locations = [[NSSet alloc] init];
         _weaponLevel = 1;
         _armorLevel = 1;
         _equipLevelMin = 0;
@@ -82,91 +70,30 @@
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    NSString *typeName = dic[@"Type"];
-    if (typeName) {
-        RAItemType *type = [RAItemType valueOfName:typeName];
-        if (type) {
-            _type = type;
-        }
+    NSString *type = dic[@"Type"] ?: @"";
+    self.type = [RAItemType valueOfName:type] ?: RAItemType.etc;
+
+    NSString *subType = dic[@"SubType"] ?: @"";
+    self.subType = RAItemSubTypeFromName(subType, self.type);
+
+    NSDictionary<NSString *, NSNumber *> *jobs = dic[@"Jobs"] ?: @{@"All": @YES};
+    self.jobs = [RAItemJob valuesOfNames:jobs];
+
+    NSDictionary<NSString *, NSNumber *> *classes = dic[@"Classes"] ?: @{@"All": @YES};
+    self.classes = [RAItemClass valuesOfNames:classes];
+
+    NSString *gender = dic[@"Gender"] ?: @"";
+    self.gender = [RAGender valueOfName:gender] ?: RAGender.both;
+
+    NSDictionary<NSString *, NSNumber *> *locations = dic[@"Locations"] ?: @{};
+    self.locations = [RAEquipmentLocation valuesOfNames:locations];
+
+    if (self.type != RAItemType.weapon) {
+        self.weaponLevel = 0;
     }
 
-    _subType = [RAItemSubType itemSubTypeOfType:_type name:dic[@"SubType"]];
-
-    NSDictionary<NSString *, NSNumber *> *jobNames = dic[@"Jobs"];
-    if (jobNames) {
-        NSMutableSet<RAItemJob *> *jobs = [[NSMutableSet alloc] init];
-        NSNumber *allValue = jobNames[@"All"];
-        if (allValue && allValue.boolValue) {
-            [jobs addObjectsFromArray:RAItemJob.allCases];
-        }
-        [jobNames enumerateKeysAndObjectsUsingBlock:^(NSString *jobName, NSNumber *value, BOOL *stop) {
-            RAItemJob *job = [RAItemJob valueOfName:jobName];
-            if (job) {
-                if (value.boolValue) {
-                    [jobs addObject:job];
-                } else {
-                    [jobs removeObject:job];
-                }
-            }
-        }];
-        _jobs = [jobs copy];
-    }
-
-    NSDictionary<NSString *, NSNumber *> *classNames = dic[@"Classes"];
-    if (classNames) {
-        NSMutableSet<RAItemClass *> *classes = [[NSMutableSet alloc] init];
-        NSNumber *allValue = classNames[@"All"];
-        NSNumber *allUpperValue = classNames[@"All_Upper"];
-        NSNumber *allBabyValue = classNames[@"All_Baby"];
-        NSNumber *allThirdValue = classNames[@"All_Third"];
-        if (allValue && allValue.boolValue) {
-            [classes addObjectsFromArray:RAItemClass.allCases];
-        }
-        if (allUpperValue) {
-            if (allUpperValue.boolValue) {
-                [classes addObjectsFromArray:RAItemClass.allUpper];
-            } else {
-                [classes minusSet:[NSSet setWithArray:RAItemClass.allUpper]];
-            }
-        }
-        if (allBabyValue) {
-            if (allBabyValue.boolValue) {
-                [classes addObjectsFromArray:RAItemClass.allBaby];
-            } else {
-                [classes minusSet:[NSSet setWithArray:RAItemClass.allBaby]];
-            }
-        }
-        if (allThirdValue) {
-            if (allThirdValue.boolValue) {
-                [classes addObjectsFromArray:RAItemClass.allThird];
-            } else {
-                [classes minusSet:[NSSet setWithArray:RAItemClass.allThird]];
-            }
-        }
-        [classNames enumerateKeysAndObjectsUsingBlock:^(NSString *className, NSNumber *value, BOOL *stop) {
-            RAItemClass *itemClass = [RAItemClass valueOfName:className];
-            if (itemClass) {
-                if (value.boolValue) {
-                    [classes addObject:itemClass];
-                } else {
-                    [classes removeObject:itemClass];
-                }
-            }
-        }];
-        _classes = [classes copy];
-    }
-
-    NSString *genderName = dic[@"Gender"];
-    if (genderName) {
-        RAGender *gender = [RAGender valueOfName:genderName];
-        if (gender) {
-            _gender = gender;
-        }
-    }
-
-    NSDictionary<NSString *, NSNumber *> *locationNames = dic[@"Locations"];
-    if (locationNames) {
-        _locations = [RAEquipmentLocation valuesOfNames:locationNames];
+    if (self.type != RAItemType.armor) {
+        self.armorLevel = 0;
     }
 
     return YES;
@@ -187,6 +114,20 @@
         @"noConsume"    : @"NoConsume",
         @"dropEffect"   : @"DropEffect",
     };
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _buyingStore = NO;
+        _deadBranch = NO;
+        _container = NO;
+        _uniqueId = NO;
+        _bindOnEquip = NO;
+        _dropAnnounce = NO;
+        _noConsume = NO;
+    }
+    return self;
 }
 
 @end

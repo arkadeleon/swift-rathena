@@ -149,4 +149,53 @@
     return allCases;
 }
 
++ (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
+    NSMutableSet<RAItemClass *> *values = [[NSMutableSet alloc] init];
+
+    NSNumber *all = names[@"All"];
+    if (all && all.boolValue) {
+        [values addObjectsFromArray:RAItemClass.allCases];
+    }
+
+    NSNumber *allUpper = names[@"All_Upper"];
+    if (allUpper) {
+        if (allUpper.boolValue) {
+            [values addObjectsFromArray:RAItemClass.allUpper];
+        } else {
+            [values minusSet:[NSSet setWithArray:RAItemClass.allUpper]];
+        }
+    }
+
+    NSNumber *allBaby = names[@"All_Baby"];
+    if (allBaby) {
+        if (allBaby.boolValue) {
+            [values addObjectsFromArray:RAItemClass.allBaby];
+        } else {
+            [values minusSet:[NSSet setWithArray:RAItemClass.allBaby]];
+        }
+    }
+
+    NSNumber *allThird = names[@"All_Third"];
+    if (allThird) {
+        if (allThird.boolValue) {
+            [values addObjectsFromArray:RAItemClass.allThird];
+        } else {
+            [values minusSet:[NSSet setWithArray:RAItemClass.allThird]];
+        }
+    }
+
+    [names enumerateKeysAndObjectsUsingBlock:^(NSString *name, NSNumber *included, BOOL *stop) {
+        RAItemClass *value = [RAItemClass valueOfName:name];
+        if (value) {
+            if (included.boolValue) {
+                [values addObject:value];
+            } else {
+                [values removeObject:value];
+            }
+        }
+    }];
+
+    return [values copy];
+}
+
 @end

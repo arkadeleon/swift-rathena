@@ -320,13 +320,13 @@
 + (NSSet *)valuesOfNames:(NSDictionary<NSString *, NSNumber *> *)names {
     NSMutableSet<RAEquipmentLocation *> *values = [[NSMutableSet alloc] init];
 
-    NSNumber *bothHandValue = names[@"Both_Hand"];
-    if (bothHandValue && bothHandValue.boolValue) {
+    NSNumber *bothHand = names[@"Both_Hand"];
+    if (bothHand && bothHand.boolValue) {
         [values addObjectsFromArray:RAEquipmentLocation.bothHand];
     }
 
-    NSNumber *bothAccessoryValue = names[@"Both_Accessory"];
-    if (bothAccessoryValue && bothAccessoryValue.boolValue) {
+    NSNumber *bothAccessory = names[@"Both_Accessory"];
+    if (bothAccessory && bothAccessory.boolValue) {
         [values addObjectsFromArray:RAEquipmentLocation.bothAccessory];
     }
 

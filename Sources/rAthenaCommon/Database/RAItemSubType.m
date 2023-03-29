@@ -7,48 +7,27 @@
 
 #import "RAItemSubType.h"
 #import "Enum/RAItemType.h"
-#import "Enum/RAWeaponType.h"
-#import "Enum/RAAmmoType.h"
-#import "Enum/RACardType.h"
 
-@interface RAItemSubType ()
-
-@property (nonatomic, strong) RAWeaponType *weaponType;
-@property (nonatomic, strong) RAAmmoType *ammoType;
-@property (nonatomic, strong) RACardType *cardType;
-
-@end
-
-@implementation RAItemSubType
-
-+ (instancetype)itemSubTypeOfType:(RAItemType *)type name:(nullable NSString *)name {
+id<RAItemSubType> RAItemSubTypeFromName(NSString *name, RAItemType *type) {
     if (type == RAItemType.weapon) {
-        RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.weaponType = name ? [RAWeaponType valueOfName:name] : nil;
-        return subType;
+        return [RAWeaponType valueOfName:name];
     } else if (type == RAItemType.ammo) {
-        RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.ammoType = name ? [RAAmmoType valueOfName:name] : nil;
-        return subType;
+        return [RAAmmoType valueOfName:name];
     } else if (type == RAItemType.card) {
-        RAItemSubType *subType = [[RAItemSubType alloc] init];
-        subType.cardType = [RACardType valueOfName:name ?: @""];
-        return subType;
+        return [RACardType valueOfName:name];
     } else {
         return nil;
     }
 }
 
-- (RAWeaponType *)asWeaponType {
-    return self.weaponType;
-}
+@implementation RAWeaponType (RAItemSubType)
 
-- (RAAmmoType *)asAmmoType {
-    return self.ammoType;
-}
+@end
 
-- (RACardType *)asCardType {
-    return self.cardType;
-}
+@implementation RAAmmoType (RAItemSubType)
+
+@end
+
+@implementation RACardType (RAItemSubType)
 
 @end
