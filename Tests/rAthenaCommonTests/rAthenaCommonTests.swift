@@ -191,7 +191,15 @@ class rAthenaCommonTests: XCTestCase {
         let skillTrees = await db.fetchSkillTrees()
         XCTAssertEqual(skillTrees.count, 167)
 
-        let archBishop = skillTrees.first(where: { $0.job == RAJob.archBishop.name })!
+        let skillTreesWithJobNames = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job.name, $0) }))
+
+        let acolyte = skillTreesWithJobNames["Acolyte"]!
+        XCTAssertEqual(acolyte.job, .acolyte)
+        XCTAssertEqual(acolyte.inherit, [.novice])
+        XCTAssertEqual(acolyte.tree?.count, 15)
+
+        let archBishop = skillTreesWithJobNames["Arch_Bishop"]!
+        XCTAssertEqual(archBishop.job, .archBishop)
         XCTAssertEqual(archBishop.inherit, [.novice, .acolyte, .priest])
         XCTAssertEqual(archBishop.tree?.count, 22)
     }

@@ -12,18 +12,21 @@
 
 + (NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     return @{
-        @"job"      : @"Job",
-        @"tree"     : @"Tree",
+        @"tree" : @"Tree",
     };
 }
 
 + (NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass {
     return @{
-        @"tree"     : [RASkillTreeSkill class],
+        @"tree" : [RASkillTreeSkill class],
     };
 }
 
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
+    // Job
+    NSString *job = dic[@"Job"] ?: @"";
+    self.job = [RAJob valueOfName:job];
+
     // Inherit
     NSDictionary<NSString *, NSNumber *> *inherit = dic[@"Inherit"];
     self.inherit = [RAJob valuesOfNames:inherit];
@@ -59,6 +62,7 @@
         _baseLevel = 0;
         _jobLevel = 0;
     }
+    return self;
 }
 
 @end

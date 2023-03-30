@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RASkillTree : NSObject <YYModel>
 
 /// Job name.
-@property (nonatomic, copy) NSString *job;
+@property (nonatomic) RAJob *job;
 
 /// Map of job name from which Job will inherit the skill tree. (Default: null)
 /// Note that Job doesn't inherit the child skills, it only inherits the skills defined in Tree of the given job name.
