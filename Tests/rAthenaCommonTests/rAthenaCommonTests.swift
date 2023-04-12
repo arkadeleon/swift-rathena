@@ -14,7 +14,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testItemDatabase() async {
         let items = await db.fetchItems()
-        XCTAssertEqual(items.count, 22152)
+        XCTAssertEqual(items.count, 22424)
 
         let redPotion = items.first(where: { $0.itemID == 501 })!
         XCTAssertEqual(redPotion.aegisName, "Red_Potion")
@@ -114,7 +114,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testMonsterDatabase() async {
         let monsters = await db.fetchMonsters()
-        XCTAssertEqual(monsters.count, 2295)
+        XCTAssertEqual(monsters.count, 2319)
 
         let poring = monsters.first(where: { $0.monsterID == 1002 })!
         XCTAssertEqual(poring.aegisName, "PORING")
@@ -206,7 +206,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testSkillDatabase() async {
         let skills = await db.fetchSkills()
-        XCTAssertEqual(skills.count, 1488)
+        XCTAssertEqual(skills.count, 1492)
 
         let skillsWithNames = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
 
