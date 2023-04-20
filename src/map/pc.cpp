@@ -6889,15 +6889,8 @@ enum e_setpos pc_setpos(map_session_data* sd, unsigned short mapindex, int x, in
 
 		channel_pcquit(sd,4); //quit map chan
 
-		// Remove Cloaked NPC if changing to another map
-		for (auto it = sd->cloaked_npc.begin(); it != sd->cloaked_npc.end(); ++it) {
-			block_list *npc_bl = map_id2bl(*it);
-
-			if (npc_bl && npc_bl->m != m) {
-				sd->cloaked_npc.erase(it);
-				break;
-			}
-		}
+		// Remove Cloaked NPCs on map change
+		sd->cloaked_npc.clear();
 	}
 
 	if( m < 0 )
@@ -9680,8 +9673,6 @@ int pc_dead(map_session_data *sd,struct block_list *src)
 		struct pet_data *pd = sd->pd;
 		if( !mapdata->flag[MF_NOEXPPENALTY] ) {
 			pet_set_intimate(pd, pd->pet.intimate + pd->get_pet_db()->die);
-			if( pd->pet.intimate <= PET_INTIMATE_NONE )
-				pet_set_intimate(pd, PET_INTIMATE_NONE);
 			clif_send_petdata(sd,sd->pd,1,pd->pet.intimate);
 		}
 		if( sd->pd->target_id ) // Unlock all targets...
