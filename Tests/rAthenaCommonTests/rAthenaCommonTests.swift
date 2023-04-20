@@ -16,7 +16,9 @@ class rAthenaCommonTests: XCTestCase {
         let items = await db.fetchItems()
         XCTAssertEqual(items.count, 22424)
 
-        let redPotion = items.first(where: { $0.itemID == 501 })!
+        let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
+
+        let redPotion = uniqueItems[501]!
         XCTAssertEqual(redPotion.aegisName, "Red_Potion")
         XCTAssertEqual(redPotion.name, "Red Potion")
         XCTAssertEqual(redPotion.type, .healing)
@@ -24,7 +26,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(redPotion.weight, 70)
         XCTAssertEqual(redPotion.script, "itemheal rand(45,65),0;\n")
 
-        let flyWing = items.first(where: { $0.itemID == 601 })!
+        let flyWing = uniqueItems[601]!
         XCTAssertEqual(flyWing.aegisName, "Wing_Of_Fly")
         XCTAssertEqual(flyWing.name, "Fly Wing")
         XCTAssertEqual(flyWing.type, .delayConsume)
@@ -33,7 +35,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(flyWing.flags?.buyingStore, true)
         XCTAssertEqual(flyWing.script, "itemskill \"AL_TELEPORT\",1;\n")
 
-        let deadBranch = items.first(where: { $0.itemID == 604 })!
+        let deadBranch = uniqueItems[604]!
         XCTAssertEqual(deadBranch.aegisName, "Branch_Of_Dead_Tree")
         XCTAssertEqual(deadBranch.name, "Dead Branch")
         XCTAssertEqual(deadBranch.type, .usable)
@@ -43,7 +45,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(deadBranch.flags?.deadBranch, true)
         XCTAssertEqual(deadBranch.script, "monster \"this\",-1,-1,\"--ja--\",-1-MOBG_BRANCH_OF_DEAD_TREE,1,\"\";\n")
 
-        let sword = items.first(where: { $0.itemID == 1101 })!
+        let sword = uniqueItems[1101]!
         XCTAssertEqual(sword.aegisName, "Sword")
         XCTAssertEqual(sword.name, "Sword")
         XCTAssertEqual(sword.type, .weapon)
@@ -59,7 +61,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(sword.equipLevelMin, 2)
         XCTAssertEqual(sword.refineable, true)
 
-        let eraser = items.first(where: { $0.itemID == 1637 })!
+        let eraser = uniqueItems[1637]!
         XCTAssertEqual(eraser.aegisName, "Eraser")
         XCTAssertEqual(eraser.name, "Eraser")
         XCTAssertEqual(eraser.type, .weapon)
@@ -75,7 +77,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(eraser.equipLevelMin, 70)
         XCTAssertEqual(eraser.refineable, true)
 
-        let sheild = items.first(where: { $0.itemID == 2105 })!
+        let sheild = uniqueItems[2105]!
         XCTAssertEqual(sheild.aegisName, "Shield")
         XCTAssertEqual(sheild.name, "Shield")
         XCTAssertEqual(sheild.type, .armor)
@@ -87,7 +89,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(sheild.armorLevel, 1)
         XCTAssertEqual(sheild.refineable, true)
 
-        let turban = items.first(where: { $0.itemID == 2222 })!
+        let turban = uniqueItems[2222]!
         XCTAssertEqual(turban.aegisName, "Turban")
         XCTAssertEqual(turban.name, "Turban")
         XCTAssertEqual(turban.type, .armor)
@@ -100,7 +102,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(turban.refineable, true)
         XCTAssertEqual(turban.view, 7)
 
-        let poringCard = items.first(where: { $0.itemID == 4001 })!
+        let poringCard = uniqueItems[4001]!
         XCTAssertEqual(poringCard.aegisName, "Poring_Card")
         XCTAssertEqual(poringCard.name, "Poring Card")
         XCTAssertEqual(poringCard.type, .card)
@@ -114,9 +116,11 @@ class rAthenaCommonTests: XCTestCase {
 
     func testMonsterDatabase() async {
         let monsters = await db.fetchMonsters()
-        XCTAssertEqual(monsters.count, 2319)
+        XCTAssertEqual(monsters.count, 2422)
 
-        let poring = monsters.first(where: { $0.monsterID == 1002 })!
+        let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
+
+        let poring = uniqueMonsters[1002]!
         XCTAssertEqual(poring.aegisName, "PORING")
         XCTAssertEqual(poring.name, "Poring")
         XCTAssertEqual(poring.level, 1)
@@ -148,7 +152,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(poring.monsterClass, .normal)
         XCTAssertEqual(poring.drops?.count, 8)
 
-        let archerSkeleton = monsters.first(where: { $0.monsterID == 1016 })!
+        let archerSkeleton = uniqueMonsters[1016]!
         XCTAssertEqual(archerSkeleton.aegisName, "ARCHER_SKELETON")
         XCTAssertEqual(archerSkeleton.name, "Archer Skeleton")
         XCTAssertEqual(archerSkeleton.level, 50)
@@ -181,7 +185,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(archerSkeleton.monsterClass, .normal)
         XCTAssertEqual(archerSkeleton.drops?.count, 8)
 
-        let osiris = monsters.first(where: { $0.monsterID == 1038 })!
+        let osiris = uniqueMonsters[1038]!
         XCTAssertEqual(osiris.monsterClass, .boss)
         XCTAssertEqual(osiris.modes, [.mvp])
         XCTAssertEqual(osiris.mvpDrops?.count, 3)
@@ -191,14 +195,14 @@ class rAthenaCommonTests: XCTestCase {
         let skillTrees = await db.fetchSkillTrees()
         XCTAssertEqual(skillTrees.count, 167)
 
-        let skillTreesWithJobNames = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job.name, $0) }))
+        let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job.name, $0) }))
 
-        let acolyte = skillTreesWithJobNames["Acolyte"]!
+        let acolyte = uniqueSkillTrees["Acolyte"]!
         XCTAssertEqual(acolyte.job, .acolyte)
         XCTAssertEqual(acolyte.inherit, [.novice])
         XCTAssertEqual(acolyte.tree?.count, 15)
 
-        let archBishop = skillTreesWithJobNames["Arch_Bishop"]!
+        let archBishop = uniqueSkillTrees["Arch_Bishop"]!
         XCTAssertEqual(archBishop.job, .archBishop)
         XCTAssertEqual(archBishop.inherit, [.novice, .acolyte, .priest])
         XCTAssertEqual(archBishop.tree?.count, 22)
@@ -208,9 +212,9 @@ class rAthenaCommonTests: XCTestCase {
         let skills = await db.fetchSkills()
         XCTAssertEqual(skills.count, 1492)
 
-        let skillsWithNames = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
+        let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
 
-        let napalmBeat = skillsWithNames["MG_NAPALMBEAT"]!
+        let napalmBeat = uniqueSkills["MG_NAPALMBEAT"]!
         XCTAssertEqual(napalmBeat.skillID, 11)
         XCTAssertEqual(napalmBeat.skillName, "MG_NAPALMBEAT")
         XCTAssertEqual(napalmBeat.skillDescription, "Napalm Beat")
@@ -223,7 +227,7 @@ class rAthenaCommonTests: XCTestCase {
         XCTAssertEqual(napalmBeat.range?[0].level, 0)
         XCTAssertEqual(napalmBeat.range?[0].size, 9)
 
-        let spearBoomerang = skillsWithNames["KN_SPEARBOOMERANG"]!
+        let spearBoomerang = uniqueSkills["KN_SPEARBOOMERANG"]!
         XCTAssertEqual(spearBoomerang.skillID, 59)
         XCTAssertEqual(spearBoomerang.skillName, "KN_SPEARBOOMERANG")
         XCTAssertEqual(spearBoomerang.skillDescription, "Spear Boomerang")

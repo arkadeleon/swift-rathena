@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, class, readonly) RARaceGroup *templeDemon;
 @property (nonatomic, class, readonly) RARaceGroup *illusionVampire;
 @property (nonatomic, class, readonly) RARaceGroup *malangdo;
+@property (nonatomic, class, readonly) RARaceGroup *ep172Alpha;
+@property (nonatomic, class, readonly) RARaceGroup *ep172Beta;
+@property (nonatomic, class, readonly) RARaceGroup *ep172Bath;
 
 @property (nonatomic, class, readonly) NSArray<RARaceGroup *> *allCases;
 

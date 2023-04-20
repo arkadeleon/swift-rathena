@@ -346,6 +346,42 @@
     return malangdo;
 }
 
++ (RARaceGroup *)ep172Alpha {
+    static RARaceGroup *ep172Alpha = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ep172Alpha = [[RARaceGroup alloc] init];
+        ep172Alpha.value = RC2_EP172ALPHA;
+        ep172Alpha.name = @"EP172ALPHA";
+        ep172Alpha.englishName = @"EP172ALPHA";
+    });
+    return ep172Alpha;
+}
+
++ (RARaceGroup *)ep172Beta {
+    static RARaceGroup *ep172Beta = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ep172Beta = [[RARaceGroup alloc] init];
+        ep172Beta.value = RC2_EP172BETA;
+        ep172Beta.name = @"EP172BETA";
+        ep172Beta.englishName = @"EP172BETA";
+    });
+    return ep172Beta;
+}
+
++ (RARaceGroup *)ep172Bath {
+    static RARaceGroup *ep172Bath = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        ep172Bath = [[RARaceGroup alloc] init];
+        ep172Bath.value = RC2_EP172BATH;
+        ep172Bath.name = @"EP172BATH";
+        ep172Bath.englishName = @"EP172BATH";
+    });
+    return ep172Bath;
+}
+
 + (NSArray<RARaceGroup *> *)allCases {
     static NSArray<RARaceGroup *> *allCases = nil;
     static dispatch_once_t onceToken;
@@ -379,6 +415,9 @@
             RARaceGroup.templeDemon,
             RARaceGroup.illusionVampire,
             RARaceGroup.malangdo,
+            RARaceGroup.ep172Alpha,
+            RARaceGroup.ep172Beta,
+            RARaceGroup.ep172Bath,
         ];
     });
     return allCases;
