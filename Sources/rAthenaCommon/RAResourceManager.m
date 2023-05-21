@@ -66,7 +66,7 @@
         return;
     }
 
-    NSString *sql = @"CREATE TABLE IF NOT EXISTS `upgrades` (`id` INTEGER NOT NULL, PRIMARY KEY (id));";
+    NSString *sql = @"CREATE TABLE IF NOT EXISTS `upgrades` (`id` TEXT NOT NULL, PRIMARY KEY (id));";
     sqlite3_stmt *stmt = nil;
     if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
         sqlite3_step(stmt);
@@ -82,6 +82,7 @@
     for (NSString *upgradeID in upgradeIDs) {
         sql = [NSString stringWithFormat:@"SELECT count(*) FROM upgrades WHERE id = '%@' LIMIT 1", upgradeID];
         if (sqlite3_prepare_v2(db, sql.UTF8String, -1, &stmt, NULL) == SQLITE_OK) {
+            sqlite3_step(stmt);
             int count = sqlite3_column_int(stmt, 0);
             sqlite3_finalize(stmt);
             stmt = nil;
