@@ -1571,6 +1571,12 @@ int mob_randomwalk(struct mob_data *md,t_tick tick)
 
 	nullpo_ret(md);
 
+	// Initialize next_walktime
+	if (md->next_walktime == INVALID_TIMER) {
+		md->next_walktime = tick+rnd()%1000+MIN_RANDOMWALKTIME;
+		return 1;
+	}
+
 	if(DIFF_TICK(md->next_walktime,tick)>0 ||
 	   status_has_mode(&md->status,MD_NORANDOMWALK) ||
 	   !unit_can_move(&md->bl) ||
@@ -6545,7 +6551,7 @@ bool MapDropDatabase::parseDrop( const ryml::NodeRef& node, std::unordered_map<u
 	}
 
 	if( !exists ){
-		drops[drop->nameid] = drop;
+		drops[index] = drop;
 	}
 
 	return true;
