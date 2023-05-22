@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import rAthenaCommon
 
 struct ServerView: View {
-    public let serverType: ServerType
-
-    private let serverManager = ServerManager.shared
+    let server: RAServer
 
     private let terminalView = TerminalView()
+
+    private let timer =  Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
     @State private var isServerRunning = false
 
@@ -20,21 +21,21 @@ struct ServerView: View {
         HStack(spacing: 0) {
             VStack {
                 HStack(spacing: 8) {
-                    Text(serverManager.serverName(serverType).uppercased())
+                    Text(server.name.uppercased())
                         .font(.subheadline)
 
                     Spacer()
 
                     if !isServerRunning {
                         Button {
-                            serverManager.startServer(serverType)
+                            server.start()
                         } label: {
                             Image(systemName: "play")
                         }
                         .frame(width: 32, height: 32)
                     } else {
                         Button {
-                            serverManager.stopServer(serverType)
+                            server.stop()
                         } label: {
                             Image(systemName: "stop")
                         }
@@ -61,22 +62,22 @@ struct ServerView: View {
                 .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
         }
         .task {
-            serverManager.setOutputHandler({ data in
+            server.outputHandler = { data in
                 if let data = String(data: data, encoding: .isoLatin1)?
                     .replacingOccurrences(of: "\n", with: "\r\n")
                     .data(using: .isoLatin1) {
                     terminalView.appendBuffer(data)
                 }
-            }, for: serverType)
+            }
         }
-        .onReceive(serverManager.isServerRunning(serverType)) { isRunning in
-            isServerRunning = isRunning
+        .onReceive(timer) { _ in
+            isServerRunning = server.status == .running
         }
     }
 }
 
 struct ServerView_Previews: PreviewProvider {
     static var previews: some View {
-        ServerView(serverType: .login)
+        ServerView(server: RAServer())
     }
 }

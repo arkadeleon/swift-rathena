@@ -17,7 +17,6 @@
 		351BAE6529D41B14001CED64 /* rAthenaWeb in Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; };
 		351BAE6629D41B14001CED64 /* rAthenaWeb in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 35CD6D15292F4A9700D484E8 /* Terminal */; };
-		35D8D018292E79C80062AB92 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D8D017292E79C80062AB92 /* ServerManager.swift */; };
 		35FC634329125B2000825452 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634229125B2000825452 /* App.swift */; };
 		35FC634529125B2000825452 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634429125B2000825452 /* ContentView.swift */; };
 		35FC634729125B2000825452 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634629125B2000825452 /* Assets.xcassets */; };
@@ -45,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		351BAE5829D418BC001CED64 /* rathena-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "rathena-ios"; path = ..; sourceTree = "<group>"; };
-		35D8D017292E79C80062AB92 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		35FC633F29125B2000825452 /* rAthenaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rAthenaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FC634229125B2000825452 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		35FC634429125B2000825452 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				35FC634429125B2000825452 /* ContentView.swift */,
 				35FC63672912685000825452 /* ServerView.swift */,
 				35FC636529125F0100825452 /* TerminalView.swift */,
-				35D8D017292E79C80062AB92 /* ServerManager.swift */,
 				35FC634629125B2000825452 /* Assets.xcassets */,
 				35FC634829125B2000825452 /* Preview Content */,
 			);
@@ -201,7 +198,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D8D018292E79C80062AB92 /* ServerManager.swift in Sources */,
 				35FC634529125B2000825452 /* ContentView.swift in Sources */,
 				35FC63682912685000825452 /* ServerView.swift in Sources */,
 				35FC636629125F0100825452 /* TerminalView.swift in Sources */,
@@ -337,7 +333,7 @@
 				DEVELOPMENT_TEAM = GG76KD534U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "rAthena";
+				INFOPLIST_KEY_CFBundleDisplayName = rAthena;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -370,7 +366,7 @@
 				DEVELOPMENT_TEAM = GG76KD534U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "rAthena";
+				INFOPLIST_KEY_CFBundleDisplayName = rAthena;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
