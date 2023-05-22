@@ -116,7 +116,7 @@ class rAthenaCommonTests: XCTestCase {
 
     func testMonsterDatabase() async {
         let monsters = await db.fetchMonsters()
-        XCTAssertEqual(monsters.count, 2422)
+        XCTAssertEqual(monsters.count, 2435)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
 
