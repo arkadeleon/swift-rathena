@@ -34,16 +34,19 @@ struct ExportConstantsPlugin: CommandPlugin {
             }
         }
 
-        let output1Contents = constants
+        constants = constants
             .filter { constant in
                 constant != "true" && constant != "false"
             }
-            .map { constant in
-                "extern const NSInteger RA_\(constant);"
-            }
-            .joined(separator: "\n")
 
-        var output2Contents = """
+        let output1Contents = """
+        \(constants.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
+
+        extern NSInteger RAConstantGetValue(NSString *name);
+
+        """
+
+        let output2Contents = """
         #import "RAConstants.h"
         #include "config/core.hpp"
         #include "map/achievement.hpp"
@@ -64,16 +67,26 @@ struct ExportConstantsPlugin: CommandPlugin {
         #include "map/quest.hpp"
         #include "map/storage.hpp"
 
+        \(constants.map({ "const NSInteger RA_\($0) = \($0);" }).joined(separator: "\n"))
+
+        NSInteger RAConstantGetValue(NSString *name) {
+            static NSDictionary<NSString *, NSNumber *> *constants = nil;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                constants = @{
+        \(constants.map({ "            @\"\($0)\": @(\($0))," }).joined(separator: "\n"))
+                };
+            });
+
+            NSNumber *value = constants[name];
+            if (value) {
+                return value.integerValue;
+            } else {
+                return NSNotFound;
+            }
+        }
 
         """
-        output2Contents += constants
-            .filter { constant in
-                constant != "true" && constant != "false"
-            }
-            .map { constant in
-                "const NSInteger RA_\(constant) = \(constant);"
-            }
-            .joined(separator: "\n")
 
         try output1Contents.write(toFile: output1.string, atomically: true, encoding: .utf8)
         try output2Contents.write(toFile: output2.string, atomically: true, encoding: .utf8)

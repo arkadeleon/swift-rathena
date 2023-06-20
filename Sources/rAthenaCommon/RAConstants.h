@@ -7093,3 +7093,5 @@ extern const NSInteger RA_MER_BAYERI;
 extern const NSInteger RA_MER_SERA;
 extern const NSInteger RA_MER_DIETER;
 extern const NSInteger RA_MER_ELEANOR;
+
+extern NSInteger RAConstantGetValue(NSString *name);
