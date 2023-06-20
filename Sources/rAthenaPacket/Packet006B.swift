@@ -24,7 +24,7 @@ public struct Packet006B: Packet {
 
     public var packetLength: UInt16 {
         var length: UInt16 = 24
-        if RAPacketVersion >= 20100413 {
+        if RA_PACKETVER >= 20100413 {
             length += 3
         }
         length += CharInfo.size * UInt16(charList.count)
@@ -53,13 +53,13 @@ public struct Packet006B: Packet {
         }
         let packetLength = try decoder.decode(UInt16.self)
         let charCount: UInt16
-        if RAPacketVersion >= 20100413 {
+        if RA_PACKETVER >= 20100413 {
             charCount = (packetLength - 27) / CharInfo.size
         } else {
             charCount = (packetLength - 24) / CharInfo.size
         }
 
-        if RAPacketVersion >= 20100413 {
+        if RA_PACKETVER >= 20100413 {
             self.totalSlotNum = try decoder.decode(UInt8.self)
             self.premiumStartSlot = try decoder.decode(UInt8.self)
             self.premiumEndSlot = try decoder.decode(UInt8.self)
@@ -79,7 +79,7 @@ public struct Packet006B: Packet {
 
     public func encode(to encoder: BinaryEncoder) throws {
         try encoder.encode(self.packetLength)
-        if RAPacketVersion >= 20100413 {
+        if RA_PACKETVER >= 20100413 {
             try encoder.encode(self.totalSlotNum)
             try encoder.encode(self.premiumStartSlot)
             try encoder.encode(self.premiumEndSlot)
@@ -139,34 +139,34 @@ extension Packet006B {
 
         public static var size: UInt16 {
             var size: UInt16 = 106
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 size += 4   // base exp
             }
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 size += 4   // job exp
             }
             size += 4
-            if RAPacketVersion >= 20141022 {
+            if RA_PACKETVER >= 20141022 {
                 size += 2   // body
             }
             size += 2
-            if (RAPacketVersion >= 20100720 && RAPacketVersion <= 20100727) || RAPacketVersion >= 20100803 {
+            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
                 size += 16  // last map
             }
-            if RAPacketVersion >= 20100803 {
+            if RA_PACKETVER >= 20100803 {
                 size += 4   // delete date
             }
-            if RAPacketVersion >= 20110111 {
+            if RA_PACKETVER >= 20110111 {
                 size += 4   // robe
             }
-            if RAPacketVersion != 20111116 {
-                if RAPacketVersion >= 20110928 {
+            if RA_PACKETVER != 20111116 {
+                if RA_PACKETVER >= 20110928 {
                     size += 4   // char moves
                 }
-                if RAPacketVersion >= 20111025 {
+                if RA_PACKETVER >= 20111025 {
                     size += 4   // rename enabled
                 }
-                if RAPacketVersion >= 20141016 {
+                if RA_PACKETVER >= 20141016 {
                     size += 1   // sex
                 }
             }
@@ -219,13 +219,13 @@ extension Packet006B {
 
         public init(from decoder: BinaryDecoder) throws {
             self.id = try decoder.decode(UInt32.self)
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 self.baseExp = try decoder.decode(UInt64.self)
             } else {
                 self.baseExp = try UInt64(decoder.decode(UInt32.self))
             }
             self.zeny = try decoder.decode(UInt32.self)
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 self.jobExp = try decoder.decode(UInt64.self)
             } else {
                 self.jobExp = try UInt64(decoder.decode(UInt32.self))
@@ -244,7 +244,7 @@ extension Packet006B {
             self.speed = try decoder.decode(UInt16.self)
             self.class = try decoder.decode(UInt16.self)
             self.hair = try decoder.decode(UInt16.self)
-            if RAPacketVersion >= 20141022 {
+            if RA_PACKETVER >= 20141022 {
                 self.body = try decoder.decode(UInt16.self)
             } else {
                 self.body = 0
@@ -267,33 +267,33 @@ extension Packet006B {
             self.luk = try decoder.decode(UInt8.self)
             self.slot = try decoder.decode(UInt16.self)
             self.renamed = try decoder.decode(UInt16.self)
-            if (RAPacketVersion >= 20100720 && RAPacketVersion <= 20100727) || RAPacketVersion >= 20100803 {
+            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
                 self.lastMap = try decoder.decode(String.self, length: 16)
             } else {
                 self.lastMap = ""
             }
-            if RAPacketVersion >= 20100803 {
+            if RA_PACKETVER >= 20100803 {
                 self.deleteDate = try decoder.decode(UInt32.self)
             } else {
                 self.deleteDate = 0
             }
-            if RAPacketVersion >= 20110111 {
+            if RA_PACKETVER >= 20110111 {
                 self.robe = try decoder.decode(UInt32.self)
             } else {
                 self.robe = 0
             }
-            if RAPacketVersion != 20111116 {
-                if RAPacketVersion >= 20110928 {
+            if RA_PACKETVER != 20111116 {
+                if RA_PACKETVER >= 20110928 {
                     self.charMoves = try decoder.decode(UInt32.self)
                 } else {
                     self.charMoves = 0
                 }
-                if RAPacketVersion >= 20111025 {
+                if RA_PACKETVER >= 20111025 {
                     self.renameEnabled = try decoder.decode(UInt32.self)
                 } else {
                     self.renameEnabled = 0
                 }
-                if RAPacketVersion >= 20141016 {
+                if RA_PACKETVER >= 20141016 {
                     self.sex = try decoder.decode(UInt8.self)
                 } else {
                     self.sex = 0
@@ -307,13 +307,13 @@ extension Packet006B {
 
         public func encode(to encoder: BinaryEncoder) throws {
             try encoder.encode(self.id)
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 try encoder.encode(UInt64(self.baseExp))
             } else {
                 try encoder.encode(UInt32(self.baseExp))
             }
             try encoder.encode(self.zeny)
-            if RAPacketVersion >= 20170830 {
+            if RA_PACKETVER >= 20170830 {
                 try encoder.encode(UInt64(self.jobExp))
             } else {
                 try encoder.encode(UInt32(self.jobExp))
@@ -332,7 +332,7 @@ extension Packet006B {
             try encoder.encode(self.speed)
             try encoder.encode(self.class)
             try encoder.encode(self.hair)
-            if RAPacketVersion >= 20141022 {
+            if RA_PACKETVER >= 20141022 {
                 try encoder.encode(self.body)
             }
             try encoder.encode(self.weapon)
@@ -353,23 +353,23 @@ extension Packet006B {
             try encoder.encode(self.luk)
             try encoder.encode(self.slot)
             try encoder.encode(self.renamed)
-            if (RAPacketVersion >= 20100720 && RAPacketVersion <= 20100727) || RAPacketVersion >= 20100803 {
+            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
                 try encoder.encode(self.lastMap, length: 16)
             }
-            if RAPacketVersion >= 20100803 {
+            if RA_PACKETVER >= 20100803 {
                 try encoder.encode(self.deleteDate)
             }
-            if RAPacketVersion >= 20110111 {
+            if RA_PACKETVER >= 20110111 {
                 try encoder.encode(self.robe)
             }
-            if RAPacketVersion != 20111116 {
-                if RAPacketVersion >= 20110928 {
+            if RA_PACKETVER != 20111116 {
+                if RA_PACKETVER >= 20110928 {
                     try encoder.encode(self.charMoves)
                 }
-                if RAPacketVersion >= 20111025 {
+                if RA_PACKETVER >= 20111025 {
                     try encoder.encode(self.renameEnabled)
                 }
-                if RAPacketVersion >= 20141016 {
+                if RA_PACKETVER >= 20141016 {
                     try encoder.encode(self.sex)
                 }
             }

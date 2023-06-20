@@ -219,6 +219,15 @@ let package = Package(
             path: "3rdparty/YYModel",
             publicHeadersPath: ""
         ),
+        .plugin(
+            name: "rAthenaExportConstantsPlugin",
+            capability: .command(
+                intent: .custom(verb: "export-constants", description: ""),
+                permissions: [
+                    .writeToPackageDirectory(reason: "")
+                ]
+            )
+        ),
         .testTarget(
             name: "rAthenaCommonTests",
             dependencies: ["rAthenaCommon"]
