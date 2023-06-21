@@ -7094,4 +7094,12 @@ extern const NSInteger RA_MER_SERA;
 extern const NSInteger RA_MER_DIETER;
 extern const NSInteger RA_MER_ELEANOR;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 extern NSInteger RAConstantGetValue(NSString *name);
+
+#ifdef __cplusplus
+}
+#endif

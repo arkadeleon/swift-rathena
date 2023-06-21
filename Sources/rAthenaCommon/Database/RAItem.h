@@ -11,7 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RAItemType;
 @class RAItemJob;
 @class RAItemClass;
 @class RAGender;
@@ -22,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class RAItemStack;
 @class RAItemNoUse;
 @class RAItemTrade;
-
-@protocol RAItemSubType;
 
 @interface RAItem : NSObject <YYModel>
 
@@ -37,10 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 
 /// Item type. (Default: Etc)
-@property (nonatomic) RAItemType *type;
+@property (nonatomic) NSInteger type;
 
 /// Weapon, Ammo or Card type. (Default: 0)
-@property (nonatomic, nullable) id<RAItemSubType> subType;
+@property (nonatomic) NSInteger subType;
 
 /// Buying price. When not specified, becomes double the sell price. (Default: 0)
 @property (nonatomic) NSInteger buy;

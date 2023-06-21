@@ -42,7 +42,15 @@ struct ExportConstantsPlugin: CommandPlugin {
         let output1Contents = """
         \(constants.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
 
+        #ifdef __cplusplus
+        extern "C" {
+        #endif
+
         extern NSInteger RAConstantGetValue(NSString *name);
+
+        #ifdef __cplusplus
+        }
+        #endif
 
         """
 
@@ -74,7 +82,7 @@ struct ExportConstantsPlugin: CommandPlugin {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
                 constants = @{
-        \(constants.map({ "            @\"\($0)\": @(\($0))," }).joined(separator: "\n"))
+        \(constants.map({ "            @\"\($0)\": @(RA_\($0))," }).joined(separator: "\n"))
                 };
             });
 

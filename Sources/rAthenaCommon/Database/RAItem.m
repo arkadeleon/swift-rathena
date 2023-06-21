@@ -6,12 +6,11 @@
 //
 
 #import "RAItem.h"
-#import "Enum/RAItemType.h"
 #import "Enum/RAItemJob.h"
 #import "Enum/RAItemClass.h"
 #import "Enum/RAGender.h"
 #import "Enum/RAEquipmentLocation.h"
-#import "RAItemSubType.h"
+#import "../RAConstants.h"
 
 @implementation RAItem
 
@@ -72,11 +71,23 @@
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     // Type
     NSString *type = dic[@"Type"] ?: @"";
-    self.type = [RAItemType valueOfName:type] ?: RAItemType.etc;
+    NSInteger typeConstant = RAConstantGetValue([[@"IT_" stringByAppendingString:type] uppercaseString]);
+    self.type = typeConstant != NSNotFound ? typeConstant : RA_IT_ETC;
 
     // SubType
     NSString *subType = dic[@"SubType"] ?: @"";
-    self.subType = RAItemSubTypeFromName(subType, self.type);
+    if (self.type == RA_IT_WEAPON) {
+        NSInteger subTypeConstant = RAConstantGetValue([[@"W_" stringByAppendingString:subType] uppercaseString]);
+        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : RA_W_FIST;
+    } else if (self.type == RA_IT_AMMO) {
+        NSInteger subTypeConstant = RAConstantGetValue([[@"AMMO_" stringByAppendingString:subType] uppercaseString]);
+        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : 0;
+    } else if (self.type == RA_IT_CARD) {
+        NSInteger subTypeConstant = RAConstantGetValue([[@"CARD_" stringByAppendingString:subType] uppercaseString]);
+        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : RA_CARD_NORMAL;
+    } else {
+        self.subType = 0;
+    }
 
     // Jobs
     NSDictionary<NSString *, NSNumber *> *jobs = dic[@"Jobs"] ?: @{@"All": @YES};
@@ -94,11 +105,11 @@
     NSDictionary<NSString *, NSNumber *> *locations = dic[@"Locations"] ?: @{};
     self.locations = [RAEquipmentLocation valuesOfNames:locations];
 
-    if (self.type != RAItemType.weapon) {
+    if (self.type != RA_IT_WEAPON) {
         self.weaponLevel = 0;
     }
 
-    if (self.type != RAItemType.armor) {
+    if (self.type != RA_IT_ARMOR) {
         self.armorLevel = 0;
     }
 

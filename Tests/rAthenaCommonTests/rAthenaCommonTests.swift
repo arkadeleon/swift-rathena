@@ -21,7 +21,7 @@ class rAthenaCommonTests: XCTestCase {
         let redPotion = uniqueItems[501]!
         XCTAssertEqual(redPotion.aegisName, "Red_Potion")
         XCTAssertEqual(redPotion.name, "Red Potion")
-        XCTAssertEqual(redPotion.type, .healing)
+        XCTAssertEqual(redPotion.type, RA_IT_HEALING)
         XCTAssertEqual(redPotion.buy, 10)
         XCTAssertEqual(redPotion.weight, 70)
         XCTAssertEqual(redPotion.script, "itemheal rand(45,65),0;\n")
@@ -29,7 +29,7 @@ class rAthenaCommonTests: XCTestCase {
         let flyWing = uniqueItems[601]!
         XCTAssertEqual(flyWing.aegisName, "Wing_Of_Fly")
         XCTAssertEqual(flyWing.name, "Fly Wing")
-        XCTAssertEqual(flyWing.type, .delayConsume)
+        XCTAssertEqual(flyWing.type, RA_IT_DELAYCONSUME)
         XCTAssertEqual(flyWing.buy, 250)
         XCTAssertEqual(flyWing.weight, 50)
         XCTAssertEqual(flyWing.flags?.buyingStore, true)
@@ -38,7 +38,7 @@ class rAthenaCommonTests: XCTestCase {
         let deadBranch = uniqueItems[604]!
         XCTAssertEqual(deadBranch.aegisName, "Branch_Of_Dead_Tree")
         XCTAssertEqual(deadBranch.name, "Dead Branch")
-        XCTAssertEqual(deadBranch.type, .usable)
+        XCTAssertEqual(deadBranch.type, RA_IT_USABLE)
         XCTAssertEqual(deadBranch.buy, 50)
         XCTAssertEqual(deadBranch.weight, 50)
         XCTAssertEqual(deadBranch.flags?.buyingStore, true)
@@ -48,8 +48,8 @@ class rAthenaCommonTests: XCTestCase {
         let sword = uniqueItems[1101]!
         XCTAssertEqual(sword.aegisName, "Sword")
         XCTAssertEqual(sword.name, "Sword")
-        XCTAssertEqual(sword.type, .weapon)
-        XCTAssertEqual(sword.subType as? RAWeaponType, .oneHandedSword)
+        XCTAssertEqual(sword.type, RA_IT_WEAPON)
+        XCTAssertEqual(sword.subType, RA_W_1HSWORD)
         XCTAssertEqual(sword.buy, 100)
         XCTAssertEqual(sword.weight, 500)
         XCTAssertEqual(sword.attack, 25)
@@ -64,8 +64,8 @@ class rAthenaCommonTests: XCTestCase {
         let eraser = uniqueItems[1637]!
         XCTAssertEqual(eraser.aegisName, "Eraser")
         XCTAssertEqual(eraser.name, "Eraser")
-        XCTAssertEqual(eraser.type, .weapon)
-        XCTAssertEqual(eraser.subType as? RAWeaponType, .staff)
+        XCTAssertEqual(eraser.type, RA_IT_WEAPON)
+        XCTAssertEqual(eraser.subType, RA_W_STAFF)
         XCTAssertEqual(eraser.buy, 20)
         XCTAssertEqual(eraser.weight, 500)
         XCTAssertEqual(eraser.attack, 80)
@@ -80,7 +80,7 @@ class rAthenaCommonTests: XCTestCase {
         let sheild = uniqueItems[2105]!
         XCTAssertEqual(sheild.aegisName, "Shield")
         XCTAssertEqual(sheild.name, "Shield")
-        XCTAssertEqual(sheild.type, .armor)
+        XCTAssertEqual(sheild.type, RA_IT_ARMOR)
         XCTAssertEqual(sheild.buy, 56000)
         XCTAssertEqual(sheild.weight, 1300)
         XCTAssertEqual(sheild.defense, 60)
@@ -92,7 +92,7 @@ class rAthenaCommonTests: XCTestCase {
         let turban = uniqueItems[2222]!
         XCTAssertEqual(turban.aegisName, "Turban")
         XCTAssertEqual(turban.name, "Turban")
-        XCTAssertEqual(turban.type, .armor)
+        XCTAssertEqual(turban.type, RA_IT_ARMOR)
         XCTAssertEqual(turban.buy, 4500)
         XCTAssertEqual(turban.weight, 300)
         XCTAssertEqual(turban.defense, 5)
@@ -105,7 +105,7 @@ class rAthenaCommonTests: XCTestCase {
         let poringCard = uniqueItems[4001]!
         XCTAssertEqual(poringCard.aegisName, "Poring_Card")
         XCTAssertEqual(poringCard.name, "Poring Card")
-        XCTAssertEqual(poringCard.type, .card)
+        XCTAssertEqual(poringCard.type, RA_IT_CARD)
         XCTAssertEqual(poringCard.buy, 20)
         XCTAssertEqual(poringCard.weight, 10)
         XCTAssertEqual(poringCard.locations, [.armor])
