@@ -10,37 +10,60 @@ import PackagePlugin
 
 @main
 struct ExportConstantsPlugin: CommandPlugin {
+    typealias Constant = (name: String, value: String)
+
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         let input = context.package.directory.appending(["src", "map", "script_constants.hpp"])
         let output1 = context.package.directory.appending(["Sources", "rAthenaCommon", "RAConstants.h"])
         let output2 = context.package.directory.appending(["Sources", "rAthenaCommon", "RAConstants.mm"])
 
-        var constants = [String]()
+        var constants = [Constant]()
 
         let inputContents = try String(contentsOfFile: input.string)
         let lines = inputContents.split(separator: "\n")
         for line in lines {
-            let trimmedLine = line.trimmingCharacters(in: .whitespaces)
-            if trimmedLine.hasPrefix("//") {
+            let line = line.trimmingCharacters(in: .whitespaces)
+            if line.hasPrefix("//") {
                 continue
             }
-            if trimmedLine.hasPrefix("export_constant(") {
-                if let open = trimmedLine.firstIndex(of: "("), let close = trimmedLine.firstIndex(of: ")") {
-                    let start = trimmedLine.index(after: open)
-                    let end = close
-                    let constant = trimmedLine[start..<end]
-                    constants.append(String(constant))
-                }
+            if line.hasPrefix("export_constant(") {
+                let open = line.firstIndex(of: "(")!
+                let close = line.firstIndex(of: ")")!
+                let start = line.index(after: open)
+                let end = close
+                let constant = line[start..<end].trimmingCharacters(in: .whitespaces)
+                let constantName = constant
+                let constantValue = constant
+                constants.append((constantName, constantValue))
+            } else if line.hasPrefix("export_constant2(") {
+                let open = line.firstIndex(of: "(")!
+                let close = line.firstIndex(of: ")")!
+                let start = line.index(after: open)
+                let end = close
+                let constant = line[start..<end].split(separator: ",")
+                let constantName = constant[0].trimmingCharacters(in: .whitespaces).trimmingCharacters(in: CharacterSet(charactersIn: "\""))
+                let constantValue = constant[1].trimmingCharacters(in: .whitespaces)
+                constants.append((constantName, constantValue))
             }
         }
 
         constants = constants
             .filter { constant in
-                constant != "true" && constant != "false"
+                constant.value != "true" && constant.value != "false"
             }
 
+        var uniqueConstantValues = [String]()
+        for constant in constants {
+            if constant.value.contains("|") {
+                continue
+            }
+            if !uniqueConstantValues.contains(constant.value) {
+                uniqueConstantValues.append(constant.value)
+            }
+        }
+
         let output1Contents = """
-        \(constants.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
+        \(uniqueConstantValues.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
 
         #ifdef __cplusplus
         extern "C" {
@@ -75,14 +98,14 @@ struct ExportConstantsPlugin: CommandPlugin {
         #include "map/quest.hpp"
         #include "map/storage.hpp"
 
-        \(constants.map({ "const NSInteger RA_\($0) = \($0);" }).joined(separator: "\n"))
+        \(uniqueConstantValues.map({ "const NSInteger RA_\($0) = \($0);" }).joined(separator: "\n"))
 
         NSInteger RAConstantGetValue(NSString *name) {
             static NSDictionary<NSString *, NSNumber *> *constants = nil;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
                 constants = @{
-        \(constants.map({ "            @\"\($0)\": @(RA_\($0))," }).joined(separator: "\n"))
+        \(constants.map({ "            @\"\($0.name)\": @(\($0.value))," }).joined(separator: "\n"))
                 };
             });
 
