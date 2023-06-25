@@ -7511,7 +7511,7 @@ const NSInteger RA_MER_SERA = MER_SERA;
 const NSInteger RA_MER_DIETER = MER_DIETER;
 const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
 
-NSInteger RAConstantGetValue(NSString *name) {
+NSInteger RAConstantFromName(NSString *name, NSString *defaultName) {
     static NSDictionary<NSString *, NSNumber *> *constants = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -15062,7 +15062,14 @@ NSInteger RAConstantGetValue(NSString *name) {
     NSNumber *value = constants[name];
     if (value) {
         return value.integerValue;
-    } else {
-        return NSNotFound;
     }
+
+    if (defaultName) {
+        NSNumber *defaultValue = constants[defaultName];
+        if (defaultValue) {
+            return defaultValue.integerValue;
+        }
+    }
+
+    return NSNotFound;
 }

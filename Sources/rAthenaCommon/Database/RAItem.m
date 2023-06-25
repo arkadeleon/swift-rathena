@@ -6,11 +6,11 @@
 //
 
 #import "RAItem.h"
+#import "../RAConstants.h"
 #import "Enum/RAItemJob.h"
 #import "Enum/RAItemClass.h"
 #import "Enum/RAGender.h"
 #import "Enum/RAEquipmentLocation.h"
-#import "../RAConstants.h"
 
 @implementation RAItem
 
@@ -71,20 +71,16 @@
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
     // Type
     NSString *type = dic[@"Type"] ?: @"";
-    NSInteger typeConstant = RAConstantGetValue([[@"IT_" stringByAppendingString:type] uppercaseString]);
-    self.type = typeConstant != NSNotFound ? typeConstant : RA_IT_ETC;
+    self.type = RAConstantFromName([@"IT_" stringByAppendingString:type.uppercaseString], @"IT_ETC");
 
     // SubType
     NSString *subType = dic[@"SubType"] ?: @"";
     if (self.type == RA_IT_WEAPON) {
-        NSInteger subTypeConstant = RAConstantGetValue([[@"W_" stringByAppendingString:subType] uppercaseString]);
-        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : RA_W_FIST;
+        self.subType = RAConstantFromName([@"W_" stringByAppendingString:subType.uppercaseString], @"W_FIST");
     } else if (self.type == RA_IT_AMMO) {
-        NSInteger subTypeConstant = RAConstantGetValue([[@"AMMO_" stringByAppendingString:subType] uppercaseString]);
-        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : 0;
+        self.subType = RAConstantFromName([@"AMMO_" stringByAppendingString:subType.uppercaseString], nil);
     } else if (self.type == RA_IT_CARD) {
-        NSInteger subTypeConstant = RAConstantGetValue([[@"CARD_" stringByAppendingString:subType] uppercaseString]);
-        self.subType = subTypeConstant != NSNotFound ? subTypeConstant : RA_CARD_NORMAL;
+        self.subType = RAConstantFromName([@"CARD_" stringByAppendingString:subType.uppercaseString], @"CARD_NORMAL");
     } else {
         self.subType = 0;
     }

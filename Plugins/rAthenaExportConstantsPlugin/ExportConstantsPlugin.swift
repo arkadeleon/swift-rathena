@@ -63,13 +63,15 @@ struct ExportConstantsPlugin: CommandPlugin {
         }
 
         let output1Contents = """
+        #import <Foundation/Foundation.h>
+
         \(uniqueConstantValues.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
 
         #ifdef __cplusplus
         extern "C" {
         #endif
 
-        extern NSInteger RAConstantGetValue(NSString *name);
+        extern NSInteger RAConstantFromName(NSString * _Nonnull name, NSString * _Nullable defaultName);
 
         #ifdef __cplusplus
         }
@@ -100,7 +102,7 @@ struct ExportConstantsPlugin: CommandPlugin {
 
         \(uniqueConstantValues.map({ "const NSInteger RA_\($0) = \($0);" }).joined(separator: "\n"))
 
-        NSInteger RAConstantGetValue(NSString *name) {
+        NSInteger RAConstantFromName(NSString *name, NSString *defaultName) {
             static NSDictionary<NSString *, NSNumber *> *constants = nil;
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
@@ -112,9 +114,16 @@ struct ExportConstantsPlugin: CommandPlugin {
             NSNumber *value = constants[name];
             if (value) {
                 return value.integerValue;
-            } else {
-                return NSNotFound;
             }
+
+            if (defaultName) {
+                NSNumber *defaultValue = constants[defaultName];
+                if (defaultValue) {
+                    return defaultValue.integerValue;
+                }
+            }
+
+            return NSNotFound;
         }
 
         """

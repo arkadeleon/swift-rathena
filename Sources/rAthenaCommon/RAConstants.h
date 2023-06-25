@@ -1,3 +1,5 @@
+#import <Foundation/Foundation.h>
+
 extern const NSInteger RA_INT_MIN;
 extern const NSInteger RA_INT_MAX;
 extern const NSInteger RA_PACKETVER;
@@ -7495,7 +7497,7 @@ extern const NSInteger RA_MER_ELEANOR;
 extern "C" {
 #endif
 
-extern NSInteger RAConstantGetValue(NSString *name);
+extern NSInteger RAConstantFromName(NSString * _Nonnull name, NSString * _Nullable defaultName);
 
 #ifdef __cplusplus
 }
