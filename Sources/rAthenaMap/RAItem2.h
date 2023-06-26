@@ -57,7 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger slots;
 
 /// Jobs that can equip the item. (Map default is 'All: true')
-@property (nonatomic) NSInteger jobs;
+@property (nonatomic) NSUInteger jobs11;
+@property (nonatomic) NSUInteger jobs21;
+@property (nonatomic) NSUInteger jobs22;
 
 /// Upper class types that can equip the item. (Map default is 'All: true')
 @property (nonatomic) NSInteger classes;
@@ -93,19 +95,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *aliasName;
 
 /// Item flags. (Default: null)
-@property (nonatomic, nullable) RAItemFlags2 *flags;
+@property (nonatomic) RAItemFlags2 *flags;
 
 /// Item use delay. (Default: null)
-@property (nonatomic, nullable) RAItemDelay2 *delay;
+@property (nonatomic) RAItemDelay2 *delay;
 
 /// Item stack amount. (Default: null)
-@property (nonatomic, nullable) RAItemStack2 *stack;
+@property (nonatomic) RAItemStack2 *stack;
 
 /// Conditions when the item is unusable. (Default: null)
-@property (nonatomic, nullable) RAItemNoUse2 *noUse;
+@property (nonatomic) RAItemNoUse2 *noUse;
 
 /// Trade restrictions. (Default: null)
-@property (nonatomic, nullable) RAItemTrade2 *trade;
+@property (nonatomic) RAItemTrade2 *trade;
 
 /// Script to execute when the item is used/equipped. (Default: null)
 @property (nonatomic, copy, nullable) NSString *script;
@@ -142,7 +144,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL noConsume;
 
 /// If the item has a special effect on the ground when dropped by a monster. (Default: None)
-@property (nonatomic, copy, nullable) NSString *dropEffect;
+@property (nonatomic) NSInteger dropEffect;
 
 @end
 
@@ -152,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger duration;
 
 /// Status Change used to track delay. (Default: None)
-@property (nonatomic, copy, nullable) NSString *status;
+@property (nonatomic) NSInteger status;
 
 @end
 
