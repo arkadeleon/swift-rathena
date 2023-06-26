@@ -10,14 +10,16 @@ import XCTest
 @testable import rAthenaLogin
 
 class rAthenaLoginTests: XCTestCase {
+    let resourceManager = RAResourceManager.shared
+    let loginServer = RALoginServer.shared
+
+    override func setUp() async throws {
+        resourceManager.copyResourcesToLibraryDirectory()
+        await loginServer.start()
+    }
 
     func testLoginServer() {
-        RAResourceManager.shared.copyResourcesToLibraryDirectory()
-
-        let loginServer = RALoginServer()
-        loginServer.start()
-
-        XCTAssert(loginServer.name == "Login Server")
+        XCTAssertEqual(loginServer.name, "Login Server")
     }
 
     static var allTests = [

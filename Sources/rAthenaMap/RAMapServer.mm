@@ -90,43 +90,60 @@ void do_send(int fd) {
     }
 }
 
-- (void)start {
-    if (self.thread == nil) {
-        self.thread = [[NSThread alloc] initWithBlock:^{
-            FILE *output = fwopen(0, write_function);
-            STDOUT = output;
-            STDERR = output;
+- (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (self.thread == nil) {
+            self.thread = [[NSThread alloc] initWithBlock:^{
+                FILE *output = fwopen(0, write_function);
+                STDOUT = output;
+                STDERR = output;
 
-            recv_callback = do_recv;
-            send_callback = do_send;
+                recv_callback = do_recv;
+                send_callback = do_send;
 
-            char arg0[] = "map-server";
-            char *args[1] = {arg0};
-            main(1, args);
-        }];
-    }
+                char arg0[] = "map-server";
+                char *args[1] = {arg0};
+                main(1, args);
+            }];
+        }
 
-    if (self.thread.isExecuting) {
-        return;
-    }
+        if (self.thread.isExecuting) {
+            completionHandler(NO);
+            return;
+        }
 
-    [self.thread start];
+        [self.thread start];
+
+        while (self.status != RAServerStatusRunning) {
+        }
+
+        completionHandler(YES);
+    });
 }
 
-- (void)stop {
-    if (self.thread == nil) {
-        return;
-    }
+- (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (self.thread == nil) {
+            completionHandler(NO);
+            return;
+        }
 
-    if (!self.thread.isExecuting) {
-        return;
-    }
+        if (!self.thread.isExecuting) {
+            completionHandler(NO);
+            return;
+        }
 
-    global_core->signal_shutdown();
+        global_core->signal_shutdown();
 
-    tfl_root = NULL;
+        tfl_root = NULL;
 
-    self.thread = nil;
+        self.thread = nil;
+
+        while (self.status != RAServerStatusStopped) {
+        }
+
+        completionHandler(YES);
+    });
 }
 
 @end

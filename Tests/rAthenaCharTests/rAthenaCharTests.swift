@@ -10,14 +10,16 @@ import XCTest
 @testable import rAthenaChar
 
 class rAthenaCharTests: XCTestCase {
+    let resourceManager = RAResourceManager.shared
+    let charServer = RACharServer.shared
+
+    override func setUp() async throws {
+        resourceManager.copyResourcesToLibraryDirectory()
+        await charServer.start()
+    }
 
     func testCharServer() {
-        RAResourceManager.shared.copyResourcesToLibraryDirectory()
-
-        let charServer = RACharServer()
-        charServer.start()
-
-        XCTAssert(charServer.name == "Char Server")
+        XCTAssertEqual(charServer.name, "Char Server")
     }
 
     static var allTests = [

@@ -10,14 +10,16 @@ import XCTest
 @testable import rAthenaWeb
 
 class rAthenaWebTests: XCTestCase {
+    let resourceManager = RAResourceManager.shared
+    let webServer = RAWebServer.shared
+
+    override func setUp() async throws {
+        resourceManager.copyResourcesToLibraryDirectory()
+//        await webServer.start()
+    }
 
     func testWebServer() {
-        RAResourceManager.shared.copyResourcesToLibraryDirectory()
-
-        let webServer = RAWebServer()
-//        webServer.start()
-
-        XCTAssert(webServer.name == "Web Server")
+        XCTAssertEqual(webServer.name, "Web Server")
     }
 
     static var allTests = [

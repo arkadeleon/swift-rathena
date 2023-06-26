@@ -37,8 +37,8 @@ typedef void (^RAServerDataSendHandler)(NSData *data);
 @property (nonatomic, copy, nullable) RAServerDataReceiveHandler dataReceiveHandler;
 @property (nonatomic, copy, nullable) RAServerDataSendHandler dataSendHandler;
 
-- (void)start;
-- (void)stop;
+- (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);
+- (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 

@@ -28,14 +28,18 @@ struct ServerView: View {
 
                     if !isServerRunning {
                         Button {
-                            server.start()
+                            Task {
+                                await server.start()
+                            }
                         } label: {
                             Image(systemName: "play")
                         }
                         .frame(width: 32, height: 32)
                     } else {
                         Button {
-                            server.stop()
+                            Task {
+                                await server.stop()
+                            }
                         } label: {
                             Image(systemName: "stop")
                         }

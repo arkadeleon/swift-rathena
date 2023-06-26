@@ -17,10 +17,10 @@
     return RAServerStatusNotStarted;
 }
 
-- (void)start {
+- (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
 }
 
-- (void)stop {
+- (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler {
 }
 
 @end
