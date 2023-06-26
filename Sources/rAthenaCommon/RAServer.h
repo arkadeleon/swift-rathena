@@ -9,22 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, RAServerStatus) {
-    RAServerStatusNotStarted,
-    RAServerStatusInitializing,
-    RAServerStatusInitialized,
-    RAServerStatusRunning,
-    RAServerStatusStopping,
-    RAServerStatusFinalizing,
-    RAServerStatusFinalized,
-    RAServerStatusStopped,
-};
-
 typedef NS_ENUM(NSInteger, RAServerType) {
     RAServerTypeLogin,
     RAServerTypeChar,
     RAServerTypeMap,
     RAServerTypeWeb,
+};
+
+typedef NS_ENUM(NSInteger, RAServerStatus) {
+    RAServerStatusNotStarted,
+    RAServerStatusStarting,
+    RAServerStatusRunning,
+    RAServerStatusStopping,
+    RAServerStatusStopped,
 };
 
 typedef void (^RAServerOutputHandler)(NSData *data);
