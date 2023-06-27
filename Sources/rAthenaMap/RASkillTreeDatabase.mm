@@ -48,7 +48,6 @@
     self = [super init];
     if (self) {
         _job = job;
-//        _inherit = skill_tree->inherit_job;
 
         NSMutableArray<NSNumber *> *inherit = [NSMutableArray arrayWithCapacity:skill_tree->inherit_job.size()];
         for (auto job : skill_tree->inherit_job) {

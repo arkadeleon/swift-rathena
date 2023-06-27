@@ -229,10 +229,43 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(archBishop.tree.count, 59)
     }
 
+    func testSkillDatabase() async {
+        let database = RASkillDatabase()
+        let skills = await database.fetchSkills()
+        XCTAssertEqual(skills.count, 1492)
+
+        let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
+
+        let napalmBeat = uniqueSkills["MG_NAPALMBEAT"]!
+        XCTAssertEqual(napalmBeat.skillID, 11)
+        XCTAssertEqual(napalmBeat.skillName, "MG_NAPALMBEAT")
+        XCTAssertEqual(napalmBeat.skillDescription, "Napalm Beat")
+        XCTAssertEqual(napalmBeat.maxLevel, 10)
+        XCTAssertEqual(napalmBeat.type, RA_BF_MAGIC)
+        XCTAssertEqual(napalmBeat.targetType, RA_INF_ATTACK_SKILL)
+        XCTAssertEqual(napalmBeat.damageFlags, UInt(1 << RA_NK_SPLASH) | UInt(1 << RA_NK_SPLASHSPLIT))
+        XCTAssertEqual(napalmBeat.flags, UInt(1 << RA_INF2_ISAUTOSHADOWSPELL) | UInt(1 << RA_INF2_TARGETTRAP))
+        XCTAssertEqual(napalmBeat.range[0], 9)
+
+        let spearBoomerang = uniqueSkills["KN_SPEARBOOMERANG"]!
+        XCTAssertEqual(spearBoomerang.skillID, 59)
+        XCTAssertEqual(spearBoomerang.skillName, "KN_SPEARBOOMERANG")
+        XCTAssertEqual(spearBoomerang.skillDescription, "Spear Boomerang")
+        XCTAssertEqual(spearBoomerang.maxLevel, 5)
+        XCTAssertEqual(spearBoomerang.type, RA_BF_WEAPON)
+        XCTAssertEqual(spearBoomerang.targetType, RA_INF_ATTACK_SKILL)
+        XCTAssertEqual(spearBoomerang.range[0], 3)
+        XCTAssertEqual(spearBoomerang.range[1], 5)
+        XCTAssertEqual(spearBoomerang.range[2], 7)
+        XCTAssertEqual(spearBoomerang.range[3], 9)
+        XCTAssertEqual(spearBoomerang.range[4], 11)
+    }
+
     static var allTests = [
         ("testMapServer", testMapServer),
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
         ("testSkillTreeDatabase", testSkillTreeDatabase),
+        ("testSkillDatabase", testSkillDatabase),
     ]
 }
