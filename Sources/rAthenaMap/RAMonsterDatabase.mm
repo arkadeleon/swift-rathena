@@ -8,13 +8,13 @@
 #import "RAMonsterDatabase.h"
 #include "map/mob.hpp"
 
-@interface RAMonster2 ()
+@interface RAMonster ()
 
 - (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob;
 
 @end
 
-@interface RAMonsterDrop2 ()
+@interface RAMonsterDrop ()
 
 - (instancetype)initWithDrop:(s_mob_drop)drop;
 
@@ -22,11 +22,11 @@
 
 @implementation RAMonsterDatabase
 
-- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster2 *> *))completionHandler {
+- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RAMonster2 *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
+        NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
         for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
-            RAMonster2 *monster = [[RAMonster2 alloc] initWithMob:entry->second];
+            RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
             [monsters addObject:monster];
         }
 
@@ -36,7 +36,7 @@
 
 @end
 
-@implementation RAMonster2
+@implementation RAMonster
 
 - (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob {
     self = [super init];
@@ -89,24 +89,24 @@
         _monsterClass = mob->status.class_;
         _modes = mob->status.mode;
 
-        NSMutableArray<RAMonsterDrop2 *> *mvpDrops = [NSMutableArray arrayWithCapacity:MAX_MVP_DROP_TOTAL];
+        NSMutableArray<RAMonsterDrop *> *mvpDrops = [NSMutableArray arrayWithCapacity:MAX_MVP_DROP_TOTAL];
         for (int i = 0; i < MAX_MVP_DROP_TOTAL; i++) {
             auto it = mob->mvpitem[i];
             if (it.nameid == 0) {
                 continue;
             }
-            RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] initWithDrop:it];
+            RAMonsterDrop *drop = [[RAMonsterDrop alloc] initWithDrop:it];
             [mvpDrops addObject:drop];
         }
         _mvpDrops = [mvpDrops copy];
 
-        NSMutableArray<RAMonsterDrop2 *> *drops = [NSMutableArray arrayWithCapacity:MAX_MOB_DROP_TOTAL];
+        NSMutableArray<RAMonsterDrop *> *drops = [NSMutableArray arrayWithCapacity:MAX_MOB_DROP_TOTAL];
         for (int i = 0; i < MAX_MOB_DROP_TOTAL; i++) {
             auto it = mob->dropitem[i];
             if (it.nameid == 0) {
                 continue;
             }
-            RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] initWithDrop:it];
+            RAMonsterDrop *drop = [[RAMonsterDrop alloc] initWithDrop:it];
             [drops addObject:drop];
         }
         _drops = [drops copy];
@@ -116,7 +116,7 @@
 
 @end
 
-@implementation RAMonsterDrop2
+@implementation RAMonsterDrop
 
 - (instancetype)initWithDrop:(s_mob_drop)drop {
     self = [super init];

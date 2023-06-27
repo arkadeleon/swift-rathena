@@ -8,19 +8,19 @@
 #import "RASkillTreeDatabase.h"
 #include "map/pc.hpp"
 
-@interface RASkillTree2 ()
+@interface RASkillTree ()
 
 - (instancetype)initWithJob:(uint16)job tree:(std::shared_ptr<s_skill_tree>)skill_tree;
 
 @end
 
-@interface RASkillTreeSkill2 ()
+@interface RASkillTreeSkill ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_tree_entry>)skill;
 
 @end
 
-@interface RASkillTreeRequiredSkill2 ()
+@interface RASkillTreeRequiredSkill ()
 
 - (instancetype)initWithSkillID:(uint16)skillID skillLevel:(uint16)skillLevel;
 
@@ -28,11 +28,11 @@
 
 @implementation RASkillTreeDatabase
 
-- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree2 *> *))completionHandler {
+- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RASkillTree2 *> *skillTrees = [NSMutableArray arrayWithCapacity:skill_tree_db.size()];
+        NSMutableArray<RASkillTree *> *skillTrees = [NSMutableArray arrayWithCapacity:skill_tree_db.size()];
         for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
-            RASkillTree2 *skillTree = [[RASkillTree2 alloc] initWithJob:entry->first tree:entry->second];
+            RASkillTree *skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
             [skillTrees addObject:skillTree];
         }
 
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation RASkillTree2
+@implementation RASkillTree
 
 - (instancetype)initWithJob:(uint16)job tree:(std::shared_ptr<s_skill_tree>)skill_tree {
     self = [super init];
@@ -55,9 +55,9 @@
         }
         _inherit = [inherit copy];
 
-        NSMutableSet<RASkillTreeSkill2 *> *tree = [NSMutableSet setWithCapacity:skill_tree->skills.size()];
+        NSMutableSet<RASkillTreeSkill *> *tree = [NSMutableSet setWithCapacity:skill_tree->skills.size()];
         for (auto entry : skill_tree->skills) {
-            RASkillTreeSkill2 *skill = [[RASkillTreeSkill2 alloc] initWithSkill:entry.second];
+            RASkillTreeSkill *skill = [[RASkillTreeSkill alloc] initWithSkill:entry.second];
             [tree addObject:skill];
         }
         _tree = [tree copy];
@@ -67,7 +67,7 @@
 
 @end
 
-@implementation RASkillTreeSkill2
+@implementation RASkillTreeSkill
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_tree_entry>)skill {
     self = [super init];
@@ -78,9 +78,9 @@
         _baseLevel = skill->baselv;
         _jobLevel = skill->joblv;
 
-        NSMutableSet<RASkillTreeRequiredSkill2 *> *requires = [NSMutableSet setWithCapacity:skill->need.size()];
+        NSMutableSet<RASkillTreeRequiredSkill *> *requires = [NSMutableSet setWithCapacity:skill->need.size()];
         for (auto need : skill->need) {
-            RASkillTreeRequiredSkill2 *require = [[RASkillTreeRequiredSkill2 alloc] initWithSkillID:need.first skillLevel:need.second];
+            RASkillTreeRequiredSkill *require = [[RASkillTreeRequiredSkill alloc] initWithSkillID:need.first skillLevel:need.second];
             [requires addObject:require];
         }
         _requires = [requires copy];
@@ -90,7 +90,7 @@
 
 @end
 
-@implementation RASkillTreeRequiredSkill2
+@implementation RASkillTreeRequiredSkill
 
 - (instancetype)initWithSkillID:(uint16)skillID skillLevel:(uint16)skillLevel {
     self = [super init];

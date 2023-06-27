@@ -48,31 +48,31 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return [numbers copy];
 }
 
-@interface RASkill2 ()
+@interface RASkill ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
 
 @end
 
-@interface RASkillCopyFlags2 ()
+@interface RASkillCopyFlags ()
 
 - (instancetype)initWithSkillCopyable:(s_skill_copyable)skill_copyable;
 
 @end
 
-@interface RASkillNoNearNPC2 ()
+@interface RASkillNoNearNPC ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
 
 @end
 
-@interface RASkillRequirement2 ()
+@interface RASkillRequirement ()
 
 - (instancetype)initWithSkillRequirement:(s_skill_require)skill_requirement;
 
 @end
 
-@interface RASkillUnit2 ()
+@interface RASkillUnit ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
 
@@ -80,11 +80,11 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @implementation RASkillDatabase
 
-- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill2 *> *))completionHandler {
+- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RASkill2 *> *skills = [NSMutableArray arrayWithCapacity:skill_db.size()];
+        NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:skill_db.size()];
         for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
-            RASkill2 *skill = [[RASkill2 alloc] initWithSkill:entry->second];
+            RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
             [skills addObject:skill];
         }
 
@@ -94,7 +94,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @end
 
-@implementation RASkill2
+@implementation RASkill
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill {
     self = [super init];
@@ -115,8 +115,8 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
         _activeInstance = NSArrayFromInt32Array(skill->maxcount, MAX_SKILL_LEVEL);
         _knockback = NSArrayFromInt32Array(skill->blewcount, MAX_SKILL_LEVEL);
         _giveAp = NSArrayFromInt32Array(skill->giveap, MAX_SKILL_LEVEL);
-        _skillCopyFlags = [[RASkillCopyFlags2 alloc] initWithSkillCopyable:skill->copyable];
-        _noNearNPC = [[RASkillNoNearNPC2 alloc] initWithSkill:skill];
+        _skillCopyFlags = [[RASkillCopyFlags alloc] initWithSkillCopyable:skill->copyable];
+        _noNearNPC = [[RASkillNoNearNPC alloc] initWithSkill:skill];
         _castCancel = skill->castcancel;
         _castDefenseReduction = skill->cast_def_rate;
         _castTime = NSArrayFromInt32Array(skill->cast, MAX_SKILL_LEVEL);
@@ -130,8 +130,8 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 #endif
         _castTimeFlags = skill->castnodex;
         _castDelayFlags = skill->delaynodex;
-        _requires = [[RASkillRequirement2 alloc] initWithSkillRequirement:skill->require];
-        _unit = [[RASkillUnit2 alloc] initWithSkill:skill];
+        _requires = [[RASkillRequirement alloc] initWithSkillRequirement:skill->require];
+        _unit = [[RASkillUnit alloc] initWithSkill:skill];
         _status = skill->sc;
     }
     return self;
@@ -139,7 +139,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @end
 
-@implementation RASkillCopyFlags2
+@implementation RASkillCopyFlags
 
 - (instancetype)initWithSkillCopyable:(s_skill_copyable)skill_copyable {
     self = [super init];
@@ -152,7 +152,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @end
 
-@implementation RASkillNoNearNPC2
+@implementation RASkillNoNearNPC
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill {
     self = [super init];
@@ -165,7 +165,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @end
 
-@implementation RASkillRequirement2
+@implementation RASkillRequirement
 
 - (instancetype)initWithSkillRequirement:(s_skill_require)skill_requirement {
     self = [super init];
@@ -193,7 +193,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @end
 
-@implementation RASkillUnit2
+@implementation RASkillUnit
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill {
     self = [super init];

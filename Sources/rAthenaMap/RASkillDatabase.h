@@ -9,19 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RASkill2;
-@class RASkillCopyFlags2;
-@class RASkillNoNearNPC2;
-@class RASkillRequirement2;
-@class RASkillUnit2;
+@class RASkill;
+@class RASkillCopyFlags;
+@class RASkillNoNearNPC;
+@class RASkillRequirement;
+@class RASkillUnit;
 
 @interface RASkillDatabase : NSObject
 
-- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill2 *> *skills))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *skills))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 
-@interface RASkill2 : NSObject
+@interface RASkill : NSObject
 
 /// Unique skill ID.
 @property (nonatomic) NSInteger skillID;
@@ -77,10 +77,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<NSNumber *> *giveAp;
 
 /// Determines if the skill is copyable.
-@property (nonatomic) RASkillCopyFlags2 *skillCopyFlags;
+@property (nonatomic) RASkillCopyFlags *skillCopyFlags;
 
 /// Determines if the skill can be used near a NPC.
-@property (nonatomic) RASkillNoNearNPC2 *noNearNPC;
+@property (nonatomic) RASkillNoNearNPC *noNearNPC;
 
 /// Cancel cast when hit. (Default: false)
 @property (nonatomic) BOOL castCancel;
@@ -118,10 +118,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger castDelayFlags;
 
 /// List of requirements to cast the skill. (Optional)
-@property (nonatomic, nullable) RASkillRequirement2 *requires;
+@property (nonatomic, nullable) RASkillRequirement *requires;
 
 /// Skill unit values. (Optional)
-@property (nonatomic, nullable) RASkillUnit2 *unit;
+@property (nonatomic, nullable) RASkillUnit *unit;
 
 /// Status Change that is associated to the skill. (Optional)
 /// SC_
@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RASkillCopyFlags2 : NSObject
+@interface RASkillCopyFlags : NSObject
 
 /// Type of skill that can copy.
 @property (nonatomic) NSUInteger skill;
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RASkillNoNearNPC2 : NSObject
+@interface RASkillNoNearNPC : NSObject
 
 /// Number of cells from an NPC where the skill can be cast.
 @property (nonatomic) NSInteger additionalRange;
@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RASkillRequirement2 : NSObject
+@interface RASkillRequirement : NSObject
 
 /// HP required to cast. (Default: 0)
 @property (nonatomic, copy) NSArray<NSNumber *> *hpCost;
@@ -209,7 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RASkillUnit2 : NSObject
+@interface RASkillUnit : NSObject
 
 /// Skill unit ID.
 /// UNT_

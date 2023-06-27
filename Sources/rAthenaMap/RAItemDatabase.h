@@ -9,20 +9,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RAItem2;
-@class RAItemFlags2;
-@class RAItemDelay2;
-@class RAItemStack2;
-@class RAItemNoUse2;
-@class RAItemTrade2;
+@class RAItem;
+@class RAItemFlags;
+@class RAItemDelay;
+@class RAItemStack;
+@class RAItemNoUse;
+@class RAItemTrade;
 
 @interface RAItemDatabase : NSObject
 
-- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem2 *> *items))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 
-@interface RAItem2 : NSObject
+@interface RAItem : NSObject
 
 /// Item ID.
 @property (nonatomic) NSInteger itemID;
@@ -102,19 +102,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *aliasName;
 
 /// Item flags. (Default: null)
-@property (nonatomic) RAItemFlags2 *flags;
+@property (nonatomic) RAItemFlags *flags;
 
 /// Item use delay. (Default: null)
-@property (nonatomic) RAItemDelay2 *delay;
+@property (nonatomic) RAItemDelay *delay;
 
 /// Item stack amount. (Default: null)
-@property (nonatomic) RAItemStack2 *stack;
+@property (nonatomic) RAItemStack *stack;
 
 /// Conditions when the item is unusable. (Default: null)
-@property (nonatomic) RAItemNoUse2 *noUse;
+@property (nonatomic) RAItemNoUse *noUse;
 
 /// Trade restrictions. (Default: null)
-@property (nonatomic) RAItemTrade2 *trade;
+@property (nonatomic) RAItemTrade *trade;
 
 /// Script to execute when the item is used/equipped. (Default: null)
 @property (nonatomic, copy, nullable) NSString *script;
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAItemFlags2 : NSObject
+@interface RAItemFlags : NSObject
 
 /// If the item is available for Buyingstores. (Default: false)
 @property (nonatomic) BOOL buyingStore;
@@ -155,7 +155,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAItemDelay2 : NSObject
+@interface RAItemDelay : NSObject
 
 /// Duration of delay in seconds.
 @property (nonatomic) NSInteger duration;
@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAItemStack2 : NSObject
+@interface RAItemStack : NSObject
 
 /// Maximum amount that can be stacked.
 @property (nonatomic) NSInteger amount;
@@ -184,7 +184,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAItemNoUse2 : NSObject
+@interface RAItemNoUse : NSObject
 
 /// Group level to override these conditions. (Default: 100)
 @property (nonatomic) NSInteger override;
@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAItemTrade2 : NSObject
+@interface RAItemTrade : NSObject
 
 /// Group level to override these conditions. (Default: 100)
 @property (nonatomic) NSInteger override;

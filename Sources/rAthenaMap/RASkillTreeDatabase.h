@@ -9,17 +9,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RASkillTree2;
-@class RASkillTreeSkill2;
-@class RASkillTreeRequiredSkill2;
+@class RASkillTree;
+@class RASkillTreeSkill;
+@class RASkillTreeRequiredSkill;
 
 @interface RASkillTreeDatabase : NSObject
 
-- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree2 *> *skillTrees))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *skillTrees))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 
-@interface RASkillTree2 : NSObject
+@interface RASkillTree : NSObject
 
 /// Job name.
 @property (nonatomic) NSInteger job;
@@ -29,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<NSNumber *> *inherit;
 
 /// List of skills available for the job. (Default: null)
-@property (nonatomic, copy) NSSet<RASkillTreeSkill2 *> *tree;
+@property (nonatomic, copy) NSSet<RASkillTreeSkill *> *tree;
 
 @end
 
-@interface RASkillTreeSkill2 : NSObject
+@interface RASkillTreeSkill : NSObject
 
 /// Skill ID.
 @property (nonatomic) NSInteger skillID;
@@ -51,11 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger jobLevel;
 
 /// List of skills required to unlock the skill. (Default: null)
-@property (nonatomic, copy) NSSet<RASkillTreeRequiredSkill2 *> *requires;
+@property (nonatomic, copy) NSSet<RASkillTreeRequiredSkill *> *requires;
 
 @end
 
-@interface RASkillTreeRequiredSkill2 : NSObject
+@interface RASkillTreeRequiredSkill : NSObject
 
 /// Skill ID.
 @property (nonatomic) NSInteger skillID;

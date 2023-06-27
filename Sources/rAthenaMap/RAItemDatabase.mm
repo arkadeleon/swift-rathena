@@ -8,7 +8,7 @@
 #import "RAItemDatabase.h"
 #include "map/itemdb.hpp"
 
-@interface RAItem2 ()
+@interface RAItem ()
 
 - (instancetype)initWithItem:(std::shared_ptr<item_data>)item;
 
@@ -16,11 +16,11 @@
 
 @implementation RAItemDatabase
 
-- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem2 *> *))completionHandler {
+- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RAItem2 *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
+        NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
         for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
-            RAItem2 *item = [[RAItem2 alloc] initWithItem:entry->second];
+            RAItem *item = [[RAItem alloc] initWithItem:entry->second];
             [items addObject:item];
         }
 
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation RAItem2
+@implementation RAItem
 
 - (instancetype)initWithItem:(std::shared_ptr<item_data>)item {
     self = [super init];
@@ -65,7 +65,7 @@
         _view = item->look;
 //        _aliasName = item->view_id;
 
-        _flags = [[RAItemFlags2 alloc] init];
+        _flags = [[RAItemFlags alloc] init];
         _flags.buyingStore = item->flag.buyingstore;
         _flags.deadBranch = item->flag.dead_branch;
         _flags.container = item->flag.group;
@@ -75,22 +75,22 @@
         _flags.noConsume = (item->flag.delay_consume & DELAYCONSUME_NOCONSUME) != 0;
         _flags.dropEffect = item->flag.dropEffect;
 
-        _delay = [[RAItemDelay2 alloc] init];
+        _delay = [[RAItemDelay alloc] init];
         _delay.duration = item->delay.duration;
         _delay.status = item->delay.sc;
 
-        _stack = [[RAItemStack2 alloc] init];
+        _stack = [[RAItemStack alloc] init];
         _stack.amount = item->stack.amount;
         _stack.inventory = item->stack.inventory;
         _stack.cart = item->stack.cart;
         _stack.storage = item->stack.storage;
         _stack.guildStorage = item->stack.guild_storage;
 
-        _noUse = [[RAItemNoUse2 alloc] init];
+        _noUse = [[RAItemNoUse alloc] init];
         _noUse.override = item->item_usage.override;
         _noUse.sitting = item->item_usage.sitting;
 
-        _trade = [[RAItemTrade2 alloc] init];
+        _trade = [[RAItemTrade alloc] init];
         _trade.override = item->gm_lv_trade_override;
         _trade.noDrop = item->flag.trade_restriction.drop;
         _trade.noTrade = item->flag.trade_restriction.trade;
@@ -111,22 +111,22 @@
 
 @end
 
-@implementation RAItemFlags2
+@implementation RAItemFlags
 
 @end
 
-@implementation RAItemDelay2
+@implementation RAItemDelay
 
 @end
 
-@implementation RAItemStack2
+@implementation RAItemStack
 
 @end
 
-@implementation RAItemNoUse2
+@implementation RAItemNoUse
 
 @end
 
-@implementation RAItemTrade2
+@implementation RAItemTrade
 
 @end

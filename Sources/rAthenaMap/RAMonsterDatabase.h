@@ -9,16 +9,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RAMonster2;
-@class RAMonsterDrop2;
+@class RAMonster;
+@class RAMonsterDrop;
 
 @interface RAMonsterDatabase : NSObject
 
-- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster2 *> *monsters))completionHandler NS_SWIFT_ASYNC(1);
+- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler NS_SWIFT_ASYNC(1);
 
 @end
 
-@interface RAMonster2 : NSObject
+@interface RAMonster : NSObject
 
 /// Monster ID.
 @property (nonatomic) NSInteger monsterID;
@@ -132,14 +132,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger modes;
 
 /// List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
-@property (nonatomic, copy) NSArray<RAMonsterDrop2 *> *mvpDrops;
+@property (nonatomic, copy) NSArray<RAMonsterDrop *> *mvpDrops;
 
 /// List of possible normal item drops. Max of MAX_MOB_DROP. (Optional)
-@property (nonatomic, copy) NSArray<RAMonsterDrop2 *> *drops;
+@property (nonatomic, copy) NSArray<RAMonsterDrop *> *drops;
 
 @end
 
-@interface RAMonsterDrop2 : NSObject
+@interface RAMonsterDrop : NSObject
 
 /// Item ID.
 @property (nonatomic) NSInteger itemID;
