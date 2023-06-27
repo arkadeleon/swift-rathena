@@ -9,6 +9,18 @@
 
 @implementation RAItem2
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _flags = [[RAItemFlags2 alloc] init];
+        _delay = [[RAItemDelay2 alloc] init];
+        _stack = [[RAItemStack2 alloc] init];
+        _noUse = [[RAItemNoUse2 alloc] init];
+        _trade = [[RAItemTrade2 alloc] init];
+    }
+    return self;
+}
+
 @end
 
 @implementation RAItemFlags2

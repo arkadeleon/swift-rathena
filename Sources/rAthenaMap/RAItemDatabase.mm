@@ -15,8 +15,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray<RAItem2 *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
 
-        std::map<t_itemid, std::shared_ptr<item_data>> sorted_itemdb(item_db.begin(), item_db.end());
-        for (auto entry = sorted_itemdb.begin(); entry != sorted_itemdb.end(); ++entry) {
+        for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
             auto it = entry->second;
 
             RAItem2 *item = [[RAItem2 alloc] init];
@@ -50,47 +49,37 @@
             item.view = it->look;
 //            item.aliasName = it->view_id;
 
-            RAItemFlags2 *flags = [[RAItemFlags2 alloc] init];
-            flags.buyingStore = it->flag.buyingstore;
-            flags.deadBranch = it->flag.dead_branch;
-            flags.container = it->flag.group;
-            flags.uniqueId = it->flag.guid;
-            flags.bindOnEquip = it->flag.bindOnEquip;
-            flags.dropAnnounce = it->flag.broadcast;
-            flags.noConsume = (it->flag.delay_consume & DELAYCONSUME_NOCONSUME) != 0;
-            flags.dropEffect = it->flag.dropEffect;
-            item.flags = flags;
+            item.flags.buyingStore = it->flag.buyingstore;
+            item.flags.deadBranch = it->flag.dead_branch;
+            item.flags.container = it->flag.group;
+            item.flags.uniqueId = it->flag.guid;
+            item.flags.bindOnEquip = it->flag.bindOnEquip;
+            item.flags.dropAnnounce = it->flag.broadcast;
+            item.flags.noConsume = (it->flag.delay_consume & DELAYCONSUME_NOCONSUME) != 0;
+            item.flags.dropEffect = it->flag.dropEffect;
 
-            RAItemDelay2 *delay = [[RAItemDelay2 alloc] init];
-            delay.duration = it->delay.duration;
-            delay.status = it->delay.sc;
-            item.delay = delay;
+            item.delay.duration = it->delay.duration;
+            item.delay.status = it->delay.sc;
 
-            RAItemStack2 *stack = [[RAItemStack2 alloc] init];
-            stack.amount = it->stack.amount;
-            stack.inventory = it->stack.inventory;
-            stack.cart = it->stack.cart;
-            stack.storage = it->stack.storage;
-            stack.guildStorage = it->stack.guild_storage;
-            item.stack = stack;
+            item.stack.amount = it->stack.amount;
+            item.stack.inventory = it->stack.inventory;
+            item.stack.cart = it->stack.cart;
+            item.stack.storage = it->stack.storage;
+            item.stack.guildStorage = it->stack.guild_storage;
 
-            RAItemNoUse2 *noUse = [[RAItemNoUse2 alloc] init];
-            noUse.override = it->item_usage.override;
-            noUse.sitting = it->item_usage.sitting;
-            item.noUse = noUse;
+            item.noUse.override = it->item_usage.override;
+            item.noUse.sitting = it->item_usage.sitting;
 
-            RAItemTrade2 *trade = [[RAItemTrade2 alloc] init];
-            trade.override = it->gm_lv_trade_override;
-            trade.noDrop = it->flag.trade_restriction.drop;
-            trade.noTrade = it->flag.trade_restriction.trade;
-            trade.tradePartner = it->flag.trade_restriction.trade_partner;
-            trade.noSell = it->flag.trade_restriction.sell;
-            trade.noCart = it->flag.trade_restriction.cart;
-            trade.noStorage = it->flag.trade_restriction.storage;
-            trade.noGuildStorage = it->flag.trade_restriction.guild_storage;
-            trade.noMail = it->flag.trade_restriction.mail;
-            trade.noAuction = it->flag.trade_restriction.auction;
-            item.trade = trade;
+            item.trade.override = it->gm_lv_trade_override;
+            item.trade.noDrop = it->flag.trade_restriction.drop;
+            item.trade.noTrade = it->flag.trade_restriction.trade;
+            item.trade.tradePartner = it->flag.trade_restriction.trade_partner;
+            item.trade.noSell = it->flag.trade_restriction.sell;
+            item.trade.noCart = it->flag.trade_restriction.cart;
+            item.trade.noStorage = it->flag.trade_restriction.storage;
+            item.trade.noGuildStorage = it->flag.trade_restriction.guild_storage;
+            item.trade.noMail = it->flag.trade_restriction.mail;
+            item.trade.noAuction = it->flag.trade_restriction.auction;
 
 //            item.script = it->script;
 //            item.equipScript = it->equip_script;

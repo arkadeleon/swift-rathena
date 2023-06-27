@@ -62,13 +62,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger jobs22;
 
 /// Upper class types that can equip the item. (Map default is 'All: true')
-@property (nonatomic) NSInteger classes;
+@property (nonatomic) NSUInteger classes;
 
 /// Gender that can equip the item. (Default: Both)
 @property (nonatomic) NSInteger gender;
 
 /// Equipment's placement. (Default: None)
-@property (nonatomic) NSInteger locations;
+@property (nonatomic) NSUInteger locations;
 
 /// Weapon level. (Default: 1 for Weapons)
 @property (nonatomic) NSInteger weaponLevel;
