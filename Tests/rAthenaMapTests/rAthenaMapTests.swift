@@ -133,8 +133,87 @@ class rAthenaMapTests: XCTestCase {
 //        XCTAssertEqual(poringCard.script, "bonus bLuk,2;\nbonus bFlee2,1;\n")
     }
 
+    func testMonsterDatabase() async {
+        let database = RAMonsterDatabase()
+        let monsters = await database.fetchMonsters()
+        XCTAssertEqual(monsters.count, 2435)
+
+        let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
+
+        let poring = uniqueMonsters[1002]!
+        XCTAssertEqual(poring.aegisName, "PORING")
+        XCTAssertEqual(poring.name, "Poring")
+        XCTAssertEqual(poring.level, 1)
+        XCTAssertEqual(poring.hp, 60)
+        XCTAssertEqual(poring.baseExp, 150)
+        XCTAssertEqual(poring.jobExp, 40)
+        XCTAssertEqual(poring.attack, 6)
+        XCTAssertEqual(poring.attack2, 1)
+        XCTAssertEqual(poring.defense, 2)
+        XCTAssertEqual(poring.magicDefense, 5)
+        XCTAssertEqual(poring.strength, 6)
+        XCTAssertEqual(poring.agility, 1)
+        XCTAssertEqual(poring.vitality, 1)
+        XCTAssertEqual(poring.intelligence, 1)
+        XCTAssertEqual(poring.dexterity, 6)
+        XCTAssertEqual(poring.luck, 5)
+        XCTAssertEqual(poring.attackRange, 1)
+        XCTAssertEqual(poring.skillRange, 10)
+        XCTAssertEqual(poring.chaseRange, 12)
+        XCTAssertEqual(poring.size, RA_SZ_MEDIUM)
+        XCTAssertEqual(poring.race, RA_RC_PLANT)
+        XCTAssertEqual(poring.element, RA_ELE_WATER)
+        XCTAssertEqual(poring.elementLevel, 1)
+        XCTAssertEqual(poring.walkSpeed, 400)
+        XCTAssertEqual(poring.attackDelay, 1872)
+        XCTAssertEqual(poring.attackMotion, 672)
+        XCTAssertEqual(poring.damageMotion, 480)
+        XCTAssertEqual(poring.monsterClass, RA_CLASS_NORMAL)
+        XCTAssertEqual(poring.modes, UInt(RA_MONSTER_TYPE_02))
+        XCTAssertEqual(poring.drops.count, 8)
+
+        let archerSkeleton = uniqueMonsters[1016]!
+        XCTAssertEqual(archerSkeleton.aegisName, "ARCHER_SKELETON")
+        XCTAssertEqual(archerSkeleton.name, "Archer Skeleton")
+        XCTAssertEqual(archerSkeleton.level, 50)
+        XCTAssertEqual(archerSkeleton.hp, 1646)
+        XCTAssertEqual(archerSkeleton.baseExp, 436)
+        XCTAssertEqual(archerSkeleton.jobExp, 327)
+        XCTAssertEqual(archerSkeleton.attack, 76)
+        XCTAssertEqual(archerSkeleton.attack2, 23)
+        XCTAssertEqual(archerSkeleton.defense, 47)
+        XCTAssertEqual(archerSkeleton.magicDefense, 10)
+        XCTAssertEqual(archerSkeleton.strength, 30)
+        XCTAssertEqual(archerSkeleton.agility, 29)
+        XCTAssertEqual(archerSkeleton.vitality, 20)
+        XCTAssertEqual(archerSkeleton.intelligence, 10)
+        XCTAssertEqual(archerSkeleton.dexterity, 35)
+        XCTAssertEqual(archerSkeleton.luck, 5)
+        XCTAssertEqual(archerSkeleton.attackRange, 9)
+        XCTAssertEqual(archerSkeleton.skillRange, 10)
+        XCTAssertEqual(archerSkeleton.chaseRange, 12)
+        XCTAssertEqual(archerSkeleton.size, RA_SZ_MEDIUM)
+        XCTAssertEqual(archerSkeleton.race, RA_RC_UNDEAD)
+//        XCTAssertEqual(archerSkeleton.raceGroups, [.clocktower])
+        XCTAssertEqual(archerSkeleton.element, RA_ELE_UNDEAD)
+        XCTAssertEqual(archerSkeleton.elementLevel, 1)
+        XCTAssertEqual(archerSkeleton.walkSpeed, 300)
+        XCTAssertEqual(archerSkeleton.attackDelay, 2864)
+        XCTAssertEqual(archerSkeleton.attackMotion, 864)
+        XCTAssertEqual(archerSkeleton.damageMotion, 576)
+        XCTAssertEqual(archerSkeleton.monsterClass, RA_CLASS_NORMAL)
+        XCTAssertEqual(archerSkeleton.drops.count, 8)
+        XCTAssertEqual(archerSkeleton.modes, UInt(RA_MONSTER_TYPE_05))
+
+        let osiris = uniqueMonsters[1038]!
+        XCTAssertEqual(osiris.monsterClass, RA_CLASS_BOSS)
+//        XCTAssertEqual(osiris.modes, UInt(RA_MONSTER_TYPE_21) | UInt(RA_MD_MVP))
+        XCTAssertEqual(osiris.mvpDrops.count, 3)
+    }
+
     static var allTests = [
         ("testMapServer", testMapServer),
         ("testItemDatabase", testItemDatabase),
+        ("testMonsterDatabase", testMonsterDatabase),
     ]
 }
