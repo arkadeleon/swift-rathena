@@ -194,7 +194,7 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(archerSkeleton.chaseRange, 12)
         XCTAssertEqual(archerSkeleton.size, RA_SZ_MEDIUM)
         XCTAssertEqual(archerSkeleton.race, RA_RC_UNDEAD)
-//        XCTAssertEqual(archerSkeleton.raceGroups, [.clocktower])
+        XCTAssertEqual(archerSkeleton.raceGroups as! [Int], [RA_RC2_CLOCKTOWER])
         XCTAssertEqual(archerSkeleton.element, RA_ELE_UNDEAD)
         XCTAssertEqual(archerSkeleton.elementLevel, 1)
         XCTAssertEqual(archerSkeleton.walkSpeed, 300)

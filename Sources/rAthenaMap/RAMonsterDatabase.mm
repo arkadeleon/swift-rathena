@@ -6,7 +6,6 @@
 //
 
 #import "RAMonsterDatabase.h"
-#import "RAMonster2.h"
 #include "map/mob.hpp"
 
 @interface RAMonster2 ()
@@ -73,7 +72,13 @@
         _chaseRange = mob->range3;
         _size = mob->status.size;
         _race = mob->status.race;
-//        _raceGroups = mob->race2;
+
+        NSMutableArray<NSNumber *> *raceGroups = [NSMutableArray arrayWithCapacity:mob->race2.size()];
+        for (auto race2 : mob->race2) {
+            [raceGroups addObject:@(race2)];
+        }
+        _raceGroups = [raceGroups copy];
+
         _element = mob->status.def_ele;
         _elementLevel = mob->status.ele_lv;
         _walkSpeed = mob->status.speed;

@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger race;
 
 /// List of secondary groups the monster may be part of. (Optional)
-@property (nonatomic) NSInteger raceGroups;
+@property (nonatomic, copy) NSArray<NSNumber *> *raceGroups;
 
 /// Element. (Default: Neutral)
 @property (nonatomic) NSInteger element;
