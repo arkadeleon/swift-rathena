@@ -9,93 +9,119 @@
 #import "RAMonster2.h"
 #include "map/mob.hpp"
 
+@interface RAMonster2 ()
+
+- (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob;
+
+@end
+
+@interface RAMonsterDrop2 ()
+
+- (instancetype)initWithDrop:(s_mob_drop)drop;
+
+@end
+
 @implementation RAMonsterDatabase
 
 - (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster2 *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray<RAMonster2 *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
-
         for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
-            auto mob = entry->second;
-
-            RAMonster2 *monster = [[RAMonster2 alloc] init];
-            monster.monsterID = mob->id;
-            monster.aegisName = [NSString stringWithUTF8String:mob->sprite.c_str()];
-            monster.name = [NSString stringWithUTF8String:mob->name.c_str()];
-            monster.japaneseName = [NSString stringWithUTF8String:mob->jname.c_str()];
-            monster.level = mob->lv;
-            monster.hp = mob->status.max_hp;
-            monster.sp = mob->status.max_sp;
-            monster.baseExp = mob->base_exp;
-            monster.jobExp = mob->job_exp;
-            monster.mvpExp = mob->mexp;
-            monster.attack = mob->status.rhw.atk;
-#ifdef RENEWAL
-            monster.attack2 = mob->status.rhw.matk;
-#else
-            monster.attack2 = mob->status.rhw.atk2;
-#endif
-            monster.defense = mob->status.def;
-            monster.magicDefense = mob->status.mdef;
-            monster.resistance = mob->status.res;
-            monster.magicResistance = mob->status.mres;
-            monster.strength = mob->status.str;
-            monster.agility = mob->status.agi;
-            monster.vitality = mob->status.vit;
-            monster.intelligence = mob->status.int_;
-            monster.dexterity = mob->status.dex;
-            monster.luck = mob->status.luk;
-            monster.attackRange = mob->status.rhw.range;
-            monster.skillRange = mob->range2;
-            monster.chaseRange = mob->range3;
-            monster.size = mob->status.size;
-            monster.race = mob->status.race;
-//            monster.raceGroups = mob->race2;
-            monster.element = mob->status.def_ele;
-            monster.elementLevel = mob->status.ele_lv;
-            monster.walkSpeed = mob->status.speed;
-            monster.attackDelay = mob->status.adelay;
-            monster.attackMotion = mob->status.amotion;
-            monster.damageMotion = mob->status.dmotion;
-            monster.damageTaken = mob->damagetaken;
-            monster.monsterClass = mob->status.class_;
-            monster.modes = mob->status.mode;
-
-            NSMutableArray<RAMonsterDrop2 *> *mvpDrops = [NSMutableArray arrayWithCapacity:MAX_MVP_DROP_TOTAL];
-            for (int i = 0; i < MAX_MVP_DROP_TOTAL; i++) {
-                auto it = mob->mvpitem[i];
-                if (it.nameid == 0) {
-                    continue;
-                }
-                RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] init];
-                drop.itemID = it.nameid;
-                drop.rate = it.rate;
-                drop.stealProtected = it.steal_protected;
-                drop.randomOptionGroup = it.randomopt_group;
-                [mvpDrops addObject:drop];
-            }
-            monster.mvpDrops = mvpDrops;
-
-            NSMutableArray<RAMonsterDrop2 *> *drops = [NSMutableArray arrayWithCapacity:MAX_MOB_DROP_TOTAL];
-            for (int i = 0; i < MAX_MOB_DROP_TOTAL; i++) {
-                auto it = mob->dropitem[i];
-                if (it.nameid == 0) {
-                    continue;
-                }
-                RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] init];
-                drop.itemID = it.nameid;
-                drop.rate = it.rate;
-                drop.stealProtected = it.steal_protected;
-                drop.randomOptionGroup = it.randomopt_group;
-                [drops addObject:drop];
-            }
-            monster.drops = drops;
-
+            RAMonster2 *monster = [[RAMonster2 alloc] initWithMob:entry->second];
             [monsters addObject:monster];
         }
 
         completionHandler([monsters copy]);
     });
+}
+
+@end
+
+@implementation RAMonster2
+
+- (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob {
+    self = [super init];
+    if (self) {
+        _monsterID = mob->id;
+        _aegisName = [NSString stringWithUTF8String:mob->sprite.c_str()];
+        _name = [NSString stringWithUTF8String:mob->name.c_str()];
+        _japaneseName = [NSString stringWithUTF8String:mob->jname.c_str()];
+        _level = mob->lv;
+        _hp = mob->status.max_hp;
+        _sp = mob->status.max_sp;
+        _baseExp = mob->base_exp;
+        _jobExp = mob->job_exp;
+        _mvpExp = mob->mexp;
+        _attack = mob->status.rhw.atk;
+#ifdef RENEWAL
+        _attack2 = mob->status.rhw.matk;
+#else
+        _attack2 = mob->status.rhw.atk2;
+#endif
+        _defense = mob->status.def;
+        _magicDefense = mob->status.mdef;
+        _resistance = mob->status.res;
+        _magicResistance = mob->status.mres;
+        _strength = mob->status.str;
+        _agility = mob->status.agi;
+        _vitality = mob->status.vit;
+        _intelligence = mob->status.int_;
+        _dexterity = mob->status.dex;
+        _luck = mob->status.luk;
+        _attackRange = mob->status.rhw.range;
+        _skillRange = mob->range2;
+        _chaseRange = mob->range3;
+        _size = mob->status.size;
+        _race = mob->status.race;
+//        _raceGroups = mob->race2;
+        _element = mob->status.def_ele;
+        _elementLevel = mob->status.ele_lv;
+        _walkSpeed = mob->status.speed;
+        _attackDelay = mob->status.adelay;
+        _attackMotion = mob->status.amotion;
+        _damageMotion = mob->status.dmotion;
+        _damageTaken = mob->damagetaken;
+        _monsterClass = mob->status.class_;
+        _modes = mob->status.mode;
+
+        NSMutableArray<RAMonsterDrop2 *> *mvpDrops = [NSMutableArray arrayWithCapacity:MAX_MVP_DROP_TOTAL];
+        for (int i = 0; i < MAX_MVP_DROP_TOTAL; i++) {
+            auto it = mob->mvpitem[i];
+            if (it.nameid == 0) {
+                continue;
+            }
+            RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] initWithDrop:it];
+            [mvpDrops addObject:drop];
+        }
+        _mvpDrops = [mvpDrops copy];
+
+        NSMutableArray<RAMonsterDrop2 *> *drops = [NSMutableArray arrayWithCapacity:MAX_MOB_DROP_TOTAL];
+        for (int i = 0; i < MAX_MOB_DROP_TOTAL; i++) {
+            auto it = mob->dropitem[i];
+            if (it.nameid == 0) {
+                continue;
+            }
+            RAMonsterDrop2 *drop = [[RAMonsterDrop2 alloc] initWithDrop:it];
+            [drops addObject:drop];
+        }
+        _drops = [drops copy];
+    }
+    return self;
+}
+
+@end
+
+@implementation RAMonsterDrop2
+
+- (instancetype)initWithDrop:(s_mob_drop)drop {
+    self = [super init];
+    if (self) {
+        _itemID = drop.nameid;
+        _rate = drop.rate;
+        _stealProtected = drop.steal_protected;
+        _randomOptionGroup = drop.randomopt_group;
+    }
+    return self;
 }
 
 @end
