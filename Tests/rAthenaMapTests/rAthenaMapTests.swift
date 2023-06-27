@@ -211,9 +211,28 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(osiris.mvpDrops.count, 3)
     }
 
+    func testSkillTreeDatabase() async {
+        let database = RASkillTreeDatabase()
+        let skillTrees = await database.fetchSkillTrees()
+        XCTAssertEqual(skillTrees.count, 167)
+
+        let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
+
+        let acolyte = uniqueSkillTrees[RA_JOB_ACOLYTE]!
+        XCTAssertEqual(acolyte.job, RA_JOB_ACOLYTE)
+        XCTAssertEqual(acolyte.inherit as! [Int], [RA_JOB_NOVICE])
+        XCTAssertEqual(acolyte.tree.count, 18)
+
+        let archBishop = uniqueSkillTrees[RA_JOB_ARCH_BISHOP]!
+        XCTAssertEqual(archBishop.job, RA_JOB_ARCH_BISHOP)
+        XCTAssertEqual(archBishop.inherit as! [Int], [RA_JOB_NOVICE, RA_JOB_ACOLYTE, RA_JOB_PRIEST])
+        XCTAssertEqual(archBishop.tree.count, 59)
+    }
+
     static var allTests = [
         ("testMapServer", testMapServer),
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
+        ("testSkillTreeDatabase", testSkillTreeDatabase),
     ]
 }
