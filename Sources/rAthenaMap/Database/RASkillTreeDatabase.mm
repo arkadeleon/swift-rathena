@@ -20,7 +20,7 @@
 
 @end
 
-@interface RASkillTreeRequiredSkill ()
+@interface RASkillTreePrerequisiteSkill ()
 
 - (instancetype)initWithSkillID:(uint16)skillID skillLevel:(uint16)skillLevel;
 
@@ -78,19 +78,19 @@
         _baseLevel = skill->baselv;
         _jobLevel = skill->joblv;
 
-        NSMutableSet<RASkillTreeRequiredSkill *> *requires = [NSMutableSet setWithCapacity:skill->need.size()];
+        NSMutableSet<RASkillTreePrerequisiteSkill *> *prerequisites = [NSMutableSet setWithCapacity:skill->need.size()];
         for (auto need : skill->need) {
-            RASkillTreeRequiredSkill *require = [[RASkillTreeRequiredSkill alloc] initWithSkillID:need.first skillLevel:need.second];
-            [requires addObject:require];
+            RASkillTreePrerequisiteSkill *prerequisite = [[RASkillTreePrerequisiteSkill alloc] initWithSkillID:need.first skillLevel:need.second];
+            [prerequisites addObject:prerequisite];
         }
-        _requires = [requires copy];
+        _prerequisites = [prerequisites copy];
     }
     return self;
 }
 
 @end
 
-@implementation RASkillTreeRequiredSkill
+@implementation RASkillTreePrerequisiteSkill
 
 - (instancetype)initWithSkillID:(uint16)skillID skillLevel:(uint16)skillLevel {
     self = [super init];
