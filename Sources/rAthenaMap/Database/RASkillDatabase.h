@@ -35,45 +35,52 @@ NS_ASSUME_NONNULL_BEGIN
 /// Max skill level.
 @property (nonatomic) NSInteger maxLevel;
 
-/// Skill type. (Default: BF_NONE)
-/// BF_
+/// Skill type.
+///
+/// @discussion See enum @c e_battle_flag in battle.hpp
 @property (nonatomic) NSInteger type;
 
-/// Skill target type. (Default: INF_PASSIVE_SKILL)
-/// INF_
+/// Skill target type.
+///
+/// @discussion See enum @c e_skill_inf in skill.hpp
 @property (nonatomic) NSInteger targetType;
 
 /// Skill damage properties.
-/// NK_
+///
+/// @discussion See enum @c e_skill_nk in skill.hpp
 @property (nonatomic) NSUInteger damageFlags;
 
 /// Skill information flags.
-/// INF2_
+///
+/// @discussion See enum @c e_skill_inf2 in skill.hpp
 @property (nonatomic) NSUInteger flags;
 
-/// Skill range. (Default: 0)
+/// Skill range.
 @property (nonatomic, copy) NSArray<NSNumber *> *range;
 
-/// Skill hit type. (Default: DMG_NORMAL)
-/// DMG_
+/// Skill hit type.
+///
+/// @discussion See enum @c e_damage_type in clif.hpp
 @property (nonatomic) NSInteger hit;
 
-/// Skill hit count. (Default: 0)
+/// Skill hit count.
 @property (nonatomic, copy) NSArray<NSNumber *> *hitCount;
 
-/// Skill element. (Default: Neutral)
+/// Skill element.
+///
+/// @discussion See enum @c e_element in map.hpp
 @property (nonatomic, copy) NSArray<NSNumber *> *element;
 
-/// Skill splash area of effect. (Default: 0)
+/// Skill splash area of effect.
 @property (nonatomic, copy) NSArray<NSNumber *> *splashArea;
 
-/// Maximum amount of active skill instances that can be on the ground. (Default: 0)
+/// Maximum amount of active skill instances that can be on the ground.
 @property (nonatomic, copy) NSArray<NSNumber *> *activeInstance;
 
 /// Amount of tiles the skill knockbacks.
 @property (nonatomic, copy) NSArray<NSNumber *> *knockback;
 
-/// Gives AP on successful skill cast. (Default: 0)
+/// Gives AP on successful skill cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *giveAp;
 
 /// Determines if the skill is copyable.
@@ -82,49 +89,52 @@ NS_ASSUME_NONNULL_BEGIN
 /// Determines if the skill can be used near a NPC.
 @property (nonatomic) RASkillNoNearNPC *noNearNPC;
 
-/// Cancel cast when hit. (Default: false)
+/// Cancel cast when hit.
 @property (nonatomic) BOOL castCancel;
 
-/// Defense reduction rate during skill cast. (Default: 0)
+/// Defense reduction rate during skill cast.
 @property (nonatomic) NSInteger castDefenseReduction;
 
-/// Time to cast the skill in milliseconds. (Default: 0)
+/// Time to cast the skill in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *castTime;
 
-/// Time the character cannot use skills in milliseconds. (Default: 0)
+/// Time the character cannot use skills in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *afterCastActDelay;
 
-/// Time before the character can move again in milliseconds. (Default: 0)
+/// Time before the character can move again in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *afterCastWalkDelay;
 
-/// Duration of the skill in milliseconds. (Default: 0)
+/// Duration of the skill in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *duration1;
 
-/// Duration of the skill in milliseconds. (Default: 0)
+/// Duration of the skill in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *duration2;
 
-/// Time before the character can use the same skill again in milliseconds. (Default: 0)
+/// Time before the character can use the same skill again in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *cooldown;
 
-/// Time that is fixed during cast of the skill in milliseconds. (Default: 0)
+/// Time that is fixed during cast of the skill in milliseconds.
 @property (nonatomic, copy) NSArray<NSNumber *> *fixedCastTime;
 
 /// Effects of the skill's cast time.
-/// SKILL_CAST_
+///
+/// @discussion See enum @c e_skill_cast_flags in skill.hpp
 @property (nonatomic) NSUInteger castTimeFlags;
 
 /// Effects of the skill's delay.
-/// SKILL_CAST_
+///
+/// @discussion See enum @c e_skill_cast_flags in skill.hpp
 @property (nonatomic) NSUInteger castDelayFlags;
 
-/// List of requirements to cast the skill. (Optional)
-@property (nonatomic, nullable) RASkillRequirement *requires;
+/// List of requirements to cast the skill.
+@property (nonatomic) RASkillRequirement *requirement;
 
-/// Skill unit values. (Optional)
-@property (nonatomic, nullable) RASkillUnit *unit;
+/// Skill unit values.
+@property (nonatomic) RASkillUnit *unit;
 
-/// Status Change that is associated to the skill. (Optional)
-/// SC_
+/// Status Change that is associated to the skill.
+///
+/// @discussion See enum @c sc_type in status.hpp
 @property (nonatomic) NSInteger status;
 
 @end
@@ -132,9 +142,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RASkillCopyFlags : NSObject
 
 /// Type of skill that can copy.
+///
+/// @discussion See enum @c e_skill_copyable_option in skill.hpp
 @property (nonatomic) NSUInteger skill;
 
 /// Ability to remove skill cast requirement.
+///
+/// @discussion See enum @c e_skill_require in skill.hpp
 @property (nonatomic) NSUInteger removeRequirement;
 
 @end
@@ -145,66 +159,71 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger additionalRange;
 
 /// Type of NPC that will block the skill.
-/// SKILL_NONEAR_
+///
+/// @discussion See enum @c e_skill_nonear_npc in skill.hpp
 @property (nonatomic) NSUInteger type;
 
 @end
 
 @interface RASkillRequirement : NSObject
 
-/// HP required to cast. (Default: 0)
+/// HP required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *hpCost;
 
-/// SP required to cast. (Default: 0)
+/// SP required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *spCost;
 
-/// AP required to cast. (Default: 0)
+/// AP required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *apCost;
 
-/// HP rate required to cast. If positive, uses current HP, else uses Max HP. (Default: 0)
+/// HP rate required to cast. If positive, uses current HP, else uses Max HP.
 @property (nonatomic, copy) NSArray<NSNumber *> *hpRateCost;
 
-/// SP rate required to cast. If positive, uses current SP, else uses Max SP. (Default: 0)
+/// SP rate required to cast. If positive, uses current SP, else uses Max SP.
 @property (nonatomic, copy) NSArray<NSNumber *> *spRateCost;
 
-/// AP rate required to cast. If positive, uses current AP, else uses Max AP. (Default: 0)
+/// AP rate required to cast. If positive, uses current AP, else uses Max AP.
 @property (nonatomic, copy) NSArray<NSNumber *> *apRateCost;
 
-/// Maximum amount of HP to cast the skill. (Default: 0)
+/// Maximum amount of HP to cast the skill.
 @property (nonatomic, copy) NSArray<NSNumber *> *maxHpTrigger;
 
-/// Zeny required to cast. (Default: 0)
+/// Zeny required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *zenyCost;
 
-/// Weapon required to cast. (Default: All)
-/// W_
+/// Weapon required to cast.
+///
+/// @discussion See enum @c weapon_type in pc.hpp
 @property (nonatomic) NSUInteger weapon;
 
-/// Ammo required to cast. (Default: None)
-/// AMMO_
+/// Ammo required to cast.
+///
+/// @discussion See enum @c e_ammo_type in pc.hpp
 @property (nonatomic) NSUInteger ammo;
 
-/// Ammo amount required to cast. (Default: 0)
+/// Ammo amount required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *ammoAmount;
 
-/// Special state required to cast. (Default: None)
-/// ST_
+/// Special state required to cast.
+///
+/// @discussion See enum @c e_require_state in skill.hpp
 @property (nonatomic) NSInteger state;
 
-/// Status change required to cast. (Default: nullptr)
-/// SC_
+/// Status change required to cast.
+///
+/// @discussion See enum @c sc_type in status.hpp
 @property (nonatomic, copy) NSArray<NSNumber *> *status;
 
-/// Spirit sphere required to cast. (Default: 0)
+/// Spirit sphere required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *spiritSphereCost;
 
-/// Item ID required to cast. (Default: 0)
+/// Item ID required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *itemID;
 
-/// Item amount required to cast. (Default: 0)
+/// Item amount required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *itemAmount;
 
-/// Equipped item required to cast. (Default: nullptr)
+/// Equipped item required to cast.
 @property (nonatomic, copy) NSArray<NSNumber *> *equipment;
 
 @end
@@ -212,29 +231,33 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RASkillUnit : NSObject
 
 /// Skill unit ID.
-/// UNT_
+///
+/// @discussion See enum @c e_skill_unit_id in skill.hpp
 @property (nonatomic) NSInteger skillUnitID;
 
-/// Alternate skill unit ID. (Default: 0)
-/// UNT_
+/// Alternate skill unit ID.
+///
+/// @discussion See enum @c e_skill_unit_id in skill.hpp
 @property (nonatomic) NSInteger alternateSkillUnitID;
 
-/// Skill unit layout. (Default: 0)
+/// Skill unit layout.
 @property (nonatomic, copy) NSArray<NSNumber *> *layout;
 
-/// Skill unit range. (Default: 0)
+/// Skill unit range.
 @property (nonatomic, copy) NSArray<NSNumber *> *range;
 
-/// Skill unit interval in milliseconds. (Default: 0)
+/// Skill unit interval in milliseconds.
 @property (nonatomic) NSInteger interval;
 
-/// Skill unit target type. (Default: BCT_)
-/// BCT_
+/// Skill unit target type.
+///
+/// @discussion See enum @c e_battle_check_target in battle.hpp
 @property (nonatomic) NSInteger target;
 
-/// Skill unit flags. (Default: None)
-/// UF_
-@property (nonatomic) NSUInteger flag;
+/// Skill unit flags.
+///
+/// @discussion See enum @c e_skill_unit_flag in skill.hpp
+@property (nonatomic) NSUInteger flags;
 
 @end
 

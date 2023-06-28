@@ -124,7 +124,7 @@
         _itemID = drop.nameid;
         _rate = drop.rate;
         _stealProtected = drop.steal_protected;
-        _randomOptionGroup = drop.randomopt_group;
+        _randomOptionGroupID = drop.randomopt_group;
     }
     return self;
 }

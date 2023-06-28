@@ -130,7 +130,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 #endif
         _castTimeFlags = skill->castnodex;
         _castDelayFlags = skill->delaynodex;
-        _requires = [[RASkillRequirement alloc] initWithSkillRequirement:skill->require];
+        _requirement = [[RASkillRequirement alloc] initWithSkillRequirement:skill->require];
         _unit = [[RASkillUnit alloc] initWithSkill:skill];
         _status = skill->sc;
     }
@@ -204,7 +204,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
         _range = NSArrayFromInt32Array(skill->unit_range, MAX_SKILL_LEVEL);
         _interval = skill->unit_interval;
         _target = skill->unit_target;
-        _flag = skill->unit_flag.to_ulong();
+        _flags = skill->unit_flag.to_ulong();
     }
     return self;
 }
