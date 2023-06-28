@@ -33,124 +33,148 @@ NS_ASSUME_NONNULL_BEGIN
 /// Name in English for displaying as output.
 @property (nonatomic, copy) NSString *name;
 
-/// Item type. (Default: Etc)
+/// Item type.
+///
+/// @discussion See enum @c item_types in mmo.hpp
 @property (nonatomic) NSInteger type;
 
-/// Weapon, Ammo or Card type. (Default: 0)
+/// Weapon, Ammo or Card type.
+///
+/// @discussion See enum @c weapon_type in pc.hpp
+/// @discussion See enum @c e_ammo_type in pc.hpp
+/// @discussion See enum @c e_card_type in pc.hpp
 @property (nonatomic) NSInteger subType;
 
-/// Buying price. When not specified, becomes double the sell price. (Default: 0)
+/// Buying price. When not specified, becomes double the sell price.
 @property (nonatomic) NSInteger buy;
 
-/// Selling price. When not specified, becomes half the buy price. (Default: 0)
+/// Selling price. When not specified, becomes half the buy price.
 @property (nonatomic) NSInteger sell;
 
-/// Item weight. Each 10 is 1 weight. (Default: 0)
+/// Item weight. Each 10 is 1 weight.
 @property (nonatomic) NSInteger weight;
 
-/// Weapon's attack. (Default: 0)
+/// Weapon's attack.
 @property (nonatomic) NSInteger attack;
 
-/// Weapon's magic attack. (Default: 0)
+/// Weapon's magic attack.
 @property (nonatomic) NSInteger magicAttack;
 
-/// Armor's defense. (Default: 0)
+/// Armor's defense.
 @property (nonatomic) NSInteger defense;
 
-/// Weapon's attack range. (Default: 0)
+/// Weapon's attack range.
 @property (nonatomic) NSInteger range;
 
-/// Available slots in item. (Default: 0)
+/// Available slots in item.
 @property (nonatomic) NSInteger slots;
 
-/// Jobs that can equip the item. (Map default is 'All: true')
+/// 1-1 jobs that can equip the item.
+///
+/// @discussion See enum @c e_mapid in map.hpp
 @property (nonatomic) NSUInteger jobs11;
+
+/// 2-1 jobs that can equip the item.
+///
+/// @discussion See enum @c e_mapid in map.hpp
 @property (nonatomic) NSUInteger jobs21;
+
+/// 2-2 jobs that can equip the item.
+///
+/// @discussion See enum @c e_mapid in map.hpp
 @property (nonatomic) NSUInteger jobs22;
 
-/// Upper class types that can equip the item. (Map default is 'All: true')
+/// Upper class types that can equip the item.
+///
+/// @discussion See enum @c e_item_job in itemdb.hpp
 @property (nonatomic) NSUInteger classes;
 
-/// Gender that can equip the item. (Default: Both)
+/// Gender that can equip the item.
+///
+/// @discussion See enum @c e_sex in mmo.hpp
 @property (nonatomic) NSInteger gender;
 
-/// Equipment's placement. (Default: None)
+/// Equipment's placement.
+///
+/// @discussion See enum @c equip_pos in mmo.hpp
 @property (nonatomic) NSUInteger locations;
 
-/// Weapon level. (Default: 1 for Weapons)
+/// Weapon level.
 @property (nonatomic) NSInteger weaponLevel;
 
-/// Armor level. (Default: 1 for Armors)
+/// Armor level.
 @property (nonatomic) NSInteger armorLevel;
 
-/// Minimum required level to equip. (Default: 0)
+/// Minimum required level to equip.
 @property (nonatomic) NSInteger equipLevelMin;
 
-/// Maximum level that can equip. (Default: 0)
+/// Maximum level that can equip.
 @property (nonatomic) NSInteger equipLevelMax;
 
-/// If the item can be refined. (Default: false)
+/// If the item can be refined.
 @property (nonatomic) BOOL refineable;
 
-/// If the item can be graded. (Default: false)
+/// If the item can be graded.
 @property (nonatomic) BOOL gradable;
 
-/// View sprite of an item. (Default: 0)
+/// View sprite of an item.
 @property (nonatomic) NSInteger view;
 
-/// Another item's AegisName that will be sent to the client instead of this item's AegisName. (Default: null)
+/// Another item's AegisName that will be sent to the client instead of this item's AegisName.
 @property (nonatomic, copy, nullable) NSString *aliasName;
 
-/// Item flags. (Default: null)
+/// Item flags.
 @property (nonatomic) RAItemFlags *flags;
 
-/// Item use delay. (Default: null)
+/// Item use delay.
 @property (nonatomic) RAItemDelay *delay;
 
-/// Item stack amount. (Default: null)
+/// Item stack amount.
 @property (nonatomic) RAItemStack *stack;
 
-/// Conditions when the item is unusable. (Default: null)
+/// Conditions when the item is unusable.
 @property (nonatomic) RAItemNoUse *noUse;
 
-/// Trade restrictions. (Default: null)
+/// Trade restrictions.
 @property (nonatomic) RAItemTrade *trade;
 
-/// Script to execute when the item is used/equipped. (Default: null)
+/// Script to execute when the item is used/equipped.
 @property (nonatomic, copy, nullable) NSString *script;
 
-/// Script to execute when the item is equipped. (Default: null)
+/// Script to execute when the item is equipped.
 @property (nonatomic, copy, nullable) NSString *equipScript;
 
-/// Script to execute when the item is unequipped or when a rental item expires. (Default: null)
+/// Script to execute when the item is unequipped or when a rental item expires.
 @property (nonatomic, copy, nullable) NSString *unEquipScript;
 
 @end
 
 @interface RAItemFlags : NSObject
 
-/// If the item is available for Buyingstores. (Default: false)
+/// If the item is available for Buyingstores.
 @property (nonatomic) BOOL buyingStore;
 
-/// If the item is a Dead Branch. (Default: false)
+/// If the item is a Dead Branch.
 @property (nonatomic) BOOL deadBranch;
 
-/// If the item is part of a container. (Default: false)
+/// If the item is part of a container.
 @property (nonatomic) BOOL container;
 
-/// If the item is a unique stack. (Default: false)
+/// If the item is a unique stack.
 @property (nonatomic) BOOL uniqueId;
 
-/// If the item is bound to the character upon equipping. (Default: false)
+/// If the item is bound to the character upon equipping.
 @property (nonatomic) BOOL bindOnEquip;
 
-/// If the item has a special announcement to self on drop. (Default: false)
+/// If the item has a special announcement to self on drop.
 @property (nonatomic) BOOL dropAnnounce;
 
-/// If the item is consumed on use. (Default: false)
+/// If the item is consumed on use.
 @property (nonatomic) BOOL noConsume;
 
-/// If the item has a special effect on the ground when dropped by a monster. (Default: None)
+/// If the item has a special effect on the ground when dropped by a monster.
+///
+/// @discussion See enum @c e_item_drop_effect in itemdb.hpp
 @property (nonatomic) NSInteger dropEffect;
 
 @end
@@ -160,7 +184,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Duration of delay in seconds.
 @property (nonatomic) NSInteger duration;
 
-/// Status Change used to track delay. (Default: None)
+/// Status Change used to track delay.
+///
+/// @discussion See enum @c sc_type in status.hpp
 @property (nonatomic) NSInteger status;
 
 @end
@@ -170,60 +196,60 @@ NS_ASSUME_NONNULL_BEGIN
 /// Maximum amount that can be stacked.
 @property (nonatomic) NSInteger amount;
 
-/// If the stack is applied to player's inventory. (Default: true)
+/// If the stack is applied to player's inventory.
 @property (nonatomic) BOOL inventory;
 
-/// If the stack is applied to the player's cart. (Default: false)
+/// If the stack is applied to the player's cart.
 @property (nonatomic) BOOL cart;
 
-/// If the stack is applied to the player's storage. (Default: false)
+/// If the stack is applied to the player's storage.
 @property (nonatomic) BOOL storage;
 
-/// If the stack is applied to the player's guild storage. (Default: false)
+/// If the stack is applied to the player's guild storage.
 @property (nonatomic) BOOL guildStorage;
 
 @end
 
 @interface RAItemNoUse : NSObject
 
-/// Group level to override these conditions. (Default: 100)
+/// Group level to override these conditions.
 @property (nonatomic) NSInteger override;
 
-/// If the item can not be used while sitting. (Default: false)
+/// If the item can not be used while sitting.
 @property (nonatomic) BOOL sitting;
 
 @end
 
 @interface RAItemTrade : NSObject
 
-/// Group level to override these conditions. (Default: 100)
+/// Group level to override these conditions.
 @property (nonatomic) NSInteger override;
 
-/// If the item can not be dropped. (Default: false)
+/// If the item can not be dropped.
 @property (nonatomic) BOOL noDrop;
 
-/// If the item can not be traded. (Default: false)
+/// If the item can not be traded.
 @property (nonatomic) BOOL noTrade;
 
-/// If the item can not be traded to the player's partner. (Default: false)
+/// If the item can not be traded to the player's partner.
 @property (nonatomic) BOOL tradePartner;
 
-/// If the item can not be sold. (Default: false)
+/// If the item can not be sold.
 @property (nonatomic) BOOL noSell;
 
-/// If the item can not be put in a cart. (Default: false)
+/// If the item can not be put in a cart.
 @property (nonatomic) BOOL noCart;
 
-/// If the item can not be put in a storage. (Default: false)
+/// If the item can not be put in a storage.
 @property (nonatomic) BOOL noStorage;
 
-/// If the item can not be put in a guild storage. (Default: false)
+/// If the item can not be put in a guild storage.
 @property (nonatomic) BOOL noGuildStorage;
 
-/// If the item can not be put in a mail. (Default: false)
+/// If the item can not be put in a mail.
 @property (nonatomic) BOOL noMail;
 
-/// If the item can not be put in an auction. (Default: false)
+/// If the item can not be put in an auction.
 @property (nonatomic) BOOL noAuction;
 
 @end
