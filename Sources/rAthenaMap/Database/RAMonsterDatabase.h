@@ -29,112 +29,125 @@ NS_ASSUME_NONNULL_BEGIN
 /// Name in English.
 @property (nonatomic, copy) NSString *name;
 
-/// Name in Japanese. (Default: 'Name' value)
-@property (nonatomic, copy, nullable) NSString *japaneseName;
+/// Name in Japanese.
+@property (nonatomic, copy) NSString *japaneseName;
 
-/// Level. (Default: 1)
+/// Level.
 @property (nonatomic) NSInteger level;
 
-/// Total HP. (Default: 1)
+/// Total HP.
 @property (nonatomic) NSInteger hp;
 
-/// Total SP. (Default: 1)
+/// Total SP.
 @property (nonatomic) NSInteger sp;
 
-/// Base experience gained. (Default: 0)
+/// Base experience gained.
 @property (nonatomic) NSInteger baseExp;
 
-/// Job experience gained. (Default: 0)
+/// Job experience gained.
 @property (nonatomic) NSInteger jobExp;
 
-/// MVP experience gained. (Default: 0)
+/// MVP experience gained.
 @property (nonatomic) NSInteger mvpExp;
 
-/// Minimum attack in pre-renewal and base attack in renewal. (Default: 0)
+/// Minimum attack in pre-renewal and base attack in renewal.
 @property (nonatomic) NSInteger attack;
 
-/// Maximum attack in pre-renewal and base magic attack in renewal. (Default: 0)
+/// Maximum attack in pre-renewal and base magic attack in renewal.
 @property (nonatomic) NSInteger attack2;
 
-/// Physical defense of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+/// Physical defense of the monster, reduces melee and ranged physical attack/skill damage.
 @property (nonatomic) NSInteger defense;
 
-/// Magic defense of the monster, reduces magical skill damage. (Default: 0)
+/// Magic defense of the monster, reduces magical skill damage.
 @property (nonatomic) NSInteger magicDefense;
 
-/// Physical resistance of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+/// Physical resistance of the monster, reduces melee and ranged physical attack/skill damage.
 @property (nonatomic) NSInteger resistance;
 
-/// Magic resistance of the monster, reduces magical skill damage. (Default: 0)
+/// Magic resistance of the monster, reduces magical skill damage.
 @property (nonatomic) NSInteger magicResistance;
 
-/// Strength which affects attack. (Default: 1)
+/// Strength which affects attack.
 @property (nonatomic) NSInteger strength;
 
-/// Agility which affects flee. (Default: 1)
+/// Agility which affects flee.
 @property (nonatomic) NSInteger agility;
 
-/// Vitality which affects defense. (Default: 1)
+/// Vitality which affects defense.
 @property (nonatomic) NSInteger vitality;
 
-/// Intelligence which affects magic attack. (Default: 1)
+/// Intelligence which affects magic attack.
 @property (nonatomic) NSInteger intelligence;
 
-/// Dexterity which affects hit rate. (Default: 1)
+/// Dexterity which affects hit rate.
 @property (nonatomic) NSInteger dexterity;
 
-/// Luck which affects perfect dodge/lucky flee/perfect flee/lucky dodge rate. (Default: 1)
+/// Luck which affects perfect dodge/lucky flee/perfect flee/lucky dodge rate.
 @property (nonatomic) NSInteger luck;
 
-/// Attack range. (Default: 0)
+/// Attack range.
 @property (nonatomic) NSInteger attackRange;
 
-/// Skill cast range. (Default: 0)
+/// Skill cast range.
 @property (nonatomic) NSInteger skillRange;
 
-/// Chase range. (Default: 0)
+/// Chase range.
 @property (nonatomic) NSInteger chaseRange;
 
-/// Size. (Default: Small)
+/// Size.
+///
+/// @discussion See enum @c e_size in mob.hpp
 @property (nonatomic) NSInteger size;
 
-/// Race. (Default: Formless)
+/// Race.
+///
+/// @discussion See enum @c e_race in map.hpp
 @property (nonatomic) NSInteger race;
 
-/// List of secondary groups the monster may be part of. (Optional)
+/// List of secondary groups the monster may be part of.
+///
+/// @discussion See enum @c e_race2 in map.hpp
 @property (nonatomic, copy) NSArray<NSNumber *> *raceGroups;
 
-/// Element. (Default: Neutral)
+/// Element.
+///
+/// @discussion See enum @c e_element in map.hpp
 @property (nonatomic) NSInteger element;
 
-/// Level of element. (Default: 1)
+/// Level of element.
 @property (nonatomic) NSInteger elementLevel;
 
-/// Walk speed. (Default: DEFAULT_WALK_SPEED)
+/// Walk speed.
 @property (nonatomic) NSInteger walkSpeed;
 
-/// Attack speed. (Default: 0)
+/// Attack speed.
 @property (nonatomic) NSInteger attackDelay;
 
-/// Attack animation speed. (Default: 0)
+/// Attack animation speed.
 @property (nonatomic) NSInteger attackMotion;
 
-/// Damage animation speed. (Default: 0)
+/// Damage animation speed.
 @property (nonatomic) NSInteger damageMotion;
 
-/// Rate at which the monster will receive incoming damage. (Default: 100)
+/// Rate at which the monster will receive incoming damage.
 @property (nonatomic) NSInteger damageTaken;
 
-/// Aegis monster class. (Default: Normal)
+/// Aegis monster class.
+///
+/// @discussion See enum @c e_aegis_monsterclass in mob.hpp
 @property (nonatomic) NSInteger monsterClass;
 
-/// List of unique behavior not defined by AI, Class, or Attribute. (Optional)
+/// List of unique behavior not defined by AI, Class, or Attribute.
+///
+/// @discussion See enum @c e_aegis_monstertype in mob.hpp
+/// @discussion See enum @c e_mode in mmo.hpp
 @property (nonatomic) NSUInteger modes;
 
-/// List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
+/// List of possible MVP prize items. Max of @c MAX_MVP_DROP.
 @property (nonatomic, copy) NSArray<RAMonsterDrop *> *mvpDrops;
 
-/// List of possible normal item drops. Max of MAX_MOB_DROP. (Optional)
+/// List of possible normal item drops. Max of @c MAX_MOB_DROP.
 @property (nonatomic, copy) NSArray<RAMonsterDrop *> *drops;
 
 @end
@@ -147,11 +160,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// Drop rate of item.
 @property (nonatomic) NSInteger rate;
 
-/// If the item is shielded from TF_STEAL. (Default: false)
+/// If the item is shielded from @c TF_STEAL.
 @property (nonatomic) BOOL stealProtected;
 
-/// Random Option Group applied to item on drop. (Default: None)
-@property (nonatomic) NSInteger randomOptionGroup;
+/// Random Option Group ID applied to item on drop.
+@property (nonatomic) NSInteger randomOptionGroupID;
 
 @end
 
