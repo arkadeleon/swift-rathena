@@ -1,6 +1,6 @@
 //
 //  ServerView.swift
-//  rAthenaApp
+//  rAthena
 //
 //  Created by Leon Li on 2022/11/2.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 import rAthenaCommon
 
-struct ServerView: View {
+public struct ServerView: View {
     let server: RAServer
 
     private let terminalView = TerminalView()
@@ -17,7 +17,7 @@ struct ServerView: View {
 
     @State private var isServerRunning = false
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 0) {
             VStack {
                 HStack(spacing: 8) {
@@ -77,6 +77,10 @@ struct ServerView: View {
         .onReceive(timer) { _ in
             isServerRunning = server.status == .running
         }
+    }
+
+    public init(server: RAServer) {
+        self.server = server
     }
 }
 

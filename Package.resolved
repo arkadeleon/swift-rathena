@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "terminal",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dnpp73/Terminal.git",
+      "state" : {
+        "revision" : "407d3ed9d88da9c4c7518e72f7bfbe2cd5cf0b49",
+        "version" : "0.3.4"
+      }
+    }
+  ],
+  "version" : 2
+}

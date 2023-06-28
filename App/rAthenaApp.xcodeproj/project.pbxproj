@@ -16,13 +16,11 @@
 		351BAE6329D41B14001CED64 /* rAthenaMap in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6129D41B14001CED64 /* rAthenaMap */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		351BAE6529D41B14001CED64 /* rAthenaWeb in Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; };
 		351BAE6629D41B14001CED64 /* rAthenaWeb in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 35CD6D15292F4A9700D484E8 /* Terminal */; };
+		35A6A50E2A4C83BE0015737D /* rAthenaControl in Frameworks */ = {isa = PBXBuildFile; productRef = 35A6A50D2A4C83BE0015737D /* rAthenaControl */; };
 		35FC634329125B2000825452 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634229125B2000825452 /* App.swift */; };
 		35FC634529125B2000825452 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634429125B2000825452 /* ContentView.swift */; };
 		35FC634729125B2000825452 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634629125B2000825452 /* Assets.xcassets */; };
 		35FC634A29125B2000825452 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634929125B2000825452 /* Preview Assets.xcassets */; };
-		35FC636629125F0100825452 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC636529125F0100825452 /* TerminalView.swift */; };
-		35FC63682912685000825452 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC63672912685000825452 /* ServerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,8 +47,6 @@
 		35FC634429125B2000825452 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35FC634629125B2000825452 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35FC634929125B2000825452 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		35FC636529125F0100825452 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
-		35FC63672912685000825452 /* ServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +58,7 @@
 				351BAE5A29D41B14001CED64 /* rAthenaChar in Frameworks */,
 				351BAE5D29D41B14001CED64 /* rAthenaCommon in Frameworks */,
 				351BAE6229D41B14001CED64 /* rAthenaMap in Frameworks */,
-				35CD6D16292F4A9700D484E8 /* Terminal in Frameworks */,
+				35A6A50E2A4C83BE0015737D /* rAthenaControl in Frameworks */,
 				351BAE6529D41B14001CED64 /* rAthenaWeb in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,8 +96,6 @@
 			children = (
 				35FC634229125B2000825452 /* App.swift */,
 				35FC634429125B2000825452 /* ContentView.swift */,
-				35FC63672912685000825452 /* ServerView.swift */,
-				35FC636529125F0100825452 /* TerminalView.swift */,
 				35FC634629125B2000825452 /* Assets.xcassets */,
 				35FC634829125B2000825452 /* Preview Content */,
 			);
@@ -134,12 +128,12 @@
 			);
 			name = rAthenaApp;
 			packageProductDependencies = (
-				35CD6D15292F4A9700D484E8 /* Terminal */,
 				351BAE5929D41B14001CED64 /* rAthenaChar */,
 				351BAE5C29D41B14001CED64 /* rAthenaCommon */,
 				351BAE5E29D41B14001CED64 /* rAthenaLogin */,
 				351BAE6129D41B14001CED64 /* rAthenaMap */,
 				351BAE6429D41B14001CED64 /* rAthenaWeb */,
+				35A6A50D2A4C83BE0015737D /* rAthenaControl */,
 			);
 			productName = rAthenaApp;
 			productReference = 35FC633F29125B2000825452 /* rAthenaApp.app */;
@@ -170,7 +164,6 @@
 			);
 			mainGroup = 35FC633629125B2000825452;
 			packageReferences = (
-				35CD6D14292F4A9700D484E8 /* XCRemoteSwiftPackageReference "Terminal" */,
 			);
 			productRefGroup = 35FC634029125B2000825452 /* Products */;
 			projectDirPath = "";
@@ -199,8 +192,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				35FC634529125B2000825452 /* ContentView.swift in Sources */,
-				35FC63682912685000825452 /* ServerView.swift in Sources */,
-				35FC636629125F0100825452 /* TerminalView.swift in Sources */,
 				35FC634329125B2000825452 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,7 +342,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -384,7 +375,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -411,17 +402,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		35CD6D14292F4A9700D484E8 /* XCRemoteSwiftPackageReference "Terminal" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dnpp73/Terminal.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		351BAE5929D41B14001CED64 /* rAthenaChar */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -443,10 +423,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = rAthenaWeb;
 		};
-		35CD6D15292F4A9700D484E8 /* Terminal */ = {
+		35A6A50D2A4C83BE0015737D /* rAthenaControl */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 35CD6D14292F4A9700D484E8 /* XCRemoteSwiftPackageReference "Terminal" */;
-			productName = Terminal;
+			productName = rAthenaControl;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

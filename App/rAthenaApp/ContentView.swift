@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import rAthenaCommon
 import rAthenaLogin
 import rAthenaChar
 import rAthenaMap
 import rAthenaWeb
+import rAthenaControl
 
 struct ContentView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
