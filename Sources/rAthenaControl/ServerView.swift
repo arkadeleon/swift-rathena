@@ -13,57 +13,47 @@ public struct ServerView: View {
 
     private let terminalView = TerminalView()
 
-    private let timer =  Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
     @State private var isServerRunning = false
 
     public var body: some View {
-        HStack(spacing: 0) {
-            VStack {
-                HStack(spacing: 8) {
-                    Text(server.name.uppercased())
-                        .font(.subheadline)
-
-                    Spacer()
-
-                    if !isServerRunning {
-                        Button {
-                            Task {
-                                await server.start()
-                            }
-                        } label: {
-                            Image(systemName: "play")
-                        }
-                        .frame(width: 32, height: 32)
-                    } else {
-                        Button {
-                            Task {
-                                await server.stop()
-                            }
-                        } label: {
-                            Image(systemName: "stop")
-                        }
-                        .frame(width: 32, height: 32)
-                    }
-
-                    Button {
-                        terminalView.clear()
-                    } label: {
-                        Image(systemName: "trash")
-                    }
-                    .frame(width: 32, height: 32)
-                }
-                .frame(height: 32)
-                .padding(.horizontal, 8)
-                .background(Color(uiColor: .secondarySystemBackground))
-
-                terminalView
-            }
+        ZStack {
+            terminalView
+                .background(Color(uiColor: .systemBackground))
+                .cornerRadius(16)
+                .padding(16)
         }
-        .cornerRadius(16)
-        .overlay {
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color(uiColor: .secondarySystemBackground), lineWidth: 1)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .navigationTitle(server.name)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if !isServerRunning {
+                    Button {
+                        Task {
+                            await server.start()
+                        }
+                    } label: {
+                        Image(systemName: "play")
+                    }
+                } else {
+                    Button {
+                        Task {
+                            await server.stop()
+                        }
+                    } label: {
+                        Image(systemName: "stop")
+                    }
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    terminalView.clear()
+                } label: {
+                    Image(systemName: "trash")
+                }
+            }
         }
         .task {
             server.outputHandler = { data in

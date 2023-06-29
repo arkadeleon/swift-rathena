@@ -9,6 +9,10 @@
 
 @implementation RADatabase
 
+- (NSString *)name {
+    return @"";
+}
+
 - (void)loadWithCompletionHandler:(void (^)(NSArray<RADatabaseRecord *> *))completionHandler {
     completionHandler(@[]);
 }

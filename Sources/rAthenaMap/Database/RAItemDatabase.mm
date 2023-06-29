@@ -8,6 +8,12 @@
 #import "RAItemDatabase.h"
 #include "map/itemdb.hpp"
 
+@interface RAItemDatabase ()
+
+@property (nonatomic, copy) NSArray<RAItem *> *cachedItems;
+
+@end
+
 @interface RAItem ()
 
 - (instancetype)initWithItem:(std::shared_ptr<item_data>)item;
@@ -16,15 +22,36 @@
 
 @implementation RAItemDatabase
 
++ (RAItemDatabase *)sharedDatabase {
+    static RAItemDatabase *sharedDatabase = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDatabase = [[RAItemDatabase alloc] init];
+    });
+    return sharedDatabase;
+}
+
+- (NSString *)name {
+    return @"Item Database";
+}
+
 - (void)loadWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (self.cachedItems.count > 0) {
+            completionHandler(self.cachedItems);
+            return;
+        }
+
         NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
         for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
             RAItem *item = [[RAItem alloc] initWithItem:entry->second];
             [items addObject:item];
         }
+        [items sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]];
 
-        completionHandler([items copy]);
+        self.cachedItems = items;
+
+        completionHandler(self.cachedItems);
     });
 }
 

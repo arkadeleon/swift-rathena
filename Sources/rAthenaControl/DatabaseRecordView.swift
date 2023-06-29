@@ -31,6 +31,10 @@ public struct DatabaseRecordView: View {
             }
         }
     }
+
+    public init(record: RADatabaseRecord) {
+        self.record = record
+    }
 }
 
 struct DatabaseRecordView_Previews: PreviewProvider {

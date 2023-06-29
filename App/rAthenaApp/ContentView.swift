@@ -13,45 +13,41 @@ import rAthenaWeb
 import rAthenaControl
 
 struct ContentView: View {
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    private let servers: [RAServer] = [
+        RALoginServer.shared,
+        RACharServer.shared,
+        RAMapServer.shared,
+        RAWebServer.shared,
+    ]
+
+    private let databases: [RADatabase] = [
+        RAItemDatabase.shared
+    ]
 
     var body: some View {
-        GeometryReader { geometry in
-            if horizontalSizeClass == .compact {
-                VStack(spacing: 16) {
-                    ServerView(server: RALoginServer.shared)
-                        .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
-
-                    ServerView(server: RACharServer.shared)
-                        .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
-
-                    ServerView(server: RAMapServer.shared)
-                        .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
-
-                    ServerView(server: RAWebServer.shared)
-                        .frame(width: geometry.size.width - 16 * 2, height: (geometry.size.height - 16 * 5) / 4)
-                }
-                .padding(16)
-            } else {
-                VStack(spacing: 16) {
-                    HStack(spacing: 16) {
-                        ServerView(server: RALoginServer.shared)
-                            .frame(width: (geometry.size.width - 16 * 3) / 2, height: (geometry.size.height - 16 * 3) / 2)
-
-                        ServerView(server: RACharServer.shared)
-                            .frame(width: (geometry.size.width - 16 * 3) / 2, height: (geometry.size.height - 16 * 3) / 2)
-                    }
-
-                    HStack(spacing: 16) {
-                        ServerView(server: RAMapServer.shared)
-                            .frame(width: (geometry.size.width - 16 * 3) / 2, height: (geometry.size.height - 16 * 3) / 2)
-
-                        ServerView(server: RAWebServer.shared)
-                            .frame(width: (geometry.size.width - 16 * 3) / 2, height: (geometry.size.height - 16 * 3) / 2)
+        NavigationView {
+            List {
+                Section("Servers") {
+                    ForEach(servers, id: \.name) { server in
+                        NavigationLink {
+                            ServerView(server: server)
+                        } label: {
+                            Label(server.name, systemImage: "macpro.gen3.server")
+                        }
                     }
                 }
-                .padding(16)
+                Section("Databases") {
+                    ForEach(databases, id: \.name) { database in
+                        NavigationLink {
+                            DatabaseView(database: database)
+                        } label: {
+                            Label(database.name, systemImage: "list.bullet.rectangle")
+                        }
+                    }
+                }
             }
+            .listStyle(.sidebar)
+            .navigationTitle("rAthena")
         }
         .task {
             RAResourceManager.shared.copyResourcesToLibraryDirectory()

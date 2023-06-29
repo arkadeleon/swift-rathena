@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RADatabase : NSObject
 
+@property (nonatomic, readonly, copy) NSString *name;
+
 - (void)loadWithCompletionHandler:(void (^)(NSArray<RADatabaseRecord *> *records))completionHandler NS_SWIFT_ASYNC(1);
 
 @end

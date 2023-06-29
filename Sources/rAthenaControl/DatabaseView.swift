@@ -21,9 +21,15 @@ public struct DatabaseView: View {
                 Text(record.recordTitle)
             }
         }
+        .navigationTitle(database.name)
+        .navigationBarTitleDisplayMode(.inline)
         .task {
             records = await database.load()
         }
+    }
+
+    public init(database: RADatabase) {
+        self.database = database
     }
 }
 
