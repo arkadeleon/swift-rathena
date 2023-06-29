@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+@import rAthenaCommon;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class RAItem;
@@ -16,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class RAItemNoUse;
 @class RAItemTrade;
 
-@interface RAItemDatabase : NSObject
+@interface RAItemDatabase : RADatabase
 
-- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler NS_SWIFT_ASYNC(1);
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler;
 
 @end
 
-@interface RAItem : NSObject
+@interface RAItem : RADatabaseRecord
 
 /// Item ID.
 @property (nonatomic) NSInteger itemID;

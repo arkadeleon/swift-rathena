@@ -16,7 +16,7 @@
 
 @implementation RAItemDatabase
 
-- (void)fetchItemsWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
         for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
@@ -107,6 +107,22 @@
 //        _unEquipScript = item->unequip_script;
     }
     return self;
+}
+
+- (NSInteger)recordID {
+    return self.itemID;
+}
+
+- (NSString *)recordTitle {
+    return self.name;
+}
+
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    return @[
+        [[RADatabaseRecordField alloc] initWithName:@"Type" stringValue:@(self.type).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"Buy" stringValue:@(self.buy).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"Sell" stringValue:@(self.sell).stringValue],
+    ];
 }
 
 @end
