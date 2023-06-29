@@ -8,6 +8,12 @@
 #import "RAMonsterDatabase.h"
 #include "map/mob.hpp"
 
+@interface RAMonsterDatabase ()
+
+@property (nonatomic, copy) NSArray<RAMonster *> *cachedMonsters;
+
+@end
+
 @interface RAMonster ()
 
 - (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob;
@@ -22,15 +28,37 @@
 
 @implementation RAMonsterDatabase
 
-- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
++ (RAMonsterDatabase *)sharedDatabase {
+    static RAMonsterDatabase *sharedDatabase = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDatabase = [[RAMonsterDatabase alloc] init];
+    });
+    return sharedDatabase;
+}
+
+- (NSString *)name {
+    return @"Monster Database";
+}
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
-        for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
+        if (self.cachedMonsters.count > 0) {
+            completionHandler(self.cachedMonsters);
+            return;
+        }
+
+        auto db = mob_db;
+        NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:db.size()];
+        for (auto entry = db.begin(); entry != db.end(); ++entry) {
             RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
             [monsters addObject:monster];
         }
+        [monsters sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"monsterID" ascending:YES]]];
 
-        completionHandler([monsters copy]);
+        self.cachedMonsters = monsters;
+
+        completionHandler(self.cachedMonsters);
     });
 }
 
@@ -112,6 +140,22 @@
         _drops = [drops copy];
     }
     return self;
+}
+
+- (NSInteger)recordID {
+    return self.monsterID;
+}
+
+- (NSString *)recordTitle {
+    return self.name;
+}
+
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    return @[
+        [[RADatabaseRecordField alloc] initWithName:@"Level" stringValue:@(self.level).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"HP" stringValue:@(self.hp).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"SP" stringValue:@(self.sp).stringValue],
+    ];
 }
 
 @end

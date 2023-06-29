@@ -7,18 +7,22 @@
 
 #import <Foundation/Foundation.h>
 
+@import rAthenaCommon;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class RAMonster;
 @class RAMonsterDrop;
 
-@interface RAMonsterDatabase : NSObject
+@interface RAMonsterDatabase : RADatabase
 
-- (void)fetchMonstersWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler NS_SWIFT_ASYNC(1);
+@property (nonatomic, class, readonly) RAMonsterDatabase *sharedDatabase;
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler;
 
 @end
 
-@interface RAMonster : NSObject
+@interface RAMonster : RADatabaseRecord
 
 /// Monster ID.
 @property (nonatomic) NSInteger monsterID;

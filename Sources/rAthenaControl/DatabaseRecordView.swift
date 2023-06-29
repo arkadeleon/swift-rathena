@@ -30,6 +30,8 @@ public struct DatabaseRecordView: View {
                 EmptyView()
             }
         }
+        .navigationTitle(record.recordTitle)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     public init(record: RADatabaseRecord) {

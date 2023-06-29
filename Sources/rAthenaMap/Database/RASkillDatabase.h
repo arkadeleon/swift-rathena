@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+@import rAthenaCommon;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class RASkill;
@@ -15,13 +17,15 @@ NS_ASSUME_NONNULL_BEGIN
 @class RASkillRequirement;
 @class RASkillUnit;
 
-@interface RASkillDatabase : NSObject
+@interface RASkillDatabase : RADatabase
 
-- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *skills))completionHandler NS_SWIFT_ASYNC(1);
+@property (nonatomic, class, readonly) RASkillDatabase *sharedDatabase;
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkill *> *skills))completionHandler;
 
 @end
 
-@interface RASkill : NSObject
+@interface RASkill : RADatabaseRecord
 
 /// Unique skill ID.
 @property (nonatomic) NSInteger skillID;

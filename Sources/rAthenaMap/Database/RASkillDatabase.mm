@@ -48,6 +48,12 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return [numbers copy];
 }
 
+@interface RASkillDatabase ()
+
+@property (nonatomic, copy) NSArray<RASkill *> *cachedSkills;
+
+@end
+
 @interface RASkill ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
@@ -80,15 +86,37 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 
 @implementation RASkillDatabase
 
-- (void)fetchSkillsWithCompletionHandler:(void (^)(NSArray<RASkill *> *))completionHandler {
++ (RASkillDatabase *)sharedDatabase {
+    static RASkillDatabase *sharedDatabase = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDatabase = [[RASkillDatabase alloc] init];
+    });
+    return sharedDatabase;
+}
+
+- (NSString *)name {
+    return @"Skill Database";
+}
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkill *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:skill_db.size()];
-        for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
+        if (self.cachedSkills.count > 0) {
+            completionHandler(self.cachedSkills);
+            return;
+        }
+
+        auto db = skill_db;
+        NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:db.size()];
+        for (auto entry = db.begin(); entry != db.end(); ++entry) {
             RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
             [skills addObject:skill];
         }
+        [skills sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"skillID" ascending:YES]]];
 
-        completionHandler([skills copy]);
+        self.cachedSkills = skills;
+
+        completionHandler(self.cachedSkills);
     });
 }
 
@@ -135,6 +163,22 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
         _status = skill->sc;
     }
     return self;
+}
+
+- (NSInteger)recordID {
+    return self.skillID;
+}
+
+- (NSString *)recordTitle {
+    return self.skillDescription;
+}
+
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    return @[
+        [[RADatabaseRecordField alloc] initWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"Type" stringValue:@(self.type).stringValue],
+        [[RADatabaseRecordField alloc] initWithName:@"Target Type" stringValue:@(self.targetType).stringValue],
+    ];
 }
 
 @end

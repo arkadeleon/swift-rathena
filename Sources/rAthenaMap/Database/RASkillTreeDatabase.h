@@ -7,19 +7,23 @@
 
 #import <Foundation/Foundation.h>
 
+@import rAthenaCommon;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class RASkillTree;
 @class RASkillTreeSkill;
 @class RASkillTreePrerequisiteSkill;
 
-@interface RASkillTreeDatabase : NSObject
+@interface RASkillTreeDatabase : RADatabase
 
-- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *skillTrees))completionHandler NS_SWIFT_ASYNC(1);
+@property (nonatomic, class, readonly) RASkillTreeDatabase *sharedDatabase;
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *skillTrees))completionHandler;
 
 @end
 
-@interface RASkillTree : NSObject
+@interface RASkillTree : RADatabaseRecord
 
 /// Job name.
 ///

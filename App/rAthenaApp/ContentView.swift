@@ -21,7 +21,10 @@ struct ContentView: View {
     ]
 
     private let databases: [RADatabase] = [
-        RAItemDatabase.shared
+        RAItemDatabase.shared,
+        RAMonsterDatabase.shared,
+        RASkillDatabase.shared,
+        RASkillTreeDatabase.shared,
     ]
 
     var body: some View {

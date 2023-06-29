@@ -8,6 +8,12 @@
 #import "RASkillTreeDatabase.h"
 #include "map/pc.hpp"
 
+@interface RASkillTreeDatabase ()
+
+@property (nonatomic, copy) NSArray<RASkillTree *> *cachedSkillTrees;
+
+@end
+
 @interface RASkillTree ()
 
 - (instancetype)initWithJob:(uint16)job tree:(std::shared_ptr<s_skill_tree>)skill_tree;
@@ -28,15 +34,37 @@
 
 @implementation RASkillTreeDatabase
 
-- (void)fetchSkillTreesWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *))completionHandler {
++ (RASkillTreeDatabase *)sharedDatabase {
+    static RASkillTreeDatabase *sharedDatabase = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDatabase = [[RASkillTreeDatabase alloc] init];
+    });
+    return sharedDatabase;
+}
+
+- (NSString *)name {
+    return @"Skill Tree Database";
+}
+
+- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkillTree *> *))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableArray<RASkillTree *> *skillTrees = [NSMutableArray arrayWithCapacity:skill_tree_db.size()];
-        for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
+        if (self.cachedSkillTrees.count > 0) {
+            completionHandler(self.cachedSkillTrees);
+            return;
+        }
+        
+        auto db = skill_tree_db;
+        NSMutableArray<RASkillTree *> *skillTrees = [NSMutableArray arrayWithCapacity:db.size()];
+        for (auto entry = db.begin(); entry != db.end(); ++entry) {
             RASkillTree *skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
             [skillTrees addObject:skillTree];
         }
+        [skillTrees sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"job" ascending:YES]]];
 
-        completionHandler([skillTrees copy]);
+        self.cachedSkillTrees = skillTrees;
+
+        completionHandler(self.cachedSkillTrees);
     });
 }
 
@@ -63,6 +91,20 @@
         _tree = [tree copy];
     }
     return self;
+}
+
+- (NSInteger)recordID {
+    return self.job;
+}
+
+- (NSString *)recordTitle {
+    return @(self.job).stringValue;
+}
+
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    return @[
+        [[RADatabaseRecordField alloc] initWithName:@"Job" stringValue:@(self.job).stringValue],
+    ];
 }
 
 @end
