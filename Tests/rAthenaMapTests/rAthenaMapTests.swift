@@ -25,7 +25,7 @@ class rAthenaMapTests: XCTestCase {
     func testItemDatabase() async {
         let database = RAItemDatabase()
         let items = await database.load()
-        XCTAssertEqual(items.count, 22425)
+        XCTAssertEqual(items.count, 22833)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
 
@@ -135,7 +135,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testMonsterDatabase() async {
         let database = RAMonsterDatabase()
-        let monsters = await database.fetchMonsters()
+        let monsters = await database.load()
         XCTAssertEqual(monsters.count, 2435)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
@@ -213,7 +213,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testSkillTreeDatabase() async {
         let database = RASkillTreeDatabase()
-        let skillTrees = await database.fetchSkillTrees()
+        let skillTrees = await database.load()
         XCTAssertEqual(skillTrees.count, 167)
 
         let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
@@ -231,8 +231,8 @@ class rAthenaMapTests: XCTestCase {
 
     func testSkillDatabase() async {
         let database = RASkillDatabase()
-        let skills = await database.fetchSkills()
-        XCTAssertEqual(skills.count, 1492)
+        let skills = await database.load()
+        XCTAssertEqual(skills.count, 1495)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
 
