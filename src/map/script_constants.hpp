@@ -537,6 +537,7 @@
 	export_constant(MF_NOPETCAPTURE);
 	export_constant(MF_NOBUYINGSTORE);
 	export_constant(MF_NODYNAMICNPC);
+	export_constant(MF_NOBANK);
 
 	/* setcell types */
 	export_constant(CELL_WALKABLE);
@@ -6773,6 +6774,7 @@
 	export_constant(IG_CLASS_SHADOW_PD_CUBE);
 	export_constant(IG_CLASS_SHADOW_EA_CUBE);
 	export_constant(IG_ENCHANT_STONE_BOX30);
+	export_constant(IG_ENCHANT_STONE_BOX31);
 
 	/* unit stop walking */
 	export_constant(USW_NONE);
