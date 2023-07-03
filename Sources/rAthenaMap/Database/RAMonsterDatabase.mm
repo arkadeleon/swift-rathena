@@ -150,12 +150,14 @@
     return self.name;
 }
 
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    return @[
-        [[RADatabaseRecordField alloc] initWithName:@"Level" stringValue:@(self.level).stringValue],
-        [[RADatabaseRecordField alloc] initWithName:@"HP" stringValue:@(self.hp).stringValue],
-        [[RADatabaseRecordField alloc] initWithName:@"SP" stringValue:@(self.sp).stringValue],
-    ];
+- (RADatabaseRecordFieldCollection *)recordFieldCollection {
+    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
+
+    [recordFieldCollection addRecordFieldWithName:@"Level" stringValue:@(self.level).stringValue];
+    [recordFieldCollection addRecordFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
+    [recordFieldCollection addRecordFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
+
+    return recordFieldCollection;
 }
 
 @end

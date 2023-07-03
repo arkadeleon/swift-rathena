@@ -7,6 +7,12 @@
 
 #import "RADatabase.h"
 
+@interface RADatabaseRecordFieldCollection ()
+
+@property (nonatomic) NSMutableArray<RADatabaseRecordField *> *recordFields;
+
+@end
+
 @implementation RADatabase
 
 - (NSString *)name {
@@ -29,28 +35,47 @@
     return @"";
 }
 
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    return @[];
+- (RADatabaseRecordFieldCollection *)recordFieldCollection {
+    return [[RADatabaseRecordFieldCollection alloc] init];
+}
+
+@end
+
+@implementation RADatabaseRecordFieldCollection
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _recordFields = [NSMutableArray array];
+    }
+    return self;
+}
+
+- (NSArray<RADatabaseRecordField *> *)allRecordFields {
+    return [self.recordFields copy];
+}
+
+- (void)addRecordFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self.recordFields addObject:field];
+}
+
+- (void)addRecordFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self.recordFields addObject:field];
 }
 
 @end
 
 @implementation RADatabaseRecordField
 
-- (instancetype)initWithName:(NSString *)name stringValue:(NSString *)stringValue {
+- (instancetype)initWithName:(NSString *)name value:(RADatabaseRecordFieldValue *)value {
     self = [super init];
     if (self) {
         _name = [name copy];
-        _value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
-    }
-    return self;
-}
-
-- (instancetype)initWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
-    self = [super init];
-    if (self) {
-        _name = [name copy];
-        _value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
+        _value = value;
     }
     return self;
 }

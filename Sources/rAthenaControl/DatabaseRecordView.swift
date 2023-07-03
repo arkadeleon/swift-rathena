@@ -12,7 +12,7 @@ public struct DatabaseRecordView: View {
     let record: RADatabaseRecord
 
     public var body: some View {
-        List(record.recordFields, id: \.name) { field in
+        List(record.recordFieldCollection.allRecordFields, id: \.name) { field in
             switch field.value.type {
             case .string:
                 HStack {

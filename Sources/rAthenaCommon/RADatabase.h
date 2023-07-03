@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class RADatabaseRecord;
+@class RADatabaseRecordFieldCollection;
 @class RADatabaseRecordField;
 @class RADatabaseRecordFieldValue;
 
@@ -25,18 +26,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger recordID;
 @property (nonatomic, readonly, copy) NSString *recordTitle;
-@property (nonatomic, readonly, copy) NSArray<RADatabaseRecordField *> *recordFields;
+@property (nonatomic, readonly) RADatabaseRecordFieldCollection *recordFieldCollection;
+
+@end
+
+@interface RADatabaseRecordFieldCollection : NSObject
+
+@property (nonatomic, readonly, copy) NSArray<RADatabaseRecordField *> *allRecordFields;
+
+- (void)addRecordFieldWithName:(NSString *)name stringValue:(NSString *)stringValue;
+- (void)addRecordFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue;
 
 @end
 
 @interface RADatabaseRecordField : NSObject
 
 @property (nonatomic, readonly, copy) NSString *name;
-@property (nonatomic, readonly, strong) RADatabaseRecordFieldValue *value;
+@property (nonatomic, readonly) RADatabaseRecordFieldValue *value;
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithName:(NSString *)name stringValue:(NSString *)stringValue NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString *)name value:(RADatabaseRecordFieldValue *)value NS_DESIGNATED_INITIALIZER;
 
 @end
 

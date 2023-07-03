@@ -101,10 +101,12 @@
     return @(self.job).stringValue;
 }
 
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    return @[
-        [[RADatabaseRecordField alloc] initWithName:@"Job" stringValue:@(self.job).stringValue],
-    ];
+- (RADatabaseRecordFieldCollection *)recordFieldCollection {
+    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
+
+    [recordFieldCollection addRecordFieldWithName:@"Job" stringValue:@(self.job).stringValue];
+
+    return recordFieldCollection;
 }
 
 @end

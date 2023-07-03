@@ -145,12 +145,19 @@
     return self.name;
 }
 
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    return @[
-        [[RADatabaseRecordField alloc] initWithName:@"Type" stringValue:@(self.type).stringValue],
-        [[RADatabaseRecordField alloc] initWithName:@"Buy" stringValue:@(self.buy).stringValue],
-        [[RADatabaseRecordField alloc] initWithName:@"Sell" stringValue:@(self.sell).stringValue],
-    ];
+- (RADatabaseRecordFieldCollection *)recordFieldCollection {
+    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
+
+    [recordFieldCollection addRecordFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
+
+    if (self.type == RA_IT_WEAPON) {
+        [recordFieldCollection addRecordFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
+    }
+
+    [recordFieldCollection addRecordFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
+    [recordFieldCollection addRecordFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
+
+    return recordFieldCollection;
 }
 
 @end
