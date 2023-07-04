@@ -52,11 +52,15 @@ public struct ServerView: View {
             }
         }
         .task {
-            server.outputHandler = { data in
-                if let data = String(data: data, encoding: .isoLatin1)?
-                    .replacingOccurrences(of: "\n", with: "\r\n")
-                    .data(using: .isoLatin1) {
-                    terminalView.appendBuffer(data)
+            Task {
+                RAResourceManager.shared.copyResourcesToLibraryDirectory()
+
+                server.outputHandler = { data in
+                    if let data = String(data: data, encoding: .isoLatin1)?
+                        .replacingOccurrences(of: "\n", with: "\r\n")
+                        .data(using: .isoLatin1) {
+                        terminalView.appendBuffer(data)
+                    }
                 }
             }
         }

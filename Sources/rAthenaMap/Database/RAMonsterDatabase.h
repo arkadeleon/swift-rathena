@@ -18,8 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly) RAMonsterDatabase *sharedDatabase;
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RAMonster *> *monsters))completionHandler;
-
 @end
 
 @interface RAMonster : RADatabaseRecord

@@ -21,8 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly) RASkillDatabase *sharedDatabase;
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkill *> *skills))completionHandler;
-
 @end
 
 @interface RASkill : RADatabaseRecord

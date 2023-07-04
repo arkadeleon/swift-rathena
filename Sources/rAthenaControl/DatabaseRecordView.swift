@@ -10,7 +10,8 @@ import rAthenaCommon
 
 public struct DatabaseRecordView: View {
     let record: RADatabaseRecord
-    let recordFields: [RADatabaseRecordField]
+
+    @State private var recordFields = [RADatabaseRecordField]()
 
     public var body: some View {
         List(recordFields, id: \.name) { field in
@@ -44,14 +45,17 @@ public struct DatabaseRecordView: View {
         .listStyle(.plain)
         .navigationTitle(record.recordTitle)
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            Task {
+                let builder = RADatabaseRecordFieldsBuilder()
+                record.buildFields(with: builder)
+                recordFields = builder.build()
+            }
+        }
     }
 
     public init(record: RADatabaseRecord) {
         self.record = record
-
-        let builder = RADatabaseRecordFieldsBuilder()
-        record.buildFields(with: builder)
-        self.recordFields = builder.build()
     }
 }
 

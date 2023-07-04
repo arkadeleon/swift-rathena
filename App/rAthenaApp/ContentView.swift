@@ -52,9 +52,6 @@ struct ContentView: View {
             .listStyle(.sidebar)
             .navigationTitle("rAthena")
         }
-        .task {
-            RAResourceManager.shared.copyResourcesToLibraryDirectory()
-        }
     }
 }
 

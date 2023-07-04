@@ -25,7 +25,9 @@ public struct DatabaseView: View {
         .navigationTitle(database.name)
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            records = await database.load()
+            Task {
+                records = database.fetchAllRecords()
+            }
         }
     }
 

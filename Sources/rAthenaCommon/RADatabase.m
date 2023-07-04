@@ -19,8 +19,8 @@
     return @"";
 }
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RADatabaseRecord *> *))completionHandler {
-    completionHandler(@[]);
+- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
+    return @[];
 }
 
 - (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {

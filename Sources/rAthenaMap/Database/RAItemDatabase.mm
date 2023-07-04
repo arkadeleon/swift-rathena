@@ -8,12 +8,6 @@
 #import "RAItemDatabase.h"
 #include "map/itemdb.hpp"
 
-@interface RAItemDatabase ()
-
-@property (nonatomic, copy) NSArray<RAItem *> *cachedItems;
-
-@end
-
 @interface RAItem ()
 
 - (instancetype)initWithItem:(std::shared_ptr<item_data>)item;
@@ -35,35 +29,30 @@
     return @"Item Database";
 }
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RAItem *> *))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.cachedItems.count > 0) {
-            completionHandler(self.cachedItems);
-            return;
-        }
+- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
+    NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
 
-        auto db = item_db;
-        NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:db.size()];
-        for (auto entry = db.begin(); entry != db.end(); ++entry) {
-            RAItem *item = [[RAItem alloc] initWithItem:entry->second];
-            [items addObject:item];
-        }
-        [items sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]];
+    for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
+        RAItem *item = [[RAItem alloc] initWithItem:entry->second];
+        [items addObject:item];
+    }
 
-        self.cachedItems = items;
+    [items sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]];
 
-        completionHandler(self.cachedItems);
-    });
+    return [items copy];
 }
 
 - (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    RAItem *item = nil;
+
     for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
         if (entry->first == recordID) {
-            RAItem *item = [[RAItem alloc] initWithItem:entry->second];
-            return item;
+            item = [[RAItem alloc] initWithItem:entry->second];
+            break;
         }
     }
-    return nil;
+
+    return item;
 }
 
 @end

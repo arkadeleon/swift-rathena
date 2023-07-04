@@ -48,12 +48,6 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return [numbers copy];
 }
 
-@interface RASkillDatabase ()
-
-@property (nonatomic, copy) NSArray<RASkill *> *cachedSkills;
-
-@end
-
 @interface RASkill ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
@@ -99,35 +93,30 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return @"Skill Database";
 }
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RASkill *> *))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.cachedSkills.count > 0) {
-            completionHandler(self.cachedSkills);
-            return;
-        }
+- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
+    NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:skill_db.size()];
 
-        auto db = skill_db;
-        NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:db.size()];
-        for (auto entry = db.begin(); entry != db.end(); ++entry) {
-            RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
-            [skills addObject:skill];
-        }
-        [skills sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"skillID" ascending:YES]]];
+    for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
+        RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
+        [skills addObject:skill];
+    }
 
-        self.cachedSkills = skills;
+    [skills sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"skillID" ascending:YES]]];
 
-        completionHandler(self.cachedSkills);
-    });
+    return [skills copy];
 }
 
 - (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    RASkill *skill = nil;
+
     for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
         if (entry->first == recordID) {
-            RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
-            return skill;
+            skill = [[RASkill alloc] initWithSkill:entry->second];
+            break;
         }
     }
-    return nil;
+
+    return skill;
 }
 
 @end

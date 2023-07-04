@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *name;
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RADatabaseRecord *> *records))completionHandler NS_SWIFT_ASYNC(1);
-- (nullable RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID;
+- (NSArray<RADatabaseRecord *> *)fetchAllRecords;
+- (RADatabaseRecord * _Nullable)fetchRecordWithID:(NSInteger)recordID;
 
 @end
 

@@ -22,8 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, class, readonly) RAItemDatabase *sharedDatabase;
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RAItem *> *items))completionHandler;
-
 @end
 
 @interface RAItem : RADatabaseRecord

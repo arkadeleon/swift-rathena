@@ -9,12 +9,6 @@
 #import "RAItemDatabase.h"
 #include "map/mob.hpp"
 
-@interface RAMonsterDatabase ()
-
-@property (nonatomic, copy) NSArray<RAMonster *> *cachedMonsters;
-
-@end
-
 @interface RAMonster ()
 
 - (instancetype)initWithMob:(std::shared_ptr<s_mob_db>)mob;
@@ -42,35 +36,30 @@
     return @"Monster Database";
 }
 
-- (void)loadWithCompletionHandler:(void (^)(NSArray<RAMonster *> *))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.cachedMonsters.count > 0) {
-            completionHandler(self.cachedMonsters);
-            return;
-        }
+- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
+    NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
 
-        auto db = mob_db;
-        NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:db.size()];
-        for (auto entry = db.begin(); entry != db.end(); ++entry) {
-            RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
-            [monsters addObject:monster];
-        }
-        [monsters sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"monsterID" ascending:YES]]];
+    for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
+        RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
+        [monsters addObject:monster];
+    }
 
-        self.cachedMonsters = monsters;
+    [monsters sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"monsterID" ascending:YES]]];
 
-        completionHandler(self.cachedMonsters);
-    });
+    return [monsters copy];
 }
 
 - (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    RAMonster *monster = nil;
+
     for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
         if (entry->first == recordID) {
-            RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
-            return monster;
+            monster = [[RAMonster alloc] initWithMob:entry->second];
+            break;
         }
     }
-    return nil;
+
+    return monster;
 }
 
 @end

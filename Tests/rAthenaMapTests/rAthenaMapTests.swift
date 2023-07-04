@@ -22,9 +22,8 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(mapServer.name, "Map Server")
     }
 
-    func testItemDatabase() async {
-        let database = RAItemDatabase()
-        let items = await database.load()
+    func testItemDatabase() {
+        let items = RAItemDatabase.shared.fetchAllRecords() as! [RAItem]
         XCTAssertEqual(items.count, 22833)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
@@ -133,9 +132,8 @@ class rAthenaMapTests: XCTestCase {
 //        XCTAssertEqual(poringCard.script, "bonus bLuk,2;\nbonus bFlee2,1;\n")
     }
 
-    func testMonsterDatabase() async {
-        let database = RAMonsterDatabase()
-        let monsters = await database.load()
+    func testMonsterDatabase() {
+        let monsters = RAMonsterDatabase.shared.fetchAllRecords() as! [RAMonster]
         XCTAssertEqual(monsters.count, 2435)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
@@ -211,9 +209,8 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(osiris.mvpDrops.count, 3)
     }
 
-    func testSkillTreeDatabase() async {
-        let database = RASkillTreeDatabase()
-        let skillTrees = await database.load()
+    func testSkillTreeDatabase() {
+        let skillTrees = RASkillTreeDatabase.shared.fetchAllRecords() as! [RASkillTree]
         XCTAssertEqual(skillTrees.count, 167)
 
         let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
@@ -229,9 +226,8 @@ class rAthenaMapTests: XCTestCase {
         XCTAssertEqual(archBishop.tree.count, 59)
     }
 
-    func testSkillDatabase() async {
-        let database = RASkillDatabase()
-        let skills = await database.load()
+    func testSkillDatabase() {
+        let skills = RASkillDatabase.shared.fetchAllRecords() as! [RASkill]
         XCTAssertEqual(skills.count, 1495)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
