@@ -151,18 +151,70 @@
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Level" stringValue:@(self.level).stringValue];
-    [builder addFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
-    [builder addFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
+    [builder addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.monsterID]];
+    [builder addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
+    [builder addFieldWithName:@"Name" stringValue:self.name];
+    [builder addFieldWithName:@"Level" numberValue:@(self.level)];
+    [builder addFieldWithName:@"HP" numberValue:@(self.hp)];
+    [builder addFieldWithName:@"SP" numberValue:@(self.sp)];
 
-    NSMutableArray<RADatabaseRecord *> *drops = [NSMutableArray arrayWithCapacity:self.drops.count];
-    for (RAMonsterDrop *drop in self.drops) {
-        RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:drop.itemID];
-        if (item) {
-            [drops addObject:item];
-        }
-    }
-    [builder addFieldWithName:@"Drops" referenceArrayValue:drops];
+    [builder addFieldWithName:@"Base Exp" numberValue:@(self.baseExp)];
+    [builder addFieldWithName:@"Job Exp" numberValue:@(self.jobExp)];
+    [builder addFieldWithName:@"MVP Exp" numberValue:@(self.mvpExp)];
+
+#ifdef RENEWAL
+    NSInteger minAttack = 8 * self.attack / 10 + self.strength + self.level;
+    NSInteger maxAttack = 12 * self.attack / 10 + self.strength + self.level;
+#else
+    NSInteger minAttack = self.attack;
+    NSInteger maxAttack = self.attack2;
+#endif
+    [builder addFieldWithName:@"Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minAttack, maxAttack]];
+
+#ifdef RENEWAL
+    NSInteger minMagicAttack = 7 * self.attack2 / 10 + self.intelligence + self.level;
+    NSInteger maxMagicAttack = 13 * self.attack2 / 10 + self.intelligence + self.level;
+    [builder addFieldWithName:@"Magic Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minMagicAttack, maxMagicAttack]];
+#endif
+
+    [builder addFieldWithName:@"Defense" numberValue:@(self.defense)];
+    [builder addFieldWithName:@"Magic Defense" numberValue:@(self.magicDefense)];
+
+    [builder addFieldWithName:@"Resistance" numberValue:@(self.resistance)];
+    [builder addFieldWithName:@"Magic Resistance" numberValue:@(self.magicResistance)];
+
+    [builder addFieldWithName:@"Str" numberValue:@(self.strength)];
+    [builder addFieldWithName:@"Agi" numberValue:@(self.agility)];
+    [builder addFieldWithName:@"Vit" numberValue:@(self.vitality)];
+    [builder addFieldWithName:@"Int" numberValue:@(self.intelligence)];
+    [builder addFieldWithName:@"Dex" numberValue:@(self.dexterity)];
+    [builder addFieldWithName:@"Luk" numberValue:@(self.luck)];
+
+    [builder addFieldWithName:@"Attack Range" numberValue:@(self.attackRange)];
+    [builder addFieldWithName:@"Skill Cast Range" numberValue:@(self.skillRange)];
+    [builder addFieldWithName:@"Chase Range" numberValue:@(self.chaseRange)];
+
+    [builder addFieldWithName:@"Size" stringValue:NSStringFromRASize(self.size)];
+
+    [builder addFieldWithName:@"Race" stringValue:NSStringFromRARace(self.race)];
+
+    // TODO: Race Groups
+
+    [builder addFieldWithName:@"Element" stringValue:[NSString stringWithFormat:@"%@ %ld", NSStringFromRAElement(self.element), self.elementLevel]];
+
+    [builder addFieldWithName:@"Walk Speed" numberValue:@(self.walkSpeed)];
+    [builder addFieldWithName:@"Attack Speed" numberValue:@(self.attackDelay)];
+    [builder addFieldWithName:@"Attack Animation Speed" numberValue:@(self.attackMotion)];
+    [builder addFieldWithName:@"Damage Animation Speed" numberValue:@(self.damageMotion)];
+
+    // TODO: Damage Taken
+
+    [builder addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
+
+    // TODO: Modes
+
+    [builder addFieldWithName:@"Drops" referenceArrayValue:self.drops];
+    [builder addFieldWithName:@"MVP Drops" referenceArrayValue:self.mvpDrops];
 }
 
 @end
@@ -178,6 +230,24 @@
         _randomOptionGroupID = drop.randomopt_group;
     }
     return self;
+}
+
+- (NSInteger)recordID {
+    return self.itemID;
+}
+
+- (NSString *)recordTitle {
+    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:self.itemID];
+    return item.recordTitle;
+}
+
+- (NSString *)recordSubtitle {
+    return [NSString stringWithFormat:@"%@ %%", @(self.rate / 100.0)];
+}
+
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:self.itemID];
+    [item buildRecordFieldsWithBuilder:builder];
 }
 
 @end

@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger recordID;
 @property (nonatomic, readonly, copy) NSString *recordTitle;
+@property (nonatomic, readonly, copy) NSString *recordSubtitle;
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder;
 
@@ -35,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RADatabaseRecordFieldsBuilder : NSObject
 
 - (void)addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue;
+- (void)addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue;
 - (void)addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue;
 - (void)addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue;
 
@@ -54,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, RADatabaseRecordFieldValueType) {
     RADatabaseRecordFieldValueTypeString,
+    RADatabaseRecordFieldValueTypeNumber,
     RADatabaseRecordFieldValueTypeStringArray,
     RADatabaseRecordFieldValueTypeReferenceArray,
 };
@@ -62,11 +65,13 @@ typedef NS_ENUM(NSInteger, RADatabaseRecordFieldValueType) {
 
 @property (nonatomic, readonly) RADatabaseRecordFieldValueType type;
 @property (nonatomic, readonly, copy, nullable) NSString *string;
+@property (nonatomic, readonly, nullable) NSNumber *number;
 @property (nonatomic, readonly, copy, nullable) NSArray<NSString *> *stringArray;
 @property (nonatomic, readonly, copy, nullable) NSArray<RADatabaseRecord *> *referenceArray;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithString:(NSString *)string NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNumber:(NSNumber *)number NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithStringArray:(NSArray<NSString *> *)stringArray NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithReferenceArray:(NSArray<RADatabaseRecord *> *)referenceArray NS_DESIGNATED_INITIALIZER;
 

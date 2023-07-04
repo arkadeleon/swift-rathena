@@ -39,6 +39,10 @@
     return @"";
 }
 
+- (NSString *)recordSubtitle {
+    return @"";
+}
+
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
 }
 
@@ -56,6 +60,12 @@
 
 - (void)addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
     RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self.recordFields addObject:field];
+}
+
+- (void)addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithNumber:numberValue];
     RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
     [self.recordFields addObject:field];
 }
@@ -98,6 +108,15 @@
     if (self) {
         _type = RADatabaseRecordFieldValueTypeString;
         _string = [string copy];
+    }
+    return self;
+}
+
+- (instancetype)initWithNumber:(NSNumber *)number {
+    self = [super init];
+    if (self) {
+        _type = RADatabaseRecordFieldValueTypeNumber;
+        _number = number;
     }
     return self;
 }

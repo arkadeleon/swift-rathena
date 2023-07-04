@@ -19,12 +19,21 @@ public struct DatabaseRecordView: View {
             case .string:
                 HStack {
                     Text(field.name)
+                        .foregroundColor(.secondary)
                     Spacer()
                     Text(field.value.string!)
+                }
+            case .number:
+                HStack {
+                    Text(field.name)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text(field.value.number!.stringValue)
                 }
             case .stringArray:
                 HStack {
                     Text(field.name)
+                        .foregroundColor(.secondary)
                     Spacer()
                     Text(field.value.stringArray!.joined(separator: " / "))
                 }
@@ -34,7 +43,11 @@ public struct DatabaseRecordView: View {
                         NavigationLink {
                             DatabaseRecordView(record: reference)
                         } label: {
-                            Text(reference.recordTitle)
+                            HStack {
+                                Text(reference.recordTitle)
+                                Text(reference.recordSubtitle)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
