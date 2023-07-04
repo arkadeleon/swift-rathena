@@ -120,6 +120,16 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     });
 }
 
+- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
+        if (entry->first == recordID) {
+            RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
+            return skill;
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation RASkill
@@ -174,9 +184,9 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addRecordFieldWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue];
-    [builder addRecordFieldWithName:@"Type" stringValue:@(self.type).stringValue];
-    [builder addRecordFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
+    [builder addFieldWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue];
+    [builder addFieldWithName:@"Type" stringValue:@(self.type).stringValue];
+    [builder addFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
 }
 
 @end

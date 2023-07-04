@@ -13,9 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 extern "C" {
 #endif
 
-extern NSString *NSStringFromRAArmorType(NSInteger armorType);
+extern NSString *NSStringFromRAAmmoType(NSInteger ammoType);
 extern NSString *NSStringFromRACardType(NSInteger cardType);
+extern NSString *NSStringFromRAElement(NSInteger element);
 extern NSString *NSStringFromRAItemType(NSInteger itemType);
+extern NSString *NSStringFromRAMode(NSInteger mode);
+extern NSString *NSStringFromRAMonsterClass(NSInteger monsterClass);
+extern NSString *NSStringFromRARace(NSInteger race);
+extern NSString *NSStringFromRASex(NSInteger sex);
+extern NSString *NSStringFromRASize(NSInteger size);
 extern NSString *NSStringFromRAWeaponType(NSInteger weaponType);
 
 #ifdef __cplusplus

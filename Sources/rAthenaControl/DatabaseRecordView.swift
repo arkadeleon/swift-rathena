@@ -27,10 +27,21 @@ public struct DatabaseRecordView: View {
                     Spacer()
                     Text(field.value.stringArray!.joined(separator: " / "))
                 }
+            case .referenceArray:
+                Section(field.name) {
+                    ForEach(field.value.referenceArray!, id: \.recordID) { reference in
+                        NavigationLink {
+                            DatabaseRecordView(record: reference)
+                        } label: {
+                            Text(reference.recordTitle)
+                        }
+                    }
+                }
             @unknown default:
                 EmptyView()
             }
         }
+        .listStyle(.plain)
         .navigationTitle(record.recordTitle)
         .navigationBarTitleDisplayMode(.inline)
     }

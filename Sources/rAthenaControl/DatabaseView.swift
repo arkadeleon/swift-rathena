@@ -21,6 +21,7 @@ public struct DatabaseView: View {
                 Text(record.recordTitle)
             }
         }
+        .listStyle(.plain)
         .navigationTitle(database.name)
         .navigationBarTitleDisplayMode(.inline)
         .task {

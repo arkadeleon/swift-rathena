@@ -10,11 +10,11 @@
 
 NSString *RAConstantNotFound = @"None";
 
-NSString *NSStringFromRAArmorType(NSInteger armorType) {
-    static NSDictionary<NSNumber *, NSString *> *armorTypes = nil;
+NSString *NSStringFromRAAmmoType(NSInteger ammoType) {
+    static NSDictionary<NSNumber *, NSString *> *ammoTypes = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        armorTypes = @{
+        ammoTypes = @{
             @(RA_AMMO_ARROW): @"Arrow",
             @(RA_AMMO_DAGGER): @"Dagger",
             @(RA_AMMO_BULLET): @"Bullet",
@@ -26,7 +26,7 @@ NSString *NSStringFromRAArmorType(NSInteger armorType) {
             @(RA_AMMO_THROWWEAPON): @"Throw Weapon",
         };
     });
-    return armorTypes[@(armorType)] ?: RAConstantNotFound;
+    return ammoTypes[@(ammoType)] ?: RAConstantNotFound;
 }
 
 NSString *NSStringFromRACardType(NSInteger cardType) {
@@ -39,6 +39,26 @@ NSString *NSStringFromRACardType(NSInteger cardType) {
         };
     });
     return cardTypes[@(cardType)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRAElement(NSInteger element) {
+    static NSDictionary<NSNumber *, NSString *> *elements = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        elements = @{
+            @(RA_ELE_NEUTRAL): @"Neutral",
+            @(RA_ELE_WATER): @"Water",
+            @(RA_ELE_EARTH): @"Earth",
+            @(RA_ELE_FIRE): @"Fire",
+            @(RA_ELE_WIND): @"Wind",
+            @(RA_ELE_POISON): @"Poison",
+            @(RA_ELE_HOLY): @"Holy",
+            @(RA_ELE_DARK): @"Dark",
+            @(RA_ELE_GHOST): @"Ghost",
+            @(RA_ELE_UNDEAD): @"Undead",
+        };
+    });
+    return elements[@(element)] ?: RAConstantNotFound;
 }
 
 NSString *NSStringFromRAItemType(NSInteger itemType) {
@@ -61,6 +81,105 @@ NSString *NSStringFromRAItemType(NSInteger itemType) {
         };
     });
     return itemTypes[@(itemType)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRAMode(NSInteger mode) {
+    static NSDictionary<NSNumber *, NSString *> *modes = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        modes = @{
+            @(RA_MD_NONE): @"None",
+            @(RA_MD_CANMOVE): @"Can Move",
+            @(RA_MD_LOOTER): @"Looter",
+            @(RA_MD_AGGRESSIVE): @"Aggressive",
+            @(RA_MD_ASSIST): @"Assist",
+            @(RA_MD_CASTSENSORIDLE): @"Cast Sensor Idle",
+            @(RA_MD_NORANDOMWALK): @"No Random Walk",
+            @(RA_MD_NOCAST): @"No Cast",
+            @(RA_MD_CANATTACK): @"Can Attack",
+            @(RA_MD_CASTSENSORCHASE): @"Cast Sensor Chase",
+            @(RA_MD_CHANGECHASE): @"Change Chase",
+            @(RA_MD_ANGRY): @"Angry",
+            @(RA_MD_CHANGETARGETMELEE): @"Change Target Melee",
+            @(RA_MD_CHANGETARGETCHASE): @"Change Target Chase",
+            @(RA_MD_TARGETWEAK): @"Target Weak",
+            @(RA_MD_RANDOMTARGET): @"Random Target",
+            @(RA_MD_IGNOREMELEE): @"Ignore Melee",
+            @(RA_MD_IGNOREMAGIC): @"Ignore Magic",
+            @(RA_MD_IGNORERANGED): @"Ignore Ranged",
+            @(RA_MD_MVP): @"Mvp",
+            @(RA_MD_IGNOREMISC): @"Ignore Misc",
+            @(RA_MD_KNOCKBACKIMMUNE): @"Knock Back Immune",
+            @(RA_MD_TELEPORTBLOCK): @"Teleport Block",
+            @(RA_MD_FIXEDITEMDROP): @"Fixed Item Drop",
+            @(RA_MD_DETECTOR): @"Detector",
+            @(RA_MD_STATUSIMMUNE): @"Status Immune",
+            @(RA_MD_SKILLIMMUNE): @"Skill Immune",
+        };
+    });
+    return modes[@(mode)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRAMonsterClass(NSInteger monsterClass) {
+    static NSDictionary<NSNumber *, NSString *> *monsterClasses = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        monsterClasses = @{
+            @(RA_CLASS_NONE): @"None",
+            @(RA_CLASS_NORMAL): @"Normal",
+            @(RA_CLASS_BOSS): @"Boss",
+            @(RA_CLASS_GUARDIAN): @"Guardian",
+            @(RA_CLASS_BATTLEFIELD): @"Battlefield",
+            @(RA_CLASS_EVENT): @"Event",
+        };
+    });
+    return monsterClasses[@(monsterClass)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRARace(NSInteger race) {
+    static NSDictionary<NSNumber *, NSString *> *races = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        races = @{
+            @(RA_RC_FORMLESS): @"Formless",
+            @(RA_RC_UNDEAD): @"Undead",
+            @(RA_RC_BRUTE): @"Brute",
+            @(RA_RC_PLANT): @"Plant",
+            @(RA_RC_INSECT): @"Insect",
+            @(RA_RC_FISH): @"Fish",
+            @(RA_RC_DEMON): @"Demon",
+            @(RA_RC_DEMIHUMAN): @"Demi-Human",
+            @(RA_RC_ANGEL): @"Angel",
+            @(RA_RC_DRAGON): @"Dragon",
+        };
+    });
+    return races[@(race)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRASex(NSInteger sex) {
+    static NSDictionary<NSNumber *, NSString *> *sexes = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sexes = @{
+            @(RA_SEX_FEMALE): @"Female",
+            @(RA_SEX_MALE): @"Male",
+            @(RA_SEX_BOTH): @"Both",
+        };
+    });
+    return sexes[@(sex)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRASize(NSInteger size) {
+    static NSDictionary<NSNumber *, NSString *> *sizes = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizes = @{
+            @(RA_SZ_SMALL): @"Small",
+            @(RA_SZ_MEDIUM): @"Medium",
+            @(RA_SZ_BIG): @"Large",
+        };
+    });
+    return sizes[@(size)] ?: RAConstantNotFound;
 }
 
 NSString *NSStringFromRAWeaponType(NSInteger weaponType) {

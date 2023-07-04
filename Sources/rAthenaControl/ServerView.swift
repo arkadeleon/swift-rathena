@@ -20,11 +20,7 @@ public struct ServerView: View {
     public var body: some View {
         ZStack {
             terminalView
-                .background(Color(uiColor: .systemBackground))
-                .cornerRadius(16)
-                .padding(16)
         }
-        .background(Color(uiColor: .secondarySystemBackground))
         .navigationTitle(server.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

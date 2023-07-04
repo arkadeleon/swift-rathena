@@ -56,6 +56,16 @@
     });
 }
 
+- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
+        if (entry->first == recordID) {
+            RAItem *item = [[RAItem alloc] initWithItem:entry->second];
+            return item;
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation RAItem
@@ -146,18 +156,18 @@
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addRecordFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
+    [builder addFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
 
     if (self.type == RA_IT_WEAPON) {
-        [builder addRecordFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
-    } else if (self.type == RA_IT_ARMOR) {
-        [builder addRecordFieldWithName:@"Armor Type" stringValue:NSStringFromRAArmorType(self.subType)];
+        [builder addFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
+    } else if (self.type == RA_IT_AMMO) {
+        [builder addFieldWithName:@"Ammo Type" stringValue:NSStringFromRAAmmoType(self.subType)];
     } else if (self.type == RA_IT_CARD) {
-        [builder addRecordFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
+        [builder addFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
     }
 
-    [builder addRecordFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
-    [builder addRecordFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
+    [builder addFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
+    [builder addFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
 }
 
 @end

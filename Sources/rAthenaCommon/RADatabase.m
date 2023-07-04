@@ -23,6 +23,10 @@
     completionHandler(@[]);
 }
 
+- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    return nil;
+}
+
 @end
 
 @implementation RADatabaseRecord
@@ -50,14 +54,20 @@
     return self;
 }
 
-- (void)addRecordFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
+- (void)addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
     RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
     RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
     [self.recordFields addObject:field];
 }
 
-- (void)addRecordFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
+- (void)addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
     RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self.recordFields addObject:field];
+}
+
+- (void)addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithReferenceArray:referenceArrayValue];
     RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
     [self.recordFields addObject:field];
 }
@@ -97,6 +107,15 @@
     if (self) {
         _type = RADatabaseRecordFieldValueTypeStringArray;
         _stringArray = [stringArray copy];
+    }
+    return self;
+}
+
+- (instancetype)initWithReferenceArray:(NSArray<RADatabaseRecord *> *)referenceArray {
+    self = [super init];
+    if (self) {
+        _type = RADatabaseRecordFieldValueTypeReferenceArray;
+        _referenceArray = [referenceArray copy];
     }
     return self;
 }

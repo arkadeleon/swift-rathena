@@ -6,6 +6,7 @@
 //
 
 #import "RAMonsterDatabase.h"
+#import "RAItemDatabase.h"
 #include "map/mob.hpp"
 
 @interface RAMonsterDatabase ()
@@ -60,6 +61,16 @@
 
         completionHandler(self.cachedMonsters);
     });
+}
+
+- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
+        if (entry->first == recordID) {
+            RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
+            return monster;
+        }
+    }
+    return nil;
 }
 
 @end
@@ -151,9 +162,18 @@
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addRecordFieldWithName:@"Level" stringValue:@(self.level).stringValue];
-    [builder addRecordFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
-    [builder addRecordFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
+    [builder addFieldWithName:@"Level" stringValue:@(self.level).stringValue];
+    [builder addFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
+    [builder addFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
+
+    NSMutableArray<RADatabaseRecord *> *drops = [NSMutableArray arrayWithCapacity:self.drops.count];
+    for (RAMonsterDrop *drop in self.drops) {
+        RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:drop.itemID];
+        if (item) {
+            [drops addObject:item];
+        }
+    }
+    [builder addFieldWithName:@"Drops" referenceArrayValue:drops];
 }
 
 @end

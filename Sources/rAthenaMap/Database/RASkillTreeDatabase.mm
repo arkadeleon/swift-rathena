@@ -68,6 +68,16 @@
     });
 }
 
+- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
+    for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
+        if (entry->first == recordID) {
+            RASkillTree *skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
+            return skillTree;
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation RASkillTree
@@ -102,7 +112,7 @@
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addRecordFieldWithName:@"Job" stringValue:@(self.job).stringValue];
+    [builder addFieldWithName:@"Job" stringValue:@(self.job).stringValue];
 }
 
 @end
