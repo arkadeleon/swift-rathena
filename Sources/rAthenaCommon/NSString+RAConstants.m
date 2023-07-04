@@ -8,6 +8,39 @@
 #import "NSString+RAConstants.h"
 #import "RAConstants.h"
 
+NSString *RAConstantNotFound = @"None";
+
+NSString *NSStringFromRAArmorType(NSInteger armorType) {
+    static NSDictionary<NSNumber *, NSString *> *armorTypes = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        armorTypes = @{
+            @(RA_AMMO_ARROW): @"Arrow",
+            @(RA_AMMO_DAGGER): @"Dagger",
+            @(RA_AMMO_BULLET): @"Bullet",
+            @(RA_AMMO_SHELL): @"Shell",
+            @(RA_AMMO_GRENADE): @"Grenade",
+            @(RA_AMMO_SHURIKEN): @"Shuriken",
+            @(RA_AMMO_KUNAI): @"Kunai",
+            @(RA_AMMO_CANNONBALL): @"Cannon Ball",
+            @(RA_AMMO_THROWWEAPON): @"Throw Weapon",
+        };
+    });
+    return armorTypes[@(armorType)] ?: RAConstantNotFound;
+}
+
+NSString *NSStringFromRACardType(NSInteger cardType) {
+    static NSDictionary<NSNumber *, NSString *> *cardTypes = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cardTypes = @{
+            @(RA_CARD_NORMAL): @"Normal",
+            @(RA_CARD_ENCHANT): @"Enchant",
+        };
+    });
+    return cardTypes[@(cardType)] ?: RAConstantNotFound;
+}
+
 NSString *NSStringFromRAItemType(NSInteger itemType) {
     static NSDictionary<NSNumber *, NSString *> *itemTypes = nil;
     static dispatch_once_t onceToken;
@@ -27,7 +60,7 @@ NSString *NSStringFromRAItemType(NSInteger itemType) {
             @(RA_IT_CASH): @"Cash",
         };
     });
-    return itemTypes[@(itemType)] ?: @"";
+    return itemTypes[@(itemType)] ?: RAConstantNotFound;
 }
 
 NSString *NSStringFromRAWeaponType(NSInteger weaponType) {
@@ -61,5 +94,5 @@ NSString *NSStringFromRAWeaponType(NSInteger weaponType) {
             @(RA_W_2HSTAFF): @"Two-Handed Staff",
         };
     });
-    return weaponTypes[@(weaponType)] ?: @"";
+    return weaponTypes[@(weaponType)] ?: RAConstantNotFound;
 }

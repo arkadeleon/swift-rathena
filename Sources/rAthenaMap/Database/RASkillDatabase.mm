@@ -173,14 +173,10 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return self.skillDescription;
 }
 
-- (RADatabaseRecordFieldCollection *)recordFieldCollection {
-    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
-
-    [recordFieldCollection addRecordFieldWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue];
-    [recordFieldCollection addRecordFieldWithName:@"Type" stringValue:@(self.type).stringValue];
-    [recordFieldCollection addRecordFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
-
-    return recordFieldCollection;
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+    [builder addRecordFieldWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue];
+    [builder addRecordFieldWithName:@"Type" stringValue:@(self.type).stringValue];
+    [builder addRecordFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
 }
 
 @end

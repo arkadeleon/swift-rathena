@@ -101,12 +101,8 @@
     return @(self.job).stringValue;
 }
 
-- (RADatabaseRecordFieldCollection *)recordFieldCollection {
-    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
-
-    [recordFieldCollection addRecordFieldWithName:@"Job" stringValue:@(self.job).stringValue];
-
-    return recordFieldCollection;
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+    [builder addRecordFieldWithName:@"Job" stringValue:@(self.job).stringValue];
 }
 
 @end

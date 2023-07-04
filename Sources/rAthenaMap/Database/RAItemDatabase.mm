@@ -145,19 +145,19 @@
     return self.name;
 }
 
-- (RADatabaseRecordFieldCollection *)recordFieldCollection {
-    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
-
-    [recordFieldCollection addRecordFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+    [builder addRecordFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
 
     if (self.type == RA_IT_WEAPON) {
-        [recordFieldCollection addRecordFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
+        [builder addRecordFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
+    } else if (self.type == RA_IT_ARMOR) {
+        [builder addRecordFieldWithName:@"Armor Type" stringValue:NSStringFromRAArmorType(self.subType)];
+    } else if (self.type == RA_IT_CARD) {
+        [builder addRecordFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
     }
 
-    [recordFieldCollection addRecordFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
-    [recordFieldCollection addRecordFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
-
-    return recordFieldCollection;
+    [builder addRecordFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
+    [builder addRecordFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
 }
 
 @end

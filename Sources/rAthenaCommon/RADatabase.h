@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class RADatabaseRecord;
-@class RADatabaseRecordFieldCollection;
+@class RADatabaseRecordFieldsBuilder;
 @class RADatabaseRecordField;
 @class RADatabaseRecordFieldValue;
 
@@ -26,16 +26,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger recordID;
 @property (nonatomic, readonly, copy) NSString *recordTitle;
-@property (nonatomic, readonly) RADatabaseRecordFieldCollection *recordFieldCollection;
+
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder;
 
 @end
 
-@interface RADatabaseRecordFieldCollection : NSObject
-
-@property (nonatomic, readonly, copy) NSArray<RADatabaseRecordField *> *allRecordFields;
+@interface RADatabaseRecordFieldsBuilder : NSObject
 
 - (void)addRecordFieldWithName:(NSString *)name stringValue:(NSString *)stringValue;
 - (void)addRecordFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue;
+
+- (NSArray<RADatabaseRecordField *> *)build;
 
 @end
 

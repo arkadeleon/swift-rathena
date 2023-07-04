@@ -150,14 +150,10 @@
     return self.name;
 }
 
-- (RADatabaseRecordFieldCollection *)recordFieldCollection {
-    RADatabaseRecordFieldCollection *recordFieldCollection = [[RADatabaseRecordFieldCollection alloc] init];
-
-    [recordFieldCollection addRecordFieldWithName:@"Level" stringValue:@(self.level).stringValue];
-    [recordFieldCollection addRecordFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
-    [recordFieldCollection addRecordFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
-
-    return recordFieldCollection;
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+    [builder addRecordFieldWithName:@"Level" stringValue:@(self.level).stringValue];
+    [builder addRecordFieldWithName:@"HP" stringValue:@(self.hp).stringValue];
+    [builder addRecordFieldWithName:@"SP" stringValue:@(self.hp).stringValue];
 }
 
 @end

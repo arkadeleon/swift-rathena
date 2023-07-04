@@ -7,7 +7,7 @@
 
 #import "RADatabase.h"
 
-@interface RADatabaseRecordFieldCollection ()
+@interface RADatabaseRecordFieldsBuilder ()
 
 @property (nonatomic) NSMutableArray<RADatabaseRecordField *> *recordFields;
 
@@ -35,13 +35,12 @@
     return @"";
 }
 
-- (RADatabaseRecordFieldCollection *)recordFieldCollection {
-    return [[RADatabaseRecordFieldCollection alloc] init];
+- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
 }
 
 @end
 
-@implementation RADatabaseRecordFieldCollection
+@implementation RADatabaseRecordFieldsBuilder
 
 - (instancetype)init {
     self = [super init];
@@ -49,10 +48,6 @@
         _recordFields = [NSMutableArray array];
     }
     return self;
-}
-
-- (NSArray<RADatabaseRecordField *> *)allRecordFields {
-    return [self.recordFields copy];
 }
 
 - (void)addRecordFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
@@ -65,6 +60,10 @@
     RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
     RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
     [self.recordFields addObject:field];
+}
+
+- (NSArray<RADatabaseRecordField *> *)build {
+    return [self.recordFields copy];
 }
 
 @end

@@ -10,9 +10,10 @@ import rAthenaCommon
 
 public struct DatabaseRecordView: View {
     let record: RADatabaseRecord
+    let recordFields: [RADatabaseRecordField]
 
     public var body: some View {
-        List(record.recordFieldCollection.allRecordFields, id: \.name) { field in
+        List(recordFields, id: \.name) { field in
             switch field.value.type {
             case .string:
                 HStack {
@@ -36,6 +37,10 @@ public struct DatabaseRecordView: View {
 
     public init(record: RADatabaseRecord) {
         self.record = record
+
+        let builder = RADatabaseRecordFieldsBuilder()
+        record.buildFields(with: builder)
+        self.recordFields = builder.build()
     }
 }
 
