@@ -8,46 +8,6 @@
 #import "RASkillDatabase.h"
 #include "map/skill.hpp"
 
-NSArray * NSArrayFromInt32Array(int32_t *array, size_t size) {
-    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:size];
-    for (int index = 0; index < size; index++) {
-        [numbers addObject:@(array[index])];
-    }
-    return [numbers copy];
-}
-
-NSArray * NSArrayFromElementArray(e_element *array, size_t size) {
-    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:size];
-    for (int index = 0; index < size; index++) {
-        [numbers addObject:@(array[index])];
-    }
-    return [numbers copy];
-}
-
-NSArray * NSArrayFromItemIDArray(t_itemid *array, size_t size) {
-    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:size];
-    for (int index = 0; index < size; index++) {
-        [numbers addObject:@(array[index])];
-    }
-    return [numbers copy];
-}
-
-NSArray * NSArrayFromStatusVector(std::vector<sc_type> vector) {
-    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:vector.size()];
-    for (int index = 0; index < vector.size(); index++) {
-        [numbers addObject:@(vector[index])];
-    }
-    return [numbers copy];
-}
-
-NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
-    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:vector.size()];
-    for (int index = 0; index < vector.size(); index++) {
-        [numbers addObject:@(vector[index])];
-    }
-    return [numbers copy];
-}
-
 @interface RASkill ()
 
 - (instancetype)initWithSkill:(std::shared_ptr<s_skill_db>)skill;
@@ -118,7 +78,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
         _range = NSArrayFromInt32Array(skill->range, MAX_SKILL_LEVEL);
         _hit = skill->hit;
         _hitCount = NSArrayFromInt32Array(skill->num, MAX_SKILL_LEVEL);
-        _element = NSArrayFromElementArray(skill->element, MAX_SKILL_LEVEL);
+        _element = NSArrayFromInt8Array((int8_t *)skill->element, MAX_SKILL_LEVEL);
         _splashArea = NSArrayFromInt32Array(skill->splash, MAX_SKILL_LEVEL);
         _activeInstance = NSArrayFromInt32Array(skill->maxcount, MAX_SKILL_LEVEL);
         _knockback = NSArrayFromInt32Array(skill->blewcount, MAX_SKILL_LEVEL);
@@ -204,11 +164,11 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
         _ammo = skill_requirement.ammo;
         _ammoAmount = NSArrayFromInt32Array(skill_requirement.ammo_qty, MAX_SKILL_LEVEL);
         _state = skill_requirement.state;
-        _status = NSArrayFromStatusVector(skill_requirement.status);
+        _status = NSArrayFromInt16Array((int16_t *)skill_requirement.status.data(), skill_requirement.status.size());
         _spiritSphereCost = NSArrayFromInt32Array(skill_requirement.spiritball, MAX_SKILL_LEVEL);
-        _itemID = NSArrayFromItemIDArray(skill_requirement.itemid, MAX_SKILL_ITEM_REQUIRE);
+        _itemID = NSArrayFromUInt32Array(skill_requirement.itemid, MAX_SKILL_ITEM_REQUIRE);
         _itemAmount = NSArrayFromInt32Array(skill_requirement.amount, MAX_SKILL_ITEM_REQUIRE);
-        _equipment = NSArrayFromItemIDVector(skill_requirement.eqItem);
+        _equipment = NSArrayFromUInt32Array(skill_requirement.eqItem.data(), skill_requirement.eqItem.size());
     }
     return self;
 }
