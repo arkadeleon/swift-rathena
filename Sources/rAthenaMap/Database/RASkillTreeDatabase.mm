@@ -81,8 +81,12 @@
     return @(self.job).stringValue;
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Job" stringValue:@(self.job).stringValue];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
+
+    [fields ra_addFieldWithName:@"Job" stringValue:@(self.job).stringValue];
+
+    return [fields copy];
 }
 
 @end

@@ -60,9 +60,7 @@ public struct DatabaseRecordView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task {
             Task {
-                let builder = RADatabaseRecordFieldsBuilder()
-                record.buildFields(with: builder)
-                recordFields = builder.build()
+                recordFields = record.recordFields
             }
         }
     }

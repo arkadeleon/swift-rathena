@@ -79,11 +79,15 @@
     return @(self.jobID).stringValue;
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Max Weight" numberValue:@(self.maxWeight)];
-    [builder addFieldWithName:@"HP Factor" numberValue:@(self.hpFactor)];
-    [builder addFieldWithName:@"HP Increase" numberValue:@(self.hpIncrease)];
-    [builder addFieldWithName:@"SP Increase" numberValue:@(self.spIncrease)];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
+
+    [fields ra_addFieldWithName:@"Max Weight" numberValue:@(self.maxWeight)];
+    [fields ra_addFieldWithName:@"HP Factor" numberValue:@(self.hpFactor)];
+    [fields ra_addFieldWithName:@"HP Increase" numberValue:@(self.hpIncrease)];
+    [fields ra_addFieldWithName:@"SP Increase" numberValue:@(self.spIncrease)];
+
+    return [fields copy];
 }
 
 @end

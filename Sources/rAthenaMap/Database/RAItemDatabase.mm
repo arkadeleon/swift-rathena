@@ -125,51 +125,55 @@
     return self.name;
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
+
+    [fields ra_addFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
 
     if (self.type == RA_IT_WEAPON) {
-        [builder addFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
+        [fields ra_addFieldWithName:@"Weapon Type" stringValue:NSStringFromRAWeaponType(self.subType)];
     } else if (self.type == RA_IT_AMMO) {
-        [builder addFieldWithName:@"Ammo Type" stringValue:NSStringFromRAAmmoType(self.subType)];
+        [fields ra_addFieldWithName:@"Ammo Type" stringValue:NSStringFromRAAmmoType(self.subType)];
     } else if (self.type == RA_IT_CARD) {
-        [builder addFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
+        [fields ra_addFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
     }
 
-    [builder addFieldWithName:@"Buy" stringValue:[NSString stringWithFormat:@"%ldz", self.buy]];
-    [builder addFieldWithName:@"Sell" stringValue:[NSString stringWithFormat:@"%ldz", self.sell]];
+    [fields ra_addFieldWithName:@"Buy" stringValue:[NSString stringWithFormat:@"%ldz", self.buy]];
+    [fields ra_addFieldWithName:@"Sell" stringValue:[NSString stringWithFormat:@"%ldz", self.sell]];
 
-    [builder addFieldWithName:@"Weight" numberValue:@(self.weight)];
+    [fields ra_addFieldWithName:@"Weight" numberValue:@(self.weight)];
 
     if (self.type == RA_IT_WEAPON) {
-        [builder addFieldWithName:@"Attack" numberValue:@(self.attack)];
-        [builder addFieldWithName:@"Magic Attack" numberValue:@(self.magicAttack)];
-        [builder addFieldWithName:@"Attack Range" numberValue:@(self.range)];
-        [builder addFieldWithName:@"Weapon Level" numberValue:@(self.weaponLevel)];
+        [fields ra_addFieldWithName:@"Attack" numberValue:@(self.attack)];
+        [fields ra_addFieldWithName:@"Magic Attack" numberValue:@(self.magicAttack)];
+        [fields ra_addFieldWithName:@"Attack Range" numberValue:@(self.range)];
+        [fields ra_addFieldWithName:@"Weapon Level" numberValue:@(self.weaponLevel)];
     }
 
     if (self.type == RA_IT_ARMOR) {
-        [builder addFieldWithName:@"Defense" numberValue:@(self.defense)];
-        [builder addFieldWithName:@"Armor Level" numberValue:@(self.armorLevel)];
+        [fields ra_addFieldWithName:@"Defense" numberValue:@(self.defense)];
+        [fields ra_addFieldWithName:@"Armor Level" numberValue:@(self.armorLevel)];
     }
 
-    [builder addFieldWithName:@"Slots" numberValue:@(self.slots)];
+    [fields ra_addFieldWithName:@"Slots" numberValue:@(self.slots)];
 
     // TODO: Jobs & Classes
 
-    [builder addFieldWithName:@"Gender" stringValue:NSStringFromRASex(self.gender)];
+    [fields ra_addFieldWithName:@"Gender" stringValue:NSStringFromRASex(self.gender)];
 
     // TODO: Locations
 
-    [builder addFieldWithName:@"Minimum Level" numberValue:@(self.equipLevelMin)];
-    [builder addFieldWithName:@"Maximum Level" numberValue:@(self.equipLevelMax)];
+    [fields ra_addFieldWithName:@"Minimum Level" numberValue:@(self.equipLevelMin)];
+    [fields ra_addFieldWithName:@"Maximum Level" numberValue:@(self.equipLevelMax)];
 
-    [builder addFieldWithName:@"Refinable" numberValue:@(self.refineable)];
-    [builder addFieldWithName:@"Gradable" numberValue:@(self.gradable)];
+    [fields ra_addFieldWithName:@"Refinable" numberValue:@(self.refineable)];
+    [fields ra_addFieldWithName:@"Gradable" numberValue:@(self.gradable)];
 
     // TODO: View
 
     // TODO: Alias Name
+
+    return [fields copy];
 }
 
 @end

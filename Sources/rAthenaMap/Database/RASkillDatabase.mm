@@ -113,10 +113,14 @@
     return self.skillDescription;
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Max Level" numberValue:@(self.maxLevel)];
-    [builder addFieldWithName:@"Type" stringValue:@(self.type).stringValue];
-    [builder addFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
+
+    [fields ra_addFieldWithName:@"Max Level" numberValue:@(self.maxLevel)];
+    [fields ra_addFieldWithName:@"Type" stringValue:@(self.type).stringValue];
+    [fields ra_addFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
+
+    return [fields copy];
 }
 
 @end

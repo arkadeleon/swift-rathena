@@ -13,12 +13,6 @@
 
 @end
 
-@interface RADatabaseRecordFieldsBuilder ()
-
-@property (nonatomic) NSMutableArray<RADatabaseRecordField *> *recordFields;
-
-@end
-
 @implementation RADatabase
 
 - (instancetype)init {
@@ -71,47 +65,8 @@
     return @"";
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-}
-
-@end
-
-@implementation RADatabaseRecordFieldsBuilder
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _recordFields = [NSMutableArray array];
-    }
-    return self;
-}
-
-- (void)addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self.recordFields addObject:field];
-}
-
-- (void)addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithNumber:numberValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self.recordFields addObject:field];
-}
-
-- (void)addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self.recordFields addObject:field];
-}
-
-- (void)addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithReferenceArray:referenceArrayValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self.recordFields addObject:field];
-}
-
-- (NSArray<RADatabaseRecordField *> *)build {
-    return [self.recordFields copy];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    return @[];
 }
 
 @end
@@ -165,6 +120,34 @@
         _referenceArray = [referenceArray copy];
     }
     return self;
+}
+
+@end
+
+@implementation NSMutableArray (RADatabaseRecordField)
+
+- (void)ra_addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self addObject:field];
+}
+
+- (void)ra_addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithNumber:numberValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self addObject:field];
+}
+
+- (void)ra_addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self addObject:field];
+}
+
+- (void)ra_addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithReferenceArray:referenceArrayValue];
+    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
+    [self addObject:field];
 }
 
 @end

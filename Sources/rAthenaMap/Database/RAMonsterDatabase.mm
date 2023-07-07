@@ -131,17 +131,19 @@
     return self.name;
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.monsterID]];
-    [builder addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
-    [builder addFieldWithName:@"Name" stringValue:self.name];
-    [builder addFieldWithName:@"Level" numberValue:@(self.level)];
-    [builder addFieldWithName:@"HP" numberValue:@(self.hp)];
-    [builder addFieldWithName:@"SP" numberValue:@(self.sp)];
+- (NSArray<RADatabaseRecordField *> *)recordFields {
+    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
 
-    [builder addFieldWithName:@"Base Exp" numberValue:@(self.baseExp)];
-    [builder addFieldWithName:@"Job Exp" numberValue:@(self.jobExp)];
-    [builder addFieldWithName:@"MVP Exp" numberValue:@(self.mvpExp)];
+    [fields ra_addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.monsterID]];
+    [fields ra_addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
+    [fields ra_addFieldWithName:@"Name" stringValue:self.name];
+    [fields ra_addFieldWithName:@"Level" numberValue:@(self.level)];
+    [fields ra_addFieldWithName:@"HP" numberValue:@(self.hp)];
+    [fields ra_addFieldWithName:@"SP" numberValue:@(self.sp)];
+
+    [fields ra_addFieldWithName:@"Base Exp" numberValue:@(self.baseExp)];
+    [fields ra_addFieldWithName:@"Job Exp" numberValue:@(self.jobExp)];
+    [fields ra_addFieldWithName:@"MVP Exp" numberValue:@(self.mvpExp)];
 
 #ifdef RENEWAL
     NSInteger minAttack = 8 * self.attack / 10 + self.strength + self.level;
@@ -150,52 +152,54 @@
     NSInteger minAttack = self.attack;
     NSInteger maxAttack = self.attack2;
 #endif
-    [builder addFieldWithName:@"Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minAttack, maxAttack]];
+    [fields ra_addFieldWithName:@"Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minAttack, maxAttack]];
 
 #ifdef RENEWAL
     NSInteger minMagicAttack = 7 * self.attack2 / 10 + self.intelligence + self.level;
     NSInteger maxMagicAttack = 13 * self.attack2 / 10 + self.intelligence + self.level;
-    [builder addFieldWithName:@"Magic Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minMagicAttack, maxMagicAttack]];
+    [fields ra_addFieldWithName:@"Magic Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minMagicAttack, maxMagicAttack]];
 #endif
 
-    [builder addFieldWithName:@"Defense" numberValue:@(self.defense)];
-    [builder addFieldWithName:@"Magic Defense" numberValue:@(self.magicDefense)];
+    [fields ra_addFieldWithName:@"Defense" numberValue:@(self.defense)];
+    [fields ra_addFieldWithName:@"Magic Defense" numberValue:@(self.magicDefense)];
 
-    [builder addFieldWithName:@"Resistance" numberValue:@(self.resistance)];
-    [builder addFieldWithName:@"Magic Resistance" numberValue:@(self.magicResistance)];
+    [fields ra_addFieldWithName:@"Resistance" numberValue:@(self.resistance)];
+    [fields ra_addFieldWithName:@"Magic Resistance" numberValue:@(self.magicResistance)];
 
-    [builder addFieldWithName:@"Str" numberValue:@(self.strength)];
-    [builder addFieldWithName:@"Agi" numberValue:@(self.agility)];
-    [builder addFieldWithName:@"Vit" numberValue:@(self.vitality)];
-    [builder addFieldWithName:@"Int" numberValue:@(self.intelligence)];
-    [builder addFieldWithName:@"Dex" numberValue:@(self.dexterity)];
-    [builder addFieldWithName:@"Luk" numberValue:@(self.luck)];
+    [fields ra_addFieldWithName:@"Str" numberValue:@(self.strength)];
+    [fields ra_addFieldWithName:@"Agi" numberValue:@(self.agility)];
+    [fields ra_addFieldWithName:@"Vit" numberValue:@(self.vitality)];
+    [fields ra_addFieldWithName:@"Int" numberValue:@(self.intelligence)];
+    [fields ra_addFieldWithName:@"Dex" numberValue:@(self.dexterity)];
+    [fields ra_addFieldWithName:@"Luk" numberValue:@(self.luck)];
 
-    [builder addFieldWithName:@"Attack Range" numberValue:@(self.attackRange)];
-    [builder addFieldWithName:@"Skill Cast Range" numberValue:@(self.skillRange)];
-    [builder addFieldWithName:@"Chase Range" numberValue:@(self.chaseRange)];
+    [fields ra_addFieldWithName:@"Attack Range" numberValue:@(self.attackRange)];
+    [fields ra_addFieldWithName:@"Skill Cast Range" numberValue:@(self.skillRange)];
+    [fields ra_addFieldWithName:@"Chase Range" numberValue:@(self.chaseRange)];
 
-    [builder addFieldWithName:@"Size" stringValue:NSStringFromRASize(self.size)];
+    [fields ra_addFieldWithName:@"Size" stringValue:NSStringFromRASize(self.size)];
 
-    [builder addFieldWithName:@"Race" stringValue:NSStringFromRARace(self.race)];
+    [fields ra_addFieldWithName:@"Race" stringValue:NSStringFromRARace(self.race)];
 
     // TODO: Race Groups
 
-    [builder addFieldWithName:@"Element" stringValue:[NSString stringWithFormat:@"%@ %ld", NSStringFromRAElement(self.element), self.elementLevel]];
+    [fields ra_addFieldWithName:@"Element" stringValue:[NSString stringWithFormat:@"%@ %ld", NSStringFromRAElement(self.element), self.elementLevel]];
 
-    [builder addFieldWithName:@"Walk Speed" numberValue:@(self.walkSpeed)];
-    [builder addFieldWithName:@"Attack Speed" numberValue:@(self.attackDelay)];
-    [builder addFieldWithName:@"Attack Animation Speed" numberValue:@(self.attackMotion)];
-    [builder addFieldWithName:@"Damage Animation Speed" numberValue:@(self.damageMotion)];
+    [fields ra_addFieldWithName:@"Walk Speed" numberValue:@(self.walkSpeed)];
+    [fields ra_addFieldWithName:@"Attack Speed" numberValue:@(self.attackDelay)];
+    [fields ra_addFieldWithName:@"Attack Animation Speed" numberValue:@(self.attackMotion)];
+    [fields ra_addFieldWithName:@"Damage Animation Speed" numberValue:@(self.damageMotion)];
 
     // TODO: Damage Taken
 
-    [builder addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
+    [fields ra_addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
 
     // TODO: Modes
 
-    [builder addFieldWithName:@"Drops" referenceArrayValue:self.drops];
-    [builder addFieldWithName:@"MVP Drops" referenceArrayValue:self.mvpDrops];
+    [fields ra_addFieldWithName:@"Drops" referenceArrayValue:self.drops];
+    [fields ra_addFieldWithName:@"MVP Drops" referenceArrayValue:self.mvpDrops];
+
+    return [fields copy];
 }
 
 @end
@@ -226,9 +230,9 @@
     return [NSString stringWithFormat:@"%@ %%", @(self.rate / 100.0)];
 }
 
-- (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
+- (NSArray<RADatabaseRecordField *> *)recordFields {
     RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] recordWithID:self.itemID];
-    [item buildRecordFieldsWithBuilder:builder];
+    return item.recordFields;
 }
 
 @end
