@@ -48,10 +48,6 @@ let package = Package(
     targets: [
         .target(
             name: "rAthenaCommon",
-            dependencies: [
-                "ryml",
-                "YYModel",
-            ],
             path: ".",
             exclude: [
                 "3rdparty",
@@ -226,11 +222,6 @@ let package = Package(
             path: "3rdparty/yaml-cpp",
             sources: ["src"],
             publicHeadersPath: "include"
-        ),
-        .target(
-            name: "YYModel",
-            path: "3rdparty/YYModel",
-            publicHeadersPath: ""
         ),
         .plugin(
             name: "rAthenaExportConstantsPlugin",

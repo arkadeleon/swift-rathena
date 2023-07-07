@@ -154,7 +154,7 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    [builder addFieldWithName:@"Max Level" stringValue:@(self.maxLevel).stringValue];
+    [builder addFieldWithName:@"Max Level" numberValue:@(self.maxLevel)];
     [builder addFieldWithName:@"Type" stringValue:@(self.type).stringValue];
     [builder addFieldWithName:@"Target Type" stringValue:@(self.targetType).stringValue];
 }

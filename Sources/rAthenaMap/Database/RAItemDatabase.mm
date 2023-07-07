@@ -136,8 +136,40 @@
         [builder addFieldWithName:@"Card Type" stringValue:NSStringFromRACardType(self.subType)];
     }
 
-    [builder addFieldWithName:@"Buy" stringValue:@(self.buy).stringValue];
-    [builder addFieldWithName:@"Sell" stringValue:@(self.sell).stringValue];
+    [builder addFieldWithName:@"Buy" stringValue:[NSString stringWithFormat:@"%ldz", self.buy]];
+    [builder addFieldWithName:@"Sell" stringValue:[NSString stringWithFormat:@"%ldz", self.sell]];
+
+    [builder addFieldWithName:@"Weight" numberValue:@(self.weight)];
+
+    if (self.type == RA_IT_WEAPON) {
+        [builder addFieldWithName:@"Attack" numberValue:@(self.attack)];
+        [builder addFieldWithName:@"Magic Attack" numberValue:@(self.magicAttack)];
+        [builder addFieldWithName:@"Attack Range" numberValue:@(self.range)];
+        [builder addFieldWithName:@"Weapon Level" numberValue:@(self.weaponLevel)];
+    }
+
+    if (self.type == RA_IT_ARMOR) {
+        [builder addFieldWithName:@"Defense" numberValue:@(self.defense)];
+        [builder addFieldWithName:@"Armor Level" numberValue:@(self.armorLevel)];
+    }
+
+    [builder addFieldWithName:@"Slots" numberValue:@(self.slots)];
+
+    // TODO: Jobs & Classes
+
+    [builder addFieldWithName:@"Gender" stringValue:NSStringFromRASex(self.gender)];
+
+    // TODO: Locations
+
+    [builder addFieldWithName:@"Minimum Level" numberValue:@(self.equipLevelMin)];
+    [builder addFieldWithName:@"Maximum Level" numberValue:@(self.equipLevelMax)];
+
+    [builder addFieldWithName:@"Refinable" numberValue:@(self.refineable)];
+    [builder addFieldWithName:@"Gradable" numberValue:@(self.gradable)];
+
+    // TODO: View
+
+    // TODO: Alias Name
 }
 
 @end
