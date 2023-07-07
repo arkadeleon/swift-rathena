@@ -19,23 +19,29 @@ public struct DatabaseRecordView: View {
             case .string:
                 HStack {
                     Text(field.name)
-                        .foregroundColor(.secondary)
                     Spacer()
                     Text(field.value.string!)
+                        .foregroundColor(.secondary)
                 }
             case .number:
                 HStack {
                     Text(field.name)
-                        .foregroundColor(.secondary)
                     Spacer()
                     Text(field.value.number!.stringValue)
+                        .foregroundColor(.secondary)
+                }
+            case .reference:
+                NavigationLink {
+                    DatabaseRecordView(record: field.value.reference!)
+                } label: {
+                    Text(field.name)
                 }
             case .stringArray:
                 HStack {
                     Text(field.name)
-                        .foregroundColor(.secondary)
                     Spacer()
                     Text(field.value.stringArray!.joined(separator: " / "))
+                        .foregroundColor(.secondary)
                 }
             case .referenceArray:
                 Section(field.name) {
@@ -49,6 +55,27 @@ public struct DatabaseRecordView: View {
                                     .foregroundColor(.secondary)
                             }
                         }
+                    }
+                }
+            case .fieldArray:
+                OutlineGroup(field, id: \.name, children: \.value.fieldArray) { field in
+                    switch field.value.type {
+                    case .string:
+                        HStack {
+                            Text(field.name)
+                            Spacer()
+                            Text(field.value.string!)
+                                .foregroundColor(.secondary)
+                        }
+                    case .number:
+                        HStack {
+                            Text(field.name)
+                            Spacer()
+                            Text(field.value.number!.stringValue)
+                                .foregroundColor(.secondary)
+                        }
+                    default:
+                        Text(field.name)
                     }
                 }
             @unknown default:

@@ -19,6 +19,7 @@ extern NSString *NSStringFromRAElement(NSInteger element);
 extern NSString *NSStringFromRAItemType(NSInteger itemType);
 extern NSString *NSStringFromRAMode(NSInteger mode);
 extern NSString *NSStringFromRAMonsterClass(NSInteger monsterClass);
+extern NSString *NSStringFromRAParameter(NSInteger parameter);
 extern NSString *NSStringFromRARace(NSInteger race);
 extern NSString *NSStringFromRASex(NSInteger sex);
 extern NSString *NSStringFromRASize(NSInteger size);

@@ -136,6 +136,28 @@ NSString *NSStringFromRAMonsterClass(NSInteger monsterClass) {
     return monsterClasses[@(monsterClass)] ?: RAConstantNotFound;
 }
 
+NSString *NSStringFromRAParameter(NSInteger parameter) {
+    static NSDictionary<NSNumber *, NSString *> *parameters = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        parameters = @{
+            @(RA_PARAM_STR): @"Str",
+            @(RA_PARAM_AGI): @"Agi",
+            @(RA_PARAM_VIT): @"Vit",
+            @(RA_PARAM_INT): @"Int",
+            @(RA_PARAM_DEX): @"Dex",
+            @(RA_PARAM_LUK): @"Luk",
+            @(RA_PARAM_POW): @"Pow",
+            @(RA_PARAM_STA): @"Sta",
+            @(RA_PARAM_WIS): @"Wis",
+            @(RA_PARAM_SPL): @"Spl",
+            @(RA_PARAM_CON): @"Con",
+            @(RA_PARAM_CRT): @"Crt",
+        };
+    });
+    return parameters[@(parameter)] ?: RAConstantNotFound;
+}
+
 NSString *NSStringFromRARace(NSInteger race) {
     static NSDictionary<NSNumber *, NSString *> *races = nil;
     static dispatch_once_t onceToken;
