@@ -18,8 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, copy) NSString *name;
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords;
-- (RADatabaseRecord * _Nullable)fetchRecordWithID:(NSInteger)recordID;
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache;
+
+- (NSArray<RADatabaseRecord *> *)allRecords;
+- (RADatabaseRecord * _Nullable)recordWithID:(NSInteger)recordID;
 
 @end
 

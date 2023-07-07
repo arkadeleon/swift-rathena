@@ -7,6 +7,12 @@
 
 #import "RADatabase.h"
 
+@interface RADatabase ()
+
+@property (nonatomic, copy) NSMutableDictionary<NSNumber *, RADatabaseRecord *> *cache;
+
+@end
+
 @interface RADatabaseRecordFieldsBuilder ()
 
 @property (nonatomic) NSMutableArray<RADatabaseRecordField *> *recordFields;
@@ -15,16 +21,38 @@
 
 @implementation RADatabase
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _cache = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 - (NSString *)name {
-    return @"";
+    NSCAssert(NO, @"This method must be overridden by subclasses");
 }
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
-    return @[];
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
+    NSCAssert(NO, @"This method must be overridden by subclasses");
 }
 
-- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
-    return nil;
+- (void)recoverCacheIfNeeded {
+    if (self.cache.count == 0) {
+        [self recoverCache:self.cache];
+    }
+}
+
+- (NSArray<RADatabaseRecord *> *)allRecords {
+    [self recoverCacheIfNeeded];
+
+    return self.cache.allValues;
+}
+
+- (RADatabaseRecord *)recordWithID:(NSInteger)recordID {
+    [self recoverCacheIfNeeded];
+
+    return self.cache[@(recordID)];
 }
 
 @end

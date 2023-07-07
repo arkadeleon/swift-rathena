@@ -29,30 +29,11 @@
     return @"Item Database";
 }
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
-    NSMutableArray<RAItem *> *items = [NSMutableArray arrayWithCapacity:item_db.size()];
-
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
     for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
         RAItem *item = [[RAItem alloc] initWithItem:entry->second];
-        [items addObject:item];
+        cache[@(item.itemID)] = item;
     }
-
-    [items sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"itemID" ascending:YES]]];
-
-    return [items copy];
-}
-
-- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
-    RAItem *item = nil;
-
-    for (auto entry = item_db.begin(); entry != item_db.end(); ++entry) {
-        if (entry->first == recordID) {
-            item = [[RAItem alloc] initWithItem:entry->second];
-            break;
-        }
-    }
-
-    return item;
 }
 
 @end

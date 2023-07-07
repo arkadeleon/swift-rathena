@@ -30,7 +30,7 @@ public struct DatabaseView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task {
             Task {
-                records = database.fetchAllRecords()
+                records = database.allRecords()
             }
         }
     }

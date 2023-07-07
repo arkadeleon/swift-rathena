@@ -41,30 +41,11 @@
     return @"Skill Tree Database";
 }
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
-    NSMutableArray<RASkillTree *> *skillTrees = [NSMutableArray arrayWithCapacity:skill_tree_db.size()];
-
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
     for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
         RASkillTree *skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
-        [skillTrees addObject:skillTree];
+        cache[@(skillTree.job)] = skillTree;
     }
-
-    [skillTrees sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"job" ascending:YES]]];
-
-    return [skillTrees copy];
-}
-
-- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
-    RASkillTree *skillTree = nil;
-
-    for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
-        if (entry->first == recordID) {
-            skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
-            break;
-        }
-    }
-
-    return skillTree;
 }
 
 @end

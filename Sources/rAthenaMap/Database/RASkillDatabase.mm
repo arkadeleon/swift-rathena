@@ -93,30 +93,11 @@ NSArray * NSArrayFromItemIDVector(std::vector<t_itemid> vector) {
     return @"Skill Database";
 }
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
-    NSMutableArray<RASkill *> *skills = [NSMutableArray arrayWithCapacity:skill_db.size()];
-
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
     for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
         RASkill *skill = [[RASkill alloc] initWithSkill:entry->second];
-        [skills addObject:skill];
+        cache[@(skill.skillID)] = skill;
     }
-
-    [skills sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"skillID" ascending:YES]]];
-
-    return [skills copy];
-}
-
-- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
-    RASkill *skill = nil;
-
-    for (auto entry = skill_db.begin(); entry != skill_db.end(); ++entry) {
-        if (entry->first == recordID) {
-            skill = [[RASkill alloc] initWithSkill:entry->second];
-            break;
-        }
-    }
-
-    return skill;
 }
 
 @end

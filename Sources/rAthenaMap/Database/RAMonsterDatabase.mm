@@ -36,30 +36,11 @@
     return @"Monster Database";
 }
 
-- (NSArray<RADatabaseRecord *> *)fetchAllRecords {
-    NSMutableArray<RAMonster *> *monsters = [NSMutableArray arrayWithCapacity:mob_db.size()];
-
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
     for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
         RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
-        [monsters addObject:monster];
+        cache[@(monster.monsterID)] = monster;
     }
-
-    [monsters sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"monsterID" ascending:YES]]];
-
-    return [monsters copy];
-}
-
-- (RADatabaseRecord *)fetchRecordWithID:(NSInteger)recordID {
-    RAMonster *monster = nil;
-
-    for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
-        if (entry->first == recordID) {
-            monster = [[RAMonster alloc] initWithMob:entry->second];
-            break;
-        }
-    }
-
-    return monster;
 }
 
 @end
@@ -237,7 +218,7 @@
 }
 
 - (NSString *)recordTitle {
-    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:self.itemID];
+    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] recordWithID:self.itemID];
     return item.recordTitle;
 }
 
@@ -246,7 +227,7 @@
 }
 
 - (void)buildRecordFieldsWithBuilder:(RADatabaseRecordFieldsBuilder *)builder {
-    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] fetchRecordWithID:self.itemID];
+    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] recordWithID:self.itemID];
     [item buildRecordFieldsWithBuilder:builder];
 }
 

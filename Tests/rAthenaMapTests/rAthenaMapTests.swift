@@ -23,7 +23,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testItemDatabase() {
-        let items = RAItemDatabase.shared.fetchAllRecords() as! [RAItem]
+        let items = RAItemDatabase.shared.allRecords() as! [RAItem]
         XCTAssertEqual(items.count, 22833)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
@@ -133,7 +133,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testMonsterDatabase() {
-        let monsters = RAMonsterDatabase.shared.fetchAllRecords() as! [RAMonster]
+        let monsters = RAMonsterDatabase.shared.allRecords() as! [RAMonster]
         XCTAssertEqual(monsters.count, 2435)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
@@ -210,7 +210,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() {
-        let skillTrees = RASkillTreeDatabase.shared.fetchAllRecords() as! [RASkillTree]
+        let skillTrees = RASkillTreeDatabase.shared.allRecords() as! [RASkillTree]
         XCTAssertEqual(skillTrees.count, 167)
 
         let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
@@ -227,7 +227,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testSkillDatabase() {
-        let skills = RASkillDatabase.shared.fetchAllRecords() as! [RASkill]
+        let skills = RASkillDatabase.shared.allRecords() as! [RASkill]
         XCTAssertEqual(skills.count, 1495)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
