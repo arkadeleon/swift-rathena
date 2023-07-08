@@ -45,6 +45,7 @@
     self = [super init];
     if (self) {
         _jobID = entry->first;
+        _jobName = [NSString stringWithUTF8String:job_name(entry->first)];
         _maxWeight = entry->second->max_weight_base;
         _hpFactor = entry->second->hp_factor;
         _hpIncrease = entry->second->hp_increase;
@@ -77,7 +78,7 @@
 }
 
 - (NSString *)recordTitle {
-    return @(self.jobID).stringValue;
+    return self.jobName;
 }
 
 - (NSArray<RADatabaseRecordField *> *)recordFields {
@@ -113,7 +114,7 @@
     [fields ra_addFieldWithName:@"Max Base Level" numberValue:@(self.maxBaseLevel)];
 
     NSMutableArray<RADatabaseRecordField *> *baseExpFields = [NSMutableArray arrayWithCapacity:self.baseExp.count];
-    for (NSInteger level = 0; level < self.maxBaseLevel; level++) {
+    for (NSInteger level = 0; level < self.maxBaseLevel - 1; level++) {
         [baseExpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.baseExp[level]];
     }
     [fields ra_addFieldWithName:@"Base Exp" fieldArrayValue:baseExpFields];
@@ -121,7 +122,7 @@
     [fields ra_addFieldWithName:@"Max Job Level" numberValue:@(self.maxJobLevel)];
 
     NSMutableArray<RADatabaseRecordField *> *jobExpFields = [NSMutableArray arrayWithCapacity:self.jobExp.count];
-    for (NSInteger level = 0; level < self.maxJobLevel; level++) {
+    for (NSInteger level = 0; level < self.maxJobLevel - 1; level++) {
         [jobExpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.jobExp[level]];
     }
     [fields ra_addFieldWithName:@"Job Exp" fieldArrayValue:jobExpFields];

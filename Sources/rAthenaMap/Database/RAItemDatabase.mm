@@ -6,7 +6,9 @@
 //
 
 #import "RAItemDatabase.h"
+#import "RAJobDatabase.h"
 #include "map/itemdb.hpp"
+#include "map/pc.hpp"
 
 @interface RAItem ()
 
@@ -58,9 +60,7 @@
         _defense = item->def;
         _range = item->range;
         _slots = item->slots;
-        _jobs11 = item->class_base[0];
-        _jobs21 = item->class_base[1];
-        _jobs22 = item->class_base[2];
+        _jobs = NSArrayFromUInt64Array(item->class_base, 3);
         _classes = item->class_upper;
         _gender = item->sex;
         _locations = item->equip;
@@ -173,7 +173,79 @@
 
     // TODO: Alias Name
 
+    NSArray<RADatabaseRecord *> *jobs = [[RAJobDatabase sharedDatabase] allRecords];
+    NSMutableArray<RADatabaseRecord *> *equippableJobs = [NSMutableArray arrayWithCapacity:jobs.count];
+    for (RADatabaseRecord *job in jobs) {
+        NSInteger jobID = job.recordID;
+        if ([self canBeEquippedByJob:jobID]) {
+            [equippableJobs addObject:job];
+        }
+    }
+    [fields ra_addFieldWithName:@"Jobs" referenceArrayValue:equippableJobs];
+
     return [fields copy];
+}
+
+/// @discussion See function @c pc_job_can_use_item in pc.cpp
+/// @discussion See function @c pc_isItemClass in pc.cpp
+- (BOOL)canBeEquippedByJob:(NSInteger)jobID {
+    uint64 clazz = pc_jobid2mapid(jobID);
+
+    // Calculate the required bit to check
+    uint64 job = 1ULL << ( clazz & MAPID_BASEMASK );
+
+    size_t index;
+
+    // 2-1
+    if( ( clazz & JOBL_2_1 ) != 0 ){
+        index = 1;
+    // 2-2
+    }else if( ( clazz & JOBL_2_2 ) != 0 ){
+        index = 2;
+    // Basejob
+    }else{
+        index = 0;
+    }
+
+    if (( self.jobs[index].unsignedIntegerValue & job ) == 0) {
+        return NO;
+    }
+
+    if (self.classes&ITEMJ_NORMAL && !(clazz&(JOBL_UPPER|JOBL_BABY|JOBL_THIRD|JOBL_FOURTH)))    //normal classes (no upper, no baby, no third, no fourth)
+        return YES;
+#ifndef RENEWAL
+    //allow third classes to use trans. class items
+    if (self.classes&ITEMJ_UPPER && clazz&(JOBL_UPPER|JOBL_THIRD))    //trans. classes
+        return YES;
+    //third-baby classes can use same item too
+    if (self.classes&ITEMJ_BABY && clazz&JOBL_BABY)    //baby classes
+        return YES;
+    //don't need to decide specific rules for third-classes?
+    //items for third classes can be used for all third classes
+    if (self.classes&(ITEMJ_THIRD|ITEMJ_THIRD_UPPER|ITEMJ_THIRD_BABY) && clazz&JOBL_THIRD)
+        return YES;
+#else
+    //trans. classes (exl. third-trans.)
+    if (self.classes&ITEMJ_UPPER && clazz&JOBL_UPPER && !(clazz&JOBL_THIRD))
+        return YES;
+    //baby classes (exl. third-baby)
+    if (self.classes&ITEMJ_BABY && clazz&JOBL_BABY && !(clazz&JOBL_THIRD))
+        return YES;
+    //third classes (exl. third-trans. and baby-third and fourth)
+    if (self.classes&ITEMJ_THIRD && clazz&JOBL_THIRD && !(clazz&(JOBL_UPPER|JOBL_BABY)) && !(clazz&JOBL_FOURTH))
+        return YES;
+    //trans-third classes (exl. fourth)
+    if (self.classes&ITEMJ_THIRD_UPPER && clazz&JOBL_THIRD && clazz&JOBL_UPPER && !(clazz&JOBL_FOURTH))
+        return YES;
+    //third-baby classes (exl. fourth)
+    if (self.classes&ITEMJ_THIRD_BABY && clazz&JOBL_THIRD && clazz&JOBL_BABY && !(clazz&JOBL_FOURTH))
+        return YES;
+    //fourth classes
+    if (self.classes&ITEMJ_FOURTH && clazz&JOBL_FOURTH)
+        return YES;
+#endif
+
+    return NO;
 }
 
 @end

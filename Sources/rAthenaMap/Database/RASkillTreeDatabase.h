@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RASkillTree : RADatabaseRecord
 
-/// Job name.
+/// Job ID.
 ///
 /// @discussion See enum @c e_job in mmo.hpp
 @property (nonatomic) NSInteger job;

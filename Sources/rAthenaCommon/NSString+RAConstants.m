@@ -233,6 +233,7 @@ NSString *NSStringFromRAWeaponType(NSInteger weaponType) {
             @(RA_W_GRENADE): @"Grenade",
             @(RA_W_HUUMA): @"Huuma",
             @(RA_W_2HSTAFF): @"Two-Handed Staff",
+            @(RA_W_SHIELD): @"Shield",
         };
     });
     return weaponTypes[@(weaponType)] ?: RAConstantNotFound;

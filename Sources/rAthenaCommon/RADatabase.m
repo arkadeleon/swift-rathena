@@ -40,7 +40,7 @@
 - (NSArray<RADatabaseRecord *> *)allRecords {
     [self recoverCacheIfNeeded];
 
-    return self.cache.allValues;
+    return [self.cache.allValues sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"recordID" ascending:YES]]];
 }
 
 - (RADatabaseRecord *)recordWithID:(NSInteger)recordID {

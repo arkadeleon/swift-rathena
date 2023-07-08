@@ -20,7 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RAJob : RADatabaseRecord
 
 /// Job ID.
+///
+/// @discussion See enum @c e_job in mmo.hpp
 @property (nonatomic) NSInteger jobID;
+
+/// Job name.
+@property (nonatomic, copy) NSString *jobName;
 
 /// Base maximum weight.
 @property (nonatomic) NSInteger maxWeight;

@@ -71,20 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Available slots in item.
 @property (nonatomic) NSInteger slots;
 
-/// 1-1 jobs that can equip the item.
+/// Jobs that can equip the item.
 ///
 /// @discussion See enum @c e_mapid in map.hpp
-@property (nonatomic) NSUInteger jobs11;
-
-/// 2-1 jobs that can equip the item.
-///
-/// @discussion See enum @c e_mapid in map.hpp
-@property (nonatomic) NSUInteger jobs21;
-
-/// 2-2 jobs that can equip the item.
-///
-/// @discussion See enum @c e_mapid in map.hpp
-@property (nonatomic) NSUInteger jobs22;
+@property (nonatomic) NSArray<NSNumber *> *jobs;
 
 /// Upper class types that can equip the item.
 ///
