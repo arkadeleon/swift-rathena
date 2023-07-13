@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<NSNumber *> *inherit;
 
 /// List of skills available for the job.
-@property (nonatomic, copy) NSSet<RASkillTreeSkill *> *tree;
+@property (nonatomic, copy) NSArray<RASkillTreeSkill *> *tree;
 
 @end
 
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger jobLevel;
 
 /// List of skills required to unlock the skill.
-@property (nonatomic, copy) NSSet<RASkillTreePrerequisiteSkill *> *prerequisites;
+@property (nonatomic, copy) NSArray<RASkillTreePrerequisiteSkill *> *prerequisites;
 
 @end
 

@@ -137,6 +137,7 @@
     [fields ra_addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.monsterID]];
     [fields ra_addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
     [fields ra_addFieldWithName:@"Name" stringValue:self.name];
+
     [fields ra_addFieldWithName:@"Level" numberValue:@(self.level)];
     [fields ra_addFieldWithName:@"HP" numberValue:@(self.hp)];
     [fields ra_addFieldWithName:@"SP" numberValue:@(self.sp)];

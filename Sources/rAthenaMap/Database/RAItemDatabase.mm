@@ -128,6 +128,10 @@
 - (NSArray<RADatabaseRecordField *> *)recordFields {
     NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
 
+    [fields ra_addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.itemID]];
+    [fields ra_addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
+    [fields ra_addFieldWithName:@"Name" stringValue:self.name];
+
     [fields ra_addFieldWithName:@"Type" stringValue:NSStringFromRAItemType(self.type)];
 
     if (self.type == RA_IT_WEAPON) {

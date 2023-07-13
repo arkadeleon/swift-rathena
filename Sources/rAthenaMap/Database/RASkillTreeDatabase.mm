@@ -6,6 +6,8 @@
 //
 
 #import "RASkillTreeDatabase.h"
+#import "RASkillDatabase.h"
+#import "RAJobDatabase.h"
 #include "map/pc.hpp"
 
 @interface RASkillTree ()
@@ -56,14 +58,9 @@
     self = [super init];
     if (self) {
         _job = job;
+        _inherit = NSArrayFromUInt16Array(skill_tree->inherit_job.data(), skill_tree->inherit_job.size());
 
-        NSMutableArray<NSNumber *> *inherit = [NSMutableArray arrayWithCapacity:skill_tree->inherit_job.size()];
-        for (auto job : skill_tree->inherit_job) {
-            [inherit addObject:@(job)];
-        }
-        _inherit = [inherit copy];
-
-        NSMutableSet<RASkillTreeSkill *> *tree = [NSMutableSet setWithCapacity:skill_tree->skills.size()];
+        NSMutableArray<RASkillTreeSkill *> *tree = [NSMutableArray arrayWithCapacity:skill_tree->skills.size()];
         for (auto entry : skill_tree->skills) {
             RASkillTreeSkill *skill = [[RASkillTreeSkill alloc] initWithSkill:entry.second];
             [tree addObject:skill];
@@ -78,13 +75,40 @@
 }
 
 - (NSString *)recordTitle {
-    return @(self.job).stringValue;
+    RAJob *job = [[RAJobDatabase sharedDatabase] recordWithID:self.job];
+    return job.jobName;
 }
 
 - (NSArray<RADatabaseRecordField *> *)recordFields {
     NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
 
-    [fields ra_addFieldWithName:@"Job" stringValue:@(self.job).stringValue];
+    NSMutableArray<RADatabaseRecordField *> *inheritFields = [NSMutableArray arrayWithCapacity:self.inherit.count];
+    for (NSNumber *inheritJob in self.inherit) {
+        RAJob *job = [[RAJobDatabase sharedDatabase] recordWithID:inheritJob.integerValue];
+        RASkillTree *skillTree = [[RASkillTreeDatabase sharedDatabase] recordWithID:inheritJob.integerValue];
+        [inheritFields ra_addFieldWithName:job.jobName referenceValue:skillTree];
+    }
+    [fields ra_addFieldWithName:@"Inherit" arrayValue:inheritFields];
+
+    for (RASkillTreeSkill *skill in self.tree) {
+        RASkill *reference = [[RASkillDatabase sharedDatabase] recordWithID:skill.skillID];
+
+        NSMutableArray<RADatabaseRecordField *> *skillFields = [NSMutableArray array];
+
+        [skillFields ra_addFieldWithName:@"Maximum Level" numberValue:@(skill.maxLevel)];
+        [skillFields ra_addFieldWithName:@"Minimum Base Level Required" numberValue:@(skill.baseLevel)];
+        [skillFields ra_addFieldWithName:@"Minimum Job Level Required" numberValue:@(skill.jobLevel)];
+        [skillFields ra_addFieldWithName:@"Reference" referenceValue:reference];
+
+        NSMutableArray<RADatabaseRecordField *> *prerequisiteFields = [NSMutableArray arrayWithCapacity:skill.prerequisites.count];
+        for (RASkillTreePrerequisiteSkill *prerequisiteSkill in skill.prerequisites) {
+            RASkill *reference = [[RASkillDatabase sharedDatabase] recordWithID:prerequisiteSkill.skillID];
+            [prerequisiteFields ra_addFieldWithName:[NSString stringWithFormat:@"%@ (Level %ld)", reference.skillDescription, prerequisiteSkill.level] referenceValue:reference];
+        }
+        [skillFields ra_addFieldWithName:@"Prerequisites" arrayValue:prerequisiteFields];
+
+        [fields ra_addFieldWithName:reference.skillDescription arrayValue:skillFields];
+    }
 
     return [fields copy];
 }
@@ -102,7 +126,7 @@
         _baseLevel = skill->baselv;
         _jobLevel = skill->joblv;
 
-        NSMutableSet<RASkillTreePrerequisiteSkill *> *prerequisites = [NSMutableSet setWithCapacity:skill->need.size()];
+        NSMutableArray<RASkillTreePrerequisiteSkill *> *prerequisites = [NSMutableArray arrayWithCapacity:skill->need.size()];
         for (auto need : skill->need) {
             RASkillTreePrerequisiteSkill *prerequisite = [[RASkillTreePrerequisiteSkill alloc] initWithSkillID:need.first skillLevel:need.second];
             [prerequisites addObject:prerequisite];
