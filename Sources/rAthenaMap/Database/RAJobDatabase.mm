@@ -93,7 +93,7 @@
     for (NSInteger weaponType = 0; weaponType < self.baseASPD.count; weaponType++) {
         [baseASPDFields ra_addFieldWithName:NSStringFromRAWeaponType(weaponType) numberValue:self.baseASPD[weaponType]];
     }
-    [fields ra_addFieldWithName:@"Base ASPD" fieldArrayValue:baseASPDFields];
+    [fields ra_addFieldWithName:@"Base ASPD" arrayValue:baseASPDFields];
 
     NSMutableArray<RADatabaseRecordField *> *bonusStatsFields = [NSMutableArray arrayWithCapacity:self.bonusStats.count];
     for (NSInteger level = 0; level < self.bonusStats.count; level++) {
@@ -101,15 +101,15 @@
         for (NSInteger parameter = 0; parameter < self.bonusStats[level].count; parameter++) {
             [levelBonusStatsFields ra_addFieldWithName:NSStringFromRAParameter(parameter) numberValue:self.bonusStats[level][parameter]];
         }
-        [bonusStatsFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] fieldArrayValue:levelBonusStatsFields];
+        [bonusStatsFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] arrayValue:levelBonusStatsFields];
     }
-    [fields ra_addFieldWithName:@"Bonus Stats" fieldArrayValue:bonusStatsFields];
+    [fields ra_addFieldWithName:@"Bonus Stats" arrayValue:bonusStatsFields];
 
     NSMutableArray<RADatabaseRecordField *> *maxStatsFields = [NSMutableArray arrayWithCapacity:self.maxStats.count];
     for (NSInteger parameter = 0; parameter < self.maxStats.count; parameter++) {
         [maxStatsFields ra_addFieldWithName:NSStringFromRAParameter(parameter) numberValue:self.maxStats[parameter]];
     }
-    [fields ra_addFieldWithName:@"Max Stats" fieldArrayValue:maxStatsFields];
+    [fields ra_addFieldWithName:@"Max Stats" arrayValue:maxStatsFields];
 
     [fields ra_addFieldWithName:@"Max Base Level" numberValue:@(self.maxBaseLevel)];
 
@@ -117,7 +117,7 @@
     for (NSInteger level = 0; level < self.maxBaseLevel - 1; level++) {
         [baseExpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.baseExp[level]];
     }
-    [fields ra_addFieldWithName:@"Base Exp" fieldArrayValue:baseExpFields];
+    [fields ra_addFieldWithName:@"Base Exp" arrayValue:baseExpFields];
 
     [fields ra_addFieldWithName:@"Max Job Level" numberValue:@(self.maxJobLevel)];
 
@@ -125,28 +125,30 @@
     for (NSInteger level = 0; level < self.maxJobLevel - 1; level++) {
         [jobExpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.jobExp[level]];
     }
-    [fields ra_addFieldWithName:@"Job Exp" fieldArrayValue:jobExpFields];
+    [fields ra_addFieldWithName:@"Job Exp" arrayValue:jobExpFields];
 
     NSMutableArray<RADatabaseRecordField *> *baseHpFields = [NSMutableArray arrayWithCapacity:self.baseHp.count];
     for (NSInteger level = 0; level < self.baseHp.count; level++) {
         [baseHpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.baseHp[level]];
     }
-    [fields ra_addFieldWithName:@"Base HP" fieldArrayValue:baseHpFields];
+    [fields ra_addFieldWithName:@"Base HP" arrayValue:baseHpFields];
 
     NSMutableArray<RADatabaseRecordField *> *baseSpFields = [NSMutableArray arrayWithCapacity:self.baseSp.count];
     for (NSInteger level = 0; level < self.baseSp.count; level++) {
         [baseSpFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.baseSp[level]];
     }
-    [fields ra_addFieldWithName:@"Base SP" fieldArrayValue:baseSpFields];
+    [fields ra_addFieldWithName:@"Base SP" arrayValue:baseSpFields];
 
     NSMutableArray<RADatabaseRecordField *> *baseApFields = [NSMutableArray arrayWithCapacity:self.baseAp.count];
     for (NSInteger level = 0; level < self.baseAp.count; level++) {
         [baseApFields ra_addFieldWithName:[NSString stringWithFormat:@"Level %ld", level + 1] numberValue:self.baseAp[level]];
     }
-    [fields ra_addFieldWithName:@"Base AP" fieldArrayValue:baseApFields];
+    [fields ra_addFieldWithName:@"Base AP" arrayValue:baseApFields];
 
-    RADatabaseRecord *skillTree = [[RASkillTreeDatabase sharedDatabase] recordWithID:self.jobID];
-    [fields ra_addFieldWithName:@"Skill Tree" referenceValue:skillTree];
+    RASkillTree *skillTree = [[RASkillTreeDatabase sharedDatabase] recordWithID:self.jobID];
+    if (skillTree) {
+        [fields ra_addFieldWithName:@"Skill Tree" referenceValue:skillTree];
+    }
 
     return [fields copy];
 }

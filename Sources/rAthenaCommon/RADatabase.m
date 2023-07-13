@@ -37,13 +37,13 @@
     }
 }
 
-- (NSArray<RADatabaseRecord *> *)allRecords {
+- (NSArray<__kindof RADatabaseRecord *> *)allRecords {
     [self recoverCacheIfNeeded];
 
     return [self.cache.allValues sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"recordID" ascending:YES]]];
 }
 
-- (RADatabaseRecord *)recordWithID:(NSInteger)recordID {
+- (__kindof RADatabaseRecord *)recordWithID:(NSInteger)recordID {
     [self recoverCacheIfNeeded];
 
     return self.cache[@(recordID)];
@@ -58,10 +58,6 @@
 }
 
 - (NSString *)recordTitle {
-    return @"";
-}
-
-- (NSString *)recordSubtitle {
     return @"";
 }
 
@@ -113,29 +109,11 @@
     return self;
 }
 
-- (instancetype)initWithStringArray:(NSArray<NSString *> *)stringArray {
+- (instancetype)initWithArray:(NSArray<RADatabaseRecordField *> *)array {
     self = [super init];
     if (self) {
-        _type = RADatabaseRecordFieldValueTypeStringArray;
-        _stringArray = [stringArray copy];
-    }
-    return self;
-}
-
-- (instancetype)initWithReferenceArray:(NSArray<RADatabaseRecord *> *)referenceArray {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeReferenceArray;
-        _referenceArray = [referenceArray copy];
-    }
-    return self;
-}
-
-- (instancetype)initWithFieldArray:(NSArray<RADatabaseRecordField *> *)fieldArray {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeFieldArray;
-        _fieldArray = [fieldArray copy];
+        _type = RADatabaseRecordFieldValueTypeArray;
+        _array = [array copy];
     }
     return self;
 }
@@ -162,20 +140,8 @@
     [self addObject:field];
 }
 
-- (void)ra_addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithStringArray:stringArrayValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
-}
-
-- (void)ra_addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithReferenceArray:referenceArrayValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
-}
-
-- (void)ra_addFieldWithName:(NSString *)name fieldArrayValue:(NSArray<RADatabaseRecordField *> *)fieldArrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithFieldArray:fieldArrayValue];
+- (void)ra_addFieldWithName:(NSString *)name arrayValue:(nonnull NSArray<RADatabaseRecordField *> *)arrayValue {
+    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithArray:arrayValue];
     RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
     [self addObject:field];
 }

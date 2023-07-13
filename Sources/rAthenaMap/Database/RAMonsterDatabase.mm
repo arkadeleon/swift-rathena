@@ -196,8 +196,21 @@
 
     // TODO: Modes
 
-    [fields ra_addFieldWithName:@"Drops" referenceArrayValue:self.drops];
-    [fields ra_addFieldWithName:@"MVP Drops" referenceArrayValue:self.mvpDrops];
+    NSMutableArray<RADatabaseRecordField *> *dropFields = [NSMutableArray arrayWithCapacity:self.drops.count];
+    for (RAMonsterDrop *drop in self.drops) {
+        RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
+        NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
+        [dropFields ra_addFieldWithName:name referenceValue:item];
+    }
+    [fields ra_addFieldWithName:@"Drops" arrayValue:dropFields];
+
+    NSMutableArray<RADatabaseRecordField *> *mvpDropFields = [NSMutableArray arrayWithCapacity:self.mvpDrops.count];
+    for (RAMonsterDrop *drop in self.mvpDrops) {
+        RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
+        NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
+        [mvpDropFields ra_addFieldWithName:name referenceValue:item];
+    }
+    [fields ra_addFieldWithName:@"MVP Drops" arrayValue:mvpDropFields];
 
     return [fields copy];
 }
@@ -215,24 +228,6 @@
         _randomOptionGroupID = drop.randomopt_group;
     }
     return self;
-}
-
-- (NSInteger)recordID {
-    return self.itemID;
-}
-
-- (NSString *)recordTitle {
-    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] recordWithID:self.itemID];
-    return item.recordTitle;
-}
-
-- (NSString *)recordSubtitle {
-    return [NSString stringWithFormat:@"%@ %%", @(self.rate / 100.0)];
-}
-
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    RADatabaseRecord *item = [[RAItemDatabase sharedDatabase] recordWithID:self.itemID];
-    return item.recordFields;
 }
 
 @end

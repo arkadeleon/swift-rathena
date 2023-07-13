@@ -157,7 +157,14 @@
 
     [fields ra_addFieldWithName:@"Slots" numberValue:@(self.slots)];
 
-    // TODO: Jobs & Classes
+    NSArray<RAJob *> *jobs = [[RAJobDatabase sharedDatabase] allRecords];
+    NSMutableArray<RADatabaseRecordField *> *jobFields = [NSMutableArray arrayWithCapacity:jobs.count];
+    for (RAJob *job in jobs) {
+        if ([self canBeEquippedByJob:job.jobID]) {
+            [jobFields ra_addFieldWithName:job.jobName referenceValue:job];
+        }
+    }
+    [fields ra_addFieldWithName:@"Jobs" arrayValue:jobFields];
 
     [fields ra_addFieldWithName:@"Gender" stringValue:NSStringFromRASex(self.gender)];
 
@@ -172,16 +179,6 @@
     // TODO: View
 
     // TODO: Alias Name
-
-    NSArray<RADatabaseRecord *> *jobs = [[RAJobDatabase sharedDatabase] allRecords];
-    NSMutableArray<RADatabaseRecord *> *equippableJobs = [NSMutableArray arrayWithCapacity:jobs.count];
-    for (RADatabaseRecord *job in jobs) {
-        NSInteger jobID = job.recordID;
-        if ([self canBeEquippedByJob:jobID]) {
-            [equippableJobs addObject:job];
-        }
-    }
-    [fields ra_addFieldWithName:@"Jobs" referenceArrayValue:equippableJobs];
 
     return [fields copy];
 }

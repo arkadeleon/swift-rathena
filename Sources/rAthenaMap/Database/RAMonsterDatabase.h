@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RAMonsterDrop : RADatabaseRecord
+@interface RAMonsterDrop : NSObject
 
 /// Item ID.
 @property (nonatomic) NSInteger itemID;

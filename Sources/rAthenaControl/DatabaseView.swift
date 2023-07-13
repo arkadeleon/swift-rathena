@@ -18,11 +18,7 @@ public struct DatabaseView: View {
             NavigationLink {
                 DatabaseRecordView(record: record)
             } label: {
-                HStack {
-                    Text(record.recordTitle)
-                    Text(record.recordSubtitle)
-                        .foregroundColor(.secondary)
-                }
+                Text(record.recordTitle)
             }
         }
         .listStyle(.plain)

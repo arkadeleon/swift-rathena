@@ -36,29 +36,8 @@ public struct DatabaseRecordView: View {
                 } label: {
                     Text(field.name)
                 }
-            case .stringArray:
-                HStack {
-                    Text(field.name)
-                    Spacer()
-                    Text(field.value.stringArray!.joined(separator: " / "))
-                        .foregroundColor(.secondary)
-                }
-            case .referenceArray:
-                Section(field.name) {
-                    ForEach(field.value.referenceArray!, id: \.recordID) { reference in
-                        NavigationLink {
-                            DatabaseRecordView(record: reference)
-                        } label: {
-                            HStack {
-                                Text(reference.recordTitle)
-                                Text(reference.recordSubtitle)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                }
-            case .fieldArray:
-                OutlineGroup(field, id: \.name, children: \.value.fieldArray) { field in
+            case .array:
+                OutlineGroup(field, id: \.name, children: \.value.array) { field in
                     switch field.value.type {
                     case .string:
                         HStack {
@@ -73,6 +52,14 @@ public struct DatabaseRecordView: View {
                             Spacer()
                             Text(field.value.number!.stringValue)
                                 .foregroundColor(.secondary)
+                        }
+                    case .reference:
+                        NavigationLink {
+                            DatabaseRecordView(record: field.value.reference!)
+                        } label: {
+                            HStack {
+                                Text(field.name)
+                            }
                         }
                     default:
                         Text(field.name)

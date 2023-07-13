@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache;
 
-- (NSArray<RADatabaseRecord *> *)allRecords;
-- (RADatabaseRecord * _Nullable)recordWithID:(NSInteger)recordID;
+- (NSArray<__kindof RADatabaseRecord *> *)allRecords;
+- (__kindof RADatabaseRecord * _Nullable)recordWithID:(NSInteger)recordID;
 
 @end
 
@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger recordID;
 @property (nonatomic, readonly, copy) NSString *recordTitle;
-@property (nonatomic, readonly, copy) NSString *recordSubtitle;
 @property (nonatomic, readonly, copy) NSArray<RADatabaseRecordField *> *recordFields;
 
 @end
@@ -47,9 +46,7 @@ typedef NS_ENUM(NSInteger, RADatabaseRecordFieldValueType) {
     RADatabaseRecordFieldValueTypeString,
     RADatabaseRecordFieldValueTypeNumber,
     RADatabaseRecordFieldValueTypeReference,
-    RADatabaseRecordFieldValueTypeStringArray,
-    RADatabaseRecordFieldValueTypeReferenceArray,
-    RADatabaseRecordFieldValueTypeFieldArray,
+    RADatabaseRecordFieldValueTypeArray,
 };
 
 @interface RADatabaseRecordFieldValue : NSObject
@@ -58,17 +55,13 @@ typedef NS_ENUM(NSInteger, RADatabaseRecordFieldValueType) {
 @property (nonatomic, readonly, copy, nullable) NSString *string;
 @property (nonatomic, readonly, nullable) NSNumber *number;
 @property (nonatomic, readonly, nullable) RADatabaseRecord *reference;
-@property (nonatomic, readonly, copy, nullable) NSArray<NSString *> *stringArray;
-@property (nonatomic, readonly, copy, nullable) NSArray<RADatabaseRecord *> *referenceArray;
-@property (nonatomic, readonly, copy, nullable) NSArray<RADatabaseRecordField *> *fieldArray;
+@property (nonatomic, readonly, copy, nullable) NSArray<RADatabaseRecordField *> *array;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithString:(NSString *)string NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithNumber:(NSNumber *)number NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithReference:(RADatabaseRecord *)reference NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithStringArray:(NSArray<NSString *> *)stringArray NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithReferenceArray:(NSArray<RADatabaseRecord *> *)referenceArray NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithFieldArray:(NSArray<RADatabaseRecordField *> *)fieldArray NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithArray:(NSArray<RADatabaseRecordField *> *)array NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -77,9 +70,7 @@ typedef NS_ENUM(NSInteger, RADatabaseRecordFieldValueType) {
 - (void)ra_addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue;
 - (void)ra_addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue;
 - (void)ra_addFieldWithName:(NSString *)name referenceValue:(RADatabaseRecord *)referenceValue;
-- (void)ra_addFieldWithName:(NSString *)name stringArrayValue:(NSArray<NSString *> *)stringArrayValue;
-- (void)ra_addFieldWithName:(NSString *)name referenceArrayValue:(NSArray<RADatabaseRecord *> *)referenceArrayValue;
-- (void)ra_addFieldWithName:(NSString *)name fieldArrayValue:(NSArray<RADatabaseRecordField *> *)fieldArrayValue;
+- (void)ra_addFieldWithName:(NSString *)name arrayValue:(NSArray<RADatabaseRecordField *> *)arrayValue;
 
 @end
 
