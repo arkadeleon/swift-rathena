@@ -24,7 +24,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testItemDatabase() {
         let items = RAItemDatabase.shared.allRecords() as! [RAItem]
-        XCTAssertEqual(items.count, 22833)
+        XCTAssertEqual(items.count, 22953)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
 
@@ -134,7 +134,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testMonsterDatabase() {
         let monsters = RAMonsterDatabase.shared.allRecords() as! [RAMonster]
-        XCTAssertEqual(monsters.count, 2435)
+        XCTAssertEqual(monsters.count, 2445)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
 
