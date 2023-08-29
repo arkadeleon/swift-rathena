@@ -11,10 +11,12 @@ import rAthenaCommon
 public struct DatabaseView: View {
     let database: RADatabase
 
-    @State private var records = [RADatabaseRecord]()
+    @State private var searchText = ""
+    @State private var allRecords = [RADatabaseRecord]()
+    @State private var filteredRecords = [RADatabaseRecord]()
 
     public var body: some View {
-        List(records, id: \.recordID) { record in
+        List(filteredRecords, id: \.recordID) { record in
             NavigationLink {
                 DatabaseRecordView(record: record)
             } label: {
@@ -22,17 +24,35 @@ public struct DatabaseView: View {
             }
         }
         .listStyle(.plain)
+        .searchable(text: $searchText)
         .navigationTitle(database.name)
         .navigationBarTitleDisplayMode(.inline)
         .task {
             Task {
-                records = database.allRecords()
+                allRecords = database.allRecords()
+                filterRecords()
             }
+        }
+        .onSubmit(of: .search) {
+            filterRecords()
+        }
+        .onChange(of: searchText) { _ in
+            filterRecords()
         }
     }
 
     public init(database: RADatabase) {
         self.database = database
+    }
+
+    private func filterRecords() {
+        if searchText.isEmpty {
+            filteredRecords = allRecords
+        } else {
+            filteredRecords = allRecords.filter { record in
+                record.recordTitle.localizedCaseInsensitiveContains(searchText)
+            }
+        }
     }
 }
 
