@@ -1,5 +1,5 @@
 //
-//  DatabaseView.swift
+//  RADatabaseView.swift
 //  rAthena
 //
 //  Created by Leon Li on 2023/6/28.
@@ -8,7 +8,7 @@
 import SwiftUI
 import rAthenaCommon
 
-public struct DatabaseView: View {
+public struct RADatabaseView: View {
     let database: RADatabase
 
     @State private var searchText = ""
@@ -16,9 +16,9 @@ public struct DatabaseView: View {
     @State private var filteredRecords = [RADatabaseRecord]()
 
     public var body: some View {
-        List(filteredRecords, id: \.recordID) { record in
+        List(filteredRecords) { record in
             NavigationLink {
-                DatabaseRecordView(record: record)
+                RADatabaseRecordView(record: record)
             } label: {
                 Text(record.recordTitle)
             }
@@ -58,6 +58,6 @@ public struct DatabaseView: View {
 
 struct DatabaseView_Previews: PreviewProvider {
     static var previews: some View {
-        DatabaseView(database: RADatabase())
+        RADatabaseView(database: RADatabase())
     }
 }

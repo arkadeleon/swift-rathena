@@ -1,5 +1,5 @@
 //
-//  DatabaseRecordView.swift
+//  RADatabaseRecordView.swift
 //  rAthena
 //
 //  Created by Leon Li on 2023/6/29.
@@ -8,13 +8,13 @@
 import SwiftUI
 import rAthenaCommon
 
-public struct DatabaseRecordView: View {
+public struct RADatabaseRecordView: View {
     let record: RADatabaseRecord
 
     @State private var recordFields = [RADatabaseRecordField]()
 
     public var body: some View {
-        List(recordFields, id: \.name) { field in
+        List(recordFields) { field in
             switch field.value.type {
             case .string:
                 HStack {
@@ -32,12 +32,12 @@ public struct DatabaseRecordView: View {
                 }
             case .reference:
                 NavigationLink {
-                    DatabaseRecordView(record: field.value.reference!)
+                    RADatabaseRecordView(record: field.value.reference!)
                 } label: {
                     Text(field.name)
                 }
             case .array:
-                OutlineGroup(field, id: \.name, children: \.value.array) { field in
+                OutlineGroup(field, children: \.value.array) { field in
                     switch field.value.type {
                     case .string:
                         HStack {
@@ -55,7 +55,7 @@ public struct DatabaseRecordView: View {
                         }
                     case .reference:
                         NavigationLink {
-                            DatabaseRecordView(record: field.value.reference!)
+                            RADatabaseRecordView(record: field.value.reference!)
                         } label: {
                             HStack {
                                 Text(field.name)
@@ -86,6 +86,6 @@ public struct DatabaseRecordView: View {
 
 struct DatabaseRecordView_Previews: PreviewProvider {
     static var previews: some View {
-        DatabaseRecordView(record: RADatabaseRecord())
+        RADatabaseRecordView(record: RADatabaseRecord())
     }
 }

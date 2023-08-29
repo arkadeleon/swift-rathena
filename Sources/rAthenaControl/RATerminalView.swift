@@ -1,5 +1,5 @@
 //
-//  TerminalView.swift
+//  RATerminalView.swift
 //  rAthena
 //
 //  Created by Leon Li on 2022/11/2.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Terminal
 
-struct TerminalView: UIViewRepresentable {
+struct RATerminalView: UIViewRepresentable {
     private let terminalView = Terminal.TerminalView()
 
     func makeUIView(context: Context) -> Terminal.TerminalView {
@@ -29,6 +29,6 @@ struct TerminalView: UIViewRepresentable {
 
 struct TerminalView_Previews: PreviewProvider {
     static var previews: some View {
-        TerminalView()
+        RATerminalView()
     }
 }
