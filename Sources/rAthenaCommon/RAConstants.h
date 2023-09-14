@@ -3146,6 +3146,7 @@ extern const NSInteger RA_RC2_MALANGDO;
 extern const NSInteger RA_RC2_EP172ALPHA;
 extern const NSInteger RA_RC2_EP172BETA;
 extern const NSInteger RA_RC2_EP172BATH;
+extern const NSInteger RA_RC2_ILLUSION_TURTLE;
 extern const NSInteger RA_RC2_MAX;
 extern const NSInteger RA_MONSTER_TYPE_01;
 extern const NSInteger RA_MONSTER_TYPE_02;

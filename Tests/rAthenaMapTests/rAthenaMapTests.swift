@@ -24,7 +24,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testItemDatabase() {
         let items = RAItemDatabase.shared.allRecords() as! [RAItem]
-        XCTAssertEqual(items.count, 23342)
+        XCTAssertEqual(items.count, 23560)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
 
