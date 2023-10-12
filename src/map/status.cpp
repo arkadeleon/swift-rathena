@@ -2008,8 +2008,9 @@ bool status_check_skilluse(struct block_list *src, struct block_list *target, ui
 			if (wink_target != nullptr) {
 				unit_data *wink_ud = unit_bl2ud(src);
 				if (wink_ud != nullptr && wink_ud->walktimer == INVALID_TIMER)
-					unit_walktobl(src, wink_target, 3, 1);
+					unit_walktobl(src, map_id2bl(sc->getSCE(SC_WINKCHARM)->val2), 3, 1);
 				clif_emotion(src, ET_THROB);
+				return false;
 			} else
 				status_change_end(src, SC_WINKCHARM);
 		}
@@ -4832,8 +4833,16 @@ int status_calc_pc_sub(map_session_data* sd, uint8 opt)
 		calculating = 0;
 		return 0;
 	}
-	if(memcmp(b_skill,sd->status.skill,sizeof(sd->status.skill)))
+	if(memcmp(b_skill,sd->status.skill,sizeof(sd->status.skill))) {
+#if PACKETVER_MAIN_NUM >= 20190807 || PACKETVER_RE_NUM >= 20190807 || PACKETVER_ZERO_NUM >= 20190918
+		// Client doesn't delete unavailable skills even if we refresh the skill tree, individually delete them.
+		for (i = 0; i < MAX_SKILL; i++) {
+			if (b_skill[i].id != 0 && sd->status.skill[i].id == 0)
+				clif_deleteskill(sd, b_skill[i].id, true);
+		}
+#endif
 		clif_skillinfoblock(sd);
+	}
 
 	// If the skill is learned, the status is infinite.
 	if (pc_checkskill(sd, SU_SPRITEMABLE) > 0 && !sd->sc.getSCE(SC_SPRITEMABLE))
@@ -5399,7 +5408,6 @@ void status_calc_state( struct block_list *bl, status_change *sc, std::bitset<SC
 				  || (sc->getSCE(SC_CAMOUFLAGE) && sc->getSCE(SC_CAMOUFLAGE)->val1 < 3)
 				  || (sc->getSCE(SC_MAGNETICFIELD) && sc->getSCE(SC_MAGNETICFIELD)->val2 != bl->id)
 				  || (sc->getSCE(SC_FEAR) && sc->getSCE(SC_FEAR)->val2 > 0)
-				  || (sc->getSCE(SC_SPIDERWEB) && sc->getSCE(SC_SPIDERWEB)->val1)
 				  || (sc->getSCE(SC_HIDING) && (bl->type != BL_PC || (pc_checkskill(BL_CAST(BL_PC,bl),RG_TUNNELDRIVE) <= 0)))
 				  || (sc->getSCE(SC_DANCING) && sc->getSCE(SC_DANCING)->val4 && (
 #ifndef RENEWAL
@@ -5779,7 +5787,11 @@ void status_calc_bl_main(struct block_list *bl, std::bitset<SCB_MAX> flag)
 		if (status->luk == b_status->luk)
 			status->cri = status_calc_critical(bl, sc, b_status->cri);
 		else
+#ifdef RENEWAL
 			status->cri = status_calc_critical(bl, sc, b_status->cri + 3*(status->luk - b_status->luk));
+#else
+			status->cri = status_calc_critical(bl, sc, b_status->cri + (status->luk - b_status->luk)*10/3);
+#endif
 
 		/// After status_calc_critical so the bonus is applied despite if you have or not a sc bugreport:5240
 		if (sd) {
@@ -6412,8 +6424,6 @@ static unsigned short status_calc_str(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		str += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		str += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		str += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6499,8 +6509,6 @@ static unsigned short status_calc_agi(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		agi += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		agi += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		agi += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6576,8 +6584,6 @@ static unsigned short status_calc_vit(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		vit += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		vit += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		vit += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_CUP_OF_BOZA))
@@ -6670,8 +6676,6 @@ static unsigned short status_calc_int(struct block_list *bl, status_change *sc, 
 	if (sc->getSCE(SC_NIBELUNGEN) && sc->getSCE(SC_NIBELUNGEN)->val2 == RINGNBL_ALLSTAT)
 		int_ += 15;
 #endif
-	if (sc->getSCE(SC_ALMIGHTY))
-		int_ += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		int_ += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6759,8 +6763,6 @@ static unsigned short status_calc_dex(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		dex += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		dex += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		dex += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_ALL_STAT_DOWN))
@@ -6834,8 +6836,6 @@ static unsigned short status_calc_luk(struct block_list *bl, status_change *sc, 
 #endif
 	if (sc->getSCE(SC_UNIVERSESTANCE))
 		luk += sc->getSCE(SC_UNIVERSESTANCE)->val2;
-	if (sc->getSCE(SC_ALMIGHTY))
-		luk += sc->getSCE(SC_ALMIGHTY)->val1;
 	if (sc->getSCE(SC_ULTIMATECOOK))
 		luk += sc->getSCE(SC_ULTIMATECOOK)->val1;
 	if (sc->getSCE(SC_MYSTICPOWDER))
@@ -7685,7 +7685,7 @@ static defType status_calc_def(struct block_list *bl, status_change *sc, int def
 	if (sc->getSCE(SC_ATTACK_STANCE))
 		def -= sc->getSCE(SC_ATTACK_STANCE)->val2;
 	if (sc->getSCE(SC_M_DEFSCROLL))
-		def += 500;
+		def += sc->getSCE(SC_M_DEFSCROLL)->val1;
 
 	return (defType)cap_value(def,DEFTYPE_MIN,DEFTYPE_MAX);
 }
@@ -7819,7 +7819,7 @@ static defType status_calc_mdef(struct block_list *bl, status_change *sc, int md
 	if (sc->getSCE(SC_CLIMAX_CRYIMP))
 		mdef += 100;
 	if (sc->getSCE(SC_M_DEFSCROLL))
-		mdef += 200;
+		mdef += sc->getSCE(SC_M_DEFSCROLL)->val2;
 
 	return (defType)cap_value(mdef,DEFTYPE_MIN,DEFTYPE_MAX);
 }
@@ -10488,9 +10488,6 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 				val3 = sce->val3;
 				val4 = sce->val4;
 				break;
-			case SC_LERADSDEW:
-				if (sc && sc->getSCE(SC_BERSERK))
-					return 0;
 			case SC_SHAPESHIFT:
 			case SC_PROPERTYWALK:
 				break;
@@ -10927,6 +10924,7 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_L_LIFEPOTION:
 		case SC_M_LIFEPOTION:
 		case SC_S_MANAPOTION:
+		case SC_G_LIFEPOTION:
 			if( val1 == 0 ) return 0;
 			// val1 = heal percent/amout
 			// val2 = seconds between heals
@@ -14011,6 +14009,7 @@ TIMER_FUNC(status_change_timer){
 	case SC_S_LIFEPOTION:
 	case SC_L_LIFEPOTION:
 	case SC_M_LIFEPOTION:
+	case SC_G_LIFEPOTION:
 		if( --(sce->val4) >= 0 ) {
 			// val1 < 0 = per max% | val1 > 0 = exact amount
 			int hp = 0;
