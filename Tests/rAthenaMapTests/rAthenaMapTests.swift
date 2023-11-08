@@ -228,7 +228,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testSkillDatabase() {
         let skills = RASkillDatabase.shared.allRecords() as! [RASkill]
-        XCTAssertEqual(skills.count, 1495)
+        XCTAssertEqual(skills.count, 1501)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
 
