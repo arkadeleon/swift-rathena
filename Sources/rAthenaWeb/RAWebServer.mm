@@ -15,14 +15,15 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    RAWebServer *webServer = RAWebServer.sharedServer;
+    RAWebServer *server = RAWebServer.sharedServer;
 
-    if (webServer.outputHandler) {
-        NSData *data = [NSData dataWithBytes:buf length:n];
-        webServer.outputHandler(data);
+    if (server.outputHandler == nil) {
+        return 0;
     }
 
-    return 0;
+    NSData *data = [NSData dataWithBytes:buf length:n];
+    server.outputHandler(data);
+    return n;
 }
 
 void do_recv(int fd) {

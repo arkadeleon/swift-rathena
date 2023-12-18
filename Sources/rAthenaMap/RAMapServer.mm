@@ -15,14 +15,15 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    RAMapServer *mapServer = RAMapServer.sharedServer;
+    RAMapServer *server = RAMapServer.sharedServer;
 
-    if (mapServer.outputHandler) {
-        NSData *data = [NSData dataWithBytes:buf length:n];
-        mapServer.outputHandler(data);
+    if (server.outputHandler == nil) {
+        return 0;
     }
 
-    return 0;
+    NSData *data = [NSData dataWithBytes:buf length:n];
+    server.outputHandler(data);
+    return n;
 }
 
 void do_recv(int fd) {
