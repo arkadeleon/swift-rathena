@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "rAthena",
+    name: "swift-rathena",
     platforms: [
         .iOS(.v15),
     ],
