@@ -14,6 +14,10 @@ let package = Package(
             targets: ["rAthenaCommon"]
         ),
         .library(
+            name: "rAthenaResource",
+            targets: ["rAthenaResource"]
+        ),
+        .library(
             name: "rAthenaLogin",
             type: .dynamic,
             targets: ["rAthenaLogin"]
@@ -72,6 +76,27 @@ let package = Package(
                 .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
                 .headerSearchPath("3rdparty/rapidyaml/src"),
                 .headerSearchPath("src"),
+            ]
+        ),
+        .target(
+            name: "rAthenaResource",
+            path: ".",
+            exclude: [
+                "3rdparty",
+                "doc",
+                "src",
+                "tools",
+                "App",
+            ],
+            sources: [
+                "Sources/rAthenaResource",
+            ],
+            resources: [
+                .copy("ragnarok.sqlite3"),
+                .copy("conf"),
+                .copy("db"),
+                .copy("npc"),
+                .copy("sql-files"),
             ]
         ),
         .target(
@@ -189,6 +214,7 @@ let package = Package(
             dependencies: [
                 "Terminal",
                 "rAthenaCommon",
+                "rAthenaResource",
             ]
         ),
         .target(

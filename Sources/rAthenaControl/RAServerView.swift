@@ -7,6 +7,7 @@
 
 import SwiftUI
 import rAthenaCommon
+import rAthenaResource
 
 public struct RAServerView: View {
     let server: RAServer
@@ -53,7 +54,7 @@ public struct RAServerView: View {
         }
         .task {
             Task {
-                RAResourceManager.shared.copyResourcesToLibraryDirectory()
+                try RAResourceManager.shared.copyResourceFilesToLibraryDirectory()
 
                 server.outputHandler = { data in
                     if let data = String(data: data, encoding: .isoLatin1)?
