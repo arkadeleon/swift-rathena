@@ -1,6 +1,6 @@
 //
-//  RAServerView.swift
-//  rAthena
+//  ServerView.swift
+//  rAthenaApp
 //
 //  Created by Leon Li on 2022/11/2.
 //
@@ -9,10 +9,10 @@ import SwiftUI
 import rAthenaCommon
 import rAthenaResource
 
-public struct RAServerView: View {
+public struct ServerView: View {
     let server: RAServer
 
-    private let terminalView = RATerminalView()
+    private let terminalView = ServerTerminalView()
 
     private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
@@ -77,6 +77,6 @@ public struct RAServerView: View {
 
 struct ServerView_Previews: PreviewProvider {
     static var previews: some View {
-        RAServerView(server: RAServer())
+        ServerView(server: RAServer())
     }
 }

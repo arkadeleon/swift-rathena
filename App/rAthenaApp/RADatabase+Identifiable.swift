@@ -1,6 +1,6 @@
 //
 //  RADatabase+Identifiable.swift
-//  rAthena
+//  rAthenaApp
 //
 //  Created by Leon Li on 2023/8/29.
 //

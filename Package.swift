@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "swift-rathena",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v12),
     ],
     products: [
         .library(
@@ -41,13 +41,6 @@ let package = Package(
             name: "rAthenaPacket",
             targets: ["rAthenaPacket"]
         ),
-        .library(
-            name: "rAthenaControl",
-            targets: ["rAthenaControl"]
-        ),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/dnpp73/Terminal.git", from: "0.3.4"),
     ],
     targets: [
         .target(
@@ -207,14 +200,6 @@ let package = Package(
             name: "rAthenaPacket",
             dependencies: [
                 "rAthenaCommon",
-            ]
-        ),
-        .target(
-            name: "rAthenaControl",
-            dependencies: [
-                "Terminal",
-                "rAthenaCommon",
-                "rAthenaResource",
             ]
         ),
         .target(

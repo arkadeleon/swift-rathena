@@ -10,7 +10,6 @@ import rAthenaLogin
 import rAthenaChar
 import rAthenaMap
 import rAthenaWeb
-import rAthenaControl
 
 struct ContentView: View {
     private let servers: [RAServer] = [
@@ -34,7 +33,7 @@ struct ContentView: View {
                 Section("Servers") {
                     ForEach(servers, id: \.name) { server in
                         NavigationLink {
-                            RAServerView(server: server)
+                            ServerView(server: server)
                         } label: {
                             Label(server.name, systemImage: "macpro.gen3.server")
                         }
@@ -43,7 +42,7 @@ struct ContentView: View {
                 Section("Databases") {
                     ForEach(databases, id: \.name) { database in
                         NavigationLink {
-                            RADatabaseView(database: database)
+                            DatabaseView(database: database)
                         } label: {
                             Label(database.name, systemImage: "list.bullet.rectangle")
                         }
