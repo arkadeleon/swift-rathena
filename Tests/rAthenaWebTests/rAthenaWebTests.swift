@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import rAthenaCommon
+@testable import rAthenaResource
 @testable import rAthenaWeb
 
 class rAthenaWebTests: XCTestCase {
@@ -14,7 +14,7 @@ class rAthenaWebTests: XCTestCase {
     let webServer = RAWebServer.shared
 
     override func setUp() async throws {
-        resourceManager.copyResourcesToLibraryDirectory()
+        try resourceManager.copyResourceFilesToLibraryDirectory()
 //        await webServer.start()
     }
 

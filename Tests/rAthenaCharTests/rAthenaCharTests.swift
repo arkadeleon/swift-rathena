@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import rAthenaCommon
+@testable import rAthenaResource
 @testable import rAthenaChar
 
 class rAthenaCharTests: XCTestCase {
@@ -14,7 +14,7 @@ class rAthenaCharTests: XCTestCase {
     let charServer = RACharServer.shared
 
     override func setUp() async throws {
-        resourceManager.copyResourcesToLibraryDirectory()
+        try resourceManager.copyResourceFilesToLibraryDirectory()
         await charServer.start()
     }
 

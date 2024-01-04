@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import rAthenaCommon
+@testable import rAthenaResource
 @testable import rAthenaLogin
 
 class rAthenaLoginTests: XCTestCase {
@@ -14,7 +14,7 @@ class rAthenaLoginTests: XCTestCase {
     let loginServer = RALoginServer.shared
 
     override func setUp() async throws {
-        resourceManager.copyResourcesToLibraryDirectory()
+        try resourceManager.copyResourceFilesToLibraryDirectory()
         await loginServer.start()
     }
 

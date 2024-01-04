@@ -264,19 +264,31 @@ let package = Package(
         ),
         .testTarget(
             name: "rAthenaLoginTests",
-            dependencies: ["rAthenaLogin"]
+            dependencies: [
+                "rAthenaResource",
+                "rAthenaLogin",
+            ]
         ),
         .testTarget(
             name: "rAthenaCharTests",
-            dependencies: ["rAthenaChar"]
+            dependencies: [
+                "rAthenaResource",
+                "rAthenaChar",
+            ]
         ),
         .testTarget(
             name: "rAthenaMapTests",
-            dependencies: ["rAthenaMap"]
+            dependencies: [
+                "rAthenaResource",
+                "rAthenaMap",
+            ]
         ),
         .testTarget(
             name: "rAthenaWebTests",
-            dependencies: ["rAthenaWeb"]
+            dependencies: [
+                "rAthenaResource",
+                "rAthenaWeb",
+            ]
         ),
     ],
     cxxLanguageStandard: .cxx17

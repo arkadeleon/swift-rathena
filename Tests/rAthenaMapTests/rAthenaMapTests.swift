@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import rAthenaCommon
+@testable import rAthenaResource
 @testable import rAthenaMap
 
 class rAthenaMapTests: XCTestCase {
@@ -14,7 +14,7 @@ class rAthenaMapTests: XCTestCase {
     let mapServer = RAMapServer.shared
 
     override func setUp() async throws {
-        resourceManager.copyResourcesToLibraryDirectory()
+        try resourceManager.copyResourceFilesToLibraryDirectory()
         await mapServer.start()
     }
 
@@ -24,7 +24,7 @@ class rAthenaMapTests: XCTestCase {
 
     func testItemDatabase() {
         let items = RAItemDatabase.shared.allRecords() as! [RAItem]
-        XCTAssertEqual(items.count, 24888)
+        XCTAssertEqual(items.count, 24897)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
 
