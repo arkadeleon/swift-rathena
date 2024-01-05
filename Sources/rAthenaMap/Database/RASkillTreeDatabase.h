@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class RASkillTreeSkill;
 @class RASkillTreePrerequisiteSkill;
 
-@interface RASkillTreeDatabase : RADatabase
+@interface RASkillTreeDatabase : RADatabase<RASkillTree *>
 
 @property (nonatomic, class, readonly) RASkillTreeDatabase *sharedDatabase;
 
 @end
 
-@interface RASkillTree : RADatabaseRecord
+@interface RASkillTree : NSObject
 
 /// Job ID.
 ///

@@ -19,14 +19,6 @@ struct ContentView: View {
         RAWebServer.shared,
     ]
 
-    private let databases: [RADatabase] = [
-        RAItemDatabase.shared,
-        RAMonsterDatabase.shared,
-        RAJobDatabase.shared,
-        RASkillDatabase.shared,
-        RASkillTreeDatabase.shared,
-    ]
-
     var body: some View {
         NavigationView {
             List {
@@ -39,13 +31,36 @@ struct ContentView: View {
                         }
                     }
                 }
+
                 Section("Databases") {
-                    ForEach(databases, id: \.name) { database in
-                        NavigationLink {
-                            DatabaseView(database: database)
-                        } label: {
-                            Label(database.name, systemImage: "list.bullet.rectangle")
-                        }
+                    NavigationLink {
+                        DatabaseView(database: RAItemDatabase.shared)
+                    } label: {
+                        Label(RAItemDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                    }
+
+                    NavigationLink {
+                        DatabaseView(database: RAMonsterDatabase.shared)
+                    } label: {
+                        Label(RAMonsterDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                    }
+
+                    NavigationLink {
+                        DatabaseView(database: RAJobDatabase.shared)
+                    } label: {
+                        Label(RAJobDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                    }
+
+                    NavigationLink {
+                        DatabaseView(database: RASkillDatabase.shared)
+                    } label: {
+                        Label(RASkillDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                    }
+
+                    NavigationLink {
+                        DatabaseView(database: RASkillTreeDatabase.shared)
+                    } label: {
+                        Label(RASkillTreeDatabase.shared.name, systemImage: "list.bullet.rectangle")
                     }
                 }
             }

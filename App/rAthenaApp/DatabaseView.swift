@@ -8,15 +8,15 @@
 import SwiftUI
 import rAthenaCommon
 
-public struct DatabaseView: View {
-    let database: RADatabase
+struct DatabaseView<Record>: View where Record: AnyObject, Record: DatabaseRecord {
+    let database: RADatabase<Record>
 
     @State private var searchText = ""
-    @State private var allRecords = [RADatabaseRecord]()
-    @State private var filteredRecords = [RADatabaseRecord]()
+    @State private var allRecords = [Record]()
+    @State private var filteredRecords = [Record]()
 
     public var body: some View {
-        List(filteredRecords) { record in
+        List(filteredRecords, id: \.recordID) { record in
             NavigationLink {
                 DatabaseRecordView(record: record)
             } label: {
@@ -41,7 +41,7 @@ public struct DatabaseView: View {
         }
     }
 
-    public init(database: RADatabase) {
+    public init(database: RADatabase<Record>) {
         self.database = database
     }
 
@@ -53,11 +53,5 @@ public struct DatabaseView: View {
                 record.recordTitle.localizedCaseInsensitiveContains(searchText)
             }
         }
-    }
-}
-
-struct DatabaseView_Previews: PreviewProvider {
-    static var previews: some View {
-        DatabaseView(database: RADatabase())
     }
 }

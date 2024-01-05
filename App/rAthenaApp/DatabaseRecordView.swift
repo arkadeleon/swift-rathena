@@ -8,65 +8,47 @@
 import SwiftUI
 import rAthenaCommon
 
-public struct DatabaseRecordView: View {
-    let record: RADatabaseRecord
+struct DatabaseRecordView: View {
+    let record: DatabaseRecord
 
-    @State private var recordFields = [RADatabaseRecordField]()
+    @State private var recordFields = [DatabaseRecordField]()
 
     public var body: some View {
         List(recordFields) { field in
-            switch field.value.type {
-            case .string:
+            switch field {
+            case .string(let name, let value):
                 HStack {
-                    Text(field.name)
+                    Text(name)
                     Spacer()
-                    Text(field.value.string!)
+                    Text(value)
                         .foregroundColor(.secondary)
                 }
-            case .number:
-                HStack {
-                    Text(field.name)
-                    Spacer()
-                    Text(field.value.number!.stringValue)
-                        .foregroundColor(.secondary)
-                }
-            case .reference:
+            case .reference(let name, let reference):
                 NavigationLink {
-                    DatabaseRecordView(record: field.value.reference!)
+                    DatabaseRecordView(record: reference)
                 } label: {
-                    Text(field.name)
+                    Text(name)
                 }
             case .array:
-                OutlineGroup(field, children: \.value.array) { field in
-                    switch field.value.type {
-                    case .string:
+                OutlineGroup(field, children: \.array) { field in
+                    switch field {
+                    case .string(let name, let value):
                         HStack {
-                            Text(field.name)
+                            Text(name)
                             Spacer()
-                            Text(field.value.string!)
+                            Text(value)
                                 .foregroundColor(.secondary)
                         }
-                    case .number:
-                        HStack {
-                            Text(field.name)
-                            Spacer()
-                            Text(field.value.number!.stringValue)
-                                .foregroundColor(.secondary)
-                        }
-                    case .reference:
+                    case .reference(let name, let reference):
                         NavigationLink {
-                            DatabaseRecordView(record: field.value.reference!)
+                            DatabaseRecordView(record: reference)
                         } label: {
-                            HStack {
-                                Text(field.name)
-                            }
+                            Text(name)
                         }
-                    default:
-                        Text(field.name)
+                    case .array(let name, _):
+                        Text(name)
                     }
                 }
-            @unknown default:
-                EmptyView()
             }
         }
         .listStyle(.plain)
@@ -77,15 +59,5 @@ public struct DatabaseRecordView: View {
                 recordFields = record.recordFields
             }
         }
-    }
-
-    public init(record: RADatabaseRecord) {
-        self.record = record
-    }
-}
-
-struct DatabaseRecordView_Previews: PreviewProvider {
-    static var previews: some View {
-        DatabaseRecordView(record: RADatabaseRecord())
     }
 }

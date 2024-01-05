@@ -11,13 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAJobDatabase : RADatabase
+@class RAJob;
+
+@interface RAJobDatabase : RADatabase<RAJob *>
 
 @property (nonatomic, class, readonly) RAJobDatabase *sharedDatabase;
 
 @end
 
-@interface RAJob : RADatabaseRecord
+@interface RAJob : NSObject
 
 /// Job ID.
 ///

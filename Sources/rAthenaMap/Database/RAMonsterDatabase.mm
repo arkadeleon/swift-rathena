@@ -36,7 +36,7 @@
     return @"Monster Database";
 }
 
-- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RAMonster *> *)cache {
     for (auto entry = mob_db.begin(); entry != mob_db.end(); ++entry) {
         RAMonster *monster = [[RAMonster alloc] initWithMob:entry->second];
         cache[@(monster.monsterID)] = monster;
@@ -121,99 +121,6 @@
         _drops = [drops copy];
     }
     return self;
-}
-
-- (NSInteger)recordID {
-    return self.monsterID;
-}
-
-- (NSString *)recordTitle {
-    return self.name;
-}
-
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
-
-    [fields ra_addFieldWithName:@"ID" stringValue:[NSString stringWithFormat:@"#%ld", (long)self.monsterID]];
-    [fields ra_addFieldWithName:@"Aegis Name" stringValue:self.aegisName];
-    [fields ra_addFieldWithName:@"Name" stringValue:self.name];
-
-    [fields ra_addFieldWithName:@"Level" numberValue:@(self.level)];
-    [fields ra_addFieldWithName:@"HP" numberValue:@(self.hp)];
-    [fields ra_addFieldWithName:@"SP" numberValue:@(self.sp)];
-
-    [fields ra_addFieldWithName:@"Base Exp" numberValue:@(self.baseExp)];
-    [fields ra_addFieldWithName:@"Job Exp" numberValue:@(self.jobExp)];
-    [fields ra_addFieldWithName:@"MVP Exp" numberValue:@(self.mvpExp)];
-
-#ifdef RENEWAL
-    NSInteger minAttack = 8 * self.attack / 10 + self.strength + self.level;
-    NSInteger maxAttack = 12 * self.attack / 10 + self.strength + self.level;
-#else
-    NSInteger minAttack = self.attack;
-    NSInteger maxAttack = self.attack2;
-#endif
-    [fields ra_addFieldWithName:@"Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minAttack, maxAttack]];
-
-#ifdef RENEWAL
-    NSInteger minMagicAttack = 7 * self.attack2 / 10 + self.intelligence + self.level;
-    NSInteger maxMagicAttack = 13 * self.attack2 / 10 + self.intelligence + self.level;
-    [fields ra_addFieldWithName:@"Magic Attack" stringValue:[NSString stringWithFormat:@"%ld-%ld", minMagicAttack, maxMagicAttack]];
-#endif
-
-    [fields ra_addFieldWithName:@"Defense" numberValue:@(self.defense)];
-    [fields ra_addFieldWithName:@"Magic Defense" numberValue:@(self.magicDefense)];
-
-    [fields ra_addFieldWithName:@"Resistance" numberValue:@(self.resistance)];
-    [fields ra_addFieldWithName:@"Magic Resistance" numberValue:@(self.magicResistance)];
-
-    [fields ra_addFieldWithName:@"Str" numberValue:@(self.strength)];
-    [fields ra_addFieldWithName:@"Agi" numberValue:@(self.agility)];
-    [fields ra_addFieldWithName:@"Vit" numberValue:@(self.vitality)];
-    [fields ra_addFieldWithName:@"Int" numberValue:@(self.intelligence)];
-    [fields ra_addFieldWithName:@"Dex" numberValue:@(self.dexterity)];
-    [fields ra_addFieldWithName:@"Luk" numberValue:@(self.luck)];
-
-    [fields ra_addFieldWithName:@"Attack Range" numberValue:@(self.attackRange)];
-    [fields ra_addFieldWithName:@"Skill Cast Range" numberValue:@(self.skillRange)];
-    [fields ra_addFieldWithName:@"Chase Range" numberValue:@(self.chaseRange)];
-
-    [fields ra_addFieldWithName:@"Size" stringValue:NSStringFromRASize(self.size)];
-
-    [fields ra_addFieldWithName:@"Race" stringValue:NSStringFromRARace(self.race)];
-
-    // TODO: Race Groups
-
-    [fields ra_addFieldWithName:@"Element" stringValue:[NSString stringWithFormat:@"%@ %ld", NSStringFromRAElement(self.element), self.elementLevel]];
-
-    [fields ra_addFieldWithName:@"Walk Speed" numberValue:@(self.walkSpeed)];
-    [fields ra_addFieldWithName:@"Attack Speed" numberValue:@(self.attackDelay)];
-    [fields ra_addFieldWithName:@"Attack Animation Speed" numberValue:@(self.attackMotion)];
-    [fields ra_addFieldWithName:@"Damage Animation Speed" numberValue:@(self.damageMotion)];
-
-    // TODO: Damage Taken
-
-    [fields ra_addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
-
-    // TODO: Modes
-
-    NSMutableArray<RADatabaseRecordField *> *dropFields = [NSMutableArray arrayWithCapacity:self.drops.count];
-    for (RAMonsterDrop *drop in self.drops) {
-        RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
-        NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
-        [dropFields ra_addFieldWithName:name referenceValue:item];
-    }
-    [fields ra_addFieldWithName:@"Drops" arrayValue:dropFields];
-
-    NSMutableArray<RADatabaseRecordField *> *mvpDropFields = [NSMutableArray arrayWithCapacity:self.mvpDrops.count];
-    for (RAMonsterDrop *drop in self.mvpDrops) {
-        RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
-        NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
-        [mvpDropFields ra_addFieldWithName:name referenceValue:item];
-    }
-    [fields ra_addFieldWithName:@"MVP Drops" arrayValue:mvpDropFields];
-
-    return [fields copy];
 }
 
 @end

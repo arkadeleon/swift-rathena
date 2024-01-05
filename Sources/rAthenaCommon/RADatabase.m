@@ -9,7 +9,7 @@
 
 @interface RADatabase ()
 
-@property (nonatomic, copy) NSMutableDictionary<NSNumber *, RADatabaseRecord *> *cache;
+@property (nonatomic, copy) NSMutableDictionary<NSNumber *, id> *cache;
 
 @end
 
@@ -27,7 +27,7 @@
     NSCAssert(NO, @"This method must be overridden by subclasses");
 }
 
-- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, id> *)cache {
     NSCAssert(NO, @"This method must be overridden by subclasses");
 }
 
@@ -37,113 +37,21 @@
     }
 }
 
-- (NSArray<__kindof RADatabaseRecord *> *)allRecords {
+- (NSArray *)allRecords {
     [self recoverCacheIfNeeded];
 
-    return [self.cache.allValues sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"recordID" ascending:YES]]];
+    NSArray<NSNumber *> *sortedKeys = [self.cache.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    NSMutableArray *sortedValues = [NSMutableArray arrayWithCapacity:self.cache.count];
+    for (NSNumber *key in sortedKeys) {
+        [sortedValues addObject:self.cache[key]];
+    }
+    return [sortedValues copy];
 }
 
-- (__kindof RADatabaseRecord *)recordWithID:(NSInteger)recordID {
+- (id)recordWithID:(NSInteger)recordID {
     [self recoverCacheIfNeeded];
 
     return self.cache[@(recordID)];
-}
-
-@end
-
-@implementation RADatabaseRecord
-
-- (NSInteger)recordID {
-    return 0;
-}
-
-- (NSString *)recordTitle {
-    return @"";
-}
-
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    return @[];
-}
-
-@end
-
-@implementation RADatabaseRecordField
-
-- (instancetype)initWithName:(NSString *)name value:(RADatabaseRecordFieldValue *)value {
-    self = [super init];
-    if (self) {
-        _name = [name copy];
-        _value = value;
-    }
-    return self;
-}
-
-@end
-
-@implementation RADatabaseRecordFieldValue
-
-- (instancetype)initWithString:(NSString *)string {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeString;
-        _string = [string copy];
-    }
-    return self;
-}
-
-- (instancetype)initWithNumber:(NSNumber *)number {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeNumber;
-        _number = number;
-    }
-    return self;
-}
-
-- (instancetype)initWithReference:(RADatabaseRecord *)reference {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeReference;
-        _reference = reference;
-    }
-    return self;
-}
-
-- (instancetype)initWithArray:(NSArray<RADatabaseRecordField *> *)array {
-    self = [super init];
-    if (self) {
-        _type = RADatabaseRecordFieldValueTypeArray;
-        _array = [array copy];
-    }
-    return self;
-}
-
-@end
-
-@implementation NSMutableArray (RADatabaseRecordField)
-
-- (void)ra_addFieldWithName:(NSString *)name stringValue:(NSString *)stringValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithString:stringValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
-}
-
-- (void)ra_addFieldWithName:(NSString *)name numberValue:(NSNumber *)numberValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithNumber:numberValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
-}
-
-- (void)ra_addFieldWithName:(NSString *)name referenceValue:(RADatabaseRecord *)referenceValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithReference:referenceValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
-}
-
-- (void)ra_addFieldWithName:(NSString *)name arrayValue:(nonnull NSArray<RADatabaseRecordField *> *)arrayValue {
-    RADatabaseRecordFieldValue *value = [[RADatabaseRecordFieldValue alloc] initWithArray:arrayValue];
-    RADatabaseRecordField *field = [[RADatabaseRecordField alloc] initWithName:name value:value];
-    [self addObject:field];
 }
 
 @end

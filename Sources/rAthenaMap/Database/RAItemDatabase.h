@@ -18,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class RAItemNoUse;
 @class RAItemTrade;
 
-@interface RAItemDatabase : RADatabase
+@interface RAItemDatabase : RADatabase<RAItem *>
 
 @property (nonatomic, class, readonly) RAItemDatabase *sharedDatabase;
 
 @end
 
-@interface RAItem : RADatabaseRecord
+@interface RAItem : NSObject
 
 /// Item ID.
 @property (nonatomic) NSInteger itemID;

@@ -17,13 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class RASkillRequirement;
 @class RASkillUnit;
 
-@interface RASkillDatabase : RADatabase
+@interface RASkillDatabase : RADatabase<RASkill *>
 
 @property (nonatomic, class, readonly) RASkillDatabase *sharedDatabase;
 
 @end
 
-@interface RASkill : RADatabaseRecord
+@interface RASkill : NSObject
 
 /// Unique skill ID.
 @property (nonatomic) NSInteger skillID;

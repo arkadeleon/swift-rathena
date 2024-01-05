@@ -14,13 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class RAMonster;
 @class RAMonsterDrop;
 
-@interface RAMonsterDatabase : RADatabase
+@interface RAMonsterDatabase : RADatabase<RAMonster *>
 
 @property (nonatomic, class, readonly) RAMonsterDatabase *sharedDatabase;
 
 @end
 
-@interface RAMonster : RADatabaseRecord
+@interface RAMonster : NSObject
 
 /// Monster ID.
 @property (nonatomic) NSInteger monsterID;

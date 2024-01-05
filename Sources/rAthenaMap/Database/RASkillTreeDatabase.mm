@@ -43,7 +43,7 @@
     return @"Skill Tree Database";
 }
 
-- (void)recoverCache:(NSMutableDictionary<NSNumber *, RADatabaseRecord *> *)cache {
+- (void)recoverCache:(NSMutableDictionary<NSNumber *, RASkillTree *> *)cache {
     for (auto entry = skill_tree_db.begin(); entry != skill_tree_db.end(); ++entry) {
         RASkillTree *skillTree = [[RASkillTree alloc] initWithJob:entry->first tree:entry->second];
         cache[@(skillTree.job)] = skillTree;
@@ -68,49 +68,6 @@
         _tree = [tree copy];
     }
     return self;
-}
-
-- (NSInteger)recordID {
-    return self.job;
-}
-
-- (NSString *)recordTitle {
-    RAJob *job = [[RAJobDatabase sharedDatabase] recordWithID:self.job];
-    return job.jobName;
-}
-
-- (NSArray<RADatabaseRecordField *> *)recordFields {
-    NSMutableArray<RADatabaseRecordField *> *fields = [NSMutableArray array];
-
-    NSMutableArray<RADatabaseRecordField *> *inheritFields = [NSMutableArray arrayWithCapacity:self.inherit.count];
-    for (NSNumber *inheritJob in self.inherit) {
-        RAJob *job = [[RAJobDatabase sharedDatabase] recordWithID:inheritJob.integerValue];
-        RASkillTree *skillTree = [[RASkillTreeDatabase sharedDatabase] recordWithID:inheritJob.integerValue];
-        [inheritFields ra_addFieldWithName:job.jobName referenceValue:skillTree];
-    }
-    [fields ra_addFieldWithName:@"Inherit" arrayValue:inheritFields];
-
-    for (RASkillTreeSkill *skill in self.tree) {
-        RASkill *reference = [[RASkillDatabase sharedDatabase] recordWithID:skill.skillID];
-
-        NSMutableArray<RADatabaseRecordField *> *skillFields = [NSMutableArray array];
-
-        [skillFields ra_addFieldWithName:@"Maximum Level" numberValue:@(skill.maxLevel)];
-        [skillFields ra_addFieldWithName:@"Minimum Base Level Required" numberValue:@(skill.baseLevel)];
-        [skillFields ra_addFieldWithName:@"Minimum Job Level Required" numberValue:@(skill.jobLevel)];
-        [skillFields ra_addFieldWithName:@"Reference" referenceValue:reference];
-
-        NSMutableArray<RADatabaseRecordField *> *prerequisiteFields = [NSMutableArray arrayWithCapacity:skill.prerequisites.count];
-        for (RASkillTreePrerequisiteSkill *prerequisiteSkill in skill.prerequisites) {
-            RASkill *reference = [[RASkillDatabase sharedDatabase] recordWithID:prerequisiteSkill.skillID];
-            [prerequisiteFields ra_addFieldWithName:[NSString stringWithFormat:@"%@ (Level %ld)", reference.skillDescription, prerequisiteSkill.level] referenceValue:reference];
-        }
-        [skillFields ra_addFieldWithName:@"Prerequisites" arrayValue:prerequisiteFields];
-
-        [fields ra_addFieldWithName:reference.skillDescription arrayValue:skillFields];
-    }
-
-    return [fields copy];
 }
 
 @end
