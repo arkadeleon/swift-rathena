@@ -8,30 +8,43 @@
 import SwiftUI
 import rAthenaCommon
 
-struct DatabaseView<Record>: View where Record: AnyObject, Record: DatabaseRecord {
-    let database: RADatabase<Record>
+struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
+    let fetcher: () async throws -> [Record]
 
+    private enum Status {
+        case notYetLoaded
+        case loading
+        case loaded([Record])
+        case failed(Error)
+    }
+
+    @State private var status: Status = .notYetLoaded
     @State private var searchText = ""
-    @State private var allRecords = [Record]()
-    @State private var filteredRecords = [Record]()
+    @State private var filteredRecords: [Record] = []
 
     public var body: some View {
-        List(filteredRecords, id: \.recordID) { record in
-            NavigationLink {
-                DatabaseRecordView(record: record)
-            } label: {
-                Text(record.recordTitle)
+        ZStack {
+            switch status {
+            case .notYetLoaded:
+                EmptyView()
+            case .loading:
+                ProgressView()
+            case .loaded:
+                List(filteredRecords, id: \.recordID) { record in
+                    NavigationLink {
+                        DatabaseRecordView(record: record)
+                    } label: {
+                        Text(record.recordTitle)
+                    }
+                }
+                .listStyle(.plain)
+                .searchable(text: $searchText)
+            case .failed(let error):
+                Text(error.localizedDescription)
             }
         }
-        .listStyle(.plain)
-        .searchable(text: $searchText)
-        .navigationTitle(database.name)
-        .navigationBarTitleDisplayMode(.inline)
         .task {
-            Task {
-                allRecords = database.allRecords()
-                filterRecords()
-            }
+            await load()
         }
         .onSubmit(of: .search) {
             filterRecords()
@@ -41,15 +54,31 @@ struct DatabaseView<Record>: View where Record: AnyObject, Record: DatabaseRecor
         }
     }
 
-    public init(database: RADatabase<Record>) {
-        self.database = database
+    private func load() async {
+        guard case .notYetLoaded = status else {
+            return
+        }
+
+        status = .loading
+
+        do {
+            let records = try await fetcher()
+            status = .loaded(records)
+            filterRecords()
+        } catch {
+            status = .failed(error)
+        }
     }
 
     private func filterRecords() {
+        guard case .loaded(let records) = status else {
+            return
+        }
+
         if searchText.isEmpty {
-            filteredRecords = allRecords
+            filteredRecords = records
         } else {
-            filteredRecords = allRecords.filter { record in
+            filteredRecords = records.filter { record in
                 record.recordTitle.localizedCaseInsensitiveContains(searchText)
             }
         }

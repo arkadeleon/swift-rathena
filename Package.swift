@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "swift-rathena",
     platforms: [
-        .iOS(.v12),
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -16,6 +16,10 @@ let package = Package(
         .library(
             name: "rAthenaResource",
             targets: ["rAthenaResource"]
+        ),
+        .library(
+            name: "rAthenaDatabase",
+            targets: ["rAthenaDatabase"]
         ),
         .library(
             name: "rAthenaLogin",
@@ -93,6 +97,13 @@ let package = Package(
                 .copy("db"),
                 .copy("npc"),
                 .copy("sql-files"),
+            ]
+        ),
+        .target(
+            name: "rAthenaDatabase",
+            dependencies: [
+                "Yams",
+                "rAthenaResource",
             ]
         ),
         .target(
@@ -197,13 +208,6 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]
-        ),
-        .target(
-            name: "rAthenaDatabase",
-            dependencies: [
-                "Yams",
-                "rAthenaResource",
             ]
         ),
         .target(

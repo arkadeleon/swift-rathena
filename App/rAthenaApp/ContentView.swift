@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import rAthenaDatabase
 import rAthenaLogin
 import rAthenaChar
 import rAthenaMap
@@ -34,31 +35,51 @@ struct ContentView: View {
 
                 Section("Databases") {
                     NavigationLink {
-                        DatabaseView(database: RAItemDatabase.shared)
+                        DatabaseView {
+                            try await Database.renewal.fetchItems()
+                        }
+                        .navigationTitle("Items")
+                        .navigationBarTitleDisplayMode(.inline)
                     } label: {
-                        Label(RAItemDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                        Label("Items", systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
-                        DatabaseView(database: RAMonsterDatabase.shared)
+                        DatabaseView {
+                            RAMonsterDatabase.shared.allRecords()
+                        }
+                        .navigationTitle(RAMonsterDatabase.shared.name)
+                        .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RAMonsterDatabase.shared.name, systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
-                        DatabaseView(database: RAJobDatabase.shared)
+                        DatabaseView {
+                            RAJobDatabase.shared.allRecords()
+                        }
+                        navigationTitle(RAJobDatabase.shared.name)
+                        .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RAJobDatabase.shared.name, systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
-                        DatabaseView(database: RASkillDatabase.shared)
+                        DatabaseView {
+                            RASkillDatabase.shared.allRecords()
+                        }
+                        navigationTitle(RASkillDatabase.shared.name)
+                        .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RASkillDatabase.shared.name, systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
-                        DatabaseView(database: RASkillTreeDatabase.shared)
+                        DatabaseView {
+                            RASkillTreeDatabase.shared.allRecords()
+                        }
+                        navigationTitle(RASkillTreeDatabase.shared.name)
+                        .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RASkillTreeDatabase.shared.name, systemImage: "list.bullet.rectangle")
                     }

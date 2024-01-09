@@ -1,16 +1,15 @@
 //
-//  RAItem+DatabaseRecord.swift
+//  Item+DatabaseRecord.swift
 //  rAthenaApp
 //
 //  Created by Leon Li on 2024/1/4.
 //
 
-import rAthenaCommon
-import rAthenaMap
+import rAthenaDatabase
 
-extension RAItem: DatabaseRecord {
+extension Item: DatabaseRecord {
     var recordID: Int {
-        itemID
+        id
     }
 
     var recordTitle: String {
@@ -21,43 +20,46 @@ extension RAItem: DatabaseRecord {
         var fields: [DatabaseRecordField] = []
 
         fields += [
-            .string("ID", "#\(itemID)"),
+            .string("ID", "#\(id)"),
             .string("Aegis Name", aegisName),
             .string("Name", name),
         ]
 
-        fields += [.string("Type", NSStringFromRAItemType(type))]
-        switch type {
-        case RA_IT_WEAPON:
-            fields += [.string("Weapon Type", NSStringFromRAWeaponType(subType))]
-        case RA_IT_AMMO:
-            fields += [.string("Ammo Type", NSStringFromRAAmmoType(subType))]
-        case RA_IT_CARD:
-            fields += [.string("Card Type", NSStringFromRACardType(subType))]
-        default:
-            break
+        if let type {
+            fields += [.string("Type", type.description)]
         }
 
-        fields += [
-            .string("Buy", "\(buy)z"),
-            .string("Sell", "\(sell)z"),
-        ]
+//        switch type {
+//        case RA_IT_WEAPON:
+//            fields += [.string("Weapon Type", NSStringFromRAWeaponType(subType))]
+//        case RA_IT_AMMO:
+//            fields += [.string("Ammo Type", NSStringFromRAAmmoType(subType))]
+//        case RA_IT_CARD:
+//            fields += [.string("Card Type", NSStringFromRACardType(subType))]
+//        default:
+//            break
+//        }
 
-        if type == RA_IT_WEAPON {
-            fields += [
-                .string("Attack", "\(attack)"),
-                .string("Magic Attack", "\(magicAttack)"),
-                .string("Attack Range", "\(range)"),
-                .string("Weapon Level", "\(weaponLevel)"),
-            ]
-        }
+//        fields += [
+//            .string("Buy", "\(buy)z"),
+//            .string("Sell", "\(sell)z"),
+//        ]
 
-        if type == RA_IT_ARMOR {
-            fields += [
-                .string("Defense", "\(defense)"),
-                .string("Armor Level", "\(armorLevel)"),
-            ]
-        }
+//        if type == RA_IT_WEAPON {
+//            fields += [
+//                .string("Attack", "\(attack)"),
+//                .string("Magic Attack", "\(magicAttack)"),
+//                .string("Attack Range", "\(range)"),
+//                .string("Weapon Level", "\(weaponLevel)"),
+//            ]
+//        }
+
+//        if type == RA_IT_ARMOR {
+//            fields += [
+//                .string("Defense", "\(defense)"),
+//                .string("Armor Level", "\(armorLevel)"),
+//            ]
+//        }
 
 //        [fields ra_addFieldWithName:@"Slots" numberValue:@(self.slots)];
 //

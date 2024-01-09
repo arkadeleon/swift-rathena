@@ -14,7 +14,7 @@
 		3514BF6E2B46B1660065ED89 /* rAthenaResource in Frameworks */ = {isa = PBXBuildFile; productRef = 3514BF6D2B46B1660065ED89 /* rAthenaResource */; };
 		3514BF712B46B18E0065ED89 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 3514BF702B46B18E0065ED89 /* Terminal */; };
 		3514BF732B46B6880065ED89 /* DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF722B46B6880065ED89 /* DatabaseRecord.swift */; };
-		3514BF752B46B7DB0065ED89 /* RAItem+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF742B46B7DB0065ED89 /* RAItem+DatabaseRecord.swift */; };
+		3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */; };
 		3514BF772B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */; };
 		3514BF792B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */; };
 		3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */; };
@@ -28,6 +28,7 @@
 		351BAE6329D41B14001CED64 /* rAthenaMap in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6129D41B14001CED64 /* rAthenaMap */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		351BAE6529D41B14001CED64 /* rAthenaWeb in Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; };
 		351BAE6629D41B14001CED64 /* rAthenaWeb in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE6429D41B14001CED64 /* rAthenaWeb */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		359552E52B4CF790000C871C /* rAthenaDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 359552E42B4CF790000C871C /* rAthenaDatabase */; };
 		35FC634329125B2000825452 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634229125B2000825452 /* App.swift */; };
 		35FC634529125B2000825452 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FC634429125B2000825452 /* ContentView.swift */; };
 		35FC634729125B2000825452 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35FC634629125B2000825452 /* Assets.xcassets */; };
@@ -57,7 +58,7 @@
 		3514BF662B46B0810065ED89 /* ServerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		3514BF672B46B0810065ED89 /* ServerTerminalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTerminalView.swift; sourceTree = "<group>"; };
 		3514BF722B46B6880065ED89 /* DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecord.swift; sourceTree = "<group>"; };
-		3514BF742B46B7DB0065ED89 /* RAItem+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RAItem+DatabaseRecord.swift"; sourceTree = "<group>"; };
+		3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RAMonster+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RAJob+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RASkill+DatabaseRecord.swift"; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 				351BAE5D29D41B14001CED64 /* rAthenaCommon in Frameworks */,
 				351BAE6229D41B14001CED64 /* rAthenaMap in Frameworks */,
 				351BAE6529D41B14001CED64 /* rAthenaWeb in Frameworks */,
+				359552E52B4CF790000C871C /* rAthenaDatabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +125,7 @@
 				3514BF632B46B0800065ED89 /* DatabaseView.swift */,
 				3514BF642B46B0800065ED89 /* DatabaseRecordView.swift */,
 				3514BF722B46B6880065ED89 /* DatabaseRecord.swift */,
-				3514BF742B46B7DB0065ED89 /* RAItem+DatabaseRecord.swift */,
+				3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */,
 				3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */,
 				3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */,
 				3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */,
@@ -167,6 +169,7 @@
 				351BAE6429D41B14001CED64 /* rAthenaWeb */,
 				3514BF6D2B46B1660065ED89 /* rAthenaResource */,
 				3514BF702B46B18E0065ED89 /* Terminal */,
+				359552E42B4CF790000C871C /* rAthenaDatabase */,
 			);
 			productName = rAthenaApp;
 			productReference = 35FC633F29125B2000825452 /* rAthenaApp.app */;
@@ -229,7 +232,7 @@
 				3514BF682B46B0810065ED89 /* DatabaseView.swift in Sources */,
 				35FC634529125B2000825452 /* ContentView.swift in Sources */,
 				3514BF6B2B46B0810065ED89 /* ServerView.swift in Sources */,
-				3514BF752B46B7DB0065ED89 /* RAItem+DatabaseRecord.swift in Sources */,
+				3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */,
 				3514BF732B46B6880065ED89 /* DatabaseRecord.swift in Sources */,
 				35FC634329125B2000825452 /* App.swift in Sources */,
 				3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */,
@@ -486,6 +489,10 @@
 		351BAE6429D41B14001CED64 /* rAthenaWeb */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = rAthenaWeb;
+		};
+		359552E42B4CF790000C871C /* rAthenaDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = rAthenaDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

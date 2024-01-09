@@ -20,7 +20,7 @@ public class Database {
         self.decoder = YAMLDecoder()
     }
 
-    public func fetchItems() throws -> [Item] {
+    public func fetchItems() async throws -> [Item] {
         let path = renewal ? "db/re/" : "db/pre-re/"
 
         let usableItemData = try RAResourceManager.shared.data(forResource: path + "item_db_usable.yml")
