@@ -1,5 +1,5 @@
 //
-//  rAthenaMapTests.swift
+//  MapServerTests.swift
 //  rAthenaTests
 //
 //  Created by Leon Li on 2023/2/14.
@@ -9,7 +9,7 @@ import XCTest
 @testable import rAthenaResource
 @testable import rAthenaMap
 
-class rAthenaMapTests: XCTestCase {
+final class MapServerTests: XCTestCase {
     let resourceManager = RAResourceManager.shared
     let mapServer = RAMapServer.shared
 
@@ -23,7 +23,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testItemDatabase() {
-        let items = RAItemDatabase.shared.allRecords() as! [RAItem]
+        let items = RAItemDatabase.shared.allRecords()
         XCTAssertEqual(items.count, 24897)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
@@ -133,7 +133,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testMonsterDatabase() {
-        let monsters = RAMonsterDatabase.shared.allRecords() as! [RAMonster]
+        let monsters = RAMonsterDatabase.shared.allRecords()
         XCTAssertEqual(monsters.count, 2445)
 
         let uniqueMonsters = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.monsterID, $0) }))
@@ -210,7 +210,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() {
-        let skillTrees = RASkillTreeDatabase.shared.allRecords() as! [RASkillTree]
+        let skillTrees = RASkillTreeDatabase.shared.allRecords()
         XCTAssertEqual(skillTrees.count, 167)
 
         let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
@@ -227,7 +227,7 @@ class rAthenaMapTests: XCTestCase {
     }
 
     func testSkillDatabase() {
-        let skills = RASkillDatabase.shared.allRecords() as! [RASkill]
+        let skills = RASkillDatabase.shared.allRecords()
         XCTAssertEqual(skills.count, 1502)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))

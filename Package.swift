@@ -42,6 +42,9 @@ let package = Package(
             targets: ["rAthenaPacket"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.6"),
+    ],
     targets: [
         .target(
             name: "rAthenaCommon",
@@ -197,6 +200,13 @@ let package = Package(
             ]
         ),
         .target(
+            name: "rAthenaDatabase",
+            dependencies: [
+                "Yams",
+                "rAthenaResource",
+            ]
+        ),
+        .target(
             name: "rAthenaPacket",
             dependencies: [
                 "rAthenaCommon",
@@ -273,6 +283,12 @@ let package = Package(
             dependencies: [
                 "rAthenaResource",
                 "rAthenaWeb",
+            ]
+        ),
+        .testTarget(
+            name: "rAthenaDatabaseTests",
+            dependencies: [
+                "rAthenaDatabase",
             ]
         ),
     ],

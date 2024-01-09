@@ -1,5 +1,5 @@
 //
-//  rAthenaWebTests.swift
+//  WebServerTests.swift
 //  rAthenaTests
 //
 //  Created by Leon Li on 2023/2/14.
@@ -9,7 +9,7 @@ import XCTest
 @testable import rAthenaResource
 @testable import rAthenaWeb
 
-class rAthenaWebTests: XCTestCase {
+final class WebServerTests: XCTestCase {
     let resourceManager = RAResourceManager.shared
     let webServer = RAWebServer.shared
 

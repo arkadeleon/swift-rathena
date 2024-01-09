@@ -1,5 +1,5 @@
 //
-//  rAthenaCommonTests.swift
+//  BitsetTests.swift
 //  rAthenaTests
 //
 //  Created by Leon Li on 2023/2/22.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import rAthenaCommon
 
-class rAthenaCommonTests: XCTestCase {
+final class BitsetTests: XCTestCase {
     func testBitset() {
         let bitset = RABitset(value: 0x0000000000000007)
         XCTAssertTrue(bitset[0])

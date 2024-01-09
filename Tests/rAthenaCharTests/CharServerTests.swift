@@ -1,5 +1,5 @@
 //
-//  rAthenaCharTests.swift
+//  CharServerTests.swift
 //  rAthenaTests
 //
 //  Created by Leon Li on 2023/2/14.
@@ -9,7 +9,7 @@ import XCTest
 @testable import rAthenaResource
 @testable import rAthenaChar
 
-class rAthenaCharTests: XCTestCase {
+final class CharServerTests: XCTestCase {
     let resourceManager = RAResourceManager.shared
     let charServer = RACharServer.shared
 
