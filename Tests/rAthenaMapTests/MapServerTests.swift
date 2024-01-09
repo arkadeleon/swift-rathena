@@ -10,7 +10,7 @@ import XCTest
 @testable import rAthenaMap
 
 final class MapServerTests: XCTestCase {
-    let resourceManager = RAResourceManager.shared
+    let resourceManager = ResourceManager.shared
     let mapServer = RAMapServer.shared
 
     override func setUp() async throws {

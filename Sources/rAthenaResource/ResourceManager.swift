@@ -1,5 +1,5 @@
 //
-//  RAResourceManager.swift
+//  ResourceManager.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/29.
@@ -8,8 +8,8 @@
 import Foundation
 import SQLite3
 
-public class RAResourceManager {
-    public static let shared = RAResourceManager()
+public class ResourceManager {
+    public static let shared = ResourceManager()
 
     private let fileManager: FileManager
     private let sourceURL: URL

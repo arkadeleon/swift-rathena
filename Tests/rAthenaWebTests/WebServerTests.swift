@@ -10,7 +10,7 @@ import XCTest
 @testable import rAthenaWeb
 
 final class WebServerTests: XCTestCase {
-    let resourceManager = RAResourceManager.shared
+    let resourceManager = ResourceManager.shared
     let webServer = RAWebServer.shared
 
     override func setUp() async throws {

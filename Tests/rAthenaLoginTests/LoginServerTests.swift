@@ -10,7 +10,7 @@ import XCTest
 @testable import rAthenaLogin
 
 final class LoginServerTests: XCTestCase {
-    let resourceManager = RAResourceManager.shared
+    let resourceManager = ResourceManager.shared
     let loginServer = RALoginServer.shared
 
     override func setUp() async throws {

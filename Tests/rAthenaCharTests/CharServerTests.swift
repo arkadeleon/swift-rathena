@@ -10,7 +10,7 @@ import XCTest
 @testable import rAthenaChar
 
 final class CharServerTests: XCTestCase {
-    let resourceManager = RAResourceManager.shared
+    let resourceManager = ResourceManager.shared
     let charServer = RACharServer.shared
 
     override func setUp() async throws {

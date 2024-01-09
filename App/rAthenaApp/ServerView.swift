@@ -54,7 +54,7 @@ public struct ServerView: View {
         }
         .task {
             Task {
-                try RAResourceManager.shared.copyResourceFilesToLibraryDirectory()
+                try ResourceManager.shared.copyResourceFilesToLibraryDirectory()
 
                 server.outputHandler = { data in
                     if let data = String(data: data, encoding: .isoLatin1)?
