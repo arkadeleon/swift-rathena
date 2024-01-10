@@ -25,44 +25,55 @@ extension Item: DatabaseRecord {
             .string("Name", name),
         ]
 
-        if let type {
-            fields += [.string("Type", type.description)]
+        fields += [.string("Type", type.description)]
+
+        switch subType {
+        case .none:
+            break
+        case .weapon(let weaponType):
+            fields += [.string("Weapon Type", weaponType.description)]
+        case .ammo(let ammoType):
+            fields += [.string("Ammo Type", ammoType.description)]
+        case .card(let cardType):
+            fields += [.string("Card Type", cardType.description)]
         }
 
-//        switch type {
-//        case RA_IT_WEAPON:
-//            fields += [.string("Weapon Type", NSStringFromRAWeaponType(subType))]
-//        case RA_IT_AMMO:
-//            fields += [.string("Ammo Type", NSStringFromRAAmmoType(subType))]
-//        case RA_IT_CARD:
-//            fields += [.string("Card Type", NSStringFromRACardType(subType))]
-//        default:
-//            break
-//        }
+        fields += [
+            .string("Buy", "\(buy)z"),
+            .string("Sell", "\(sell)z"),
+            .string("Gender", gender.description),
+        ]
 
-//        fields += [
-//            .string("Buy", "\(buy)z"),
-//            .string("Sell", "\(sell)z"),
-//        ]
+        switch type {
+        case .weapon:
+            fields += [
+                .string("Attack", "\(attack)"),
+                .string("Magic Attack", "\(magicAttack)"),
+                .string("Attack Range", "\(range)"),
+                .string("Weapon Level", "\(weaponLevel)"),
+            ]
+        case .armor:
+            fields += [
+                .string("Defense", "\(defense)"),
+                .string("Armor Level", "\(armorLevel)"),
+            ]
+        default:
+            break
+        }
 
-//        if type == RA_IT_WEAPON {
-//            fields += [
-//                .string("Attack", "\(attack)"),
-//                .string("Magic Attack", "\(magicAttack)"),
-//                .string("Attack Range", "\(range)"),
-//                .string("Weapon Level", "\(weaponLevel)"),
-//            ]
-//        }
+        switch type {
+        case .weapon, .armor:
+            fields += [
+                .string("Slots", "\(slots)"),
+                .string("Minimum Level", "\(equipLevelMin)"),
+                .string("Maximum Level", "\(equipLevelMax)"),
+                .string("Refinable", refineable ? "Yes" : "No"),
+                .string("Gradable", gradable ? "Yes" : "No"),
+            ]
+        default:
+            break;
+        }
 
-//        if type == RA_IT_ARMOR {
-//            fields += [
-//                .string("Defense", "\(defense)"),
-//                .string("Armor Level", "\(armorLevel)"),
-//            ]
-//        }
-
-//        [fields ra_addFieldWithName:@"Slots" numberValue:@(self.slots)];
-//
 //        NSArray<RAJob *> *jobs = [[RAJobDatabase sharedDatabase] allRecords];
 //        NSMutableArray<RADatabaseRecordField *> *jobFields = [NSMutableArray arrayWithCapacity:jobs.count];
 //        for (RAJob *job in jobs) {
@@ -71,16 +82,8 @@ extension Item: DatabaseRecord {
 //            }
 //        }
 //        [fields ra_addFieldWithName:@"Jobs" arrayValue:jobFields];
-//
-//        [fields ra_addFieldWithName:@"Gender" stringValue:NSStringFromRASex(self.gender)];
 
         // TODO: Locations
-
-//        [fields ra_addFieldWithName:@"Minimum Level" numberValue:@(self.equipLevelMin)];
-//        [fields ra_addFieldWithName:@"Maximum Level" numberValue:@(self.equipLevelMax)];
-//
-//        [fields ra_addFieldWithName:@"Refinable" numberValue:@(self.refineable)];
-//        [fields ra_addFieldWithName:@"Gradable" numberValue:@(self.gradable)];
 
         // TODO: View
 
