@@ -9,6 +9,7 @@ import rAthenaResource
 import Yams
 
 public class Database {
+
     private let renewal: Bool
     private let decoder: YAMLDecoder
 
@@ -34,5 +35,14 @@ public class Database {
 
         let items = usableItemList.body + equipItemList.body + etcItemList.body
         return items
+    }
+
+    public func fetchMonsters() async throws -> [Monster] {
+        let path = renewal ? "db/re/" : "db/pre-re/"
+
+        let mobData = try ResourceManager.shared.data(forResource: path + "mob_db.yml")
+        let mobList = try decoder.decode(List<Monster>.self, from: mobData)
+
+        return mobList.body
     }
 }

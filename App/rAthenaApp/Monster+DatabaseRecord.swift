@@ -1,16 +1,16 @@
 //
-//  RAMonster+DatabaseRecord.swift
+//  Monster+DatabaseRecord.swift
 //  rAthenaApp
 //
 //  Created by Leon Li on 2024/1/4.
 //
 
 import rAthenaCommon
-import rAthenaMap
+import rAthenaDatabase
 
-extension RAMonster: DatabaseRecord {
+extension Monster: DatabaseRecord {
     var recordID: Int {
-        monsterID
+        id
     }
 
     var recordTitle: String {
@@ -21,7 +21,7 @@ extension RAMonster: DatabaseRecord {
         var fields: [DatabaseRecordField] = []
 
         fields += [
-            .string("ID", "#\(monsterID)"),
+            .string("ID", "#\(id)"),
             .string("Aegis Name", aegisName),
             .string("Name", name),
         ]
@@ -39,8 +39,8 @@ extension RAMonster: DatabaseRecord {
         ]
 
         if RA_RENEWAL.boolValue {
-            let minAttack = 8 * attack / 10 + strength + level
-            let maxAttack = 12 * attack / 10 + strength + level
+            let minAttack = 8 * attack / 10 + str + level
+            let maxAttack = 12 * attack / 10 + str + level
             fields += [.string("Attack", "\(minAttack)-\(maxAttack)")]
         } else {
             let minAttack = attack
@@ -49,8 +49,8 @@ extension RAMonster: DatabaseRecord {
         }
 
         if RA_RENEWAL.boolValue {
-            let minMagicAttack = 7 * attack2 / 10 + intelligence + level
-            let maxMagicAttack = 13 * attack2 / 10 + intelligence + level
+            let minMagicAttack = 7 * attack2 / 10 + int + level
+            let maxMagicAttack = 13 * attack2 / 10 + int + level
             fields += [.string("Magic Attack", "\(minMagicAttack)-\(maxMagicAttack)")]
         }
 
@@ -87,9 +87,14 @@ extension RAMonster: DatabaseRecord {
 //        // TODO: Damage Taken
 //
 //        [fields ra_addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
-//
-//        // TODO: Modes
-//
+
+        if let modes {
+            let modeFields = modes.map { mode -> DatabaseRecordField in
+                .string(mode.rawValue, "")
+            }
+            fields += [.array("Modes", modeFields)]
+        }
+
 //        NSMutableArray<RADatabaseRecordField *> *dropFields = [NSMutableArray arrayWithCapacity:self.drops.count];
 //        for (RAMonsterDrop *drop in self.drops) {
 //            RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];

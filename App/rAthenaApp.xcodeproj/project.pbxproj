@@ -15,7 +15,7 @@
 		3514BF712B46B18E0065ED89 /* Terminal in Frameworks */ = {isa = PBXBuildFile; productRef = 3514BF702B46B18E0065ED89 /* Terminal */; };
 		3514BF732B46B6880065ED89 /* DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF722B46B6880065ED89 /* DatabaseRecord.swift */; };
 		3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */; };
-		3514BF772B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */; };
+		3514BF772B46EF1E0065ED89 /* Monster+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */; };
 		3514BF792B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */; };
 		3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */; };
 		3514BF7D2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */; };
@@ -59,7 +59,7 @@
 		3514BF672B46B0810065ED89 /* ServerTerminalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTerminalView.swift; sourceTree = "<group>"; };
 		3514BF722B46B6880065ED89 /* DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecord.swift; sourceTree = "<group>"; };
 		3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+DatabaseRecord.swift"; sourceTree = "<group>"; };
-		3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RAMonster+DatabaseRecord.swift"; sourceTree = "<group>"; };
+		3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monster+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RAJob+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RASkill+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RASkillTree+DatabaseRecord.swift"; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 				3514BF642B46B0800065ED89 /* DatabaseRecordView.swift */,
 				3514BF722B46B6880065ED89 /* DatabaseRecord.swift */,
 				3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */,
-				3514BF762B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift */,
+				3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */,
 				3514BF782B46FCFA0065ED89 /* RAJob+DatabaseRecord.swift */,
 				3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */,
 				3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */,
@@ -236,7 +236,7 @@
 				3514BF732B46B6880065ED89 /* DatabaseRecord.swift in Sources */,
 				35FC634329125B2000825452 /* App.swift in Sources */,
 				3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */,
-				3514BF772B46EF1E0065ED89 /* RAMonster+DatabaseRecord.swift in Sources */,
+				3514BF772B46EF1E0065ED89 /* Monster+DatabaseRecord.swift in Sources */,
 				3514BF692B46B0810065ED89 /* DatabaseRecordView.swift in Sources */,
 				3514BF7D2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift in Sources */,
 				3514BF6C2B46B0810065ED89 /* ServerTerminalView.swift in Sources */,

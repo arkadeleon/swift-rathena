@@ -9,12 +9,18 @@ import XCTest
 @testable import rAthenaDatabase
 
 final class DatabaseTests: XCTestCase {
-    func testFetchItems() throws {
-        let items = try Database.renewal.fetchItems()
+    func testItemDatabase() async throws {
+        let items = try await Database.renewal.fetchItems()
         XCTAssertEqual(items.count, 24896)
     }
 
+    func testMonsterDatabase() async throws {
+        let monsters = try await Database.renewal.fetchMonsters()
+        XCTAssertEqual(monsters.count, 2445)
+    }
+
     static var allTests = [
-        ("testFetchItems", testFetchItems),
+        ("testItemDatabase", testItemDatabase),
+        ("testMonsterDatabase", testMonsterDatabase),
     ]
 }

@@ -103,6 +103,7 @@ let package = Package(
             name: "rAthenaDatabase",
             dependencies: [
                 "Yams",
+                "rAthenaCommon",
                 "rAthenaResource",
             ]
         ),

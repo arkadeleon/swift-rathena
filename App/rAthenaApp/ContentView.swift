@@ -46,12 +46,12 @@ struct ContentView: View {
 
                     NavigationLink {
                         DatabaseView {
-                            RAMonsterDatabase.shared.allRecords()
+                            try await Database.renewal.fetchMonsters()
                         }
-                        .navigationTitle(RAMonsterDatabase.shared.name)
+                        .navigationTitle("Monsters")
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
-                        Label(RAMonsterDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                        Label("Monsters", systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
