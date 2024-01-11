@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
-public enum MonsterMode: String, CaseIterable, CodingKey {
+public enum MonsterMode: String, CaseIterable, CodingKey, Decodable {
     case canMove = "CanMove"
     case looter = "Looter"
     case aggressive = "Aggressive"
@@ -32,20 +32,4 @@ public enum MonsterMode: String, CaseIterable, CodingKey {
     case detector = "Detector"
     case statusImmune = "StatusImmune"
     case skillImmune = "SkillImmune"
-}
-
-public struct MonsterModes: Sequence, Decodable {
-
-    private var modes: [MonsterMode]
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: MonsterMode.self)
-        self.modes = try MonsterMode.allCases.compactMap { mode in
-            try container.decodeIfPresent(Bool.self, forKey: mode) == true ? mode : nil
-        }
-    }
-
-    public func makeIterator() -> [MonsterMode].Iterator {
-        modes.makeIterator()
-    }
 }

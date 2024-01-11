@@ -56,19 +56,19 @@ struct ContentView: View {
 
                     NavigationLink {
                         DatabaseView {
-                            RAJobDatabase.shared.allRecords()
+                            try await Database.renewal.fetchJobs()
                         }
-                        navigationTitle(RAJobDatabase.shared.name)
+                        .navigationTitle("Jobs")
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
-                        Label(RAJobDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                        Label("Jobs", systemImage: "list.bullet.rectangle")
                     }
 
                     NavigationLink {
                         DatabaseView {
                             RASkillDatabase.shared.allRecords()
                         }
-                        navigationTitle(RASkillDatabase.shared.name)
+                        .navigationTitle(RASkillDatabase.shared.name)
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RASkillDatabase.shared.name, systemImage: "list.bullet.rectangle")
@@ -78,7 +78,7 @@ struct ContentView: View {
                         DatabaseView {
                             RASkillTreeDatabase.shared.allRecords()
                         }
-                        navigationTitle(RASkillTreeDatabase.shared.name)
+                        .navigationTitle(RASkillTreeDatabase.shared.name)
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label(RASkillTreeDatabase.shared.name, systemImage: "list.bullet.rectangle")
@@ -87,6 +87,8 @@ struct ContentView: View {
             }
             .listStyle(.sidebar)
             .navigationTitle("rAthena")
+
+            ServerView(server: RALoginServer.shared)
         }
     }
 }

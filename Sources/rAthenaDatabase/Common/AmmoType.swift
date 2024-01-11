@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-public enum AmmoType: String, Decodable, CustomStringConvertible {
+public enum AmmoType: String, CaseIterable, CodingKey, Decodable {
     case arrow = "Arrow"
     case dagger = "Dagger"
     case bullet = "Bullet"
@@ -16,7 +16,7 @@ public enum AmmoType: String, Decodable, CustomStringConvertible {
     case cannonBall = "Cannonball"
     case throwWeapon = "Throwweapon"
 
-    public var description: String {
+    public var stringValue: String {
         switch self {
         case .arrow: "Arrow"
         case .dagger: "Dagger"

@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
-public enum MonsterAI: String, Decodable {
+public enum MonsterAI: String, CaseIterable, CodingKey, Decodable {
     case ai01 = "01"
     case ai02 = "02"
     case ai03 = "03"

@@ -45,4 +45,31 @@ public class Database {
 
         return mobList.body
     }
+
+    public func fetchJobs() async throws -> [JobStats] {
+        let path = renewal ? "db/re/" : "db/pre-re/"
+
+        let basicStatsData = try ResourceManager.shared.data(forResource: path + "job_stats.yml")
+        let basicStatsList = try decoder.decode(List<JobBasicStats>.self, from: basicStatsData)
+
+        let aspdStatsData = try ResourceManager.shared.data(forResource: path + "job_aspd.yml")
+        let aspdStatsList = try decoder.decode(List<JobASPDStats>.self, from: aspdStatsData)
+
+        let expStatsData = try ResourceManager.shared.data(forResource: path + "job_exp.yml")
+        let expStatsList = try decoder.decode(List<JobExpStats>.self, from: expStatsData)
+
+        let basePointsStatsData = try ResourceManager.shared.data(forResource: path + "job_basepoints.yml")
+        let basePointsStatsList = try decoder.decode(List<JobBasePointsStats>.self, from: basePointsStatsData)
+
+        let jobStatsList = Job.allCases.compactMap { job in
+            JobStats(
+                job: job,
+                basicStatsList: basicStatsList.body,
+                aspdStatsList: aspdStatsList.body,
+                expStatsList: expStatsList.body,
+                basePointsStatsList: basePointsStatsList.body
+            )
+        }
+        return jobStatsList
+    }
 }

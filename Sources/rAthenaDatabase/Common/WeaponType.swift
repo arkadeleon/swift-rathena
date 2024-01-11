@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-public enum WeaponType: String, Decodable, CustomStringConvertible {
+public enum WeaponType: String, CaseIterable, CodingKey, Decodable {
     case fist = "Fist"
     case dagger = "Dagger"
     case oneHandedSword = "1hSword"
@@ -31,7 +31,7 @@ public enum WeaponType: String, Decodable, CustomStringConvertible {
     case Huuma = "Huuma"
     case twoHandedStaff = "2hStaff"
 
-    public var description: String {
+    public var stringValue: String {
         switch self {
         case .fist: "Fist"
         case .dagger: "Dagger"

@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
-public enum RaceGroup: String, CaseIterable, CodingKey {
+public enum RaceGroup: String, CaseIterable, CodingKey, Decodable {
     case goblin = "Goblin"
     case kobold = "Kobold"
     case orc = "Orc"
@@ -37,20 +37,4 @@ public enum RaceGroup: String, CaseIterable, CodingKey {
     case ep172Alpha = "EP172ALPHA"
     case ep172Beta = "EP172BETA"
     case ep172Bath = "EP172BATH"
-}
-
-public struct RaceGroups: Sequence, Decodable {
-
-    private var raceGroups: [RaceGroup]
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: RaceGroup.self)
-        self.raceGroups = try RaceGroup.allCases.compactMap { raceGroup in
-            try container.decodeIfPresent(Bool.self, forKey: raceGroup) == true ? raceGroup : nil
-        }
-    }
-
-    public func makeIterator() -> [RaceGroup].Iterator {
-        raceGroups.makeIterator()
-    }
 }

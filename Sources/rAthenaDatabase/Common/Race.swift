@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
-public enum Race: String, Decodable, CustomStringConvertible {
+public enum Race: String, CaseIterable, CodingKey, Decodable {
 
     /// Formless.
     case formless = "Formless"
@@ -36,8 +36,4 @@ public enum Race: String, Decodable, CustomStringConvertible {
 
     /// Dragon.
     case dragon = "Dragon"
-
-    public var description: String {
-        rawValue
-    }
 }

@@ -91,7 +91,7 @@ public struct Monster: Decodable {
     public var race: Race
 
     /// List of secondary groups the monster may be part of. (Optional)
-    public var raceGroups: RaceGroups?
+    public var raceGroups: [RaceGroup]?
 
     /// Element. (Default: Neutral)
     public var element: Element
@@ -121,7 +121,7 @@ public struct Monster: Decodable {
     public var `class`: MonsterClass
 
     /// List of unique behavior not defined by AI, Class, or Attribute. (Optional)
-    public var modes: MonsterModes?
+    public var modes: [MonsterMode]?
 
     /// List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
     public var mvpDrops: [Drop]?
@@ -201,7 +201,7 @@ public struct Monster: Decodable {
         self.chaseRange = try container.decodeIfPresent(Int.self, forKey: .chaseRange) ?? 0
         self.size = try container.decodeIfPresent(Size.self, forKey: .size) ?? .small
         self.race = try container.decodeIfPresent(Race.self, forKey: .race) ?? .formless
-        self.raceGroups = try container.decodeIfPresent(RaceGroups.self, forKey: .raceGroups)
+        self.raceGroups = try container.decodeIfPresent(Node<RaceGroup, Bool>.self, forKey: .raceGroups)?.keys
         self.element = try container.decodeIfPresent(Element.self, forKey: .element) ?? .neutral
         self.elementLevel = try container.decodeIfPresent(Int.self, forKey: .elementLevel) ?? 1
         self.walkSpeed = try container.decodeIfPresent(WalkSpeed.self, forKey: .walkSpeed) ?? .default
@@ -211,7 +211,7 @@ public struct Monster: Decodable {
         self.damageTaken = try container.decodeIfPresent(Int.self, forKey: .damageTaken) ?? 100
         self.ai = try container.decodeIfPresent(MonsterAI.self, forKey: .ai) ?? .ai06
         self.class = try container.decodeIfPresent(MonsterClass.self, forKey: .class) ?? .normal
-        self.modes = try container.decodeIfPresent(MonsterModes.self, forKey: .modes)
+        self.modes = try container.decodeIfPresent(Node<MonsterMode, Bool>.self, forKey: .modes)?.keys
         self.mvpDrops = try container.decodeIfPresent([Monster.Drop].self, forKey: .mvpDrops)
         self.drops = try container.decodeIfPresent([Monster.Drop].self, forKey: .drops)
     }

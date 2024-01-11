@@ -6,7 +6,7 @@
 //
 
 /// Item's type.
-public enum ItemType: String, CaseIterable, Decodable, CustomStringConvertible {
+public enum ItemType: String, CaseIterable, CodingKey, Decodable {
 
     /// Healing item.
     case healing = "Healing"
@@ -45,7 +45,7 @@ public enum ItemType: String, CaseIterable, Decodable, CustomStringConvertible {
     /// Another delayed consume that requires user confirmation before using the item.
     case cash = "Cash"
 
-    public var description: String {
+    public var stringValue: String {
         switch self {
         case .healing: "Healing"
         case .usable: "Usable"

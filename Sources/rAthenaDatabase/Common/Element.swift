@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
-public enum Element: String, Decodable, CustomStringConvertible {
+public enum Element: String, CaseIterable, CodingKey, Decodable {
 
     /// Neutral.
     case neutral = "Neutral"
@@ -36,8 +36,4 @@ public enum Element: String, Decodable, CustomStringConvertible {
 
     /// Undead.
     case undead = "Undead"
-
-    public var description: String {
-        rawValue
-    }
 }

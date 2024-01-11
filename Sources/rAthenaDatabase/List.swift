@@ -7,28 +7,32 @@
 
 public struct List<Element: Decodable>: Decodable {
 
-    public struct Header: Decodable {
+    /// Header.
+    var header: Header
 
-        enum CodingKeys: String, CodingKey {
-            case type = "Type"
-            case version = "Version"
-        }
-
-        /// Type
-        var type: String
-
-        /// Version
-        var version: Int
-    }
+    /// Body.
+    var body: [Element]
 
     enum CodingKeys: String, CodingKey {
         case header = "Header"
         case body = "Body"
     }
+}
 
-    /// Header
-    var header: Header
+extension List {
 
-    /// Body
-    var body: [Element]
+    /// Header.
+    public struct Header: Decodable {
+
+        /// Type.
+        var type: String
+
+        /// Version.
+        var version: Int
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case version = "Version"
+        }
+    }
 }
