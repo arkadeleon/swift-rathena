@@ -90,7 +90,7 @@ extension Monster: DatabaseRecord {
 
         if let modes {
             let modeFields = modes.map { mode -> DatabaseRecordField in
-                .string(mode.rawValue, "")
+                .string(mode.description, "")
             }
             fields += [.array("Modes", modeFields)]
         }

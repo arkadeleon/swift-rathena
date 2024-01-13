@@ -72,4 +72,13 @@ public class Database {
         }
         return jobStatsList
     }
+
+    public func fetchSkills() async throws -> [Skill] {
+        let path = renewal ? "db/re/" : "db/pre-re/"
+
+        let skillData = try ResourceManager.shared.data(forResource: path + "skill_db.yml")
+        let skillList = try decoder.decode(List<Skill>.self, from: skillData)
+
+        return skillList.body
+    }
 }

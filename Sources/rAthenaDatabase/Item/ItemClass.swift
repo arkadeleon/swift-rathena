@@ -5,7 +5,6 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-/// Equippable upper-types.
 public struct ItemClasses: Decodable {
 
     /// Applies to all classes.

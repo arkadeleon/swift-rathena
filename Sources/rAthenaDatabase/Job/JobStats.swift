@@ -57,7 +57,7 @@ public struct JobStats {
               let baseHpPointsStats = basePointsStatsList.first(where: { $0.jobs.contains(job) && !$0.baseHp.isEmpty }),
               let baseSpPointsStats = basePointsStatsList.first(where: { $0.jobs.contains(job) && !$0.baseSp.isEmpty })
         else {
-            print("Failed to init JobStats for \(job.stringValue)")
+            print("Failed to init JobStats for \(job.description)")
             return nil
         }
 

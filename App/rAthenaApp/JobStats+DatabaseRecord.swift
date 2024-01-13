@@ -13,7 +13,7 @@ extension JobStats: DatabaseRecord {
     }
 
     var recordTitle: String {
-        job.stringValue
+        job.description
     }
 
     var recordFields: [DatabaseRecordField] {
@@ -27,14 +27,14 @@ extension JobStats: DatabaseRecord {
         ]
 
         let baseASPDFields = baseASPD.map { (weaponType, baseASPD) in
-            DatabaseRecordField.string(weaponType.stringValue, "\(baseASPD)")
+            DatabaseRecordField.string(weaponType.description, "\(baseASPD)")
         }
         fields += [.array("Base ASPD", baseASPDFields)]
 
         let bonusStatsFields = bonusStats.enumerated().map { (level, bonusStats) in
             let levelBonusStatsFields = Parameter.allCases.map { parameter in
                 let levelBonusStats = bonusStats[parameter] ?? 0
-                return DatabaseRecordField.string(parameter.stringValue, "\(levelBonusStats)")
+                return DatabaseRecordField.string(parameter.description, "\(levelBonusStats)")
             }
             return DatabaseRecordField.array("Level \(level + 1)", levelBonusStatsFields)
         }
@@ -70,7 +70,7 @@ extension JobStats: DatabaseRecord {
         fields += [.array("Base SP", baseSpFields)]
 
 //        let baseApFields = baseAp.enumerated().map { (level, baseAp) in
-//            DatabaseRecordField.string("Level \(level + 1)", baseAp.stringValue)
+//            DatabaseRecordField.string("Level \(level + 1)", "\(baseAp)")
 //        }
 //        fields += [.array("Base AP", baseApFields)]
 

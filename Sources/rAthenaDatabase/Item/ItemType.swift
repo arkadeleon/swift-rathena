@@ -5,7 +5,6 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-/// Item's type.
 public enum ItemType: String, CaseIterable, CodingKey, Decodable {
 
     /// Healing item.
@@ -45,7 +44,7 @@ public enum ItemType: String, CaseIterable, CodingKey, Decodable {
     /// Another delayed consume that requires user confirmation before using the item.
     case cash = "Cash"
 
-    public var stringValue: String {
+    public var description: String {
         switch self {
         case .healing: "Healing"
         case .usable: "Usable"

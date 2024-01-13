@@ -5,7 +5,6 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-/// Equipment's placement.
 public struct ItemLocations: Decodable {
 
     /// Upper Headgear

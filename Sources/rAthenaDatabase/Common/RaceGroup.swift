@@ -5,7 +5,10 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
+import rAthenaCommon
+
 public enum RaceGroup: String, CaseIterable, CodingKey, Decodable {
+
     case goblin = "Goblin"
     case kobold = "Kobold"
     case orc = "Orc"
@@ -37,4 +40,44 @@ public enum RaceGroup: String, CaseIterable, CodingKey, Decodable {
     case ep172Alpha = "EP172ALPHA"
     case ep172Beta = "EP172BETA"
     case ep172Bath = "EP172BATH"
+
+    public var intValue: Int {
+        switch self {
+        case .goblin: RA_RC2_GOBLIN
+        case .kobold: RA_RC2_KOBOLD
+        case .orc: RA_RC2_ORC
+        case .golem: RA_RC2_GOLEM
+        case .guardian: RA_RC2_GOLEM + 1
+        case .ninja: RA_RC2_NINJA
+        case .gvg: RA_RC2_GVG
+        case .battlefield: RA_RC2_GVG + 1
+        case .treasure: RA_RC2_TREASURE
+        case .biolab: RA_RC2_BIOLAB
+        case .manuk: RA_RC2_MANUK
+        case .splendide: RA_RC2_SPLENDIDE
+        case .scaraba: RA_RC2_SCARABA
+        case .oghAtkDef: RA_RC2_OGH_ATK_DEF
+        case .oghHidden: RA_RC2_OGH_HIDDEN
+        case .bio5SwordmanThief: RA_RC2_BIO5_SWORDMAN_THIEF
+        case .bio5AcolyteMerchant: RA_RC2_BIO5_ACOLYTE_MERCHANT
+        case .bio5MageArcher: RA_RC2_BIO5_MAGE_ARCHER
+        case .bio5Mvp: RA_RC2_BIO5_MVP
+        case .clocktower: RA_RC2_CLOCKTOWER
+        case .thanatos: RA_RC2_THANATOS
+        case .faceworm: RA_RC2_FACEWORM
+        case .hearthunter: RA_RC2_HEARTHUNTER
+        case .rockridge: RA_RC2_ROCKRIDGE
+        case .wernerLab: RA_RC2_WERNER_LAB
+        case .templeDemon: RA_RC2_TEMPLE_DEMON
+        case .illusionVampire: RA_RC2_ILLUSION_VAMPIRE
+        case .malangdo: RA_RC2_MALANGDO
+        case .ep172Alpha: RA_RC2_EP172ALPHA
+        case .ep172Beta: RA_RC2_EP172BETA
+        case .ep172Bath: RA_RC2_EP172BATH
+        }
+    }
+
+    public var description: String {
+        stringValue
+    }
 }

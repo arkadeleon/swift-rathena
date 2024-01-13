@@ -5,14 +5,23 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
+import rAthenaCommon
+
 public enum Gender: String, CaseIterable, CodingKey, Decodable {
 
-    /// Female
     case female = "Female"
-
-    /// Male
     case male = "Male"
-
-    /// Both
     case both = "Both"
+
+    public var intValue: Int {
+        switch self {
+        case .female: RA_SEX_FEMALE
+        case .male: RA_SEX_MALE
+        case .both: RA_SEX_BOTH
+        }
+    }
+
+    public var description: String {
+        stringValue
+    }
 }

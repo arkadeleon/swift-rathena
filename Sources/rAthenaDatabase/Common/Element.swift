@@ -5,35 +5,43 @@
 //  Created by Leon Li on 2024/1/9.
 //
 
+import rAthenaCommon
+
 public enum Element: String, CaseIterable, CodingKey, Decodable {
 
-    /// Neutral.
     case neutral = "Neutral"
-
-    /// Water.
     case water = "Water"
-
-    /// Earth.
     case earth = "Earth"
-
-    /// Fire.
     case fire = "Fire"
-
-    /// Wind.
     case wind = "Wind"
-
-    /// Poison.
     case poison = "Poison"
-
-    /// Holy.
     case holy = "Holy"
-
-    /// Dark.
     case dark = "Dark"
-
-    /// Ghost.
     case ghost = "Ghost"
-
-    /// Undead.
     case undead = "Undead"
+    case weapon = "Weapon"
+    case endowed = "Endowed"
+    case random = "Random"
+
+    public var intValue: Int {
+        switch self {
+        case .neutral: RA_ELE_NEUTRAL
+        case .water: RA_ELE_WATER
+        case .earth: RA_ELE_EARTH
+        case .fire: RA_ELE_FIRE
+        case .wind: RA_ELE_WIND
+        case .poison: RA_ELE_POISON
+        case .holy: RA_ELE_HOLY
+        case .dark: RA_ELE_DARK
+        case .ghost: RA_ELE_GHOST
+        case .undead: RA_ELE_UNDEAD
+        case .weapon: RA_ELE_WEAPON
+        case .endowed: RA_ELE_ENDOWED
+        case .random: RA_ELE_RANDOM
+        }
+    }
+
+    public var description: String {
+        stringValue
+    }
 }

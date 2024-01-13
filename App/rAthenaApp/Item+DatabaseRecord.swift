@@ -25,23 +25,23 @@ extension Item: DatabaseRecord {
             .string("Name", name),
         ]
 
-        fields += [.string("Type", type.stringValue)]
+        fields += [.string("Type", type.description)]
 
         switch subType {
         case .none:
             break
         case .weapon(let weaponType):
-            fields += [.string("Weapon Type", weaponType.stringValue)]
+            fields += [.string("Weapon Type", weaponType.description)]
         case .ammo(let ammoType):
-            fields += [.string("Ammo Type", ammoType.stringValue)]
+            fields += [.string("Ammo Type", ammoType.description)]
         case .card(let cardType):
-            fields += [.string("Card Type", cardType.stringValue)]
+            fields += [.string("Card Type", cardType.description)]
         }
 
         fields += [
             .string("Buy", "\(buy)z"),
             .string("Sell", "\(sell)z"),
-            .string("Gender", gender.stringValue),
+            .string("Gender", gender.description),
         ]
 
         switch type {

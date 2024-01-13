@@ -5,7 +5,6 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-/// Equippable jobs.
 public struct ItemJobs: Decodable {
 
     public var all: Bool?

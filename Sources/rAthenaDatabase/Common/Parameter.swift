@@ -8,6 +8,7 @@
 import rAthenaCommon
 
 public enum Parameter: String, CaseIterable, CodingKey, Decodable {
+
     case str = "Str"
     case agi = "Agi"
     case vit = "Vit"
@@ -36,5 +37,9 @@ public enum Parameter: String, CaseIterable, CodingKey, Decodable {
         case .con: RA_PARAM_CON
         case .crt: RA_PARAM_CRT
         }
+    }
+
+    public var description: String {
+        stringValue
     }
 }

@@ -17,7 +17,7 @@
 		3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */; };
 		3514BF772B46EF1E0065ED89 /* Monster+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */; };
 		3514BF792B46FCFA0065ED89 /* JobStats+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF782B46FCFA0065ED89 /* JobStats+DatabaseRecord.swift */; };
-		3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */; };
+		3514BF7B2B46FD590065ED89 /* Skill+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7A2B46FD590065ED89 /* Skill+DatabaseRecord.swift */; };
 		3514BF7D2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */; };
 		351BAE5A29D41B14001CED64 /* rAthenaChar in Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE5929D41B14001CED64 /* rAthenaChar */; };
 		351BAE5B29D41B14001CED64 /* rAthenaChar in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 351BAE5929D41B14001CED64 /* rAthenaChar */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -61,7 +61,7 @@
 		3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monster+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF782B46FCFA0065ED89 /* JobStats+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JobStats+DatabaseRecord.swift"; sourceTree = "<group>"; };
-		3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RASkill+DatabaseRecord.swift"; sourceTree = "<group>"; };
+		3514BF7A2B46FD590065ED89 /* Skill+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Skill+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RASkillTree+DatabaseRecord.swift"; sourceTree = "<group>"; };
 		351BAE5829D418BC001CED64 /* rathena-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "rathena-ios"; path = ..; sourceTree = "<group>"; };
 		35FC633F29125B2000825452 /* rAthenaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rAthenaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,7 +128,7 @@
 				3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */,
 				3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */,
 				3514BF782B46FCFA0065ED89 /* JobStats+DatabaseRecord.swift */,
-				3514BF7A2B46FD590065ED89 /* RASkill+DatabaseRecord.swift */,
+				3514BF7A2B46FD590065ED89 /* Skill+DatabaseRecord.swift */,
 				3514BF7C2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift */,
 				35FC634629125B2000825452 /* Assets.xcassets */,
 				35FC634829125B2000825452 /* Preview Content */,
@@ -235,7 +235,7 @@
 				3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */,
 				3514BF732B46B6880065ED89 /* DatabaseRecord.swift in Sources */,
 				35FC634329125B2000825452 /* App.swift in Sources */,
-				3514BF7B2B46FD590065ED89 /* RASkill+DatabaseRecord.swift in Sources */,
+				3514BF7B2B46FD590065ED89 /* Skill+DatabaseRecord.swift in Sources */,
 				3514BF772B46EF1E0065ED89 /* Monster+DatabaseRecord.swift in Sources */,
 				3514BF692B46B0810065ED89 /* DatabaseRecordView.swift in Sources */,
 				3514BF7D2B46FD630065ED89 /* RASkillTree+DatabaseRecord.swift in Sources */,

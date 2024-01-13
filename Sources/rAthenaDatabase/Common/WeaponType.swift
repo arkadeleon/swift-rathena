@@ -5,7 +5,10 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
+import rAthenaCommon
+
 public enum WeaponType: String, CaseIterable, CodingKey, Decodable {
+
     case fist = "Fist"
     case dagger = "Dagger"
     case oneHandedSword = "1hSword"
@@ -31,7 +34,36 @@ public enum WeaponType: String, CaseIterable, CodingKey, Decodable {
     case Huuma = "Huuma"
     case twoHandedStaff = "2hStaff"
 
-    public var stringValue: String {
+    public var intValue: Int {
+        switch self {
+        case .fist: RA_W_FIST
+        case .dagger: RA_W_DAGGER
+        case .oneHandedSword: RA_W_1HSWORD
+        case .twoHandedSword: RA_W_2HSWORD
+        case .oneHandedSpear: RA_W_1HSPEAR
+        case .twoHandedSpear: RA_W_2HSPEAR
+        case .oneHandedAxe: RA_W_1HAXE
+        case .twoHandedAxe: RA_W_2HAXE
+        case .mace: RA_W_MACE
+        case .twoHandedMace: RA_W_2HMACE
+        case .staff: RA_W_STAFF
+        case .bow: RA_W_BOW
+        case .knuckle: RA_W_KNUCKLE
+        case .musical: RA_W_MUSICAL
+        case .whip: RA_W_WHIP
+        case .book: RA_W_BOOK
+        case .katar: RA_W_KATAR
+        case .revolver: RA_W_REVOLVER
+        case .rifle: RA_W_RIFLE
+        case .gatling: RA_W_GATLING
+        case .shotgun: RA_W_SHOTGUN
+        case .grenade: RA_W_GRENADE
+        case .Huuma: RA_W_HUUMA
+        case .twoHandedStaff: RA_W_2HSTAFF
+        }
+    }
+
+    public var description: String {
         switch self {
         case .fist: "Fist"
         case .dagger: "Dagger"

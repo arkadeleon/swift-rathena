@@ -8,6 +8,7 @@
 import rAthenaCommon
 
 public enum Job: String, CaseIterable, CodingKey, Decodable {
+
     case novice = "Novice"
     case swordman = "Swordman"
     case magician = "Mage"
@@ -374,5 +375,9 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
         case .spiritHandler: RA_JOB_SPIRIT_HANDLER
         case .skyEmperor2: RA_JOB_SKY_EMPEROR2
         }
+    }
+
+    public var description: String {
+        stringValue
     }
 }

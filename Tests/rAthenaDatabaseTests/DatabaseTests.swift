@@ -24,6 +24,11 @@ final class DatabaseTests: XCTestCase {
 //        XCTAssertEqual(jobs.count, 181)
     }
 
+    func testSkillDatabase() async throws {
+        let skills = try await Database.renewal.fetchSkills()
+        XCTAssertEqual(skills.count, 1502)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),

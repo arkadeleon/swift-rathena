@@ -1,32 +1,31 @@
 //
-//  RASkill+DatabaseRecord.swift
+//  Skill+DatabaseRecord.swift
 //  rAthenaApp
 //
 //  Created by Leon Li on 2024/1/4.
 //
 
-import rAthenaCommon
-import rAthenaMap
+import rAthenaDatabase
 
-extension RASkill: DatabaseRecord {
+extension Skill: DatabaseRecord {
     var recordID: Int {
-        skillID
+        id
     }
 
     var recordTitle: String {
-        skillDescription
+        name
     }
 
     var recordFields: [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [
-            .string("ID", "#\(skillID)"),
-            .string("Name", skillName),
-            .string("Description", skillDescription),
+            .string("ID", "#\(id)"),
+            .string("Aegis Name", aegisName),
+            .string("Name", name),
             .string("Maximum Level", "\(maxLevel)"),
-            .string("Type", "\(type)"),
-            .string("Target Type", "\(targetType)"),
+            .string("Type", type.description),
+            .string("Target Type", targetType.description),
         ]
 
         // TODO: Damage Flags
