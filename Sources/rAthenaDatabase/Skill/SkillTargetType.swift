@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable {
+public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case passive = "Passive"
     case attack = "Attack"
@@ -16,7 +16,7 @@ public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable {
     case support = "Support"
     case trap = "Trap"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .passive: RA_INF_PASSIVE_SKILL
         case .attack: RA_INF_ATTACK_SKILL

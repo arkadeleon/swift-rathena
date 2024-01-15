@@ -5,7 +5,9 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-public enum ItemType: String, CaseIterable, CodingKey, Decodable {
+import rAthenaCommon
+
+public enum ItemType: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     /// Healing item.
     case healing = "Healing"
@@ -43,6 +45,23 @@ public enum ItemType: String, CaseIterable, CodingKey, Decodable {
 
     /// Another delayed consume that requires user confirmation before using the item.
     case cash = "Cash"
+
+    public var id: Int {
+        switch self {
+        case .healing: RA_IT_HEALING
+        case .usable: RA_IT_USABLE
+        case .etc: RA_IT_ETC
+        case .armor: RA_IT_ARMOR
+        case .weapon: RA_IT_WEAPON
+        case .card: RA_IT_CARD
+        case .petEgg: RA_IT_PETEGG
+        case .petArmor: RA_IT_PETARMOR
+        case .ammo: RA_IT_AMMO
+        case .delayConsume: RA_IT_DELAYCONSUME
+        case .shadowGear: RA_IT_SHADOWGEAR
+        case .cash: RA_IT_CASH
+        }
+    }
 
     public var description: String {
         switch self {

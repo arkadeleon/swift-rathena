@@ -7,12 +7,12 @@
 
 import rAthenaCommon
 
-public enum CardType: String, CaseIterable, CodingKey, Decodable {
+public enum CardType: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case normal = "Normal"
     case enchant = "Enchant"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .normal: RA_CARD_NORMAL
         case .enchant: RA_CARD_ENCHANT

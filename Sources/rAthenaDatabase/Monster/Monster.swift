@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public struct Monster: Decodable {
+public struct Monster: Decodable, Identifiable {
 
     /// Monster ID.
     public var id: Int

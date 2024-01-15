@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2023/1/18.
 //
 
-public struct Item: Decodable {
+public struct Item: Decodable, Identifiable {
 
     /// Item ID.
     public var id: Int
@@ -47,16 +47,16 @@ public struct Item: Decodable {
     public var slots: Int
 
     /// Jobs that can equip the item. (Map default is 'All: true')
-    public var jobs: ItemJobs?
+    public var jobs: [ItemJob]
 
     /// Upper class types that can equip the item. (Map default is 'All: true')
-    public var classes: ItemClasses?
+    public var classes: [ItemClass]
 
     /// Gender that can equip the item. (Default: Both)
     public var gender: Gender
 
     /// Equipment's placement. (Default: None)
-    public var locations: ItemLocations?
+    public var locations: [ItemLocation]
 
     /// Weapon level. (Default: 1 for Weapons)
     public var weaponLevel: Int
@@ -162,10 +162,10 @@ public struct Item: Decodable {
         self.defense = try container.decodeIfPresent(Int.self, forKey: .defense) ?? 0
         self.range = try container.decodeIfPresent(Int.self, forKey: .range) ?? 0
         self.slots = try container.decodeIfPresent(Int.self, forKey: .slots) ?? 0
-        self.jobs = try container.decodeIfPresent(ItemJobs.self, forKey: .jobs)
-        self.classes = try container.decodeIfPresent(ItemClasses.self, forKey: .classes)
+        self.jobs = try container.decodeIfPresent(Node<ItemJob, Bool>.self, forKey: .jobs)?.keys ?? [.all]
+        self.classes = try container.decodeIfPresent(Node<ItemClass, Bool>.self, forKey: .classes)?.keys ?? [.all]
         self.gender = try container.decodeIfPresent(Gender.self, forKey: .gender) ?? .both
-        self.locations = try container.decodeIfPresent(ItemLocations.self, forKey: .locations)
+        self.locations = try container.decodeIfPresent(Node<ItemLocation, Bool>.self, forKey: .locations)?.keys ?? []
         self.weaponLevel = try container.decodeIfPresent(Int.self, forKey: .weaponLevel) ?? 1
         self.armorLevel = try container.decodeIfPresent(Int.self, forKey: .armorLevel) ?? 1
         self.equipLevelMin = try container.decodeIfPresent(Int.self, forKey: .equipLevelMin) ?? 0

@@ -27,8 +27,18 @@ public struct Node<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key
 
 extension Node where Value == Bool {
     public var keys: [Key] {
-        children.compactMap { (key, value) in
-            value ? key : nil
+        let allCasesButAll = Key.allCases.filter { $0.stringValue != "All" }
+
+        var keys = children.contains(where: { $0.0.stringValue == "All" }) ? allCasesButAll : []
+
+        for child in children where child.0.stringValue != "All" {
+            if child.1 {
+                keys.append(child.0)
+            } else {
+                keys.removeAll(where: { $0.stringValue == child.0.stringValue })
+            }
         }
+
+        return keys
     }
 }

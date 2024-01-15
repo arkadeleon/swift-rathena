@@ -7,17 +7,17 @@
 
 import rAthenaCommon
 
-public enum SkillHitType: String, CaseIterable, CodingKey, Decodable {
+public enum SkillHitType: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case normal = "Normal"
     case single = "Single"
-    case multiple = "Multi_Hit"
+    case multiHit = "Multi_Hit"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .normal: 0
         case .single: RA_DMG_SINGLE
-        case .multiple: RA_DMG_MULTI_HIT
+        case .multiHit: RA_DMG_MULTI_HIT
         }
     }
 
@@ -25,7 +25,7 @@ public enum SkillHitType: String, CaseIterable, CodingKey, Decodable {
         switch self {
         case .normal: "Normal"
         case .single: "Single Hit"
-        case .multiple: "Multiple Hit"
+        case .multiHit: "Multiple Hit"
         }
     }
 }

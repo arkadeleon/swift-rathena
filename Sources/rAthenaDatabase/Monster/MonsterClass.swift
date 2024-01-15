@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum MonsterClass: String, CaseIterable, CodingKey, Decodable {
+public enum MonsterClass: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case normal = "Normal"
     case boss = "Boss"
@@ -15,7 +15,7 @@ public enum MonsterClass: String, CaseIterable, CodingKey, Decodable {
     case battlefield = "Battlefield"
     case event = "Event"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .normal: RA_CLASS_NORMAL
         case .boss: RA_CLASS_BOSS

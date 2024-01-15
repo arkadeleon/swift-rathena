@@ -7,11 +7,11 @@
 
 import rAthenaCommon
 
-public enum Job: String, CaseIterable, CodingKey, Decodable {
+public enum Job: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case novice = "Novice"
     case swordman = "Swordman"
-    case magician = "Mage"
+    case mage = "Mage"
     case archer = "Archer"
     case acolyte = "Acolyte"
     case merchant = "Merchant"
@@ -40,13 +40,13 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
     case hanbok = "Hanbok"
     case oktoberfest = "Oktoberfest"
     case summer2 = "Summer2"
-    case highNovice = "Novice_High"
-    case highSwordman = "Swordman_High"
-    case highMagician = "Mage_High"
-    case highArcher = "Archer_High"
-    case highAcolyte = "Acolyte_High"
-    case highMerchant = "Merchant_High"
-    case highThief = "Thief_High"
+    case noviceHigh = "Novice_High"
+    case swordmanHigh = "Swordman_High"
+    case mageHigh = "Mage_High"
+    case archerHigh = "Archer_High"
+    case acolyteHigh = "Acolyte_High"
+    case merchantHigh = "Merchant_High"
+    case thiefHigh = "Thief_High"
     case lordKnight = "Lord_Knight"
     case highPriest = "High_Priest"
     case highWizard = "High_Wizard"
@@ -62,9 +62,9 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
     case clown = "Clown"
     case gypsy = "Gypsy"
     case paladin2 = "Paladin2"
-    case babyNovice = "Baby"
+    case baby = "Baby"
     case babySwordman = "Baby_Swordman"
-    case babyMagician = "Baby_Mage"
+    case babyMage = "Baby_Mage"
     case babyArcher = "Baby_Archer"
     case babyAcolyte = "Baby_Acolyte"
     case babyMerchant = "Baby_Merchant"
@@ -143,8 +143,8 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
     case babyRoyalGuard2 = "Baby_Royal_Guard2"
     case babyRanger2 = "Baby_Ranger2"
     case babyMechanic2 = "Baby_Mechanic2"
-    case expandedSuperNovice = "Super_Novice_E"
-    case expandedSuperBaby = "Super_Baby_E"
+    case superNoviceE = "Super_Novice_E"
+    case superBabyE = "Super_Baby_E"
     case kagerou = "Kagerou"
     case oboro = "Oboro"
     case rebellion = "Rebellion"
@@ -191,11 +191,11 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
     case spiritHandler = "Spirit_Handler"
     case skyEmperor2 = "Sky_Emperor2"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .novice: RA_JOB_NOVICE
         case .swordman: RA_JOB_SWORDMAN
-        case .magician: RA_JOB_MAGE
+        case .mage: RA_JOB_MAGE
         case .archer: RA_JOB_ARCHER
         case .acolyte: RA_JOB_ACOLYTE
         case .merchant: RA_JOB_MERCHANT
@@ -224,13 +224,13 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
         case .hanbok: RA_JOB_HANBOK
         case .oktoberfest: RA_JOB_OKTOBERFEST
         case .summer2: RA_JOB_SUMMER2
-        case .highNovice: RA_JOB_NOVICE_HIGH
-        case .highSwordman: RA_JOB_SWORDMAN_HIGH
-        case .highMagician: RA_JOB_MAGE_HIGH
-        case .highArcher: RA_JOB_ARCHER_HIGH
-        case .highAcolyte: RA_JOB_ACOLYTE_HIGH
-        case .highMerchant: RA_JOB_MERCHANT_HIGH
-        case .highThief: RA_JOB_THIEF_HIGH
+        case .noviceHigh: RA_JOB_NOVICE_HIGH
+        case .swordmanHigh: RA_JOB_SWORDMAN_HIGH
+        case .mageHigh: RA_JOB_MAGE_HIGH
+        case .archerHigh: RA_JOB_ARCHER_HIGH
+        case .acolyteHigh: RA_JOB_ACOLYTE_HIGH
+        case .merchantHigh: RA_JOB_MERCHANT_HIGH
+        case .thiefHigh: RA_JOB_THIEF_HIGH
         case .lordKnight: RA_JOB_LORD_KNIGHT
         case .highPriest: RA_JOB_HIGH_PRIEST
         case .highWizard: RA_JOB_HIGH_WIZARD
@@ -246,9 +246,9 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
         case .clown: RA_JOB_CLOWN
         case .gypsy: RA_JOB_GYPSY
         case .paladin2: RA_JOB_PALADIN2
-        case .babyNovice: RA_JOB_BABY
+        case .baby: RA_JOB_BABY
         case .babySwordman: RA_JOB_BABY_SWORDMAN
-        case .babyMagician: RA_JOB_BABY_MAGE
+        case .babyMage: RA_JOB_BABY_MAGE
         case .babyArcher: RA_JOB_BABY_ARCHER
         case .babyAcolyte: RA_JOB_BABY_ACOLYTE
         case .babyMerchant: RA_JOB_BABY_MERCHANT
@@ -327,8 +327,8 @@ public enum Job: String, CaseIterable, CodingKey, Decodable {
         case .babyRoyalGuard2: RA_JOB_BABY_ROYAL_GUARD2
         case .babyRanger2: RA_JOB_BABY_RANGER2
         case .babyMechanic2: RA_JOB_BABY_MECHANIC2
-        case .expandedSuperNovice: RA_JOB_SUPER_NOVICE_E
-        case .expandedSuperBaby: RA_JOB_SUPER_BABY_E
+        case .superNoviceE: RA_JOB_SUPER_NOVICE_E
+        case .superBabyE: RA_JOB_SUPER_BABY_E
         case .kagerou: RA_JOB_KAGEROU
         case .oboro: RA_JOB_OBORO
         case .rebellion: RA_JOB_REBELLION

@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/11.
 //
 
-public struct Skill: Decodable {
+public struct Skill: Decodable, Identifiable {
 
     /// Unique skill ID.
     public var id: Int

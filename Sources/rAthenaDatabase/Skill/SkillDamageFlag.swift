@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable {
+public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case noDamage = "NoDamage"
     case splash = "Splash"
@@ -20,7 +20,7 @@ public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable {
     case ignoreLongCard = "IgnoreLongCard"
     case critical = "Critical"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .noDamage: RA_NK_NODAMAGE
         case .splash: RA_NK_SPLASH

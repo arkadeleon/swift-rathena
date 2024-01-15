@@ -9,7 +9,7 @@ import rAthenaDatabase
 
 extension JobStats: DatabaseRecord {
     var recordID: Int {
-        job.intValue
+        job.id
     }
 
     var recordTitle: String {

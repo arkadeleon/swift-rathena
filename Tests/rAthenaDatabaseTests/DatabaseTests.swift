@@ -33,5 +33,6 @@ final class DatabaseTests: XCTestCase {
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
         ("testJobDatabase", testJobDatabase),
+        ("testSkillDatabase", testSkillDatabase),
     ]
 }

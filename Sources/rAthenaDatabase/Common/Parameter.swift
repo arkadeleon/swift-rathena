@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum Parameter: String, CaseIterable, CodingKey, Decodable {
+public enum Parameter: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case str = "Str"
     case agi = "Agi"
@@ -22,7 +22,7 @@ public enum Parameter: String, CaseIterable, CodingKey, Decodable {
     case con = "Con"
     case crt = "Crt"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .str: RA_PARAM_STR
         case .agi: RA_PARAM_AGI

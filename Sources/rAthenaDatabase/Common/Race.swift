@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum Race: String, CaseIterable, CodingKey, Decodable {
+public enum Race: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     case formless = "Formless"
     case undead = "Undead"
@@ -20,7 +20,7 @@ public enum Race: String, CaseIterable, CodingKey, Decodable {
     case angel = "Angel"
     case dragon = "Dragon"
 
-    public var intValue: Int {
+    public var id: Int {
         switch self {
         case .formless: RA_RC_FORMLESS
         case .undead: RA_RC_UNDEAD

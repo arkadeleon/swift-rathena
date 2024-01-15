@@ -5,100 +5,108 @@
 //  Created by Leon Li on 2024/1/10.
 //
 
-public struct ItemLocations: Decodable {
+import rAthenaCommon
+
+public enum ItemLocation: String, CaseIterable, CodingKey, Decodable, Identifiable {
 
     /// Upper Headgear
-    public var headTop: Bool?
+    case headTop = "Head_Top"
 
     /// Middle Headgear
-    public var headMid: Bool?
+    case headMid = "Head_Mid"
 
     /// Lower Headgear
-    public var headLow: Bool?
+    case headLow = "Head_Low"
 
     /// Armor
-    public var armor: Bool?
+    case armor = "Armor"
 
     /// Weapon
-    public var rightHand: Bool?
+    case rightHand = "Right_Hand"
 
     /// Shield
-    public var leftHand: Bool?
+    case leftHand = "Left_Hand"
 
     /// Garment/Robe
-    public var garment: Bool?
+    case garment = "Garment"
 
     /// Shoes
-    public var shoes: Bool?
+    case shoes = "Shoes"
 
     /// Accessory Right
-    public var rightAccessory: Bool?
+    case rightAccessory = "Right_Accessory"
 
     /// Accessory Left
-    public var leftAccessory: Bool?
+    case leftAccessory = "Left_Accessory"
 
     /// Costume Top Headgear
-    public var costumeHeadTop: Bool?
+    case costumeHeadTop = "Costume_Head_Top"
 
     /// Costume Mid Headgear
-    public var costumeHeadMid: Bool?
+    case costumeHeadMid = "Costume_Head_Mid"
 
     /// Costume Low Headgear
-    public var costumeHeadLow: Bool?
+    case costumeHeadLow = "Costume_Head_Low"
 
     /// Costume Garment/Robe
-    public var costumeGarment: Bool?
+    case costumeGarment = "Costume_Garment"
 
     /// Ammo
-    public var ammo: Bool?
+    case ammo = "Ammo"
 
     /// Shadow Armor
-    public var shadowArmor: Bool?
+    case shadowArmor = "Shadow_Armor"
 
     /// Shadow Weapon
-    public var shadowWeapon: Bool?
+    case shadowWeapon = "Shadow_Weapon"
 
     /// Shadow Shield
-    public var shadowShield: Bool?
+    case shadowShield = "Shadow_Shield"
 
     /// Shadow Shoes
-    public var shadowShoes: Bool?
+    case shadowShoes = "Shadow_Shoes"
 
     /// Shadow Accessory Right (Earring)
-    public var shadowRightAccessory: Bool?
+    case shadowRightAccessory = "Shadow_Right_Accessory"
 
     /// Shadow Accessory Left (Pendant)
-    public var shadowLeftAccessory: Bool?
+    case shadowLeftAccessory = "Shadow_Left_Accessory"
 
     /// Right_Hand + Left_Hand
-    public var bothHand: Bool?
+    case bothHand = "Both_Hand"
 
     /// Right_Accessory + Left_Accessory
-    public var bothAccessory: Bool?
+    case bothAccessory = "Both_Accessory"
 
-    enum CodingKeys: String, CodingKey {
-        case headTop = "Head_Top"
-        case headMid = "Head_Mid"
-        case headLow = "Head_Low"
-        case armor = "Armor"
-        case rightHand = "Right_Hand"
-        case leftHand = "Left_Hand"
-        case garment = "Garment"
-        case shoes = "Shoes"
-        case rightAccessory = "Right_Accessory"
-        case leftAccessory = "Left_Accessory"
-        case costumeHeadTop = "Costume_Head_Top"
-        case costumeHeadMid = "Costume_Head_Mid"
-        case costumeHeadLow = "Costume_Head_Low"
-        case costumeGarment = "Costume_Garment"
-        case ammo = "Ammo"
-        case shadowArmor = "Shadow_Armor"
-        case shadowWeapon = "Shadow_Weapon"
-        case shadowShield = "Shadow_Shield"
-        case shadowShoes = "Shadow_Shoes"
-        case shadowRightAccessory = "Shadow_Right_Accessory"
-        case shadowLeftAccessory = "Shadow_Left_Accessory"
-        case bothHand = "Both_Hand"
-        case bothAccessory = "Both_Accessory"
+    public var id: Int {
+        switch self {
+        case .headTop: RA_EQP_HEAD_TOP
+        case .headMid: RA_EQP_HEAD_MID
+        case .headLow: RA_EQP_HEAD_LOW
+        case .armor: RA_EQP_ARMOR
+        case .rightHand: RA_EQP_HAND_R
+        case .leftHand: RA_EQP_HAND_L
+        case .garment: RA_EQP_GARMENT
+        case .shoes: RA_EQP_SHOES
+        case .rightAccessory: RA_EQP_ACC_R
+        case .leftAccessory: RA_EQP_ACC_L
+        case .costumeHeadTop: RA_EQP_COSTUME_HEAD_TOP
+        case .costumeHeadMid: RA_EQP_COSTUME_HEAD_MID
+        case .costumeHeadLow: RA_EQP_COSTUME_HEAD_LOW
+        case .costumeGarment: RA_EQP_COSTUME_GARMENT
+        case .ammo: RA_EQP_AMMO
+        case .shadowArmor: RA_EQP_SHADOW_ARMOR
+        case .shadowWeapon: RA_EQP_SHADOW_WEAPON
+        case .shadowShield: RA_EQP_SHADOW_SHIELD
+        case .shadowShoes: RA_EQP_SHADOW_SHOES
+        case .shadowRightAccessory: RA_EQP_ACC_R
+        case .shadowLeftAccessory: RA_EQP_ACC_L
+        case .bothHand: RA_EQP_HAND_R | RA_EQP_HAND_L
+        case .bothAccessory: RA_EQP_ACC_RL
+        }
+    }
+
+    public var description: String {
+        stringValue
     }
 }
