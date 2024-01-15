@@ -24,16 +24,25 @@ public class Database {
     public func fetchItems() async throws -> [Item] {
         let path = renewal ? "db/re/" : "db/pre-re/"
 
-        let usableItemData = try ResourceManager.shared.data(forResource: path + "item_db_usable.yml")
-        let usableItemList = try decoder.decode(List<Item>.self, from: usableItemData)
+        let usableItemList = Task {
+            let usableItemData = try ResourceManager.shared.data(forResource: path + "item_db_usable.yml")
+            let usableItemList = try decoder.decode(List<Item>.self, from: usableItemData)
+            return usableItemList
+        }
 
-        let equipItemData = try ResourceManager.shared.data(forResource: path + "item_db_equip.yml")
-        let equipItemList = try decoder.decode(List<Item>.self, from: equipItemData)
+        let equipItemList = Task {
+            let equipItemData = try ResourceManager.shared.data(forResource: path + "item_db_equip.yml")
+            let equipItemList = try decoder.decode(List<Item>.self, from: equipItemData)
+            return equipItemList
+        }
 
-        let etcItemData = try ResourceManager.shared.data(forResource: path + "item_db_etc.yml")
-        let etcItemList = try decoder.decode(List<Item>.self, from: etcItemData)
+        let etcItemList = Task {
+            let etcItemData = try ResourceManager.shared.data(forResource: path + "item_db_etc.yml")
+            let etcItemList = try decoder.decode(List<Item>.self, from: etcItemData)
+            return etcItemList
+        }
 
-        let items = usableItemList.body + equipItemList.body + etcItemList.body
+        let items = try await usableItemList.value.body + equipItemList.value.body + etcItemList.value.body
         return items
     }
 
