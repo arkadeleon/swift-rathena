@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/11.
 //
 
-public struct Skill: Decodable, Identifiable {
+public struct Skill: Comparable, Decodable, Identifiable {
 
     /// Unique skill ID.
     public var id: Int
@@ -158,6 +158,14 @@ public struct Skill: Decodable, Identifiable {
         self.duration2 = try container.decodeIfPresent(Either<Int, [LevelDuration]>.self, forKey: .duration2)?.mapRight { $0.map { $0.duration } } ?? .left(0)
         self.cooldown = try container.decodeIfPresent(Either<Int, [LevelCooldown]>.self, forKey: .cooldown)?.mapRight { $0.map { $0.cooldown } } ?? .left(0)
         self.fixedCastTime = try container.decodeIfPresent(Either<Int, [LevelFixedCastTime]>.self, forKey: .fixedCastTime)?.mapRight { $0.map { $0.fixedCastTime } } ?? .left(0)
+    }
+
+    public static func < (lhs: Skill, rhs: Skill) -> Bool {
+        lhs.id < rhs.id
+    }
+
+    public static func == (lhs: Skill, rhs: Skill) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

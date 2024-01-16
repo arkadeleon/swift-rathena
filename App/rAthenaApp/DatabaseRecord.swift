@@ -10,7 +10,8 @@ import rAthenaMap
 protocol DatabaseRecord {
     var recordID: Int { get }
     var recordTitle: String { get }
-    var recordFields: [DatabaseRecordField] { get }
+
+    func recordFields() async throws -> [DatabaseRecordField]
 }
 
 enum DatabaseRecordField {

@@ -16,7 +16,7 @@ extension JobStats: DatabaseRecord {
         job.description
     }
 
-    var recordFields: [DatabaseRecordField] {
+    func recordFields() async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [

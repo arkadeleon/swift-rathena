@@ -76,12 +76,12 @@ struct ContentView: View {
 
                     NavigationLink {
                         DatabaseView {
-                            RASkillTreeDatabase.shared.allRecords()
+                            try await Database.renewal.fetchSkillTrees()
                         }
-                        .navigationTitle(RASkillTreeDatabase.shared.name)
+                        .navigationTitle("Skill Trees")
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
-                        Label(RASkillTreeDatabase.shared.name, systemImage: "list.bullet.rectangle")
+                        Label("Skill Trees", systemImage: "list.bullet.rectangle")
                     }
                 }
             }

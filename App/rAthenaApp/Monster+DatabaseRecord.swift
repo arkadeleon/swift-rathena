@@ -17,7 +17,7 @@ extension Monster: DatabaseRecord {
         name
     }
 
-    var recordFields: [DatabaseRecordField] {
+    func recordFields() async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [
@@ -95,21 +95,31 @@ extension Monster: DatabaseRecord {
             fields += [.array("Modes", modeFields)]
         }
 
-//        NSMutableArray<RADatabaseRecordField *> *dropFields = [NSMutableArray arrayWithCapacity:self.drops.count];
-//        for (RAMonsterDrop *drop in self.drops) {
-//            RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
-//            NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
-//            [dropFields ra_addFieldWithName:name referenceValue:item];
-//        }
-//        [fields ra_addFieldWithName:@"Drops" arrayValue:dropFields];
-//
-//        NSMutableArray<RADatabaseRecordField *> *mvpDropFields = [NSMutableArray arrayWithCapacity:self.mvpDrops.count];
-//        for (RAMonsterDrop *drop in self.mvpDrops) {
-//            RAItem *item = [[RAItemDatabase sharedDatabase] recordWithID:drop.itemID];
-//            NSString *name = [NSString stringWithFormat:@"%@ (%@ %%)", item.name, @(drop.rate / 100.0)];
-//            [mvpDropFields ra_addFieldWithName:name referenceValue:item];
-//        }
-//        [fields ra_addFieldWithName:@"MVP Drops" arrayValue:mvpDropFields];
+        if let drops {
+            var dropFields: [DatabaseRecordField] = []
+            for drop in drops {
+                if let item = try await Database.renewal.fetchItem(withAegisName: drop.item) {
+                    let rate = Double(drop.rate) / 100
+                    dropFields.append(.reference("\(item.name) (\(rate) %)", item))
+                }
+            }
+            if !dropFields.isEmpty {
+                fields.append(.array("Drops", dropFields))
+            }
+        }
+
+        if let mvpDrops {
+            var mvpDropFields: [DatabaseRecordField] = []
+            for mvpDrop in mvpDrops {
+                if let item = try await Database.renewal.fetchItem(withAegisName: mvpDrop.item) {
+                    let rate = Double(mvpDrop.rate) / 100
+                    mvpDropFields.append(.reference("\(item.name) (\(rate) %)", item))
+                }
+            }
+            if !mvpDropFields.isEmpty {
+                fields.append(.array("MVP Drops", mvpDropFields))
+            }
+        }
 
         return fields
     }

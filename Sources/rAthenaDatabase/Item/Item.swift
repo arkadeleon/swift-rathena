@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2023/1/18.
 //
 
-public struct Item: Decodable, Identifiable {
+public struct Item: Comparable, Decodable, Identifiable {
 
     /// Item ID.
     public var id: Int
@@ -182,6 +182,14 @@ public struct Item: Decodable, Identifiable {
         self.script = try container.decodeIfPresent(String.self, forKey: .script)
         self.equipScript = try container.decodeIfPresent(String.self, forKey: .equipScript)
         self.unEquipScript = try container.decodeIfPresent(String.self, forKey: .unEquipScript)
+    }
+
+    public static func < (lhs: Item, rhs: Item) -> Bool {
+        lhs.id < rhs.id
+    }
+
+    public static func == (lhs: Item, rhs: Item) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

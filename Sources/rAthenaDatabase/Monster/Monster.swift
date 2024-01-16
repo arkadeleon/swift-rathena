@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public struct Monster: Decodable, Identifiable {
+public struct Monster: Comparable, Decodable, Identifiable {
 
     /// Monster ID.
     public var id: Int
@@ -214,6 +214,14 @@ public struct Monster: Decodable, Identifiable {
         self.modes = try container.decodeIfPresent(Node<MonsterMode, Bool>.self, forKey: .modes)?.keys
         self.mvpDrops = try container.decodeIfPresent([Monster.Drop].self, forKey: .mvpDrops)
         self.drops = try container.decodeIfPresent([Monster.Drop].self, forKey: .drops)
+    }
+
+    public static func < (lhs: Monster, rhs: Monster) -> Bool {
+        lhs.id < rhs.id
+    }
+
+    public static func == (lhs: Monster, rhs: Monster) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

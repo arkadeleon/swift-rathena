@@ -39,18 +39,18 @@ struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
                 }
                 .listStyle(.plain)
                 .searchable(text: $searchText)
+                .onSubmit(of: .search) {
+                    filterRecords()
+                }
+                .onChange(of: searchText) { _ in
+                    filterRecords()
+                }
             case .failed(let error):
                 Text(error.localizedDescription)
             }
         }
         .task {
             await load()
-        }
-        .onSubmit(of: .search) {
-            filterRecords()
-        }
-        .onChange(of: searchText) { _ in
-            filterRecords()
         }
     }
 

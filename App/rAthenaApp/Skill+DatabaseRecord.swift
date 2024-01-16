@@ -16,7 +16,7 @@ extension Skill: DatabaseRecord {
         name
     }
 
-    var recordFields: [DatabaseRecordField] {
+    func recordFields() async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [
