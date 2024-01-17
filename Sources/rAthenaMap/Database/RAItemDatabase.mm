@@ -7,6 +7,7 @@
 
 #import "RAItemDatabase.h"
 #import "RAJobDatabase.h"
+#import "NSArray+Numbers.h"
 #include "map/itemdb.hpp"
 #include "map/pc.hpp"
 

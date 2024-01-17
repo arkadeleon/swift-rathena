@@ -6,6 +6,7 @@
 //
 
 #import "RASkillDatabase.h"
+#import "NSArray+Numbers.h"
 #include "map/skill.hpp"
 
 @interface RASkill ()

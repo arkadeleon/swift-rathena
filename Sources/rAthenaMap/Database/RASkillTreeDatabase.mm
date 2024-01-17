@@ -8,6 +8,7 @@
 #import "RASkillTreeDatabase.h"
 #import "RASkillDatabase.h"
 #import "RAJobDatabase.h"
+#import "NSArray+Numbers.h"
 #include "map/pc.hpp"
 
 @interface RASkillTree ()

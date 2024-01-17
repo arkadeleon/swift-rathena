@@ -16,24 +16,21 @@ extension SkillTree: DatabaseRecord {
         job.description
     }
 
-    func recordFields() async throws -> [DatabaseRecordField] {
+    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         if let inherit {
             var inheritFields: [DatabaseRecordField] = []
             for job in inherit {
-                if let skillTree = try await Database.renewal.fetchSkillTree(withJobID: job.id) {
-                    inheritFields.append(.reference(job.description, skillTree))
-                }
+                let skillTree = try await database.skillTree(for: job.id)
+                inheritFields.append(.reference(job.description, skillTree))
             }
             fields += [.array("Inherit", inheritFields)]
         }
 
         if let tree {
             for skill in tree {
-                guard let reference = try await Database.renewal.fetchSkill(withAegisName: skill.name) else {
-                    continue
-                }
+                let reference = try await database.skill(for: skill.name)
 
                 var skillFields: [DatabaseRecordField] = []
 
@@ -47,9 +44,8 @@ extension SkillTree: DatabaseRecord {
                 if let requires = skill.requires {
                     var prerequisiteFields: [DatabaseRecordField] = []
                     for skill in requires {
-                        if let reference = try await Database.renewal.fetchSkill(withAegisName: skill.name) {
-                            prerequisiteFields.append(.reference("\(reference.name) (Level \(skill.level)", reference))
-                        }
+                        let reference = try await database.skill(for: skill.name)
+                        prerequisiteFields.append(.reference("\(reference.name) (Level \(skill.level)", reference))
                     }
                     skillFields += [.array("Prerequisites", prerequisiteFields)]
                 }

@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import rAthenaCommon
+import rAthenaDatabase
 
 struct DatabaseRecordView: View {
+    let database: Database
     let record: DatabaseRecord
 
     private enum Status {
@@ -39,7 +40,7 @@ struct DatabaseRecordView: View {
                         }
                     case .reference(let name, let reference):
                         NavigationLink {
-                            DatabaseRecordView(record: reference)
+                            DatabaseRecordView(database: database, record: reference)
                         } label: {
                             Text(name)
                         }
@@ -55,7 +56,7 @@ struct DatabaseRecordView: View {
                                 }
                             case .reference(let name, let reference):
                                 NavigationLink {
-                                    DatabaseRecordView(record: reference)
+                                    DatabaseRecordView(database: database, record: reference)
                                 } label: {
                                     Text(name)
                                 }
@@ -85,7 +86,7 @@ struct DatabaseRecordView: View {
         status = .loading
 
         do {
-            let recordFields = try await record.recordFields()
+            let recordFields = try await record.recordFields(with: database)
             status = .loaded(recordFields)
         } catch {
             status = .failed(error)

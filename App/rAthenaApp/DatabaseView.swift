@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-import rAthenaCommon
+import rAthenaDatabase
 
 struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
+    let database: Database
     let fetcher: () async throws -> [Record]
 
     private enum Status {
@@ -32,7 +33,7 @@ struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
             case .loaded:
                 List(filteredRecords, id: \.recordID) { record in
                     NavigationLink {
-                        DatabaseRecordView(record: record)
+                        DatabaseRecordView(database: database, record: record)
                     } label: {
                         Text(record.recordTitle)
                     }

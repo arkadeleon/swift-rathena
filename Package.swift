@@ -259,10 +259,6 @@ let package = Package(
             )
         ),
         .testTarget(
-            name: "rAthenaCommonTests",
-            dependencies: ["rAthenaCommon"]
-        ),
-        .testTarget(
             name: "rAthenaLoginTests",
             dependencies: [
                 "rAthenaResource",

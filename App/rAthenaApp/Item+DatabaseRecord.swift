@@ -16,7 +16,7 @@ extension Item: DatabaseRecord {
         name
     }
 
-    func recordFields() async throws -> [DatabaseRecordField] {
+    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [

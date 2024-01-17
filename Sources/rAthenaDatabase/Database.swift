@@ -9,6 +9,10 @@ import Foundation
 import rAthenaResource
 import Yams
 
+public enum DatabaseError: Error {
+    case recordNotFound
+}
+
 public class Database {
 
     public static let prerenewal = Database(mode: .prerenewal)
@@ -70,10 +74,13 @@ public class Database {
         return itemCache.values.sorted()
     }
 
-    public func fetchItem(withAegisName aegisName: String) async throws -> Item? {
+    public func item(for aegisName: String) async throws -> Item {
         _ = try await fetchItems()
-        let item = itemCache[aegisName]
-        return item
+        if let item = itemCache[aegisName] {
+            return item
+        } else {
+            throw DatabaseError.recordNotFound
+        }
     }
 
     // MARK: - Monster
@@ -87,6 +94,15 @@ public class Database {
         }
 
         return monsterCache.values.sorted()
+    }
+
+    public func monster(for aegisName: String) async throws -> Monster {
+        _ = try await fetchMonsters()
+        if let monster = monsterCache[aegisName] {
+            return monster
+        } else {
+            throw DatabaseError.recordNotFound
+        }
     }
 
     // MARK: - Job
@@ -134,10 +150,13 @@ public class Database {
         return skillCache.values.sorted()
     }
 
-    public func fetchSkill(withAegisName aegisName: String) async throws -> Skill? {
+    public func skill(for aegisName: String) async throws -> Skill {
         _ = try await fetchSkills()
-        let skill = skillCache[aegisName]
-        return skill
+        if let skill = skillCache[aegisName] {
+            return skill
+        } else {
+            throw DatabaseError.recordNotFound
+        }
     }
 
     public func fetchSkillTrees() async throws -> [SkillTree] {
@@ -151,9 +170,12 @@ public class Database {
         return skillTreeCache.values.sorted()
     }
 
-    public func fetchSkillTree(withJobID jobID: Int) async throws -> SkillTree? {
+    public func skillTree(for jobID: Int) async throws -> SkillTree {
         _ = try await fetchSkillTrees()
-        let skillTree = skillTreeCache[jobID]
-        return skillTree
+        if let skillTree = skillTreeCache[jobID] {
+            return skillTree
+        } else {
+            throw DatabaseError.recordNotFound
+        }
     }
 }

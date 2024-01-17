@@ -5,13 +5,13 @@
 //  Created by Leon Li on 2024/1/4.
 //
 
-import rAthenaMap
+import rAthenaDatabase
 
 protocol DatabaseRecord {
     var recordID: Int { get }
     var recordTitle: String { get }
 
-    func recordFields() async throws -> [DatabaseRecordField]
+    func recordFields(with database: Database) async throws -> [DatabaseRecordField]
 }
 
 enum DatabaseRecordField {

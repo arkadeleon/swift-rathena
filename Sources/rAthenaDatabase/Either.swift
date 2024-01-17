@@ -21,12 +21,27 @@ public enum Either<Left, Right>: Decodable where Left: Decodable, Right: Decodab
         }
     }
 
+
+
     public func mapRight<R>(_ transform: (Right) -> R) -> Either<Left, R> {
         switch self {
         case .left(let left):
             .left(left)
         case .right(let right):
             .right(transform(right))
+        }
+    }
+}
+
+extension Either: Equatable where Left: Equatable, Right: Equatable {
+    public static func == (lhs: Either<Left, Right>, rhs: Either<Left, Right>) -> Bool {
+        switch (lhs, rhs) {
+        case (.left(let l), .left(let r)):
+            l == r
+        case (.right(let l), .right(let r)):
+            l == r
+        default:
+            false
         }
     }
 }

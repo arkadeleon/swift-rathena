@@ -7,6 +7,7 @@
 
 #import "RAJobDatabase.h"
 #import "RASkillTreeDatabase.h"
+#import "NSArray+Numbers.h"
 #include "map/pc.hpp"
 
 @interface RAJob ()

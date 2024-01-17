@@ -20,6 +20,8 @@ struct ContentView: View {
         RAWebServer.shared,
     ]
 
+    private let database = Database.renewal
+
     var body: some View {
         NavigationView {
             List {
@@ -35,8 +37,8 @@ struct ContentView: View {
 
                 Section("Databases") {
                     NavigationLink {
-                        DatabaseView {
-                            try await Database.renewal.fetchItems()
+                        DatabaseView(database: database) {
+                            try await database.fetchItems()
                         }
                         .navigationTitle("Items")
                         .navigationBarTitleDisplayMode(.inline)
@@ -45,8 +47,8 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView {
-                            try await Database.renewal.fetchMonsters()
+                        DatabaseView(database: database) {
+                            try await database.fetchMonsters()
                         }
                         .navigationTitle("Monsters")
                         .navigationBarTitleDisplayMode(.inline)
@@ -55,8 +57,8 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView {
-                            try await Database.renewal.fetchJobs()
+                        DatabaseView(database: database) {
+                            try await database.fetchJobs()
                         }
                         .navigationTitle("Jobs")
                         .navigationBarTitleDisplayMode(.inline)
@@ -65,8 +67,8 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView {
-                            try await Database.renewal.fetchSkills()
+                        DatabaseView(database: database) {
+                            try await database.fetchSkills()
                         }
                         .navigationTitle("Skills")
                         .navigationBarTitleDisplayMode(.inline)
@@ -75,8 +77,8 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView {
-                            try await Database.renewal.fetchSkillTrees()
+                        DatabaseView(database: database) {
+                            try await database.fetchSkillTrees()
                         }
                         .navigationTitle("Skill Trees")
                         .navigationBarTitleDisplayMode(.inline)

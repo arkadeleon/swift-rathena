@@ -17,7 +17,7 @@ extension Monster: DatabaseRecord {
         name
     }
 
-    func recordFields() async throws -> [DatabaseRecordField] {
+    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
         var fields: [DatabaseRecordField] = []
 
         fields += [
@@ -98,10 +98,9 @@ extension Monster: DatabaseRecord {
         if let drops {
             var dropFields: [DatabaseRecordField] = []
             for drop in drops {
-                if let item = try await Database.renewal.fetchItem(withAegisName: drop.item) {
-                    let rate = Double(drop.rate) / 100
-                    dropFields.append(.reference("\(item.name) (\(rate) %)", item))
-                }
+                let item = try await database.item(for: drop.item)
+                let rate = Double(drop.rate) / 100
+                dropFields.append(.reference("\(item.name) (\(rate) %)", item))
             }
             if !dropFields.isEmpty {
                 fields.append(.array("Drops", dropFields))
@@ -111,10 +110,9 @@ extension Monster: DatabaseRecord {
         if let mvpDrops {
             var mvpDropFields: [DatabaseRecordField] = []
             for mvpDrop in mvpDrops {
-                if let item = try await Database.renewal.fetchItem(withAegisName: mvpDrop.item) {
-                    let rate = Double(mvpDrop.rate) / 100
-                    mvpDropFields.append(.reference("\(item.name) (\(rate) %)", item))
-                }
+                let item = try await database.item(for: mvpDrop.item)
+                let rate = Double(mvpDrop.rate) / 100
+                mvpDropFields.append(.reference("\(item.name) (\(rate) %)", item))
             }
             if !mvpDropFields.isEmpty {
                 fields.append(.array("MVP Drops", mvpDropFields))

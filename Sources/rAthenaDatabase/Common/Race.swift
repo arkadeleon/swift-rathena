@@ -36,6 +36,17 @@ public enum Race: String, CaseIterable, CodingKey, Decodable, Identifiable {
     }
 
     public var description: String {
-        stringValue
+        switch self {
+        case .formless: "Formless"
+        case .undead: "Undead"
+        case .brute: "Brute"
+        case .plant: "Plant"
+        case .insect: "Insect"
+        case .fish: "Fish"
+        case .demon: "Demon"
+        case .demihuman: "Demi-Human"
+        case .angel: "Angel"
+        case .dragon: "Dragon"
+        }
     }
 }
