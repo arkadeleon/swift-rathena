@@ -1,5 +1,5 @@
 //
-//  Packet006B.swift
+//  Packets.HC.AcceptEnterNeoUnion.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/7.
@@ -7,91 +7,94 @@
 
 import rAthenaCommon
 
-public struct Packet006B: Packet {
+extension Packets.HC {
 
-    public var totalSlotNum: UInt8
-    public var premiumStartSlot: UInt8
-    public var premiumEndSlot: UInt8
-    public var charList: [CharInfo]
+    public struct AcceptEnterNeoUnion: Packet {
 
-    public var packetName: String {
-        return "PACKET_HC_ACCEPT_ENTER_NEO_UNION"
-    }
+        public var totalSlotNum: UInt8
+        public var premiumStartSlot: UInt8
+        public var premiumEndSlot: UInt8
+        public var charList: [CharInfo]
 
-    public var packetType: UInt16 {
-        return 0x006B
-    }
-
-    public var packetLength: UInt16 {
-        var length: UInt16 = 24
-        if RA_PACKETVER >= 20100413 {
-            length += 3
-        }
-        length += CharInfo.size * UInt16(charList.count)
-        return length
-    }
-
-    public var source: PacketEndpoint {
-        return .charServer
-    }
-
-    public var destination: PacketEndpoint {
-        return .client
-    }
-
-    public init() {
-        self.totalSlotNum = 0
-        self.premiumStartSlot = 0
-        self.premiumEndSlot = 0
-        self.charList = []
-    }
-
-    public init(from decoder: BinaryDecoder) throws {
-        let packetType = try decoder.decode(UInt16.self)
-        guard packetType == 0x006B else {
-            throw PacketDecodingError.packetMismatch(packetType)
-        }
-        let packetLength = try decoder.decode(UInt16.self)
-        let charCount: UInt16
-        if RA_PACKETVER >= 20100413 {
-            charCount = (packetLength - 27) / CharInfo.size
-        } else {
-            charCount = (packetLength - 24) / CharInfo.size
+        public var packetName: String {
+            return "PACKET_HC_ACCEPT_ENTER_NEO_UNION"
         }
 
-        if RA_PACKETVER >= 20100413 {
-            self.totalSlotNum = try decoder.decode(UInt8.self)
-            self.premiumStartSlot = try decoder.decode(UInt8.self)
-            self.premiumEndSlot = try decoder.decode(UInt8.self)
-        } else {
+        public var packetType: UInt16 {
+            return 0x006B
+        }
+
+        public var packetLength: UInt16 {
+            var length: UInt16 = 24
+            if RA_PACKETVER >= 20100413 {
+                length += 3
+            }
+            length += CharInfo.size * UInt16(charList.count)
+            return length
+        }
+
+        public var source: PacketEndpoint {
+            return .charServer
+        }
+
+        public var destination: PacketEndpoint {
+            return .client
+        }
+
+        public init() {
             self.totalSlotNum = 0
             self.premiumStartSlot = 0
             self.premiumEndSlot = 0
+            self.charList = []
         }
-        let _ = try decoder.decode(String.self, length: 20)
 
-        self.charList = []
-        for _ in 0..<charCount {
-            let charInfo = try decoder.decode(CharInfo.self, length: Int(CharInfo.size))
-            self.charList.append(charInfo)
-        }
-    }
+        public init(from decoder: BinaryDecoder) throws {
+            let packetType = try decoder.decode(UInt16.self)
+            guard packetType == 0x006B else {
+                throw PacketDecodingError.packetMismatch(packetType)
+            }
+            let packetLength = try decoder.decode(UInt16.self)
+            let charCount: UInt16
+            if RA_PACKETVER >= 20100413 {
+                charCount = (packetLength - 27) / CharInfo.size
+            } else {
+                charCount = (packetLength - 24) / CharInfo.size
+            }
 
-    public func encode(to encoder: BinaryEncoder) throws {
-        try encoder.encode(self.packetLength)
-        if RA_PACKETVER >= 20100413 {
-            try encoder.encode(self.totalSlotNum)
-            try encoder.encode(self.premiumStartSlot)
-            try encoder.encode(self.premiumEndSlot)
+            if RA_PACKETVER >= 20100413 {
+                self.totalSlotNum = try decoder.decode(UInt8.self)
+                self.premiumStartSlot = try decoder.decode(UInt8.self)
+                self.premiumEndSlot = try decoder.decode(UInt8.self)
+            } else {
+                self.totalSlotNum = 0
+                self.premiumStartSlot = 0
+                self.premiumEndSlot = 0
+            }
+            let _ = try decoder.decode(String.self, length: 20)
+
+            self.charList = []
+            for _ in 0..<charCount {
+                let charInfo = try decoder.decode(CharInfo.self, length: Int(CharInfo.size))
+                self.charList.append(charInfo)
+            }
         }
-        try encoder.encode("", length: 20)  // unknown bytes
-        for charInfo in self.charList {
-            try encoder.encode(charInfo, length: Int(CharInfo.size))
+
+        public func encode(to encoder: BinaryEncoder) throws {
+            try encoder.encode(self.packetLength)
+            if RA_PACKETVER >= 20100413 {
+                try encoder.encode(self.totalSlotNum)
+                try encoder.encode(self.premiumStartSlot)
+                try encoder.encode(self.premiumEndSlot)
+            }
+            try encoder.encode("", length: 20)  // unknown bytes
+            for charInfo in self.charList {
+                try encoder.encode(charInfo, length: Int(CharInfo.size))
+            }
         }
     }
 }
 
-extension Packet006B {
+extension Packets.HC.AcceptEnterNeoUnion {
 
     public struct CharInfo: BinaryDecodable, BinaryEncodable {
 

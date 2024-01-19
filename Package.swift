@@ -22,6 +22,10 @@ let package = Package(
             targets: ["rAthenaDatabase"]
         ),
         .library(
+            name: "rAthenaNetwork",
+            targets: ["rAthenaNetwork"]
+        ),
+        .library(
             name: "rAthenaLogin",
             type: .dynamic,
             targets: ["rAthenaLogin"]
@@ -40,10 +44,6 @@ let package = Package(
             name: "rAthenaWeb",
             type: .dynamic,
             targets: ["rAthenaWeb"]
-        ),
-        .library(
-            name: "rAthenaPacket",
-            targets: ["rAthenaPacket"]
         ),
     ],
     dependencies: [
@@ -105,6 +105,12 @@ let package = Package(
                 "Yams",
                 "rAthenaCommon",
                 "rAthenaResource",
+            ]
+        ),
+        .target(
+            name: "rAthenaNetwork",
+            dependencies: [
+                "rAthenaCommon",
             ]
         ),
         .target(
@@ -209,12 +215,6 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
-            ]
-        ),
-        .target(
-            name: "rAthenaPacket",
-            dependencies: [
-                "rAthenaCommon",
             ]
         ),
         .target(
