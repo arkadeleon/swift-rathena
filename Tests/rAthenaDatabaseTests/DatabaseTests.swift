@@ -229,6 +229,10 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(spearBoomerang.type, .weapon)
         XCTAssertEqual(spearBoomerang.targetType, .attack)
         XCTAssertEqual(spearBoomerang.range, .right([3, 5, 7, 9, 11]))
+
+        let sightrasher = try await database.skill(for: "WZ_SIGHTRASHER")
+        XCTAssertEqual(sightrasher.id, 81)
+        XCTAssertEqual(sightrasher.requires?.status, ["Sight"])
     }
 
     func testSkillTreeDatabase() async throws {
