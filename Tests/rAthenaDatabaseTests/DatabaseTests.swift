@@ -208,7 +208,7 @@ final class DatabaseTests: XCTestCase {
 
     func testSkillDatabase() async throws {
         let skills = try await database.fetchSkills()
-        XCTAssertEqual(skills.count, 1502)
+        XCTAssertEqual(skills.count, 1516)
 
         let napalmBeat = try await database.skill(for: "MG_NAPALMBEAT")
         XCTAssertEqual(napalmBeat.id, 11)
@@ -233,7 +233,7 @@ final class DatabaseTests: XCTestCase {
 
     func testSkillTreeDatabase() async throws {
         let skillTrees = try await database.fetchSkillTrees()
-        XCTAssertEqual(skillTrees.count, 167)
+        XCTAssertEqual(skillTrees.count, 168)
 
         let acolyte = try await database.skillTree(for: Job.acolyte.id)
         XCTAssertEqual(acolyte.job, .acolyte)

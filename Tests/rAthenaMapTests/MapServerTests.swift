@@ -211,7 +211,7 @@ final class MapServerTests: XCTestCase {
 
     func testSkillTreeDatabase() {
         let skillTrees = RASkillTreeDatabase.shared.allRecords()
-        XCTAssertEqual(skillTrees.count, 167)
+        XCTAssertEqual(skillTrees.count, 168)
 
         let uniqueSkillTrees = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job, $0) }))
 
@@ -228,7 +228,7 @@ final class MapServerTests: XCTestCase {
 
     func testSkillDatabase() {
         let skills = RASkillDatabase.shared.allRecords()
-        XCTAssertEqual(skills.count, 1502)
+        XCTAssertEqual(skills.count, 1516)
 
         let uniqueSkills = Dictionary(uniqueKeysWithValues: skills.map({ ($0.skillName, $0) }))
 
