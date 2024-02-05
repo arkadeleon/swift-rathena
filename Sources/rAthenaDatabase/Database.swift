@@ -18,7 +18,7 @@ public class Database {
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 
-    private let mode: Mode
+    public let mode: Mode
 
     private let decoder = YAMLDecoder()
 
@@ -28,7 +28,7 @@ public class Database {
     private var skillCache: [String : Skill] = [:]
     private var skillTreeCache: [Int : SkillTree] = [:]
 
-    enum Mode {
+    public enum Mode {
         case prerenewal
         case renewal
 

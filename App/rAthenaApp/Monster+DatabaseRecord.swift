@@ -17,82 +17,75 @@ extension Monster: DatabaseRecord {
         name
     }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
-        var fields: [DatabaseRecordField] = []
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields {
+        var fields = DatabaseRecordFields()
 
-        fields += [
-            .string("ID", "#\(id)"),
-            .string("Aegis Name", aegisName),
-            .string("Name", name),
-        ]
+        fields.append("ID", value: "#\(id)")
+        fields.append("Aegis Name", value: aegisName)
+        fields.append("Name", value: name)
 
-        fields += [
-            .string("Level", "\(level)"),
-            .string("HP", "\(hp)"),
-            .string("SP", "\(sp)"),
-        ]
+        fields.append("Level", value: level)
+        fields.append("HP", value: hp)
+        fields.append("SP", value: sp)
 
-        fields += [
-            .string("Base Exp", "\(baseExp)"),
-            .string("Job Exp", "\(jobExp)"),
-            .string("MVP Exp", "\(mvpExp)"),
-        ]
+        fields.append("Base Exp", value: baseExp)
+        fields.append("Job Exp", value: jobExp)
+        fields.append("MVP Exp", value: mvpExp)
 
-        if RA_RENEWAL.boolValue {
-            let minAttack = 8 * attack / 10 + str + level
-            let maxAttack = 12 * attack / 10 + str + level
-            fields += [.string("Attack", "\(minAttack)-\(maxAttack)")]
-        } else {
+        switch database.mode {
+        case .prerenewal:
             let minAttack = attack
             let maxAttack = attack2
-            fields += [.string("Attack", "\(minAttack)-\(maxAttack)")]
-        }
+            fields.append("Attack", value: "\(minAttack)-\(maxAttack)")
+        case .renewal:
+            let minAttack = 8 * attack / 10 + str + level
+            let maxAttack = 12 * attack / 10 + str + level
+            fields.append("Attack", value: "\(minAttack)-\(maxAttack)")
 
-        if RA_RENEWAL.boolValue {
             let minMagicAttack = 7 * attack2 / 10 + int + level
             let maxMagicAttack = 13 * attack2 / 10 + int + level
-            fields += [.string("Magic Attack", "\(minMagicAttack)-\(maxMagicAttack)")]
+            fields.append("Magic Attack", value: "\(minMagicAttack)-\(maxMagicAttack)")
         }
 
-//        [fields ra_addFieldWithName:@"Defense" numberValue:@(self.defense)];
-//        [fields ra_addFieldWithName:@"Magic Defense" numberValue:@(self.magicDefense)];
-//
-//        [fields ra_addFieldWithName:@"Resistance" numberValue:@(self.resistance)];
-//        [fields ra_addFieldWithName:@"Magic Resistance" numberValue:@(self.magicResistance)];
-//
-//        [fields ra_addFieldWithName:@"Str" numberValue:@(self.strength)];
-//        [fields ra_addFieldWithName:@"Agi" numberValue:@(self.agility)];
-//        [fields ra_addFieldWithName:@"Vit" numberValue:@(self.vitality)];
-//        [fields ra_addFieldWithName:@"Int" numberValue:@(self.intelligence)];
-//        [fields ra_addFieldWithName:@"Dex" numberValue:@(self.dexterity)];
-//        [fields ra_addFieldWithName:@"Luk" numberValue:@(self.luck)];
-//
-//        [fields ra_addFieldWithName:@"Attack Range" numberValue:@(self.attackRange)];
-//        [fields ra_addFieldWithName:@"Skill Cast Range" numberValue:@(self.skillRange)];
-//        [fields ra_addFieldWithName:@"Chase Range" numberValue:@(self.chaseRange)];
-//
-//        [fields ra_addFieldWithName:@"Size" stringValue:NSStringFromRASize(self.size)];
-//
-//        [fields ra_addFieldWithName:@"Race" stringValue:NSStringFromRARace(self.race)];
-//
-//        // TODO: Race Groups
-//
-//        [fields ra_addFieldWithName:@"Element" stringValue:[NSString stringWithFormat:@"%@ %ld", NSStringFromRAElement(self.element), self.elementLevel]];
-//
-//        [fields ra_addFieldWithName:@"Walk Speed" numberValue:@(self.walkSpeed)];
-//        [fields ra_addFieldWithName:@"Attack Speed" numberValue:@(self.attackDelay)];
-//        [fields ra_addFieldWithName:@"Attack Animation Speed" numberValue:@(self.attackMotion)];
-//        [fields ra_addFieldWithName:@"Damage Animation Speed" numberValue:@(self.damageMotion)];
-//
-//        // TODO: Damage Taken
-//
-//        [fields ra_addFieldWithName:@"Class" stringValue:NSStringFromRAMonsterClass(self.monsterClass)];
+        fields.append("Defense", value: defense)
+        fields.append("Magic Defense", value: magicDefense)
+
+        fields.append("Resistance", value: resistance)
+        fields.append("Magic Resistance", value: magicResistance)
+
+        fields.append("Str", value: str)
+        fields.append("Agi", value: agi)
+        fields.append("Vit", value: vit)
+        fields.append("Int", value: int)
+        fields.append("Dex", value: dex)
+        fields.append("Luk", value: luk)
+
+        fields.append("Attack Range", value: attackRange)
+        fields.append("Skill Cast Range", value: skillRange)
+        fields.append("Chase Range", value: chaseRange)
+
+        fields.append("Size", value: size.description)
+
+        fields.append("Race", value: race.description)
+
+        // TODO: Race Groups
+
+        fields.append("Element", value: "\(element.description) \(elementLevel)")
+
+        fields.append("Walk Speed", value: walkSpeed.rawValue)
+        fields.append("Attack Speed", value: attackDelay)
+        fields.append("Attack Animation Speed", value: attackMotion)
+        fields.append("Damage Animation Speed", value: damageMotion)
+
+        // TODO: Damage Taken
+
+        fields.append("Class", value: self.class.description)
 
         if let modes {
             let modeFields = modes.map { mode -> DatabaseRecordField in
                 .string(mode.description, "")
             }
-            fields += [.array("Modes", modeFields)]
+            fields.append("Modes", value: modeFields)
         }
 
         if let drops {
@@ -103,7 +96,7 @@ extension Monster: DatabaseRecord {
                 dropFields.append(.reference("\(item.name) (\(rate) %)", item))
             }
             if !dropFields.isEmpty {
-                fields.append(.array("Drops", dropFields))
+                fields.append("Drops", value: dropFields)
             }
         }
 
@@ -115,7 +108,7 @@ extension Monster: DatabaseRecord {
                 mvpDropFields.append(.reference("\(item.name) (\(rate) %)", item))
             }
             if !mvpDropFields.isEmpty {
-                fields.append(.array("MVP Drops", mvpDropFields))
+                fields.append("MVP Drops", value: mvpDropFields)
             }
         }
 

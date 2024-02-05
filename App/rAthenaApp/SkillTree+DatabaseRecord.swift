@@ -16,8 +16,8 @@ extension SkillTree: DatabaseRecord {
         job.description
     }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
-        var fields: [DatabaseRecordField] = []
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields {
+        var fields = DatabaseRecordFields()
 
         if let inherit {
             var inheritFields: [DatabaseRecordField] = []
@@ -25,7 +25,7 @@ extension SkillTree: DatabaseRecord {
                 let skillTree = try await database.skillTree(for: job.id)
                 inheritFields.append(.reference(job.description, skillTree))
             }
-            fields += [.array("Inherit", inheritFields)]
+            fields.append("Inherit", value: inheritFields)
         }
 
         if let tree {
@@ -50,7 +50,7 @@ extension SkillTree: DatabaseRecord {
                     skillFields += [.array("Prerequisites", prerequisiteFields)]
                 }
 
-                fields += [.array(reference.name, skillFields)]
+                fields.append(reference.name, value: skillFields)
             }
         }
 

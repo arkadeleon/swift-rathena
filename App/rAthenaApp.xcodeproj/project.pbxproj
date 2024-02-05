@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3514BF682B46B0810065ED89 /* DatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF632B46B0800065ED89 /* DatabaseView.swift */; };
-		3514BF692B46B0810065ED89 /* DatabaseRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF642B46B0800065ED89 /* DatabaseRecordView.swift */; };
+		3514BF682B46B0810065ED89 /* DatabaseRecordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF632B46B0800065ED89 /* DatabaseRecordList.swift */; };
+		3514BF692B46B0810065ED89 /* DatabaseRecordDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF642B46B0800065ED89 /* DatabaseRecordDetail.swift */; };
 		3514BF6B2B46B0810065ED89 /* ServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF662B46B0810065ED89 /* ServerView.swift */; };
 		3514BF6C2B46B0810065ED89 /* ServerTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3514BF672B46B0810065ED89 /* ServerTerminalView.swift */; };
 		3514BF6E2B46B1660065ED89 /* rAthenaResource in Frameworks */ = {isa = PBXBuildFile; productRef = 3514BF6D2B46B1660065ED89 /* rAthenaResource */; };
@@ -53,8 +53,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3514BF632B46B0800065ED89 /* DatabaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseView.swift; sourceTree = "<group>"; };
-		3514BF642B46B0800065ED89 /* DatabaseRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRecordView.swift; sourceTree = "<group>"; };
+		3514BF632B46B0800065ED89 /* DatabaseRecordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRecordList.swift; sourceTree = "<group>"; };
+		3514BF642B46B0800065ED89 /* DatabaseRecordDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseRecordDetail.swift; sourceTree = "<group>"; };
 		3514BF662B46B0810065ED89 /* ServerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerView.swift; sourceTree = "<group>"; };
 		3514BF672B46B0810065ED89 /* ServerTerminalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTerminalView.swift; sourceTree = "<group>"; };
 		3514BF722B46B6880065ED89 /* DatabaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRecord.swift; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 				35FC634429125B2000825452 /* ContentView.swift */,
 				3514BF662B46B0810065ED89 /* ServerView.swift */,
 				3514BF672B46B0810065ED89 /* ServerTerminalView.swift */,
-				3514BF632B46B0800065ED89 /* DatabaseView.swift */,
-				3514BF642B46B0800065ED89 /* DatabaseRecordView.swift */,
+				3514BF632B46B0800065ED89 /* DatabaseRecordList.swift */,
+				3514BF642B46B0800065ED89 /* DatabaseRecordDetail.swift */,
 				3514BF722B46B6880065ED89 /* DatabaseRecord.swift */,
 				3514BF742B46B7DB0065ED89 /* Item+DatabaseRecord.swift */,
 				3514BF762B46EF1E0065ED89 /* Monster+DatabaseRecord.swift */,
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3514BF792B46FCFA0065ED89 /* JobStats+DatabaseRecord.swift in Sources */,
-				3514BF682B46B0810065ED89 /* DatabaseView.swift in Sources */,
+				3514BF682B46B0810065ED89 /* DatabaseRecordList.swift in Sources */,
 				35FC634529125B2000825452 /* ContentView.swift in Sources */,
 				3514BF6B2B46B0810065ED89 /* ServerView.swift in Sources */,
 				3514BF752B46B7DB0065ED89 /* Item+DatabaseRecord.swift in Sources */,
@@ -237,7 +237,7 @@
 				35FC634329125B2000825452 /* App.swift in Sources */,
 				3514BF7B2B46FD590065ED89 /* Skill+DatabaseRecord.swift in Sources */,
 				3514BF772B46EF1E0065ED89 /* Monster+DatabaseRecord.swift in Sources */,
-				3514BF692B46B0810065ED89 /* DatabaseRecordView.swift in Sources */,
+				3514BF692B46B0810065ED89 /* DatabaseRecordDetail.swift in Sources */,
 				3514BF7D2B46FD630065ED89 /* SkillTree+DatabaseRecord.swift in Sources */,
 				3514BF6C2B46B0810065ED89 /* ServerTerminalView.swift in Sources */,
 			);
@@ -296,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -350,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

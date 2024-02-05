@@ -11,7 +11,31 @@ protocol DatabaseRecord {
     var recordID: Int { get }
     var recordTitle: String { get }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField]
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields
+}
+
+struct DatabaseRecordFields {
+    var fields: [DatabaseRecordField] = []
+
+    mutating func append(_ name: String, value: String) {
+        let field: DatabaseRecordField = .string(name, value)
+        fields.append(field)
+    }
+
+    mutating func append(_ name: String, value: Int) {
+        let field: DatabaseRecordField = .string(name, "\(value)")
+        fields.append(field)
+    }
+
+    mutating func append(_ name: String, value: DatabaseRecord) {
+        let field: DatabaseRecordField = .reference(name, value)
+        fields.append(field)
+    }
+
+    mutating func append(_ name: String, value: [DatabaseRecordField]) {
+        let field: DatabaseRecordField = .array(name, value)
+        fields.append(field)
+    }
 }
 
 enum DatabaseRecordField {

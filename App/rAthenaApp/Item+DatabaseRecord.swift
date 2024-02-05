@@ -16,60 +16,50 @@ extension Item: DatabaseRecord {
         name
     }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
-        var fields: [DatabaseRecordField] = []
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields {
+        var fields = DatabaseRecordFields()
 
-        fields += [
-            .string("ID", "#\(id)"),
-            .string("Aegis Name", aegisName),
-            .string("Name", name),
-        ]
+        fields.append("ID", value: "#\(id)")
+        fields.append("Aegis Name", value: aegisName)
+        fields.append("Name", value: name)
 
-        fields += [.string("Type", type.description)]
+        fields.append("Type", value: type.description)
 
         switch subType {
         case .none:
             break
         case .weapon(let weaponType):
-            fields += [.string("Weapon Type", weaponType.description)]
+            fields.append("Weapon Type", value: weaponType.description)
         case .ammo(let ammoType):
-            fields += [.string("Ammo Type", ammoType.description)]
+            fields.append("Ammo Type", value: ammoType.description)
         case .card(let cardType):
-            fields += [.string("Card Type", cardType.description)]
+            fields.append("Card Type", value: cardType.description)
         }
 
-        fields += [
-            .string("Buy", "\(buy)z"),
-            .string("Sell", "\(sell)z"),
-            .string("Gender", gender.description),
-        ]
+        fields.append("Buy", value: "\(buy)z")
+        fields.append("Sell", value: "\(sell)z")
+        fields.append("Gender", value: gender.description)
 
         switch type {
         case .weapon:
-            fields += [
-                .string("Attack", "\(attack)"),
-                .string("Magic Attack", "\(magicAttack)"),
-                .string("Attack Range", "\(range)"),
-                .string("Weapon Level", "\(weaponLevel)"),
-            ]
+            fields.append("Attack", value: attack)
+            fields.append("Magic Attack", value: magicAttack)
+            fields.append("Attack Range", value: range)
+            fields.append("Weapon Level", value: weaponLevel)
         case .armor:
-            fields += [
-                .string("Defense", "\(defense)"),
-                .string("Armor Level", "\(armorLevel)"),
-            ]
+            fields.append("Defense", value: defense)
+            fields.append("Armor Level", value: armorLevel)
         default:
             break
         }
 
         switch type {
         case .weapon, .armor:
-            fields += [
-                .string("Slots", "\(slots)"),
-                .string("Minimum Level", "\(equipLevelMin)"),
-                .string("Maximum Level", "\(equipLevelMax)"),
-                .string("Refinable", refineable ? "Yes" : "No"),
-                .string("Gradable", gradable ? "Yes" : "No"),
-            ]
+            fields.append("Slots", value: slots)
+            fields.append("Minimum Level", value: equipLevelMin)
+            fields.append("Maximum Level", value: equipLevelMax)
+            fields.append("Refinable", value: refineable ? "Yes" : "No")
+            fields.append("Gradable", value: gradable ? "Yes" : "No")
         default:
             break;
         }

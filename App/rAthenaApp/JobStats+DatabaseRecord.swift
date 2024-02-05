@@ -16,20 +16,18 @@ extension JobStats: DatabaseRecord {
         job.description
     }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
-        var fields: [DatabaseRecordField] = []
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields {
+        var fields = DatabaseRecordFields()
 
-        fields += [
-            .string("Max Weight", "\(maxWeight)"),
-            .string("HP Factor", "\(hpFactor)"),
-            .string("HP Increase", "\(hpIncrease)"),
-            .string("SP Increase", "\(spIncrease)"),
-        ]
+        fields.append("Max Weight", value: maxWeight)
+        fields.append("HP Factor", value: hpFactor)
+        fields.append("HP Increase", value: hpIncrease)
+        fields.append("SP Increase", value: spIncrease)
 
         let baseASPDFields = baseASPD.map { (weaponType, baseASPD) in
             DatabaseRecordField.string(weaponType.description, "\(baseASPD)")
         }
-        fields += [.array("Base ASPD", baseASPDFields)]
+        fields.append("Base ASPD", value: baseASPDFields)
 
         let bonusStatsFields = bonusStats.enumerated().map { (level, bonusStats) in
             let levelBonusStatsFields = Parameter.allCases.map { parameter in
@@ -38,36 +36,36 @@ extension JobStats: DatabaseRecord {
             }
             return DatabaseRecordField.array("Level \(level + 1)", levelBonusStatsFields)
         }
-        fields += [.array("Bonus Stats", bonusStatsFields)]
+        fields.append("Bonus Stats", value: bonusStatsFields)
 
 //        let maxStatsFields = maxStats.enumerated().map { (parameter, maxStats) in
 //            DatabaseRecordField.string(NSStringFromRAParameter(parameter), maxStats.stringValue)
 //        }
 //        fields += [.array("Max Stats", maxStatsFields)]
 
-        fields += [.string("Max Base Level", "\(maxBaseLevel)")]
+        fields.append("Max Base Level", value: maxBaseLevel)
 
         let baseExpFields = baseExp.enumerated().map { (level, baseExp) in
             DatabaseRecordField.string("Level \(level + 1)", "\(baseExp)")
         }
-        fields += [.array("Base Exp", baseExpFields)]
+        fields.append("Base Exp", value: baseExpFields)
 
-        fields += [.string("Max Job Level", "\(maxJobLevel)")]
+        fields.append("Max Job Level", value: maxJobLevel)
 
         let jobExpFields = jobExp.enumerated().map { (level, jobExp) in
             DatabaseRecordField.string("Level \(level + 1)", "\(jobExp)")
         }
-        fields += [.array("Job Exp", jobExpFields)]
+        fields.append("Job Exp", value: jobExpFields)
 
         let baseHpFields = baseHp.enumerated().map { (level, baseHp) in
             DatabaseRecordField.string("Level \(level + 1)", "\(baseHp)")
         }
-        fields += [.array("Base HP", baseHpFields)]
+        fields.append("Base HP", value: baseHpFields)
 
         let baseSpFields = baseSp.enumerated().map { (level, baseSp) in
             DatabaseRecordField.string("Level \(level + 1)", "\(baseSp)")
         }
-        fields += [.array("Base SP", baseSpFields)]
+        fields.append("Base SP", value: baseSpFields)
 
 //        let baseApFields = baseAp.enumerated().map { (level, baseAp) in
 //            DatabaseRecordField.string("Level \(level + 1)", "\(baseAp)")

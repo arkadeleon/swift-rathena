@@ -1,5 +1,5 @@
 //
-//  DatabaseView.swift
+//  DatabaseRecordList.swift
 //  rAthenaApp
 //
 //  Created by Leon Li on 2023/6/28.
@@ -8,9 +8,9 @@
 import SwiftUI
 import rAthenaDatabase
 
-struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
+struct DatabaseRecordList<Record>: View where Record: Any, Record: DatabaseRecord {
     let database: Database
-    let fetcher: () async throws -> [Record]
+    let fetcher: (Database) async throws -> [Record]
 
     private enum Status {
         case notYetLoaded
@@ -33,7 +33,7 @@ struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
             case .loaded:
                 List(filteredRecords, id: \.recordID) { record in
                     NavigationLink {
-                        DatabaseRecordView(database: database, record: record)
+                        DatabaseRecordDetail(database: database, record: record)
                     } label: {
                         Text(record.recordTitle)
                     }
@@ -63,7 +63,7 @@ struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
         status = .loading
 
         do {
-            let records = try await fetcher()
+            let records = try await fetcher(database)
             status = .loaded(records)
             filterRecords()
         } catch {
@@ -82,6 +82,14 @@ struct DatabaseView<Record>: View where Record: Any, Record: DatabaseRecord {
             filteredRecords = records.filter { record in
                 record.recordTitle.localizedCaseInsensitiveContains(searchText)
             }
+        }
+    }
+}
+
+#Preview {
+    NavigationView {
+        DatabaseRecordList(database: .renewal) { database in
+            try await database.fetchItems()
         }
     }
 }

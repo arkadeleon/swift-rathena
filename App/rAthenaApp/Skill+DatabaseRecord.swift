@@ -16,17 +16,15 @@ extension Skill: DatabaseRecord {
         name
     }
 
-    func recordFields(with database: Database) async throws -> [DatabaseRecordField] {
-        var fields: [DatabaseRecordField] = []
+    func recordFields(with database: Database) async throws -> DatabaseRecordFields {
+        var fields = DatabaseRecordFields()
 
-        fields += [
-            .string("ID", "#\(id)"),
-            .string("Aegis Name", aegisName),
-            .string("Name", name),
-            .string("Maximum Level", "\(maxLevel)"),
-            .string("Type", type.description),
-            .string("Target Type", targetType.description),
-        ]
+        fields.append("ID", value: "#\(id)")
+        fields.append("Aegis Name", value: aegisName)
+        fields.append("Name", value: name)
+        fields.append("Maximum Level", value: maxLevel)
+        fields.append("Type", value: type.description)
+        fields.append("Target Type", value: targetType.description)
 
         // TODO: Damage Flags
 

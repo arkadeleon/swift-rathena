@@ -1,5 +1,5 @@
 //
-//  DatabaseRecordView.swift
+//  DatabaseRecordDetail.swift
 //  rAthenaApp
 //
 //  Created by Leon Li on 2023/6/29.
@@ -8,14 +8,14 @@
 import SwiftUI
 import rAthenaDatabase
 
-struct DatabaseRecordView: View {
+struct DatabaseRecordDetail: View {
     let database: Database
     let record: DatabaseRecord
 
     private enum Status {
         case notYetLoaded
         case loading
-        case loaded([DatabaseRecordField])
+        case loaded(DatabaseRecordFields)
         case failed(Error)
     }
 
@@ -29,18 +29,13 @@ struct DatabaseRecordView: View {
             case .loading:
                 ProgressView()
             case .loaded(let recordFields):
-                List(recordFields) { field in
+                List(recordFields.fields) { field in
                     switch field {
                     case .string(let name, let value):
-                        HStack {
-                            Text(name)
-                            Spacer()
-                            Text(value)
-                                .foregroundColor(.secondary)
-                        }
+                        LabeledContent(name, value: value)
                     case .reference(let name, let reference):
                         NavigationLink {
-                            DatabaseRecordView(database: database, record: reference)
+                            DatabaseRecordDetail(database: database, record: reference)
                         } label: {
                             Text(name)
                         }
@@ -48,15 +43,10 @@ struct DatabaseRecordView: View {
                         OutlineGroup(field, children: \.array) { field in
                             switch field {
                             case .string(let name, let value):
-                                HStack {
-                                    Text(name)
-                                    Spacer()
-                                    Text(value)
-                                        .foregroundColor(.secondary)
-                                }
+                                LabeledContent(name, value: value)
                             case .reference(let name, let reference):
                                 NavigationLink {
-                                    DatabaseRecordView(database: database, record: reference)
+                                    DatabaseRecordDetail(database: database, record: reference)
                                 } label: {
                                     Text(name)
                                 }

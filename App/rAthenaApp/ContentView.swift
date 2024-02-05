@@ -37,7 +37,7 @@ struct ContentView: View {
 
                 Section("Databases") {
                     NavigationLink {
-                        DatabaseView(database: database) {
+                        DatabaseRecordList(database: database) { database in
                             try await database.fetchItems()
                         }
                         .navigationTitle("Items")
@@ -47,7 +47,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView(database: database) {
+                        DatabaseRecordList(database: database) { database in
                             try await database.fetchMonsters()
                         }
                         .navigationTitle("Monsters")
@@ -57,7 +57,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView(database: database) {
+                        DatabaseRecordList(database: database) { database in
                             try await database.fetchJobs()
                         }
                         .navigationTitle("Jobs")
@@ -67,7 +67,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView(database: database) {
+                        DatabaseRecordList(database: database) { database in
                             try await database.fetchSkills()
                         }
                         .navigationTitle("Skills")
@@ -77,7 +77,7 @@ struct ContentView: View {
                     }
 
                     NavigationLink {
-                        DatabaseView(database: database) {
+                        DatabaseRecordList(database: database) { database in
                             try await database.fetchSkillTrees()
                         }
                         .navigationTitle("Skill Trees")
@@ -95,8 +95,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
