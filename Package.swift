@@ -58,7 +58,6 @@ let package = Package(
                 "doc",
                 "src",
                 "tools",
-                "App",
             ],
             sources: [
                 "Sources/rAthenaCommon",
@@ -86,7 +85,6 @@ let package = Package(
                 "doc",
                 "src",
                 "tools",
-                "App",
             ],
             sources: [
                 "Sources/rAthenaResource",
