@@ -1,4 +1,4 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -100,9 +100,20 @@ let package = Package(
         .target(
             name: "rAthenaDatabase",
             dependencies: [
+                "ryml",
                 "Yams",
                 "rAthenaCommon",
                 "rAthenaResource",
+            ],
+            exclude: [
+                "3rdparty",
+            ],
+            cxxSettings: [
+                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
+                .headerSearchPath("3rdparty/rapidyaml/src"),
+            ],
+            swiftSettings: [
+                .interoperabilityMode(.Cxx),
             ]
         ),
         .target(
@@ -235,7 +246,6 @@ let package = Package(
                 "ext/c4core/src",
                 "src",
             ],
-            publicHeadersPath: "src",
             cxxSettings: [
                 .headerSearchPath("ext/c4core/src"),
                 .headerSearchPath("src"),
@@ -244,8 +254,9 @@ let package = Package(
         .target(
             name: "yaml-cpp",
             path: "3rdparty/yaml-cpp",
-            sources: ["src"],
-            publicHeadersPath: "include"
+            sources: [
+                "src",
+            ]
         ),
         .plugin(
             name: "rAthenaExportConstantsPlugin",
@@ -255,6 +266,15 @@ let package = Package(
                     .writeToPackageDirectory(reason: "")
                 ]
             )
+        ),
+        .testTarget(
+            name: "rAthenaDatabaseTests",
+            dependencies: [
+                "rAthenaDatabase",
+            ],
+            swiftSettings: [
+                .interoperabilityMode(.Cxx),
+            ]
         ),
         .testTarget(
             name: "rAthenaLoginTests",
@@ -282,12 +302,6 @@ let package = Package(
             dependencies: [
                 "rAthenaResource",
                 "rAthenaWeb",
-            ]
-        ),
-        .testTarget(
-            name: "rAthenaDatabaseTests",
-            dependencies: [
-                "rAthenaDatabase",
             ]
         ),
     ],
