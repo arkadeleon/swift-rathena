@@ -7,7 +7,6 @@
 
 import Foundation
 import rAthenaResource
-import Yams
 
 public enum DatabaseError: Error {
     case recordNotFound
@@ -48,6 +47,9 @@ public class Database {
 
     public func fetchItems() async throws -> [Item] {
         if itemCache.isEmpty {
+            let start = Date()
+            print("Begin loading item database")
+
             let usableItemList = Task {
                 let usableItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_usable.yml")
                 let usableItemList = try decoder.decode(List<Item>.self, from: usableItemData)
@@ -67,6 +69,9 @@ public class Database {
             }
 
             let items = try await usableItemList.value.body + equipItemList.value.body + etcItemList.value.body
+
+            let end = Date()
+            print("End loading item database: \(end.timeIntervalSince(start))")
 
             itemCache = Dictionary(uniqueKeysWithValues: items.map({ ($0.aegisName, $0) }))
         }
