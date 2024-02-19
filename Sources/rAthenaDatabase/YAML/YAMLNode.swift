@@ -8,50 +8,38 @@
 import ryml
 
 enum YAMLNode {
-    case value(String?)
-    case map(Map)
-    case sequence(Sequence)
+    case map([String : YAMLNode])
+    case sequence([YAMLNode])
+    case value(String)
+    case null
 
     init(from node: c4.yml.NodeRef) {
         if node.is_map() {
-            self = .map(Map(from: node))
-        } else if node.is_seq() {
-            self = .sequence(Sequence(from: node))
-        } else {
-            self = .value(node.val_is_null() ? nil : node.val().string)
-        }
-    }
-
-    func value() -> String? {
-        switch self {
-        case .value(let string): string
-        case .map(let map): nil
-        case .sequence(let sequence): nil
-        }
-    }
-}
-
-extension YAMLNode {
-    struct Map {
-        let nodes: [String : YAMLNode]
-
-        init(from node: c4.yml.NodeRef) {
             var nodes: [String : YAMLNode] = [:]
             for pos in 0..<node.num_children() {
                 let child = node.child(pos)
                 nodes[child.key().string] = YAMLNode(from: child)
             }
-            self.nodes = nodes
+            self = .map(nodes)
+        } else if node.is_seq() {
+            var nodes: [YAMLNode] = []
+            for pos in 0..<node.num_children() {
+                let child = node.child(pos)
+                nodes.append(YAMLNode(from: child))
+            }
+            self = .sequence(nodes)
+        } else if node.is_keyval() && !node.val_is_null() {
+            self = .value(node.val().string)
+        } else {
+            self = .null
         }
     }
-}
 
-extension YAMLNode {
-    struct Sequence {
-        let nodes: [YAMLNode]
-
-        init(from node: c4.yml.NodeRef) {
-            nodes = (0..<node.num_children()).map({ YAMLNode(from: node[$0]) })
+    func value() -> String? {
+        if case .value(let string) = self {
+            return string
+        } else {
+            return nil
         }
     }
 }

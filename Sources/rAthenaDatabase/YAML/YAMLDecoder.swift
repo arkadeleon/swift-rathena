@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ryml
 
 enum YamlError: Error {
     case dataCouldNotBeDecoded(encoding: String.Encoding)
@@ -46,9 +45,8 @@ class YAMLDecoder {
                    from yaml: String,
                    userInfo: [CodingUserInfoKey: Any] = [:]) throws -> T where T: Swift.Decodable {
         do {
-            var parser = c4.yml.Parser()
-            let tree = parser.parse_in_arena(c4.to_csubstr(""), yaml.csubstr)
-            let node = YAMLNode(from: tree.rootref())
+            let parser = YAMLParser(yaml: yaml)
+            let node = parser.parse()
             return try self.decode(type, from: node, userInfo: userInfo)
         } catch let error as DecodingError {
             throw error
@@ -96,14 +94,14 @@ private struct _YAMLDecoder: Decoder {
 
     func container<Key>(keyedBy type: Key.Type) throws -> KeyedDecodingContainer<Key> {
         guard case .map(let map) = node else {
-            throw _typeMismatch(at: codingPath, expectation: YAMLNode.Map.self, reality: node)
+            throw _typeMismatch(at: codingPath, expectation: YAMLNode.self, reality: node)
         }
         return .init(_YAMLKeyedDecodingContainer<Key>(decoder: self, wrapping: map))
     }
 
     func unkeyedContainer() throws -> UnkeyedDecodingContainer {
         guard case .sequence(let sequence) = node else {
-            throw _typeMismatch(at: codingPath, expectation: YAMLNode.Sequence.self, reality: node)
+            throw _typeMismatch(at: codingPath, expectation: YAMLNode.self, reality: node)
         }
         return _YAMLUnkeyedDecodingContainer(decoder: self, wrapping: sequence)
     }
@@ -123,8 +121,8 @@ private struct _YAMLDecoder: Decoder {
 extension _YAMLDecoder: SingleValueDecodingContainer {
 
     func decodeNil() -> Bool {
-        if case .value(let value) = node {
-            return value == nil
+        if case .null = node {
+            return true
         } else {
             return false
         }
@@ -250,11 +248,11 @@ extension _YAMLDecoder: SingleValueDecodingContainer {
 private struct _YAMLKeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContainerProtocol {
 
     private let decoder: _YAMLDecoder
-    private let map: YAMLNode.Map
+    private let nodes: [String : YAMLNode]
 
-    init(decoder: _YAMLDecoder, wrapping map: YAMLNode.Map) {
+    init(decoder: _YAMLDecoder, wrapping nodes: [String : YAMLNode]) {
         self.decoder = decoder
-        self.map = map
+        self.nodes = nodes
     }
 
     // MARK: - Swift.KeyedDecodingContainerProtocol Methods
@@ -262,11 +260,11 @@ private struct _YAMLKeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContain
     var codingPath: [CodingKey] { return decoder.codingPath }
 
     var allKeys: [Key] {
-        map.nodes.keys.compactMap({ Key.init(stringValue: $0) })
+        nodes.keys.compactMap({ Key.init(stringValue: $0) })
     }
 
     func contains(_ key: Key) -> Bool {
-        map.nodes[key.stringValue] != nil
+        nodes[key.stringValue] != nil
     }
 
     func decodeNil(forKey key: Key) throws -> Bool {
@@ -292,7 +290,7 @@ private struct _YAMLKeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContain
     // MARK: -
 
     private func node(for key: CodingKey) throws -> YAMLNode {
-        guard let node = map.nodes[key.stringValue] else {
+        guard let node = nodes[key.stringValue] else {
             throw _keyNotFound(at: codingPath, key, "No value associated with key \(key) (\"\(key.stringValue)\").")
         }
         return node
@@ -306,19 +304,19 @@ private struct _YAMLKeyedDecodingContainer<Key: CodingKey>: KeyedDecodingContain
 private struct _YAMLUnkeyedDecodingContainer: UnkeyedDecodingContainer {
 
     private let decoder: _YAMLDecoder
-    private let sequence: YAMLNode.Sequence
+    private let nodes: [YAMLNode]
 
-    init(decoder: _YAMLDecoder, wrapping sequence: YAMLNode.Sequence) {
+    init(decoder: _YAMLDecoder, wrapping nodes: [YAMLNode]) {
         self.decoder = decoder
-        self.sequence = sequence
+        self.nodes = nodes
         self.currentIndex = 0
     }
 
     // MARK: - Swift.UnkeyedDecodingContainer Methods
 
     var codingPath: [CodingKey] { return decoder.codingPath }
-    var count: Int? { return sequence.nodes.count }
-    var isAtEnd: Bool { return currentIndex >= sequence.nodes.count }
+    var count: Int? { return nodes.count }
+    var isAtEnd: Bool { return currentIndex >= nodes.count }
     var currentIndex: Int
 
     mutating func decodeNil() throws -> Bool {
@@ -343,7 +341,7 @@ private struct _YAMLUnkeyedDecodingContainer: UnkeyedDecodingContainer {
     // MARK: -
 
     private var currentKey: CodingKey { return _YAMLCodingKey(index: currentIndex) }
-    private var currentNode: YAMLNode { return sequence.nodes[currentIndex] }
+    private var currentNode: YAMLNode { return nodes[currentIndex] }
 
     private func throwErrorIfAtEnd<T>(_ type: T.Type) throws {
         if isAtEnd { throw _valueNotFound(at: codingPath + [currentKey], type, "Unkeyed container is at end.") }
@@ -412,20 +410,3 @@ extension YAMLDecoder: TopLevelDecoder {
     }
 }
 #endif
-
-extension c4.csubstr {
-    var string: String {
-        let data = Data(bytes: str, count: len)
-        let string = String(data: data, encoding: .utf8)
-        return string ?? ""
-    }
-}
-
-extension String {
-    var csubstr: c4.csubstr {
-        let csubstr = withCString { string in
-            c4.to_csubstr(string)
-        }
-        return csubstr
-    }
-}
