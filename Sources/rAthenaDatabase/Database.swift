@@ -8,11 +8,29 @@
 import Foundation
 import rAthenaResource
 
+public typealias AsyncDatabaseRecordPartitions<Record> = AsyncThrowingStream<Database.RecordPartition<Record>, Error>
+
 public enum DatabaseError: Error {
     case recordNotFound
 }
 
 public class Database {
+
+    public enum Mode {
+        case prerenewal
+        case renewal
+
+        var path: String {
+            switch self {
+            case .prerenewal: "db/pre-re/"
+            case .renewal: "db/re/"
+            }
+        }
+    }
+
+    public struct RecordPartition<Record> {
+        public let records: [Record]
+    }
 
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
@@ -27,60 +45,49 @@ public class Database {
     private var skillCache: [String : Skill] = [:]
     private var skillTreeCache: [Int : SkillTree] = [:]
 
-    public enum Mode {
-        case prerenewal
-        case renewal
-
-        var path: String {
-            switch self {
-            case .prerenewal: "db/pre-re/"
-            case .renewal: "db/re/"
-            }
-        }
-    }
-
     private init(mode: Mode) {
         self.mode = mode
     }
 
     // MARK: - Item
 
-    public func fetchItems() async throws -> [Item] {
-        if itemCache.isEmpty {
-            let start = Date()
-            print("Begin loading item database")
+    public func fetchItems() -> AsyncDatabaseRecordPartitions<Item> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if itemCache.isEmpty {
+                    let start = Date()
+                    print("Begin loading item database")
 
-            let usableItemList = Task {
-                let usableItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_usable.yml")
-                let usableItemList = try decoder.decode(List<Item>.self, from: usableItemData)
-                return usableItemList
+                    let usableItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_usable.yml")
+                    let usableItems = try decoder.decode(List<Item>.self, from: usableItemData).body
+                    continuation.yield(RecordPartition(records: usableItems))
+
+                    let equipItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_equip.yml")
+                    let equipItems = try decoder.decode(List<Item>.self, from: equipItemData).body
+                    continuation.yield(RecordPartition(records: equipItems))
+
+                    let etcItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_etc.yml")
+                    let etcItems = try decoder.decode(List<Item>.self, from: etcItemData).body
+                    continuation.yield(RecordPartition(records: etcItems))
+
+                    let items = usableItems + equipItems + etcItems
+
+                    continuation.finish()
+
+                    let end = Date()
+                    print("End loading item database: \(end.timeIntervalSince(start))")
+
+                    itemCache = Dictionary(uniqueKeysWithValues: items.map({ ($0.aegisName, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: itemCache.values.sorted()))
+                    continuation.finish()
+                }
             }
-
-            let equipItemList = Task {
-                let equipItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_equip.yml")
-                let equipItemList = try decoder.decode(List<Item>.self, from: equipItemData)
-                return equipItemList
-            }
-
-            let etcItemList = Task {
-                let etcItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_etc.yml")
-                let etcItemList = try decoder.decode(List<Item>.self, from: etcItemData)
-                return etcItemList
-            }
-
-            let items = try await usableItemList.value.body + equipItemList.value.body + etcItemList.value.body
-
-            let end = Date()
-            print("End loading item database: \(end.timeIntervalSince(start))")
-
-            itemCache = Dictionary(uniqueKeysWithValues: items.map({ ($0.aegisName, $0) }))
         }
-
-        return itemCache.values.sorted()
     }
 
     public func item(for aegisName: String) async throws -> Item {
-        _ = try await fetchItems()
+        for try await _ in fetchItems() {}
         if let item = itemCache[aegisName] {
             return item
         } else {
@@ -90,19 +97,27 @@ public class Database {
 
     // MARK: - Monster
 
-    public func fetchMonsters() async throws -> [Monster] {
-        if monsterCache.isEmpty {
-            let mobData = try ResourceManager.shared.data(forResource: mode.path + "mob_db.yml")
-            let mobList = try decoder.decode(List<Monster>.self, from: mobData)
+    public func fetchMonsters() -> AsyncDatabaseRecordPartitions<Monster> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if monsterCache.isEmpty {
+                    let mobData = try ResourceManager.shared.data(forResource: mode.path + "mob_db.yml")
+                    let monsters = try decoder.decode(List<Monster>.self, from: mobData).body
 
-            monsterCache = Dictionary(uniqueKeysWithValues: mobList.body.map({ ($0.aegisName, $0) }))
+                    continuation.yield(RecordPartition(records: monsters))
+                    continuation.finish()
+
+                    monsterCache = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.aegisName, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: monsterCache.values.sorted()))
+                    continuation.finish()
+                }
+            }
         }
-
-        return monsterCache.values.sorted()
     }
 
     public func monster(for aegisName: String) async throws -> Monster {
-        _ = try await fetchMonsters()
+        for try await _ in fetchMonsters() {}
         if let monster = monsterCache[aegisName] {
             return monster
         } else {
@@ -112,51 +127,67 @@ public class Database {
 
     // MARK: - Job
 
-    public func fetchJobs() async throws -> [JobStats] {
-        if jobStatsCache.isEmpty {
-            let basicStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_stats.yml")
-            let basicStatsList = try decoder.decode(List<JobBasicStats>.self, from: basicStatsData)
+    public func fetchJobs() -> AsyncDatabaseRecordPartitions<JobStats> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if jobStatsCache.isEmpty {
+                    let basicStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_stats.yml")
+                    let basicStatsList = try decoder.decode(List<JobBasicStats>.self, from: basicStatsData)
 
-            let aspdStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_aspd.yml")
-            let aspdStatsList = try decoder.decode(List<JobASPDStats>.self, from: aspdStatsData)
+                    let aspdStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_aspd.yml")
+                    let aspdStatsList = try decoder.decode(List<JobASPDStats>.self, from: aspdStatsData)
 
-            let expStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_exp.yml")
-            let expStatsList = try decoder.decode(List<JobExpStats>.self, from: expStatsData)
+                    let expStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_exp.yml")
+                    let expStatsList = try decoder.decode(List<JobExpStats>.self, from: expStatsData)
 
-            let basePointsStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_basepoints.yml")
-            let basePointsStatsList = try decoder.decode(List<JobBasePointsStats>.self, from: basePointsStatsData)
+                    let basePointsStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_basepoints.yml")
+                    let basePointsStatsList = try decoder.decode(List<JobBasePointsStats>.self, from: basePointsStatsData)
 
-            let jobStatsList = Job.allCases.compactMap { job in
-                JobStats(
-                    job: job,
-                    basicStatsList: basicStatsList.body,
-                    aspdStatsList: aspdStatsList.body,
-                    expStatsList: expStatsList.body,
-                    basePointsStatsList: basePointsStatsList.body
-                )
+                    let jobs = Job.allCases.compactMap { job in
+                        JobStats(
+                            job: job,
+                            basicStatsList: basicStatsList.body,
+                            aspdStatsList: aspdStatsList.body,
+                            expStatsList: expStatsList.body,
+                            basePointsStatsList: basePointsStatsList.body
+                        )
+                    }
+
+                    continuation.yield(RecordPartition(records: jobs))
+                    continuation.finish()
+
+                    jobStatsCache = Dictionary(uniqueKeysWithValues: jobs.map({ ($0.job.id, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: jobStatsCache.values.sorted()))
+                    continuation.finish()
+                }
             }
-
-            jobStatsCache = Dictionary(uniqueKeysWithValues: jobStatsList.map({ ($0.job.id, $0) }))
         }
-
-        return jobStatsCache.values.sorted()
     }
 
     // MARK: - Skill
 
-    public func fetchSkills() async throws -> [Skill] {
-        if skillCache.isEmpty {
-            let skillData = try ResourceManager.shared.data(forResource: mode.path + "skill_db.yml")
-            let skillList = try decoder.decode(List<Skill>.self, from: skillData)
+    public func fetchSkills() -> AsyncDatabaseRecordPartitions<Skill> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if skillCache.isEmpty {
+                    let skillData = try ResourceManager.shared.data(forResource: mode.path + "skill_db.yml")
+                    let skills = try decoder.decode(List<Skill>.self, from: skillData).body
 
-            skillCache = Dictionary(uniqueKeysWithValues: skillList.body.map({ ($0.aegisName, $0) }))
+                    continuation.yield(RecordPartition(records: skills))
+                    continuation.finish()
+
+                    skillCache = Dictionary(uniqueKeysWithValues: skills.map({ ($0.aegisName, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: skillCache.values.sorted()))
+                    continuation.finish()
+                }
+            }
         }
-
-        return skillCache.values.sorted()
     }
 
     public func skill(for aegisName: String) async throws -> Skill {
-        _ = try await fetchSkills()
+        for try await _ in fetchSkills() {}
         if let skill = skillCache[aegisName] {
             return skill
         } else {
@@ -164,19 +195,27 @@ public class Database {
         }
     }
 
-    public func fetchSkillTrees() async throws -> [SkillTree] {
-        if skillTreeCache.isEmpty {
-            let skillTreeData = try ResourceManager.shared.data(forResource: mode.path + "skill_tree.yml")
-            let skillTreeList = try decoder.decode(List<SkillTree>.self, from: skillTreeData)
+    public func fetchSkillTrees() -> AsyncDatabaseRecordPartitions<SkillTree> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if skillTreeCache.isEmpty {
+                    let skillTreeData = try ResourceManager.shared.data(forResource: mode.path + "skill_tree.yml")
+                    let skillTrees = try decoder.decode(List<SkillTree>.self, from: skillTreeData).body
 
-            skillTreeCache = Dictionary(uniqueKeysWithValues: skillTreeList.body.map({ ($0.id, $0) }))
+                    continuation.yield(RecordPartition(records: skillTrees))
+                    continuation.finish()
+
+                    skillTreeCache = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.id, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: skillTreeCache.values.sorted()))
+                    continuation.finish()
+                }
+            }
         }
-
-        return skillTreeCache.values.sorted()
     }
 
     public func skillTree(for jobID: Int) async throws -> SkillTree {
-        _ = try await fetchSkillTrees()
+        for try await _ in fetchSkillTrees() {}
         if let skillTree = skillTreeCache[jobID] {
             return skillTree
         } else {
