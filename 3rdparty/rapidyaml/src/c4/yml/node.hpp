@@ -6,7 +6,7 @@
 
 #include <cstddef>
 
-#include "c4/yml/tree.hpp"
+#include "tree.hpp"
 #include "c4/base64.hpp"
 
 #ifdef __GNUC__

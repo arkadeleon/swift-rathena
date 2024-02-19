@@ -52,6 +52,9 @@ let package = Package(
     targets: [
         .target(
             name: "rAthenaCommon",
+            dependencies: [
+                "ryml",
+            ],
             path: ".",
             exclude: [
                 "3rdparty",
@@ -71,9 +74,6 @@ let package = Package(
             ],
             publicHeadersPath: "Sources/rAthenaCommon",
             cxxSettings: [
-                .headerSearchPath("3rdparty"),
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .headerSearchPath("src"),
             ]
         ),
@@ -105,13 +105,6 @@ let package = Package(
                 "rAthenaCommon",
                 "rAthenaResource",
             ],
-            exclude: [
-                "3rdparty",
-            ],
-            cxxSettings: [
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
-            ],
             swiftSettings: [
                 .interoperabilityMode(.Cxx),
             ]
@@ -132,12 +125,9 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -157,12 +147,9 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -182,12 +169,9 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "3rdparty",
             ],
             publicHeadersPath: "",
             cxxSettings: [
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [
@@ -215,8 +199,6 @@ let package = Package(
             cxxSettings: [
                 .headerSearchPath("3rdparty/httplib"),
                 .headerSearchPath("3rdparty/json/include"),
-                .headerSearchPath("3rdparty/rapidyaml/ext/c4core/src"),
-                .headerSearchPath("3rdparty/rapidyaml/src"),
                 .unsafeFlags(["-fmodules", "-fcxx-modules"]),
             ],
             linkerSettings: [

@@ -411,6 +411,6 @@ CharOwningContainer emitrs_json(NodeRef const& n)
 } // namespace yml
 } // namespace c4
 
-#include "c4/yml/emit.def.hpp"
+#include "emit.def.hpp"
 
 #endif /* _C4_YML_EMIT_HPP_ */

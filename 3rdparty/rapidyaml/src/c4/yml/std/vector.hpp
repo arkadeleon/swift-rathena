@@ -1,7 +1,7 @@
 #ifndef _C4_YML_STD_VECTOR_HPP_
 #define _C4_YML_STD_VECTOR_HPP_
 
-#include "c4/yml/node.hpp"
+#include "../node.hpp"
 #include <c4/std/vector.hpp>
 #include <vector>
 

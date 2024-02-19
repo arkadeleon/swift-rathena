@@ -10,7 +10,7 @@
 #endif
 
 #ifndef _C4_YML_DETAIL_STACK_HPP_
-#include "c4/yml/detail/stack.hpp"
+#include "detail/stack.hpp"
 #endif
 
 #include <stdarg.h>

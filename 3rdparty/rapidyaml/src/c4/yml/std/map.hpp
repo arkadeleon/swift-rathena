@@ -3,7 +3,7 @@
 
 /** @file map.hpp write/read std::map to/from a YAML tree. */
 
-#include "c4/yml/node.hpp"
+#include "../node.hpp"
 #include <map>
 
 namespace c4 {

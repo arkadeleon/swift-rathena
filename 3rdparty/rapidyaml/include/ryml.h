@@ -1,2 +1,2 @@
-#include "../src/ryml.hpp"
-#include "../src/ryml_std.hpp"
+#include "ryml.hpp"
+#include "ryml_std.hpp"

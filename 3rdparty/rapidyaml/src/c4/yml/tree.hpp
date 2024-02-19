@@ -5,7 +5,7 @@
 #include "c4/error.hpp"
 #include "c4/types.hpp"
 #ifndef _C4_YML_COMMON_HPP_
-#include "c4/yml/common.hpp"
+#include "common.hpp"
 #endif
 
 #include <c4/charconv.hpp>

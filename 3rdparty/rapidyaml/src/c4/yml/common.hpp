@@ -3,7 +3,7 @@
 
 #include <cstddef>
 #include <c4/substr.hpp>
-#include <c4/yml/export.hpp>
+#include "export.hpp"
 
 
 #ifndef RYML_USE_ASSERT
