@@ -53,29 +53,16 @@ let package = Package(
         .target(
             name: "rAthenaCommon",
             dependencies: [
+                "libconfig",
                 "ryml",
             ],
-            path: ".",
             exclude: [
-                "3rdparty",
-                "doc",
-                "src",
-                "tools",
+                "common",
+                "config",
+                "custom",
+                "map",
             ],
-            sources: [
-                "Sources/rAthenaCommon",
-            ],
-            resources: [
-                .copy("ragnarok.sqlite3"),
-                .copy("conf"),
-                .copy("db"),
-                .copy("npc"),
-                .copy("sql-files"),
-            ],
-            publicHeadersPath: "Sources/rAthenaCommon",
-            cxxSettings: [
-                .headerSearchPath("src"),
-            ]
+            publicHeadersPath: ""
         ),
         .target(
             name: "rAthenaResource",
@@ -127,9 +114,6 @@ let package = Package(
                 "common/winapi.cpp",
             ],
             publicHeadersPath: "",
-            cxxSettings: [
-                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
-            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -149,9 +133,6 @@ let package = Package(
                 "common/winapi.cpp",
             ],
             publicHeadersPath: "",
-            cxxSettings: [
-                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
-            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -171,9 +152,6 @@ let package = Package(
                 "common/winapi.cpp",
             ],
             publicHeadersPath: "",
-            cxxSettings: [
-                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
-            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -185,6 +163,7 @@ let package = Package(
             name: "rAthenaWeb",
             dependencies: [
                 "httplib",
+                "json",
                 "libconfig",
                 "ryml",
                 "yaml-cpp",
@@ -193,14 +172,8 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "3rdparty",
             ],
             publicHeadersPath: "",
-            cxxSettings: [
-                .headerSearchPath("3rdparty/httplib"),
-                .headerSearchPath("3rdparty/json/include"),
-                .unsafeFlags(["-fmodules", "-fcxx-modules"]),
-            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -212,6 +185,10 @@ let package = Package(
             name: "httplib",
             path: "3rdparty/httplib",
             publicHeadersPath: ""
+        ),
+        .target(
+            name: "json",
+            path: "3rdparty/json"
         ),
         .target(
             name: "libconfig",

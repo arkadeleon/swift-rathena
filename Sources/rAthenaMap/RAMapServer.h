@@ -6,8 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@import rAthenaCommon;
+#import <RAServer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
