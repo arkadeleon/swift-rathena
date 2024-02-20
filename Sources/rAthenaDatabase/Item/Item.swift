@@ -162,10 +162,10 @@ public struct Item: Comparable, Decodable, Identifiable {
         self.defense = try container.decodeIfPresent(Int.self, forKey: .defense) ?? 0
         self.range = try container.decodeIfPresent(Int.self, forKey: .range) ?? 0
         self.slots = try container.decodeIfPresent(Int.self, forKey: .slots) ?? 0
-        self.jobs = try container.decodeIfPresent(Node<ItemJob, Bool>.self, forKey: .jobs)?.keys ?? [.all]
-        self.classes = try container.decodeIfPresent(Node<ItemClass, Bool>.self, forKey: .classes)?.keys ?? [.all]
+        self.jobs = try container.decodeIfPresent(Map<ItemJob, Bool>.self, forKey: .jobs)?.keys ?? [.all]
+        self.classes = try container.decodeIfPresent(Map<ItemClass, Bool>.self, forKey: .classes)?.keys ?? [.all]
         self.gender = try container.decodeIfPresent(Gender.self, forKey: .gender) ?? .both
-        self.locations = try container.decodeIfPresent(Node<ItemLocation, Bool>.self, forKey: .locations)?.keys ?? []
+        self.locations = try container.decodeIfPresent(Map<ItemLocation, Bool>.self, forKey: .locations)?.keys ?? []
         self.weaponLevel = try container.decodeIfPresent(Int.self, forKey: .weaponLevel) ?? 1
         self.armorLevel = try container.decodeIfPresent(Int.self, forKey: .armorLevel) ?? 1
         self.equipLevelMin = try container.decodeIfPresent(Int.self, forKey: .equipLevelMin) ?? 0

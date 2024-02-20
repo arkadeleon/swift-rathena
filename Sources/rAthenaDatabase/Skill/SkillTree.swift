@@ -30,7 +30,7 @@ public struct SkillTree: Comparable, Decodable, Identifiable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.job = try container.decode(Job.self, forKey: .job)
-        self.inherit = try container.decodeIfPresent(Node<Job, Bool>.self, forKey: .inherit)?.keys
+        self.inherit = try container.decodeIfPresent(Map<Job, Bool>.self, forKey: .inherit)?.keys
         self.tree = try container.decodeIfPresent([Skill].self, forKey: .tree)
     }
 

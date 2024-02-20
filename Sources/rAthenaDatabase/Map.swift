@@ -1,15 +1,15 @@
 //
-//  Node.swift
+//  Map.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/1/10.
 //
 
-public struct Node<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key: CodingKey, Value: Decodable {
+struct Map<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key: CodingKey, Value: Decodable {
 
     private var children: [(Key, Value)]
 
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Key.self)
         self.children = try Key.allCases.compactMap { key in
             if let value = try container.decodeIfPresent(Value.self, forKey: key) {
@@ -20,13 +20,19 @@ public struct Node<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key
         }
     }
 
-    public func makeIterator() -> [(Key, Value)].Iterator {
+    func makeIterator() -> [(Key, Value)].Iterator {
         children.makeIterator()
     }
 }
 
-extension Node where Value == Bool {
-    public var keys: [Key] {
+extension Map where Key : Hashable {
+    var dictionary: [Key : Value] {
+        Dictionary(uniqueKeysWithValues: children)
+    }
+}
+
+extension Map where Value == Bool {
+    var keys: [Key] {
         let allCasesButAll = Key.allCases.filter { $0.stringValue != "All" }
 
         var keys = children.contains(where: { $0.0.stringValue == "All" }) ? allCasesButAll : []

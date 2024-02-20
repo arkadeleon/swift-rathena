@@ -26,7 +26,7 @@ public struct JobStats: Comparable, Identifiable {
     public var bonusStats: [[Parameter : Int]]
 
     /// Base ASPD for each weapon type. (Default: 2000)
-    public var baseASPD: Node<WeaponType, Int>
+    public var baseASPD: [WeaponType : Int]
 
     /// Maximum base level. (Default: MAX_LEVEL)
     public var maxBaseLevel: Int

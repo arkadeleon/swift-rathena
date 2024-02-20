@@ -13,7 +13,7 @@ final class DatabaseTests: XCTestCase {
     let database = Database.renewal
 
     func testItemDatabase() async throws {
-        let items = try await database.fetchItems()
+        let items = try await database.fetchItems().reduce(Database.RecordPartition(records: []), +).records
         XCTAssertEqual(items.count, 24896)
 
         let redPotion = try await database.item(for: "Red_Potion")
@@ -126,7 +126,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testMonsterDatabase() async throws {
-        let monsters = try await database.fetchMonsters()
+        let monsters = try await database.fetchMonsters().reduce(Database.RecordPartition(records: []), +).records
         XCTAssertEqual(monsters.count, 2445)
 
         let poring = try await database.monster(for: "PORING")
@@ -202,12 +202,12 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testJobDatabase() async throws {
-        let jobs = try await database.fetchJobs()
+        let jobs = try await database.fetchJobs().reduce(Database.RecordPartition(records: []), +).records
 //        XCTAssertEqual(jobs.count, 181)
     }
 
     func testSkillDatabase() async throws {
-        let skills = try await database.fetchSkills()
+        let skills = try await database.fetchSkills().reduce(Database.RecordPartition(records: []), +).records
         XCTAssertEqual(skills.count, 1516)
 
         let napalmBeat = try await database.skill(for: "MG_NAPALMBEAT")
@@ -236,7 +236,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() async throws {
-        let skillTrees = try await database.fetchSkillTrees()
+        let skillTrees = try await database.fetchSkillTrees().reduce(Database.RecordPartition(records: []), +).records
         XCTAssertEqual(skillTrees.count, 168)
 
         let acolyte = try await database.skillTree(for: Job.acolyte.id)

@@ -36,7 +36,7 @@ struct JobBasicStats: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.jobs = try container.decode(Node<Job, Bool>.self, forKey: .jobs).keys
+        self.jobs = try container.decode(Map<Job, Bool>.self, forKey: .jobs).keys
         self.maxWeight = try container.decodeIfPresent(Int.self, forKey: .maxWeight) ?? 20000
         self.hpFactor = try container.decodeIfPresent(Int.self, forKey: .hpFactor) ?? 0
         self.hpIncrease = try container.decodeIfPresent(Int.self, forKey: .hpIncrease) ?? 500

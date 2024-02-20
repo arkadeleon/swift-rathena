@@ -146,8 +146,8 @@ public struct Skill: Comparable, Decodable, Identifiable {
         self.maxLevel = try container.decode(Int.self, forKey: .maxLevel)
         self.type = try container.decodeIfPresent(SkillType.self, forKey: .type) ?? .none
         self.targetType = try container.decodeIfPresent(SkillTargetType.self, forKey: .targetType) ?? .passive
-        self.damageFlags = try container.decodeIfPresent(Node<SkillDamageFlag, Bool>.self, forKey: .damageFlags)?.keys ?? []
-        self.flags = try container.decodeIfPresent(Node<SkillFlag, Bool>.self, forKey: .flags)?.keys ?? []
+        self.damageFlags = try container.decodeIfPresent(Map<SkillDamageFlag, Bool>.self, forKey: .damageFlags)?.keys ?? []
+        self.flags = try container.decodeIfPresent(Map<SkillFlag, Bool>.self, forKey: .flags)?.keys ?? []
         self.range = try container.decodeIfPresent(Either<Int, [LevelRange]>.self, forKey: .range)?.mapRight { $0.map { $0.range } } ?? .left(0)
         self.hitType = try container.decodeIfPresent(SkillHitType.self, forKey: .hitType) ?? .normal
         self.hitCount = try container.decodeIfPresent(Either<Int, [LevelHitCount]>.self, forKey: .hitCount)?.mapRight { $0.map { $0.hitCount } } ?? .left(0)
@@ -167,8 +167,8 @@ public struct Skill: Comparable, Decodable, Identifiable {
         self.duration2 = try container.decodeIfPresent(Either<Int, [LevelDuration]>.self, forKey: .duration2)?.mapRight { $0.map { $0.duration } } ?? .left(0)
         self.cooldown = try container.decodeIfPresent(Either<Int, [LevelCooldown]>.self, forKey: .cooldown)?.mapRight { $0.map { $0.cooldown } } ?? .left(0)
         self.fixedCastTime = try container.decodeIfPresent(Either<Int, [LevelFixedCastTime]>.self, forKey: .fixedCastTime)?.mapRight { $0.map { $0.fixedCastTime } } ?? .left(0)
-        self.castTimeFlags = try container.decodeIfPresent(Node<SkillCastFlag, Bool>.self, forKey: .castTimeFlags)?.keys
-        self.castDelayFlags = try container.decodeIfPresent(Node<SkillCastFlag, Bool>.self, forKey: .castDelayFlags)?.keys
+        self.castTimeFlags = try container.decodeIfPresent(Map<SkillCastFlag, Bool>.self, forKey: .castTimeFlags)?.keys
+        self.castDelayFlags = try container.decodeIfPresent(Map<SkillCastFlag, Bool>.self, forKey: .castDelayFlags)?.keys
         self.requires = try container.decodeIfPresent(Requires.self, forKey: .requires)
         self.unit = try container.decodeIfPresent(Unit.self, forKey: .unit)
         self.status = try container.decodeIfPresent(String.self, forKey: .status)
@@ -385,8 +385,8 @@ extension Skill {
 
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.skill = try container.decode(Node<SkillCopyableOption, Bool>.self, forKey: .skill).keys
-            self.removeRequirement = try container.decodeIfPresent(Node<SkillRequirement, Bool>.self, forKey: .removeRequirement)?.keys
+            self.skill = try container.decode(Map<SkillCopyableOption, Bool>.self, forKey: .skill).keys
+            self.removeRequirement = try container.decodeIfPresent(Map<SkillRequirement, Bool>.self, forKey: .removeRequirement)?.keys
         }
     }
 }
@@ -411,7 +411,7 @@ extension Skill {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.additionalRange = try container.decodeIfPresent(Int.self, forKey: .additionalRange)
-            self.type = try container.decode(Node<SkillNoNearNPC, Bool>.self, forKey: .type).keys
+            self.type = try container.decode(Map<SkillNoNearNPC, Bool>.self, forKey: .type).keys
         }
     }
 }
@@ -655,8 +655,8 @@ extension Skill {
             self.apRateCost = try container.decodeIfPresent(Either<Int, [LevelApRateCost]>.self, forKey: .apRateCost)?.mapRight { $0.map { $0.apRateCost } } ?? .left(0)
             self.maxHpTrigger = try container.decodeIfPresent(Either<Int, [LevelMaxHpTrigger]>.self, forKey: .maxHpTrigger)?.mapRight { $0.map { $0.maxHpTrigger } } ?? .left(0)
             self.zenyCost = try container.decodeIfPresent(Either<Int, [LevelZenyCost]>.self, forKey: .zenyCost)?.mapRight { $0.map { $0.zenyCost } } ?? .left(0)
-            self.weapon = try container.decodeIfPresent(Node<WeaponType, Bool>.self, forKey: .weapon)?.keys ?? []
-            self.ammo = try container.decodeIfPresent(Node<AmmoType, Bool>.self, forKey: .ammo)?.keys ?? []
+            self.weapon = try container.decodeIfPresent(Map<WeaponType, Bool>.self, forKey: .weapon)?.keys ?? []
+            self.ammo = try container.decodeIfPresent(Map<AmmoType, Bool>.self, forKey: .ammo)?.keys ?? []
             self.ammoAmount = try container.decodeIfPresent(Either<Int, [LevelAmmoAmount]>.self, forKey: .ammoAmount)?.mapRight { $0.map { $0.ammoAmount } } ?? .left(0)
             self.state = try container.decodeIfPresent(String.self, forKey: .state)
             self.status = try container.decodeIfPresent([String : Bool].self, forKey: .status)?.keys.map({ $0 }) ?? []
@@ -738,7 +738,7 @@ extension Skill {
             self.range = try container.decodeIfPresent(Either<Int, [LevelRange]>.self, forKey: .range)?.mapRight { $0.map { $0.range } } ?? .left(0)
             self.interval = try container.decodeIfPresent(Int.self, forKey: .interval) ?? 0
             self.target = try container.decodeIfPresent(SkillUnitTargetType.self, forKey: .target) ?? .all
-            self.flag = try container.decodeIfPresent(Node<SkillUnitFlag, Bool>.self, forKey: .flag)?.keys ?? [.none]
+            self.flag = try container.decodeIfPresent(Map<SkillUnitFlag, Bool>.self, forKey: .flag)?.keys ?? [.none]
         }
     }
 }

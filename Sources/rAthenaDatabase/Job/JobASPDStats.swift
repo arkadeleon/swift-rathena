@@ -11,7 +11,7 @@ struct JobASPDStats: Decodable {
     var jobs: [Job]
 
     /// Base ASPD for each weapon type. (Default: 2000)
-    var baseASPD: Node<WeaponType, Int>
+    var baseASPD: [WeaponType : Int]
 
     enum CodingKeys: String, CodingKey {
         case jobs = "Jobs"
@@ -20,7 +20,7 @@ struct JobASPDStats: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.jobs = try container.decode(Node<Job, Bool>.self, forKey: .jobs).keys
-        self.baseASPD = try container.decode(Node<WeaponType, Int>.self, forKey: .baseASPD)
+        self.jobs = try container.decode(Map<Job, Bool>.self, forKey: .jobs).keys
+        self.baseASPD = try container.decode(Map<WeaponType, Int>.self, forKey: .baseASPD).dictionary
     }
 }

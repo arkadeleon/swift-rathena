@@ -30,6 +30,10 @@ public class Database {
 
     public struct RecordPartition<Record> {
         public let records: [Record]
+
+        public static func + (lhs: RecordPartition<Record>, rhs: RecordPartition<Record>) -> RecordPartition<Record> {
+            RecordPartition<Record>(records: lhs.records + rhs.records)
+        }
     }
 
     public static let prerenewal = Database(mode: .prerenewal)
