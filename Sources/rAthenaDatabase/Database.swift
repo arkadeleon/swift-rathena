@@ -55,7 +55,7 @@ public class Database {
 
     // MARK: - Item
 
-    public func fetchItems() -> AsyncDatabaseRecordPartitions<Item> {
+    public func items() -> AsyncDatabaseRecordPartitions<Item> {
         AsyncThrowingStream { continuation in
             Task {
                 if itemCache.isEmpty {
@@ -91,7 +91,7 @@ public class Database {
     }
 
     public func item(for aegisName: String) async throws -> Item {
-        for try await _ in fetchItems() {}
+        for try await _ in items() {}
         if let item = itemCache[aegisName] {
             return item
         } else {
@@ -101,7 +101,7 @@ public class Database {
 
     // MARK: - Monster
 
-    public func fetchMonsters() -> AsyncDatabaseRecordPartitions<Monster> {
+    public func monsters() -> AsyncDatabaseRecordPartitions<Monster> {
         AsyncThrowingStream { continuation in
             Task {
                 if monsterCache.isEmpty {
@@ -121,7 +121,7 @@ public class Database {
     }
 
     public func monster(for aegisName: String) async throws -> Monster {
-        for try await _ in fetchMonsters() {}
+        for try await _ in monsters() {}
         if let monster = monsterCache[aegisName] {
             return monster
         } else {
@@ -131,7 +131,7 @@ public class Database {
 
     // MARK: - Job
 
-    public func fetchJobs() -> AsyncDatabaseRecordPartitions<JobStats> {
+    public func jobs() -> AsyncDatabaseRecordPartitions<JobStats> {
         AsyncThrowingStream { continuation in
             Task {
                 if jobStatsCache.isEmpty {
@@ -171,7 +171,7 @@ public class Database {
 
     // MARK: - Skill
 
-    public func fetchSkills() -> AsyncDatabaseRecordPartitions<Skill> {
+    public func skills() -> AsyncDatabaseRecordPartitions<Skill> {
         AsyncThrowingStream { continuation in
             Task {
                 if skillCache.isEmpty {
@@ -191,7 +191,7 @@ public class Database {
     }
 
     public func skill(for aegisName: String) async throws -> Skill {
-        for try await _ in fetchSkills() {}
+        for try await _ in skills() {}
         if let skill = skillCache[aegisName] {
             return skill
         } else {
@@ -199,7 +199,7 @@ public class Database {
         }
     }
 
-    public func fetchSkillTrees() -> AsyncDatabaseRecordPartitions<SkillTree> {
+    public func skillTrees() -> AsyncDatabaseRecordPartitions<SkillTree> {
         AsyncThrowingStream { continuation in
             Task {
                 if skillTreeCache.isEmpty {
@@ -219,11 +219,46 @@ public class Database {
     }
 
     public func skillTree(for jobID: Int) async throws -> SkillTree {
-        for try await _ in fetchSkillTrees() {}
+        for try await _ in skillTrees() {}
         if let skillTree = skillTreeCache[jobID] {
             return skillTree
         } else {
             throw DatabaseError.recordNotFound
         }
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<Item> {
+    public func joined() async throws -> [Item] {
+        let initial = Database.RecordPartition<Item>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<Monster> {
+    public func joined() async throws -> [Monster] {
+        let initial = Database.RecordPartition<Monster>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<JobStats> {
+    public func joined() async throws -> [JobStats] {
+        let initial = Database.RecordPartition<JobStats>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<Skill> {
+    public func joined() async throws -> [Skill] {
+        let initial = Database.RecordPartition<Skill>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<SkillTree> {
+    public func joined() async throws -> [SkillTree] {
+        let initial = Database.RecordPartition<SkillTree>(records: [])
+        return try await reduce(initial, +).records
     }
 }
