@@ -14,7 +14,7 @@ final class DatabaseTests: XCTestCase {
 
     func testItemDatabase() async throws {
         let items = try await database.items().joined()
-        XCTAssertEqual(items.count, 24896)
+        XCTAssertEqual(items.count, 25037)
 
         let redPotion = try await database.item(for: "Red_Potion")
         XCTAssertEqual(redPotion.id, 501)

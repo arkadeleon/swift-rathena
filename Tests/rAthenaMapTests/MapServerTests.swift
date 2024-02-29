@@ -24,7 +24,7 @@ final class MapServerTests: XCTestCase {
 
     func testItemDatabase() {
         let items = RAItemDatabase.shared.allRecords()
-        XCTAssertEqual(items.count, 24897)
+        XCTAssertEqual(items.count, 25038)
 
         let uniqueItems = Dictionary(uniqueKeysWithValues: items.map({ ($0.itemID, $0) }))
 
