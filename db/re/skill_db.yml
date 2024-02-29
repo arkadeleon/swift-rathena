@@ -34931,17 +34931,7 @@ Body:
         Time: 2000
       - Level: 5
         Time: 1000
-    Cooldown:
-      - Level: 1
-        Time: 30000
-      - Level: 2
-        Time: 60000
-      - Level: 3
-        Time: 90000
-      - Level: 4
-        Time: 120000
-      - Level: 5
-        Time: 150000
+    Cooldown: 60000
     Requires:
       SpCost:
         - Level: 1
@@ -34966,7 +34956,7 @@ Body:
       Critical: true
     Range: 1
     Hit: Multi_Hit
-    HitCount: 2
+    HitCount: 3
     Element: Weapon
     Requires:
       SpCost: 1
@@ -35443,7 +35433,7 @@ Body:
     Element: Water
     CastCancel: true
     CastTime: 3000
-    AfterCastActDelay: 250
+    AfterCastActDelay: 750
     Duration1: 4000
     Cooldown: 5000
     FixedCastTime: 1500
@@ -35490,7 +35480,7 @@ Body:
     Element: Dark
     CastCancel: true
     CastTime: 4000
-    AfterCastActDelay: 500
+    AfterCastActDelay: 750
     Duration1: 4000
     Cooldown: 4000
     FixedCastTime: 1500
@@ -35547,7 +35537,7 @@ Body:
         Area: 4
     CastCancel: true
     CastTime: 4000
-    AfterCastActDelay: 500
+    AfterCastActDelay: 1000
     Duration1:
       - Level: 1
         Time: 1200
@@ -35675,7 +35665,7 @@ Body:
     Element: Earth
     CastCancel: true
     CastTime: 3000
-    AfterCastActDelay: 250
+    AfterCastActDelay: 750
     Duration1: 4000
     Cooldown: 5000
     FixedCastTime: 1500
@@ -35732,7 +35722,7 @@ Body:
         Area: 4
     CastCancel: true
     CastTime: 4000
-    AfterCastActDelay: 500
+    AfterCastActDelay: 1000
     Duration1:
       - Level: 1
         Time: 1200
@@ -35894,7 +35884,7 @@ Body:
     Element: Wind
     CastCancel: true
     CastTime: 3000
-    AfterCastActDelay: 250
+    AfterCastActDelay: 750
     Duration1: 3000
     Cooldown: 5000
     FixedCastTime: 1500
@@ -35945,7 +35935,7 @@ Body:
     Element: Fire
     CastCancel: true
     CastTime: 3000
-    AfterCastActDelay: 250
+    AfterCastActDelay: 750
     Duration1: 5000
     Cooldown: 5000
     FixedCastTime: 1500
@@ -36013,7 +36003,7 @@ Body:
         Area: 5
     CastCancel: true
     CastTime: 8000
-    AfterCastActDelay: 500
+    AfterCastActDelay: 1000
     Duration1: 6000
     Cooldown: 6000
     FixedCastTime: 2000
@@ -36072,11 +36062,11 @@ Body:
     CastCancel: true
     AfterCastActDelay: 300
     Duration1: 300000
-    Cooldown: 300000
+    Cooldown: 60000
     FixedCastTime: 4000
     Requires:
       SpCost: 60
-      ApCost: 150
+      ApCost: 125
     Status: Climax
   - Id: 5233
     Name: AG_ROCK_DOWN
@@ -36718,7 +36708,8 @@ Body:
     SplashArea: 3
     CastCancel: true
     Duration1: 600000
-    Cooldown: 1000
+    AfterCastActDelay: 500
+    Cooldown: 700
     Requires:
       SpCost:
         - Level: 1
@@ -36745,6 +36736,7 @@ Body:
     Element: Weapon
     SplashArea: 3
     CastCancel: true
+    AfterCastActDelay: 700
     Cooldown: 1000
     Requires:
       SpCost:
@@ -37535,15 +37527,16 @@ Body:
     Range: 9
     Hit: Multi_Hit
     HitCount: -10
-    Element: Holy
+    Element: Neutral
     CastCancel: true
     CastTime: 3000
+    AfterCastActDelay: 500
     Duration1: 12000
     Cooldown: 5000
     FixedCastTime: 2000
     Requires:
       SpCost: 150
-      ApCost: 30
+      ApCost: 20
     Unit:
       Id: Pneumaticus_Procella
       Range:
@@ -38052,7 +38045,7 @@ Body:
       IgnoreDefense: true
     Range: 2
     Hit: Multi_Hit
-    HitCount: 2
+    HitCount: 3
     Element: Weapon
     GiveAp: 2
     CastCancel: true
@@ -38191,7 +38184,7 @@ Body:
         Area: 3
     GiveAp: 3
     CastCancel: true
-    AfterCastActDelay: 250
+    AfterCastActDelay: 700
     Duration1:
       - Level: 1
         Time: 10000
@@ -39159,11 +39152,11 @@ Body:
     CastCancel: true
     AfterCastActDelay: 500
     Duration1: 180000
-    Cooldown: 180000
+    Cooldown: 60000
     FixedCastTime: 1000
     Requires:
       SpCost: 300
-      ApCost: 200
+      ApCost: 125
     Status: CalamityGale
   - Id: 5329
     Name: WH_HAWKBOOMERANG
@@ -39224,7 +39217,7 @@ Body:
     CastCancel: true
     CastTime: 3500
     AfterCastActDelay: 500
-    Cooldown: 1200
+    Cooldown: 700
     FixedCastTime: 500
     Requires:
       SpCost:
@@ -42378,7 +42371,7 @@ Body:
       - Level: 10
         Area: 3
     CastCancel: true
-    AfterCastActDelay: 250
+    AfterCastActDelay: 700
     Cooldown: 500
     Requires:
       SpCost:

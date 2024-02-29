@@ -7890,6 +7890,8 @@ Body:
       BlEffect: true
       DisplayPc: true
       SendVal1: true
+      NoDispell: true
+      NoClearance: true
   - Status: Shadow_Weapon
     Icon: EFST_SHADOW_WEAPON
     DurationLookup: SHC_ENCHANTING_SHADOW
@@ -8747,6 +8749,10 @@ Body:
     DurationLookup: MT_RUSH_QUAKE
     CalcFlags:
       All: true
+    Flags:
+      NoDispell: true
+      NoBanishingBuster: true
+      NoClearance: true
   - Status: G_LIFEPOTION
     Icon: EFST_G_LIFEPOTION
     Flags:
