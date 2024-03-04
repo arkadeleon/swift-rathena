@@ -22,8 +22,8 @@ public class Database {
 
         var path: String {
             switch self {
-            case .prerenewal: "db/pre-re/"
-            case .renewal: "db/re/"
+            case .prerenewal: "pre-re/"
+            case .renewal: "re/"
             }
         }
     }
@@ -62,16 +62,13 @@ public class Database {
                     let start = Date()
                     print("Begin loading item database")
 
-                    let usableItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_usable.yml")
-                    let usableItems = try decoder.decode(List<Item>.self, from: usableItemData).body
+                    let usableItems: [Item] = try decodeFile(atPath: "item_db_usable.yml")
                     continuation.yield(RecordPartition(records: usableItems))
 
-                    let equipItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_equip.yml")
-                    let equipItems = try decoder.decode(List<Item>.self, from: equipItemData).body
+                    let equipItems: [Item] = try decodeFile(atPath: "item_db_equip.yml")
                     continuation.yield(RecordPartition(records: equipItems))
 
-                    let etcItemData = try ResourceManager.shared.data(forResource: mode.path + "item_db_etc.yml")
-                    let etcItems = try decoder.decode(List<Item>.self, from: etcItemData).body
+                    let etcItems: [Item] = try decodeFile(atPath: "item_db_etc.yml")
                     continuation.yield(RecordPartition(records: etcItems))
 
                     let items = usableItems + equipItems + etcItems
@@ -105,8 +102,7 @@ public class Database {
         AsyncThrowingStream { continuation in
             Task {
                 if monsterCache.isEmpty {
-                    let mobData = try ResourceManager.shared.data(forResource: mode.path + "mob_db.yml")
-                    let monsters = try decoder.decode(List<Monster>.self, from: mobData).body
+                    let monsters: [Monster] = try decodeFile(atPath: "mob_db.yml")
 
                     continuation.yield(RecordPartition(records: monsters))
                     continuation.finish()
@@ -135,25 +131,18 @@ public class Database {
         AsyncThrowingStream { continuation in
             Task {
                 if jobStatsCache.isEmpty {
-                    let basicStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_stats.yml")
-                    let basicStatsList = try decoder.decode(List<JobBasicStats>.self, from: basicStatsData)
-
-                    let aspdStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_aspd.yml")
-                    let aspdStatsList = try decoder.decode(List<JobASPDStats>.self, from: aspdStatsData)
-
-                    let expStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_exp.yml")
-                    let expStatsList = try decoder.decode(List<JobExpStats>.self, from: expStatsData)
-
-                    let basePointsStatsData = try ResourceManager.shared.data(forResource: mode.path + "job_basepoints.yml")
-                    let basePointsStatsList = try decoder.decode(List<JobBasePointsStats>.self, from: basePointsStatsData)
+                    let basicStatsList: [JobBasicStats] = try decodeFile(atPath: "job_stats.yml")
+                    let aspdStatsList: [JobASPDStats] = try decodeFile(atPath: "job_aspd.yml")
+                    let expStatsList: [JobExpStats] = try decodeFile(atPath: "job_exp.yml")
+                    let basePointsStatsList: [JobBasePointsStats] = try decodeFile(atPath: "job_basepoints.yml")
 
                     let jobs = Job.allCases.compactMap { job in
                         JobStats(
                             job: job,
-                            basicStatsList: basicStatsList.body,
-                            aspdStatsList: aspdStatsList.body,
-                            expStatsList: expStatsList.body,
-                            basePointsStatsList: basePointsStatsList.body
+                            basicStatsList: basicStatsList,
+                            aspdStatsList: aspdStatsList,
+                            expStatsList: expStatsList,
+                            basePointsStatsList: basePointsStatsList
                         )
                     }
 
@@ -175,8 +164,7 @@ public class Database {
         AsyncThrowingStream { continuation in
             Task {
                 if skillCache.isEmpty {
-                    let skillData = try ResourceManager.shared.data(forResource: mode.path + "skill_db.yml")
-                    let skills = try decoder.decode(List<Skill>.self, from: skillData).body
+                    let skills: [Skill] = try decodeFile(atPath: "skill_db.yml")
 
                     continuation.yield(RecordPartition(records: skills))
                     continuation.finish()
@@ -203,8 +191,7 @@ public class Database {
         AsyncThrowingStream { continuation in
             Task {
                 if skillTreeCache.isEmpty {
-                    let skillTreeData = try ResourceManager.shared.data(forResource: mode.path + "skill_tree.yml")
-                    let skillTrees = try decoder.decode(List<SkillTree>.self, from: skillTreeData).body
+                    let skillTrees: [SkillTree] = try decodeFile(atPath: "skill_tree.yml")
 
                     continuation.yield(RecordPartition(records: skillTrees))
                     continuation.finish()
@@ -225,6 +212,15 @@ public class Database {
         } else {
             throw DatabaseError.recordNotFound
         }
+    }
+
+    // MARK: - Decoding
+
+    private func decodeFile<T>(atPath path: String) throws -> [T] where T : Decodable {
+        let url = ResourceBundle.shared.dbURL.appendingPathComponent(mode.path + path)
+        let data = try Data(contentsOf: url)
+        let records = try decoder.decode(List<T>.self, from: data).body
+        return records
     }
 }
 

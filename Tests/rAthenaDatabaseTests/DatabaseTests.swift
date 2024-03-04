@@ -6,11 +6,15 @@
 //
 
 import XCTest
+@testable import rAthenaResource
 @testable import rAthenaDatabase
 
 final class DatabaseTests: XCTestCase {
-
     let database = Database.renewal
+
+    override func setUp() async throws {
+        try ResourceBundle.shared.load()
+    }
 
     func testItemDatabase() async throws {
         let items = try await database.items().joined()

@@ -10,11 +10,10 @@ import XCTest
 @testable import rAthenaWeb
 
 final class WebServerTests: XCTestCase {
-    let resourceManager = ResourceManager.shared
     let webServer = RAWebServer.shared
 
     override func setUp() async throws {
-        try resourceManager.copyResourceFilesToLibraryDirectory()
+        try ResourceBundle.shared.load()
 //        await webServer.start()
     }
 

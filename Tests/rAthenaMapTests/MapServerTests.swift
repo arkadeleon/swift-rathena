@@ -10,11 +10,10 @@ import XCTest
 @testable import rAthenaMap
 
 final class MapServerTests: XCTestCase {
-    let resourceManager = ResourceManager.shared
     let mapServer = RAMapServer.shared
 
     override func setUp() async throws {
-        try resourceManager.copyResourceFilesToLibraryDirectory()
+        try ResourceBundle.shared.load()
         await mapServer.start()
     }
 

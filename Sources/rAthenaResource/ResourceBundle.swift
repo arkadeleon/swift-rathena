@@ -1,5 +1,5 @@
 //
-//  ResourceManager.swift
+//  ResourceBundle.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/29.
@@ -8,48 +8,54 @@
 import Foundation
 import SQLite3
 
-public class ResourceManager {
-    public static let shared = ResourceManager()
+public class ResourceBundle {
+    public static let shared = ResourceBundle()
 
-    private let fileManager: FileManager
-    private let sourceURL: URL
-    private let destinationURL: URL
+    public let url: URL
+
+    public var confURL: URL {
+        url.appendingPathComponent("conf")
+    }
+
+    public var dbURL: URL {
+        url.appendingPathComponent("db")
+    }
+
+    public var npcURL: URL {
+        url.appendingPathComponent("npc")
+    }
 
     public init() {
-        fileManager = FileManager()
-        sourceURL = Bundle.module.resourceURL!
-        destinationURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("rathena")
+        let fileManager = FileManager.default
+        let libraryURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        url = libraryURL.appendingPathComponent("rathena")
     }
 
-    public func data(forResource name: String) throws -> Data {
-        let url = Bundle.module.resourceURL!.appendingPathComponent(name)
-        let data = try Data(contentsOf: url)
-        return data
-    }
+    public func load() throws {
+        let fileManager = FileManager.default
+        try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+        fileManager.changeCurrentDirectoryPath(url.path)
 
-    public func copyResourceFilesToLibraryDirectory() throws {
-        try fileManager.createDirectory(at: destinationURL, withIntermediateDirectories: true, attributes: nil)
-        fileManager.changeCurrentDirectoryPath(destinationURL.path)
-
+        let sourceURL = Bundle.module.resourceURL!
         let sourceDatabaseURL = sourceURL.appendingPathComponent("ragnarok.sqlite3")
-        let destinationDatabaseURL = destinationURL.appendingPathComponent("ragnarok.sqlite3")
-        if !fileManager.fileExists(atPath: destinationDatabaseURL.path) {
-            try fileManager.copyItem(at: sourceDatabaseURL, to: destinationDatabaseURL)
+        let databaseURL = url.appendingPathComponent("ragnarok.sqlite3")
+        if !fileManager.fileExists(atPath: databaseURL.path) {
+            try fileManager.copyItem(at: sourceDatabaseURL, to: databaseURL)
         }
 
         let paths = ["conf", "db", "npc"]
         for path in paths {
             let sourceURL = sourceURL.appendingPathComponent(path)
-            let destinationURL = destinationURL.appendingPathComponent(path)
-            if fileManager.fileExists(atPath: destinationURL.path) {
-                try fileManager.removeItem(at: destinationURL)
+            let url = url.appendingPathComponent(path)
+            if fileManager.fileExists(atPath: url.path) {
+                try fileManager.removeItem(at: url)
             }
-            try fileManager.copyItem(at: sourceURL, to: destinationURL)
+            try fileManager.copyItem(at: sourceURL, to: url)
         }
 
-        try fileManager.moveItem(at: destinationURL.appendingPathComponent("conf/import-tmpl"), to: destinationURL.appendingPathComponent("conf/import"))
+        try fileManager.moveItem(at: url.appendingPathComponent("conf/import-tmpl"), to: url.appendingPathComponent("conf/import"))
 
-        try upgradeDatabase(at: destinationDatabaseURL)
+        try upgradeDatabase(at: databaseURL)
     }
 
     private func upgradeDatabase(at url: URL) throws {
