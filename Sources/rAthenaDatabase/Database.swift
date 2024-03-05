@@ -48,6 +48,7 @@ public class Database {
     private var jobStatsCache: [Int : JobStats] = [:]
     private var skillCache: [String : Skill] = [:]
     private var skillTreeCache: [Int : SkillTree] = [:]
+    private var mapCache: [String : Map] = [:]
 
     private init(mode: Mode) {
         self.mode = mode
@@ -214,12 +215,54 @@ public class Database {
         }
     }
 
+    // MARK: - Map
+
+    public func maps() -> AsyncDatabaseRecordPartitions<Map> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if mapCache.isEmpty {
+                    let url = ResourceBundle.shared.dbURL.appendingPathComponent("map_index.txt")
+                    let string = try String(contentsOf: url)
+
+                    var index = 0
+                    var maps: [Map] = []
+
+                    for line in string.split(separator: "\n") {
+                        if line.trimmingCharacters(in: .whitespacesAndNewlines).starts(with: "//") {
+                            continue
+                        }
+                        let columns = line.split(separator: " ")
+                        if columns.count == 2 {
+                            let name = String(columns[0])
+                            index = Int(columns[1]) ?? 1
+                            let map = Map(name: name, index: index)
+                            maps.append(map)
+                        } else if columns.count == 1 {
+                            let name = String(columns[0])
+                            index += 1
+                            let map = Map(name: name, index: index)
+                            maps.append(map)
+                        }
+                    }
+
+                    continuation.yield(RecordPartition(records: maps))
+                    continuation.finish()
+
+                    mapCache = Dictionary(uniqueKeysWithValues: maps.map({ ($0.name, $0) }))
+                } else {
+                    continuation.yield(RecordPartition(records: mapCache.values.sorted()))
+                    continuation.finish()
+                }
+            }
+        }
+    }
+
     // MARK: - Decoding
 
     private func decodeFile<T>(atPath path: String) throws -> [T] where T : Decodable {
         let url = ResourceBundle.shared.dbURL.appendingPathComponent(mode.path + path)
         let data = try Data(contentsOf: url)
-        let records = try decoder.decode(List<T>.self, from: data).body
+        let records = try decoder.decode(ListNode<T>.self, from: data).body
         return records
     }
 }
@@ -255,6 +298,13 @@ extension AsyncThrowingStream where Element == Database.RecordPartition<Skill> {
 extension AsyncThrowingStream where Element == Database.RecordPartition<SkillTree> {
     public func joined() async throws -> [SkillTree] {
         let initial = Database.RecordPartition<SkillTree>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<Map> {
+    public func joined() async throws -> [Map] {
+        let initial = Database.RecordPartition<Map>(records: [])
         return try await reduce(initial, +).records
     }
 }

@@ -20,7 +20,7 @@ struct JobASPDStats: Decodable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.jobs = try container.decode(Map<Job, Bool>.self, forKey: .jobs).keys
-        self.baseASPD = try container.decode(Map<WeaponType, Int>.self, forKey: .baseASPD).dictionary
+        self.jobs = try container.decode(PairsNode<Job, Bool>.self, forKey: .jobs).keys
+        self.baseASPD = try container.decode(PairsNode<WeaponType, Int>.self, forKey: .baseASPD).dictionary
     }
 }

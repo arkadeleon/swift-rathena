@@ -254,11 +254,17 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(archBishop.tree?.count, 22)
     }
 
+    func testMapDatabase() async throws {
+        let maps = try await database.maps().joined()
+        XCTAssertEqual(maps.count, 1219)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
         ("testJobDatabase", testJobDatabase),
         ("testSkillDatabase", testSkillDatabase),
         ("testSkillTreeDatabase", testSkillTreeDatabase),
+        ("testMapDatabase", testMapDatabase),
     ]
 }

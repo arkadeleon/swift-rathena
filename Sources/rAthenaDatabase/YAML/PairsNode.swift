@@ -1,12 +1,11 @@
 //
-//  Map.swift
+//  PairsNode.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/1/10.
 //
 
-struct Map<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key: CodingKey, Value: Decodable {
-
+struct PairsNode<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key: CodingKey, Value: Decodable {
     private var children: [(Key, Value)]
 
     init(from decoder: Decoder) throws {
@@ -25,13 +24,13 @@ struct Map<Key, Value>: Sequence, Decodable where Key: CaseIterable, Key: Coding
     }
 }
 
-extension Map where Key : Hashable {
+extension PairsNode where Key: Hashable {
     var dictionary: [Key : Value] {
         Dictionary(uniqueKeysWithValues: children)
     }
 }
 
-extension Map where Value == Bool {
+extension PairsNode where Value == Bool {
     var keys: [Key] {
         let allCasesButAll = Key.allCases.filter { $0.stringValue != "All" }
 

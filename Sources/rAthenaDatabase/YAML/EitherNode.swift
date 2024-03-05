@@ -1,12 +1,11 @@
 //
-//  Either.swift
+//  EitherNode.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/1/12.
 //
 
-public enum Either<Left, Right>: Decodable where Left: Decodable, Right: Decodable {
-
+public enum EitherNode<Left, Right>: Decodable where Left: Decodable, Right: Decodable {
     case left(Left)
     case right(Right)
 
@@ -17,13 +16,11 @@ public enum Either<Left, Right>: Decodable where Left: Decodable, Right: Decodab
         } else if let right = try? container.decode(Right.self) {
             self = .right(right)
         } else {
-            throw DecodingError.typeMismatch(Either<Left, Right>.self, DecodingError.Context.init(codingPath: container.codingPath, debugDescription: "Invalid type.", underlyingError: nil))
+            throw DecodingError.typeMismatch(EitherNode<Left, Right>.self, DecodingError.Context.init(codingPath: container.codingPath, debugDescription: "Invalid type.", underlyingError: nil))
         }
     }
 
-
-
-    public func mapRight<R>(_ transform: (Right) -> R) -> Either<Left, R> {
+    public func mapRight<R>(_ transform: (Right) -> R) -> EitherNode<Left, R> {
         switch self {
         case .left(let left):
             .left(left)
@@ -33,8 +30,8 @@ public enum Either<Left, Right>: Decodable where Left: Decodable, Right: Decodab
     }
 }
 
-extension Either: Equatable where Left: Equatable, Right: Equatable {
-    public static func == (lhs: Either<Left, Right>, rhs: Either<Left, Right>) -> Bool {
+extension EitherNode: Equatable where Left: Equatable, Right: Equatable {
+    public static func == (lhs: EitherNode<Left, Right>, rhs: EitherNode<Left, Right>) -> Bool {
         switch (lhs, rhs) {
         case (.left(let l), .left(let r)):
             l == r
