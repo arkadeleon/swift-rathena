@@ -78,7 +78,6 @@ let package = Package(
                 .copy("conf"),
                 .copy("db"),
                 .copy("npc"),
-                .copy("sql-files"),
             ]
         ),
         .target(
