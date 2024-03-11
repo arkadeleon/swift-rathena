@@ -22,8 +22,8 @@ public class Database {
 
         var path: String {
             switch self {
-            case .prerenewal: "pre-re/"
-            case .renewal: "re/"
+            case .prerenewal: "pre-re"
+            case .renewal: "re"
             }
         }
     }
@@ -43,12 +43,13 @@ public class Database {
 
     private let decoder = YAMLDecoder()
 
-    private var itemCache: [String : Item] = [:]
-    private var monsterCache: [String : Monster] = [:]
-    private var jobStatsCache: [Int : JobStats] = [:]
-    private var skillCache: [String : Skill] = [:]
-    private var skillTreeCache: [Int : SkillTree] = [:]
-    private var mapCache: [String : Map] = [:]
+    private var itemCache = ItemCache()
+    private let monsterCache = MonsterCache()
+    private var jobCache = JobCache()
+    private var skillCache = SkillCache()
+    private var skillTreeCache = SkillTreeCache()
+    private var mapCache = MapCache()
+    private var scriptCache = ScriptCache()
 
     private init(mode: Mode) {
         self.mode = mode
@@ -59,7 +60,7 @@ public class Database {
     public func items() -> AsyncDatabaseRecordPartitions<Item> {
         AsyncThrowingStream { continuation in
             Task {
-                if itemCache.isEmpty {
+                if await itemCache.isEmpty {
                     let start = Date()
                     print("Begin loading item database")
 
@@ -79,18 +80,18 @@ public class Database {
                     let end = Date()
                     print("End loading item database: \(end.timeIntervalSince(start))")
 
-                    itemCache = Dictionary(uniqueKeysWithValues: items.map({ ($0.aegisName, $0) }))
+                    await itemCache.storeItems(items)
                 } else {
-                    continuation.yield(RecordPartition(records: itemCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await itemCache.items))
                     continuation.finish()
                 }
             }
         }
     }
 
-    public func item(for aegisName: String) async throws -> Item {
-        for try await _ in items() {}
-        if let item = itemCache[aegisName] {
+    public func item(forAegisName aegisName: String) async throws -> Item {
+        _ = try await items().joined()
+        if let item = await itemCache.item(forAegisName: aegisName) {
             return item
         } else {
             throw DatabaseError.recordNotFound
@@ -102,24 +103,33 @@ public class Database {
     public func monsters() -> AsyncDatabaseRecordPartitions<Monster> {
         AsyncThrowingStream { continuation in
             Task {
-                if monsterCache.isEmpty {
+                if await monsterCache.isEmpty {
                     let monsters: [Monster] = try decodeFile(atPath: "mob_db.yml")
 
                     continuation.yield(RecordPartition(records: monsters))
                     continuation.finish()
 
-                    monsterCache = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.aegisName, $0) }))
+                    await monsterCache.storeMonsters(monsters)
                 } else {
-                    continuation.yield(RecordPartition(records: monsterCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await monsterCache.monsters))
                     continuation.finish()
                 }
             }
         }
     }
 
-    public func monster(for aegisName: String) async throws -> Monster {
-        for try await _ in monsters() {}
-        if let monster = monsterCache[aegisName] {
+    public func monster(forID id: Int) async throws -> Monster {
+        _ = try await monsters().joined()
+        if let monster = await monsterCache.monster(forID: id) {
+            return monster
+        } else {
+            throw DatabaseError.recordNotFound
+        }
+    }
+
+    public func monster(forAegisName aegisName: String) async throws -> Monster {
+        _ = try await monsters().joined()
+        if let monster = await monsterCache.monster(forAegisName: aegisName) {
             return monster
         } else {
             throw DatabaseError.recordNotFound
@@ -131,7 +141,7 @@ public class Database {
     public func jobs() -> AsyncDatabaseRecordPartitions<JobStats> {
         AsyncThrowingStream { continuation in
             Task {
-                if jobStatsCache.isEmpty {
+                if await jobCache.isEmpty {
                     let basicStatsList: [JobBasicStats] = try decodeFile(atPath: "job_stats.yml")
                     let aspdStatsList: [JobASPDStats] = try decodeFile(atPath: "job_aspd.yml")
                     let expStatsList: [JobExpStats] = try decodeFile(atPath: "job_exp.yml")
@@ -150,9 +160,9 @@ public class Database {
                     continuation.yield(RecordPartition(records: jobs))
                     continuation.finish()
 
-                    jobStatsCache = Dictionary(uniqueKeysWithValues: jobs.map({ ($0.job.id, $0) }))
+                    await jobCache.storeJobs(jobs)
                 } else {
-                    continuation.yield(RecordPartition(records: jobStatsCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await jobCache.jobs))
                     continuation.finish()
                 }
             }
@@ -164,24 +174,24 @@ public class Database {
     public func skills() -> AsyncDatabaseRecordPartitions<Skill> {
         AsyncThrowingStream { continuation in
             Task {
-                if skillCache.isEmpty {
+                if await skillCache.isEmpty {
                     let skills: [Skill] = try decodeFile(atPath: "skill_db.yml")
 
                     continuation.yield(RecordPartition(records: skills))
                     continuation.finish()
 
-                    skillCache = Dictionary(uniqueKeysWithValues: skills.map({ ($0.aegisName, $0) }))
+                    await skillCache.storeSkills(skills)
                 } else {
-                    continuation.yield(RecordPartition(records: skillCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await skillCache.skills))
                     continuation.finish()
                 }
             }
         }
     }
 
-    public func skill(for aegisName: String) async throws -> Skill {
-        for try await _ in skills() {}
-        if let skill = skillCache[aegisName] {
+    public func skill(forAegisName aegisName: String) async throws -> Skill {
+        _ = try await skills().joined()
+        if let skill = await skillCache.skill(forAegisName: aegisName) {
             return skill
         } else {
             throw DatabaseError.recordNotFound
@@ -191,24 +201,24 @@ public class Database {
     public func skillTrees() -> AsyncDatabaseRecordPartitions<SkillTree> {
         AsyncThrowingStream { continuation in
             Task {
-                if skillTreeCache.isEmpty {
+                if await skillTreeCache.isEmpty {
                     let skillTrees: [SkillTree] = try decodeFile(atPath: "skill_tree.yml")
 
                     continuation.yield(RecordPartition(records: skillTrees))
                     continuation.finish()
 
-                    skillTreeCache = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.id, $0) }))
+                    await skillTreeCache.storeSkillTrees(skillTrees)
                 } else {
-                    continuation.yield(RecordPartition(records: skillTreeCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await skillTreeCache.skillTrees))
                     continuation.finish()
                 }
             }
         }
     }
 
-    public func skillTree(for jobID: Int) async throws -> SkillTree {
-        for try await _ in skillTrees() {}
-        if let skillTree = skillTreeCache[jobID] {
+    public func skillTree(forJobID jobID: Int) async throws -> SkillTree {
+        _ = try await skillTrees().joined()
+        if let skillTree = await skillTreeCache.skillTree(forJobID: jobID) {
             return skillTree
         } else {
             throw DatabaseError.recordNotFound
@@ -220,7 +230,7 @@ public class Database {
     public func maps() -> AsyncDatabaseRecordPartitions<Map> {
         AsyncThrowingStream { continuation in
             Task {
-                if mapCache.isEmpty {
+                if await mapCache.isEmpty {
                     let url = ResourceBundle.shared.dbURL.appendingPathComponent("map_index.txt")
                     let string = try String(contentsOf: url)
 
@@ -248,9 +258,33 @@ public class Database {
                     continuation.yield(RecordPartition(records: maps))
                     continuation.finish()
 
-                    mapCache = Dictionary(uniqueKeysWithValues: maps.map({ ($0.name, $0) }))
+                    await mapCache.storeMaps(maps)
                 } else {
-                    continuation.yield(RecordPartition(records: mapCache.values.sorted()))
+                    continuation.yield(RecordPartition(records: await mapCache.maps))
+                    continuation.finish()
+                }
+            }
+        }
+    }
+
+    public func monsterSpawns() -> AsyncDatabaseRecordPartitions<MonsterSpawn> {
+        AsyncThrowingStream { continuation in
+            Task {
+                if await scriptCache.isEmpty {
+                    let parser = ScriptParser(mode: mode)
+
+                    do {
+                        try parser.parse()
+
+                        await scriptCache.store(monsterSpawns: parser.monsterSpawns)
+
+                        continuation.yield(RecordPartition(records: parser.monsterSpawns))
+                        continuation.finish()
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
+                } else {
+                    continuation.yield(RecordPartition(records: await scriptCache.monsterSpawns))
                     continuation.finish()
                 }
             }
@@ -260,7 +294,9 @@ public class Database {
     // MARK: - Decoding
 
     private func decodeFile<T>(atPath path: String) throws -> [T] where T : Decodable {
-        let url = ResourceBundle.shared.dbURL.appendingPathComponent(mode.path + path)
+        let url = ResourceBundle.shared.dbURL
+            .appendingPathComponent(mode.path)
+            .appendingPathComponent(path)
         let data = try Data(contentsOf: url)
         let records = try decoder.decode(ListNode<T>.self, from: data).body
         return records
@@ -305,6 +341,13 @@ extension AsyncThrowingStream where Element == Database.RecordPartition<SkillTre
 extension AsyncThrowingStream where Element == Database.RecordPartition<Map> {
     public func joined() async throws -> [Map] {
         let initial = Database.RecordPartition<Map>(records: [])
+        return try await reduce(initial, +).records
+    }
+}
+
+extension AsyncThrowingStream where Element == Database.RecordPartition<MonsterSpawn> {
+    public func joined() async throws -> [MonsterSpawn] {
+        let initial = Database.RecordPartition<MonsterSpawn>(records: [])
         return try await reduce(initial, +).records
     }
 }

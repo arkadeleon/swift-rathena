@@ -20,7 +20,7 @@ final class DatabaseTests: XCTestCase {
         let items = try await database.items().joined()
         XCTAssertEqual(items.count, 25037)
 
-        let redPotion = try await database.item(for: "Red_Potion")
+        let redPotion = try await database.item(forAegisName: "Red_Potion")
         XCTAssertEqual(redPotion.id, 501)
         XCTAssertEqual(redPotion.aegisName, "Red_Potion")
         XCTAssertEqual(redPotion.name, "Red Potion")
@@ -29,7 +29,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(redPotion.weight, 70)
         XCTAssertEqual(redPotion.script, "itemheal rand(45,65),0;\n")
 
-        let flyWing = try await database.item(for: "Wing_Of_Fly")
+        let flyWing = try await database.item(forAegisName: "Wing_Of_Fly")
         XCTAssertEqual(flyWing.id, 601)
         XCTAssertEqual(flyWing.aegisName, "Wing_Of_Fly")
         XCTAssertEqual(flyWing.name, "Fly Wing")
@@ -39,7 +39,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(flyWing.flags?.buyingStore, true)
         XCTAssertEqual(flyWing.script, "itemskill \"AL_TELEPORT\",1;\n")
 
-        let deadBranch = try await database.item(for: "Branch_Of_Dead_Tree")
+        let deadBranch = try await database.item(forAegisName: "Branch_Of_Dead_Tree")
         XCTAssertEqual(deadBranch.id, 604)
         XCTAssertEqual(deadBranch.aegisName, "Branch_Of_Dead_Tree")
         XCTAssertEqual(deadBranch.name, "Dead Branch")
@@ -50,7 +50,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(deadBranch.flags?.deadBranch, true)
         XCTAssertEqual(deadBranch.script, "monster \"this\",-1,-1,\"--ja--\",-1-MOBG_BRANCH_OF_DEAD_TREE,1,\"\";\n")
 
-        let sword = try await database.item(for: "Sword")
+        let sword = try await database.item(forAegisName: "Sword")
         XCTAssertEqual(sword.id, 1101)
         XCTAssertEqual(sword.aegisName, "Sword")
         XCTAssertEqual(sword.name, "Sword")
@@ -69,7 +69,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(sword.equipLevelMin, 2)
         XCTAssertEqual(sword.refineable, true)
 
-        let eraser = try await database.item(for: "Eraser")
+        let eraser = try await database.item(forAegisName: "Eraser")
         XCTAssertEqual(eraser.id, 1637)
         XCTAssertEqual(eraser.aegisName, "Eraser")
         XCTAssertEqual(eraser.name, "Eraser")
@@ -87,7 +87,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(eraser.equipLevelMin, 70)
         XCTAssertEqual(eraser.refineable, true)
 
-        let sheild = try await database.item(for: "Shield")
+        let sheild = try await database.item(forAegisName: "Shield")
         XCTAssertEqual(sheild.id, 2105)
         XCTAssertEqual(sheild.aegisName, "Shield")
         XCTAssertEqual(sheild.name, "Shield")
@@ -100,7 +100,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(sheild.armorLevel, 1)
         XCTAssertEqual(sheild.refineable, true)
 
-        let turban = try await database.item(for: "Turban")
+        let turban = try await database.item(forAegisName: "Turban")
         XCTAssertEqual(turban.id, 2222)
         XCTAssertEqual(turban.aegisName, "Turban")
         XCTAssertEqual(turban.name, "Turban")
@@ -116,7 +116,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(turban.refineable, true)
         XCTAssertEqual(turban.view, 7)
 
-        let poringCard = try await database.item(for: "Poring_Card")
+        let poringCard = try await database.item(forAegisName: "Poring_Card")
         XCTAssertEqual(poringCard.id, 4001)
         XCTAssertEqual(poringCard.aegisName, "Poring_Card")
         XCTAssertEqual(poringCard.name, "Poring Card")
@@ -133,7 +133,7 @@ final class DatabaseTests: XCTestCase {
         let monsters = try await database.monsters().joined()
         XCTAssertEqual(monsters.count, 2445)
 
-        let poring = try await database.monster(for: "PORING")
+        let poring = try await database.monster(forAegisName: "PORING")
         XCTAssertEqual(poring.aegisName, "PORING")
         XCTAssertEqual(poring.name, "Poring")
         XCTAssertEqual(poring.level, 1)
@@ -165,7 +165,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(poring.class, .normal)
         XCTAssertEqual(poring.drops?.count, 8)
 
-        let archerSkeleton = try await database.monster(for: "ARCHER_SKELETON")
+        let archerSkeleton = try await database.monster(forAegisName: "ARCHER_SKELETON")
         XCTAssertEqual(archerSkeleton.aegisName, "ARCHER_SKELETON")
         XCTAssertEqual(archerSkeleton.name, "Archer Skeleton")
         XCTAssertEqual(archerSkeleton.level, 50)
@@ -198,7 +198,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(archerSkeleton.class, .normal)
         XCTAssertEqual(archerSkeleton.drops?.count, 8)
 
-        let osiris = try await database.monster(for: "OSIRIS")
+        let osiris = try await database.monster(forAegisName: "OSIRIS")
         XCTAssertEqual(osiris.ai, .ai21)
         XCTAssertEqual(osiris.class, .boss)
         XCTAssertEqual(osiris.modes, [.mvp])
@@ -214,7 +214,7 @@ final class DatabaseTests: XCTestCase {
         let skills = try await database.skills().joined()
         XCTAssertEqual(skills.count, 1516)
 
-        let napalmBeat = try await database.skill(for: "MG_NAPALMBEAT")
+        let napalmBeat = try await database.skill(forAegisName: "MG_NAPALMBEAT")
         XCTAssertEqual(napalmBeat.id, 11)
         XCTAssertEqual(napalmBeat.aegisName, "MG_NAPALMBEAT")
         XCTAssertEqual(napalmBeat.name, "Napalm Beat")
@@ -225,7 +225,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(napalmBeat.flags, [.isAutoShadowSpell, .targetTrap])
         XCTAssertEqual(napalmBeat.range, .left(9))
 
-        let spearBoomerang = try await database.skill(for: "KN_SPEARBOOMERANG")
+        let spearBoomerang = try await database.skill(forAegisName: "KN_SPEARBOOMERANG")
         XCTAssertEqual(spearBoomerang.id, 59)
         XCTAssertEqual(spearBoomerang.aegisName, "KN_SPEARBOOMERANG")
         XCTAssertEqual(spearBoomerang.name, "Spear Boomerang")
@@ -234,7 +234,7 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(spearBoomerang.targetType, .attack)
         XCTAssertEqual(spearBoomerang.range, .right([3, 5, 7, 9, 11]))
 
-        let sightrasher = try await database.skill(for: "WZ_SIGHTRASHER")
+        let sightrasher = try await database.skill(forAegisName: "WZ_SIGHTRASHER")
         XCTAssertEqual(sightrasher.id, 81)
         XCTAssertEqual(sightrasher.requires?.status, ["Sight"])
     }
@@ -243,12 +243,12 @@ final class DatabaseTests: XCTestCase {
         let skillTrees = try await database.skillTrees().joined()
         XCTAssertEqual(skillTrees.count, 168)
 
-        let acolyte = try await database.skillTree(for: Job.acolyte.id)
+        let acolyte = try await database.skillTree(forJobID: Job.acolyte.id)
         XCTAssertEqual(acolyte.job, .acolyte)
         XCTAssertEqual(acolyte.inherit, [.novice])
         XCTAssertEqual(acolyte.tree?.count, 15)
 
-        let archBishop = try await database.skillTree(for: Job.archBishop.id)
+        let archBishop = try await database.skillTree(forJobID: Job.archBishop.id)
         XCTAssertEqual(archBishop.job, .archBishop)
         XCTAssertEqual(archBishop.inherit, [.novice, .acolyte, .priest])
         XCTAssertEqual(archBishop.tree?.count, 22)
@@ -259,6 +259,11 @@ final class DatabaseTests: XCTestCase {
         XCTAssertEqual(maps.count, 1219)
     }
 
+    func testMonsterSpawnDatabase() async throws {
+        let monsterSpawns = try await database.monsterSpawns().joined()
+        XCTAssertEqual(monsterSpawns.count, 3645)
+    }
+
     static var allTests = [
         ("testItemDatabase", testItemDatabase),
         ("testMonsterDatabase", testMonsterDatabase),
@@ -266,5 +271,6 @@ final class DatabaseTests: XCTestCase {
         ("testSkillDatabase", testSkillDatabase),
         ("testSkillTreeDatabase", testSkillTreeDatabase),
         ("testMapDatabase", testMapDatabase),
+        ("testMonsterSpawnDatabase", testMonsterSpawnDatabase),
     ]
 }

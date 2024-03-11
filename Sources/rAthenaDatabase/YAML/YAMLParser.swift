@@ -9,7 +9,7 @@ import ryml
 
 class YAMLParser {
     let yaml: String
-    var parser: c4.yml.Parser
+    private var parser: c4.yml.Parser
 
     init(yaml: String) {
         self.yaml = yaml
