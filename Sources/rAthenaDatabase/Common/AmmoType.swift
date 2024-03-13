@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum AmmoType: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum AmmoType: String, CaseIterable, CodingKey, Decodable {
     case arrow = "Arrow"
     case dagger = "Dagger"
     case bullet = "Bullet"
@@ -18,7 +17,9 @@ public enum AmmoType: String, CaseIterable, CodingKey, Decodable, Identifiable {
     case kunai = "Kunai"
     case cannonball = "Cannonball"
     case throwweapon = "Throwweapon"
+}
 
+extension AmmoType: Identifiable {
     public var id: Int {
         switch self {
         case .arrow: RA_AMMO_ARROW
@@ -32,7 +33,9 @@ public enum AmmoType: String, CaseIterable, CodingKey, Decodable, Identifiable {
         case .throwweapon: RA_AMMO_THROWWEAPON
         }
     }
+}
 
+extension AmmoType: CustomStringConvertible {
     public var description: String {
         switch self {
         case .arrow: "Arrow"

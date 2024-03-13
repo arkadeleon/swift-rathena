@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum RaceGroup: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum RaceGroup: String, CaseIterable, CodingKey, Decodable {
     case goblin = "Goblin"
     case kobold = "Kobold"
     case orc = "Orc"
@@ -40,7 +39,9 @@ public enum RaceGroup: String, CaseIterable, CodingKey, Decodable, Identifiable 
     case ep172Alpha = "EP172ALPHA"
     case ep172Beta = "EP172BETA"
     case ep172Bath = "EP172BATH"
+}
 
+extension RaceGroup: Identifiable {
     public var id: Int {
         switch self {
         case .goblin: RA_RC2_GOBLIN
@@ -76,7 +77,9 @@ public enum RaceGroup: String, CaseIterable, CodingKey, Decodable, Identifiable 
         case .ep172Bath: RA_RC2_EP172BATH
         }
     }
+}
 
+extension RaceGroup: CustomStringConvertible {
     public var description: String {
         stringValue
     }

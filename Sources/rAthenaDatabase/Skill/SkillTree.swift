@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/16.
 //
 
-public struct SkillTree: Comparable, Decodable, Identifiable {
+public struct SkillTree: Decodable {
 
     /// Job name.
     public var job: Job
@@ -16,10 +16,6 @@ public struct SkillTree: Comparable, Decodable, Identifiable {
 
     /// List of skills available for the job. (Default: null)
     public var tree: [Skill]?
-
-    public var id: Int {
-        job.id
-    }
 
     enum CodingKeys: String, CodingKey {
         case job = "Job"
@@ -32,14 +28,6 @@ public struct SkillTree: Comparable, Decodable, Identifiable {
         self.job = try container.decode(Job.self, forKey: .job)
         self.inherit = try container.decodeIfPresent(PairsNode<Job, Bool>.self, forKey: .inherit)?.keys
         self.tree = try container.decodeIfPresent([Skill].self, forKey: .tree)
-    }
-
-    public static func < (lhs: SkillTree, rhs: SkillTree) -> Bool {
-        lhs.job.id < rhs.job.id
-    }
-
-    public static func == (lhs: SkillTree, rhs: SkillTree) -> Bool {
-        lhs.job.id == rhs.job.id
     }
 }
 
@@ -100,5 +88,23 @@ extension SkillTree {
             case name = "Name"
             case level = "Level"
         }
+    }
+}
+
+extension SkillTree: Identifiable {
+    public var id: Int {
+        job.id
+    }
+}
+
+extension SkillTree: Equatable {
+    public static func == (lhs: SkillTree, rhs: SkillTree) -> Bool {
+        lhs.job.id == rhs.job.id
+    }
+}
+
+extension SkillTree: Comparable {
+    public static func < (lhs: SkillTree, rhs: SkillTree) -> Bool {
+        lhs.job.id < rhs.job.id
     }
 }

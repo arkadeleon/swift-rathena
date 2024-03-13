@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public struct Monster: Comparable, Decodable, Identifiable {
+public struct Monster: Decodable {
 
     /// Monster ID.
     public var id: Int
@@ -215,14 +215,6 @@ public struct Monster: Comparable, Decodable, Identifiable {
         self.mvpDrops = try container.decodeIfPresent([Monster.Drop].self, forKey: .mvpDrops)
         self.drops = try container.decodeIfPresent([Monster.Drop].self, forKey: .drops)
     }
-
-    public static func < (lhs: Monster, rhs: Monster) -> Bool {
-        lhs.id < rhs.id
-    }
-
-    public static func == (lhs: Monster, rhs: Monster) -> Bool {
-        lhs.id == rhs.id
-    }
 }
 
 extension Monster {
@@ -283,5 +275,20 @@ extension Monster {
             self.randomOptionGroup = try container.decodeIfPresent(String.self, forKey: .randomOptionGroup)
             self.index = try container.decodeIfPresent(Int.self, forKey: .index)
         }
+    }
+}
+
+extension Monster: Identifiable {
+}
+
+extension Monster: Equatable {
+    public static func == (lhs: Monster, rhs: Monster) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension Monster: Comparable {
+    public static func < (lhs: Monster, rhs: Monster) -> Bool {
+        lhs.id < rhs.id
     }
 }

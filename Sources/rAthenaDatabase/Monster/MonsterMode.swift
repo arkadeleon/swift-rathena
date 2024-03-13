@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum MonsterMode: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum MonsterMode: String, CaseIterable, CodingKey, Decodable {
     case canMove = "CanMove"
     case looter = "Looter"
     case aggressive = "Aggressive"
@@ -35,7 +34,9 @@ public enum MonsterMode: String, CaseIterable, CodingKey, Decodable, Identifiabl
     case detector = "Detector"
     case statusImmune = "StatusImmune"
     case skillImmune = "SkillImmune"
+}
 
+extension MonsterMode: Identifiable {
     public var id: Int {
         switch self {
         case .canMove: RA_MD_CANMOVE
@@ -66,7 +67,9 @@ public enum MonsterMode: String, CaseIterable, CodingKey, Decodable, Identifiabl
         case .skillImmune: RA_MD_SKILLIMMUNE
         }
     }
+}
 
+extension MonsterMode: CustomStringConvertible {
     public var description: String {
         switch self {
         case .canMove: "Can Move"

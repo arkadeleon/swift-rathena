@@ -7,15 +7,16 @@
 
 import rAthenaCommon
 
-public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable {
     case passive = "Passive"
     case attack = "Attack"
     case ground = "Ground"
     case `self` = "Self"
     case support = "Support"
     case trap = "Trap"
+}
 
+extension SkillTargetType: Identifiable {
     public var id: Int {
         switch self {
         case .passive: RA_INF_PASSIVE_SKILL
@@ -26,7 +27,9 @@ public enum SkillTargetType: String, CaseIterable, CodingKey, Decodable, Identif
         case .trap: RA_INF_TRAP_SKILL
         }
     }
+}
 
+extension SkillTargetType: CustomStringConvertible {
     public var description: String {
         stringValue
     }

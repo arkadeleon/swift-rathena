@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/11.
 //
 
-public struct JobStats: Comparable, Identifiable {
+public struct JobStats {
 
     /// Job.
     public var job: Job
@@ -48,10 +48,6 @@ public struct JobStats: Comparable, Identifiable {
 
     /// Base AP per base level.
     public var baseAp: [Int]
-
-    public var id: Int {
-        job.id
-    }
 
     init?(job: Job, basicStatsList: [JobBasicStats], aspdStatsList: [JobASPDStats], expStatsList: [JobExpStats], basePointsStatsList: [JobBasePointsStats]) {
         guard let basicStats = basicStatsList.first(where: { $0.jobs.contains(job) }),
@@ -112,12 +108,22 @@ public struct JobStats: Comparable, Identifiable {
             ]
         }
     }
+}
 
-    public static func < (lhs: JobStats, rhs: JobStats) -> Bool {
-        lhs.job.id < rhs.job.id
+extension JobStats: Identifiable {
+    public var id: Int {
+        job.id
     }
+}
 
+extension JobStats: Equatable {
     public static func == (lhs: JobStats, rhs: JobStats) -> Bool {
         lhs.job.id == rhs.job.id
+    }
+}
+
+extension JobStats: Comparable {
+    public static func < (lhs: JobStats, rhs: JobStats) -> Bool {
+        lhs.job.id < rhs.job.id
     }
 }

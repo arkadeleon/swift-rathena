@@ -7,12 +7,13 @@
 
 import rAthenaCommon
 
-public enum Size: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum Size: String, CaseIterable, CodingKey, Decodable {
     case small = "Small"
     case medium = "Medium"
     case large = "Large"
+}
 
+extension Size: Identifiable {
     public var id: Int {
         switch self {
         case .small: RA_SZ_SMALL
@@ -20,7 +21,9 @@ public enum Size: String, CaseIterable, CodingKey, Decodable, Identifiable {
         case .large: RA_SZ_BIG
         }
     }
+}
 
+extension Size: CustomStringConvertible {
     public var description: String {
         stringValue
     }

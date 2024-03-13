@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum MonsterAI: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum MonsterAI: String, CaseIterable, CodingKey, Decodable {
     case ai01 = "01"
     case ai02 = "02"
     case ai03 = "03"
@@ -30,7 +29,9 @@ public enum MonsterAI: String, CaseIterable, CodingKey, Decodable, Identifiable 
     case ai25 = "25"
     case ai26 = "26"
     case ai27 = "27"
+}
 
+extension MonsterAI: Identifiable {
     public var id: Int {
         switch self {
         case .ai01: RA_MONSTER_TYPE_01
@@ -56,7 +57,9 @@ public enum MonsterAI: String, CaseIterable, CodingKey, Decodable, Identifiable 
         case .ai27: RA_MONSTER_TYPE_27
         }
     }
+}
 
+extension MonsterAI: CustomStringConvertible {
     public var description: String {
         stringValue
     }

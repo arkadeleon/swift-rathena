@@ -267,6 +267,17 @@ public class Database {
         }
     }
 
+    public func map(forName name: String) async throws -> Map {
+        _ = try await maps().joined()
+        if let map = await mapCache.map(forName: name) {
+            return map
+        } else {
+            throw DatabaseError.recordNotFound
+        }
+    }
+
+    // MARK: - Script
+
     public func monsterSpawns() -> AsyncDatabaseRecordPartitions<MonsterSpawn> {
         AsyncThrowingStream { continuation in
             Task {

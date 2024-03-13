@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillRequirement: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillRequirement: String, CaseIterable, CodingKey, Decodable {
     case hpCost = "HpCost"
     case spCost = "SpCost"
     case hpRateCost = "HpRateCost"
@@ -24,7 +23,9 @@ public enum SkillRequirement: String, CaseIterable, CodingKey, Decodable, Identi
     case equipment = "Equipment"
     case apCost = "ApCost"
     case apRateCost = "ApRateCost"
+}
 
+extension SkillRequirement: Identifiable {
     public var id: Int {
         switch self {
         case .hpCost: RA_SKILL_REQ_HPCOST
@@ -44,7 +45,9 @@ public enum SkillRequirement: String, CaseIterable, CodingKey, Decodable, Identi
         case .apRateCost: RA_SKILL_REQ_APRATECOST
         }
     }
+}
 
+extension SkillRequirement: CustomStringConvertible {
     public var description: String {
         stringValue
     }

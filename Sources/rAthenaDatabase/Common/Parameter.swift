@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum Parameter: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum Parameter: String, CaseIterable, CodingKey, Decodable {
     case str = "Str"
     case agi = "Agi"
     case vit = "Vit"
@@ -21,7 +20,9 @@ public enum Parameter: String, CaseIterable, CodingKey, Decodable, Identifiable 
     case spl = "Spl"
     case con = "Con"
     case crt = "Crt"
+}
 
+extension Parameter: Identifiable {
     public var id: Int {
         switch self {
         case .str: RA_PARAM_STR
@@ -38,7 +39,9 @@ public enum Parameter: String, CaseIterable, CodingKey, Decodable, Identifiable 
         case .crt: RA_PARAM_CRT
         }
     }
+}
 
+extension Parameter: CustomStringConvertible {
     public var description: String {
         stringValue
     }

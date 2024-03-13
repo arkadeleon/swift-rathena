@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum ItemClass: String, CaseIterable, CodingKey, Decodable, Identifiable {
+public enum ItemClass: String, CaseIterable, CodingKey, Decodable {
 
     /// Applies to all classes.
     case all = "All"
@@ -41,10 +41,12 @@ public enum ItemClass: String, CaseIterable, CodingKey, Decodable, Identifiable 
 
     /// Applies to all Third classes.
     case allThird = "All_Third"
+}
 
+extension ItemClass: Identifiable {
     public var id: Int {
         switch self {
-        case .all: 
+        case .all:
             if RA_RENEWAL.boolValue {
                 RA_ITEMJ_NORMAL | RA_ITEMJ_UPPER | RA_ITEMJ_BABY | RA_ITEMJ_THIRD | RA_ITEMJ_THIRD_UPPER | RA_ITEMJ_THIRD_BABY | RA_ITEMJ_FOURTH
             } else {
@@ -62,7 +64,9 @@ public enum ItemClass: String, CaseIterable, CodingKey, Decodable, Identifiable 
         case .allThird: RA_ITEMJ_ALL_THIRD
         }
     }
+}
 
+extension ItemClass: CustomStringConvertible {
     public var description: String {
         stringValue
     }

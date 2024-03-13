@@ -7,12 +7,13 @@
 
 import rAthenaCommon
 
-public enum Gender: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum Gender: String, CaseIterable, CodingKey, Decodable {
     case female = "Female"
     case male = "Male"
     case both = "Both"
+}
 
+extension Gender: Identifiable {
     public var id: Int {
         switch self {
         case .female: RA_SEX_FEMALE
@@ -20,7 +21,9 @@ public enum Gender: String, CaseIterable, CodingKey, Decodable, Identifiable {
         case .both: RA_SEX_BOTH
         }
     }
+}
 
+extension Gender: CustomStringConvertible {
     public var description: String {
         stringValue
     }

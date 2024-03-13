@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum WeaponType: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum WeaponType: String, CaseIterable, CodingKey, Decodable {
     case fist = "Fist"
     case dagger = "Dagger"
     case oneHandedSword = "1hSword"
@@ -31,9 +30,11 @@ public enum WeaponType: String, CaseIterable, CodingKey, Decodable, Identifiable
     case gatling = "Gatling"
     case shotgun = "Shotgun"
     case grenade = "Grenade"
-    case Huuma = "Huuma"
+    case huuma = "Huuma"
     case twoHandedStaff = "2hStaff"
+}
 
+extension WeaponType: Identifiable {
     public var id: Int {
         switch self {
         case .fist: RA_W_FIST
@@ -58,11 +59,13 @@ public enum WeaponType: String, CaseIterable, CodingKey, Decodable, Identifiable
         case .gatling: RA_W_GATLING
         case .shotgun: RA_W_SHOTGUN
         case .grenade: RA_W_GRENADE
-        case .Huuma: RA_W_HUUMA
+        case .huuma: RA_W_HUUMA
         case .twoHandedStaff: RA_W_2HSTAFF
         }
     }
+}
 
+extension WeaponType: CustomStringConvertible {
     public var description: String {
         switch self {
         case .fist: "Fist"
@@ -87,7 +90,7 @@ public enum WeaponType: String, CaseIterable, CodingKey, Decodable, Identifiable
         case .gatling: "Gatling"
         case .shotgun: "Shotgun"
         case .grenade: "Grenade"
-        case .Huuma: "Huuma"
+        case .huuma: "Huuma"
         case .twoHandedStaff: "Two-Handed Staff"
         }
     }

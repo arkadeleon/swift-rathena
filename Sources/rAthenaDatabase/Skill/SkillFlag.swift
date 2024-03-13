@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillFlag: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillFlag: String, CaseIterable, CodingKey, Decodable {
     case isQuest = "IsQuest"
     case isNpc = "IsNpc"
     case isWedding = "IsWedding"
@@ -50,9 +49,11 @@ public enum SkillFlag: String, CaseIterable, CodingKey, Decodable, Identifiable 
     case showScale = "ShowScale"
     case ignoreGtb = "IgnoreGtb"
     case toggleable = "Toggleable"
+}
 
+extension SkillFlag: Identifiable {
     public var id: Int {
-        switch self {            
+        switch self {
         case .isQuest: RA_INF2_ISQUEST
         case .isNpc: RA_INF2_ISNPC
         case .isWedding: RA_INF2_ISWEDDING
@@ -96,7 +97,9 @@ public enum SkillFlag: String, CaseIterable, CodingKey, Decodable, Identifiable 
         case .toggleable: RA_INF2_TOGGLEABLE
         }
     }
+}
 
+extension SkillFlag: CustomStringConvertible {
     public var description: String {
         stringValue
     }

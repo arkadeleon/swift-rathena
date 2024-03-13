@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum ItemLocation: String, CaseIterable, CodingKey, Decodable, Identifiable {
+public enum ItemLocation: String, CaseIterable, CodingKey, Decodable {
 
     /// Upper Headgear
     case headTop = "Head_Top"
@@ -77,7 +77,9 @@ public enum ItemLocation: String, CaseIterable, CodingKey, Decodable, Identifiab
 
     /// Right_Accessory + Left_Accessory
     case bothAccessory = "Both_Accessory"
+}
 
+extension ItemLocation: Identifiable {
     public var id: Int {
         switch self {
         case .headTop: RA_EQP_HEAD_TOP
@@ -105,7 +107,9 @@ public enum ItemLocation: String, CaseIterable, CodingKey, Decodable, Identifiab
         case .bothAccessory: RA_EQP_ACC_RL
         }
     }
+}
 
+extension ItemLocation: CustomStringConvertible {
     public var description: String {
         stringValue
     }

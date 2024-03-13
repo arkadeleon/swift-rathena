@@ -5,7 +5,7 @@
 //  Created by Leon Li on 2024/1/11.
 //
 
-public struct Skill: Comparable, Decodable, Identifiable {
+public struct Skill: Decodable {
 
     /// Unique skill ID.
     public var id: Int
@@ -172,14 +172,6 @@ public struct Skill: Comparable, Decodable, Identifiable {
         self.requires = try container.decodeIfPresent(Requires.self, forKey: .requires)
         self.unit = try container.decodeIfPresent(Unit.self, forKey: .unit)
         self.status = try container.decodeIfPresent(String.self, forKey: .status)
-    }
-
-    public static func < (lhs: Skill, rhs: Skill) -> Bool {
-        lhs.id < rhs.id
-    }
-
-    public static func == (lhs: Skill, rhs: Skill) -> Bool {
-        lhs.id == rhs.id
     }
 }
 
@@ -740,5 +732,20 @@ extension Skill {
             self.target = try container.decodeIfPresent(SkillUnitTargetType.self, forKey: .target) ?? .all
             self.flag = try container.decodeIfPresent(PairsNode<SkillUnitFlag, Bool>.self, forKey: .flag)?.keys ?? [.none]
         }
+    }
+}
+
+extension Skill: Identifiable {
+}
+
+extension Skill: Equatable {
+    public static func == (lhs: Skill, rhs: Skill) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension Skill: Comparable {
+    public static func < (lhs: Skill, rhs: Skill) -> Bool {
+        lhs.id < rhs.id
     }
 }

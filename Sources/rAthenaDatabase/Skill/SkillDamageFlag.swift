@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable {
     case noDamage = "NoDamage"
     case splash = "Splash"
     case splashSplit = "SplashSplit"
@@ -19,7 +18,9 @@ public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable, Identif
     case ignoreDefCard = "IgnoreDefCard"
     case ignoreLongCard = "IgnoreLongCard"
     case critical = "Critical"
+}
 
+extension SkillDamageFlag: Identifiable {
     public var id: Int {
         switch self {
         case .noDamage: RA_NK_NODAMAGE
@@ -34,7 +35,9 @@ public enum SkillDamageFlag: String, CaseIterable, CodingKey, Decodable, Identif
         case .critical: RA_NK_CRITICAL
         }
     }
+}
 
+extension SkillDamageFlag: CustomStringConvertible {
     public var description: String {
         stringValue
     }

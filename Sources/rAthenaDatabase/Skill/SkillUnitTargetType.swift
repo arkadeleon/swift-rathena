@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillUnitTargetType: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillUnitTargetType: String, CaseIterable, CodingKey, Decodable {
     case friend = "Friend"
     case party = "Party"
     case ally = "Ally"
@@ -17,7 +16,9 @@ public enum SkillUnitTargetType: String, CaseIterable, CodingKey, Decodable, Ide
     case enemy = "Enemy"
     case `self` = "Self"
     case sameGuild = "SameGuild"
+}
 
+extension SkillUnitTargetType: Identifiable {
     public var id: Int {
         switch self {
         case .friend: RA_BCT_FRIEND
@@ -30,7 +31,9 @@ public enum SkillUnitTargetType: String, CaseIterable, CodingKey, Decodable, Ide
         case .sameGuild: RA_BCT_SAMEGUILD
         }
     }
+}
 
+extension SkillUnitTargetType: CustomStringConvertible {
     public var description: String {
         stringValue
     }

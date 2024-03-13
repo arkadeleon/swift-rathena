@@ -14,14 +14,20 @@ public struct Map {
     public var index: Int
 }
 
-extension Map: Comparable {
-    public static func < (lhs: Map, rhs: Map) -> Bool {
-        lhs.index < rhs.index
-    }
-}
-
 extension Map: Identifiable {
     public var id: String {
         name
+    }
+}
+
+extension Map: Equatable {
+    public static func == (lhs: Map, rhs: Map) -> Bool {
+        lhs.index == rhs.index
+    }
+}
+
+extension Map: Comparable {
+    public static func < (lhs: Map, rhs: Map) -> Bool {
+        lhs.index < rhs.index
     }
 }

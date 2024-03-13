@@ -7,12 +7,13 @@
 
 import rAthenaCommon
 
-public enum SkillHitType: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillHitType: String, CaseIterable, CodingKey, Decodable {
     case normal = "Normal"
     case single = "Single"
     case multiHit = "Multi_Hit"
+}
 
+extension SkillHitType: Identifiable {
     public var id: Int {
         switch self {
         case .normal: 0
@@ -20,7 +21,9 @@ public enum SkillHitType: String, CaseIterable, CodingKey, Decodable, Identifiab
         case .multiHit: RA_DMG_MULTI_HIT
         }
     }
+}
 
+extension SkillHitType: CustomStringConvertible {
     public var description: String {
         switch self {
         case .normal: "Normal"

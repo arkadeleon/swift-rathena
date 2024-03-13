@@ -7,8 +7,7 @@
 
 import rAthenaCommon
 
-public enum SkillUnitFlag: String, CaseIterable, CodingKey, Decodable, Identifiable {
-
+public enum SkillUnitFlag: String, CaseIterable, CodingKey, Decodable {
     case none = "None"
     case noEnemy = "NoEnemy"
     case noReiteration = "NoReiteration"
@@ -28,7 +27,9 @@ public enum SkillUnitFlag: String, CaseIterable, CodingKey, Decodable, Identifia
     case removedByFireRain = "RemovedByFireRain"
     case knockbackGroup = "KnockbackGroup"
     case hiddenTrap = "HiddenTrap"
+}
 
+extension SkillUnitFlag: Identifiable {
     public var id: Int {
         switch self {
         case .none: 0
@@ -52,7 +53,9 @@ public enum SkillUnitFlag: String, CaseIterable, CodingKey, Decodable, Identifia
         case .hiddenTrap: RA_UF_HIDDENTRAP
         }
     }
+}
 
+extension SkillUnitFlag: CustomStringConvertible {
     public var description: String {
         switch self {
         case .none: "None"

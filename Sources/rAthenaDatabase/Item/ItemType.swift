@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-public enum ItemType: String, CaseIterable, CodingKey, Decodable, Identifiable {
+public enum ItemType: String, CaseIterable, CodingKey, Decodable {
 
     /// Healing item.
     case healing = "Healing"
@@ -46,6 +46,14 @@ public enum ItemType: String, CaseIterable, CodingKey, Decodable, Identifiable {
     /// Another delayed consume that requires user confirmation before using the item.
     case cash = "Cash"
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        self = ItemType.allCases.first(where: { $0.rawValue.caseInsensitiveCompare(rawValue) == .orderedSame }) ?? .etc
+    }
+}
+
+extension ItemType: Identifiable {
     public var id: Int {
         switch self {
         case .healing: RA_IT_HEALING
@@ -62,7 +70,9 @@ public enum ItemType: String, CaseIterable, CodingKey, Decodable, Identifiable {
         case .cash: RA_IT_CASH
         }
     }
+}
 
+extension ItemType: CustomStringConvertible {
     public var description: String {
         switch self {
         case .healing: "Healing"
@@ -78,11 +88,5 @@ public enum ItemType: String, CaseIterable, CodingKey, Decodable, Identifiable {
         case .shadowGear: "Shadow Gear"
         case .cash: "Cash"
         }
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let rawValue = try container.decode(String.self)
-        self = ItemType.allCases.first(where: { $0.rawValue.caseInsensitiveCompare(rawValue) == .orderedSame }) ?? .etc
     }
 }
