@@ -17,8 +17,8 @@ actor SkillCache {
 
     func storeSkills(_ skills: [Skill]) {
         self.skills = skills
-        skillsByIDs = Dictionary(uniqueKeysWithValues: skills.map({ ($0.id, $0) }))
-        skillsByAegisNames = Dictionary(uniqueKeysWithValues: skills.map({ ($0.aegisName, $0) }))
+        skillsByIDs = Dictionary(skills.map({ ($0.id, $0) }), uniquingKeysWith: { (first, _) in first })
+        skillsByAegisNames = Dictionary(skills.map({ ($0.aegisName, $0) }), uniquingKeysWith: { (first, _) in first })
     }
 
     func skill(forID id: Int) -> Skill? {

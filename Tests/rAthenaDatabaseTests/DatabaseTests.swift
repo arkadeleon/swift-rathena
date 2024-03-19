@@ -18,7 +18,7 @@ final class DatabaseTests: XCTestCase {
 
     func testItemDatabase() async throws {
         let items = try await database.items().joined()
-        XCTAssertEqual(items.count, 25037)
+        XCTAssertEqual(items.count, 25389)
 
         let redPotion = try await database.item(forAegisName: "Red_Potion")
         XCTAssertEqual(redPotion.id, 501)
@@ -207,12 +207,12 @@ final class DatabaseTests: XCTestCase {
 
     func testJobDatabase() async throws {
         let jobs = try await database.jobs().joined()
-//        XCTAssertEqual(jobs.count, 181)
+        XCTAssertEqual(jobs.count, 170)
     }
 
     func testSkillDatabase() async throws {
         let skills = try await database.skills().joined()
-        XCTAssertEqual(skills.count, 1516)
+        XCTAssertEqual(skills.count, 1533)
 
         let napalmBeat = try await database.skill(forAegisName: "MG_NAPALMBEAT")
         XCTAssertEqual(napalmBeat.id, 11)
@@ -241,7 +241,7 @@ final class DatabaseTests: XCTestCase {
 
     func testSkillTreeDatabase() async throws {
         let skillTrees = try await database.skillTrees().joined()
-        XCTAssertEqual(skillTrees.count, 168)
+        XCTAssertEqual(skillTrees.count, 169)
 
         let acolyte = try await database.skillTree(forJobID: Job.acolyte.id)
         XCTAssertEqual(acolyte.job, .acolyte)

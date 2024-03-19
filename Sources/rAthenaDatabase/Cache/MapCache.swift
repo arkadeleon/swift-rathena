@@ -16,7 +16,7 @@ actor MapCache {
 
     func storeMaps(_ maps: [Map]) {
         self.maps = maps
-        mapsByNames = Dictionary(uniqueKeysWithValues: maps.map({ ($0.name, $0) }))
+        mapsByNames = Dictionary(maps.map({ ($0.name, $0) }), uniquingKeysWith: { (first, _) in first })
     }
 
     func map(forName name: String) -> Map? {

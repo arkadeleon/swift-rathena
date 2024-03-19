@@ -17,8 +17,8 @@ actor ItemCache {
 
     func storeItems(_ items: [Item]) {
         self.items = items
-        itemsByIDs = Dictionary(uniqueKeysWithValues: items.map({ ($0.id, $0) }))
-        itemsByAegisNames = Dictionary(uniqueKeysWithValues: items.map({ ($0.aegisName, $0) }))
+        itemsByIDs = Dictionary(items.map({ ($0.id, $0) }), uniquingKeysWith: { (first, _) in first })
+        itemsByAegisNames = Dictionary(items.map({ ($0.aegisName, $0) }), uniquingKeysWith: { (first, _) in first })
     }
 
     func item(forID id: Int) -> Item? {

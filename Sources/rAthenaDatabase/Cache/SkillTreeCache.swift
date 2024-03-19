@@ -16,7 +16,7 @@ actor SkillTreeCache {
 
     func storeSkillTrees(_ skillTrees: [SkillTree]) {
         self.skillTrees = skillTrees
-        skillTreesByJobIDs = Dictionary(uniqueKeysWithValues: skillTrees.map({ ($0.job.id, $0) }))
+        skillTreesByJobIDs = Dictionary(skillTrees.map({ ($0.job.id, $0) }), uniquingKeysWith: { (first, _) in first })
     }
 
     func skillTree(forJobID jobID: Int) -> SkillTree? {

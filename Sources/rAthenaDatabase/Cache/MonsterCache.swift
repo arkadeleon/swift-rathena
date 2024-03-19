@@ -17,8 +17,8 @@ actor MonsterCache {
 
     func storeMonsters(_ monsters: [Monster]) {
         self.monsters = monsters
-        monstersByIDs = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.id, $0) }))
-        monstersByAegisNames = Dictionary(uniqueKeysWithValues: monsters.map({ ($0.aegisName, $0) }))
+        monstersByIDs = Dictionary(monsters.map({ ($0.id, $0) }), uniquingKeysWith: { (first, _) in first })
+        monstersByAegisNames = Dictionary(monsters.map({ ($0.aegisName, $0) }), uniquingKeysWith: { (first, _) in first })
     }
 
     func monster(forID id: Int) -> Monster? {
