@@ -148,14 +148,27 @@ public struct Item: Decodable {
         self.aegisName = try container.decode(String.self, forKey: .aegisName)
         self.name = try container.decode(String.self, forKey: .name)
         self.type = try container.decodeIfPresent(ItemType.self, forKey: .type) ?? .etc
-        self.subType = try switch type {
-        case .weapon: .weapon(container.decodeIfPresent(WeaponType.self, forKey: .subType) ?? .fist)
-        case .ammo: .ammo(container.decodeIfPresent(AmmoType.self, forKey: .subType) ?? .arrow)
-        case .card: .card(container.decodeIfPresent(CardType.self, forKey: .subType) ?? .normal)
+
+        self.subType = switch type {
+        case .weapon: .weapon(try container.decodeIfPresent(WeaponType.self, forKey: .subType) ?? .fist)
+        case .ammo: .ammo(try container.decodeIfPresent(AmmoType.self, forKey: .subType) ?? .arrow)
+        case .card: .card(try container.decodeIfPresent(CardType.self, forKey: .subType) ?? .normal)
         default: .none
         }
-        self.buy = try container.decodeIfPresent(Int.self, forKey: .buy) ?? 0
-        self.sell = try container.decodeIfPresent(Int.self, forKey: .sell) ?? 0
+
+        let buy = try container.decodeIfPresent(Int.self, forKey: .buy)
+        let sell = try container.decodeIfPresent(Int.self, forKey: .sell)
+        if let buy, sell == nil {
+            self.buy = buy
+            self.sell = buy / 2
+        } else if let sell, buy == nil {
+            self.sell = sell
+            self.buy = sell * 2
+        } else {
+            self.buy = buy ?? 0
+            self.sell = sell ?? 0
+        }
+
         self.weight = try container.decodeIfPresent(Int.self, forKey: .weight) ?? 0
         self.attack = try container.decodeIfPresent(Int.self, forKey: .attack) ?? 0
         self.magicAttack = try container.decodeIfPresent(Int.self, forKey: .magicAttack) ?? 0
