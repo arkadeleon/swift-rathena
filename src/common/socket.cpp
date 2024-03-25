@@ -292,9 +292,6 @@ int null_recv(int fd) { return 0; }
 int null_send(int fd) { return 0; }
 int null_parse(int fd) { return 0; }
 
-void (*recv_callback)(int fd) = NULL;
-void (*send_callback)(int fd) = NULL;
-
 ParseFunc default_func_parse = null_parse;
 
 void set_defaultparse(ParseFunc defaultparse)
@@ -397,9 +394,6 @@ int recv_to_fifo(int fd)
 
 	session[fd]->rdata_size += len;
 	session[fd]->rdata_tick = last_tick;
-	if (recv_callback) {
-		recv_callback(fd);
-	}
 #ifdef SHOW_SERVER_STATS
 	socket_data_i += len;
 	socket_data_qi += len;
@@ -439,9 +433,6 @@ int send_from_fifo(int fd)
 	if( len > 0 )
 	{
 		session[fd]->wdata_tick = last_tick;
-		if (send_callback) {
-			send_callback(fd);
-		}
 
 		// some data could not be transferred?
 		// shift unsent data to the beginning of the queue

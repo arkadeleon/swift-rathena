@@ -18,8 +18,6 @@ typedef NS_ENUM(NSInteger, RAServerStatus) {
 };
 
 typedef void (^RAServerOutputHandler)(NSData *data);
-typedef void (^RAServerDataReceiveHandler)(NSData *data);
-typedef void (^RAServerDataSendHandler)(NSData *data);
 
 @interface RAServer : NSObject
 
@@ -27,8 +25,6 @@ typedef void (^RAServerDataSendHandler)(NSData *data);
 @property (nonatomic, readonly) RAServerStatus status;
 
 @property (nonatomic, copy, nullable) RAServerOutputHandler outputHandler;
-@property (nonatomic, copy, nullable) RAServerDataReceiveHandler dataReceiveHandler;
-@property (nonatomic, copy, nullable) RAServerDataSendHandler dataSendHandler;
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);
 - (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);

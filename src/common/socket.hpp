@@ -149,9 +149,6 @@ extern void flush_fifo(int fd);
 extern void flush_fifos(void);
 extern void set_nonblocking(int fd, unsigned long yes);
 
-extern void (*recv_callback)(int fd);
-extern void (*send_callback)(int fd);
-
 void set_defaultparse(ParseFunc defaultparse);
 
 

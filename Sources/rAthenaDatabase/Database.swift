@@ -39,7 +39,7 @@ public actor Database {
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 
-    public let mode: Mode
+    public nonisolated let mode: Mode
 
     private let decoder = YAMLDecoder()
 

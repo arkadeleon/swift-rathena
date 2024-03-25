@@ -9,7 +9,6 @@
 #import "../rAthenaCommon/RAServerPrivate.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
-#include "common/socket.hpp"
 
 extern int main (int argc, char **argv);
 
@@ -25,24 +24,6 @@ int write_function(void *cookie, const char *buf, int n) {
     NSData *data = [NSData dataWithBytes:buf length:n];
     server.outputHandler(data);
     return n;
-}
-
-void do_recv(int fd) {
-    RAMapServer *mapServer = RAMapServer.sharedServer;
-
-    if (mapServer.dataReceiveHandler) {
-        NSData *data = [NSData dataWithBytes:session[fd]->rdata length:session[fd]->rdata_size];
-        mapServer.dataReceiveHandler(data);
-    }
-}
-
-void do_send(int fd) {
-    RAMapServer *mapServer = RAMapServer.sharedServer;
-
-    if (mapServer.dataSendHandler) {
-        NSData *data = [NSData dataWithBytes:session[fd]->wdata length:session[fd]->wdata_size];
-        mapServer.dataSendHandler(data);
-    }
 }
 
 @interface RAMapServer ()
@@ -73,9 +54,6 @@ void do_send(int fd) {
                 FILE *output = fwopen(0, write_function);
                 STDOUT = output;
                 STDERR = output;
-
-                recv_callback = do_recv;
-                send_callback = do_send;
 
                 char arg0[] = "map-server";
                 char *args[1] = {arg0};
