@@ -15,7 +15,7 @@ final class CharServerTests: XCTestCase {
     }
 
     func testCharServer() async {
-        let charServer = RACharServer.shared
+        let charServer = CharServer.shared
         XCTAssertEqual(charServer.name, "Char Server")
         XCTAssertEqual(charServer.status, .notStarted)
 

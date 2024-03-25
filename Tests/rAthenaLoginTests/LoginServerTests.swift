@@ -15,7 +15,7 @@ final class LoginServerTests: XCTestCase {
     }
 
     func testLoginServer() async {
-        let loginServer = RALoginServer.shared
+        let loginServer = LoginServer.shared
         XCTAssertEqual(loginServer.name, "Login Server")
         XCTAssertEqual(loginServer.status, .notStarted)
 

@@ -1,19 +1,19 @@
 //
-//  RAServer.m
+//  Server.m
 //  rAthena
 //
 //  Created by Leon Li on 2023/2/14.
 //
 
-#import "RAServer.h"
-#import "RAServerPrivate.h"
+#import "Server.h"
+#import "ServerPrivate.h"
 
-@implementation RAServer
+@implementation Server
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _status = RAServerStatusNotStarted;
+        _status = ServerStatusNotStarted;
     }
     return self;
 }

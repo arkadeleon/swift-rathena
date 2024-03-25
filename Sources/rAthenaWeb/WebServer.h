@@ -1,5 +1,5 @@
 //
-//  RAWebServer.h
+//  WebServer.h
 //  rAthena
 //
 //  Created by Leon Li on 2022/11/1.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAWebServer : RAServer
+@interface WebServer : Server
 
-@property (nonatomic, class, readonly) RAWebServer *sharedServer;
+@property (nonatomic, class, readonly) WebServer *sharedServer;
 
 @end
 

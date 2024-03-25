@@ -1,5 +1,5 @@
 //
-//  RAMapServer.h
+//  CharServer.h
 //  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RAMapServer : RAServer
+@interface CharServer : Server
 
-@property (nonatomic, class, readonly) RAMapServer *sharedServer;
+@property (nonatomic, class, readonly) CharServer *sharedServer;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  RACharServer.h
+//  LoginServer.h
 //  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RACharServer : RAServer
+@interface LoginServer : Server
 
-@property (nonatomic, class, readonly) RACharServer *sharedServer;
+@property (nonatomic, class, readonly) LoginServer *sharedServer;
 
 @end
 

@@ -15,7 +15,7 @@ final class WebServerTests: XCTestCase {
     }
 
     func testWebServer() async {
-        let webServer = RAWebServer.shared
+        let webServer = WebServer.shared
         XCTAssertEqual(webServer.name, "Web Server")
         XCTAssertEqual(webServer.status, .notStarted)
 

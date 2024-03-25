@@ -9747,9 +9747,9 @@ extern const NSInteger RA_MER_SERA;
 extern const NSInteger RA_MER_DIETER;
 extern const NSInteger RA_MER_ELEANOR;
 
-@interface RAConstant : NSObject
+@interface Constant : NSObject
 
-@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, RAConstant *> *allConstants;
+@property (nonatomic, class, readonly, copy) NSDictionary<NSString *, Constant *> *allConstants;
 
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly) NSInteger value;

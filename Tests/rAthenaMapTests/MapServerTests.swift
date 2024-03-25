@@ -15,7 +15,7 @@ final class MapServerTests: XCTestCase {
     }
 
     func testMapServer() async {
-        let mapServer = RAMapServer.shared
+        let mapServer = MapServer.shared
         XCTAssertEqual(mapServer.name, "Map Server")
         XCTAssertEqual(mapServer.status, .notStarted)
 

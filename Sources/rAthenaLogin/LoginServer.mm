@@ -1,12 +1,12 @@
 //
-//  RAWebServer.m
+//  LoginServer.m
 //  rAthena
 //
-//  Created by Leon Li on 2022/11/1.
+//  Created by Leon Li on 2021/5/19.
 //
 
-#import "RAWebServer.h"
-#import "../rAthenaCommon/RAServerPrivate.h"
+#import "LoginServer.h"
+#import "../rAthenaCommon/ServerPrivate.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
 
@@ -15,7 +15,7 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    RAWebServer *server = RAWebServer.sharedServer;
+    LoginServer *server = LoginServer.sharedServer;
 
     if (server.outputHandler == nil) {
         return 0;
@@ -26,25 +26,25 @@ int write_function(void *cookie, const char *buf, int n) {
     return n;
 }
 
-@interface RAWebServer ()
+@interface LoginServer ()
 
 @property (nonatomic) NSThread *thread;
 
 @end
 
-@implementation RAWebServer
+@implementation LoginServer
 
-+ (RAWebServer *)sharedServer {
-    static RAWebServer *sharedServer = nil;
++ (LoginServer *)sharedServer {
+    static LoginServer *sharedServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedServer = [[RAWebServer alloc] init];
+        sharedServer = [[LoginServer alloc] init];
     });
     return sharedServer;
 }
 
 - (NSString *)name {
-    return @"Web Server";
+    return @"Login Server";
 }
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
@@ -55,7 +55,7 @@ int write_function(void *cookie, const char *buf, int n) {
                 STDOUT = output;
                 STDERR = output;
 
-                char arg0[] = "web-server";
+                char arg0[] = "login-server";
                 char *args[1] = {arg0};
                 main(1, args);
             }];
@@ -74,31 +74,31 @@ int write_function(void *cookie, const char *buf, int n) {
         global_core->set_status_changed([&self](rathena::server_core::e_core_status status) {
             switch (status) {
                 case rathena::server_core::e_core_status::NOT_STARTED:
-                    self.status = RAServerStatusNotStarted;
+                    self.status = ServerStatusNotStarted;
                     break;
                 case rathena::server_core::e_core_status::CORE_INITIALIZING:
                 case rathena::server_core::e_core_status::CORE_INITIALIZED:
                 case rathena::server_core::e_core_status::SERVER_INITIALIZING:
                 case rathena::server_core::e_core_status::SERVER_INITIALIZED:
-                    self.status = RAServerStatusStarting;
+                    self.status = ServerStatusStarting;
                     break;
                 case rathena::server_core::e_core_status::RUNNING:
-                    self.status = RAServerStatusRunning;
+                    self.status = ServerStatusRunning;
                     break;
                 case rathena::server_core::e_core_status::STOPPING:
                 case rathena::server_core::e_core_status::SERVER_FINALIZING:
                 case rathena::server_core::e_core_status::SERVER_FINALIZED:
                 case rathena::server_core::e_core_status::CORE_FINALIZING:
                 case rathena::server_core::e_core_status::CORE_FINALIZED:
-                    self.status = RAServerStatusStopping;
+                    self.status = ServerStatusStopping;
                     break;
                 case rathena::server_core::e_core_status::STOPPED:
-                    self.status = RAServerStatusStopped;
+                    self.status = ServerStatusStopped;
                     break;
             }
         });
 
-        while (self.status != RAServerStatusRunning) {
+        while (self.status != ServerStatusRunning) {
         }
 
         completionHandler(YES);
@@ -123,7 +123,7 @@ int write_function(void *cookie, const char *buf, int n) {
 
         self.thread = nil;
 
-        while (self.status != RAServerStatusStopped) {
+        while (self.status != ServerStatusStopped) {
         }
 
         completionHandler(YES);

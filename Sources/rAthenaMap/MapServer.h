@@ -1,5 +1,5 @@
 //
-//  RALoginServer.h
+//  MapServer.h
 //  rAthena
 //
 //  Created by Leon Li on 2021/5/19.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RALoginServer : RAServer
+@interface MapServer : Server
 
-@property (nonatomic, class, readonly) RALoginServer *sharedServer;
+@property (nonatomic, class, readonly) MapServer *sharedServer;
 
 @end
 
