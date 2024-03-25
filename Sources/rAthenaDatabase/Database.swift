@@ -14,7 +14,7 @@ public enum DatabaseError: Error {
     case recordNotFound
 }
 
-public class Database {
+public actor Database {
 
     public enum Mode {
         case prerenewal
@@ -43,13 +43,13 @@ public class Database {
 
     private let decoder = YAMLDecoder()
 
-    private var itemCache = ItemCache()
+    private let itemCache = ItemCache()
     private let monsterCache = MonsterCache()
-    private var jobCache = JobCache()
-    private var skillCache = SkillCache()
-    private var skillTreeCache = SkillTreeCache()
-    private var mapCache = MapCache()
-    private var scriptCache = ScriptCache()
+    private let jobCache = JobCache()
+    private let skillCache = SkillCache()
+    private let skillTreeCache = SkillTreeCache()
+    private let mapCache = MapCache()
+    private let scriptCache = ScriptCache()
 
     private init(mode: Mode) {
         self.mode = mode

@@ -74,10 +74,10 @@ let package = Package(
                 "Sources/rAthenaResource",
             ],
             resources: [
-                .copy("ragnarok.sqlite3"),
                 .copy("conf"),
                 .copy("db"),
                 .copy("npc"),
+                .copy("ragnarok.sqlite3"),
             ]
         ),
         .target(
@@ -89,6 +89,7 @@ let package = Package(
             ],
             swiftSettings: [
                 .interoperabilityMode(.Cxx),
+                .enableExperimentalFeature("StrictConcurrency"),
             ]
         ),
         .target(

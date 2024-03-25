@@ -149,11 +149,18 @@ public struct Item: Decodable {
         self.name = try container.decode(String.self, forKey: .name)
         self.type = try container.decodeIfPresent(ItemType.self, forKey: .type) ?? .etc
 
-        self.subType = switch type {
-        case .weapon: .weapon(try container.decodeIfPresent(WeaponType.self, forKey: .subType) ?? .fist)
-        case .ammo: .ammo(try container.decodeIfPresent(AmmoType.self, forKey: .subType) ?? .arrow)
-        case .card: .card(try container.decodeIfPresent(CardType.self, forKey: .subType) ?? .normal)
-        default: .none
+        switch type {
+        case .weapon:
+            let weaponType = try container.decodeIfPresent(WeaponType.self, forKey: .subType) ?? .fist
+            self.subType = .weapon(weaponType)
+        case .ammo:
+            let ammoType = try container.decodeIfPresent(AmmoType.self, forKey: .subType) ?? .arrow
+            self.subType = .ammo(ammoType)
+        case .card:
+            let cardType = try container.decodeIfPresent(CardType.self, forKey: .subType) ?? .normal
+            self.subType = .card(cardType)
+        default:
+            self.subType = .none
         }
 
         let buy = try container.decodeIfPresent(Int.self, forKey: .buy)
