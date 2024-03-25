@@ -59,7 +59,9 @@ let package = Package(
                 "custom",
                 "map",
             ],
-            publicHeadersPath: ""
+            cxxSettings: [
+                .headerSearchPath(""),
+            ]
         ),
         .target(
             name: "rAthenaResource",
@@ -109,7 +111,9 @@ let package = Package(
                 "common/winapi.hpp",
                 "common/winapi.cpp",
             ],
-            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath(""),
+            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -128,7 +132,9 @@ let package = Package(
                 "common/winapi.hpp",
                 "common/winapi.cpp",
             ],
-            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath(""),
+            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -147,7 +153,9 @@ let package = Package(
                 "common/winapi.hpp",
                 "common/winapi.cpp",
             ],
-            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath(""),
+            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
@@ -169,7 +177,9 @@ let package = Package(
                 "common/winapi.hpp",
                 "common/winapi.cpp",
             ],
-            publicHeadersPath: "",
+            cxxSettings: [
+                .headerSearchPath(""),
+            ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
                 .linkedFramework("Foundation"),
