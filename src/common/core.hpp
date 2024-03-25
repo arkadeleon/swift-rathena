@@ -4,6 +4,7 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -60,6 +61,7 @@ namespace rathena{
 		class Core{
 			private:
 				e_core_status m_status;
+				std::function<void ( e_core_status status )> m_status_changed;
 				e_core_type m_type;
 				bool m_run_once;
 				bool m_crashed;
@@ -81,6 +83,7 @@ namespace rathena{
 				}
 
 				e_core_status get_status();
+				void set_status_changed(std::function<void ( e_core_status status )> status_changed);
 				e_core_type get_type();
 				bool is_running();
 				// TODO: refactor to protected

@@ -6,6 +6,7 @@
 //
 
 #import "RAWebServer.h"
+#import "../rAthenaCommon/RAServerPrivate.h"
 #include "common/core.hpp"
 #include "common/showmsg.hpp"
 #include "common/socket.hpp"
@@ -65,32 +66,6 @@ void do_send(int fd) {
     return @"Web Server";
 }
 
-- (RAServerStatus)status {
-    if (global_core == NULL) {
-        return RAServerStatusNotStarted;
-    }
-
-    switch (global_core->get_status()) {
-        case rathena::server_core::e_core_status::NOT_STARTED:
-            return RAServerStatusNotStarted;
-        case rathena::server_core::e_core_status::CORE_INITIALIZING:
-        case rathena::server_core::e_core_status::CORE_INITIALIZED:
-        case rathena::server_core::e_core_status::SERVER_INITIALIZING:
-        case rathena::server_core::e_core_status::SERVER_INITIALIZED:
-            return RAServerStatusStarting;
-        case rathena::server_core::e_core_status::RUNNING:
-            return RAServerStatusRunning;
-        case rathena::server_core::e_core_status::STOPPING:
-        case rathena::server_core::e_core_status::SERVER_FINALIZING:
-        case rathena::server_core::e_core_status::SERVER_FINALIZED:
-        case rathena::server_core::e_core_status::CORE_FINALIZING:
-        case rathena::server_core::e_core_status::CORE_FINALIZED:
-            return RAServerStatusStopping;
-        case rathena::server_core::e_core_status::STOPPED:
-            return RAServerStatusStopped;
-    }
-}
-
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if (self.thread == nil) {
@@ -114,6 +89,36 @@ void do_send(int fd) {
         }
 
         [self.thread start];
+
+        while (global_core == NULL) {
+        }
+
+        global_core->set_status_changed([&self](rathena::server_core::e_core_status status) {
+            switch (status) {
+                case rathena::server_core::e_core_status::NOT_STARTED:
+                    self.status = RAServerStatusNotStarted;
+                    break;
+                case rathena::server_core::e_core_status::CORE_INITIALIZING:
+                case rathena::server_core::e_core_status::CORE_INITIALIZED:
+                case rathena::server_core::e_core_status::SERVER_INITIALIZING:
+                case rathena::server_core::e_core_status::SERVER_INITIALIZED:
+                    self.status = RAServerStatusStarting;
+                    break;
+                case rathena::server_core::e_core_status::RUNNING:
+                    self.status = RAServerStatusRunning;
+                    break;
+                case rathena::server_core::e_core_status::STOPPING:
+                case rathena::server_core::e_core_status::SERVER_FINALIZING:
+                case rathena::server_core::e_core_status::SERVER_FINALIZED:
+                case rathena::server_core::e_core_status::CORE_FINALIZING:
+                case rathena::server_core::e_core_status::CORE_FINALIZED:
+                    self.status = RAServerStatusStopping;
+                    break;
+                case rathena::server_core::e_core_status::STOPPED:
+                    self.status = RAServerStatusStopped;
+                    break;
+            }
+        });
 
         while (self.status != RAServerStatusRunning) {
         }

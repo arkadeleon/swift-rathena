@@ -10,15 +10,18 @@ import XCTest
 @testable import rAthenaMap
 
 final class MapServerTests: XCTestCase {
-    let mapServer = RAMapServer.shared
-
     override func setUp() async throws {
         try ResourceBundle.shared.load()
-        await mapServer.start()
     }
 
-    func testMapServer() {
+    func testMapServer() async {
+        let mapServer = RAMapServer.shared
         XCTAssertEqual(mapServer.name, "Map Server")
+        XCTAssertEqual(mapServer.status, .notStarted)
+
+        await mapServer.start()
+
+        XCTAssertEqual(mapServer.status, .running)
     }
 
     static var allTests = [

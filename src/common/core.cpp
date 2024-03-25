@@ -445,10 +445,17 @@ void Core::finalize(){
 
 void Core::set_status( e_core_status status ){
 	this->m_status = status;
+	if( this->m_status_changed != nullptr ){
+		this->m_status_changed(status);
+	}
 }
 
 e_core_status Core::get_status(){
 	return this->m_status;
+}
+
+void Core::set_status_changed( std::function<void ( e_core_status status )> status_changed ){
+	this->m_status_changed = status_changed;
 }
 
 e_core_type Core::get_type(){

@@ -6,15 +6,20 @@
 //
 
 #import "RAServer.h"
+#import "RAServerPrivate.h"
 
 @implementation RAServer
 
-- (NSString *)name {
-    return @"";
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _status = RAServerStatusNotStarted;
+    }
+    return self;
 }
 
-- (RAServerStatus)status {
-    return RAServerStatusNotStarted;
+- (NSString *)name {
+    return @"";
 }
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {

@@ -10,15 +10,18 @@ import XCTest
 @testable import rAthenaChar
 
 final class CharServerTests: XCTestCase {
-    let charServer = RACharServer.shared
-
     override func setUp() async throws {
         try ResourceBundle.shared.load()
-        await charServer.start()
     }
 
-    func testCharServer() {
+    func testCharServer() async {
+        let charServer = RACharServer.shared
         XCTAssertEqual(charServer.name, "Char Server")
+        XCTAssertEqual(charServer.status, .notStarted)
+
+        await charServer.start()
+
+        XCTAssertEqual(charServer.status, .running)
     }
 
     static var allTests = [

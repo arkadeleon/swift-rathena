@@ -10,15 +10,18 @@ import XCTest
 @testable import rAthenaLogin
 
 final class LoginServerTests: XCTestCase {
-    let loginServer = RALoginServer.shared
-
     override func setUp() async throws {
         try ResourceBundle.shared.load()
-        await loginServer.start()
     }
 
-    func testLoginServer() {
+    func testLoginServer() async {
+        let loginServer = RALoginServer.shared
         XCTAssertEqual(loginServer.name, "Login Server")
+        XCTAssertEqual(loginServer.status, .notStarted)
+
+        await loginServer.start()
+
+        XCTAssertEqual(loginServer.status, .running)
     }
 
     static var allTests = [
