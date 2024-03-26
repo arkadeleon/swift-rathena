@@ -26,14 +26,6 @@ extension Packets.HC {
             0
         }
 
-        public var source: PacketEndpoint {
-            return .charServer
-        }
-
-        public var destination: PacketEndpoint {
-            return .client
-        }
-
         public init() {
             self.totalSlotNum = 0
             self.premiumStartSlot = 0

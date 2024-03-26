@@ -23,14 +23,6 @@ extension Packets.CH {
             return 2 + 1
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .charServer
-        }
-
         public init() {
             self.charNum = 0
         }

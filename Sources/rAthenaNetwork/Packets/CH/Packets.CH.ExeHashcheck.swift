@@ -24,14 +24,6 @@ extension Packets.CH {
             return 2 + 1 + 16
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .charServer
-        }
-
         public init() {
             self.clientType = 0
             self.hashValue = []

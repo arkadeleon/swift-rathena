@@ -24,14 +24,6 @@ extension Packets.AC {
             return 2 + 1 + 20
         }
 
-        public var source: PacketEndpoint {
-            return .loginServer
-        }
-
-        public var destination: PacketEndpoint {
-            return .client
-        }
-
         public init() {
             self.errorCode = 0
             self.blockDate = ""

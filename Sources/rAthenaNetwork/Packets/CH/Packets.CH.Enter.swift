@@ -27,14 +27,6 @@ extension Packets.CH {
             return 2 + 4 + 4 + 4 + 2 + 1
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .charServer
-        }
-
         public init() {
             self.aid = 0
             self.authCode = 0

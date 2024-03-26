@@ -23,14 +23,6 @@ extension Packets.CA {
             return 2 + 16
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .loginServer
-        }
-
         public init() {
             self.hashValue = []
         }

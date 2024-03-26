@@ -26,14 +26,6 @@ extension Packets.CA {
             return 2 + 4 + 24 + 24 + 1
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .loginServer
-        }
-
         public init() {
             self.version = 0
             self.id = ""

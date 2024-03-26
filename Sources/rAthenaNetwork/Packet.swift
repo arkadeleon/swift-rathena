@@ -12,8 +12,4 @@ public protocol Packet: BinaryDecodable, BinaryEncodable {
     var packetType: UInt16 { get }
 
     var packetLength: UInt16 { get }
-
-    var source: PacketEndpoint { get }
-
-    var destination: PacketEndpoint { get }
 }

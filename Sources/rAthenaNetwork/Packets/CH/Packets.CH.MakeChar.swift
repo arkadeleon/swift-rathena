@@ -32,14 +32,6 @@ extension Packets.CH {
             return 2 + 24 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2
         }
 
-        public var source: PacketEndpoint {
-            return .client
-        }
-
-        public var destination: PacketEndpoint {
-            return .charServer
-        }
-
         public init() {
             self.name = ""
             self.str = 0

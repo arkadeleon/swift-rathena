@@ -29,14 +29,6 @@ extension Packets.AC {
             return 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size * UInt16(serverList.count)
         }
 
-        public var source: PacketEndpoint {
-            return .loginServer
-        }
-
-        public var destination: PacketEndpoint {
-            return .client
-        }
-
         public init() {
             self.authCode = 0
             self.aid = 0
