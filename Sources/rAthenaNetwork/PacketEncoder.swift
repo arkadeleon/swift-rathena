@@ -9,11 +9,16 @@ import Foundation
 
 public class PacketEncoder {
 
-    public init() {
+    public let packetVersion: Int
+    private let packets: [UInt16 : Packet.Type]
+
+    public init(packetVersion: Int) {
+        self.packetVersion = packetVersion
+        self.packets = Packets.all(for: packetVersion)
     }
 
     public func encode(_ packet: Packet) throws -> Data {
-        let encoder = BinaryEncoder()
+        let encoder = BinaryEncoder(packetVersion: packetVersion)
         try packet.encode(to: encoder)
         return encoder.data
     }

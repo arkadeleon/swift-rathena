@@ -5,8 +5,6 @@
 //  Created by Leon Li on 2021/7/7.
 //
 
-import rAthenaCommon
-
 extension Packets.HC {
 
     public struct AcceptEnterNeoUnion: Packet {
@@ -25,12 +23,7 @@ extension Packets.HC {
         }
 
         public var packetLength: UInt16 {
-            var length: UInt16 = 24
-            if RA_PACKETVER >= 20100413 {
-                length += 3
-            }
-            length += CharInfo.size * UInt16(charList.count)
-            return length
+            0
         }
 
         public var source: PacketEndpoint {
@@ -55,13 +48,13 @@ extension Packets.HC {
             }
             let packetLength = try decoder.decode(UInt16.self)
             let charCount: UInt16
-            if RA_PACKETVER >= 20100413 {
-                charCount = (packetLength - 27) / CharInfo.size
+            if decoder.packetVersion >= 20100413 {
+                charCount = (packetLength - 27) / CharInfo.size(for: decoder.packetVersion)
             } else {
-                charCount = (packetLength - 24) / CharInfo.size
+                charCount = (packetLength - 24) / CharInfo.size(for: decoder.packetVersion)
             }
 
-            if RA_PACKETVER >= 20100413 {
+            if decoder.packetVersion >= 20100413 {
                 self.totalSlotNum = try decoder.decode(UInt8.self)
                 self.premiumStartSlot = try decoder.decode(UInt8.self)
                 self.premiumEndSlot = try decoder.decode(UInt8.self)
@@ -74,21 +67,21 @@ extension Packets.HC {
 
             self.charList = []
             for _ in 0..<charCount {
-                let charInfo = try decoder.decode(CharInfo.self, length: Int(CharInfo.size))
+                let charInfo = try decoder.decode(CharInfo.self, length: Int(CharInfo.size(for: decoder.packetVersion)))
                 self.charList.append(charInfo)
             }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
             try encoder.encode(self.packetLength)
-            if RA_PACKETVER >= 20100413 {
+            if encoder.packetVersion >= 20100413 {
                 try encoder.encode(self.totalSlotNum)
                 try encoder.encode(self.premiumStartSlot)
                 try encoder.encode(self.premiumEndSlot)
             }
             try encoder.encode("", length: 20)  // unknown bytes
             for charInfo in self.charList {
-                try encoder.encode(charInfo, length: Int(CharInfo.size))
+                try encoder.encode(charInfo, length: Int(CharInfo.size(for: encoder.packetVersion)))
             }
         }
     }
@@ -140,36 +133,36 @@ extension Packets.HC.AcceptEnterNeoUnion {
         public var renameEnabled: UInt32
         public var sex: UInt8
 
-        public static var size: UInt16 {
+        public static func size(for packetVersion: Int) -> UInt16 {
             var size: UInt16 = 106
-            if RA_PACKETVER >= 20170830 {
+            if packetVersion >= 20170830 {
                 size += 4   // base exp
             }
-            if RA_PACKETVER >= 20170830 {
+            if packetVersion >= 20170830 {
                 size += 4   // job exp
             }
             size += 4
-            if RA_PACKETVER >= 20141022 {
+            if packetVersion >= 20141022 {
                 size += 2   // body
             }
             size += 2
-            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
+            if (packetVersion >= 20100720 && packetVersion <= 20100727) || packetVersion >= 20100803 {
                 size += 16  // last map
             }
-            if RA_PACKETVER >= 20100803 {
+            if packetVersion >= 20100803 {
                 size += 4   // delete date
             }
-            if RA_PACKETVER >= 20110111 {
+            if packetVersion >= 20110111 {
                 size += 4   // robe
             }
-            if RA_PACKETVER != 20111116 {
-                if RA_PACKETVER >= 20110928 {
+            if packetVersion != 20111116 {
+                if packetVersion >= 20110928 {
                     size += 4   // char moves
                 }
-                if RA_PACKETVER >= 20111025 {
+                if packetVersion >= 20111025 {
                     size += 4   // rename enabled
                 }
-                if RA_PACKETVER >= 20141016 {
+                if packetVersion >= 20141016 {
                     size += 1   // sex
                 }
             }
@@ -222,13 +215,13 @@ extension Packets.HC.AcceptEnterNeoUnion {
 
         public init(from decoder: BinaryDecoder) throws {
             self.id = try decoder.decode(UInt32.self)
-            if RA_PACKETVER >= 20170830 {
+            if decoder.packetVersion >= 20170830 {
                 self.baseExp = try decoder.decode(UInt64.self)
             } else {
                 self.baseExp = try UInt64(decoder.decode(UInt32.self))
             }
             self.zeny = try decoder.decode(UInt32.self)
-            if RA_PACKETVER >= 20170830 {
+            if decoder.packetVersion >= 20170830 {
                 self.jobExp = try decoder.decode(UInt64.self)
             } else {
                 self.jobExp = try UInt64(decoder.decode(UInt32.self))
@@ -247,7 +240,7 @@ extension Packets.HC.AcceptEnterNeoUnion {
             self.speed = try decoder.decode(UInt16.self)
             self.class = try decoder.decode(UInt16.self)
             self.hair = try decoder.decode(UInt16.self)
-            if RA_PACKETVER >= 20141022 {
+            if decoder.packetVersion >= 20141022 {
                 self.body = try decoder.decode(UInt16.self)
             } else {
                 self.body = 0
@@ -270,33 +263,33 @@ extension Packets.HC.AcceptEnterNeoUnion {
             self.luk = try decoder.decode(UInt8.self)
             self.slot = try decoder.decode(UInt16.self)
             self.renamed = try decoder.decode(UInt16.self)
-            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
+            if (decoder.packetVersion >= 20100720 && decoder.packetVersion <= 20100727) || decoder.packetVersion >= 20100803 {
                 self.lastMap = try decoder.decode(String.self, length: 16)
             } else {
                 self.lastMap = ""
             }
-            if RA_PACKETVER >= 20100803 {
+            if decoder.packetVersion >= 20100803 {
                 self.deleteDate = try decoder.decode(UInt32.self)
             } else {
                 self.deleteDate = 0
             }
-            if RA_PACKETVER >= 20110111 {
+            if decoder.packetVersion >= 20110111 {
                 self.robe = try decoder.decode(UInt32.self)
             } else {
                 self.robe = 0
             }
-            if RA_PACKETVER != 20111116 {
-                if RA_PACKETVER >= 20110928 {
+            if decoder.packetVersion != 20111116 {
+                if decoder.packetVersion >= 20110928 {
                     self.charMoves = try decoder.decode(UInt32.self)
                 } else {
                     self.charMoves = 0
                 }
-                if RA_PACKETVER >= 20111025 {
+                if decoder.packetVersion >= 20111025 {
                     self.renameEnabled = try decoder.decode(UInt32.self)
                 } else {
                     self.renameEnabled = 0
                 }
-                if RA_PACKETVER >= 20141016 {
+                if decoder.packetVersion >= 20141016 {
                     self.sex = try decoder.decode(UInt8.self)
                 } else {
                     self.sex = 0
@@ -310,13 +303,13 @@ extension Packets.HC.AcceptEnterNeoUnion {
 
         public func encode(to encoder: BinaryEncoder) throws {
             try encoder.encode(self.id)
-            if RA_PACKETVER >= 20170830 {
+            if encoder.packetVersion >= 20170830 {
                 try encoder.encode(UInt64(self.baseExp))
             } else {
                 try encoder.encode(UInt32(self.baseExp))
             }
             try encoder.encode(self.zeny)
-            if RA_PACKETVER >= 20170830 {
+            if encoder.packetVersion >= 20170830 {
                 try encoder.encode(UInt64(self.jobExp))
             } else {
                 try encoder.encode(UInt32(self.jobExp))
@@ -335,7 +328,7 @@ extension Packets.HC.AcceptEnterNeoUnion {
             try encoder.encode(self.speed)
             try encoder.encode(self.class)
             try encoder.encode(self.hair)
-            if RA_PACKETVER >= 20141022 {
+            if encoder.packetVersion >= 20141022 {
                 try encoder.encode(self.body)
             }
             try encoder.encode(self.weapon)
@@ -356,23 +349,23 @@ extension Packets.HC.AcceptEnterNeoUnion {
             try encoder.encode(self.luk)
             try encoder.encode(self.slot)
             try encoder.encode(self.renamed)
-            if (RA_PACKETVER >= 20100720 && RA_PACKETVER <= 20100727) || RA_PACKETVER >= 20100803 {
+            if (encoder.packetVersion >= 20100720 && encoder.packetVersion <= 20100727) || encoder.packetVersion >= 20100803 {
                 try encoder.encode(self.lastMap, length: 16)
             }
-            if RA_PACKETVER >= 20100803 {
+            if encoder.packetVersion >= 20100803 {
                 try encoder.encode(self.deleteDate)
             }
-            if RA_PACKETVER >= 20110111 {
+            if encoder.packetVersion >= 20110111 {
                 try encoder.encode(self.robe)
             }
-            if RA_PACKETVER != 20111116 {
-                if RA_PACKETVER >= 20110928 {
+            if encoder.packetVersion != 20111116 {
+                if encoder.packetVersion >= 20110928 {
                     try encoder.encode(self.charMoves)
                 }
-                if RA_PACKETVER >= 20111025 {
+                if encoder.packetVersion >= 20111025 {
                     try encoder.encode(self.renameEnabled)
                 }
-                if RA_PACKETVER >= 20141016 {
+                if encoder.packetVersion >= 20141016 {
                     try encoder.encode(self.sex)
                 }
             }

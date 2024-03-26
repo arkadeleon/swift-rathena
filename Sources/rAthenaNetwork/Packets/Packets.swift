@@ -31,19 +31,75 @@ public enum Packets {
     public enum ZC {
     }
 
-    static var all: [UInt16 : Packet.Type] {
-        return [
-            0x0064: Packets.CA.Login.self,
-            0x0065: Packets.CH.Enter.self,
-            0x0066: Packets.CH.SelectChar.self,
-            0x0067: Packets.CH.MakeChar.self,
-            0x0068: Packets.CH.DeleteChar.self,
-            0x0069: Packets.AC.AcceptLogin.self,
-            0x006A: Packets.AC.RefuseLogin.self,
-            0x006B: Packets.HC.AcceptEnterNeoUnion.self,
-            0x0204: Packets.CA.ExeHashcheck.self,
-            0x020B: Packets.CH.ExeHashcheck.self,
-            0x020C: Packets.CZ.ExeHashcheck.self,
-        ]
+    static func all(for packetVersion: Int) -> [UInt16 : Packet.Type] {
+        var packets: [UInt16 : Packet.Type] = [:]
+
+        // MARK: - Common
+
+        packets[0x64] = Packets.CA.Login.self
+
+        if packetVersion >= 20170315 {
+            packets[0xac4] = Packets.AC.AcceptLogin.self
+        } else {
+            packets[0x69] = Packets.AC.AcceptLogin.self
+        }
+
+        if packetVersion >= 20120000 {
+            packets[0x83e] = Packets.AC.RefuseLogin.self
+        } else {
+            packets[0x6a] = Packets.AC.RefuseLogin.self
+        }
+
+        // TODO: PACKET_SC_NOTIFY_BAN
+
+        // TODO: PACKET_CA_REQ_HASH
+
+        // TODO: PACKET_AC_ACK_HASH
+
+        // TODO: PACKET_CA_LOGIN2
+
+        // TODO: PACKET_CA_LOGIN3
+
+        // TODO: PACKET_CA_CONNECT_INFO_CHANGED
+
+        packets[0x204] = Packets.CA.ExeHashcheck.self
+
+        // TODO: PACKET_CA_LOGIN_PCBANG
+
+        // TODO: PACKET_CA_LOGIN4
+
+        // TODO: PACKET_CA_LOGIN_CHANNEL
+
+        // TODO: PACKET_CA_SSO_LOGIN_REQ
+
+        // TODO: PACKET_CT_AUTH
+
+        // TODO: PACKET_TC_RESULT
+
+        // MARK: - Char
+
+        packets[0x65] = Packets.CH.Enter.self
+
+        packets[0x66] = Packets.CH.SelectChar.self
+
+        if packetVersion >= 20151001 {
+            packets[0xa39] = Packets.CH.MakeChar.self
+        } else if packetVersion >= 20120307 {
+            packets[0x970] = Packets.CH.MakeChar.self
+        } else {
+            packets[0x67] = Packets.CH.MakeChar.self
+        }
+
+        packets[0x68] = Packets.CH.DeleteChar.self
+
+        packets[0x6b] = Packets.HC.AcceptEnterNeoUnion.self
+
+        packets[0x20b] = Packets.CH.ExeHashcheck.self
+
+        // MARK: - Map
+
+        packets[0x20c] = Packets.CZ.ExeHashcheck.self
+
+        return packets
     }
 }

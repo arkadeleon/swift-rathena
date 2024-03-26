@@ -20,6 +20,11 @@ public enum BinaryEncodingError: Error {
 public class BinaryEncoder {
 
     internal var data = Data()
+    let packetVersion: Int
+
+    init(packetVersion: Int) {
+        self.packetVersion = packetVersion
+    }
 
     public func encode<T: FixedWidthInteger>(_ value: T) throws {
         let bytes = withUnsafeBytes(of: value, [UInt8].init)
@@ -43,7 +48,7 @@ public class BinaryEncoder {
     }
 
     public func encode<T: BinaryEncodable>(_ value: T, length: Int) throws {
-        let encoder = BinaryEncoder()
+        let encoder = BinaryEncoder(packetVersion: packetVersion)
         try value.encode(to: encoder)
         var data = encoder.data
         guard data.count <= length else {
