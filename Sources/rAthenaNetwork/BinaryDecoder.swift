@@ -40,6 +40,18 @@ public class BinaryDecoder {
         return values[0]
     }
 
+    func decode(_ type: [UInt8].Type, length: Int) throws -> [UInt8] {
+        let data = self.data.prefix(length)
+        guard data.count == length else {
+            throw BinaryDecodingError.dataCorrupted
+        }
+
+        self.data.removeFirst(length)
+
+        let bytes = [UInt8](data)
+        return bytes
+    }
+
     func decode(_ type: String.Type, length: Int) throws -> String {
         let data = self.data.prefix(length)
         guard data.count == length else {

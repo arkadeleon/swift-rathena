@@ -31,7 +31,7 @@ public enum Packets {
     public enum ZC {
     }
 
-    static var all: [UInt16: Packet.Type] {
+    static var all: [UInt16 : Packet.Type] {
         return [
             0x0064: Packets.CA.Login.self,
             0x0065: Packets.CH.Enter.self,
@@ -41,6 +41,9 @@ public enum Packets {
             0x0069: Packets.AC.AcceptLogin.self,
             0x006A: Packets.AC.RefuseLogin.self,
             0x006B: Packets.HC.AcceptEnterNeoUnion.self,
+            0x0204: Packets.CA.ExeHashcheck.self,
+            0x020B: Packets.CH.ExeHashcheck.self,
+            0x020C: Packets.CZ.ExeHashcheck.self,
         ]
     }
 }

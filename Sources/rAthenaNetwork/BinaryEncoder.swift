@@ -26,6 +26,11 @@ public class BinaryEncoder {
         self.data.append(contentsOf: bytes)
     }
 
+    public func encode(_ value: [UInt8]) throws {
+        let data = Data(value)
+        self.data.append(data)
+    }
+
     public func encode(_ value: String, length: Int) throws {
         guard var data = value.data(using: .utf8) else {
             throw BinaryEncodingError.invalidValue(value)
