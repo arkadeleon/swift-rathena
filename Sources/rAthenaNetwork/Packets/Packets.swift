@@ -31,6 +31,14 @@ public enum Packets {
     public enum ZC {
     }
 
+    /// Client -> All Servers
+    public enum CS {
+    }
+
+    /// All Servers -> Client
+    public enum SC {
+    }
+
     static var all: [any Packet.Type] {
         return [
             Packets.CA.Login.self,
@@ -48,6 +56,8 @@ public enum Packets {
             Packets.HC.AcceptEnterNeoUnion.self,
 
             Packets.CZ.ExeHashcheck.self,
+
+            Packets.SC.NotifyBan.self,
         ]
     }
 }
