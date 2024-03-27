@@ -6,42 +6,37 @@
 //
 
 extension Packets.CZ {
-
     public struct ExeHashcheck: Packet {
-
-        public var clientType: UInt8
-        public var hashValue: [UInt8]
-
-        public var packetName: String {
-            return "PACKET_CZ_EXE_HASHCHECK"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x020c = 0x020c
         }
 
-        public var packetType: UInt16 {
-            return 0x020C
+        public let packetType: PacketType
+        public var clientType: UInt8 = 0
+        public var hashValue = [UInt8](repeating: 0, count: 16)
+
+        public var packetName: String {
+            "PACKET_CZ_EXE_HASHCHECK"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 1 + 16
+            2 + 1 + 16
         }
 
-        public init() {
-            self.clientType = 0
-            self.hashValue = []
+        public init(packetVersion: Int) {
+            packetType = .x020c
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x020C else {
-                throw PacketDecodingError.packetMismatch(packetType)
-            }
-            self.clientType = try decoder.decode(UInt8.self)
-            self.hashValue = try decoder.decode([UInt8].self, length: 16)
+            packetType = try decoder.decode(PacketType.self)
+            clientType = try decoder.decode(UInt8.self)
+            hashValue = try decoder.decode([UInt8].self, length: 16)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.clientType)
-            try encoder.encode(self.hashValue)
+            try encoder.encode(packetType)
+            try encoder.encode(clientType)
+            try encoder.encode(hashValue)
         }
     }
 }

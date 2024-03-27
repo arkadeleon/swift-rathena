@@ -6,117 +6,123 @@
 //
 
 extension Packets.AC {
-
     public struct AcceptLogin: Packet {
-
-        public var authCode: UInt32
-        public var aid: UInt32
-        public var userLevel: UInt32
-        public var lastLoginIP: UInt32
-        public var lastLoginTime: String
-        public var sex: UInt8
-        public var serverList: [ServerInfo]
-
-        public var packetName: String {
-            return "PACKET_AC_ACCEPT_LOGIN"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x0069 = 0x0069
+            case x0ac4 = 0x0ac4
         }
 
-        public var packetType: UInt16 {
-            return 0x0069
+        public let packetType: PacketType
+        public var authCode: UInt32 = 0
+        public var aid: UInt32 = 0
+        public var userLevel: UInt32 = 0
+        public var lastLoginIP: UInt32 = 0
+        public var lastLoginTime = ""
+        public var sex: UInt8 = 0
+        public var token = [UInt8](repeating: 0, count: 17)
+        public var serverList: [ServerInfo] = []
+
+        public var packetName: String {
+            "PACKET_AC_ACCEPT_LOGIN"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size * UInt16(serverList.count)
+            2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size(for: packetType) * UInt16(serverList.count)
         }
 
-        public init() {
-            self.authCode = 0
-            self.aid = 0
-            self.userLevel = 0
-            self.lastLoginIP = 0
-            self.lastLoginTime = ""
-            self.sex = 0
-            self.serverList = []
+        public init(packetVersion: Int) {
+            if packetVersion < 20170315 {
+                packetType = .x0069
+            } else {
+                packetType = .x0ac4
+            }
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x0069 else {
-                throw PacketDecodingError.packetMismatch(packetType)
-            }
+            packetType = try decoder.decode(PacketType.self)
+
             let packetLength = try decoder.decode(UInt16.self)
-            let serverCount = (packetLength - 2 - 2 - 4 - 4 - 4 - 4 - 26 - 1) / ServerInfo.size
+            let serverCount = (packetLength - 2 - 2 - 4 - 4 - 4 - 4 - 26 - 1) / ServerInfo.size(for: packetType)
 
-            self.authCode = try decoder.decode(UInt32.self)
-            self.aid = try decoder.decode(UInt32.self)
-            self.userLevel = try decoder.decode(UInt32.self)
-            self.lastLoginIP = try decoder.decode(UInt32.self)
-            self.lastLoginTime = try decoder.decode(String.self, length: 26)
-            self.sex = try decoder.decode(UInt8.self)
+            authCode = try decoder.decode(UInt32.self)
+            aid = try decoder.decode(UInt32.self)
+            userLevel = try decoder.decode(UInt32.self)
+            lastLoginIP = try decoder.decode(UInt32.self)
+            lastLoginTime = try decoder.decode(String.self, length: 26)
+            sex = try decoder.decode(UInt8.self)
 
-            self.serverList = []
+            if decoder.packetVersion >= 20170315 {
+                token = try decoder.decode([UInt8].self, length: 17)
+            }
+
             for _ in 0..<serverCount {
-                let serverInfo = try decoder.decode(ServerInfo.self, length: Int(ServerInfo.size))
-                self.serverList.append(serverInfo)
+                let serverInfo = try decoder.decode(ServerInfo.self)
+                serverList.append(serverInfo)
             }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.packetLength)
-            try encoder.encode(self.authCode)
-            try encoder.encode(self.aid)
-            try encoder.encode(self.userLevel)
-            try encoder.encode(self.lastLoginIP)
-            try encoder.encode(self.lastLoginTime, length: 26)
-            try encoder.encode(self.sex)
-            for serverInfo in self.serverList {
-                try encoder.encode(serverInfo, length: Int(ServerInfo.size))
+            try encoder.encode(packetType)
+
+            try encoder.encode(packetLength)
+            try encoder.encode(authCode)
+            try encoder.encode(aid)
+            try encoder.encode(userLevel)
+            try encoder.encode(lastLoginIP)
+            try encoder.encode(lastLoginTime, length: 26)
+            try encoder.encode(sex)
+
+            if packetType == .x0ac4 {
+                try encoder.encode(token)
+            }
+
+            for serverInfo in serverList {
+                try encoder.encode(serverInfo)
             }
         }
     }
 }
 
 extension Packets.AC.AcceptLogin {
-
     public struct ServerInfo: BinaryDecodable, BinaryEncodable {
+        public var ip: UInt32 = 0
+        public var port: UInt16 = 0
+        public var name = ""
+        public var userCount: UInt16 = 0
+        public var state: UInt16 = 0
+        public var property: UInt16 = 0
 
-        public var ip: UInt32
-        public var port: UInt16
-        public var name: String
-        public var userCount: UInt16
-        public var state: UInt16
-        public var property: UInt16
-
-        public static var size: UInt16 {
-            return 32
-        }
-
-        public init() {
-            self.ip = 0
-            self.port = 0
-            self.name = ""
-            self.userCount = 0
-            self.state = 0
-            self.property = 0
+        public static func size(for packetType: PacketType) -> UInt16 {
+            switch packetType {
+            case .x0069: 32
+            case .x0ac4: 32 + 128
+            }
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            self.ip = try decoder.decode(UInt32.self)
-            self.port = try decoder.decode(UInt16.self)
-            self.name = try decoder.decode(String.self, length: 20)
-            self.userCount = try decoder.decode(UInt16.self)
-            self.state = try decoder.decode(UInt16.self)
-            self.property = try decoder.decode(UInt16.self)
+            ip = try decoder.decode(UInt32.self)
+            port = try decoder.decode(UInt16.self)
+            name = try decoder.decode(String.self, length: 20)
+            userCount = try decoder.decode(UInt16.self)
+            state = try decoder.decode(UInt16.self)
+            property = try decoder.decode(UInt16.self)
+
+            if decoder.packetVersion >= 20170315 {
+                _ = try decoder.decode([UInt8].self, length: 128)
+            }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.ip)
-            try encoder.encode(self.port)
-            try encoder.encode(self.name, length: 20)
-            try encoder.encode(self.userCount)
-            try encoder.encode(self.state)
-            try encoder.encode(self.property)
+            try encoder.encode(ip)
+            try encoder.encode(port)
+            try encoder.encode(name, length: 20)
+            try encoder.encode(userCount)
+            try encoder.encode(state)
+            try encoder.encode(property)
+
+            if encoder.packetVersion >= 20170315 {
+                try encoder.encode([UInt8](repeating: 0, count: 128))
+            }
         }
     }
 }

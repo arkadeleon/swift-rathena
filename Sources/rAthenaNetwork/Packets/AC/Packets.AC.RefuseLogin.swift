@@ -6,42 +6,56 @@
 //
 
 extension Packets.AC {
-
     public struct RefuseLogin: Packet {
-
-        public var errorCode: UInt8
-        public var blockDate: String
-
-        public var packetName: String {
-            return "PACKET_AC_REFUSE_LOGIN"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x006a = 0x006a
+            case x083e = 0x083e
         }
 
-        public var packetType: UInt16 {
-            return 0x006A
+        public let packetType: PacketType
+        public var errorCode: UInt32 = 0
+        public var blockDate = ""
+
+        public var packetName: String {
+            "PACKET_AC_REFUSE_LOGIN"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 1 + 20
+            2 + 1 + 20
         }
 
-        public init() {
-            self.errorCode = 0
-            self.blockDate = ""
+        public init(packetVersion: Int) {
+            if packetVersion < 20120000 {
+                packetType = .x006a
+            } else {
+                packetType = .x083e
+            }
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x006A else {
-                throw PacketDecodingError.packetMismatch(packetType)
+            packetType = try decoder.decode(PacketType.self)
+
+            switch packetType {
+            case .x006a:
+                errorCode = try UInt32(decoder.decode(UInt8.self))
+            case .x083e:
+                errorCode = try decoder.decode(UInt32.self)
             }
-            self.errorCode = try decoder.decode(UInt8.self)
-            self.blockDate = try decoder.decode(String.self, length: 20)
+
+            blockDate = try decoder.decode(String.self, length: 20)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.errorCode)
-            try encoder.encode(self.blockDate, length: 20)
+            try encoder.encode(packetType)
+
+            switch packetType {
+            case .x006a:
+                try encoder.encode(UInt8(errorCode))
+            case .x083e:
+                try encoder.encode(errorCode)
+            }
+
+            try encoder.encode(blockDate, length: 20)
         }
     }
 }

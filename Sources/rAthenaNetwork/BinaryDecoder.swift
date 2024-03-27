@@ -8,17 +8,14 @@
 import Foundation
 
 public protocol BinaryDecodable {
-
     init(from decoder: BinaryDecoder) throws
 }
 
 public enum BinaryDecodingError: Error {
-
     case dataCorrupted
 }
 
 public class BinaryDecoder {
-
     internal var data: Data
     internal let packetVersion: Int
 
@@ -66,6 +63,11 @@ public class BinaryDecoder {
             throw BinaryDecodingError.dataCorrupted
         }
         return string
+    }
+
+    func decode<T: BinaryDecodable>(_ type: T.Type) throws -> T {
+        let value = try type.init(from: self)
+        return value
     }
 
     func decode<T: BinaryDecodable>(_ type: T.Type, length: Int) throws -> T {

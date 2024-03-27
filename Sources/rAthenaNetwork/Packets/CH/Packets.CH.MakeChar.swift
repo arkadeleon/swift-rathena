@@ -6,74 +6,102 @@
 //
 
 extension Packets.CH {
-
     public struct MakeChar: Packet {
-
-        public var name: String
-        public var str: UInt8
-        public var agi: UInt8
-        public var vit: UInt8
-        public var int: UInt8
-        public var dex: UInt8
-        public var luk: UInt8
-        public var charNum: UInt8
-        public var headPal: UInt16
-        public var head: UInt16
-
-        public var packetName: String {
-            return "PACKET_CH_MAKE_CHAR"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x0067 = 0x0067
+            case x0970 = 0x0970
+            case x0a39 = 0x0a39
         }
 
-        public var packetType: UInt16 {
-            return 0x0067
+        public let packetType: PacketType
+        public var name = ""
+        public var str: UInt8 = 0
+        public var agi: UInt8 = 0
+        public var vit: UInt8 = 0
+        public var int: UInt8 = 0
+        public var dex: UInt8 = 0
+        public var luk: UInt8 = 0
+        public var charNum: UInt8 = 0
+        public var headPal: UInt16 = 0
+        public var head: UInt16 = 0
+        public var job: UInt16 = 0
+        public var sex: UInt8 = 0
+
+        public var packetName: String {
+            "PACKET_CH_MAKE_CHAR"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 24 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2
+            switch packetType {
+            case .x0067:
+                2 + 24 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2
+            case .x0970:
+                2 + 24 + 1 + 2 + 2
+            case .x0a39:
+                2 + 24 + 1 + 2 + 2 + 2 + 1 + 1 + 1
+            }
         }
 
-        public init() {
-            self.name = ""
-            self.str = 0
-            self.agi = 0
-            self.vit = 0
-            self.int = 0
-            self.dex = 0
-            self.luk = 0
-            self.charNum = 0
-            self.headPal = 0
-            self.head = 0
+        public init(packetVersion: Int) {
+            if packetVersion < 20120307 {
+                packetType = .x0067
+            } else if packetVersion < 20151001 {
+                packetType = .x0970
+            } else {
+                packetType = .x0a39
+            }
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x0067 else {
-                throw PacketDecodingError.packetMismatch(packetType)
+            packetType = try decoder.decode(PacketType.self)
+
+            name = try decoder.decode(String.self, length: 24)
+
+            if packetType == .x0067 {
+                str = try decoder.decode(UInt8.self)
+                agi = try decoder.decode(UInt8.self)
+                vit = try decoder.decode(UInt8.self)
+                int = try decoder.decode(UInt8.self)
+                dex = try decoder.decode(UInt8.self)
+                luk = try decoder.decode(UInt8.self)
             }
-            self.name = try decoder.decode(String.self, length: 24)
-            self.str = try decoder.decode(UInt8.self)
-            self.agi = try decoder.decode(UInt8.self)
-            self.vit = try decoder.decode(UInt8.self)
-            self.int = try decoder.decode(UInt8.self)
-            self.dex = try decoder.decode(UInt8.self)
-            self.luk = try decoder.decode(UInt8.self)
-            self.charNum = try decoder.decode(UInt8.self)
-            self.headPal = try decoder.decode(UInt16.self)
-            self.head = try decoder.decode(UInt16.self)
+
+            charNum = try decoder.decode(UInt8.self)
+            headPal = try decoder.decode(UInt16.self)
+            head = try decoder.decode(UInt16.self)
+
+            if packetType == .x0a39 {
+                job = try decoder.decode(UInt16.self)
+                _ = try decoder.decode(UInt8.self)
+                _ = try decoder.decode(UInt8.self)
+                sex = try decoder.decode(UInt8.self)
+            }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.name, length: 24)
-            try encoder.encode(self.str)
-            try encoder.encode(self.agi)
-            try encoder.encode(self.vit)
-            try encoder.encode(self.int)
-            try encoder.encode(self.dex)
-            try encoder.encode(self.luk)
-            try encoder.encode(self.charNum)
-            try encoder.encode(self.headPal)
-            try encoder.encode(self.head)
+            try encoder.encode(packetType)
+
+            try encoder.encode(name, length: 24)
+
+            if packetType == .x0067 {
+                try encoder.encode(str)
+                try encoder.encode(agi)
+                try encoder.encode(vit)
+                try encoder.encode(int)
+                try encoder.encode(dex)
+                try encoder.encode(luk)
+            }
+
+            try encoder.encode(charNum)
+            try encoder.encode(headPal)
+            try encoder.encode(head)
+
+            if packetType == .x0a39 {
+                try encoder.encode(job)
+                try encoder.encode(0 as UInt8)
+                try encoder.encode(0 as UInt8)
+                try encoder.encode(sex)
+            }
         }
     }
 }

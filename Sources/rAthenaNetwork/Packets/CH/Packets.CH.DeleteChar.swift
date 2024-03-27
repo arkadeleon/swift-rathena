@@ -6,42 +6,37 @@
 //
 
 extension Packets.CH {
-
     public struct DeleteChar: Packet {
-
-        public var gid: UInt32
-        public var key: String
-
-        public var packetName: String {
-            return "PACKET_CH_DELETE_CHAR"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x0068 = 0x0068
         }
 
-        public var packetType: UInt16 {
-            return 0x0068
+        public let packetType: PacketType
+        public var gid: UInt32 = 0
+        public var key = ""
+
+        public var packetName: String {
+            "PACKET_CH_DELETE_CHAR"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 4 + 40
+            2 + 4 + 40
         }
 
-        public init() {
-            self.gid = 0
-            self.key = ""
+        public init(packetVersion: Int) {
+            packetType = .x0068
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x0068 else {
-                throw PacketDecodingError.packetMismatch(packetType)
-            }
-            self.gid = try decoder.decode(UInt32.self)
-            self.key = try decoder.decode(String.self, length: 40)
+            packetType = try decoder.decode(PacketType.self)
+            gid = try decoder.decode(UInt32.self)
+            key = try decoder.decode(String.self, length: 40)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.gid)
-            try encoder.encode(self.key, length: 40)
+            try encoder.encode(packetType)
+            try encoder.encode(gid)
+            try encoder.encode(key, length: 40)
         }
     }
 }

@@ -16,14 +16,14 @@ public enum PacketDecodingError: Error {
 public class PacketDecoder {
 
     public let packetVersion: Int
-    private let packets: [UInt16 : Packet.Type]
+    private let packets: [UInt16 : any Packet.Type]
 
     public init(packetVersion: Int) {
         self.packetVersion = packetVersion
-        self.packets = Packets.all(for: packetVersion)
+        self.packets = Dictionary(uniqueKeysWithValues: Packets.all.map({ ($0.init(packetVersion: packetVersion).packetType.rawValue, $0) }))
     }
 
-    public func decode(from data: Data) throws -> Packet {
+    public func decode(from data: Data) throws -> any Packet {
         let packetTypeDecoder = BinaryDecoder(data: data, packetVersion: packetVersion)
         let packetType = try packetTypeDecoder.decode(UInt16.self)
         guard let packet = packets[packetType] else {

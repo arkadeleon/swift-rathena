@@ -6,38 +6,34 @@
 //
 
 extension Packets.CH {
-
     public struct SelectChar: Packet {
-
-        public var charNum: UInt8
-
-        public var packetName: String {
-            return "PACKET_CH_SELECT_CHAR"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x0066 = 0x0066
         }
 
-        public var packetType: UInt16 {
-            return 0x0066
+        public let packetType: PacketType
+        public var charNum: UInt8 = 0
+
+        public var packetName: String {
+            "PACKET_CH_SELECT_CHAR"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 1
+            2 + 1
         }
 
-        public init() {
-            self.charNum = 0
+        public init(packetVersion: Int) {
+            packetType = .x0066
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x0066 else {
-                throw PacketDecodingError.packetMismatch(packetType)
-            }
-            self.charNum = try decoder.decode(UInt8.self)
+            packetType = try decoder.decode(PacketType.self)
+            charNum = try decoder.decode(UInt8.self)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.charNum)
+            try encoder.encode(packetType)
+            try encoder.encode(charNum)
         }
     }
 }

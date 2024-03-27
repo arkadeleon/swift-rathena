@@ -6,50 +6,43 @@
 //
 
 extension Packets.CA {
-
     public struct Login: Packet {
-
-        public var version: UInt32
-        public var id: String
-        public var passwd: String
-        public var clientType: UInt8
-
-        public var packetName: String {
-            return "PACKET_CA_LOGIN"
+        public enum PacketType: UInt16, PacketTypeProtocol {
+            case x0064 = 0x0064
         }
 
-        public var packetType: UInt16 {
-            return 0x0064
+        public let packetType: PacketType
+        public var version: UInt32 = 0
+        public var username = ""
+        public var password = ""
+        public var clientType: UInt8 = 0
+
+        public var packetName: String {
+            "PACKET_CA_LOGIN"
         }
 
         public var packetLength: UInt16 {
-            return 2 + 4 + 24 + 24 + 1
+            2 + 4 + 24 + 24 + 1
         }
 
-        public init() {
-            self.version = 0
-            self.id = ""
-            self.passwd = ""
-            self.clientType = 0
+        public init(packetVersion: Int) {
+            packetType = .x0064
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let packetType = try decoder.decode(UInt16.self)
-            guard packetType == 0x0064 else {
-                throw PacketDecodingError.packetMismatch(packetType)
-            }
-            self.version = try decoder.decode(UInt32.self)
-            self.id = try decoder.decode(String.self, length: 24)
-            self.passwd = try decoder.decode(String.self, length: 24)
-            self.clientType = try decoder.decode(UInt8.self)
+            packetType = try decoder.decode(PacketType.self)
+            version = try decoder.decode(UInt32.self)
+            username = try decoder.decode(String.self, length: 24)
+            password = try decoder.decode(String.self, length: 24)
+            clientType = try decoder.decode(UInt8.self)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            try encoder.encode(self.packetType)
-            try encoder.encode(self.version)
-            try encoder.encode(self.id, length: 24)
-            try encoder.encode(self.passwd, length: 24)
-            try encoder.encode(self.clientType)
+            try encoder.encode(packetType)
+            try encoder.encode(version)
+            try encoder.encode(username, length: 24)
+            try encoder.encode(password, length: 24)
+            try encoder.encode(clientType)
         }
     }
 }

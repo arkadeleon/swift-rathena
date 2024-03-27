@@ -8,17 +8,14 @@
 import Foundation
 
 public protocol BinaryEncodable {
-
     func encode(to encoder: BinaryEncoder) throws
 }
 
 public enum BinaryEncodingError: Error {
-
     case invalidValue(Any)
 }
 
 public class BinaryEncoder {
-
     internal var data = Data()
     let packetVersion: Int
 
@@ -44,6 +41,13 @@ public class BinaryEncoder {
             throw BinaryEncodingError.invalidValue(value)
         }
         data.append(contentsOf: [UInt8](repeating: 0, count: length - data.count))
+        self.data.append(data)
+    }
+
+    public func encode<T: BinaryEncodable>(_ value: T) throws {
+        let encoder = BinaryEncoder(packetVersion: packetVersion)
+        try value.encode(to: encoder)
+        let data = encoder.data
         self.data.append(data)
     }
 
