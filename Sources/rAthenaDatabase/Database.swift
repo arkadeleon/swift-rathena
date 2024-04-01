@@ -61,26 +61,30 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await itemCache.isEmpty {
-                    let start = Date()
-                    print("Begin loading item database")
+                    do {
+                        let start = Date()
+                        print("Begin loading item database")
 
-                    let usableItems: [Item] = try decodeFile(atPath: "item_db_usable.yml")
-                    continuation.yield(RecordPartition(records: usableItems))
+                        let usableItems: [Item] = try decodeFile(atPath: "item_db_usable.yml")
+                        continuation.yield(RecordPartition(records: usableItems))
 
-                    let equipItems: [Item] = try decodeFile(atPath: "item_db_equip.yml")
-                    continuation.yield(RecordPartition(records: equipItems))
+                        let equipItems: [Item] = try decodeFile(atPath: "item_db_equip.yml")
+                        continuation.yield(RecordPartition(records: equipItems))
 
-                    let etcItems: [Item] = try decodeFile(atPath: "item_db_etc.yml")
-                    continuation.yield(RecordPartition(records: etcItems))
+                        let etcItems: [Item] = try decodeFile(atPath: "item_db_etc.yml")
+                        continuation.yield(RecordPartition(records: etcItems))
 
-                    let items = usableItems + equipItems + etcItems
+                        let items = usableItems + equipItems + etcItems
 
-                    continuation.finish()
+                        continuation.finish()
 
-                    let end = Date()
-                    print("End loading item database: \(end.timeIntervalSince(start))")
+                        let end = Date()
+                        print("End loading item database: \(end.timeIntervalSince(start))")
 
-                    await itemCache.storeItems(items)
+                        await itemCache.storeItems(items)
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
                 } else {
                     continuation.yield(RecordPartition(records: await itemCache.items))
                     continuation.finish()
@@ -104,12 +108,16 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await monsterCache.isEmpty {
-                    let monsters: [Monster] = try decodeFile(atPath: "mob_db.yml")
+                    do {
+                        let monsters: [Monster] = try decodeFile(atPath: "mob_db.yml")
 
-                    continuation.yield(RecordPartition(records: monsters))
-                    continuation.finish()
+                        continuation.yield(RecordPartition(records: monsters))
+                        continuation.finish()
 
-                    await monsterCache.storeMonsters(monsters)
+                        await monsterCache.storeMonsters(monsters)
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
                 } else {
                     continuation.yield(RecordPartition(records: await monsterCache.monsters))
                     continuation.finish()
@@ -142,25 +150,29 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await jobCache.isEmpty {
-                    let basicStatsList: [JobBasicStats] = try decodeFile(atPath: "job_stats.yml")
-                    let aspdStatsList: [JobASPDStats] = try decodeFile(atPath: "job_aspd.yml")
-                    let expStatsList: [JobExpStats] = try decodeFile(atPath: "job_exp.yml")
-                    let basePointsStatsList: [JobBasePointsStats] = try decodeFile(atPath: "job_basepoints.yml")
+                    do {
+                        let basicStatsList: [JobBasicStats] = try decodeFile(atPath: "job_stats.yml")
+                        let aspdStatsList: [JobASPDStats] = try decodeFile(atPath: "job_aspd.yml")
+                        let expStatsList: [JobExpStats] = try decodeFile(atPath: "job_exp.yml")
+                        let basePointsStatsList: [JobBasePointsStats] = try decodeFile(atPath: "job_basepoints.yml")
 
-                    let jobs = Job.allCases.compactMap { job in
-                        JobStats(
-                            job: job,
-                            basicStatsList: basicStatsList,
-                            aspdStatsList: aspdStatsList,
-                            expStatsList: expStatsList,
-                            basePointsStatsList: basePointsStatsList
-                        )
+                        let jobs = Job.allCases.compactMap { job in
+                            JobStats(
+                                job: job,
+                                basicStatsList: basicStatsList,
+                                aspdStatsList: aspdStatsList,
+                                expStatsList: expStatsList,
+                                basePointsStatsList: basePointsStatsList
+                            )
+                        }
+
+                        continuation.yield(RecordPartition(records: jobs))
+                        continuation.finish()
+
+                        await jobCache.storeJobs(jobs)
+                    } catch {
+                        continuation.finish(throwing: error)
                     }
-
-                    continuation.yield(RecordPartition(records: jobs))
-                    continuation.finish()
-
-                    await jobCache.storeJobs(jobs)
                 } else {
                     continuation.yield(RecordPartition(records: await jobCache.jobs))
                     continuation.finish()
@@ -175,12 +187,16 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await skillCache.isEmpty {
-                    let skills: [Skill] = try decodeFile(atPath: "skill_db.yml")
+                    do {
+                        let skills: [Skill] = try decodeFile(atPath: "skill_db.yml")
 
-                    continuation.yield(RecordPartition(records: skills))
-                    continuation.finish()
+                        continuation.yield(RecordPartition(records: skills))
+                        continuation.finish()
 
-                    await skillCache.storeSkills(skills)
+                        await skillCache.storeSkills(skills)
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
                 } else {
                     continuation.yield(RecordPartition(records: await skillCache.skills))
                     continuation.finish()
@@ -202,12 +218,16 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await skillTreeCache.isEmpty {
-                    let skillTrees: [SkillTree] = try decodeFile(atPath: "skill_tree.yml")
+                    do {
+                        let skillTrees: [SkillTree] = try decodeFile(atPath: "skill_tree.yml")
 
-                    continuation.yield(RecordPartition(records: skillTrees))
-                    continuation.finish()
+                        continuation.yield(RecordPartition(records: skillTrees))
+                        continuation.finish()
 
-                    await skillTreeCache.storeSkillTrees(skillTrees)
+                        await skillTreeCache.storeSkillTrees(skillTrees)
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
                 } else {
                     continuation.yield(RecordPartition(records: await skillTreeCache.skillTrees))
                     continuation.finish()
@@ -231,34 +251,38 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await mapCache.isEmpty {
-                    let url = ResourceBundle.shared.dbURL.appendingPathComponent("map_index.txt")
-                    let string = try String(contentsOf: url)
+                    do {
+                        let url = ResourceBundle.shared.dbURL.appendingPathComponent("map_index.txt")
+                        let string = try String(contentsOf: url)
 
-                    var index = 0
-                    var maps: [Map] = []
+                        var index = 0
+                        var maps: [Map] = []
 
-                    for line in string.split(separator: "\n") {
-                        if line.trimmingCharacters(in: .whitespacesAndNewlines).starts(with: "//") {
-                            continue
+                        for line in string.split(separator: "\n") {
+                            if line.trimmingCharacters(in: .whitespacesAndNewlines).starts(with: "//") {
+                                continue
+                            }
+                            let columns = line.split(separator: " ")
+                            if columns.count == 2 {
+                                let name = String(columns[0])
+                                index = Int(columns[1]) ?? 1
+                                let map = Map(name: name, index: index)
+                                maps.append(map)
+                            } else if columns.count == 1 {
+                                let name = String(columns[0])
+                                index += 1
+                                let map = Map(name: name, index: index)
+                                maps.append(map)
+                            }
                         }
-                        let columns = line.split(separator: " ")
-                        if columns.count == 2 {
-                            let name = String(columns[0])
-                            index = Int(columns[1]) ?? 1
-                            let map = Map(name: name, index: index)
-                            maps.append(map)
-                        } else if columns.count == 1 {
-                            let name = String(columns[0])
-                            index += 1
-                            let map = Map(name: name, index: index)
-                            maps.append(map)
-                        }
+
+                        continuation.yield(RecordPartition(records: maps))
+                        continuation.finish()
+
+                        await mapCache.storeMaps(maps)
+                    } catch {
+                        continuation.finish(throwing: error)
                     }
-
-                    continuation.yield(RecordPartition(records: maps))
-                    continuation.finish()
-
-                    await mapCache.storeMaps(maps)
                 } else {
                     continuation.yield(RecordPartition(records: await mapCache.maps))
                     continuation.finish()
@@ -282,9 +306,8 @@ public actor Database {
         AsyncThrowingStream { continuation in
             Task {
                 if await scriptCache.isEmpty {
-                    let parser = ScriptParser(mode: mode)
-
                     do {
+                        let parser = ScriptParser(mode: mode)
                         try parser.parse()
 
                         await scriptCache.store(monsterSpawns: parser.monsterSpawns)

@@ -17,6 +17,12 @@ public enum AmmoType: String, CaseIterable, CodingKey, Decodable {
     case kunai = "Kunai"
     case cannonball = "Cannonball"
     case throwweapon = "Throwweapon"
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        self = AmmoType.allCases.first(where: { $0.rawValue.caseInsensitiveCompare(rawValue) == .orderedSame }) ?? .arrow
+    }
 }
 
 extension AmmoType: Identifiable {
