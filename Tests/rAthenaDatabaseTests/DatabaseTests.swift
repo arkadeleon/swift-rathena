@@ -260,7 +260,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testMonsterSpawnDatabase() async throws {
-        let monsterSpawns = try await database.monsterSpawns().joined()
+        let monsterSpawns = try await database.monsterSpawns()
         XCTAssertEqual(monsterSpawns.count, 3645)
     }
 

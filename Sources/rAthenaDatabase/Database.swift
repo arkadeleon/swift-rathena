@@ -49,7 +49,7 @@ public actor Database {
     private let skillCache = SkillCache()
     private let skillTreeCache = SkillTreeCache()
     private let mapCache = MapCache()
-    private let scriptCache = ScriptCache()
+    private var scriptCache: ScriptCache?
 
     private init(mode: Mode) {
         self.mode = mode
@@ -302,27 +302,22 @@ public actor Database {
 
     // MARK: - Script
 
-    public func monsterSpawns() -> AsyncDatabaseRecordPartitions<MonsterSpawn> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await scriptCache.isEmpty {
-                    do {
-                        let parser = ScriptParser(mode: mode)
-                        try parser.parse()
-
-                        await scriptCache.store(monsterSpawns: parser.monsterSpawns)
-
-                        continuation.yield(RecordPartition(records: parser.monsterSpawns))
-                        continuation.finish()
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await scriptCache.monsterSpawns))
-                    continuation.finish()
-                }
-            }
+    public func monsterSpawns() async throws -> [MonsterSpawn] {
+        if let scriptCache {
+            let monsterSpawns = await scriptCache.monsterSpawns
+            return monsterSpawns
         }
+
+        let url = ResourceBundle.shared.npcURL
+            .appendingPathComponent(self.mode.path)
+            .appendingPathComponent("scripts_main.conf")
+        let scriptCache = ScriptCache(url: url)
+        try await scriptCache.restore()
+
+        self.scriptCache = scriptCache
+
+        let monsterSpawns = await scriptCache.monsterSpawns
+        return monsterSpawns
     }
 
     // MARK: - Decoding
@@ -375,13 +370,6 @@ extension AsyncThrowingStream where Element == Database.RecordPartition<SkillTre
 extension AsyncThrowingStream where Element == Database.RecordPartition<Map> {
     public func joined() async throws -> [Map] {
         let initial = Database.RecordPartition<Map>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<MonsterSpawn> {
-    public func joined() async throws -> [MonsterSpawn] {
-        let initial = Database.RecordPartition<MonsterSpawn>(records: [])
         return try await reduce(initial, +).records
     }
 }
