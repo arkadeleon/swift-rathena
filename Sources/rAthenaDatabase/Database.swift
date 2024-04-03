@@ -302,22 +302,37 @@ public actor Database {
 
     // MARK: - Script
 
-    public func monsterSpawns() async throws -> [MonsterSpawn] {
-        if let scriptCache {
-            let monsterSpawns = await scriptCache.monsterSpawns
-            return monsterSpawns
+    public func monsterSpawns(forMonster monster: Monster) async throws -> [MonsterSpawn] {
+        let scriptCache = try await scriptCache()
+        let monsterSpawns = await scriptCache.monsterSpawns.filter { monsterSpawn in
+            monsterSpawn.monsterID == monster.id || monsterSpawn.monsterAegisName == monster.aegisName
         }
+        return monsterSpawns
+    }
+
+    public func monsterSpawns(forMap map: Map) async throws -> [MonsterSpawn] {
+        let scriptCache = try await scriptCache()
+        let monsterSpawns = await scriptCache.monsterSpawns.filter { monsterSpawn in
+            monsterSpawn.mapName == map.name
+        }
+        return monsterSpawns
+    }
+
+    private func scriptCache() async throws -> ScriptCache {
+        if let scriptCache {
+            return scriptCache
+        }
+
+        let scriptCache = ScriptCache()
 
         let url = ResourceBundle.shared.npcURL
             .appendingPathComponent(self.mode.path)
             .appendingPathComponent("scripts_main.conf")
-        let scriptCache = ScriptCache(url: url)
-        try await scriptCache.restore()
+        try await scriptCache.storeScript(from: url)
 
         self.scriptCache = scriptCache
 
-        let monsterSpawns = await scriptCache.monsterSpawns
-        return monsterSpawns
+        return scriptCache
     }
 
     // MARK: - Decoding

@@ -9,8 +9,6 @@ import Foundation
 import rAthenaResource
 
 actor ScriptCache {
-    let url: URL
-
     private(set) var mapFlags: [MapFlag] = []
     private(set) var monsterSpawns: [MonsterSpawn] = []
     private(set) var warpPoints: [WarpPoint] = []
@@ -20,11 +18,7 @@ actor ScriptCache {
     private(set) var duplicates: [Duplicate] = []
     private(set) var functions: [Function] = []
 
-    init(url: URL) {
-        self.url = url
-    }
-
-    func restore() throws {
+    func storeScript(from url: URL) throws {
         try import_conf_file(url: url)
     }
 

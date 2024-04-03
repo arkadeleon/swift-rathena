@@ -260,8 +260,13 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testMonsterSpawnDatabase() async throws {
-        let monsterSpawns = try await database.monsterSpawns()
-        XCTAssertEqual(monsterSpawns.count, 3645)
+        let poring = try await database.monster(forAegisName: "PORING")
+        let poringMonsterSpawns = try await database.monsterSpawns(forMonster: poring)
+        XCTAssertEqual(poringMonsterSpawns.count, 15)
+
+        let prtfild08 = try await database.map(forName: "prt_fild08")
+        let prtfild08MonsterSpawns = try await database.monsterSpawns(forMap: prtfild08)
+        XCTAssertEqual(prtfild08MonsterSpawns.count, 6)
     }
 
     static var allTests = [
