@@ -8,7 +8,7 @@
 import Foundation
 import SQLite3
 
-public class ResourceBundle {
+public final class ResourceBundle: Sendable {
     public static let shared = ResourceBundle()
 
     public let url: URL
@@ -31,7 +31,7 @@ public class ResourceBundle {
         url = libraryURL.appendingPathComponent("rathena")
     }
 
-    public func load() throws {
+    public func load() async throws {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(url.path)
@@ -55,10 +55,10 @@ public class ResourceBundle {
 
         try fileManager.moveItem(at: url.appendingPathComponent("conf/import-tmpl"), to: url.appendingPathComponent("conf/import"))
 
-        try upgradeDatabase(at: databaseURL)
+        try await upgradeDatabase(at: databaseURL)
     }
 
-    private func upgradeDatabase(at url: URL) throws {
+    private func upgradeDatabase(at url: URL) async throws {
         var db: OpaquePointer?
         guard sqlite3_open(url.path, &db) == SQLITE_OK else {
             return
