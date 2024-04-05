@@ -11,7 +11,7 @@ import XCTest
 
 final class MapServerTests: XCTestCase {
     override func setUp() async throws {
-        try ResourceBundle.shared.load()
+        try await ResourceBundle.shared.load()
     }
 
     func testMapServer() async {

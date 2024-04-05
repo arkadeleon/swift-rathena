@@ -13,11 +13,11 @@ final class DatabaseTests: XCTestCase {
     let database = Database.renewal
 
     override func setUp() async throws {
-        try ResourceBundle.shared.load()
+        try await ResourceBundle.shared.load()
     }
 
     func testItemDatabase() async throws {
-        let items = try await database.items().joined()
+        let items = try await database.items()
         XCTAssertEqual(items.count, 25896)
 
         let redPotion = try await database.item(forAegisName: "Red_Potion")
@@ -130,7 +130,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testMonsterDatabase() async throws {
-        let monsters = try await database.monsters().joined()
+        let monsters = try await database.monsters()
         XCTAssertEqual(monsters.count, 2445)
 
         let poring = try await database.monster(forAegisName: "PORING")
@@ -206,12 +206,12 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testJobDatabase() async throws {
-        let jobs = try await database.jobs().joined()
+        let jobs = try await database.jobs()
         XCTAssertEqual(jobs.count, 170)
     }
 
     func testSkillDatabase() async throws {
-        let skills = try await database.skills().joined()
+        let skills = try await database.skills()
         XCTAssertEqual(skills.count, 1533)
 
         let napalmBeat = try await database.skill(forAegisName: "MG_NAPALMBEAT")
@@ -240,7 +240,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testSkillTreeDatabase() async throws {
-        let skillTrees = try await database.skillTrees().joined()
+        let skillTrees = try await database.skillTrees()
         XCTAssertEqual(skillTrees.count, 169)
 
         let acolyte = try await database.skillTree(forJobID: Job.acolyte.id)
@@ -255,7 +255,7 @@ final class DatabaseTests: XCTestCase {
     }
 
     func testMapDatabase() async throws {
-        let maps = try await database.maps().joined()
+        let maps = try await database.maps()
         XCTAssertEqual(maps.count, 1219)
     }
 

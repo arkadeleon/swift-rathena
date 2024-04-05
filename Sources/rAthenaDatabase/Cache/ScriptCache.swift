@@ -9,6 +9,8 @@ import Foundation
 import rAthenaResource
 
 actor ScriptCache {
+    let mode: Database.Mode
+
     private(set) var mapFlags: [MapFlag] = []
     private(set) var monsterSpawns: [MonsterSpawn] = []
     private(set) var warpPoints: [WarpPoint] = []
@@ -18,8 +20,23 @@ actor ScriptCache {
     private(set) var duplicates: [Duplicate] = []
     private(set) var functions: [Function] = []
 
-    func storeScript(from url: URL) throws {
+    private var isRestored = false
+
+    init(mode: Database.Mode) {
+        self.mode = mode
+    }
+
+    func restoreScripts() throws {
+        guard !isRestored else {
+            return
+        }
+
+        let url = ResourceBundle.shared.npcURL
+            .appendingPathComponent(mode.path)
+            .appendingPathComponent("scripts_main.conf")
         try import_conf_file(url: url)
+
+        isRestored = true
     }
 
     private func import_conf_file(url: URL) throws {

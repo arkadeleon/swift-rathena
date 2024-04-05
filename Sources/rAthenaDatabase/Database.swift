@@ -5,18 +5,12 @@
 //  Created by Leon Li on 2023/1/20.
 //
 
-import Foundation
-import rAthenaResource
-
-public typealias AsyncDatabaseRecordPartitions<Record> = AsyncThrowingStream<Database.RecordPartition<Record>, Error>
-
 public enum DatabaseError: Error {
     case recordNotFound
 }
 
 public actor Database {
-
-    public enum Mode {
+    public enum Mode: Sendable {
         case prerenewal
         case renewal
 
@@ -28,74 +22,60 @@ public actor Database {
         }
     }
 
-    public struct RecordPartition<Record> {
-        public let records: [Record]
-
-        public static func + (lhs: RecordPartition<Record>, rhs: RecordPartition<Record>) -> RecordPartition<Record> {
-            RecordPartition<Record>(records: lhs.records + rhs.records)
-        }
-    }
-
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 
     public nonisolated let mode: Mode
 
-    private let decoder = YAMLDecoder()
-
-    private let itemCache = ItemCache()
-    private let monsterCache = MonsterCache()
-    private let jobCache = JobCache()
-    private let skillCache = SkillCache()
-    private let skillTreeCache = SkillTreeCache()
-    private let mapCache = MapCache()
-    private var scriptCache: ScriptCache?
+    private let itemCache: ItemCache
+    private let monsterCache: MonsterCache
+    private let jobCache: JobCache
+    private let skillCache: SkillCache
+    private let skillTreeCache: SkillTreeCache
+    private let mapCache: MapCache
+    private var scriptCache: ScriptCache
 
     private init(mode: Mode) {
         self.mode = mode
+
+        itemCache = ItemCache(mode: mode)
+        monsterCache = MonsterCache(mode: mode)
+        jobCache = JobCache(mode: mode)
+        skillCache = SkillCache(mode: mode)
+        skillTreeCache = SkillTreeCache(mode: mode)
+        mapCache = MapCache(mode: mode)
+        scriptCache = ScriptCache(mode: mode)
     }
 
     // MARK: - Item
 
-    public func items() -> AsyncDatabaseRecordPartitions<Item> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await itemCache.isEmpty {
-                    do {
-                        let start = Date()
-                        print("Begin loading item database")
+    public func usableItems() async throws -> [Item] {
+        try await itemCache.restoreUsableItems()
+        let usableItems = await itemCache.usableItems
+        return usableItems
+    }
 
-                        let usableItems: [Item] = try decodeFile(atPath: "item_db_usable.yml")
-                        continuation.yield(RecordPartition(records: usableItems))
+    public func equipItems() async throws -> [Item] {
+        try await itemCache.restoreEquipItems()
+        let equipItems = await itemCache.equipItems
+        return equipItems
+    }
 
-                        let equipItems: [Item] = try decodeFile(atPath: "item_db_equip.yml")
-                        continuation.yield(RecordPartition(records: equipItems))
+    public func etcItems() async throws -> [Item] {
+        try await itemCache.restoreEtcItems()
+        let etcItems = await itemCache.etcItems
+        return etcItems
+    }
 
-                        let etcItems: [Item] = try decodeFile(atPath: "item_db_etc.yml")
-                        continuation.yield(RecordPartition(records: etcItems))
-
-                        let items = usableItems + equipItems + etcItems
-
-                        continuation.finish()
-
-                        let end = Date()
-                        print("End loading item database: \(end.timeIntervalSince(start))")
-
-                        await itemCache.storeItems(items)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await itemCache.items))
-                    continuation.finish()
-                }
-            }
-        }
+    public func items() async throws -> [Item] {
+        try await itemCache.restoreItems()
+        let items = await itemCache.items
+        return items
     }
 
     public func item(forAegisName aegisName: String) async throws -> Item {
-        _ = try await items().joined()
-        if let item = await itemCache.item(forAegisName: aegisName) {
+        try await itemCache.restoreItems()
+        if let item = await itemCache.itemsByAegisNames[aegisName] {
             return item
         } else {
             throw DatabaseError.recordNotFound
@@ -104,31 +84,15 @@ public actor Database {
 
     // MARK: - Monster
 
-    public func monsters() -> AsyncDatabaseRecordPartitions<Monster> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await monsterCache.isEmpty {
-                    do {
-                        let monsters: [Monster] = try decodeFile(atPath: "mob_db.yml")
-
-                        continuation.yield(RecordPartition(records: monsters))
-                        continuation.finish()
-
-                        await monsterCache.storeMonsters(monsters)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await monsterCache.monsters))
-                    continuation.finish()
-                }
-            }
-        }
+    public func monsters() async throws -> [Monster] {
+        try await monsterCache.restoreMonsters()
+        let monsters = await monsterCache.monsters
+        return monsters
     }
 
     public func monster(forID id: Int) async throws -> Monster {
-        _ = try await monsters().joined()
-        if let monster = await monsterCache.monster(forID: id) {
+        try await monsterCache.restoreMonsters()
+        if let monster = await monsterCache.monstersByIDs[id] {
             return monster
         } else {
             throw DatabaseError.recordNotFound
@@ -136,8 +100,8 @@ public actor Database {
     }
 
     public func monster(forAegisName aegisName: String) async throws -> Monster {
-        _ = try await monsters().joined()
-        if let monster = await monsterCache.monster(forAegisName: aegisName) {
+        try await monsterCache.restoreMonsters()
+        if let monster = await monsterCache.monstersByAegisNames[aegisName] {
             return monster
         } else {
             throw DatabaseError.recordNotFound
@@ -146,99 +110,40 @@ public actor Database {
 
     // MARK: - Job
 
-    public func jobs() -> AsyncDatabaseRecordPartitions<JobStats> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await jobCache.isEmpty {
-                    do {
-                        let basicStatsList: [JobBasicStats] = try decodeFile(atPath: "job_stats.yml")
-                        let aspdStatsList: [JobASPDStats] = try decodeFile(atPath: "job_aspd.yml")
-                        let expStatsList: [JobExpStats] = try decodeFile(atPath: "job_exp.yml")
-                        let basePointsStatsList: [JobBasePointsStats] = try decodeFile(atPath: "job_basepoints.yml")
-
-                        let jobs = Job.allCases.compactMap { job in
-                            JobStats(
-                                job: job,
-                                basicStatsList: basicStatsList,
-                                aspdStatsList: aspdStatsList,
-                                expStatsList: expStatsList,
-                                basePointsStatsList: basePointsStatsList
-                            )
-                        }
-
-                        continuation.yield(RecordPartition(records: jobs))
-                        continuation.finish()
-
-                        await jobCache.storeJobs(jobs)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await jobCache.jobs))
-                    continuation.finish()
-                }
-            }
-        }
+    public func jobs() async throws -> [JobStats] {
+        try await jobCache.restoreJobs()
+        let jobs = await jobCache.jobs
+        return jobs
     }
 
     // MARK: - Skill
 
-    public func skills() -> AsyncDatabaseRecordPartitions<Skill> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await skillCache.isEmpty {
-                    do {
-                        let skills: [Skill] = try decodeFile(atPath: "skill_db.yml")
-
-                        continuation.yield(RecordPartition(records: skills))
-                        continuation.finish()
-
-                        await skillCache.storeSkills(skills)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await skillCache.skills))
-                    continuation.finish()
-                }
-            }
-        }
+    public func skills() async throws -> [Skill] {
+        try await skillCache.restoreSkills()
+        let skills = await skillCache.skills
+        return skills
     }
 
     public func skill(forAegisName aegisName: String) async throws -> Skill {
-        _ = try await skills().joined()
-        if let skill = await skillCache.skill(forAegisName: aegisName) {
+        try await skillCache.restoreSkills()
+        if let skill = await skillCache.skillsByAegisNames[aegisName] {
             return skill
         } else {
             throw DatabaseError.recordNotFound
         }
     }
 
-    public func skillTrees() -> AsyncDatabaseRecordPartitions<SkillTree> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await skillTreeCache.isEmpty {
-                    do {
-                        let skillTrees: [SkillTree] = try decodeFile(atPath: "skill_tree.yml")
+    // MARK: - Skill Tree
 
-                        continuation.yield(RecordPartition(records: skillTrees))
-                        continuation.finish()
-
-                        await skillTreeCache.storeSkillTrees(skillTrees)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await skillTreeCache.skillTrees))
-                    continuation.finish()
-                }
-            }
-        }
+    public func skillTrees() async throws -> [SkillTree] {
+        try await skillTreeCache.restoreSkillTrees()
+        let skillTrees = await skillTreeCache.skillTrees
+        return skillTrees
     }
 
     public func skillTree(forJobID jobID: Int) async throws -> SkillTree {
-        _ = try await skillTrees().joined()
-        if let skillTree = await skillTreeCache.skillTree(forJobID: jobID) {
+        try await skillTreeCache.restoreSkillTrees()
+        if let skillTree = await skillTreeCache.skillTreesByJobIDs[jobID] {
             return skillTree
         } else {
             throw DatabaseError.recordNotFound
@@ -247,53 +152,15 @@ public actor Database {
 
     // MARK: - Map
 
-    public func maps() -> AsyncDatabaseRecordPartitions<Map> {
-        AsyncThrowingStream { continuation in
-            Task {
-                if await mapCache.isEmpty {
-                    do {
-                        let url = ResourceBundle.shared.dbURL.appendingPathComponent("map_index.txt")
-                        let string = try String(contentsOf: url)
-
-                        var index = 0
-                        var maps: [Map] = []
-
-                        for line in string.split(separator: "\n") {
-                            if line.trimmingCharacters(in: .whitespacesAndNewlines).starts(with: "//") {
-                                continue
-                            }
-                            let columns = line.split(separator: " ")
-                            if columns.count == 2 {
-                                let name = String(columns[0])
-                                index = Int(columns[1]) ?? 1
-                                let map = Map(name: name, index: index)
-                                maps.append(map)
-                            } else if columns.count == 1 {
-                                let name = String(columns[0])
-                                index += 1
-                                let map = Map(name: name, index: index)
-                                maps.append(map)
-                            }
-                        }
-
-                        continuation.yield(RecordPartition(records: maps))
-                        continuation.finish()
-
-                        await mapCache.storeMaps(maps)
-                    } catch {
-                        continuation.finish(throwing: error)
-                    }
-                } else {
-                    continuation.yield(RecordPartition(records: await mapCache.maps))
-                    continuation.finish()
-                }
-            }
-        }
+    public func maps() async throws -> [Map] {
+        try await mapCache.restoreMaps()
+        let maps = await mapCache.maps
+        return maps
     }
 
     public func map(forName name: String) async throws -> Map {
-        _ = try await maps().joined()
-        if let map = await mapCache.map(forName: name) {
+        try await mapCache.restoreMaps()
+        if let map = await mapCache.mapsByNames[name] {
             return map
         } else {
             throw DatabaseError.recordNotFound
@@ -303,7 +170,7 @@ public actor Database {
     // MARK: - Script
 
     public func monsterSpawns(forMonster monster: Monster) async throws -> [MonsterSpawn] {
-        let scriptCache = try await scriptCache()
+        try await scriptCache.restoreScripts()
         let monsterSpawns = await scriptCache.monsterSpawns.filter { monsterSpawn in
             monsterSpawn.monsterID == monster.id || monsterSpawn.monsterAegisName == monster.aegisName
         }
@@ -311,80 +178,10 @@ public actor Database {
     }
 
     public func monsterSpawns(forMap map: Map) async throws -> [MonsterSpawn] {
-        let scriptCache = try await scriptCache()
+        try await scriptCache.restoreScripts()
         let monsterSpawns = await scriptCache.monsterSpawns.filter { monsterSpawn in
             monsterSpawn.mapName == map.name
         }
         return monsterSpawns
-    }
-
-    private func scriptCache() async throws -> ScriptCache {
-        if let scriptCache {
-            return scriptCache
-        }
-
-        let scriptCache = ScriptCache()
-
-        let url = ResourceBundle.shared.npcURL
-            .appendingPathComponent(self.mode.path)
-            .appendingPathComponent("scripts_main.conf")
-        try await scriptCache.storeScript(from: url)
-
-        self.scriptCache = scriptCache
-
-        return scriptCache
-    }
-
-    // MARK: - Decoding
-
-    private func decodeFile<T>(atPath path: String) throws -> [T] where T : Decodable {
-        let url = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
-            .appendingPathComponent(path)
-        let data = try Data(contentsOf: url)
-        let records = try decoder.decode(ListNode<T>.self, from: data).body
-        return records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<Item> {
-    public func joined() async throws -> [Item] {
-        let initial = Database.RecordPartition<Item>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<Monster> {
-    public func joined() async throws -> [Monster] {
-        let initial = Database.RecordPartition<Monster>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<JobStats> {
-    public func joined() async throws -> [JobStats] {
-        let initial = Database.RecordPartition<JobStats>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<Skill> {
-    public func joined() async throws -> [Skill] {
-        let initial = Database.RecordPartition<Skill>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<SkillTree> {
-    public func joined() async throws -> [SkillTree] {
-        let initial = Database.RecordPartition<SkillTree>(records: [])
-        return try await reduce(initial, +).records
-    }
-}
-
-extension AsyncThrowingStream where Element == Database.RecordPartition<Map> {
-    public func joined() async throws -> [Map] {
-        let initial = Database.RecordPartition<Map>(records: [])
-        return try await reduce(initial, +).records
     }
 }
