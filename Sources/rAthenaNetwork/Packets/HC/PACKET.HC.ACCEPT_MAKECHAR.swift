@@ -22,9 +22,9 @@ extension PACKET.HC {
             0
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x006d
-            charInfo = CharInfo(packetVersion: packetVersion)
+            charInfo = CharInfo(version: version)
         }
 
         public init(from decoder: BinaryDecoder) throws {

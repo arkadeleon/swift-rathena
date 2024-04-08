@@ -23,7 +23,7 @@ extension PACKET.CH {
             2 + 1 + 16
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x020b
         }
 

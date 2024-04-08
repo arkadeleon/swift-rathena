@@ -25,7 +25,7 @@ extension PACKET.CA {
             2 + 4 + 24 + 24 + 1
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x0064
         }
 

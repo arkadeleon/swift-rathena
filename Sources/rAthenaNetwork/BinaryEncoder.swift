@@ -17,9 +17,9 @@ public enum BinaryEncodingError: Error {
 
 public class BinaryEncoder {
     internal var data = Data()
-    let packetVersion: Int
+    let packetVersion: PacketVersion
 
-    init(packetVersion: Int) {
+    init(packetVersion: PacketVersion) {
         self.packetVersion = packetVersion
     }
 

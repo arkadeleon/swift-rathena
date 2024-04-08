@@ -25,23 +25,25 @@ extension PACKET.HC {
             0
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x006b
         }
 
         public init(from decoder: BinaryDecoder) throws {
+            let version = decoder.packetVersion
+
             packetType = try decoder.decode(PacketType.self)
 
             let packetLength = try decoder.decode(UInt16.self)
 
             let charCount: UInt16
-            if decoder.packetVersion >= 20100413 {
-                charCount = (packetLength - 27) / CharInfo.size(for: decoder.packetVersion)
+            if version.number >= 20100413 {
+                charCount = (packetLength - 27) / CharInfo.size(for: version)
             } else {
-                charCount = (packetLength - 24) / CharInfo.size(for: decoder.packetVersion)
+                charCount = (packetLength - 24) / CharInfo.size(for: version)
             }
 
-            if decoder.packetVersion >= 20100413 {
+            if version.number >= 20100413 {
                 totalSlotNum = try decoder.decode(UInt8.self)
                 premiumStartSlot = try decoder.decode(UInt8.self)
                 premiumEndSlot = try decoder.decode(UInt8.self)
@@ -56,9 +58,11 @@ extension PACKET.HC {
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
+            let version = encoder.packetVersion
+
             try encoder.encode(packetLength)
 
-            if encoder.packetVersion >= 20100413 {
+            if version.number >= 20100413 {
                 try encoder.encode(totalSlotNum)
                 try encoder.encode(premiumStartSlot)
                 try encoder.encode(premiumEndSlot)

@@ -22,7 +22,7 @@ extension PACKET.CA {
             2 + 16
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x0204
         }
 

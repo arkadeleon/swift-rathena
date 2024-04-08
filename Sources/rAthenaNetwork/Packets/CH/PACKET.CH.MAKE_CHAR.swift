@@ -42,10 +42,10 @@ extension PACKET.CH {
             }
         }
 
-        public init(packetVersion: Int) {
-            if packetVersion < 20120307 {
+        public init(version: PacketVersion) {
+            if version.number < 20120307 {
                 packetType = .x0067
-            } else if packetVersion < 20151001 {
+            } else if version.number < 20151001 {
                 packetType = .x0970
             } else {
                 packetType = .x0a39

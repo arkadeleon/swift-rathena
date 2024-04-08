@@ -22,7 +22,7 @@ extension PACKET.CH {
             2 + 4
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x0827
         }
 

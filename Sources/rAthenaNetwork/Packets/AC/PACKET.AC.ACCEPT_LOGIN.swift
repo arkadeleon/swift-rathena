@@ -30,8 +30,8 @@ extension PACKET.AC {
             2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size(for: packetType) * UInt16(serverList.count)
         }
 
-        public init(packetVersion: Int) {
-            if packetVersion < 20170315 {
+        public init(version: PacketVersion) {
+            if version.number < 20170315 {
                 packetType = .x0069
             } else {
                 packetType = .x0ac4
@@ -51,7 +51,7 @@ extension PACKET.AC {
             lastLoginTime = try decoder.decode(String.self, length: 26)
             sex = try decoder.decode(UInt8.self)
 
-            if decoder.packetVersion >= 20170315 {
+            if packetType == .x0ac4 {
                 token = try decoder.decode([UInt8].self, length: 17)
             }
 
@@ -100,6 +100,8 @@ extension PACKET.AC.ACCEPT_LOGIN {
         }
 
         public init(from decoder: BinaryDecoder) throws {
+            let version = decoder.packetVersion
+
             ip = try decoder.decode(UInt32.self)
             port = try decoder.decode(UInt16.self)
             name = try decoder.decode(String.self, length: 20)
@@ -107,12 +109,14 @@ extension PACKET.AC.ACCEPT_LOGIN {
             state = try decoder.decode(UInt16.self)
             property = try decoder.decode(UInt16.self)
 
-            if decoder.packetVersion >= 20170315 {
+            if version.number >= 20170315 {
                 _ = try decoder.decode([UInt8].self, length: 128)
             }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
+            let version = encoder.packetVersion
+
             try encoder.encode(ip)
             try encoder.encode(port)
             try encoder.encode(name, length: 20)
@@ -120,7 +124,7 @@ extension PACKET.AC.ACCEPT_LOGIN {
             try encoder.encode(state)
             try encoder.encode(property)
 
-            if encoder.packetVersion >= 20170315 {
+            if version.number >= 20170315 {
                 try encoder.encode([UInt8](repeating: 0, count: 128))
             }
         }

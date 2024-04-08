@@ -48,52 +48,54 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
     public var renameEnabled: UInt32 = 0
     public var sex: UInt8 = 0
 
-    public static func size(for packetVersion: Int) -> UInt16 {
+    public static func size(for version: PacketVersion) -> UInt16 {
         var size: UInt16 = 106
-        if packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             size += 4   // base exp
         }
-        if packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             size += 4   // job exp
         }
         size += 4
-        if packetVersion >= 20141022 {
+        if version.number >= 20141022 {
             size += 2   // body
         }
         size += 2
-        if (packetVersion >= 20100720 && packetVersion <= 20100727) || packetVersion >= 20100803 {
+        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
             size += 16  // last map
         }
-        if packetVersion >= 20100803 {
+        if version.number >= 20100803 {
             size += 4   // delete date
         }
-        if packetVersion >= 20110111 {
+        if version.number >= 20110111 {
             size += 4   // robe
         }
-        if packetVersion >= 20110928 {
+        if version.number >= 20110928 {
             size += 4   // char moves
         }
-        if packetVersion >= 20111025 {
+        if version.number >= 20111025 {
             size += 4   // rename enabled
         }
-        if packetVersion >= 20141016 {
+        if version.number >= 20141016 {
             size += 1   // sex
         }
         return size
     }
 
-    public init(packetVersion: Int) {
+    public init(version: PacketVersion) {
     }
 
     public init(from decoder: BinaryDecoder) throws {
+        let version = decoder.packetVersion
+
         id = try decoder.decode(UInt32.self)
-        if decoder.packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             baseExp = try decoder.decode(UInt64.self)
         } else {
             baseExp = try UInt64(decoder.decode(UInt32.self))
         }
         zeny = try decoder.decode(UInt32.self)
-        if decoder.packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             jobExp = try decoder.decode(UInt64.self)
         } else {
             jobExp = try UInt64(decoder.decode(UInt32.self))
@@ -112,7 +114,7 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         speed = try decoder.decode(UInt16.self)
         self.class = try decoder.decode(UInt16.self)
         hair = try decoder.decode(UInt16.self)
-        if decoder.packetVersion >= 20141022 {
+        if version.number >= 20141022 {
             body = try decoder.decode(UInt16.self)
         }
         weapon = try decoder.decode(UInt16.self)
@@ -133,35 +135,37 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         luk = try decoder.decode(UInt8.self)
         slot = try decoder.decode(UInt16.self)
         renamed = try decoder.decode(UInt16.self)
-        if (decoder.packetVersion >= 20100720 && decoder.packetVersion <= 20100727) || decoder.packetVersion >= 20100803 {
+        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
             lastMap = try decoder.decode(String.self, length: 16)
         }
-        if decoder.packetVersion >= 20100803 {
+        if version.number >= 20100803 {
             deleteDate = try decoder.decode(UInt32.self)
         }
-        if decoder.packetVersion >= 20110111 {
+        if version.number >= 20110111 {
             robe = try decoder.decode(UInt32.self)
         }
-        if decoder.packetVersion >= 20110928 {
+        if version.number >= 20110928 {
             charMoves = try decoder.decode(UInt32.self)
         }
-        if decoder.packetVersion >= 20111025 {
+        if version.number >= 20111025 {
             renameEnabled = try decoder.decode(UInt32.self)
         }
-        if decoder.packetVersion >= 20141016 {
+        if version.number >= 20141016 {
             sex = try decoder.decode(UInt8.self)
         }
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
+        let version = encoder.packetVersion
+
         try encoder.encode(id)
-        if encoder.packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             try encoder.encode(UInt64(baseExp))
         } else {
             try encoder.encode(UInt32(baseExp))
         }
         try encoder.encode(zeny)
-        if encoder.packetVersion >= 20170830 {
+        if version.number >= 20170830 {
             try encoder.encode(UInt64(jobExp))
         } else {
             try encoder.encode(UInt32(jobExp))
@@ -180,7 +184,7 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         try encoder.encode(speed)
         try encoder.encode(self.class)
         try encoder.encode(hair)
-        if encoder.packetVersion >= 20141022 {
+        if version.number >= 20141022 {
             try encoder.encode(body)
         }
         try encoder.encode(weapon)
@@ -201,22 +205,22 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         try encoder.encode(luk)
         try encoder.encode(slot)
         try encoder.encode(renamed)
-        if (encoder.packetVersion >= 20100720 && encoder.packetVersion <= 20100727) || encoder.packetVersion >= 20100803 {
+        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
             try encoder.encode(lastMap, length: 16)
         }
-        if encoder.packetVersion >= 20100803 {
+        if version.number >= 20100803 {
             try encoder.encode(deleteDate)
         }
-        if encoder.packetVersion >= 20110111 {
+        if version.number >= 20110111 {
             try encoder.encode(robe)
         }
-        if encoder.packetVersion >= 20110928 {
+        if version.number >= 20110928 {
             try encoder.encode(charMoves)
         }
-        if encoder.packetVersion >= 20111025 {
+        if version.number >= 20111025 {
             try encoder.encode(renameEnabled)
         }
-        if encoder.packetVersion >= 20141016 {
+        if version.number >= 20141016 {
             try encoder.encode(sex)
         }
     }

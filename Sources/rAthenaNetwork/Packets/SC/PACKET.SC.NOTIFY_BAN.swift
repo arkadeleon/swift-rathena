@@ -22,7 +22,7 @@ extension PACKET.SC {
             2 + 1
         }
 
-        public init(packetVersion: Int) {
+        public init(version: PacketVersion) {
             packetType = .x0081
         }
 

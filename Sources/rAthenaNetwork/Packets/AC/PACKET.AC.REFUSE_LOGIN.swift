@@ -24,8 +24,8 @@ extension PACKET.AC {
             2 + 1 + 20
         }
 
-        public init(packetVersion: Int) {
-            if packetVersion < 20120000 {
+        public init(version: PacketVersion) {
+            if version.number < 20120000 {
                 packetType = .x006a
             } else {
                 packetType = .x083e

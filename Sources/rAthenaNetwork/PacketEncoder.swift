@@ -8,14 +8,14 @@
 import Foundation
 
 public class PacketEncoder {
-    public let packetVersion: Int
+    public let version: PacketVersion
 
-    public init(packetVersion: Int) {
-        self.packetVersion = packetVersion
+    public init(version: PacketVersion) {
+        self.version = version
     }
 
     public func encode(_ packet: any PacketProtocol) throws -> Data {
-        let encoder = BinaryEncoder(packetVersion: packetVersion)
+        let encoder = BinaryEncoder(packetVersion: version)
         try packet.encode(to: encoder)
         return encoder.data
     }

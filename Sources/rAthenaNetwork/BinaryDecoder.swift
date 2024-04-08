@@ -17,9 +17,9 @@ public enum BinaryDecodingError: Error {
 
 public class BinaryDecoder {
     internal var data: Data
-    internal let packetVersion: Int
+    internal let packetVersion: PacketVersion
 
-    internal init(data: Data, packetVersion: Int) {
+    internal init(data: Data, packetVersion: PacketVersion) {
         self.data = data
         self.packetVersion = packetVersion
     }
