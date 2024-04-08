@@ -95,7 +95,10 @@ let package = Package(
             ]
         ),
         .target(
-            name: "rAthenaNetwork"
+            name: "rAthenaNetwork",
+            dependencies: [
+                "rAthenaCommon",
+            ]
         ),
         .target(
             name: "rAthenaLogin",

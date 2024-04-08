@@ -47,10 +47,11 @@ extension ItemClass: Identifiable {
     public var id: Int {
         switch self {
         case .all:
-            if RA_RENEWAL.boolValue {
-                RA_ITEMJ_NORMAL | RA_ITEMJ_UPPER | RA_ITEMJ_BABY | RA_ITEMJ_THIRD | RA_ITEMJ_THIRD_UPPER | RA_ITEMJ_THIRD_BABY | RA_ITEMJ_FOURTH
-            } else {
+            switch CurrentMode {
+            case .prerenewal:
                 RA_ITEMJ_NORMAL | RA_ITEMJ_UPPER | RA_ITEMJ_BABY
+            case .renewal:
+                RA_ITEMJ_NORMAL | RA_ITEMJ_UPPER | RA_ITEMJ_BABY | RA_ITEMJ_THIRD | RA_ITEMJ_THIRD_UPPER | RA_ITEMJ_THIRD_BABY | RA_ITEMJ_FOURTH
             }
         case .normal: RA_ITEMJ_NORMAL
         case .upper: RA_ITEMJ_UPPER

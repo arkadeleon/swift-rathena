@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor SkillTreeCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var skillTrees: [SkillTree] = []
     private(set) var skillTreesByJobIDs: [Int : SkillTree] = [:]
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -26,7 +27,7 @@ actor SkillTreeCache {
         let decoder = YAMLDecoder()
 
         let url = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("skill_tree.yml")
         let data = try Data(contentsOf: url)
         skillTrees = try decoder.decode(ListNode<SkillTree>.self, from: data).body

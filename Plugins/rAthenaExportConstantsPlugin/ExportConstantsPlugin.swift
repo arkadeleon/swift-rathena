@@ -88,8 +88,6 @@ struct ExportConstantsPlugin: CommandPlugin {
 
         NS_ASSUME_NONNULL_BEGIN
 
-        extern const BOOL RA_RENEWAL;
-
         \(uniqueConstantValues.map({ "extern const NSInteger RA_\($0);" }).joined(separator: "\n"))
 
         @interface Constant : NSObject
@@ -132,12 +130,6 @@ struct ExportConstantsPlugin: CommandPlugin {
         #include "map/pc.hpp"
         #include "map/quest.hpp"
         #include "map/storage.hpp"
-
-        #ifdef RENEWAL
-        const BOOL RA_RENEWAL = YES;
-        #else
-        const BOOL RA_RENEWAL = NO;
-        #endif
 
         \(uniqueConstantValues.map({ "const NSInteger RA_\($0) = \($0);" }).joined(separator: "\n"))
 

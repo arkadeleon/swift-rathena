@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor MonsterCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var monsters: [Monster] = []
     private(set) var monstersByIDs: [Int : Monster] = [:]
     private(set) var monstersByAegisNames: [String : Monster] = [:]
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -27,7 +28,7 @@ actor MonsterCache {
         let decoder = YAMLDecoder()
 
         let url = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("mob_db.yml")
         let data = try Data(contentsOf: url)
         monsters = try decoder.decode(ListNode<Monster>.self, from: data).body

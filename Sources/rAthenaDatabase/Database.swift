@@ -5,23 +5,13 @@
 //  Created by Leon Li on 2023/1/20.
 //
 
+import rAthenaCommon
+
 public enum DatabaseError: Error {
     case recordNotFound
 }
 
 public actor Database {
-    public enum Mode: Sendable {
-        case prerenewal
-        case renewal
-
-        var path: String {
-            switch self {
-            case .prerenewal: "pre-re"
-            case .renewal: "re"
-            }
-        }
-    }
-
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 

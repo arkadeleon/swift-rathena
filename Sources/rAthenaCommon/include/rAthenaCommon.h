@@ -6,4 +6,5 @@
 //
 
 #import "../Constant.h"
+#import "../Mode.h"
 #import "../Server.h"

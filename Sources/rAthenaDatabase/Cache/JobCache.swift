@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor JobCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var jobs: [JobStats] = []
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -25,25 +26,25 @@ actor JobCache {
         let decoder = YAMLDecoder()
 
         let basicStatsURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("job_stats.yml")
         let basicStatsData = try Data(contentsOf: basicStatsURL)
         let basicStatsList = try decoder.decode(ListNode<JobBasicStats>.self, from: basicStatsData).body
 
         let aspdStatsURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("job_aspd.yml")
         let aspdStatsData = try Data(contentsOf: aspdStatsURL)
         let aspdStatsList = try decoder.decode(ListNode<JobASPDStats>.self, from: aspdStatsData).body
 
         let expStatsURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("job_exp.yml")
         let expStatsData = try Data(contentsOf: expStatsURL)
         let expStatsList = try decoder.decode(ListNode<JobExpStats>.self, from: expStatsData).body
 
         let basePointsStatsURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("job_basepoints.yml")
         let basePointsStatsData = try Data(contentsOf: basePointsStatsURL)
         let basePointsStatsList = try decoder.decode(ListNode<JobBasePointsStats>.self, from: basePointsStatsData).body

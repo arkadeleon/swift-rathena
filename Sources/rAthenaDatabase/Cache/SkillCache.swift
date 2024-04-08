@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor SkillCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var skills: [Skill] = []
     private(set) var skillsByIDs: [Int : Skill] = [:]
     private(set) var skillsByAegisNames: [String : Skill] = [:]
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -27,7 +28,7 @@ actor SkillCache {
         let decoder = YAMLDecoder()
 
         let url = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("skill_db.yml")
         let data = try Data(contentsOf: url)
         skills = try decoder.decode(ListNode<Skill>.self, from: data).body

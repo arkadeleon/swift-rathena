@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor ScriptCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var mapFlags: [MapFlag] = []
     private(set) var monsterSpawns: [MonsterSpawn] = []
@@ -22,7 +23,7 @@ actor ScriptCache {
 
     private var isRestored = false
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -32,7 +33,7 @@ actor ScriptCache {
         }
 
         let url = ResourceBundle.shared.npcURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("scripts_main.conf")
         try import_conf_file(url: url)
 

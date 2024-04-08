@@ -23,12 +23,6 @@
 #include "map/quest.hpp"
 #include "map/storage.hpp"
 
-#ifdef RENEWAL
-const BOOL RA_RENEWAL = YES;
-#else
-const BOOL RA_RENEWAL = NO;
-#endif
-
 const NSInteger RA_INT_MIN = INT_MIN;
 const NSInteger RA_INT_MAX = INT_MAX;
 const NSInteger RA_PACKETVER = PACKETVER;

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor ItemCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var usableItems: [Item] = []
     private(set) var equipItems: [Item] = []
@@ -19,7 +20,7 @@ actor ItemCache {
     private(set) var itemsByIDs: [Int : Item] = [:]
     private(set) var itemsByAegisNames: [String : Item] = [:]
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
@@ -31,7 +32,7 @@ actor ItemCache {
         let decoder = YAMLDecoder()
 
         let usableItemURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("item_db_usable.yml")
         let usableItemData = try Data(contentsOf: usableItemURL)
         usableItems = try decoder.decode(ListNode<Item>.self, from: usableItemData).body
@@ -45,7 +46,7 @@ actor ItemCache {
         let decoder = YAMLDecoder()
 
         let equipItemURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("item_db_equip.yml")
         let equipItemData = try Data(contentsOf: equipItemURL)
         equipItems = try decoder.decode(ListNode<Item>.self, from: equipItemData).body
@@ -59,7 +60,7 @@ actor ItemCache {
         let decoder = YAMLDecoder()
 
         let etcItemURL = ResourceBundle.shared.dbURL
-            .appendingPathComponent(mode.path)
+            .appendingPathComponent(mode.dbPath)
             .appendingPathComponent("item_db_etc.yml")
         let etcItemData = try Data(contentsOf: etcItemURL)
         etcItems = try decoder.decode(ListNode<Item>.self, from: etcItemData).body

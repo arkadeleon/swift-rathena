@@ -6,8 +6,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern const BOOL RA_RENEWAL;
-
 extern const NSInteger RA_INT_MIN;
 extern const NSInteger RA_INT_MAX;
 extern const NSInteger RA_PACKETVER;

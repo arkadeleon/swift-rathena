@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import rAthenaCommon
 import rAthenaResource
 
 actor MapCache {
-    let mode: Database.Mode
+    let mode: Mode
 
     private(set) var maps: [Map] = []
     private(set) var mapsByNames: [String : Map] = [:]
 
-    init(mode: Database.Mode) {
+    init(mode: Mode) {
         self.mode = mode
     }
 
