@@ -82,6 +82,9 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         return size
     }
 
+    public init(packetVersion: Int) {
+    }
+
     public init(from decoder: BinaryDecoder) throws {
         id = try decoder.decode(UInt32.self)
         if decoder.packetVersion >= 20170830 {
