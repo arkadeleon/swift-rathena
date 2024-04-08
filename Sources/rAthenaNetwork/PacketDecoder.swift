@@ -8,22 +8,20 @@
 import Foundation
 
 public enum PacketDecodingError: Error {
-
     case packetMismatch(UInt16)
     case unknownPacket(UInt16)
 }
 
 public class PacketDecoder {
-
     public let packetVersion: Int
-    private let packets: [UInt16 : any Packet.Type]
+    private let packets: [UInt16 : any PacketProtocol.Type]
 
     public init(packetVersion: Int) {
         self.packetVersion = packetVersion
-        self.packets = Dictionary(uniqueKeysWithValues: Packets.all.map({ ($0.init(packetVersion: packetVersion).packetType.rawValue, $0) }))
+        self.packets = Dictionary(uniqueKeysWithValues: PacketManager.shared.allPackets.map({ ($0.init(packetVersion: packetVersion).packetType.rawValue, $0) }))
     }
 
-    public func decode(from data: Data) throws -> any Packet {
+    public func decode(from data: Data) throws -> any PacketProtocol {
         let packetTypeDecoder = BinaryDecoder(data: data, packetVersion: packetVersion)
         let packetType = try packetTypeDecoder.decode(UInt16.self)
         guard let packet = packets[packetType] else {

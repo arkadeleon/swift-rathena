@@ -6,7 +6,6 @@
 //
 
 public struct CharInfo: BinaryDecodable, BinaryEncodable {
-
     public var id: UInt32 = 0
     public var baseExp: UInt64 = 0
     public var zeny: UInt32 = 0

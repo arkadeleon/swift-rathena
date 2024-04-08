@@ -1,12 +1,11 @@
 //
-//  Packet.swift
+//  PacketProtocol.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/5.
 //
 
-public protocol Packet: BinaryDecodable, BinaryEncodable {
-
+public protocol PacketProtocol: BinaryDecodable, BinaryEncodable {
     associatedtype PacketType: PacketTypeProtocol
 
     var packetType: PacketType { get }

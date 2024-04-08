@@ -1,12 +1,12 @@
 //
-//  Packets.AC.RefuseLogin.swift
+//  PACKET.AC.REFUSE_LOGIN.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/6.
 //
 
-extension Packets.AC {
-    public struct RefuseLogin: Packet {
+extension PACKET.AC {
+    public struct REFUSE_LOGIN: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x006a = 0x006a
             case x083e = 0x083e

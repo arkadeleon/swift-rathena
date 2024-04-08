@@ -1,12 +1,12 @@
 //
-//  Packets.CH.SelectChar.swift
+//  PACKET.CH.SELECT_CHAR.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/6.
 //
 
-extension Packets.CH {
-    public struct SelectChar: Packet {
+extension PACKET.CH {
+    public struct SELECT_CHAR: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0066 = 0x0066
         }

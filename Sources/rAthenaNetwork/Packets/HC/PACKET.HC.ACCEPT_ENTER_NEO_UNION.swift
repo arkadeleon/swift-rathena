@@ -1,12 +1,12 @@
 //
-//  Packets.HC.AcceptEnterNeoUnion.swift
+//  PACKET.HC.ACCEPT_ENTER_NEO_UNION.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/7.
 //
 
-extension Packets.HC {
-    public struct AcceptEnterNeoUnion: Packet {
+extension PACKET.HC {
+    public struct ACCEPT_ENTER_NEO_UNION: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x006b = 0x006b
         }

@@ -1,12 +1,12 @@
 //
-//  Packets.AC.AcceptLogin.swift
+//  PACKET.AC.ACCEPT_LOGIN.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/6.
 //
 
-extension Packets.AC {
-    public struct AcceptLogin: Packet {
+extension PACKET.AC {
+    public struct ACCEPT_LOGIN: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0069 = 0x0069
             case x0ac4 = 0x0ac4
@@ -83,7 +83,7 @@ extension Packets.AC {
     }
 }
 
-extension Packets.AC.AcceptLogin {
+extension PACKET.AC.ACCEPT_LOGIN {
     public struct ServerInfo: BinaryDecodable, BinaryEncodable {
         public var ip: UInt32 = 0
         public var port: UInt16 = 0

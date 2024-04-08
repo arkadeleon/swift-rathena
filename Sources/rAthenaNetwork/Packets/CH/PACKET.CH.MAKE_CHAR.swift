@@ -1,12 +1,12 @@
 //
-//  Packets.CH.MakeChar.swift
+//  PACKET.CH.MAKE_CHAR.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/6.
 //
 
-extension Packets.CH {
-    public struct MakeChar: Packet {
+extension PACKET.CH {
+    public struct MAKE_CHAR: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0067 = 0x0067
             case x0970 = 0x0970

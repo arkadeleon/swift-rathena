@@ -1,12 +1,12 @@
 //
-//  Packets.CA.Login.swift
+//  PACKET.CA.LOGIN.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/5.
 //
 
-extension Packets.CA {
-    public struct Login: Packet {
+extension PACKET.CA {
+    public struct LOGIN: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0064 = 0x0064
         }

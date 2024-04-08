@@ -1,12 +1,12 @@
 //
-//  Packets.CZ.ExeHashcheck.swift
+//  PACKET.CZ.EXE_HASHCHECK.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/3/26.
 //
 
-extension Packets.CZ {
-    public struct ExeHashcheck: Packet {
+extension PACKET.CZ {
+    public struct EXE_HASHCHECK: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x020c = 0x020c
         }

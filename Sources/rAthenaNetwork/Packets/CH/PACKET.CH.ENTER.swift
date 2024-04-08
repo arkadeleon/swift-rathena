@@ -1,12 +1,12 @@
 //
-//  Packets.CH.Enter.swift
+//  PACKET.CH.ENTER.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/6.
 //
 
-extension Packets.CH {
-    public struct Enter: Packet {
+extension PACKET.CH {
+    public struct ENTER: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0065 = 0x0065
         }
