@@ -30,6 +30,8 @@ public class PacketManager {
         PACKET.HC.REFUSE_MAKECHAR.self,         // 0x6e
         PACKET.HC.ACCEPT_DELETECHAR.self,       // 0x6f
         PACKET.HC.REFUSE_DELETECHAR.self,       // 0x70
+        PACKET.HC.NOTIFY_ZONESVR.self,          // 0x71, 0xac5
+        PACKET.HC.DELETE_CHAR.self,             // 0x82a
 
         PACKET.CZ.PING.self,                    // 0x187
         PACKET.CZ.EXE_HASHCHECK.self,           // 0x20c

@@ -1,45 +1,42 @@
 //
-//  PACKET.HC.ACCEPT_MAKECHAR.swift
+//  PACKET.HC.DELETE_CHAR.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/4/8.
 //
 
 extension PACKET.HC {
-    public struct ACCEPT_MAKECHAR: PacketProtocol {
+    public struct DELETE_CHAR: PacketProtocol {
         public enum PacketType: UInt16, PacketTypeProtocol {
-            case x006d = 0x006d
-            case x0b6f = 0x0b6f
+            case x082a = 0x082a
         }
 
         public let packetType: PacketType
-        public var charInfo: CharInfo
+        public var aid: UInt32 = 0
+        public var result: UInt32 = 0
 
         public var packetName: String {
-            "PACKET_HC_ACCEPT_MAKECHAR"
+            "PACKET_HC_DELETE_CHAR"
         }
 
         public var packetLength: UInt16 {
-            0
+            2 + 4 + 4
         }
 
         public init(version: PacketVersion) {
-            if version.mainNumber >= 20201007 || version.reNumber >= 20211103 {
-                packetType = .x0b6f
-            } else {
-                packetType = .x006d
-            }
-            charInfo = CharInfo(packetVersion: version)
+            packetType = .x082a
         }
 
         public init(from decoder: BinaryDecoder) throws {
             packetType = try decoder.decode(PacketType.self)
-            charInfo = try decoder.decode(CharInfo.self)
+            aid = try decoder.decode(UInt32.self)
+            result = try decoder.decode(UInt32.self)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
             try encoder.encode(packetType)
-            try encoder.encode(charInfo)
+            try encoder.encode(aid)
+            try encoder.encode(result)
         }
     }
 }

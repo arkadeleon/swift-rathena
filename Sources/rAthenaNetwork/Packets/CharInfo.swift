@@ -6,32 +6,36 @@
 //
 
 public struct CharInfo: BinaryDecodable, BinaryEncodable {
-    public var id: UInt32 = 0
+    public let packetVersion: PacketVersion
+
+    public var gid: UInt32 = 0
     public var baseExp: UInt64 = 0
-    public var zeny: UInt32 = 0
+    public var money: UInt32 = 0
     public var jobExp: UInt64 = 0
     public var jobLevel: UInt32 = 0
-    public var option: UInt32 = 0
-    public var karma: UInt32 = 0
-    public var manner: UInt32 = 0
-    public var statusPoint: UInt16 = 0
-    public var hp: UInt32 = 0
-    public var maxHp: UInt32 = 0
-    public var sp: UInt16 = 0
-    public var maxSp: UInt16 = 0
+    public var bodyState: UInt32 = 0
+    public var healthState: UInt32 = 0
+    public var effectState: UInt32 = 0
+    public var virtue: UInt32 = 0
+    public var honor: UInt32 = 0
+    public var jobPoint: UInt16 = 0
+    public var hp: UInt64 = 0
+    public var maxHp: UInt64 = 0
+    public var sp: UInt64 = 0
+    public var maxSp: UInt64 = 0
     public var speed: UInt16 = 0
-    public var `class`: UInt16 = 0
-    public var hair: UInt16 = 0
+    public var job: UInt16 = 0
+    public var head: UInt16 = 0
     public var body: UInt16 = 0
     public var weapon: UInt16 = 0
-    public var baseLevel: UInt16 = 0
-    public var skillPoint: UInt16 = 0
-    public var headBottom: UInt16 = 0
+    public var level: UInt16 = 0
+    public var spPoint: UInt16 = 0
+    public var accessory: UInt16 = 0
     public var shield: UInt16 = 0
-    public var headTop: UInt16 = 0
-    public var headMid: UInt16 = 0
-    public var hairColor: UInt16 = 0
-    public var clothesColor: UInt16 = 0
+    public var accessory2: UInt16 = 0
+    public var accessory3: UInt16 = 0
+    public var headPalette: UInt16 = 0
+    public var bodyPalette: UInt16 = 0
     public var name = ""
     public var str: UInt8 = 0
     public var agi: UInt8 = 0
@@ -39,93 +43,83 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
     public var int: UInt8 = 0
     public var dex: UInt8 = 0
     public var luk: UInt8 = 0
-    public var slot: UInt16 = 0
-    public var renamed: UInt16 = 0
-    public var lastMap = ""
-    public var deleteDate: UInt32 = 0
-    public var robe: UInt32 = 0
-    public var charMoves: UInt32 = 0
-    public var renameEnabled: UInt32 = 0
+    public var charNum: UInt8 = 0
+    public var hairColor: UInt8 = 0
+    public var isChangedCharName: UInt16 = 0
+    public var mapName = ""
+    public var deleteReservedDate: UInt32 = 0
+    public var robePalette: UInt32 = 0
+    public var charSlotChangeCount: UInt32 = 0
+    public var charNameChangeCount: UInt32 = 0
     public var sex: UInt8 = 0
 
     public static func size(for version: PacketVersion) -> UInt16 {
-        var size: UInt16 = 106
-        if version.number >= 20170830 {
-            size += 4   // base exp
-        }
-        if version.number >= 20170830 {
-            size += 4   // job exp
-        }
-        size += 4
-        if version.number >= 20141022 {
-            size += 2   // body
-        }
-        size += 2
-        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
-            size += 16  // last map
-        }
-        if version.number >= 20100803 {
-            size += 4   // delete date
-        }
-        if version.number >= 20110111 {
-            size += 4   // robe
-        }
-        if version.number >= 20110928 {
-            size += 4   // char moves
-        }
-        if version.number >= 20111025 {
-            size += 4   // rename enabled
-        }
-        if version.number >= 20141016 {
-            size += 1   // sex
-        }
+        let encoder = BinaryEncoder(packetVersion: version)
+        try? encoder.encode(CharInfo(packetVersion: version))
+        let size = UInt16(encoder.data.count)
         return size
     }
 
-    public init(version: PacketVersion) {
+    public init(packetVersion: PacketVersion) {
+        self.packetVersion = packetVersion
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        let version = decoder.packetVersion
+        packetVersion = decoder.packetVersion
 
-        id = try decoder.decode(UInt32.self)
-        if version.number >= 20170830 {
+        gid = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20170830 {
             baseExp = try decoder.decode(UInt64.self)
         } else {
             baseExp = try UInt64(decoder.decode(UInt32.self))
         }
-        zeny = try decoder.decode(UInt32.self)
-        if version.number >= 20170830 {
+
+        money = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20170830 {
             jobExp = try decoder.decode(UInt64.self)
         } else {
             jobExp = try UInt64(decoder.decode(UInt32.self))
         }
+
         jobLevel = try decoder.decode(UInt32.self)
-        _ = try decoder.decode(UInt32.self)
-        _ = try decoder.decode(UInt32.self)
-        option = try decoder.decode(UInt32.self)
-        karma = try decoder.decode(UInt32.self)
-        manner = try decoder.decode(UInt32.self)
-        statusPoint = try decoder.decode(UInt16.self)
-        hp = try decoder.decode(UInt32.self)
-        maxHp = try decoder.decode(UInt32.self)
-        sp = try decoder.decode(UInt16.self)
-        maxSp = try decoder.decode(UInt16.self)
+        bodyState = try decoder.decode(UInt32.self)
+        healthState = try decoder.decode(UInt32.self)
+        effectState = try decoder.decode(UInt32.self)
+        virtue = try decoder.decode(UInt32.self)
+        honor = try decoder.decode(UInt32.self)
+        jobPoint = try decoder.decode(UInt16.self)
+
+        if packetVersion.reNumber >= 20211103 || packetVersion.mainNumber >= 20220330 {
+            hp = try decoder.decode(UInt64.self)
+            maxHp = try decoder.decode(UInt64.self)
+            sp = try decoder.decode(UInt64.self)
+            maxSp = try decoder.decode(UInt64.self)
+        } else {
+            hp = try UInt64(decoder.decode(UInt32.self))
+            maxHp = try UInt64(decoder.decode(UInt32.self))
+            sp = try UInt64(decoder.decode(UInt16.self))
+            maxSp = try UInt64(decoder.decode(UInt16.self))
+        }
+
         speed = try decoder.decode(UInt16.self)
-        self.class = try decoder.decode(UInt16.self)
-        hair = try decoder.decode(UInt16.self)
-        if version.number >= 20141022 {
+        job = try decoder.decode(UInt16.self)
+        head = try decoder.decode(UInt16.self)
+
+        if packetVersion.number >= 20141022 {
             body = try decoder.decode(UInt16.self)
         }
+
         weapon = try decoder.decode(UInt16.self)
-        baseLevel = try decoder.decode(UInt16.self)
-        skillPoint = try decoder.decode(UInt16.self)
-        headBottom = try decoder.decode(UInt16.self)
+        level = try decoder.decode(UInt16.self)
+        spPoint = try decoder.decode(UInt16.self)
+        accessory = try decoder.decode(UInt16.self)
         shield = try decoder.decode(UInt16.self)
-        headTop = try decoder.decode(UInt16.self)
-        headMid = try decoder.decode(UInt16.self)
-        hairColor = try decoder.decode(UInt16.self)
-        clothesColor = try decoder.decode(UInt16.self)
+        accessory2 = try decoder.decode(UInt16.self)
+        accessory3 = try decoder.decode(UInt16.self)
+        headPalette = try decoder.decode(UInt16.self)
+        bodyPalette = try decoder.decode(UInt16.self)
         name = try decoder.decode(String.self, length: 24)
         str = try decoder.decode(UInt8.self)
         agi = try decoder.decode(UInt8.self)
@@ -133,69 +127,90 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         int = try decoder.decode(UInt8.self)
         dex = try decoder.decode(UInt8.self)
         luk = try decoder.decode(UInt8.self)
-        slot = try decoder.decode(UInt16.self)
-        renamed = try decoder.decode(UInt16.self)
-        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
-            lastMap = try decoder.decode(String.self, length: 16)
+        charNum = try decoder.decode(UInt8.self)
+        hairColor = try decoder.decode(UInt8.self)
+        isChangedCharName = try decoder.decode(UInt16.self)
+
+        if (packetVersion.number >= 20100720 && packetVersion.number <= 20100727) || 
+            packetVersion.number >= 20100803 {
+            mapName = try decoder.decode(String.self, length: 16)
         }
-        if version.number >= 20100803 {
-            deleteDate = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20100803 {
+            deleteReservedDate = try decoder.decode(UInt32.self)
         }
-        if version.number >= 20110111 {
-            robe = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20110111 {
+            robePalette = try decoder.decode(UInt32.self)
         }
-        if version.number >= 20110928 {
-            charMoves = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20110928 {
+            charSlotChangeCount = try decoder.decode(UInt32.self)
         }
-        if version.number >= 20111025 {
-            renameEnabled = try decoder.decode(UInt32.self)
+
+        if packetVersion.number >= 20111025 {
+            charNameChangeCount = try decoder.decode(UInt32.self)
         }
-        if version.number >= 20141016 {
+
+        if packetVersion.number >= 20141016 {
             sex = try decoder.decode(UInt8.self)
         }
     }
 
     public func encode(to encoder: BinaryEncoder) throws {
-        let version = encoder.packetVersion
+        try encoder.encode(gid)
 
-        try encoder.encode(id)
-        if version.number >= 20170830 {
-            try encoder.encode(UInt64(baseExp))
+        if packetVersion.number >= 20170830 {
+            try encoder.encode(baseExp)
         } else {
             try encoder.encode(UInt32(baseExp))
         }
-        try encoder.encode(zeny)
-        if version.number >= 20170830 {
-            try encoder.encode(UInt64(jobExp))
+
+        try encoder.encode(money)
+
+        if packetVersion.number >= 20170830 {
+            try encoder.encode(jobExp)
         } else {
             try encoder.encode(UInt32(jobExp))
         }
+
         try encoder.encode(jobLevel)
-        try encoder.encode(UInt32(0))
-        try encoder.encode(UInt32(0))
-        try encoder.encode(option)
-        try encoder.encode(karma)
-        try encoder.encode(manner)
-        try encoder.encode(statusPoint)
-        try encoder.encode(hp)
-        try encoder.encode(maxHp)
-        try encoder.encode(sp)
-        try encoder.encode(maxSp)
+        try encoder.encode(bodyState)
+        try encoder.encode(healthState)
+        try encoder.encode(effectState)
+        try encoder.encode(virtue)
+        try encoder.encode(honor)
+        try encoder.encode(jobPoint)
+
+        if packetVersion.reNumber >= 20211103 || packetVersion.mainNumber >= 20220330 {
+            try encoder.encode(hp)
+            try encoder.encode(maxHp)
+            try encoder.encode(sp)
+            try encoder.encode(maxSp)
+        } else {
+            try encoder.encode(UInt32(hp))
+            try encoder.encode(UInt32(maxHp))
+            try encoder.encode(UInt16(sp))
+            try encoder.encode(UInt16(maxSp))
+        }
+
         try encoder.encode(speed)
-        try encoder.encode(self.class)
-        try encoder.encode(hair)
-        if version.number >= 20141022 {
+        try encoder.encode(job)
+        try encoder.encode(head)
+
+        if packetVersion.number >= 20141022 {
             try encoder.encode(body)
         }
+
         try encoder.encode(weapon)
-        try encoder.encode(baseLevel)
-        try encoder.encode(skillPoint)
-        try encoder.encode(headBottom)
+        try encoder.encode(level)
+        try encoder.encode(spPoint)
+        try encoder.encode(accessory)
         try encoder.encode(shield)
-        try encoder.encode(headTop)
-        try encoder.encode(headMid)
-        try encoder.encode(hairColor)
-        try encoder.encode(clothesColor)
+        try encoder.encode(accessory2)
+        try encoder.encode(accessory3)
+        try encoder.encode(headPalette)
+        try encoder.encode(bodyPalette)
         try encoder.encode(name, length: 24)
         try encoder.encode(str)
         try encoder.encode(agi)
@@ -203,24 +218,32 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
         try encoder.encode(int)
         try encoder.encode(dex)
         try encoder.encode(luk)
-        try encoder.encode(slot)
-        try encoder.encode(renamed)
-        if (version.number >= 20100720 && version.number <= 20100727) || version.number >= 20100803 {
-            try encoder.encode(lastMap, length: 16)
+        try encoder.encode(charNum)
+        try encoder.encode(hairColor)
+        try encoder.encode(isChangedCharName)
+
+        if (packetVersion.number >= 20100720 && packetVersion.number <= 20100727) || 
+            packetVersion.number >= 20100803 {
+            try encoder.encode(mapName, length: 16)
         }
-        if version.number >= 20100803 {
-            try encoder.encode(deleteDate)
+
+        if packetVersion.number >= 20100803 {
+            try encoder.encode(deleteReservedDate)
         }
-        if version.number >= 20110111 {
-            try encoder.encode(robe)
+
+        if packetVersion.number >= 20110111 {
+            try encoder.encode(robePalette)
         }
-        if version.number >= 20110928 {
-            try encoder.encode(charMoves)
+
+        if packetVersion.number >= 20110928 {
+            try encoder.encode(charSlotChangeCount)
         }
-        if version.number >= 20111025 {
-            try encoder.encode(renameEnabled)
+
+        if packetVersion.number >= 20111025 {
+            try encoder.encode(charNameChangeCount)
         }
-        if version.number >= 20141016 {
+
+        if packetVersion.number >= 20141016 {
             try encoder.encode(sex)
         }
     }
