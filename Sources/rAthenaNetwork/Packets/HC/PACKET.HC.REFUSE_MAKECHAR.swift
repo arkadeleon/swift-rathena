@@ -22,7 +22,7 @@ extension PACKET.HC {
             2 + 1
         }
 
-        public init(version: PacketVersion) {
+        public init(packetVersion: PacketVersion) {
             packetType = .x006e
         }
 

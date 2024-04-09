@@ -23,7 +23,7 @@ extension PACKET.CZ {
             2 + 1 + 16
         }
 
-        public init(version: PacketVersion) {
+        public init(packetVersion: PacketVersion) {
             packetType = .x020c
         }
 

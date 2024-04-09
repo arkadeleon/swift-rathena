@@ -17,14 +17,14 @@ public enum BinaryDecodingError: Error {
 
 public class BinaryDecoder {
     internal var data: Data
-    internal let packetVersion: PacketVersion
+    internal let userInfo: [CodingUserInfoKey : Any]
 
-    internal init(data: Data, packetVersion: PacketVersion) {
+    internal init(data: Data, userInfo: [CodingUserInfoKey : Any] = [:]) {
         self.data = data
-        self.packetVersion = packetVersion
+        self.userInfo = userInfo
     }
 
-    func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T {
+    public func decode<T: FixedWidthInteger>(_ type: T.Type) throws -> T {
         let length = type.bitWidth / 8
         let data = self.data.prefix(length)
         guard data.count == length else {
@@ -39,7 +39,7 @@ public class BinaryDecoder {
         return values[0]
     }
 
-    func decode(_ type: [UInt8].Type, length: Int) throws -> [UInt8] {
+    public func decode(_ type: [UInt8].Type, length: Int) throws -> [UInt8] {
         let data = self.data.prefix(length)
         guard data.count == length else {
             throw BinaryDecodingError.dataCorrupted
@@ -51,7 +51,7 @@ public class BinaryDecoder {
         return bytes
     }
 
-    func decode(_ type: String.Type, length: Int) throws -> String {
+    public func decode(_ type: String.Type, length: Int) throws -> String {
         let data = self.data.prefix(length)
         guard data.count == length else {
             throw BinaryDecodingError.dataCorrupted
@@ -65,12 +65,12 @@ public class BinaryDecoder {
         return string
     }
 
-    func decode<T: BinaryDecodable>(_ type: T.Type) throws -> T {
+    public func decode<T: BinaryDecodable>(_ type: T.Type) throws -> T {
         let value = try type.init(from: self)
         return value
     }
 
-    func decode<T: BinaryDecodable>(_ type: T.Type, length: Int) throws -> T {
+    public func decode<T: BinaryDecodable>(_ type: T.Type, length: Int) throws -> T {
         let data = self.data.prefix(length)
         guard data.count == length else {
             throw BinaryDecodingError.dataCorrupted
@@ -78,7 +78,7 @@ public class BinaryDecoder {
 
         self.data.removeFirst(length)
 
-        let decoder = BinaryDecoder(data: data, packetVersion: packetVersion)
+        let decoder = BinaryDecoder(data: data, userInfo: userInfo)
         let value = try type.init(from: decoder)
         return value
     }

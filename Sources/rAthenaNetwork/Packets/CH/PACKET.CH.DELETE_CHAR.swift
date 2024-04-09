@@ -29,8 +29,8 @@ extension PACKET.CH {
             }
         }
 
-        public init(version: PacketVersion) {
-            if version.number <= 20100803 {
+        public init(packetVersion: PacketVersion) {
+            if packetVersion.number <= 20100803 {
                 packetType = .x0068
             } else {
                 packetType = .x01fb

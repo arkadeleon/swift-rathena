@@ -23,13 +23,13 @@ extension PACKET.HC {
             0
         }
 
-        public init(version: PacketVersion) {
-            if version.mainNumber >= 20201007 || version.reNumber >= 20211103 {
+        public init(packetVersion: PacketVersion) {
+            if packetVersion.mainNumber >= 20201007 || packetVersion.reNumber >= 20211103 {
                 packetType = .x0b6f
             } else {
                 packetType = .x006d
             }
-            charInfo = CharInfo(packetVersion: version)
+            charInfo = CharInfo(packetVersion: packetVersion)
         }
 
         public init(from decoder: BinaryDecoder) throws {

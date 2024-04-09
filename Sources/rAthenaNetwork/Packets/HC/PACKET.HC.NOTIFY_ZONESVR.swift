@@ -30,8 +30,8 @@ extension PACKET.HC {
             }
         }
 
-        public init(version: PacketVersion) {
-            if version.number < 20170315 {
+        public init(packetVersion: PacketVersion) {
+            if packetVersion.number < 20170315 {
                 packetType = .x0071
             } else {
                 packetType = .x0ac5

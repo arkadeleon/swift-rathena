@@ -26,7 +26,7 @@ extension PACKET.CH {
             2 + 4 + 4 + 4 + 2 + 1
         }
 
-        public init(version: PacketVersion) {
+        public init(packetVersion: PacketVersion) {
             packetType = .x0065
         }
 

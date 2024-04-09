@@ -10,6 +10,14 @@ extension PACKET.AC {
         public enum PacketType: UInt16, PacketTypeProtocol {
             case x0069 = 0x0069
             case x0ac4 = 0x0ac4
+
+            public init(packetVersion: PacketVersion) {
+                if packetVersion.number < 20170315 {
+                    self = .x0069
+                } else {
+                    self = .x0ac4
+                }
+            }
         }
 
         public let packetType: PacketType
@@ -30,12 +38,8 @@ extension PACKET.AC {
             2 + 2 + 4 + 4 + 4 + 4 + 26 + 1 + ServerInfo.size(for: packetType) * UInt16(serverList.count)
         }
 
-        public init(version: PacketVersion) {
-            if version.number < 20170315 {
-                packetType = .x0069
-            } else {
-                packetType = .x0ac4
-            }
+        public init(packetVersion: PacketVersion) {
+            packetType = PacketType(packetVersion: packetVersion)
         }
 
         public init(from decoder: BinaryDecoder) throws {
@@ -85,6 +89,7 @@ extension PACKET.AC {
 
 extension PACKET.AC.ACCEPT_LOGIN {
     public struct ServerInfo: BinaryDecodable, BinaryEncodable {
+        public let packetType: PacketType
         public var ip: UInt32 = 0
         public var port: UInt16 = 0
         public var name = ""
@@ -99,8 +104,14 @@ extension PACKET.AC.ACCEPT_LOGIN {
             }
         }
 
+        public init(packetType: PacketType) {
+            self.packetType = packetType
+        }
+
         public init(from decoder: BinaryDecoder) throws {
-            let version = decoder.packetVersion
+            let packetVersion = decoder.userInfo[.packetVersionKey] as! PacketVersion
+
+            packetType = PacketType(packetVersion: packetVersion)
 
             ip = try decoder.decode(UInt32.self)
             port = try decoder.decode(UInt16.self)
@@ -109,14 +120,12 @@ extension PACKET.AC.ACCEPT_LOGIN {
             state = try decoder.decode(UInt16.self)
             property = try decoder.decode(UInt16.self)
 
-            if version.number >= 20170315 {
+            if packetType == .x0ac4 {
                 _ = try decoder.decode([UInt8].self, length: 128)
             }
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            let version = encoder.packetVersion
-
             try encoder.encode(ip)
             try encoder.encode(port)
             try encoder.encode(name, length: 20)
@@ -124,7 +133,7 @@ extension PACKET.AC.ACCEPT_LOGIN {
             try encoder.encode(state)
             try encoder.encode(property)
 
-            if version.number >= 20170315 {
+            if packetType == .x0ac4 {
                 try encoder.encode([UInt8](repeating: 0, count: 128))
             }
         }

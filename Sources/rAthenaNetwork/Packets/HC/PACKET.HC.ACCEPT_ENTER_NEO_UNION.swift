@@ -11,6 +11,7 @@ extension PACKET.HC {
             case x006b = 0x006b
         }
 
+        public let packetVersion: PacketVersion
         public let packetType: PacketType
         public var totalSlotNum: UInt8 = 0
         public var premiumStartSlot: UInt8 = 0
@@ -25,25 +26,26 @@ extension PACKET.HC {
             0
         }
 
-        public init(version: PacketVersion) {
+        public init(packetVersion: PacketVersion) {
+            self.packetVersion = packetVersion
             packetType = .x006b
         }
 
         public init(from decoder: BinaryDecoder) throws {
-            let version = decoder.packetVersion
+            packetVersion = decoder.userInfo[.packetVersionKey] as! PacketVersion
 
             packetType = try decoder.decode(PacketType.self)
 
             let packetLength = try decoder.decode(UInt16.self)
 
             let charCount: UInt16
-            if version.number >= 20100413 {
-                charCount = (packetLength - 27) / CharInfo.size(for: version)
+            if packetVersion.number >= 20100413 {
+                charCount = (packetLength - 27) / CharInfo.size(for: packetVersion)
             } else {
-                charCount = (packetLength - 24) / CharInfo.size(for: version)
+                charCount = (packetLength - 24) / CharInfo.size(for: packetVersion)
             }
 
-            if version.number >= 20100413 {
+            if packetVersion.number >= 20100413 {
                 totalSlotNum = try decoder.decode(UInt8.self)
                 premiumStartSlot = try decoder.decode(UInt8.self)
                 premiumEndSlot = try decoder.decode(UInt8.self)
@@ -58,11 +60,9 @@ extension PACKET.HC {
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
-            let version = encoder.packetVersion
-
             try encoder.encode(packetLength)
 
-            if version.number >= 20100413 {
+            if packetVersion.number >= 20100413 {
                 try encoder.encode(totalSlotNum)
                 try encoder.encode(premiumStartSlot)
                 try encoder.encode(premiumEndSlot)

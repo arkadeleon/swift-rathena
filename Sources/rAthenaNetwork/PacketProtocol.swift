@@ -14,7 +14,7 @@ public protocol PacketProtocol: BinaryDecodable, BinaryEncodable {
 
     var packetLength: UInt16 { get }
 
-    init(version: PacketVersion)
+    init(packetVersion: PacketVersion)
 }
 
 public protocol PacketTypeProtocol: BinaryDecodable, BinaryEncodable {

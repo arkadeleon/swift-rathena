@@ -22,7 +22,7 @@ extension PACKET.CZ {
             2 + 4
         }
 
-        public init(version: PacketVersion) {
+        public init(packetVersion: PacketVersion) {
             packetType = .x0187
         }
 

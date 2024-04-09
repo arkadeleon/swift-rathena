@@ -53,9 +53,9 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
     public var charNameChangeCount: UInt32 = 0
     public var sex: UInt8 = 0
 
-    public static func size(for version: PacketVersion) -> UInt16 {
-        let encoder = BinaryEncoder(packetVersion: version)
-        try? encoder.encode(CharInfo(packetVersion: version))
+    public static func size(for packetVersion: PacketVersion) -> UInt16 {
+        let encoder = BinaryEncoder()
+        try? encoder.encode(CharInfo(packetVersion: packetVersion))
         let size = UInt16(encoder.data.count)
         return size
     }
@@ -65,7 +65,7 @@ public struct CharInfo: BinaryDecodable, BinaryEncodable {
     }
 
     public init(from decoder: BinaryDecoder) throws {
-        packetVersion = decoder.packetVersion
+        packetVersion = decoder.userInfo[.packetVersionKey] as! PacketVersion
 
         gid = try decoder.decode(UInt32.self)
 
