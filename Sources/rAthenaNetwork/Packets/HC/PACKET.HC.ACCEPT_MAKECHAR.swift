@@ -12,6 +12,7 @@ extension PACKET.HC {
             case x0b6f = 0x0b6f
         }
 
+        public let packetVersion: PacketVersion
         public let packetType: PacketType
         public var charInfo: CharInfo
 
@@ -20,10 +21,11 @@ extension PACKET.HC {
         }
 
         public var packetLength: UInt16 {
-            0
+            2 + CharInfo.size(for: packetVersion)
         }
 
         public init(packetVersion: PacketVersion) {
+            self.packetVersion = packetVersion
             if packetVersion.mainNumber >= 20201007 || packetVersion.reNumber >= 20211103 {
                 packetType = .x0b6f
             } else {
@@ -33,6 +35,7 @@ extension PACKET.HC {
         }
 
         public init(from decoder: BinaryDecoder) throws {
+            packetVersion = decoder.userInfo[.packetVersionKey] as! PacketVersion
             packetType = try decoder.decode(PacketType.self)
             charInfo = try decoder.decode(CharInfo.self)
         }

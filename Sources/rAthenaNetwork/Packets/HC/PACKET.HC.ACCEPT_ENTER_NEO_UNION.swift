@@ -23,7 +23,13 @@ extension PACKET.HC {
         }
 
         public var packetLength: UInt16 {
-            0
+            var packetLength: UInt16 = 2 + 2
+            if packetVersion.number >= 20100413 {
+                packetLength += 1 + 1 + 1
+            }
+            packetLength += 20
+            packetLength += CharInfo.size(for: packetVersion) * UInt16(charList.count)
+            return packetLength
         }
 
         public init(packetVersion: PacketVersion) {
@@ -60,6 +66,7 @@ extension PACKET.HC {
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
+            try encoder.encode(packetType)
             try encoder.encode(packetLength)
 
             if packetVersion.number >= 20100413 {
