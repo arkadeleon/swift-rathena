@@ -22,10 +22,6 @@ let package = Package(
             targets: ["rAthenaDatabase"]
         ),
         .library(
-            name: "rAthenaNetwork",
-            targets: ["rAthenaNetwork"]
-        ),
-        .library(
             name: "rAthenaLogin",
             type: .dynamic,
             targets: ["rAthenaLogin"]
@@ -93,9 +89,6 @@ let package = Package(
                 .interoperabilityMode(.Cxx),
                 .enableExperimentalFeature("StrictConcurrency"),
             ]
-        ),
-        .target(
-            name: "rAthenaNetwork"
         ),
         .target(
             name: "rAthenaLogin",
