@@ -6,8 +6,8 @@
 //
 
 import XCTest
-@testable import rAthenaResource
 @testable import rAthenaLogin
+@testable import rAthenaResource
 
 final class LoginServerTests: XCTestCase {
     override func setUp() async throws {

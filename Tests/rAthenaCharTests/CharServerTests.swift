@@ -6,8 +6,8 @@
 //
 
 import XCTest
-@testable import rAthenaResource
 @testable import rAthenaChar
+@testable import rAthenaResource
 
 final class CharServerTests: XCTestCase {
     override func setUp() async throws {

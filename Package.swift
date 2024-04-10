@@ -14,14 +14,6 @@ let package = Package(
             targets: ["rAthenaCommon"]
         ),
         .library(
-            name: "rAthenaResource",
-            targets: ["rAthenaResource"]
-        ),
-        .library(
-            name: "rAthenaDatabase",
-            targets: ["rAthenaDatabase"]
-        ),
-        .library(
             name: "rAthenaLogin",
             type: .dynamic,
             targets: ["rAthenaLogin"]
@@ -41,6 +33,14 @@ let package = Package(
             type: .dynamic,
             targets: ["rAthenaWeb"]
         ),
+        .library(
+            name: "rAthenaResource",
+            targets: ["rAthenaResource"]
+        ),
+        .library(
+            name: "rAthenaRyml",
+            targets: ["rAthenaRyml"]
+        ),
     ],
     targets: [
         .target(
@@ -57,37 +57,6 @@ let package = Package(
             ],
             cxxSettings: [
                 .headerSearchPath(""),
-            ]
-        ),
-        .target(
-            name: "rAthenaResource",
-            path: ".",
-            exclude: [
-                "3rdparty",
-                "doc",
-                "src",
-                "tools",
-            ],
-            sources: [
-                "Sources/rAthenaResource",
-            ],
-            resources: [
-                .copy("conf"),
-                .copy("db"),
-                .copy("npc"),
-                .copy("ragnarok.sqlite3"),
-            ]
-        ),
-        .target(
-            name: "rAthenaDatabase",
-            dependencies: [
-                "ryml",
-                "rAthenaCommon",
-                "rAthenaResource",
-            ],
-            swiftSettings: [
-                .interoperabilityMode(.Cxx),
-                .enableExperimentalFeature("StrictConcurrency"),
             ]
         ),
         .target(
@@ -178,6 +147,34 @@ let package = Package(
             ]
         ),
         .target(
+            name: "rAthenaResource",
+            path: ".",
+            exclude: [
+                "3rdparty",
+                "doc",
+                "src",
+                "tools",
+            ],
+            sources: [
+                "Sources/rAthenaResource",
+            ],
+            resources: [
+                .copy("conf"),
+                .copy("db"),
+                .copy("npc"),
+                .copy("ragnarok.sqlite3"),
+            ]
+        ),
+        .target(
+            name: "rAthenaRyml",
+            dependencies: [
+                "ryml",
+            ],
+            swiftSettings: [
+                .interoperabilityMode(.Cxx),
+            ]
+        ),
+        .target(
             name: "httplib",
             path: "3rdparty/httplib",
             publicHeadersPath: ""
@@ -223,40 +220,31 @@ let package = Package(
             )
         ),
         .testTarget(
-            name: "rAthenaDatabaseTests",
-            dependencies: [
-                "rAthenaDatabase",
-            ],
-            swiftSettings: [
-                .interoperabilityMode(.Cxx),
-            ]
-        ),
-        .testTarget(
             name: "rAthenaLoginTests",
             dependencies: [
-                "rAthenaResource",
                 "rAthenaLogin",
+                "rAthenaResource",
             ]
         ),
         .testTarget(
             name: "rAthenaCharTests",
             dependencies: [
-                "rAthenaResource",
                 "rAthenaChar",
+                "rAthenaResource",
             ]
         ),
         .testTarget(
             name: "rAthenaMapTests",
             dependencies: [
-                "rAthenaResource",
                 "rAthenaMap",
+                "rAthenaResource",
             ]
         ),
         .testTarget(
             name: "rAthenaWebTests",
             dependencies: [
-                "rAthenaResource",
                 "rAthenaWeb",
+                "rAthenaResource",
             ]
         ),
     ],

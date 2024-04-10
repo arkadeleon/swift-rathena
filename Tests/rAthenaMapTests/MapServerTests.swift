@@ -6,8 +6,8 @@
 //
 
 import XCTest
-@testable import rAthenaResource
 @testable import rAthenaMap
+@testable import rAthenaResource
 
 final class MapServerTests: XCTestCase {
     override func setUp() async throws {

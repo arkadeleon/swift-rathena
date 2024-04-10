@@ -13,7 +13,10 @@ enum YamlError: Error {
 
 /// `Codable`-style `Decoder` that can be used to decode a `Decodable` type from a given `String` and optional
 /// user info mapping. Similar to `Foundation.JSONDecoder`.
-class YAMLDecoder {
+public class YAMLDecoder {
+
+    public init() {
+    }
 
     /// Decode a `Decodable` type from a given `Node` and optional user info mapping.
     ///

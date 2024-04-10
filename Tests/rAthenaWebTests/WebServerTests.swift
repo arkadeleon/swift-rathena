@@ -6,8 +6,8 @@
 //
 
 import XCTest
-@testable import rAthenaResource
 @testable import rAthenaWeb
+@testable import rAthenaResource
 
 final class WebServerTests: XCTestCase {
     override func setUp() async throws {
