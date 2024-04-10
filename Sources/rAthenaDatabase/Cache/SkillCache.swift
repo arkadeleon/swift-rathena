@@ -10,13 +10,13 @@ import rAthenaCommon
 import rAthenaResource
 
 actor SkillCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var skills: [Skill] = []
     private(set) var skillsByIDs: [Int : Skill] = [:]
     private(set) var skillsByAegisNames: [String : Skill] = [:]
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

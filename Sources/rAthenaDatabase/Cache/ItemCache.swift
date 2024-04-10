@@ -10,7 +10,7 @@ import rAthenaCommon
 import rAthenaResource
 
 actor ItemCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var usableItems: [Item] = []
     private(set) var equipItems: [Item] = []
@@ -20,7 +20,7 @@ actor ItemCache {
     private(set) var itemsByIDs: [Int : Item] = [:]
     private(set) var itemsByAegisNames: [String : Item] = [:]
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

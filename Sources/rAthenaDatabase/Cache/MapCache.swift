@@ -10,12 +10,12 @@ import rAthenaCommon
 import rAthenaResource
 
 actor MapCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var maps: [Map] = []
     private(set) var mapsByNames: [String : Map] = [:]
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

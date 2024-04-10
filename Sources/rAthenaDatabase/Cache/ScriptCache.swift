@@ -10,7 +10,7 @@ import rAthenaCommon
 import rAthenaResource
 
 actor ScriptCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var mapFlags: [MapFlag] = []
     private(set) var monsterSpawns: [MonsterSpawn] = []
@@ -23,7 +23,7 @@ actor ScriptCache {
 
     private var isRestored = false
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

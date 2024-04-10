@@ -10,12 +10,12 @@ import rAthenaCommon
 import rAthenaResource
 
 actor SkillTreeCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var skillTrees: [SkillTree] = []
     private(set) var skillTreesByJobIDs: [Int : SkillTree] = [:]
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

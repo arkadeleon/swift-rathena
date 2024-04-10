@@ -47,7 +47,7 @@ extension ItemClass: Identifiable {
     public var id: Int {
         switch self {
         case .all:
-            switch CurrentMode {
+            switch CurrentServerMode {
             case .prerenewal:
                 RA_ITEMJ_NORMAL | RA_ITEMJ_UPPER | RA_ITEMJ_BABY
             case .renewal:

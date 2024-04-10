@@ -1,5 +1,5 @@
 //
-//  Mode+DBPath.swift
+//  ServerMode+DBPath.swift
 //  rAthena
 //
 //  Created by Leon Li on 2024/4/8.
@@ -7,7 +7,7 @@
 
 import rAthenaCommon
 
-extension Mode {
+extension ServerMode {
     var dbPath: String {
         switch self {
         case .prerenewal: "pre-re"

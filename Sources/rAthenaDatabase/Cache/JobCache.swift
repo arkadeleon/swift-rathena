@@ -10,11 +10,11 @@ import rAthenaCommon
 import rAthenaResource
 
 actor JobCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var jobs: [JobStats] = []
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

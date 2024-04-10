@@ -15,7 +15,7 @@ public actor Database {
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 
-    public nonisolated let mode: Mode
+    public nonisolated let mode: ServerMode
 
     private let itemCache: ItemCache
     private let monsterCache: MonsterCache
@@ -25,7 +25,7 @@ public actor Database {
     private let mapCache: MapCache
     private var scriptCache: ScriptCache
 
-    private init(mode: Mode) {
+    private init(mode: ServerMode) {
         self.mode = mode
 
         itemCache = ItemCache(mode: mode)

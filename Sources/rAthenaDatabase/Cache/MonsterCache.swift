@@ -10,13 +10,13 @@ import rAthenaCommon
 import rAthenaResource
 
 actor MonsterCache {
-    let mode: Mode
+    let mode: ServerMode
 
     private(set) var monsters: [Monster] = []
     private(set) var monstersByIDs: [Int : Monster] = [:]
     private(set) var monstersByAegisNames: [String : Monster] = [:]
 
-    init(mode: Mode) {
+    init(mode: ServerMode) {
         self.mode = mode
     }
 

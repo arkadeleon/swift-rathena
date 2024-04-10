@@ -12,7 +12,7 @@ extension PACKET.CA {
         }
 
         public let packetType: PacketType
-        public var id = ""
+        public var name = ""
 
         public var packetName: String {
             "PACKET_CA_CONNECT_INFO_CHANGED"
@@ -28,12 +28,12 @@ extension PACKET.CA {
 
         public init(from decoder: BinaryDecoder) throws {
             packetType = try decoder.decode(PacketType.self)
-            id = try decoder.decode(String.self, length: 24)
+            name = try decoder.decode(String.self, length: 24)
         }
 
         public func encode(to encoder: BinaryEncoder) throws {
             try encoder.encode(packetType)
-            try encoder.encode(id, length: 24)
+            try encoder.encode(name, length: 24)
         }
     }
 }
