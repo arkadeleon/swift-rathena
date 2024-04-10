@@ -11,11 +11,11 @@ public enum DatabaseError: Error {
     case recordNotFound
 }
 
-public actor Database {
+public final class Database: Sendable {
     public static let prerenewal = Database(mode: .prerenewal)
     public static let renewal = Database(mode: .renewal)
 
-    public nonisolated let mode: ServerMode
+    public let mode: ServerMode
 
     private let itemCache: ItemCache
     private let monsterCache: MonsterCache
@@ -23,7 +23,7 @@ public actor Database {
     private let skillCache: SkillCache
     private let skillTreeCache: SkillTreeCache
     private let mapCache: MapCache
-    private var scriptCache: ScriptCache
+    private let scriptCache: ScriptCache
 
     private init(mode: ServerMode) {
         self.mode = mode
