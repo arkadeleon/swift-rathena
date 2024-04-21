@@ -11,4 +11,7 @@
 
 @property (nonatomic, readwrite) ServerStatus status;
 
+- (void)start;
+- (void)stop;
+
 @end

@@ -23,9 +23,43 @@
 }
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (self.status != ServerStatusNotStarted && self.status != ServerStatusStopped) {
+            completionHandler(NO);
+            return;
+        }
+
+        self.status = ServerStatusStarting;
+
+        [self start];
+
+        self.status = ServerStatusRunning;
+
+        completionHandler(YES);
+    });
 }
 
 - (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (self.status != ServerStatusRunning) {
+            completionHandler(NO);
+            return;
+        }
+
+        self.status = ServerStatusStopping;
+
+        [self stop];
+
+        self.status = ServerStatusStopped;
+
+        completionHandler(YES);
+    });
+}
+
+- (void)start {
+}
+
+- (void)stop {
 }
 
 @end

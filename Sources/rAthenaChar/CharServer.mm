@@ -47,87 +47,39 @@ int write_function(void *cookie, const char *buf, int n) {
     return @"Char Server";
 }
 
-- (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.thread == nil) {
-            self.thread = [[NSThread alloc] initWithBlock:^{
-                FILE *output = fwopen(0, write_function);
-                STDOUT = output;
-                STDERR = output;
+- (void)start {
+    self.thread = [[NSThread alloc] initWithBlock:^{
+        FILE *output = fwopen(0, write_function);
+        STDOUT = output;
+        STDERR = output;
 
-                char arg0[] = "char-server";
-                char *args[1] = {arg0};
-                main(1, args);
-            }];
-        }
+        char arg0[] = "char-server";
+        char *args[1] = {arg0};
+        main(1, args);
+    }];
+    [self.thread start];
 
-        if (self.thread.isExecuting) {
-            completionHandler(NO);
-            return;
-        }
+    // Wait until global_core is not null.
+    while (global_core == NULL) {
+    }
 
-        [self.thread start];
-
-        while (global_core == NULL) {
-        }
-
-        global_core->set_status_changed([&self](rathena::server_core::e_core_status status) {
-            switch (status) {
-                case rathena::server_core::e_core_status::NOT_STARTED:
-                    self.status = ServerStatusNotStarted;
-                    break;
-                case rathena::server_core::e_core_status::CORE_INITIALIZING:
-                case rathena::server_core::e_core_status::CORE_INITIALIZED:
-                case rathena::server_core::e_core_status::SERVER_INITIALIZING:
-                case rathena::server_core::e_core_status::SERVER_INITIALIZED:
-                    self.status = ServerStatusStarting;
-                    break;
-                case rathena::server_core::e_core_status::RUNNING:
-                    self.status = ServerStatusRunning;
-                    break;
-                case rathena::server_core::e_core_status::STOPPING:
-                case rathena::server_core::e_core_status::SERVER_FINALIZING:
-                case rathena::server_core::e_core_status::SERVER_FINALIZED:
-                case rathena::server_core::e_core_status::CORE_FINALIZING:
-                case rathena::server_core::e_core_status::CORE_FINALIZED:
-                    self.status = ServerStatusStopping;
-                    break;
-                case rathena::server_core::e_core_status::STOPPED:
-                    self.status = ServerStatusStopped;
-                    break;
-            }
-        });
-
-        while (self.status != ServerStatusRunning) {
-        }
-
-        completionHandler(YES);
-    });
+    // Wait until global_core status is running.
+    while (global_core->get_status() != rathena::server_core::e_core_status::RUNNING) {
+    }
 }
 
-- (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (self.thread == nil) {
-            completionHandler(NO);
-            return;
-        }
+- (void)stop {
+    global_core->signal_shutdown();
 
-        if (!self.thread.isExecuting) {
-            completionHandler(NO);
-            return;
-        }
+    tfl_root = NULL;
 
-        global_core->signal_shutdown();
+    // Wait until global_core status is stopped.
+    while (global_core->get_status() == rathena::server_core::e_core_status::STOPPED) {
+    }
 
-        tfl_root = NULL;
+    global_core = NULL;
 
-        self.thread = nil;
-
-        while (self.status != ServerStatusStopped) {
-        }
-
-        completionHandler(YES);
-    });
+    self.thread = nil;
 }
 
 @end
