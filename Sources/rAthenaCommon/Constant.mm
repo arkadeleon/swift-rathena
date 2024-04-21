@@ -1074,7 +1074,6 @@ const NSInteger RA_SC_L_LIFEPOTION = SC_L_LIFEPOTION;
 const NSInteger RA_SC_JEXPBOOST = SC_JEXPBOOST;
 const NSInteger RA_SC_HELLPOWER = SC_HELLPOWER;
 const NSInteger RA_SC_INVINCIBLE = SC_INVINCIBLE;
-const NSInteger RA_SC_INVINCIBLEOFF = SC_INVINCIBLEOFF;
 const NSInteger RA_SC_MANU_ATK = SC_MANU_ATK;
 const NSInteger RA_SC_MANU_DEF = SC_MANU_DEF;
 const NSInteger RA_SC_SPL_ATK = SC_SPL_ATK;
@@ -1718,7 +1717,11 @@ const NSInteger RA_SC_GRENADE_FRAGMENT_5 = SC_GRENADE_FRAGMENT_5;
 const NSInteger RA_SC_GRENADE_FRAGMENT_6 = SC_GRENADE_FRAGMENT_6;
 const NSInteger RA_SC_AUTO_FIRING_LAUNCHER = SC_AUTO_FIRING_LAUNCHER;
 const NSInteger RA_SC_HIDDEN_CARD = SC_HIDDEN_CARD;
+const NSInteger RA_SC_PERIOD_RECEIVEITEM_2ND = SC_PERIOD_RECEIVEITEM_2ND;
+const NSInteger RA_SC_PERIOD_PLUSEXP_2ND = SC_PERIOD_PLUSEXP_2ND;
 const NSInteger RA_SC_EXTREMITYFIST2 = SC_EXTREMITYFIST2;
+const NSInteger RA_SC_POWERUP = SC_POWERUP;
+const NSInteger RA_SC_AGIUP = SC_AGIUP;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -9545,6 +9548,7 @@ const NSInteger RA_UNT_GD_LEADERSHIP = UNT_GD_LEADERSHIP;
 const NSInteger RA_UNT_GD_GLORYWOUNDS = UNT_GD_GLORYWOUNDS;
 const NSInteger RA_UNT_GD_SOULCOLD = UNT_GD_SOULCOLD;
 const NSInteger RA_UNT_GD_HAWKEYES = UNT_GD_HAWKEYES;
+const NSInteger RA_UNT_CANE_OF_EVIL_EYE = UNT_CANE_OF_EVIL_EYE;
 const NSInteger RA_BG_INFO_ID = BG_INFO_ID;
 const NSInteger RA_BG_INFO_REQUIRED_PLAYERS = BG_INFO_REQUIRED_PLAYERS;
 const NSInteger RA_BG_INFO_MAX_PLAYERS = BG_INFO_MAX_PLAYERS;
@@ -10913,7 +10917,6 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"SC_JEXPBOOST": [Constant constantWithName:@"SC_JEXPBOOST" value:SC_JEXPBOOST],
             @"SC_HELLPOWER": [Constant constantWithName:@"SC_HELLPOWER" value:SC_HELLPOWER],
             @"SC_INVINCIBLE": [Constant constantWithName:@"SC_INVINCIBLE" value:SC_INVINCIBLE],
-            @"SC_INVINCIBLEOFF": [Constant constantWithName:@"SC_INVINCIBLEOFF" value:SC_INVINCIBLEOFF],
             @"SC_MANU_ATK": [Constant constantWithName:@"SC_MANU_ATK" value:SC_MANU_ATK],
             @"SC_MANU_DEF": [Constant constantWithName:@"SC_MANU_DEF" value:SC_MANU_DEF],
             @"SC_SPL_ATK": [Constant constantWithName:@"SC_SPL_ATK" value:SC_SPL_ATK],
@@ -11564,7 +11567,11 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"SC_GRENADE_FRAGMENT_6": [Constant constantWithName:@"SC_GRENADE_FRAGMENT_6" value:SC_GRENADE_FRAGMENT_6],
             @"SC_AUTO_FIRING_LAUNCHER": [Constant constantWithName:@"SC_AUTO_FIRING_LAUNCHER" value:SC_AUTO_FIRING_LAUNCHER],
             @"SC_HIDDEN_CARD": [Constant constantWithName:@"SC_HIDDEN_CARD" value:SC_HIDDEN_CARD],
+            @"SC_PERIOD_RECEIVEITEM_2ND": [Constant constantWithName:@"SC_PERIOD_RECEIVEITEM_2ND" value:SC_PERIOD_RECEIVEITEM_2ND],
+            @"SC_PERIOD_PLUSEXP_2ND": [Constant constantWithName:@"SC_PERIOD_PLUSEXP_2ND" value:SC_PERIOD_PLUSEXP_2ND],
             @"SC_EXTREMITYFIST2": [Constant constantWithName:@"SC_EXTREMITYFIST2" value:SC_EXTREMITYFIST2],
+            @"SC_POWERUP": [Constant constantWithName:@"SC_POWERUP" value:SC_POWERUP],
+            @"SC_AGIUP": [Constant constantWithName:@"SC_AGIUP" value:SC_AGIUP],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -19399,6 +19406,7 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"UNT_GD_GLORYWOUNDS": [Constant constantWithName:@"UNT_GD_GLORYWOUNDS" value:UNT_GD_GLORYWOUNDS],
             @"UNT_GD_SOULCOLD": [Constant constantWithName:@"UNT_GD_SOULCOLD" value:UNT_GD_SOULCOLD],
             @"UNT_GD_HAWKEYES": [Constant constantWithName:@"UNT_GD_HAWKEYES" value:UNT_GD_HAWKEYES],
+            @"UNT_CANE_OF_EVIL_EYE": [Constant constantWithName:@"UNT_CANE_OF_EVIL_EYE" value:UNT_CANE_OF_EVIL_EYE],
             @"BG_INFO_ID": [Constant constantWithName:@"BG_INFO_ID" value:BG_INFO_ID],
             @"BG_INFO_REQUIRED_PLAYERS": [Constant constantWithName:@"BG_INFO_REQUIRED_PLAYERS" value:BG_INFO_REQUIRED_PLAYERS],
             @"BG_INFO_MAX_PLAYERS": [Constant constantWithName:@"BG_INFO_MAX_PLAYERS" value:BG_INFO_MAX_PLAYERS],
