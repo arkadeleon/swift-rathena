@@ -7,8 +7,9 @@
 #include "winapi.hpp"
 #endif
 
+#include <cstdlib>// strtoul
+
 #include <sqlite3.h>
-#include <stdlib.h>// strtoul
 
 #include <CommonCrypto/CommonDigest.h>
 #include <CoreFoundation/CoreFoundation.h>
