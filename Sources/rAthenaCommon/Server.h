@@ -17,14 +17,13 @@ typedef NS_ENUM(NSInteger, ServerStatus) {
     ServerStatusStopped,
 };
 
-typedef void (^ServerOutputHandler)(NSData *data);
+extern NSNotificationName const ServerDidOutputDataNotification;
+extern NSString * const ServerOutputDataKey;
 
 @interface Server : NSObject
 
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly) ServerStatus status;
-
-@property (nonatomic, copy, nullable) ServerOutputHandler outputHandler;
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);
 - (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler NS_SWIFT_ASYNC(1);

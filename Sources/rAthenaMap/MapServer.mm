@@ -15,14 +15,11 @@ extern int main (int argc, char **argv);
 extern void *tfl_root;
 
 int write_function(void *cookie, const char *buf, int n) {
-    MapServer *server = MapServer.sharedServer;
+    NSDictionary *userInfo = @{
+        ServerOutputDataKey: [NSData dataWithBytes:buf length:n]
+    };
+    [[NSNotificationCenter defaultCenter] postNotificationName:ServerDidOutputDataNotification object:MapServer.sharedServer userInfo:userInfo];
 
-    if (server.outputHandler == nil) {
-        return 0;
-    }
-
-    NSData *data = [NSData dataWithBytes:buf length:n];
-    server.outputHandler(data);
     return n;
 }
 

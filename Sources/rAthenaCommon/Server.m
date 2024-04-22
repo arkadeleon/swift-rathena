@@ -8,6 +8,9 @@
 #import "Server.h"
 #import "ServerPrivate.h"
 
+NSNotificationName const ServerDidOutputDataNotification = @"ServerDidOutputDataNotification";
+NSString * const ServerOutputDataKey = @"ServerOutputDataKey";
+
 @implementation Server
 
 - (instancetype)init {
