@@ -58,10 +58,12 @@ int write_function(void *cookie, const char *buf, int n) {
 
     // Wait until global_core is not null.
     while (global_core == NULL) {
+        usleep(1000);
     }
 
     // Wait until global_core status is running.
     while (global_core->get_status() != rathena::server_core::e_core_status::RUNNING) {
+        usleep(1000);
     }
 }
 
@@ -72,6 +74,7 @@ int write_function(void *cookie, const char *buf, int n) {
 
     // Wait until global_core status is stopped.
     while (global_core->get_status() == rathena::server_core::e_core_status::STOPPED) {
+        usleep(1000);
     }
 
     global_core = NULL;
