@@ -149,8 +149,8 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 {
 	int row_count = 0;
 	int column_count = sqlite3_column_count(stmt);
-	SqlRow* first_row = NULL;
-	SqlRow* last_row = NULL;
+	SqlRow* first_row = nullptr;
+	SqlRow* last_row = nullptr;
 
 	while( sqlite3_step(stmt) == SQLITE_ROW )
 	{
@@ -166,13 +166,13 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 		SqlRow* row;
 		CREATE(row, SqlRow, 1);
 		row->values = values;
-		row->next = NULL;
+		row->next = nullptr;
 
-		if (last_row != NULL) {
+		if (last_row != nullptr) {
 			last_row->next = row;
 		}
 
-		if (first_row == NULL) {
+		if (first_row == nullptr) {
 			first_row = row;
 		}
 
@@ -185,7 +185,7 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 	(*result)->row_count = row_count;
 	(*result)->column_count = column_count;
 	(*result)->rows = first_row;
-	(*result)->current_row = NULL;
+	(*result)->current_row = nullptr;
 	(*result)->eof = false;
 }
 
@@ -193,7 +193,7 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 
 static void Sql_P_FreeResult(SqlResult* result)
 {
-	if( result == NULL )
+	if( result == nullptr )
 		return;
 
 	SqlRow* row = result->rows;
@@ -219,19 +219,19 @@ static void Sql_P_FreeResult(SqlResult* result)
 
 static void Sql_P_FetchRow(SqlResult* result)
 {
-	if( result->current_row == NULL )
+	if( result->current_row == nullptr )
 	{
 		if( result->eof == false )
 		{
 			result->current_row = result->rows;
-			if( result->current_row == NULL )
+			if( result->current_row == nullptr )
 				result->eof = true;
 		}
 	}
 	else
 	{
 		result->current_row = result->current_row->next;
-		if( result->current_row == NULL )
+		if( result->current_row == nullptr )
 			result->eof = true;
 		else
 			result->eof = false;
@@ -247,8 +247,8 @@ Sql* Sql_Malloc(void)
 
 	CREATE(self, Sql, 1);
 	StringBuf_Init(&self->buf);
-	self->db = NULL;
-	self->result = NULL;
+	self->db = nullptr;
+	self->result = nullptr;
 	self->keepalive = INVALID_TIMER;
 	return self;
 }
@@ -277,7 +277,7 @@ static int Sql_P_Keepalive(Sql* self);
  */
 int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* host, uint16 port, const char* db)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	StringBuf_Clear(&self->buf);
@@ -290,10 +290,10 @@ int Sql_Connect(Sql* self, const char* user, const char* passwd, const char* hos
 		return SQL_ERROR;
 	}
 
-	sqlite3_create_function(self->db, "md5", 1, SQLITE_UTF8, NULL, sqlite_md5, NULL, NULL);
-	sqlite3_create_function(self->db, "rand", 0, SQLITE_UTF8, NULL, sqlite_rand, NULL, NULL);
-	sqlite3_create_function(self->db, "sha256", 1, SQLITE_UTF8, NULL, sqlite_sha256, NULL, NULL);
-	sqlite3_create_function(self->db, "uuid", 0, SQLITE_UTF8, NULL, sqlite_uuid, NULL, NULL);
+	sqlite3_create_function(self->db, "md5", 1, SQLITE_UTF8, nullptr, sqlite_md5, nullptr, nullptr);
+	sqlite3_create_function(self->db, "rand", 0, SQLITE_UTF8, nullptr, sqlite_rand, nullptr, nullptr);
+	sqlite3_create_function(self->db, "sha256", 1, SQLITE_UTF8, nullptr, sqlite_sha256, nullptr, nullptr);
+	sqlite3_create_function(self->db, "uuid", 0, SQLITE_UTF8, nullptr, sqlite_uuid, nullptr, nullptr);
 
 	self->keepalive = Sql_P_Keepalive(self);
 	if( self->keepalive == INVALID_TIMER )
@@ -327,7 +327,7 @@ int Sql_GetColumnNames(Sql* self, const char* table, char* out_buf, size_t buf_l
 	size_t len;
 	size_t off = 0;
 
-	if( self == NULL || SQL_ERROR == Sql_Query(self, "EXPLAIN `%s`", table) )
+	if( self == nullptr || SQL_ERROR == Sql_Query(self, "EXPLAIN `%s`", table) )
 		return SQL_ERROR;
 
 	out_buf[off] = '\0';
@@ -441,14 +441,14 @@ int Sql_Query(Sql* self, const char* query, ...)
 /// Executes a query.
 int Sql_QueryV(Sql* self, const char* query, va_list args)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	sqlite3_stmt* stmt = NULL;
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, NULL) != SQLITE_OK )
+	sqlite3_stmt* stmt = nullptr;
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, nullptr) != SQLITE_OK )
 	{
 		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
@@ -464,14 +464,14 @@ int Sql_QueryV(Sql* self, const char* query, va_list args)
 /// Executes a query.
 int Sql_QueryStr(Sql* self, const char* query)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	Sql_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	sqlite3_stmt* stmt = NULL;
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, NULL) != SQLITE_OK )
+	sqlite3_stmt* stmt = nullptr;
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &stmt, nullptr) != SQLITE_OK )
 	{
 		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
@@ -554,7 +554,7 @@ int Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 		}
 		else
 		{// out of range - ignore
-			if( out_buf ) *out_buf = NULL;
+			if( out_buf ) *out_buf = nullptr;
 			if( out_len ) *out_len = 0;
 		}
 		return SQL_SUCCESS;
@@ -570,7 +570,7 @@ void Sql_FreeResult(Sql* self)
 	if( self && self->result )
 	{
 		Sql_P_FreeResult(self->result);
-		self->result = NULL;
+		self->result = nullptr;
 	}
 }
 
@@ -585,8 +585,8 @@ void Sql_Close(Sql* self) {
 /// Shows debug information (last query).
 void Sql_ShowDebug_(Sql* self, const char* debug_file, const unsigned long debug_line)
 {
-	if( self == NULL )
-		ShowDebug("at %s:%lu - self is NULL\n", debug_file, debug_line);
+	if( self == nullptr )
+		ShowDebug("at %s:%lu - self is nullptr\n", debug_file, debug_line);
 	else if( StringBuf_Length(&self->buf) > 0 )
 		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&self->buf));
 	else
@@ -698,10 +698,10 @@ static int Sql_P_BindParam(sqlite3_stmt* stmt, SqlBind* bind)
 		// other
 		case SQLDT_STRING:
 		case SQLDT_ENUM:
-			sqlite3_bind_text(stmt, (int)(idx + 1), (char *)buffer, (int)buffer_len, NULL);
+			sqlite3_bind_text(stmt, (int)(idx + 1), (char *)buffer, (int)buffer_len, nullptr);
 			break;
 		case SQLDT_BLOB:
-			sqlite3_bind_blob(stmt, (int)(idx + 1), buffer, (int)buffer_len, NULL);
+			sqlite3_bind_blob(stmt, (int)(idx + 1), buffer, (int)buffer_len, nullptr);
 			break;
 		default:
 			ShowDebug("Sql_P_BindParam: unsupported buffer type (%d)\n", buffer_type);
@@ -827,15 +827,15 @@ SqlStmt* SqlStmt_Malloc(Sql* sql)
 {
 	SqlStmt* self;
 
-	if( sql == NULL )
-		return NULL;
+	if( sql == nullptr )
+		return nullptr;
 
 	CREATE(self, SqlStmt, 1);
 	StringBuf_Init(&self->buf);
 	self->db = sql->db;
-	self->stmt = NULL;
-	self->params = NULL;
-	self->columns = NULL;
+	self->stmt = nullptr;
+	self->params = nullptr;
+	self->columns = nullptr;
 	self->max_params = 0;
 	self->max_columns = 0;
 	self->bind_params = false;
@@ -864,13 +864,13 @@ int SqlStmt_Prepare(SqlStmt* self, const char* query, ...)
 /// Prepares the statement.
 int SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, nullptr) )
 	{
 		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
@@ -885,13 +885,13 @@ int SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
 /// Prepares the statement.
 int SqlStmt_PrepareStr(SqlStmt* self, const char* query)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, NULL) )
+	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, nullptr) )
 	{
 		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
@@ -917,7 +917,7 @@ size_t SqlStmt_NumParams(SqlStmt* self)
 /// Binds a parameter to a buffer.
 int SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	if( !self->bind_params )
@@ -954,7 +954,7 @@ int SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, v
 /// Executes the prepared statement.
 int SqlStmt_Execute(SqlStmt* self)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	SqlStmt_FreeResult(self);
@@ -993,7 +993,7 @@ size_t SqlStmt_NumColumns(SqlStmt* self)
 /// Binds the result of a column to a buffer.
 int SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len, uint32* out_length, int8* out_is_null)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	if( buffer_type == SQLDT_STRING || buffer_type == SQLDT_ENUM )
@@ -1051,7 +1051,7 @@ uint64 SqlStmt_NumRows(SqlStmt* self)
 /// Fetches the next row.
 int SqlStmt_NextRow(SqlStmt* self)
 {
-	if( self == NULL )
+	if( self == nullptr )
 		return SQL_ERROR;
 
 	if( self->bind_columns && self->result )
@@ -1077,7 +1077,7 @@ void SqlStmt_FreeResult(SqlStmt* self)
 	if( self )
 	{
 		Sql_P_FreeResult(self->result);
-		self->result = NULL;
+		self->result = nullptr;
 	}
 }
 
@@ -1086,8 +1086,8 @@ void SqlStmt_FreeResult(SqlStmt* self)
 /// Shows debug information (with statement).
 void SqlStmt_ShowDebug_(SqlStmt* self, const char* debug_file, const unsigned long debug_line)
 {
-	if( self == NULL )
-		ShowDebug("at %s:%lu -  self is NULL\n", debug_file, debug_line);
+	if( self == nullptr )
+		ShowDebug("at %s:%lu -  self is nullptr\n", debug_file, debug_line);
 	else if( StringBuf_Length(&self->buf) > 0 )
 		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&self->buf));
 	else
@@ -1136,7 +1136,7 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 	FILE* fp;
 
 	fp = fopen(cfgName, "r");
-	if(fp == NULL) {
+	if(fp == nullptr) {
 		if( first ) {
 			ShowFatalError("File not found: %s\n", cfgName);
 			exit(EXIT_FAILURE);
