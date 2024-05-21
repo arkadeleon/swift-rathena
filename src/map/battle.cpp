@@ -1426,11 +1426,9 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 
 	// ATK_DEF Type
 	if ((sce = sc->getSCE(SC_LIGHTNINGWALK)) && !(flag & BF_MAGIC) && flag&BF_LONG && rnd() % 100 < sce->val1) {
-		const int dx[8] = { 0,-1,-1,-1,0,1,1,1 };
-		const int dy[8] = { 1,1,0,-1,-1,-1,0,1 };
 		uint8 dir = map_calc_dir(target, src->x, src->y);
 
-		if (unit_movepos(target, src->x - dx[dir], src->y - dy[dir], 1, 1)) {
+		if (unit_movepos(target, src->x - dirx[dir], src->y - diry[dir], 1, 1)) {
 			clif_blown(target);
 			unit_setdir(target, dir);
 		}
@@ -5901,9 +5899,10 @@ static int battle_calc_attack_skill_ratio(struct Damage* wd, struct block_list *
 			RE_LVL_DMOD(100);
 			break;
 		case SHC_SHADOW_STAB:
-			skillratio += -100 + 550 * skill_lv + 5 * sstatus->pow;
+			skillratio += -100 + 550 * skill_lv;
+			skillratio += 5 * sstatus->pow;
 
-			if( sc && sc->getSCE( SC_CLOAKINGEXCEED ) ){
+			if (wd->miscflag & SKILL_ALTDMG_FLAG) {
 				skillratio += 100 * skill_lv + 2 * sstatus->pow;
 			}
 
@@ -7715,8 +7714,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		nullpo_info(NLP_MARK);
 		return ad;
 	}
-	//Initial Values
-	ad.damage = 0;
+	// Initial Values
+	// Set to 1 because magic damage on plants is 1 per hit; if target is not a plant this gets reinitialized to 0 later
+	ad.damage = 1;
 	ad.div_ = skill_get_num(skill_id,skill_lv);
 	ad.amotion = (skill_get_inf(skill_id)&INF_GROUND_SKILL ? 0 : sstatus->amotion); //Amotion should be 0 for ground skills.
 	ad.dmotion = tstatus->dmotion;
@@ -7797,9 +7797,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	if (!flag.infdef) { //No need to do the math for plants
 		unsigned int skillratio = 100; //Skill dmg modifiers.
-#ifdef RENEWAL
-		ad.damage = 0; //reinitialize..
-#endif
+		//Damage was set to 1 to simulate plant damage; if not plant, need to reinitialize damage with 0
+		ad.damage = 0;
 //MATK_RATE scales the damage. 100 = no change. 50 is halved, 200 is doubled, etc
 #define MATK_RATE(a) { ad.damage = ad.damage * (a) / 100; }
 //Adds dmg%. 100 = +100% (double) damage. 10 = +10% damage
@@ -9111,17 +9110,40 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 #endif
 			break;
 		case NJ_ZENYNAGE:
+			md.damage = skill_get_zeny( skill_id, skill_lv );
+
+			if( md.damage == 0 ){
+				md.damage = 2;
+			}
+
+			md.damage += rnd_value( static_cast<decltype(md.damage)>( 0 ), md.damage );
+
+			// Specific to Boss Class
+			if( status_get_class_( target ) == CLASS_BOSS ){
+				md.damage /= 3;
+			}
+
+			if( tsd != nullptr ){
+				md.damage /= 2;
+			}
+			break;
 		case KO_MUCHANAGE:
-				md.damage = skill_get_zeny(skill_id, skill_lv);
-				if (!md.damage)
-					md.damage = (skill_id == NJ_ZENYNAGE ? 2 : 10);
-				md.damage = (skill_id == NJ_ZENYNAGE ? rnd()%md.damage + md.damage : md.damage * rnd_value(50,100)) / (skill_id == NJ_ZENYNAGE ? 1 : 100);
-				if (sd && skill_id == KO_MUCHANAGE && !pc_checkskill(sd, NJ_TOBIDOUGU))
-					md.damage = md.damage / 2;
-				if (status_get_class_(target) == CLASS_BOSS) // Specific to Boss Class
-					md.damage = md.damage / (skill_id == NJ_ZENYNAGE ? 3 : 2);
-				else if (tsd && skill_id == NJ_ZENYNAGE)
-					md.damage = md.damage / 2;
+			md.damage = skill_get_zeny( skill_id, skill_lv );
+
+			if( md.damage == 0 ){
+				md.damage = 10;
+			}
+
+			md.damage = rnd_value( md.damage / 2, md.damage );
+
+			if( pc_checkskill( sd, NJ_TOBIDOUGU ) == 0 ){
+				md.damage /= 2;
+			}
+
+			// Specific to Boss Class
+			if( status_get_class_( target ) == CLASS_BOSS ){
+				md.damage /= 2;
+			}
 			break;
 #ifdef RENEWAL
 		case NJ_ISSEN:
@@ -9295,7 +9317,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			if (sd) {
 				if (md.damage > sd->status.zeny)
 					md.damage = sd->status.zeny;
-				pc_payzeny(sd,(int)cap_value(md.damage, INT_MIN, INT_MAX),LOG_TYPE_STEAL);
+				pc_payzeny( sd, static_cast<int32>( md.damage ), LOG_TYPE_CONSUME );
 			}
 			break;
 	}
@@ -9840,7 +9862,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (dist <= 0 || (!map_check_dir(dir,t_dir) && dist <= tstatus->rhw.range+1)) {
 			uint16 skill_lv = tsc->getSCE(SC_AUTOCOUNTER)->val1;
 
-			clif_skillcastcancel(target); //Remove the casting bar. [Skotlex]
+			clif_skillcastcancel( *target ); //Remove the casting bar. [Skotlex]
 			clif_damage(src, target, tick, sstatus->amotion, 1, 0, 1, DMG_NORMAL, 0, false); //Display MISS.
 			status_change_end(target, SC_AUTOCOUNTER);
 			skill_attack(BF_WEAPON,target,target,src,KN_AUTOCOUNTER,skill_lv,tick,0);
@@ -10449,6 +10471,22 @@ struct block_list* battle_get_master(struct block_list *src)
 	return prev;
 }
 
+bool battle_get_exception_ai(block_list &src) {
+	mob_data *md = BL_CAST(BL_MOB, &src);
+
+	if (!md)
+		return false;
+
+	switch (md->special_state.ai) {
+		case AI_ABR:
+		case AI_ATTACK:
+		case AI_BIONIC:
+		case AI_ZANZOU:
+			return true;
+	}
+	return false;
+}
+
 /*==========================================
  * Checks the state between two targets
  * (enemy, friend, party, guild, etc)
@@ -10700,7 +10738,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 			if( !md->special_state.ai )
 			{ //Normal mobs
 				if(
-					( target->type == BL_MOB && t_bl->type == BL_PC && ( ((TBL_MOB*)target)->special_state.ai != AI_ZANZOU && ((TBL_MOB*)target)->special_state.ai != AI_ATTACK ) ) ||
+					( target->type == BL_MOB && t_bl->type == BL_PC && !battle_get_exception_ai(*target) ) ||
 					( t_bl->type == BL_MOB && (((TBL_MOB*)t_bl)->special_state.ai == AI_NONE || ((TBL_MOB*)t_bl)->special_state.ai == AI_WAVEMODE ))
 				  )
 					state |= BCT_PARTY; //Normal mobs with no ai or with AI_WAVEMODE are friends.
@@ -11457,6 +11495,8 @@ static const struct _battle_data {
 
 	{ "mob_respawn_time",                   &battle_config.mob_respawn_time,                1000,   1000,   INT_MAX,        },
 	{ "mob_unlock_time",                    &battle_config.mob_unlock_time,                 2000,   0,      INT_MAX,        },
+	{ "map_edge_size",                      &battle_config.map_edge_size,                   15,     1,      40,             },
+	{ "randomize_center_cell",              &battle_config.randomize_center_cell,           1,      0,      1,              },
 
 	{ "feature.stylist",                    &battle_config.feature_stylist,                 1,      0,      1,              },
 	{ "feature.banking_state_enforce",      &battle_config.feature_banking_state_enforce,   0,      0,      1,              },
