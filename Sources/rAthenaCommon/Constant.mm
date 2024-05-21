@@ -6509,6 +6509,12 @@ const NSInteger RA_IG_INVENTORY_EX_10BOX = IG_INVENTORY_EX_10BOX;
 const NSInteger RA_IG_COSTUMEMILEPACK_34_1 = IG_COSTUMEMILEPACK_34_1;
 const NSInteger RA_IG_COSTUMEMILEPACK_34_2 = IG_COSTUMEMILEPACK_34_2;
 const NSInteger RA_IG_COSTUMEMILEPACK_34_3 = IG_COSTUMEMILEPACK_34_3;
+const NSInteger RA_IG_AEGIS_102947 = IG_AEGIS_102947;
+const NSInteger RA_IG_AEGIS_102948 = IG_AEGIS_102948;
+const NSInteger RA_IG_AEGIS_103033 = IG_AEGIS_103033;
+const NSInteger RA_IG_AEGIS_103034 = IG_AEGIS_103034;
+const NSInteger RA_IG_P_BOOSTER_CALL_PACKAGE = IG_P_BOOSTER_CALL_PACKAGE;
+const NSInteger RA_IG_P_COMPENSATION_BOX = IG_P_COMPENSATION_BOX;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -7794,6 +7800,37 @@ const NSInteger RA_JT_1_SHADOW_VIOLET = JT_1_SHADOW_VIOLET;
 const NSInteger RA_JT_4_EVT_LAMMIR = JT_4_EVT_LAMMIR;
 const NSInteger RA_JT_4_EVT_SULKI = JT_4_EVT_SULKI;
 const NSInteger RA_JT_4_EVT_KKAT = JT_4_EVT_KKAT;
+const NSInteger RA_JT_4_EP21_SOLDIER_A = JT_4_EP21_SOLDIER_A;
+const NSInteger RA_JT_4_EP21_SOLDIER_B = JT_4_EP21_SOLDIER_B;
+const NSInteger RA_JT_4_EP21_M_WORKER_A = JT_4_EP21_M_WORKER_A;
+const NSInteger RA_JT_4_EP21_M_WORKER_B = JT_4_EP21_M_WORKER_B;
+const NSInteger RA_JT_4_EP21_F_WORKER_A = JT_4_EP21_F_WORKER_A;
+const NSInteger RA_JT_4_EP21_F_WORKER_B = JT_4_EP21_F_WORKER_B;
+const NSInteger RA_JT_4_EP21_WORKER_KID_A = JT_4_EP21_WORKER_KID_A;
+const NSInteger RA_JT_4_EP21_WORKER_KID_B = JT_4_EP21_WORKER_KID_B;
+const NSInteger RA_JT_4_EP21_TAN = JT_4_EP21_TAN;
+const NSInteger RA_JT_4_EP21_TRIS = JT_4_EP21_TRIS;
+const NSInteger RA_JT_4_EP21_NADOYO = JT_4_EP21_NADOYO;
+const NSInteger RA_JT_4_EP21_REINHARDT = JT_4_EP21_REINHARDT;
+const NSInteger RA_JT_4_EP21_WILHELM = JT_4_EP21_WILHELM;
+const NSInteger RA_JT_4_EP21_MARISTELLA = JT_4_EP21_MARISTELLA;
+const NSInteger RA_JT_4_EP21_YOHAN = JT_4_EP21_YOHAN;
+const NSInteger RA_JT_4_EP21_RICHARD = JT_4_EP21_RICHARD;
+const NSInteger RA_JT_4_EP21_VALDARIS = JT_4_EP21_VALDARIS;
+const NSInteger RA_JT_4_EP21_GUNTER = JT_4_EP21_GUNTER;
+const NSInteger RA_JT_4_EP21_GALAXIA_A = JT_4_EP21_GALAXIA_A;
+const NSInteger RA_JT_4_EP21_GALAXIA_B = JT_4_EP21_GALAXIA_B;
+const NSInteger RA_JT_4_EP21_IVAN = JT_4_EP21_IVAN;
+const NSInteger RA_JT_4_EP21_LALAILA = JT_4_EP21_LALAILA;
+const NSInteger RA_JT_4_EP21_ILSE = JT_4_EP21_ILSE;
+const NSInteger RA_JT_4_EP21_HOWELL = JT_4_EP21_HOWELL;
+const NSInteger RA_JT_4_EP21_EPESTO = JT_4_EP21_EPESTO;
+const NSInteger RA_JT_4_EP21_HEINE_TAB = JT_4_EP21_HEINE_TAB;
+const NSInteger RA_JT_4_EP21_IANA = JT_4_EP21_IANA;
+const NSInteger RA_JT_4_EP21_LEE = JT_4_EP21_LEE;
+const NSInteger RA_JT_4_EP21_AURELIE = JT_4_EP21_AURELIE;
+const NSInteger RA_JT_4_EP21_HOWELL_S = JT_4_EP21_HOWELL_S;
+const NSInteger RA_JT_4_EP21_TAN_S = JT_4_EP21_TAN_S;
 const NSInteger RA_JT_ROZ_MQ_XAVIER = JT_ROZ_MQ_XAVIER;
 const NSInteger RA_JT_ROZ_MQ_MOCLORD = JT_ROZ_MQ_MOCLORD;
 const NSInteger RA_JT_ROZ_MQ_SKULD = JT_ROZ_MQ_SKULD;
@@ -16367,6 +16404,12 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"IG_COSTUMEMILEPACK_34_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_34_1" value:IG_COSTUMEMILEPACK_34_1],
             @"IG_COSTUMEMILEPACK_34_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_34_2" value:IG_COSTUMEMILEPACK_34_2],
             @"IG_COSTUMEMILEPACK_34_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_34_3" value:IG_COSTUMEMILEPACK_34_3],
+            @"IG_AEGIS_102947": [Constant constantWithName:@"IG_AEGIS_102947" value:IG_AEGIS_102947],
+            @"IG_AEGIS_102948": [Constant constantWithName:@"IG_AEGIS_102948" value:IG_AEGIS_102948],
+            @"IG_AEGIS_103033": [Constant constantWithName:@"IG_AEGIS_103033" value:IG_AEGIS_103033],
+            @"IG_AEGIS_103034": [Constant constantWithName:@"IG_AEGIS_103034" value:IG_AEGIS_103034],
+            @"IG_P_BOOSTER_CALL_PACKAGE": [Constant constantWithName:@"IG_P_BOOSTER_CALL_PACKAGE" value:IG_P_BOOSTER_CALL_PACKAGE],
+            @"IG_P_COMPENSATION_BOX": [Constant constantWithName:@"IG_P_COMPENSATION_BOX" value:IG_P_COMPENSATION_BOX],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -17652,6 +17695,37 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"4_EVT_LAMMIR": [Constant constantWithName:@"4_EVT_LAMMIR" value:JT_4_EVT_LAMMIR],
             @"4_EVT_SULKI": [Constant constantWithName:@"4_EVT_SULKI" value:JT_4_EVT_SULKI],
             @"4_EVT_KKAT": [Constant constantWithName:@"4_EVT_KKAT" value:JT_4_EVT_KKAT],
+            @"4_EP21_SOLDIER_A": [Constant constantWithName:@"4_EP21_SOLDIER_A" value:JT_4_EP21_SOLDIER_A],
+            @"4_EP21_SOLDIER_B": [Constant constantWithName:@"4_EP21_SOLDIER_B" value:JT_4_EP21_SOLDIER_B],
+            @"4_EP21_M_WORKER_A": [Constant constantWithName:@"4_EP21_M_WORKER_A" value:JT_4_EP21_M_WORKER_A],
+            @"4_EP21_M_WORKER_B": [Constant constantWithName:@"4_EP21_M_WORKER_B" value:JT_4_EP21_M_WORKER_B],
+            @"4_EP21_F_WORKER_A": [Constant constantWithName:@"4_EP21_F_WORKER_A" value:JT_4_EP21_F_WORKER_A],
+            @"4_EP21_F_WORKER_B": [Constant constantWithName:@"4_EP21_F_WORKER_B" value:JT_4_EP21_F_WORKER_B],
+            @"4_EP21_WORKER_KID_A": [Constant constantWithName:@"4_EP21_WORKER_KID_A" value:JT_4_EP21_WORKER_KID_A],
+            @"4_EP21_WORKER_KID_B": [Constant constantWithName:@"4_EP21_WORKER_KID_B" value:JT_4_EP21_WORKER_KID_B],
+            @"4_EP21_TAN": [Constant constantWithName:@"4_EP21_TAN" value:JT_4_EP21_TAN],
+            @"4_EP21_TRIS": [Constant constantWithName:@"4_EP21_TRIS" value:JT_4_EP21_TRIS],
+            @"4_EP21_NADOYO": [Constant constantWithName:@"4_EP21_NADOYO" value:JT_4_EP21_NADOYO],
+            @"4_EP21_REINHARDT": [Constant constantWithName:@"4_EP21_REINHARDT" value:JT_4_EP21_REINHARDT],
+            @"4_EP21_WILHELM": [Constant constantWithName:@"4_EP21_WILHELM" value:JT_4_EP21_WILHELM],
+            @"4_EP21_MARISTELLA": [Constant constantWithName:@"4_EP21_MARISTELLA" value:JT_4_EP21_MARISTELLA],
+            @"4_EP21_YOHAN": [Constant constantWithName:@"4_EP21_YOHAN" value:JT_4_EP21_YOHAN],
+            @"4_EP21_RICHARD": [Constant constantWithName:@"4_EP21_RICHARD" value:JT_4_EP21_RICHARD],
+            @"4_EP21_VALDARIS": [Constant constantWithName:@"4_EP21_VALDARIS" value:JT_4_EP21_VALDARIS],
+            @"4_EP21_GUNTER": [Constant constantWithName:@"4_EP21_GUNTER" value:JT_4_EP21_GUNTER],
+            @"4_EP21_GALAXIA_A": [Constant constantWithName:@"4_EP21_GALAXIA_A" value:JT_4_EP21_GALAXIA_A],
+            @"4_EP21_GALAXIA_B": [Constant constantWithName:@"4_EP21_GALAXIA_B" value:JT_4_EP21_GALAXIA_B],
+            @"4_EP21_IVAN": [Constant constantWithName:@"4_EP21_IVAN" value:JT_4_EP21_IVAN],
+            @"4_EP21_LALAILA": [Constant constantWithName:@"4_EP21_LALAILA" value:JT_4_EP21_LALAILA],
+            @"4_EP21_ILSE": [Constant constantWithName:@"4_EP21_ILSE" value:JT_4_EP21_ILSE],
+            @"4_EP21_HOWELL": [Constant constantWithName:@"4_EP21_HOWELL" value:JT_4_EP21_HOWELL],
+            @"4_EP21_EPESTO": [Constant constantWithName:@"4_EP21_EPESTO" value:JT_4_EP21_EPESTO],
+            @"4_EP21_HEINE_TAB": [Constant constantWithName:@"4_EP21_HEINE_TAB" value:JT_4_EP21_HEINE_TAB],
+            @"4_EP21_IANA": [Constant constantWithName:@"4_EP21_IANA" value:JT_4_EP21_IANA],
+            @"4_EP21_LEE": [Constant constantWithName:@"4_EP21_LEE" value:JT_4_EP21_LEE],
+            @"4_EP21_AURELIE": [Constant constantWithName:@"4_EP21_AURELIE" value:JT_4_EP21_AURELIE],
+            @"4_EP21_HOWELL_S": [Constant constantWithName:@"4_EP21_HOWELL_S" value:JT_4_EP21_HOWELL_S],
+            @"4_EP21_TAN_S": [Constant constantWithName:@"4_EP21_TAN_S" value:JT_4_EP21_TAN_S],
             @"ROZ_MQ_XAVIER": [Constant constantWithName:@"ROZ_MQ_XAVIER" value:JT_ROZ_MQ_XAVIER],
             @"ROZ_MQ_MOCLORD": [Constant constantWithName:@"ROZ_MQ_MOCLORD" value:JT_ROZ_MQ_MOCLORD],
             @"ROZ_MQ_SKULD": [Constant constantWithName:@"ROZ_MQ_SKULD" value:JT_ROZ_MQ_SKULD],
