@@ -9343,7 +9343,7 @@ BUILDIN_FUNC(repair)
 					sd->inventory.u.items_inventory[i].attribute = 0;
 					clif_equiplist(sd);
 					clif_produceeffect(sd, 0, sd->inventory.u.items_inventory[i].nameid);
-					clif_misceffect(&sd->bl, 3);
+					clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_SUCCESS );
 					break;
 				}
 		}
@@ -9374,7 +9374,7 @@ BUILDIN_FUNC(repairall)
 
 	if(repaircounter)
 	{
-		clif_misceffect(&sd->bl, 3);
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_SUCCESS );
 		clif_equiplist(sd);
 	}
 
@@ -9642,7 +9642,7 @@ BUILDIN_FUNC(successrefitem) {
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
-		clif_misceffect(&sd->bl,3);
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_SUCCESS );
 		if( sd->inventory_data[i]->type == IT_WEAPON ){
 			achievement_update_objective(sd, AG_ENCHANT_SUCCESS, 2, sd->inventory_data[i]->weapon_level, sd->inventory.u.items_inventory[i].refine);
 		}
@@ -9695,7 +9695,7 @@ BUILDIN_FUNC(failedrefitem) {
 		pc_unequipitem(sd,i,3); //recalculate bonus
 		clif_refine( *sd, i, ITEMREFINING_FAILURE);
 		pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
-		clif_misceffect(&sd->bl,2); 	// display failure effect
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_FAILURE );
 		achievement_update_objective(sd, AG_ENCHANT_FAIL, 1, 1);
 		script_pushint(st, 1);
 		return SCRIPT_CMD_SUCCESS;
@@ -9744,7 +9744,7 @@ BUILDIN_FUNC(downrefitem) {
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
-		clif_misceffect(&sd->bl,2);
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_FAILURE );
 		achievement_update_objective(sd, AG_ENCHANT_FAIL, 1, sd->inventory.u.items_inventory[i].refine);
 		script_pushint(st, sd->inventory.u.items_inventory[i].refine);
 		return SCRIPT_CMD_SUCCESS;
@@ -14050,7 +14050,7 @@ BUILDIN_FUNC(successremovecards) {
 			map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0,0);
 		}
 
-		clif_misceffect(&sd->bl,3);
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_SUCCESS );
 	}
 	return SCRIPT_CMD_SUCCESS;
 }
@@ -14137,7 +14137,7 @@ BUILDIN_FUNC(failedremovecards) {
 				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0,0);
 			}
 		}
-		clif_misceffect(&sd->bl,2);
+		clif_misceffect( sd->bl, NOTIFYEFFECT_REFINE_FAILURE );
 	}
 	return SCRIPT_CMD_SUCCESS;
 }
@@ -16059,7 +16059,7 @@ BUILDIN_FUNC(chatmes)
 	if (nd != nullptr && nd->chat_id) {
 		char message[256];
 		safesnprintf(message, sizeof(message), "%s", str);
-		clif_GlobalMessage(map_id2bl(nd->chat_id), message, CHAT_WOS);
+		clif_GlobalMessage( *map_id2bl( nd->chat_id ), message, CHAT_WOS );
 	}
 	return SCRIPT_CMD_SUCCESS;
 }
@@ -17932,7 +17932,7 @@ BUILDIN_FUNC(callshop)
 			clif_barter_open( *sd, *nd );
 		}
 	}else
-		clif_cashshop_show(sd, nd);
+		clif_cashshop_show( *sd, *nd );
 
 	sd->npc_shopid = nd->bl.id;
 	script_pushint(st,1);
@@ -22541,7 +22541,7 @@ BUILDIN_FUNC(setmounting) {
 	if (!script_charid2sd(2,sd))
 		return SCRIPT_CMD_FAILURE;
 	if( sd->sc.option&(OPTION_WUGRIDER|OPTION_RIDING|OPTION_DRAGON|OPTION_MADOGEAR) ) {
-		clif_msg(sd, NEED_REINS_OF_MOUNT);
+		clif_msg(sd, MSI_FAIELD_RIDING_OVERLAPPED);
 		script_pushint(st,0); //can't mount with one of these
 	} else if (sd->sc.getSCE(SC_CLOAKING) || sd->sc.getSCE(SC_CHASEWALK) || sd->sc.getSCE(SC_CLOAKINGEXCEED) || sd->sc.getSCE(SC_CAMOUFLAGE) || sd->sc.getSCE(SC_STEALTHFIELD) || sd->sc.getSCE(SC__FEINTBOMB)) {
 		// SC_HIDING, SC__INVISIBILITY, SC__SHADOWFORM, SC_SUHIDE already disable item usage
@@ -24402,7 +24402,7 @@ BUILDIN_FUNC(hateffect){
 	}
 
 	if( !sd->state.connect_new ){
-		clif_hat_effect_single( sd, effectID, enable );
+		clif_hat_effect_single( *sd, effectID, enable );
 	}
 
 #endif
