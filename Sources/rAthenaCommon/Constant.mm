@@ -9281,8 +9281,9 @@ const NSInteger RA_PCBLOCK_IMMUNE = PCBLOCK_IMMUNE;
 const NSInteger RA_PCBLOCK_SITSTAND = PCBLOCK_SITSTAND;
 const NSInteger RA_PCBLOCK_COMMANDS = PCBLOCK_COMMANDS;
 const NSInteger RA_PCBLOCK_NPCCLICK = PCBLOCK_NPCCLICK;
-const NSInteger RA_PCBLOCK_NPC = PCBLOCK_NPC;
 const NSInteger RA_PCBLOCK_EMOTION = PCBLOCK_EMOTION;
+const NSInteger RA_PCBLOCK_EQUIP = PCBLOCK_EQUIP;
+const NSInteger RA_PCBLOCK_NPC = PCBLOCK_NPC;
 const NSInteger RA_PCBLOCK_ALL = PCBLOCK_ALL;
 const NSInteger RA_CPC_NAME = CPC_NAME;
 const NSInteger RA_CPC_CHAR = CPC_CHAR;
@@ -19180,8 +19181,9 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"PCBLOCK_SITSTAND": [Constant constantWithName:@"PCBLOCK_SITSTAND" value:PCBLOCK_SITSTAND],
             @"PCBLOCK_COMMANDS": [Constant constantWithName:@"PCBLOCK_COMMANDS" value:PCBLOCK_COMMANDS],
             @"PCBLOCK_NPCCLICK": [Constant constantWithName:@"PCBLOCK_NPCCLICK" value:PCBLOCK_NPCCLICK],
-            @"PCBLOCK_NPC": [Constant constantWithName:@"PCBLOCK_NPC" value:PCBLOCK_NPC],
             @"PCBLOCK_EMOTION": [Constant constantWithName:@"PCBLOCK_EMOTION" value:PCBLOCK_EMOTION],
+            @"PCBLOCK_EQUIP": [Constant constantWithName:@"PCBLOCK_EQUIP" value:PCBLOCK_EQUIP],
+            @"PCBLOCK_NPC": [Constant constantWithName:@"PCBLOCK_NPC" value:PCBLOCK_NPC],
             @"PCBLOCK_ALL": [Constant constantWithName:@"PCBLOCK_ALL" value:PCBLOCK_ALL],
             @"CPC_NAME": [Constant constantWithName:@"CPC_NAME" value:CPC_NAME],
             @"CPC_CHAR": [Constant constantWithName:@"CPC_CHAR" value:CPC_CHAR],
