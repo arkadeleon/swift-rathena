@@ -509,6 +509,9 @@ enum clif_messages : uint16_t {
 	// You cannot carry more items because you are overweight.
 	MSI_CANT_GET_ITEM_BECAUSE_WEIGHT = 52,
 
+	// You can't have this item because you will exceed the weight limit.
+	MSI_CANT_GET_ITEM_BECAUSE_COUNT = 220,
+
 	// You can't put this item on.
 	MSI_CAN_NOT_EQUIP_ITEM = 372,
 
@@ -565,7 +568,7 @@ enum clif_messages : uint16_t {
 
 #if (PACKETVER >= 20130807 && PACKETVER <= 20130814) && !defined(PACKETVER_ZERO)
 	// %d seconds left until you can use
-	MSI_ITEM_REUSE_LIMIT_SECOND = 1862,
+	MSI_ITEM_REUSE_LIMIT_SECOND = 1863,
 
 	// Any work in progress (NPC dialog, manufacturing ...) quit and try again.
 	MSI_BUSY = 1924,
@@ -577,13 +580,13 @@ enum clif_messages : uint16_t {
 	MSI_PARTY_MASTER_CHANGE_SAME_MAP = 2095,
 
 	// Merge items available does not exist.
-	MSI_NOT_EXIST_MERGE_ITEM = 2183,
+	MSI_NOT_EXIST_MERGE_ITEM = 2184,
 
 	// This bullet is not suitable for the weapon you are equipping.
 	MSI_WRONG_BULLET = 2494,
 #else
 	// %d seconds left until you can use
-	MSI_ITEM_REUSE_LIMIT_SECOND = 1861,
+	MSI_ITEM_REUSE_LIMIT_SECOND = 1862,
 
 	// Any work in progress (NPC dialog, manufacturing ...) quit and try again.
 	MSI_BUSY = 1923,
@@ -595,7 +598,7 @@ enum clif_messages : uint16_t {
 	MSI_PARTY_MASTER_CHANGE_SAME_MAP = 2094,
 
 	// Merge items available does not exist.
-	MSI_NOT_EXIST_MERGE_ITEM = 2182,
+	MSI_NOT_EXIST_MERGE_ITEM = 2183,
 
 	// This bullet is not suitable for the weapon you are equipping.
 	MSI_WRONG_BULLET = 2493,
@@ -811,7 +814,7 @@ void clif_clearunit_area( block_list& bl, clr_type type );
 void clif_clearunit_delayed(struct block_list* bl, clr_type type, t_tick tick);
 int clif_spawn(struct block_list *bl, bool walking = false);	//area
 void clif_walkok( map_session_data& sd );
-void clif_move(struct unit_data *ud); //area
+void clif_move( struct unit_data& ud ); //area
 void clif_changemap( map_session_data& sd, short m, uint16 x, uint16 y );
 void clif_changemapserver( map_session_data& sd, const char* map, uint16 x, uint16 y, uint32 ip, uint16 port );
 void clif_blown(struct block_list *bl); // area
@@ -1014,35 +1017,34 @@ void clif_party_job_and_level( map_session_data& sd );
 void clif_party_dead( map_session_data& sd );
 
 // guild
-void clif_guild_created(map_session_data *sd,int flag);
+void clif_guild_created( map_session_data& sd, int flag );
 void clif_guild_belonginfo( map_session_data& sd );
 void clif_guild_masterormember(map_session_data *sd);
 void clif_guild_basicinfo( map_session_data& sd );
 void clif_guild_allianceinfo(map_session_data *sd);
 void clif_guild_memberlist( map_session_data& sd );
-void clif_guild_skillinfo(map_session_data* sd);
+void clif_guild_skillinfo( map_session_data& sd );
 void clif_guild_send_onlineinfo(map_session_data *sd); //[LuzZza]
 void clif_guild_memberlogin_notice(const struct mmo_guild &g,int idx,int flag);
-void clif_guild_invite(const map_session_data &sd, const struct mmo_guild &g);
-void clif_guild_inviteack(map_session_data *sd,int flag);
-void clif_guild_leave(map_session_data *sd,const char *name,const char *mes);
-void clif_guild_expulsion(map_session_data* sd, const char* name, const char* mes, uint32 account_id);
+void clif_guild_invite( map_session_data& sd, const struct mmo_guild& g );
+void clif_guild_inviteack( map_session_data& sd, int flag );
+void clif_guild_leave( map_session_data& sd, const char* name, uint32 char_id, const char* mes );
+void clif_guild_expulsion( map_session_data& sd, const char* name, uint32 char_id, const char* mes );
 void clif_guild_positionchanged(const struct mmo_guild &g,int idx);
 void clif_guild_memberpositionchanged(const struct mmo_guild &g,int idx);
 void clif_guild_emblem(const map_session_data &sd, const struct mmo_guild &g);
 void clif_guild_emblem_area(struct block_list* bl);
-void clif_guild_notice(map_session_data* sd);
-void clif_guild_message(const struct mmo_guild &g,uint32 account_id,const char *mes,int len);
+void clif_guild_notice( map_session_data& sd );
+void clif_guild_message( const struct mmo_guild& g, uint32 account_id, const char* mes, size_t len );
 void clif_guild_reqalliance(map_session_data *sd,uint32 account_id,const char *name);
 void clif_guild_allianceack(map_session_data *sd,int flag);
 void clif_guild_delalliance(map_session_data *sd,int guild_id,int flag);
 void clif_guild_oppositionack(map_session_data *sd,int flag);
-void clif_guild_broken(map_session_data *sd,int flag);
+void clif_guild_broken( map_session_data& sd, int flag );
 void clif_guild_xy( map_session_data& sd );
 void clif_guild_xy_single( map_session_data& sd, map_session_data& tsd );
 void clif_guild_xy_remove( map_session_data& sd );
 void clif_guild_castle_list(map_session_data& sd);
-void clif_guild_castle_info(map_session_data& sd, std::shared_ptr<guild_castle> castle );
 void clif_guild_castle_teleport_res(map_session_data& sd, enum e_siege_teleport_result result);
 
 // Battleground
@@ -1063,7 +1065,7 @@ void clif_bg_queue_lobby_notify(const char *name, map_session_data *sd);
 void clif_bg_queue_ack_lobby(bool result, const char *name, const char *lobbyname, map_session_data *sd);
 
 // Instancing
-void clif_instance_create(int instance_id, int num);
+void clif_instance_create( int instance_id, size_t num );
 void clif_instance_changewait(int instance_id, int num);
 void clif_instance_status(int instance_id, unsigned int limit1, unsigned int limit2);
 void clif_instance_changestatus(int instance_id, e_instance_notify type, unsigned int limit);
@@ -1284,10 +1286,10 @@ void clif_snap( struct block_list *bl, short x, short y );
 void clif_monster_hp_bar( struct mob_data* md, int fd );
 
 // Clan System
-void clif_clan_basicinfo( map_session_data *sd );
-void clif_clan_message(struct clan *clan,const char *mes,int len);
-void clif_clan_onlinecount( struct clan* clan );
-void clif_clan_leave( map_session_data* sd );
+void clif_clan_basicinfo( map_session_data& sd );
+void clif_clan_message( struct clan &clan, const char *mes, size_t len );
+void clif_clan_onlinecount( struct clan& clan );
+void clif_clan_leave( map_session_data& sd );
 
 // Bargain Tool
 void clif_sale_start(struct sale_item_data* sale_item, struct block_list* bl, enum send_target target);
@@ -1430,5 +1432,7 @@ void clif_set_dialog_align(map_session_data& sd, int npcid, e_say_dialog_align a
 void clif_set_npc_window_size(map_session_data& sd, int width, int height);
 void clif_set_npc_window_pos(map_session_data& sd, int x, int y);
 void clif_set_npc_window_pos_percent(map_session_data& sd, int x, int y);
+
+void clif_noask_sub( map_session_data& sd, map_session_data& tsd, int type );
 
 #endif /* CLIF_HPP */
