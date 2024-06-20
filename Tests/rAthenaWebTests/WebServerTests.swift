@@ -7,11 +7,11 @@
 
 import XCTest
 @testable import rAthenaWeb
-@testable import rAthenaResource
+@testable import rAthenaResources
 
 final class WebServerTests: XCTestCase {
     override func setUp() async throws {
-        try await ResourceBundle.shared.load()
+        try await ServerResourceBundle.shared.load()
     }
 
     func testWebServer() async {

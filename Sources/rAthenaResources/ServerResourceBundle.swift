@@ -1,5 +1,5 @@
 //
-//  ResourceBundle.swift
+//  ServerResourceBundle.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/29.
@@ -8,8 +8,8 @@
 import Foundation
 import SQLite3
 
-public final class ResourceBundle: Sendable {
-    public static let shared = ResourceBundle()
+public final class ServerResourceBundle: Sendable {
+    public static let shared = ServerResourceBundle()
 
     public let url: URL
 

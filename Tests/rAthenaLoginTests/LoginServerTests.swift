@@ -7,11 +7,11 @@
 
 import XCTest
 @testable import rAthenaLogin
-@testable import rAthenaResource
+@testable import rAthenaResources
 
 final class LoginServerTests: XCTestCase {
     override func setUp() async throws {
-        try await ResourceBundle.shared.load()
+        try await ServerResourceBundle.shared.load()
     }
 
     func testLoginServer() async {

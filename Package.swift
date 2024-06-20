@@ -34,12 +34,12 @@ let package = Package(
             targets: ["rAthenaWeb"]
         ),
         .library(
-            name: "rAthenaResource",
-            targets: ["rAthenaResource"]
+            name: "rAthenaResources",
+            targets: ["rAthenaResources"]
         ),
         .library(
-            name: "rAthenaRyml",
-            targets: ["rAthenaRyml"]
+            name: "rAthenaYAML",
+            targets: ["rAthenaYAML"]
         ),
     ],
     targets: [
@@ -147,7 +147,7 @@ let package = Package(
             ]
         ),
         .target(
-            name: "rAthenaResource",
+            name: "rAthenaResources",
             path: ".",
             exclude: [
                 "3rdparty",
@@ -156,21 +156,25 @@ let package = Package(
                 "tools",
             ],
             sources: [
-                "Sources/rAthenaResource",
+                "Sources/rAthenaResources",
             ],
             resources: [
                 .copy("conf"),
                 .copy("db"),
                 .copy("npc"),
                 .copy("ragnarok.sqlite3"),
+            ],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
             ]
         ),
         .target(
-            name: "rAthenaRyml",
+            name: "rAthenaYAML",
             dependencies: [
                 "ryml",
             ],
             swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
                 .interoperabilityMode(.Cxx),
             ]
         ),
@@ -223,28 +227,28 @@ let package = Package(
             name: "rAthenaLoginTests",
             dependencies: [
                 "rAthenaLogin",
-                "rAthenaResource",
+                "rAthenaResources",
             ]
         ),
         .testTarget(
             name: "rAthenaCharTests",
             dependencies: [
                 "rAthenaChar",
-                "rAthenaResource",
+                "rAthenaResources",
             ]
         ),
         .testTarget(
             name: "rAthenaMapTests",
             dependencies: [
                 "rAthenaMap",
-                "rAthenaResource",
+                "rAthenaResources",
             ]
         ),
         .testTarget(
             name: "rAthenaWebTests",
             dependencies: [
                 "rAthenaWeb",
-                "rAthenaResource",
+                "rAthenaResources",
             ]
         ),
     ],
