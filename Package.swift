@@ -38,8 +38,8 @@ let package = Package(
             targets: ["rAthenaResources"]
         ),
         .library(
-            name: "rAthenaYAML",
-            targets: ["rAthenaYAML"]
+            name: "ryml",
+            targets: ["ryml"]
         ),
     ],
     targets: [
@@ -163,19 +163,6 @@ let package = Package(
                 .copy("db"),
                 .copy("npc"),
                 .copy("ragnarok.sqlite3"),
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency"),
-            ]
-        ),
-        .target(
-            name: "rAthenaYAML",
-            dependencies: [
-                "ryml",
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency"),
-                .interoperabilityMode(.Cxx),
             ]
         ),
         .target(
