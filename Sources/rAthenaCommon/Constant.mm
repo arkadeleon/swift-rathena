@@ -1719,9 +1719,9 @@ const NSInteger RA_SC_AUTO_FIRING_LAUNCHER = SC_AUTO_FIRING_LAUNCHER;
 const NSInteger RA_SC_HIDDEN_CARD = SC_HIDDEN_CARD;
 const NSInteger RA_SC_PERIOD_RECEIVEITEM_2ND = SC_PERIOD_RECEIVEITEM_2ND;
 const NSInteger RA_SC_PERIOD_PLUSEXP_2ND = SC_PERIOD_PLUSEXP_2ND;
-const NSInteger RA_SC_EXTREMITYFIST2 = SC_EXTREMITYFIST2;
 const NSInteger RA_SC_POWERUP = SC_POWERUP;
 const NSInteger RA_SC_AGIUP = SC_AGIUP;
+const NSInteger RA_SC_PROTECTION = SC_PROTECTION;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -9253,6 +9253,38 @@ const NSInteger RA_SKILLDMG_BOSS = SKILLDMG_BOSS;
 const NSInteger RA_SKILLDMG_OTHER = SKILLDMG_OTHER;
 const NSInteger RA_SKILLDMG_MAX = SKILLDMG_MAX;
 const NSInteger RA_SKILLDMG_CASTER = SKILLDMG_CASTER;
+const NSInteger RA_PC_PERM_TRADE = PC_PERM_TRADE;
+const NSInteger RA_PC_PERM_PARTY = PC_PERM_PARTY;
+const NSInteger RA_PC_PERM_ALL_SKILL = PC_PERM_ALL_SKILL;
+const NSInteger RA_PC_PERM_USE_ALL_EQUIPMENT = PC_PERM_USE_ALL_EQUIPMENT;
+const NSInteger RA_PC_PERM_SKILL_UNCONDITIONAL = PC_PERM_SKILL_UNCONDITIONAL;
+const NSInteger RA_PC_PERM_JOIN_ALL_CHAT = PC_PERM_JOIN_ALL_CHAT;
+const NSInteger RA_PC_PERM_NO_CHAT_KICK = PC_PERM_NO_CHAT_KICK;
+const NSInteger RA_PC_PERM_HIDE_SESSION = PC_PERM_HIDE_SESSION;
+const NSInteger RA_PC_PERM_WHO_DISPLAY_AID = PC_PERM_WHO_DISPLAY_AID;
+const NSInteger RA_PC_PERM_RECEIVE_HACK_INFO = PC_PERM_RECEIVE_HACK_INFO;
+const NSInteger RA_PC_PERM_WARP_ANYWHERE = PC_PERM_WARP_ANYWHERE;
+const NSInteger RA_PC_PERM_VIEW_HPMETER = PC_PERM_VIEW_HPMETER;
+const NSInteger RA_PC_PERM_VIEW_EQUIPMENT = PC_PERM_VIEW_EQUIPMENT;
+const NSInteger RA_PC_PERM_USE_CHECK = PC_PERM_USE_CHECK;
+const NSInteger RA_PC_PERM_USE_CHANGEMAPTYPE = PC_PERM_USE_CHANGEMAPTYPE;
+const NSInteger RA_PC_PERM_USE_ALL_COMMANDS = PC_PERM_USE_ALL_COMMANDS;
+const NSInteger RA_PC_PERM_RECEIVE_REQUESTS = PC_PERM_RECEIVE_REQUESTS;
+const NSInteger RA_PC_PERM_SHOW_BOSS = PC_PERM_SHOW_BOSS;
+const NSInteger RA_PC_PERM_DISABLE_PVM = PC_PERM_DISABLE_PVM;
+const NSInteger RA_PC_PERM_DISABLE_PVP = PC_PERM_DISABLE_PVP;
+const NSInteger RA_PC_PERM_DISABLE_CMD_DEAD = PC_PERM_DISABLE_CMD_DEAD;
+const NSInteger RA_PC_PERM_CHANNEL_ADMIN = PC_PERM_CHANNEL_ADMIN;
+const NSInteger RA_PC_PERM_TRADE_BOUNDED = PC_PERM_TRADE_BOUNDED;
+const NSInteger RA_PC_PERM_ITEM_UNCONDITIONAL = PC_PERM_ITEM_UNCONDITIONAL;
+const NSInteger RA_PC_PERM_ENABLE_COMMAND = PC_PERM_ENABLE_COMMAND;
+const NSInteger RA_PC_PERM_BYPASS_STAT_ONCLONE = PC_PERM_BYPASS_STAT_ONCLONE;
+const NSInteger RA_PC_PERM_BYPASS_MAX_STAT = PC_PERM_BYPASS_MAX_STAT;
+const NSInteger RA_PC_PERM_ATTENDANCE = PC_PERM_ATTENDANCE;
+const NSInteger RA_PC_PERM_MACRO_DETECT = PC_PERM_MACRO_DETECT;
+const NSInteger RA_PC_PERM_MACRO_REGISTER = PC_PERM_MACRO_REGISTER;
+const NSInteger RA_PC_PERM_TRADE_UNCONDITIONAL = PC_PERM_TRADE_UNCONDITIONAL;
+const NSInteger RA_PC_PERM_MAX = PC_PERM_MAX;
 const NSInteger RA_GUILD_PERM_INVITE = GUILD_PERM_INVITE;
 const NSInteger RA_GUILD_PERM_EXPEL = GUILD_PERM_EXPEL;
 const NSInteger RA_GUILD_PERM_STORAGE = GUILD_PERM_STORAGE;
@@ -9290,6 +9322,9 @@ const NSInteger RA_CPC_CHAR = CPC_CHAR;
 const NSInteger RA_CPC_ACCOUNT = CPC_ACCOUNT;
 const NSInteger RA_IWA_NONE = IWA_NONE;
 const NSInteger RA_IWA_NOTDEAD = IWA_NOTDEAD;
+const NSInteger RA_MIN_WALK_SPEED = MIN_WALK_SPEED;
+const NSInteger RA_MAX_WALK_SPEED = MAX_WALK_SPEED;
+const NSInteger RA_DEFAULT_NPC_WALK_SPEED = DEFAULT_NPC_WALK_SPEED;
 const NSInteger RA_DMG_SINGLE = DMG_SINGLE;
 const NSInteger RA_DMG_MULTI_HIT = DMG_MULTI_HIT;
 const NSInteger RA_NK_NODAMAGE = NK_NODAMAGE;
@@ -9302,6 +9337,7 @@ const NSInteger RA_NK_IGNOREFLEE = NK_IGNOREFLEE;
 const NSInteger RA_NK_IGNOREDEFCARD = NK_IGNOREDEFCARD;
 const NSInteger RA_NK_IGNORELONGCARD = NK_IGNORELONGCARD;
 const NSInteger RA_NK_CRITICAL = NK_CRITICAL;
+const NSInteger RA_NK_SIMPLEDEFENSE = NK_SIMPLEDEFENSE;
 const NSInteger RA_INF_PASSIVE_SKILL = INF_PASSIVE_SKILL;
 const NSInteger RA_INF_ATTACK_SKILL = INF_ATTACK_SKILL;
 const NSInteger RA_INF_GROUND_SKILL = INF_GROUND_SKILL;
@@ -9648,6 +9684,12 @@ const NSInteger RA_ITEMINFO_SUBTYPE = ITEMINFO_SUBTYPE;
 const NSInteger RA_ELEMINFO_ID = ELEMINFO_ID;
 const NSInteger RA_ELEMINFO_GAMEID = ELEMINFO_GAMEID;
 const NSInteger RA_ELEMINFO_CLASS = ELEMINFO_CLASS;
+const NSInteger RA_DIALOG_ALIGN_LEFT = DIALOG_ALIGN_LEFT;
+const NSInteger RA_DIALOG_ALIGN_RIGHT = DIALOG_ALIGN_RIGHT;
+const NSInteger RA_DIALOG_ALIGN_CENTER = DIALOG_ALIGN_CENTER;
+const NSInteger RA_DIALOG_ALIGN_TOP = DIALOG_ALIGN_TOP;
+const NSInteger RA_DIALOG_ALIGN_MIDDLE = DIALOG_ALIGN_MIDDLE;
+const NSInteger RA_DIALOG_ALIGN_BOTTOM = DIALOG_ALIGN_BOTTOM;
 const NSInteger RA_REFINE_TYPE_ARMOR = REFINE_TYPE_ARMOR;
 const NSInteger RA_REFINE_TYPE_WEAPON = REFINE_TYPE_WEAPON;
 const NSInteger RA_REFINE_TYPE_SHADOW_ARMOR = REFINE_TYPE_SHADOW_ARMOR;
@@ -9865,6 +9907,8 @@ const NSInteger RA_MER_BAYERI = MER_BAYERI;
 const NSInteger RA_MER_SERA = MER_SERA;
 const NSInteger RA_MER_DIETER = MER_DIETER;
 const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
+const NSInteger RA_SEARCHSTORE_EFFECT_NORMAL = SEARCHSTORE_EFFECT_NORMAL;
+const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
 
 @implementation Constant
 
@@ -11611,9 +11655,9 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"SC_HIDDEN_CARD": [Constant constantWithName:@"SC_HIDDEN_CARD" value:SC_HIDDEN_CARD],
             @"SC_PERIOD_RECEIVEITEM_2ND": [Constant constantWithName:@"SC_PERIOD_RECEIVEITEM_2ND" value:SC_PERIOD_RECEIVEITEM_2ND],
             @"SC_PERIOD_PLUSEXP_2ND": [Constant constantWithName:@"SC_PERIOD_PLUSEXP_2ND" value:SC_PERIOD_PLUSEXP_2ND],
-            @"SC_EXTREMITYFIST2": [Constant constantWithName:@"SC_EXTREMITYFIST2" value:SC_EXTREMITYFIST2],
             @"SC_POWERUP": [Constant constantWithName:@"SC_POWERUP" value:SC_POWERUP],
             @"SC_AGIUP": [Constant constantWithName:@"SC_AGIUP" value:SC_AGIUP],
+            @"SC_PROTECTION": [Constant constantWithName:@"SC_PROTECTION" value:SC_PROTECTION],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -19153,6 +19197,38 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"SKILLDMG_OTHER": [Constant constantWithName:@"SKILLDMG_OTHER" value:SKILLDMG_OTHER],
             @"SKILLDMG_MAX": [Constant constantWithName:@"SKILLDMG_MAX" value:SKILLDMG_MAX],
             @"SKILLDMG_CASTER": [Constant constantWithName:@"SKILLDMG_CASTER" value:SKILLDMG_CASTER],
+            @"PC_PERM_TRADE": [Constant constantWithName:@"PC_PERM_TRADE" value:PC_PERM_TRADE],
+            @"PC_PERM_PARTY": [Constant constantWithName:@"PC_PERM_PARTY" value:PC_PERM_PARTY],
+            @"PC_PERM_ALL_SKILL": [Constant constantWithName:@"PC_PERM_ALL_SKILL" value:PC_PERM_ALL_SKILL],
+            @"PC_PERM_USE_ALL_EQUIPMENT": [Constant constantWithName:@"PC_PERM_USE_ALL_EQUIPMENT" value:PC_PERM_USE_ALL_EQUIPMENT],
+            @"PC_PERM_SKILL_UNCONDITIONAL": [Constant constantWithName:@"PC_PERM_SKILL_UNCONDITIONAL" value:PC_PERM_SKILL_UNCONDITIONAL],
+            @"PC_PERM_JOIN_ALL_CHAT": [Constant constantWithName:@"PC_PERM_JOIN_ALL_CHAT" value:PC_PERM_JOIN_ALL_CHAT],
+            @"PC_PERM_NO_CHAT_KICK": [Constant constantWithName:@"PC_PERM_NO_CHAT_KICK" value:PC_PERM_NO_CHAT_KICK],
+            @"PC_PERM_HIDE_SESSION": [Constant constantWithName:@"PC_PERM_HIDE_SESSION" value:PC_PERM_HIDE_SESSION],
+            @"PC_PERM_WHO_DISPLAY_AID": [Constant constantWithName:@"PC_PERM_WHO_DISPLAY_AID" value:PC_PERM_WHO_DISPLAY_AID],
+            @"PC_PERM_RECEIVE_HACK_INFO": [Constant constantWithName:@"PC_PERM_RECEIVE_HACK_INFO" value:PC_PERM_RECEIVE_HACK_INFO],
+            @"PC_PERM_WARP_ANYWHERE": [Constant constantWithName:@"PC_PERM_WARP_ANYWHERE" value:PC_PERM_WARP_ANYWHERE],
+            @"PC_PERM_VIEW_HPMETER": [Constant constantWithName:@"PC_PERM_VIEW_HPMETER" value:PC_PERM_VIEW_HPMETER],
+            @"PC_PERM_VIEW_EQUIPMENT": [Constant constantWithName:@"PC_PERM_VIEW_EQUIPMENT" value:PC_PERM_VIEW_EQUIPMENT],
+            @"PC_PERM_USE_CHECK": [Constant constantWithName:@"PC_PERM_USE_CHECK" value:PC_PERM_USE_CHECK],
+            @"PC_PERM_USE_CHANGEMAPTYPE": [Constant constantWithName:@"PC_PERM_USE_CHANGEMAPTYPE" value:PC_PERM_USE_CHANGEMAPTYPE],
+            @"PC_PERM_USE_ALL_COMMANDS": [Constant constantWithName:@"PC_PERM_USE_ALL_COMMANDS" value:PC_PERM_USE_ALL_COMMANDS],
+            @"PC_PERM_RECEIVE_REQUESTS": [Constant constantWithName:@"PC_PERM_RECEIVE_REQUESTS" value:PC_PERM_RECEIVE_REQUESTS],
+            @"PC_PERM_SHOW_BOSS": [Constant constantWithName:@"PC_PERM_SHOW_BOSS" value:PC_PERM_SHOW_BOSS],
+            @"PC_PERM_DISABLE_PVM": [Constant constantWithName:@"PC_PERM_DISABLE_PVM" value:PC_PERM_DISABLE_PVM],
+            @"PC_PERM_DISABLE_PVP": [Constant constantWithName:@"PC_PERM_DISABLE_PVP" value:PC_PERM_DISABLE_PVP],
+            @"PC_PERM_DISABLE_CMD_DEAD": [Constant constantWithName:@"PC_PERM_DISABLE_CMD_DEAD" value:PC_PERM_DISABLE_CMD_DEAD],
+            @"PC_PERM_CHANNEL_ADMIN": [Constant constantWithName:@"PC_PERM_CHANNEL_ADMIN" value:PC_PERM_CHANNEL_ADMIN],
+            @"PC_PERM_TRADE_BOUNDED": [Constant constantWithName:@"PC_PERM_TRADE_BOUNDED" value:PC_PERM_TRADE_BOUNDED],
+            @"PC_PERM_ITEM_UNCONDITIONAL": [Constant constantWithName:@"PC_PERM_ITEM_UNCONDITIONAL" value:PC_PERM_ITEM_UNCONDITIONAL],
+            @"PC_PERM_ENABLE_COMMAND": [Constant constantWithName:@"PC_PERM_ENABLE_COMMAND" value:PC_PERM_ENABLE_COMMAND],
+            @"PC_PERM_BYPASS_STAT_ONCLONE": [Constant constantWithName:@"PC_PERM_BYPASS_STAT_ONCLONE" value:PC_PERM_BYPASS_STAT_ONCLONE],
+            @"PC_PERM_BYPASS_MAX_STAT": [Constant constantWithName:@"PC_PERM_BYPASS_MAX_STAT" value:PC_PERM_BYPASS_MAX_STAT],
+            @"PC_PERM_ATTENDANCE": [Constant constantWithName:@"PC_PERM_ATTENDANCE" value:PC_PERM_ATTENDANCE],
+            @"PC_PERM_MACRO_DETECT": [Constant constantWithName:@"PC_PERM_MACRO_DETECT" value:PC_PERM_MACRO_DETECT],
+            @"PC_PERM_MACRO_REGISTER": [Constant constantWithName:@"PC_PERM_MACRO_REGISTER" value:PC_PERM_MACRO_REGISTER],
+            @"PC_PERM_TRADE_UNCONDITIONAL": [Constant constantWithName:@"PC_PERM_TRADE_UNCONDITIONAL" value:PC_PERM_TRADE_UNCONDITIONAL],
+            @"PC_PERM_MAX": [Constant constantWithName:@"PC_PERM_MAX" value:PC_PERM_MAX],
             @"GUILD_PERM_INVITE": [Constant constantWithName:@"GUILD_PERM_INVITE" value:GUILD_PERM_INVITE],
             @"GUILD_PERM_EXPEL": [Constant constantWithName:@"GUILD_PERM_EXPEL" value:GUILD_PERM_EXPEL],
             @"GUILD_PERM_STORAGE": [Constant constantWithName:@"GUILD_PERM_STORAGE" value:GUILD_PERM_STORAGE],
@@ -19190,6 +19266,9 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"CPC_ACCOUNT": [Constant constantWithName:@"CPC_ACCOUNT" value:CPC_ACCOUNT],
             @"IWA_NONE": [Constant constantWithName:@"IWA_NONE" value:IWA_NONE],
             @"IWA_NOTDEAD": [Constant constantWithName:@"IWA_NOTDEAD" value:IWA_NOTDEAD],
+            @"MIN_WALK_SPEED": [Constant constantWithName:@"MIN_WALK_SPEED" value:MIN_WALK_SPEED],
+            @"MAX_WALK_SPEED": [Constant constantWithName:@"MAX_WALK_SPEED" value:MAX_WALK_SPEED],
+            @"DEFAULT_NPC_WALK_SPEED": [Constant constantWithName:@"DEFAULT_NPC_WALK_SPEED" value:DEFAULT_NPC_WALK_SPEED],
             @"DMG_SINGLE": [Constant constantWithName:@"DMG_SINGLE" value:DMG_SINGLE],
             @"DMG_MULTI_HIT": [Constant constantWithName:@"DMG_MULTI_HIT" value:DMG_MULTI_HIT],
             @"NK_NODAMAGE": [Constant constantWithName:@"NK_NODAMAGE" value:NK_NODAMAGE],
@@ -19202,6 +19281,7 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"NK_IGNOREDEFCARD": [Constant constantWithName:@"NK_IGNOREDEFCARD" value:NK_IGNOREDEFCARD],
             @"NK_IGNORELONGCARD": [Constant constantWithName:@"NK_IGNORELONGCARD" value:NK_IGNORELONGCARD],
             @"NK_CRITICAL": [Constant constantWithName:@"NK_CRITICAL" value:NK_CRITICAL],
+            @"NK_SIMPLEDEFENSE": [Constant constantWithName:@"NK_SIMPLEDEFENSE" value:NK_SIMPLEDEFENSE],
             @"INF_PASSIVE_SKILL": [Constant constantWithName:@"INF_PASSIVE_SKILL" value:INF_PASSIVE_SKILL],
             @"INF_ATTACK_SKILL": [Constant constantWithName:@"INF_ATTACK_SKILL" value:INF_ATTACK_SKILL],
             @"INF_GROUND_SKILL": [Constant constantWithName:@"INF_GROUND_SKILL" value:INF_GROUND_SKILL],
@@ -19548,6 +19628,12 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"ELEMINFO_ID": [Constant constantWithName:@"ELEMINFO_ID" value:ELEMINFO_ID],
             @"ELEMINFO_GAMEID": [Constant constantWithName:@"ELEMINFO_GAMEID" value:ELEMINFO_GAMEID],
             @"ELEMINFO_CLASS": [Constant constantWithName:@"ELEMINFO_CLASS" value:ELEMINFO_CLASS],
+            @"DIALOG_ALIGN_LEFT": [Constant constantWithName:@"DIALOG_ALIGN_LEFT" value:DIALOG_ALIGN_LEFT],
+            @"DIALOG_ALIGN_RIGHT": [Constant constantWithName:@"DIALOG_ALIGN_RIGHT" value:DIALOG_ALIGN_RIGHT],
+            @"DIALOG_ALIGN_CENTER": [Constant constantWithName:@"DIALOG_ALIGN_CENTER" value:DIALOG_ALIGN_CENTER],
+            @"DIALOG_ALIGN_TOP": [Constant constantWithName:@"DIALOG_ALIGN_TOP" value:DIALOG_ALIGN_TOP],
+            @"DIALOG_ALIGN_MIDDLE": [Constant constantWithName:@"DIALOG_ALIGN_MIDDLE" value:DIALOG_ALIGN_MIDDLE],
+            @"DIALOG_ALIGN_BOTTOM": [Constant constantWithName:@"DIALOG_ALIGN_BOTTOM" value:DIALOG_ALIGN_BOTTOM],
             @"REFINE_TYPE_ARMOR": [Constant constantWithName:@"REFINE_TYPE_ARMOR" value:REFINE_TYPE_ARMOR],
             @"REFINE_TYPE_WEAPON": [Constant constantWithName:@"REFINE_TYPE_WEAPON" value:REFINE_TYPE_WEAPON],
             @"REFINE_TYPE_SHADOW_ARMOR": [Constant constantWithName:@"REFINE_TYPE_SHADOW_ARMOR" value:REFINE_TYPE_SHADOW_ARMOR],
@@ -19765,6 +19851,8 @@ const NSInteger RA_MER_ELEANOR = MER_ELEANOR;
             @"MER_SERA": [Constant constantWithName:@"MER_SERA" value:MER_SERA],
             @"MER_DIETER": [Constant constantWithName:@"MER_DIETER" value:MER_DIETER],
             @"MER_ELEANOR": [Constant constantWithName:@"MER_ELEANOR" value:MER_ELEANOR],
+            @"SEARCHSTORE_EFFECT_NORMAL": [Constant constantWithName:@"SEARCHSTORE_EFFECT_NORMAL" value:SEARCHSTORE_EFFECT_NORMAL],
+            @"SEARCHSTORE_EFFECT_REMOTE": [Constant constantWithName:@"SEARCHSTORE_EFFECT_REMOTE" value:SEARCHSTORE_EFFECT_REMOTE],
         };
     });
     return allConstants;
