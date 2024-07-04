@@ -225,7 +225,6 @@
 	parseable_packet(0x018a,4,clif_parse_QuitGame,2);
 	packet(0x018b,4);
 	packet(0x018c,29);
-	packet(0x018d,-1);
 	parseable_packet( HEADER_CZ_REQMAKINGITEM, sizeof( struct PACKET_CZ_REQMAKINGITEM ), clif_parse_ProduceMix, 0 );
 	packet( HEADER_ZC_ACK_REQMAKINGITEM, sizeof( PACKET_ZC_ACK_REQMAKINGITEM ) );
 	parseable_packet(0x0190,90,clif_parse_UseSkillToPosMoreInfo,2,4,6,8,10);
@@ -769,7 +768,6 @@
 // 2005-10-10aSakexe
 #if PACKETVER >= 20051010
 	packet(0x020e,32);
-	packet(0x025a,-1);
 	parseable_packet( HEADER_CZ_REQ_MAKINGITEM, sizeof( struct PACKET_CZ_REQ_MAKINGITEM ), clif_parse_Cooking, 0 );
 #endif
 
@@ -1533,18 +1531,14 @@
 	packet(0x0810,3);
 	parseable_packet(0x0811,-1,clif_parse_ReqOpenBuyingStore,2,4,8,9,89);
 	//packet(0x0812,86);
-	//packet(0x0813,6);
 	//packet(0x0815,-1);
 	//packet(0x0817,-1);
-	//packet(0x0818,6);
 	//packet(0x0819,4);
 #endif
 
 // 2010-03-09aRagexeRE
 #if PACKETVER >= 20100309
-	packet(0x0813,-1);
 	//packet(0x0815,6);
-	packet(0x0818,-1);
 	//packet(0x0819,10);
 	//packet(0x081A,4);
 	//packet(0x081B,4);
@@ -1592,10 +1586,8 @@
 // 2010-06-08aRagexeRE
 #if PACKETVER >= 20100608
 	parseable_packet(0x0838,2,clif_parse_SearchStoreInfoNextPage,0);
-	packet(0x083A,4); // Search Stalls Feature
 	parseable_packet(0x083B,2,clif_parse_CloseSearchStoreInfo,0);
 	parseable_packet( HEADER_CZ_SSILIST_ITEM_CLICK, sizeof( struct PACKET_CZ_SSILIST_ITEM_CLICK ), clif_parse_SearchStoreInfoListItemClick, 0 );
-	packet(0x083D,6);
 #endif
 
 // 2010-06-15aRagexeRE
@@ -1615,16 +1607,10 @@
 	//packet(0x07F3,6);
 #endif
 
-// 2010-07-01aRagexeRE
-#if PACKETVER >= 20100701
-	packet(0x083A,5); // Search Stalls Feature
-#endif
-
 // 2010-07-06aRagexeRE
 #if PACKETVER_MAIN_NUM >= 20100817 || PACKETVER_RE_NUM >= 20100706 || defined(PACKETVER_ZERO)
 	parseable_packet(0x0835, -1, clif_parse_SearchStoreInfo, 2, 4, 5, 9, 13, 14, 15);
 	packet(HEADER_ZC_SEARCH_STORE_INFO_ACK, -1);
-	packet(0x0837, 3);
 #endif
 
 // 2010-07-13aRagexeRE
@@ -1975,7 +1961,6 @@
 	parseable_packet(0x09CE,102,clif_parse_GM_Item_Monster,2);
 	parseable_packet(0x09D4,2,clif_parse_NPCShopClosed,0);
 	//NPC Market
-	packet(0x09D5,-1);
 	parseable_packet( HEADER_CZ_NPC_MARKET_PURCHASE, -1, clif_parse_NPCMarketPurchase, 0 );
 	packet(0x09D7,-1);
 	parseable_packet(0x09D8,2,clif_parse_NPCMarketClosed,0);
@@ -1999,11 +1984,6 @@
 	packet(0x09DB,-1); // ZC_NOTIFY_MOVEENTRY10
 	packet(0x09DC,-1); // ZC_NOTIFY_NEWENTRY10
 	packet(0x09DD,-1); // ZC_NOTIFY_STANDENTRY10
-#endif
-
-// 2014-02-05bRagexeRE
-#if PACKETVER >= 20140205
-	packet(0x09DA,-1);
 #endif
 
 // 2014-10-08Ragexe

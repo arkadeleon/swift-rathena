@@ -6648,42 +6648,31 @@ static void battle_calc_defense_reduction(struct Damage* wd, struct block_list *
 	}
 
 #ifdef RENEWAL
-	switch(skill_id) {
-		case RK_DRAGONBREATH:
-		case RK_DRAGONBREATH_WATER:
-		case NC_ARMSCANNON:
-		case GN_CARTCANNON:
-		case MO_EXTREMITYFIST:
-			if (attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_R) || attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_L))
-				return;
-			if (is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) || is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L))
-				return;
-			[[fallthrough]];
-		case CR_GRANDCROSS: // Grand Cross is marked as "IgnoreDefense" in renewal as it's applied at the end after already combining ATK and MATK
-		case NPC_GRANDDARKNESS:
-			// Defense reduction by flat value.
-			// This completely bypasses the normal RE DEF Reduction formula.
-			wd->damage -= (def1 + vit_def);
-			if (is_attack_left_handed(src, skill_id))
-				wd->damage2 -= (def1 + vit_def);
-			break;
+	std::bitset<NK_MAX> nk = battle_skill_get_damage_properties(skill_id, wd->miscflag);
+
+	if (nk[NK_SIMPLEDEFENSE]) {
+		// Defense reduction by flat value.
+		// This completely bypasses the normal RE DEF Reduction formula.
+		wd->damage -= (def1 + vit_def);
+		if (is_attack_left_handed(src, skill_id))
+			wd->damage2 -= (def1 + vit_def);
+	}
+	else {
 		/**
 		 * RE DEF Reduction
 		 * Damage = Attack * (4000+eDEF)/(4000+eDEF*10) - sDEF
 		 * Pierce defence gains 1 atk per def/2
 		 */
-		default:
-			if( def1 == -400 ) /* -400 creates a division by 0 and subsequently crashes */
-				def1 = -399;
-			ATK_ADD2(wd->damage, wd->damage2,
-				is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) ? (def1*battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv))/200 : 0,
-				is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L) ? (def1*battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv))/200 : 0
-			);
-			if( !attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_R) && !is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) )
-				wd->damage = wd->damage * (4000+def1) / (4000+10*def1) - vit_def;
-			if( is_attack_left_handed(src, skill_id) && !attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_L) && !is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L) )
-				wd->damage2 = wd->damage2 * (4000+def1) / (4000+10*def1) - vit_def;
-			break;
+		if (def1 == -400) /* -400 creates a division by 0 and subsequently crashes */
+			def1 = -399;
+		ATK_ADD2(wd->damage, wd->damage2,
+			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R) ? (def1 * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0,
+			is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L) ? (def1 * battle_calc_attack_skill_ratio(wd, src, target, skill_id, skill_lv)) / 200 : 0
+		);
+		if (!attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_R) && !is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_R))
+			wd->damage = wd->damage * (4000 + def1) / (4000 + 10 * def1) - vit_def;
+		if (is_attack_left_handed(src, skill_id) && !attack_ignores_def(wd, src, target, skill_id, skill_lv, EQI_HAND_L) && !is_attack_piercing(wd, src, target, skill_id, skill_lv, EQI_HAND_L))
+			wd->damage2 = wd->damage2 * (4000 + def1) / (4000 + 10 * def1) - vit_def;
 	}
 #else
 		if (def1 > 100) def1 = 100;
@@ -7507,10 +7496,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 
 		// Res reduces physical damage by a percentage and
 		// is calculated before DEF and other reductions.
-		// TODO: It seems all skills that use the simple defense formula (damage substracted by DEF+DEF2) ignore Res
-		// TODO: We should add a flag for those skills or use the IgnoreDefense flag after confirming all
+		// All skills that use the simple defense formula (damage substracted by DEF+DEF2) ignore Res
 		// TODO: Res formula probably should be: (2000+x)/(2000+5x), but with the reduction rounded down
-		if ((wd.damage + wd.damage2) && tstatus->res > 0 && skill_id != MO_EXTREMITYFIST && skill_id != GN_CARTCANNON && skill_id != NC_ARMSCANNON) {
+		if ((wd.damage + wd.damage2) && tstatus->res > 0 && !nk[NK_SIMPLEDEFENSE]) {
 			short res = tstatus->res;
 			short ignore_res = 0;// Value used as a percentage.
 
@@ -7525,15 +7513,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src, struct bl
 					ignore_res += sc->getSCE(SC_POTENT_VENOM)->val2;
 			}
 
-			ignore_res = min(ignore_res, 100);
+			ignore_res = min(ignore_res, battle_config.max_res_mres_ignored);
 
 			if (ignore_res > 0)
 				res -= res * ignore_res / 100;
-
-			// Max damage reduction from Res is officially 50%.
-			// That means 625 Res is needed to hit that cap.
-			if (res > battle_config.max_res_mres_reduction)
-				res = battle_config.max_res_mres_reduction;
 
 			// Apply damage reduction.
 			wd.damage = wd.damage * (5000 + res) / (5000 + 10 * res);
@@ -8786,7 +8769,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 		// MRes reduces magical damage by a percentage and
 		// is calculated before MDEF and other reductions.
-		// TODO: Check if there are skills that ignore Mres, similar to skills that ignore Res
 		// TODO: MRes formula probably should be: (2000+x)/(2000+5x), but with the reduction rounded down
 		if (ad.damage && tstatus->mres > 0) {
 			short mres = tstatus->mres;
@@ -8799,15 +8781,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			if (sc && sc->getSCE(SC_A_VITA))
 				ignore_mres += sc->getSCE(SC_A_VITA)->val2;
 
-			ignore_mres = min(ignore_mres, 100);
+			ignore_mres = min(ignore_mres, battle_config.max_res_mres_ignored);
 
 			if (ignore_mres > 0)
 				mres -= mres * ignore_mres / 100;
-
-			// Max damage reduction from MRes is officially 50%.
-			// That means 625 MRes is needed to hit that cap.
-			if (mres > battle_config.max_res_mres_reduction)
-				mres = battle_config.max_res_mres_reduction;
 
 			// Apply damage reduction.
 			ad.damage = ad.damage * (5000 + mres) / (5000 + 10 * mres);
@@ -11270,7 +11247,7 @@ static const struct _battle_data {
 	{ "mob_status_def_rate",                &battle_config.mob_sc_def_rate,                 100,    0,      INT_MAX,        },
 	{ "pc_max_status_def",                  &battle_config.pc_max_sc_def,                   100,    0,      INT_MAX,        },
 	{ "mob_max_status_def",                 &battle_config.mob_max_sc_def,                  100,    0,      INT_MAX,        },
-	{ "sg_miracle_skill_ratio",             &battle_config.sg_miracle_skill_ratio,          1,      0,      10000,          },
+	{ "sg_miracle_skill_ratio",             &battle_config.sg_miracle_skill_ratio,          1,      0,      20000,          },
 	{ "sg_angel_skill_ratio",               &battle_config.sg_angel_skill_ratio,            10,     0,      10000,          },
 	{ "autospell_stacking",                 &battle_config.autospell_stacking,              0,      0,      1,              },
 	{ "override_mob_names",                 &battle_config.override_mob_names,              0,      0,      2,              },
@@ -11512,7 +11489,7 @@ static const struct _battle_data {
 	{ "use_traitpoint_table",               &battle_config.use_traitpoint_table,            1,      0,      1,              },
 	{ "trait_points_job_change",            &battle_config.trait_points_job_change,         7,      1,      1000,           },
 	{ "max_trait_parameter",                &battle_config.max_trait_parameter,             100,    10,     SHRT_MAX,       },
-	{ "max_res_mres_reduction",             &battle_config.max_res_mres_reduction,          625,    1,      SHRT_MAX,       },
+	{ "max_res_mres_ignored",               &battle_config.max_res_mres_ignored,            50,     0,      100,            },
 	{ "max_ap",                             &battle_config.max_ap,                          200,    100,    1000000000,     },
 	{ "ap_rate",                            &battle_config.ap_rate,                         100,    1,      INT_MAX,        },
 	{ "restart_ap_rate",                    &battle_config.restart_ap_rate,                 0,      0,      100,            },
