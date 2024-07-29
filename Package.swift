@@ -201,15 +201,6 @@ let package = Package(
                 "src",
             ]
         ),
-        .plugin(
-            name: "rAthenaExportConstantsPlugin",
-            capability: .command(
-                intent: .custom(verb: "export-constants", description: ""),
-                permissions: [
-                    .writeToPackageDirectory(reason: "")
-                ]
-            )
-        ),
         .testTarget(
             name: "rAthenaLoginTests",
             dependencies: [
@@ -237,6 +228,15 @@ let package = Package(
                 "rAthenaWeb",
                 "rAthenaResources",
             ]
+        ),
+        .plugin(
+            name: "rAthenaExportConstants",
+            capability: .command(
+                intent: .custom(verb: "export-constants", description: ""),
+                permissions: [
+                    .writeToPackageDirectory(reason: "")
+                ]
+            )
         ),
     ],
     cxxLanguageStandard: .cxx17

@@ -1,5 +1,5 @@
 //
-//  ExportConstantsPlugin.swift
+//  ExportConstants.swift
 //  rAthena
 //
 //  Created by Leon Li on 2023/6/20.
@@ -9,7 +9,7 @@ import Foundation
 import PackagePlugin
 
 @main
-struct ExportConstantsPlugin: CommandPlugin {
+struct ExportConstants: CommandPlugin {
     typealias Constant = (name: String, value: String)
 
     func performCommand(context: PluginContext, arguments: [String]) async throws {
