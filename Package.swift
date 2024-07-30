@@ -234,7 +234,16 @@ let package = Package(
             capability: .command(
                 intent: .custom(verb: "export-constants", description: ""),
                 permissions: [
-                    .writeToPackageDirectory(reason: "")
+                    .writeToPackageDirectory(reason: ""),
+                ]
+            )
+        ),
+        .plugin(
+            name: "rAthenaReplaceSymlinks",
+            capability: .command(
+                intent: .custom(verb: "replace-symlinks", description: ""),
+                permissions: [
+                    .writeToPackageDirectory(reason: ""),
                 ]
             )
         ),
