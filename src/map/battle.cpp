@@ -1375,7 +1375,7 @@ bool battle_status_block_damage(struct block_list *src, struct block_list *targe
 		if (sce->val3 <= 0) { // Shield Down
 			sce->val2--;
 			if (sce->val2 > 0) {
-				clif_millenniumshield(target, sce->val2);
+				clif_millenniumshield( *target, sce->val2 );
 				sce->val3 = 1000; // Next shield
 			} else
 				status_change_end(target, SC_MILLENNIUMSHIELD); // All shields down
@@ -1675,7 +1675,7 @@ int64 battle_calc_damage(struct block_list *src,struct block_list *bl,struct Dam
 			damage += damage * bonus / 100;
 		}
 		if (tsc->getSCE(SC_HOLY_OIL) && (flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
-			damage += damage * 50 / 100;// Need official adjustment. [Rytech]
+			damage += damage * (3 * tsc->getSCE(SC_HOLY_OIL)->val1) / 100;
 
 		if( tsc->getSCE( SC_RUSH_QUAKE1 ) && ( flag&BF_WEAPON ) == BF_WEAPON ){
 			damage += damage * 50 / 100;
@@ -11529,6 +11529,13 @@ static const struct _battle_data {
 #endif
 	{ "synchronize_damage",                 &battle_config.synchronize_damage,              0,      0,      1,              },
 	{ "item_stacking",                      &battle_config.item_stacking,                   1,      0,      1,              },
+#ifdef RENEWAL
+	{ "hom_delay_reset_vaporize",           &battle_config.hom_delay_reset_vaporize,        0,      0,      1,              },
+	{ "hom_delay_reset_warp",               &battle_config.hom_delay_reset_warp,            0,      0,      1,              },
+#else
+	{ "hom_delay_reset_vaporize",           &battle_config.hom_delay_reset_vaporize,        1,      0,      1,              },
+	{ "hom_delay_reset_warp",               &battle_config.hom_delay_reset_warp,            1,      0,      1,              },
+#endif
 
 #include <custom/battle_config_init.inc>
 };
