@@ -163,6 +163,9 @@ let package = Package(
                 .copy("db"),
                 .copy("npc"),
                 .copy("ragnarok.sqlite3"),
+            ],
+            plugins: [
+                "rAthenaParseRevision",
             ]
         ),
         .target(
@@ -228,6 +231,10 @@ let package = Package(
                 "rAthenaWeb",
                 "rAthenaResources",
             ]
+        ),
+        .plugin(
+            name: "rAthenaParseRevision",
+            capability: .buildTool()
         ),
         .plugin(
             name: "rAthenaExportConstants",

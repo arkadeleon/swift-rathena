@@ -8,6 +8,11 @@
 import Foundation
 import SQLite3
 
+enum SQLite3Error: Error {
+    case open
+    case prepare
+}
+
 public final class ServerResourceBundle: Sendable {
     public static let shared = ServerResourceBundle()
 
@@ -38,75 +43,100 @@ public final class ServerResourceBundle: Sendable {
 
         let sourceURL = Bundle.module.resourceURL!
         let sourceDatabaseURL = sourceURL.appendingPathComponent("ragnarok.sqlite3")
+
         let databaseURL = url.appendingPathComponent("ragnarok.sqlite3")
+        let revisionURL = url.appendingPathComponent("revision")
+
         if !fileManager.fileExists(atPath: databaseURL.path) {
             try fileManager.copyItem(at: sourceDatabaseURL, to: databaseURL)
         }
 
-        let paths = ["conf", "db", "npc"]
-        for path in paths {
-            let sourceURL = sourceURL.appendingPathComponent(path)
-            let url = url.appendingPathComponent(path)
-            if fileManager.fileExists(atPath: url.path) {
-                try fileManager.removeItem(at: url)
+        try upgradeDatabase(at: databaseURL)
+
+        var needsUpdate = true
+        if fileManager.fileExists(atPath: revisionURL.path) {
+            let revision = try String(contentsOf: revisionURL, encoding: .utf8)
+            if revision == ServerResourceRevision {
+                needsUpdate = false
             }
-            try fileManager.copyItem(at: sourceURL, to: url)
         }
 
-        try fileManager.moveItem(at: url.appendingPathComponent("conf/import-tmpl"), to: url.appendingPathComponent("conf/import"))
+        if needsUpdate {
+            let paths = ["conf", "db", "npc"]
+            for path in paths {
+                let sourceURL = sourceURL.appendingPathComponent(path)
+                let url = url.appendingPathComponent(path)
+                if fileManager.fileExists(atPath: url.path) {
+                    try fileManager.removeItem(at: url)
+                }
+                try fileManager.copyItem(at: sourceURL, to: url)
+            }
 
-        try await upgradeDatabase(at: databaseURL)
+            try fileManager.moveItem(at: url.appendingPathComponent("conf/import-tmpl"), to: url.appendingPathComponent("conf/import"))
+
+            try ServerResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
+        }
     }
 
-    private func upgradeDatabase(at url: URL) async throws {
+    private func upgradeDatabase(at url: URL) throws {
         var db: OpaquePointer?
+
         guard sqlite3_open(url.path, &db) == SQLITE_OK else {
-            return
+            throw SQLite3Error.open
         }
 
-        let sql = "CREATE TABLE IF NOT EXISTS `upgrades` (`id` TEXT NOT NULL, PRIMARY KEY (id));"
+        defer {
+            sqlite3_close(db)
+        }
+
+        var sql: String?
         var stmt: OpaquePointer?
-        if (sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK) {
-            sqlite3_step(stmt);
-            sqlite3_finalize(stmt);
-            stmt = nil;
+
+        sql = "CREATE TABLE IF NOT EXISTS `upgrades` (`id` TEXT NOT NULL, PRIMARY KEY (id));"
+        guard (sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK) else {
+            throw SQLite3Error.prepare
         }
 
-        let upgrades = [
-            "20230224": "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';",
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
+        stmt = nil;
+
+        let upgrades: [(id: String, sql: String)] = [
+            ("20230224", "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';"),
         ]
 
-        let upgradeIDs = upgrades.keys.sorted()
-        for upgradeID in upgradeIDs {
-            var sql = ""
-            var stmt: OpaquePointer?
-
-            sql = "SELECT count(*) FROM upgrades WHERE id = '\(upgradeID)' LIMIT 1"
-            if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_step(stmt)
-                let count = sqlite3_column_int(stmt, 0)
-                sqlite3_finalize(stmt)
-                stmt = nil
-                if count == 1 {
-                    continue
-                }
+        for upgrade in upgrades {
+            sql = "SELECT count(*) FROM `upgrades` WHERE `id` = '\(upgrade.id)' LIMIT 1;"
+            guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+                throw SQLite3Error.prepare
             }
 
-            sql = upgrades[upgradeID]!
-            if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_step(stmt)
-                sqlite3_finalize(stmt)
-                stmt = nil
+            sqlite3_step(stmt)
+            let count = sqlite3_column_int(stmt, 0)
+            sqlite3_finalize(stmt)
+            stmt = nil
+
+            if count == 1 {
+                continue
             }
 
-            sql = "INSERT INTO upgrades VALUES ('\(upgradeID)')"
-            if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {
-                sqlite3_step(stmt)
-                sqlite3_finalize(stmt)
-                stmt = nil
+            sql = upgrade.sql
+            guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+                throw SQLite3Error.prepare
             }
+
+            sqlite3_step(stmt)
+            sqlite3_finalize(stmt)
+            stmt = nil
+
+            sql = "INSERT INTO `upgrades` VALUES ('\(upgrade.id)')"
+            guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+                throw SQLite3Error.prepare
+            }
+
+            sqlite3_step(stmt)
+            sqlite3_finalize(stmt)
+            stmt = nil
         }
-
-        sqlite3_close(db)
     }
 }
