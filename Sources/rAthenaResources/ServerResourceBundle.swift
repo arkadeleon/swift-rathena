@@ -13,7 +13,7 @@ enum SQLite3Error: Error {
     case prepare
 }
 
-public final class ServerResourceBundle: Sendable {
+final public class ServerResourceBundle: Sendable {
     public static let shared = ServerResourceBundle()
 
     public let url: URL
@@ -31,8 +31,7 @@ public final class ServerResourceBundle: Sendable {
     }
 
     public init() {
-        let fileManager = FileManager.default
-        let libraryURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let libraryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         url = libraryURL.appendingPathComponent("rathena")
     }
 
