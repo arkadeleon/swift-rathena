@@ -23,8 +23,4 @@ final class MapServerTests: XCTestCase {
 
         XCTAssertEqual(mapServer.status, .running)
     }
-
-    static var allTests = [
-        ("testMapServer", testMapServer),
-    ]
 }

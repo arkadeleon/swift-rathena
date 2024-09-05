@@ -23,8 +23,4 @@ final class CharServerTests: XCTestCase {
 
         XCTAssertEqual(charServer.status, .running)
     }
-
-    static var allTests = [
-        ("testCharServer", testCharServer),
-    ]
 }

@@ -23,8 +23,4 @@ final class WebServerTests: XCTestCase {
 
 //        XCTAssertEqual(webServer.status, .running)
     }
-
-    static var allTests = [
-        ("testWebServer", testWebServer),
-    ]
 }
