@@ -1,5 +1,5 @@
 //
-//  ServerResourceBundle.swift
+//  ServerResourceManager.swift
 //  rAthena
 //
 //  Created by Leon Li on 2021/7/29.
@@ -13,38 +13,38 @@ enum SQLite3Error: Error {
     case prepare
 }
 
-final public class ServerResourceBundle: Sendable {
-    public static let shared = ServerResourceBundle()
+final public class ServerResourceManager: Sendable {
+    public static let `default` = ServerResourceManager()
 
-    public let url: URL
+    public let baseURL: URL
 
     public var confURL: URL {
-        url.appendingPathComponent("conf")
+        baseURL.appending(path: "conf", directoryHint: .isDirectory)
     }
 
     public var dbURL: URL {
-        url.appendingPathComponent("db")
+        baseURL.appending(path: "db", directoryHint: .isDirectory)
     }
 
     public var npcURL: URL {
-        url.appendingPathComponent("npc")
+        baseURL.appending(path: "npc", directoryHint: .isDirectory)
     }
 
     public init() {
         let libraryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        url = libraryURL.appendingPathComponent("rathena")
+        baseURL = libraryURL.appending(path: "rathena", directoryHint: .isDirectory)
     }
 
-    public func load() async throws {
+    public func prepareForServers() throws {
         let fileManager = FileManager.default
-        try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-        fileManager.changeCurrentDirectoryPath(url.path)
+        try fileManager.createDirectory(at: baseURL, withIntermediateDirectories: true, attributes: nil)
+        fileManager.changeCurrentDirectoryPath(baseURL.path)
 
         let sourceURL = Bundle.module.resourceURL!
-        let sourceDatabaseURL = sourceURL.appendingPathComponent("ragnarok.sqlite3")
+        let sourceDatabaseURL = sourceURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
 
-        let databaseURL = url.appendingPathComponent("ragnarok.sqlite3")
-        let revisionURL = url.appendingPathComponent("revision")
+        let databaseURL = baseURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let revisionURL = baseURL.appending(path: "revision", directoryHint: .notDirectory)
 
         if !fileManager.fileExists(atPath: databaseURL.path) {
             try fileManager.copyItem(at: sourceDatabaseURL, to: databaseURL)
@@ -63,15 +63,17 @@ final public class ServerResourceBundle: Sendable {
         if needsUpdate {
             let paths = ["conf", "db", "npc"]
             for path in paths {
-                let sourceURL = sourceURL.appendingPathComponent(path)
-                let url = url.appendingPathComponent(path)
+                let sourceURL = sourceURL.appending(path: path, directoryHint: .isDirectory)
+                let url = baseURL.appending(path: path, directoryHint: .isDirectory)
                 if fileManager.fileExists(atPath: url.path) {
                     try fileManager.removeItem(at: url)
                 }
                 try fileManager.copyItem(at: sourceURL, to: url)
             }
 
-            try fileManager.moveItem(at: url.appendingPathComponent("conf/import-tmpl"), to: url.appendingPathComponent("conf/import"))
+            let sourceImportURL = baseURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
+            let importURL = baseURL.appending(path: "conf/import", directoryHint: .isDirectory)
+            try fileManager.moveItem(at: sourceImportURL, to: importURL)
 
             try ServerResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
         }

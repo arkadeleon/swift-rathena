@@ -11,7 +11,7 @@ import XCTest
 
 final class CharServerTests: XCTestCase {
     override func setUp() async throws {
-        try await ServerResourceBundle.shared.load()
+        try ServerResourceManager.default.prepareForServers()
     }
 
     func testCharServer() async {

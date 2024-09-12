@@ -6,7 +6,9 @@ import PackageDescription
 let package = Package(
     name: "swift-rathena",
     platforms: [
-        .iOS(.v13),
+        .macOS(.v13),
+        .iOS(.v16),
+        .visionOS(.v1),
     ],
     products: [
         .library(
