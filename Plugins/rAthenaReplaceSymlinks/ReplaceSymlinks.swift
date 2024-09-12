@@ -11,19 +11,18 @@ import PackagePlugin
 @main
 struct ReplaceSymlinks: CommandPlugin {
     func performCommand(context: PluginContext, arguments: [String]) async throws {
-        let loginDir = context.package.directory.appending(["Sources", "rAthenaLogin"])
-        let charDir = context.package.directory.appending(["Sources", "rAthenaChar"])
-        let mapDir = context.package.directory.appending(["Sources", "rAthenaMap"])
-        let webDir = context.package.directory.appending(["Sources", "rAthenaWeb"])
+        let loginURL = context.package.directoryURL.appending(path: "Sources/rAthenaLogin")
+        let charURL = context.package.directoryURL.appending(path: "Sources/rAthenaChar")
+        let mapURL = context.package.directoryURL.appending(path: "Sources/rAthenaMap")
+        let webURL = context.package.directoryURL.appending(path: "Sources/rAthenaWeb")
 
-        try replaceSymlinks(in: loginDir)
-        try replaceSymlinks(in: charDir)
-        try replaceSymlinks(in: mapDir)
-        try replaceSymlinks(in: webDir)
+        try replaceSymlinks(at: loginURL)
+        try replaceSymlinks(at: charURL)
+        try replaceSymlinks(at: mapURL)
+        try replaceSymlinks(at: webURL)
     }
 
-    private func replaceSymlinks(in directory: Path) throws {
-        let url = URL(fileURLWithPath: directory.string)
+    private func replaceSymlinks(at url: URL) throws {
         let enumerator = FileManager.default.enumerator(at: url, includingPropertiesForKeys: nil)!
         for item in enumerator {
             let url = item as! URL

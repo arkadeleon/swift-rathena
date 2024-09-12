@@ -55,7 +55,7 @@ final public class ServerResourceManager: Sendable {
         var needsUpdate = true
         if fileManager.fileExists(atPath: revisionURL.path) {
             let revision = try String(contentsOf: revisionURL, encoding: .utf8)
-            if revision == ServerResourceRevision {
+            if revision == serverResourceRevision {
                 needsUpdate = false
             }
         }
@@ -75,7 +75,7 @@ final public class ServerResourceManager: Sendable {
             let importURL = baseURL.appending(path: "conf/import", directoryHint: .isDirectory)
             try fileManager.moveItem(at: sourceImportURL, to: importURL)
 
-            try ServerResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
+            try serverResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
         }
     }
 
