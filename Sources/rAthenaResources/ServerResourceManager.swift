@@ -102,12 +102,14 @@ final public class ServerResourceManager: Sendable {
         sqlite3_finalize(stmt);
         stmt = nil;
 
-        let upgrades: [(id: String, sql: String)] = [
-            ("20230224", "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';"),
+        let upgrades: KeyValuePairs<String, String> = [
+            "20230224": "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';",
+            "20240803": "UPDATE `char_reg_num` SET `key` = 'ep18_main' WHERE `key` = 'ep18_1_main';",
+            "20240914": "ALTER TABLE `guild_expulsion` ADD COLUMN `char_id` INTEGER NOT NULL DEFAULT '0';",
         ]
 
         for upgrade in upgrades {
-            sql = "SELECT count(*) FROM `upgrades` WHERE `id` = '\(upgrade.id)' LIMIT 1;"
+            sql = "SELECT count(*) FROM `upgrades` WHERE `id` = '\(upgrade.key)' LIMIT 1;"
             guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
             }
@@ -121,7 +123,7 @@ final public class ServerResourceManager: Sendable {
                 continue
             }
 
-            sql = upgrade.sql
+            sql = upgrade.value
             guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
             }
@@ -130,7 +132,7 @@ final public class ServerResourceManager: Sendable {
             sqlite3_finalize(stmt)
             stmt = nil
 
-            sql = "INSERT INTO `upgrades` VALUES ('\(upgrade.id)')"
+            sql = "INSERT INTO `upgrades` VALUES ('\(upgrade.key)')"
             guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
             }
