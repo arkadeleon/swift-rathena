@@ -15,12 +15,18 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 #include "cbasetypes.hpp"
+#include "cli.hpp"
 #include "malloc.hpp"
 #include "showmsg.hpp"
 #include "strlib.hpp"
 #include "timer.hpp"
 
-#define SQL_CONF_NAME "conf/inter_athena.conf"
+// MySQL 8.0 or later removed my_bool typedef.
+// Reintroduce it as a bandaid fix.
+// See https://bugs.mysql.com/?id=87337
+#if !defined(MARIADB_BASE_VERSION) && !defined(MARIADB_VERSION_ID) && MYSQL_VERSION_ID >= 80001 && MYSQL_VERSION_ID != 80002
+#define my_bool bool
+#endif
 
 void ra_mysql_error_handler(unsigned int ecode);
 
@@ -1174,5 +1180,5 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 }
 
 void Sql_Init(void) {
-	Sql_inter_server_read(SQL_CONF_NAME,true);
+	Sql_inter_server_read(INTER_CONF_NAME,true);
 }
