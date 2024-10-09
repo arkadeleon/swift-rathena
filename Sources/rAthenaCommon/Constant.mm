@@ -1723,6 +1723,9 @@ const NSInteger RA_SC_PERIOD_PLUSEXP_2ND = SC_PERIOD_PLUSEXP_2ND;
 const NSInteger RA_SC_POWERUP = SC_POWERUP;
 const NSInteger RA_SC_AGIUP = SC_AGIUP;
 const NSInteger RA_SC_PROTECTION = SC_PROTECTION;
+const NSInteger RA_SC_BATH_FOAM_A = SC_BATH_FOAM_A;
+const NSInteger RA_SC_BATH_FOAM_B = SC_BATH_FOAM_B;
+const NSInteger RA_SC_BATH_FOAM_C = SC_BATH_FOAM_C;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -3921,6 +3924,7 @@ const NSInteger RA_CHAN_OPT_AUTOJOIN = CHAN_OPT_AUTOJOIN;
 const NSInteger RA_STOR_MODE_NONE = STOR_MODE_NONE;
 const NSInteger RA_STOR_MODE_GET = STOR_MODE_GET;
 const NSInteger RA_STOR_MODE_PUT = STOR_MODE_PUT;
+const NSInteger RA_STOR_MODE_ALL = STOR_MODE_ALL;
 const NSInteger RA_IE_OK = IE_OK;
 const NSInteger RA_IE_NOMEMBER = IE_NOMEMBER;
 const NSInteger RA_IE_NOINSTANCE = IE_NOINSTANCE;
@@ -6575,6 +6579,35 @@ const NSInteger RA_IG_L_SPECIAL_FORCE_PACK = IG_L_SPECIAL_FORCE_PACK;
 const NSInteger RA_IG_COSTUMEMILEPACK_35_1 = IG_COSTUMEMILEPACK_35_1;
 const NSInteger RA_IG_COSTUMEMILEPACK_35_2 = IG_COSTUMEMILEPACK_35_2;
 const NSInteger RA_IG_COSTUMEMILEPACK_35_3 = IG_COSTUMEMILEPACK_35_3;
+const NSInteger RA_IG_2024ROS_BOX_1ST = IG_2024ROS_BOX_1ST;
+const NSInteger RA_IG_2024ROS_BOX_2ND = IG_2024ROS_BOX_2ND;
+const NSInteger RA_IG_2024ROS_BOX_3RD = IG_2024ROS_BOX_3RD;
+const NSInteger RA_IG_2024ROS_BOX_4TH = IG_2024ROS_BOX_4TH;
+const NSInteger RA_IG_2024ROS_BOX_5TH = IG_2024ROS_BOX_5TH;
+const NSInteger RA_IG_AEGIS_103234 = IG_AEGIS_103234;
+const NSInteger RA_IG_2024SPORTS_BOX = IG_2024SPORTS_BOX;
+const NSInteger RA_IG_22TH_PRESENT_BOX = IG_22TH_PRESENT_BOX;
+const NSInteger RA_IG_AEGIS_103316 = IG_AEGIS_103316;
+const NSInteger RA_IG_SVIP_GIFT_22THANIV = IG_SVIP_GIFT_22THANIV;
+const NSInteger RA_IG_VVIP_GIFT_22THANIV = IG_VVIP_GIFT_22THANIV;
+const NSInteger RA_IG_VIP_GIFT_22THANIV = IG_VIP_GIFT_22THANIV;
+const NSInteger RA_IG_LI_NYANGVINE_BOX1_36 = IG_LI_NYANGVINE_BOX1_36;
+const NSInteger RA_IG_LI_NYANGVINE_BOX2_36 = IG_LI_NYANGVINE_BOX2_36;
+const NSInteger RA_IG_LI_NYANGVINE_BOX3_36 = IG_LI_NYANGVINE_BOX3_36;
+const NSInteger RA_IG_2024_SUMMER_PACK_1 = IG_2024_SUMMER_PACK_1;
+const NSInteger RA_IG_2024_SUMMER_PACK_2 = IG_2024_SUMMER_PACK_2;
+const NSInteger RA_IG_2024_SUMMER_PACK_3 = IG_2024_SUMMER_PACK_3;
+const NSInteger RA_IG_2024_SUMMER_PACK_4 = IG_2024_SUMMER_PACK_4;
+const NSInteger RA_IG_LI_A_HD_CARNIUMBOX = IG_LI_A_HD_CARNIUMBOX;
+const NSInteger RA_IG_LI_A_HD_BRADIUMBOX = IG_LI_A_HD_BRADIUMBOX;
+const NSInteger RA_IG_22TH_PACKAGE_1 = IG_22TH_PACKAGE_1;
+const NSInteger RA_IG_22TH_PACKAGE_2 = IG_22TH_PACKAGE_2;
+const NSInteger RA_IG_22TH_PACKAGE_3 = IG_22TH_PACKAGE_3;
+const NSInteger RA_IG_22TH_PACKAGE_4 = IG_22TH_PACKAGE_4;
+const NSInteger RA_IG_CLB_SS_NYANG_PACK = IG_CLB_SS_NYANG_PACK;
+const NSInteger RA_IG_CLB_SS_REFINE1_PACK = IG_CLB_SS_REFINE1_PACK;
+const NSInteger RA_IG_CLB_SS_REFINE2_PACK = IG_CLB_SS_REFINE2_PACK;
+const NSInteger RA_IG_CLB_SS_EXP_PACK = IG_CLB_SS_EXP_PACK;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -7892,6 +7925,11 @@ const NSInteger RA_JT_4_EP21_AURELIE = JT_4_EP21_AURELIE;
 const NSInteger RA_JT_4_EP21_HOWELL_S = JT_4_EP21_HOWELL_S;
 const NSInteger RA_JT_4_EP21_TAN_S = JT_4_EP21_TAN_S;
 const NSInteger RA_JT_4_M_VACATION_MARAM = JT_4_M_VACATION_MARAM;
+const NSInteger RA_JT_4_CLB_SS_FC = JT_4_CLB_SS_FC;
+const NSInteger RA_JT_4_CLB_SS_TZ = JT_4_CLB_SS_TZ;
+const NSInteger RA_JT_4_CLB_SS_AJ = JT_4_CLB_SS_AJ;
+const NSInteger RA_JT_4_CLB_SS_LK = JT_4_CLB_SS_LK;
+const NSInteger RA_JT_4_SMART_ANDRE = JT_4_SMART_ANDRE;
 const NSInteger RA_JT_ROZ_MQ_XAVIER = JT_ROZ_MQ_XAVIER;
 const NSInteger RA_JT_ROZ_MQ_MOCLORD = JT_ROZ_MQ_MOCLORD;
 const NSInteger RA_JT_ROZ_MQ_SKULD = JT_ROZ_MQ_SKULD;
@@ -9249,7 +9287,21 @@ const NSInteger RA_HAT_EF_COSMIC_CONNECTION = HAT_EF_COSMIC_CONNECTION;
 const NSInteger RA_HAT_EF_C_BABY_GLOOM = HAT_EF_C_BABY_GLOOM;
 const NSInteger RA_HAT_EF_WINTERNIGHTBELLS = HAT_EF_WINTERNIGHTBELLS;
 const NSInteger RA_HAT_EF_NIGHTSKYOFRUTIE = HAT_EF_NIGHTSKYOFRUTIE;
+const NSInteger RA_FOOTPRINT_EF_BASE = FOOTPRINT_EF_BASE;
+const NSInteger RA_FOOTPRINT_EF_STR_BASE = FOOTPRINT_EF_STR_BASE;
+const NSInteger RA_FOOTPRINT_EF_PURPLESTAR = FOOTPRINT_EF_PURPLESTAR;
+const NSInteger RA_FOOTPRINT_EF_YELLOWSTAR = FOOTPRINT_EF_YELLOWSTAR;
+const NSInteger RA_FOOTPRINT_EF_REDSTAR = FOOTPRINT_EF_REDSTAR;
 const NSInteger RA_HAT_EF_RAINBOW_POISON_MASTER = HAT_EF_RAINBOW_POISON_MASTER;
+const NSInteger RA_HAT_EF_C_ANCIENT_RUNE = HAT_EF_C_ANCIENT_RUNE;
+const NSInteger RA_HAT_EF_C_DRAGON_GREEN_AURA = HAT_EF_C_DRAGON_GREEN_AURA;
+const NSInteger RA_HAT_EF_C_DRAGON_RED_AURA = HAT_EF_C_DRAGON_RED_AURA;
+const NSInteger RA_HAT_EF_C_DRAGON_YELLOW_AURA = HAT_EF_C_DRAGON_YELLOW_AURA;
+const NSInteger RA_HAT_EF_INTERDIMENSIONAL_RIFT = HAT_EF_INTERDIMENSIONAL_RIFT;
+const NSInteger RA_HAT_EF_C_CLB_SS_LL = HAT_EF_C_CLB_SS_LL;
+const NSInteger RA_HAT_EF_VACATION = HAT_EF_VACATION;
+const NSInteger RA_HAT_EF_C_FH_LOSTWING = HAT_EF_C_FH_LOSTWING;
+const NSInteger RA_FOOTPRINT_EF_DOGFOOT = FOOTPRINT_EF_DOGFOOT;
 const NSInteger RA_PET_CATCH_UNIVERSAL = PET_CATCH_UNIVERSAL;
 const NSInteger RA_PET_CATCH_UNIVERSAL_ITEM = PET_CATCH_UNIVERSAL_ITEM;
 const NSInteger RA_PET_INTIMATE_NONE = PET_INTIMATE_NONE;
@@ -11719,6 +11771,9 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"SC_POWERUP": [Constant constantWithName:@"SC_POWERUP" value:SC_POWERUP],
             @"SC_AGIUP": [Constant constantWithName:@"SC_AGIUP" value:SC_AGIUP],
             @"SC_PROTECTION": [Constant constantWithName:@"SC_PROTECTION" value:SC_PROTECTION],
+            @"SC_BATH_FOAM_A": [Constant constantWithName:@"SC_BATH_FOAM_A" value:SC_BATH_FOAM_A],
+            @"SC_BATH_FOAM_B": [Constant constantWithName:@"SC_BATH_FOAM_B" value:SC_BATH_FOAM_B],
+            @"SC_BATH_FOAM_C": [Constant constantWithName:@"SC_BATH_FOAM_C" value:SC_BATH_FOAM_C],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -13925,6 +13980,7 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"STOR_MODE_NONE": [Constant constantWithName:@"STOR_MODE_NONE" value:STOR_MODE_NONE],
             @"STOR_MODE_GET": [Constant constantWithName:@"STOR_MODE_GET" value:STOR_MODE_GET],
             @"STOR_MODE_PUT": [Constant constantWithName:@"STOR_MODE_PUT" value:STOR_MODE_PUT],
+            @"STOR_MODE_ALL": [Constant constantWithName:@"STOR_MODE_ALL" value:STOR_MODE_ALL],
             @"IE_OK": [Constant constantWithName:@"IE_OK" value:IE_OK],
             @"IE_NOMEMBER": [Constant constantWithName:@"IE_NOMEMBER" value:IE_NOMEMBER],
             @"IE_NOINSTANCE": [Constant constantWithName:@"IE_NOINSTANCE" value:IE_NOINSTANCE],
@@ -16579,6 +16635,35 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"IG_COSTUMEMILEPACK_35_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_35_1" value:IG_COSTUMEMILEPACK_35_1],
             @"IG_COSTUMEMILEPACK_35_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_35_2" value:IG_COSTUMEMILEPACK_35_2],
             @"IG_COSTUMEMILEPACK_35_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_35_3" value:IG_COSTUMEMILEPACK_35_3],
+            @"IG_2024ROS_BOX_1ST": [Constant constantWithName:@"IG_2024ROS_BOX_1ST" value:IG_2024ROS_BOX_1ST],
+            @"IG_2024ROS_BOX_2ND": [Constant constantWithName:@"IG_2024ROS_BOX_2ND" value:IG_2024ROS_BOX_2ND],
+            @"IG_2024ROS_BOX_3RD": [Constant constantWithName:@"IG_2024ROS_BOX_3RD" value:IG_2024ROS_BOX_3RD],
+            @"IG_2024ROS_BOX_4TH": [Constant constantWithName:@"IG_2024ROS_BOX_4TH" value:IG_2024ROS_BOX_4TH],
+            @"IG_2024ROS_BOX_5TH": [Constant constantWithName:@"IG_2024ROS_BOX_5TH" value:IG_2024ROS_BOX_5TH],
+            @"IG_AEGIS_103234": [Constant constantWithName:@"IG_AEGIS_103234" value:IG_AEGIS_103234],
+            @"IG_2024SPORTS_BOX": [Constant constantWithName:@"IG_2024SPORTS_BOX" value:IG_2024SPORTS_BOX],
+            @"IG_22TH_PRESENT_BOX": [Constant constantWithName:@"IG_22TH_PRESENT_BOX" value:IG_22TH_PRESENT_BOX],
+            @"IG_AEGIS_103316": [Constant constantWithName:@"IG_AEGIS_103316" value:IG_AEGIS_103316],
+            @"IG_SVIP_GIFT_22THANIV": [Constant constantWithName:@"IG_SVIP_GIFT_22THANIV" value:IG_SVIP_GIFT_22THANIV],
+            @"IG_VVIP_GIFT_22THANIV": [Constant constantWithName:@"IG_VVIP_GIFT_22THANIV" value:IG_VVIP_GIFT_22THANIV],
+            @"IG_VIP_GIFT_22THANIV": [Constant constantWithName:@"IG_VIP_GIFT_22THANIV" value:IG_VIP_GIFT_22THANIV],
+            @"IG_LI_NYANGVINE_BOX1_36": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX1_36" value:IG_LI_NYANGVINE_BOX1_36],
+            @"IG_LI_NYANGVINE_BOX2_36": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX2_36" value:IG_LI_NYANGVINE_BOX2_36],
+            @"IG_LI_NYANGVINE_BOX3_36": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX3_36" value:IG_LI_NYANGVINE_BOX3_36],
+            @"IG_2024_SUMMER_PACK_1": [Constant constantWithName:@"IG_2024_SUMMER_PACK_1" value:IG_2024_SUMMER_PACK_1],
+            @"IG_2024_SUMMER_PACK_2": [Constant constantWithName:@"IG_2024_SUMMER_PACK_2" value:IG_2024_SUMMER_PACK_2],
+            @"IG_2024_SUMMER_PACK_3": [Constant constantWithName:@"IG_2024_SUMMER_PACK_3" value:IG_2024_SUMMER_PACK_3],
+            @"IG_2024_SUMMER_PACK_4": [Constant constantWithName:@"IG_2024_SUMMER_PACK_4" value:IG_2024_SUMMER_PACK_4],
+            @"IG_LI_A_HD_CARNIUMBOX": [Constant constantWithName:@"IG_LI_A_HD_CARNIUMBOX" value:IG_LI_A_HD_CARNIUMBOX],
+            @"IG_LI_A_HD_BRADIUMBOX": [Constant constantWithName:@"IG_LI_A_HD_BRADIUMBOX" value:IG_LI_A_HD_BRADIUMBOX],
+            @"IG_22TH_PACKAGE_1": [Constant constantWithName:@"IG_22TH_PACKAGE_1" value:IG_22TH_PACKAGE_1],
+            @"IG_22TH_PACKAGE_2": [Constant constantWithName:@"IG_22TH_PACKAGE_2" value:IG_22TH_PACKAGE_2],
+            @"IG_22TH_PACKAGE_3": [Constant constantWithName:@"IG_22TH_PACKAGE_3" value:IG_22TH_PACKAGE_3],
+            @"IG_22TH_PACKAGE_4": [Constant constantWithName:@"IG_22TH_PACKAGE_4" value:IG_22TH_PACKAGE_4],
+            @"IG_CLB_SS_NYANG_PACK": [Constant constantWithName:@"IG_CLB_SS_NYANG_PACK" value:IG_CLB_SS_NYANG_PACK],
+            @"IG_CLB_SS_REFINE1_PACK": [Constant constantWithName:@"IG_CLB_SS_REFINE1_PACK" value:IG_CLB_SS_REFINE1_PACK],
+            @"IG_CLB_SS_REFINE2_PACK": [Constant constantWithName:@"IG_CLB_SS_REFINE2_PACK" value:IG_CLB_SS_REFINE2_PACK],
+            @"IG_CLB_SS_EXP_PACK": [Constant constantWithName:@"IG_CLB_SS_EXP_PACK" value:IG_CLB_SS_EXP_PACK],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -17896,6 +17981,11 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"4_EP21_HOWELL_S": [Constant constantWithName:@"4_EP21_HOWELL_S" value:JT_4_EP21_HOWELL_S],
             @"4_EP21_TAN_S": [Constant constantWithName:@"4_EP21_TAN_S" value:JT_4_EP21_TAN_S],
             @"4_M_VACATION_MARAM": [Constant constantWithName:@"4_M_VACATION_MARAM" value:JT_4_M_VACATION_MARAM],
+            @"4_CLB_SS_FC": [Constant constantWithName:@"4_CLB_SS_FC" value:JT_4_CLB_SS_FC],
+            @"4_CLB_SS_TZ": [Constant constantWithName:@"4_CLB_SS_TZ" value:JT_4_CLB_SS_TZ],
+            @"4_CLB_SS_AJ": [Constant constantWithName:@"4_CLB_SS_AJ" value:JT_4_CLB_SS_AJ],
+            @"4_CLB_SS_LK": [Constant constantWithName:@"4_CLB_SS_LK" value:JT_4_CLB_SS_LK],
+            @"4_SMART_ANDRE": [Constant constantWithName:@"4_SMART_ANDRE" value:JT_4_SMART_ANDRE],
             @"ROZ_MQ_XAVIER": [Constant constantWithName:@"ROZ_MQ_XAVIER" value:JT_ROZ_MQ_XAVIER],
             @"ROZ_MQ_MOCLORD": [Constant constantWithName:@"ROZ_MQ_MOCLORD" value:JT_ROZ_MQ_MOCLORD],
             @"ROZ_MQ_SKULD": [Constant constantWithName:@"ROZ_MQ_SKULD" value:JT_ROZ_MQ_SKULD],
@@ -19253,7 +19343,21 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"HAT_EF_C_BABY_GLOOM": [Constant constantWithName:@"HAT_EF_C_BABY_GLOOM" value:HAT_EF_C_BABY_GLOOM],
             @"HAT_EF_WINTERNIGHTBELLS": [Constant constantWithName:@"HAT_EF_WINTERNIGHTBELLS" value:HAT_EF_WINTERNIGHTBELLS],
             @"HAT_EF_NIGHTSKYOFRUTIE": [Constant constantWithName:@"HAT_EF_NIGHTSKYOFRUTIE" value:HAT_EF_NIGHTSKYOFRUTIE],
+            @"FOOTPRINT_EF_BASE": [Constant constantWithName:@"FOOTPRINT_EF_BASE" value:FOOTPRINT_EF_BASE],
+            @"FOOTPRINT_EF_STR_BASE": [Constant constantWithName:@"FOOTPRINT_EF_STR_BASE" value:FOOTPRINT_EF_STR_BASE],
+            @"FOOTPRINT_EF_PURPLESTAR": [Constant constantWithName:@"FOOTPRINT_EF_PURPLESTAR" value:FOOTPRINT_EF_PURPLESTAR],
+            @"FOOTPRINT_EF_YELLOWSTAR": [Constant constantWithName:@"FOOTPRINT_EF_YELLOWSTAR" value:FOOTPRINT_EF_YELLOWSTAR],
+            @"FOOTPRINT_EF_REDSTAR": [Constant constantWithName:@"FOOTPRINT_EF_REDSTAR" value:FOOTPRINT_EF_REDSTAR],
             @"HAT_EF_RAINBOW_POISON_MASTER": [Constant constantWithName:@"HAT_EF_RAINBOW_POISON_MASTER" value:HAT_EF_RAINBOW_POISON_MASTER],
+            @"HAT_EF_C_ANCIENT_RUNE": [Constant constantWithName:@"HAT_EF_C_ANCIENT_RUNE" value:HAT_EF_C_ANCIENT_RUNE],
+            @"HAT_EF_C_DRAGON_GREEN_AURA": [Constant constantWithName:@"HAT_EF_C_DRAGON_GREEN_AURA" value:HAT_EF_C_DRAGON_GREEN_AURA],
+            @"HAT_EF_C_DRAGON_RED_AURA": [Constant constantWithName:@"HAT_EF_C_DRAGON_RED_AURA" value:HAT_EF_C_DRAGON_RED_AURA],
+            @"HAT_EF_C_DRAGON_YELLOW_AURA": [Constant constantWithName:@"HAT_EF_C_DRAGON_YELLOW_AURA" value:HAT_EF_C_DRAGON_YELLOW_AURA],
+            @"HAT_EF_INTERDIMENSIONAL_RIFT": [Constant constantWithName:@"HAT_EF_INTERDIMENSIONAL_RIFT" value:HAT_EF_INTERDIMENSIONAL_RIFT],
+            @"HAT_EF_C_CLB_SS_LL": [Constant constantWithName:@"HAT_EF_C_CLB_SS_LL" value:HAT_EF_C_CLB_SS_LL],
+            @"HAT_EF_VACATION": [Constant constantWithName:@"HAT_EF_VACATION" value:HAT_EF_VACATION],
+            @"HAT_EF_C_FH_LOSTWING": [Constant constantWithName:@"HAT_EF_C_FH_LOSTWING" value:HAT_EF_C_FH_LOSTWING],
+            @"FOOTPRINT_EF_DOGFOOT": [Constant constantWithName:@"FOOTPRINT_EF_DOGFOOT" value:FOOTPRINT_EF_DOGFOOT],
             @"PET_CATCH_UNIVERSAL": [Constant constantWithName:@"PET_CATCH_UNIVERSAL" value:PET_CATCH_UNIVERSAL],
             @"PET_CATCH_UNIVERSAL_ITEM": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_ITEM" value:PET_CATCH_UNIVERSAL_ITEM],
             @"PET_INTIMATE_NONE": [Constant constantWithName:@"PET_INTIMATE_NONE" value:PET_INTIMATE_NONE],
