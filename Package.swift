@@ -80,6 +80,7 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
             ]
         ),
         .target(
@@ -101,6 +102,7 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
             ]
         ),
         .target(
@@ -122,6 +124,7 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
             ]
         ),
         .target(
@@ -146,6 +149,7 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedLibrary("sqlite3"),
                 .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
             ]
         ),
         .target(
