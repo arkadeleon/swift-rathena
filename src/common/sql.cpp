@@ -28,10 +28,10 @@
 #define my_bool bool
 #endif
 
-void ra_mysql_error_handler(unsigned int ecode);
+void ra_mysql_error_handler(uint32 ecode);
 
 int mysql_reconnect_type;
-unsigned int mysql_reconnect_count;
+uint32 mysql_reconnect_count;
 
 /// Sql row
 struct SqlRow
@@ -265,7 +265,7 @@ Sql* Sql_Malloc(void)
  * @param self : sql handle
  * @return last error number
  */
-unsigned int Sql_GetError( Sql* self ){
+uint32 Sql_GetError( Sql* self ){
 	return sqlite3_errcode( self->db );
 }
 
@@ -1123,11 +1123,11 @@ void SqlStmt_Free(SqlStmt* self)
 
 
 /// Receives MySQL error codes during runtime (not on first-time-connects).
-void ra_mysql_error_handler(unsigned int ecode) {
+void ra_mysql_error_handler(uint32 ecode) {
 	switch( ecode ) {
 		case 2003:// Can't connect to MySQL (this error only happens here when failing to reconnect)
 			if( mysql_reconnect_type == 1 ) {
-				static unsigned int retry = 1;
+				static uint32 retry = 1;
 				if( ++retry > mysql_reconnect_count ) {
 					ShowFatalError("MySQL has been unreachable for too long, %d reconnects were attempted. Shutting Down\n", retry);
 					exit(EXIT_FAILURE);
