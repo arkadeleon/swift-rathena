@@ -1726,6 +1726,21 @@ const NSInteger RA_SC_PROTECTION = SC_PROTECTION;
 const NSInteger RA_SC_BATH_FOAM_A = SC_BATH_FOAM_A;
 const NSInteger RA_SC_BATH_FOAM_B = SC_BATH_FOAM_B;
 const NSInteger RA_SC_BATH_FOAM_C = SC_BATH_FOAM_C;
+const NSInteger RA_SC_BUCHEDENOEL = SC_BUCHEDENOEL;
+const NSInteger RA_SC_EP16_DEF = SC_EP16_DEF;
+const NSInteger RA_SC_STR_SCROLL = SC_STR_SCROLL;
+const NSInteger RA_SC_INT_SCROLL = SC_INT_SCROLL;
+const NSInteger RA_SC_CONTENTS_1 = SC_CONTENTS_1;
+const NSInteger RA_SC_CONTENTS_2 = SC_CONTENTS_2;
+const NSInteger RA_SC_CONTENTS_3 = SC_CONTENTS_3;
+const NSInteger RA_SC_CONTENTS_4 = SC_CONTENTS_4;
+const NSInteger RA_SC_CONTENTS_5 = SC_CONTENTS_5;
+const NSInteger RA_SC_CONTENTS_6 = SC_CONTENTS_6;
+const NSInteger RA_SC_CONTENTS_7 = SC_CONTENTS_7;
+const NSInteger RA_SC_CONTENTS_8 = SC_CONTENTS_8;
+const NSInteger RA_SC_CONTENTS_9 = SC_CONTENTS_9;
+const NSInteger RA_SC_CONTENTS_10 = SC_CONTENTS_10;
+const NSInteger RA_SC_MYSTERY_POWDER = SC_MYSTERY_POWDER;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -3232,6 +3247,8 @@ const NSInteger RA_RC2_RACHEL_SANCTUARY = RC2_RACHEL_SANCTUARY;
 const NSInteger RA_RC2_ILLUSION_LUANDA = RC2_ILLUSION_LUANDA;
 const NSInteger RA_RC2_ILLUSION_FROZEN = RC2_ILLUSION_FROZEN;
 const NSInteger RA_RC2_ILLUSION_MOONLIGHT = RC2_ILLUSION_MOONLIGHT;
+const NSInteger RA_RC2_EP16_DEF = RC2_EP16_DEF;
+const NSInteger RA_RC2_EDDA_ARUNAFELTZ = RC2_EDDA_ARUNAFELTZ;
 const NSInteger RA_RC2_MAX = RC2_MAX;
 const NSInteger RA_MONSTER_TYPE_01 = MONSTER_TYPE_01;
 const NSInteger RA_MONSTER_TYPE_02 = MONSTER_TYPE_02;
@@ -6608,6 +6625,92 @@ const NSInteger RA_IG_CLB_SS_NYANG_PACK = IG_CLB_SS_NYANG_PACK;
 const NSInteger RA_IG_CLB_SS_REFINE1_PACK = IG_CLB_SS_REFINE1_PACK;
 const NSInteger RA_IG_CLB_SS_REFINE2_PACK = IG_CLB_SS_REFINE2_PACK;
 const NSInteger RA_IG_CLB_SS_EXP_PACK = IG_CLB_SS_EXP_PACK;
+const NSInteger RA_IG_RT_EP17_DOUBT_A = IG_RT_EP17_DOUBT_A;
+const NSInteger RA_IG_RT_EP17_DOUBT_3 = IG_RT_EP17_DOUBT_3;
+const NSInteger RA_IG_RT_EP17_DOUBT_C = IG_RT_EP17_DOUBT_C;
+const NSInteger RA_IG_RT_EP17_AUTO_A = IG_RT_EP17_AUTO_A;
+const NSInteger RA_IG_RT_EP17_AUTO_C = IG_RT_EP17_AUTO_C;
+const NSInteger RA_IG_RT_EP17_SECRET_A = IG_RT_EP17_SECRET_A;
+const NSInteger RA_IG_RT_EP17_SECRET_C = IG_RT_EP17_SECRET_C;
+const NSInteger RA_IG_RT_EP17_MUTANT_A = IG_RT_EP17_MUTANT_A;
+const NSInteger RA_IG_RT_EP17_MUTANT_C = IG_RT_EP17_MUTANT_C;
+const NSInteger RA_IG_RT_EP17_MIGUEL_A = IG_RT_EP17_MIGUEL_A;
+const NSInteger RA_IG_RT_EP17_MIGUEL_C = IG_RT_EP17_MIGUEL_C;
+const NSInteger RA_IG_RT_EP17_MIGUEL_2 = IG_RT_EP17_MIGUEL_2;
+const NSInteger RA_IG_RT_EP17_OVERLOAD_A = IG_RT_EP17_OVERLOAD_A;
+const NSInteger RA_IG_RT_EP17_OVERLOAD_C = IG_RT_EP17_OVERLOAD_C;
+const NSInteger RA_IG_RT_EP17_OVERLOAD_3 = IG_RT_EP17_OVERLOAD_3;
+const NSInteger RA_IG_RT_EP17_BATH_A = IG_RT_EP17_BATH_A;
+const NSInteger RA_IG_RT_EP17_BATH_C = IG_RT_EP17_BATH_C;
+const NSInteger RA_IG_RT_EP17_GARDEN_A = IG_RT_EP17_GARDEN_A;
+const NSInteger RA_IG_RT_EP17_GARDEN_C = IG_RT_EP17_GARDEN_C;
+const NSInteger RA_IG_RT_EP17_GARDEN_3 = IG_RT_EP17_GARDEN_3;
+const NSInteger RA_IG_RT_EP17_GARDEN_5 = IG_RT_EP17_GARDEN_5;
+const NSInteger RA_IG_RT_EP17_GREEN_A = IG_RT_EP17_GREEN_A;
+const NSInteger RA_IG_RT_EP17_GREEN_C = IG_RT_EP17_GREEN_C;
+const NSInteger RA_IG_RT_EP17_GREEN_2 = IG_RT_EP17_GREEN_2;
+const NSInteger RA_IG_RT_EP17_GREEN_4 = IG_RT_EP17_GREEN_4;
+const NSInteger RA_IG_RT_EP17_WING_A = IG_RT_EP17_WING_A;
+const NSInteger RA_IG_RT_EP17_WING_C = IG_RT_EP17_WING_C;
+const NSInteger RA_IG_RT_EP17_WING_2 = IG_RT_EP17_WING_2;
+const NSInteger RA_IG_RT_EP17_WING_4 = IG_RT_EP17_WING_4;
+const NSInteger RA_IG_RT_EP17_HARMFUL_A = IG_RT_EP17_HARMFUL_A;
+const NSInteger RA_IG_RT_EP17_HARMFUL_C = IG_RT_EP17_HARMFUL_C;
+const NSInteger RA_IG_RT_EP17_HARMFUL_2 = IG_RT_EP17_HARMFUL_2;
+const NSInteger RA_IG_RT_EP17_HARMFUL_4 = IG_RT_EP17_HARMFUL_4;
+const NSInteger RA_IG_RT_EP17_BOSS_A = IG_RT_EP17_BOSS_A;
+const NSInteger RA_IG_RT_EP17_BOSS_C = IG_RT_EP17_BOSS_C;
+const NSInteger RA_IG_RT_EP17_BOSS_3 = IG_RT_EP17_BOSS_3;
+const NSInteger RA_IG_RT_EP17_BOSS_5 = IG_RT_EP17_BOSS_5;
+const NSInteger RA_IG_RT_EP17_MALFUN_A = IG_RT_EP17_MALFUN_A;
+const NSInteger RA_IG_RT_EP17_MALFUN_C = IG_RT_EP17_MALFUN_C;
+const NSInteger RA_IG_RT_EP17_MALFUN_3 = IG_RT_EP17_MALFUN_3;
+const NSInteger RA_IG_RT_EP18_ARMOR_A = IG_RT_EP18_ARMOR_A;
+const NSInteger RA_IG_RT_EP18_ARMOR_C = IG_RT_EP18_ARMOR_C;
+const NSInteger RA_IG_RT_EP18_MELEE_A = IG_RT_EP18_MELEE_A;
+const NSInteger RA_IG_RT_EP18_MAGIC_C = IG_RT_EP18_MAGIC_C;
+const NSInteger RA_IG_RT_EP18_MELEE_C = IG_RT_EP18_MELEE_C;
+const NSInteger RA_IG_RT_EP18_MAGIC_A = IG_RT_EP18_MAGIC_A;
+const NSInteger RA_IG_RT_EP18_RANGE_A = IG_RT_EP18_RANGE_A;
+const NSInteger RA_IG_RT_EP18_RANGE_C = IG_RT_EP18_RANGE_C;
+const NSInteger RA_IG_RT_EP18_FIELD_A = IG_RT_EP18_FIELD_A;
+const NSInteger RA_IG_RT_EP18_FIELD_C = IG_RT_EP18_FIELD_C;
+const NSInteger RA_IG_RT_EP18_FIELD_3 = IG_RT_EP18_FIELD_3;
+const NSInteger RA_IG_RT_EP18_LAVA_A = IG_RT_EP18_LAVA_A;
+const NSInteger RA_IG_RT_EP18_LAVA_C = IG_RT_EP18_LAVA_C;
+const NSInteger RA_IG_RT_EP18_LAVA_2 = IG_RT_EP18_LAVA_2;
+const NSInteger RA_IG_RT_EP18_TOTAL_A = IG_RT_EP18_TOTAL_A;
+const NSInteger RA_IG_RT_EP18_TOTAL_C = IG_RT_EP18_TOTAL_C;
+const NSInteger RA_IG_RT_EP18_TOTAL_3 = IG_RT_EP18_TOTAL_3;
+const NSInteger RA_IG_RT_EP18_TOTAL_6 = IG_RT_EP18_TOTAL_6;
+const NSInteger RA_IG_RT_EP18_FANG_A = IG_RT_EP18_FANG_A;
+const NSInteger RA_IG_RT_EP18_FANG_C = IG_RT_EP18_FANG_C;
+const NSInteger RA_IG_RT_EP18_DEMI_A = IG_RT_EP18_DEMI_A;
+const NSInteger RA_IG_RT_EP18_DEMI_C = IG_RT_EP18_DEMI_C;
+const NSInteger RA_IG_RT_EP18_DEMI_2 = IG_RT_EP18_DEMI_2;
+const NSInteger RA_IG_YOR_CARD_P_BOX = IG_YOR_CARD_P_BOX;
+const NSInteger RA_IG_EP21_COSTUME_BOX1 = IG_EP21_COSTUME_BOX1;
+const NSInteger RA_IG_EP21_COSTUME_BOX2 = IG_EP21_COSTUME_BOX2;
+const NSInteger RA_IG_AEGIS_103537 = IG_AEGIS_103537;
+const NSInteger RA_IG_AEGIS_103582 = IG_AEGIS_103582;
+const NSInteger RA_IG_AEGIS_103617 = IG_AEGIS_103617;
+const NSInteger RA_IG_IFIRIT_PROMOTION_PACK = IG_IFIRIT_PROMOTION_PACK;
+const NSInteger RA_IG_AEGIS_103622 = IG_AEGIS_103622;
+const NSInteger RA_IG_AEGIS_103623 = IG_AEGIS_103623;
+const NSInteger RA_IG_AEGIS_103624 = IG_AEGIS_103624;
+const NSInteger RA_IG_AEGIS_103625 = IG_AEGIS_103625;
+const NSInteger RA_IG_AEGIS_103626 = IG_AEGIS_103626;
+const NSInteger RA_IG_AEGIS_103627 = IG_AEGIS_103627;
+const NSInteger RA_IG_C_CHARSLOT_OPEN_BOX = IG_C_CHARSLOT_OPEN_BOX;
+const NSInteger RA_IG_COSTUMEMILEPACK_36_1 = IG_COSTUMEMILEPACK_36_1;
+const NSInteger RA_IG_COSTUMEMILEPACK_36_2 = IG_COSTUMEMILEPACK_36_2;
+const NSInteger RA_IG_COSTUMEMILEPACK_36_3 = IG_COSTUMEMILEPACK_36_3;
+const NSInteger RA_IG_NYANGVINE_SPECIAL_PACK1 = IG_NYANGVINE_SPECIAL_PACK1;
+const NSInteger RA_IG_NYANGVINE_SPECIAL_PACK2 = IG_NYANGVINE_SPECIAL_PACK2;
+const NSInteger RA_IG_NYANGVINE_SPECIAL_PACK3 = IG_NYANGVINE_SPECIAL_PACK3;
+const NSInteger RA_IG_LI_NYANGVINE_BOX1_37 = IG_LI_NYANGVINE_BOX1_37;
+const NSInteger RA_IG_LI_NYANGVINE_BOX2_37 = IG_LI_NYANGVINE_BOX2_37;
+const NSInteger RA_IG_LI_NYANGVINE_BOX3_37 = IG_LI_NYANGVINE_BOX3_37;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -9302,6 +9405,8 @@ const NSInteger RA_HAT_EF_C_CLB_SS_LL = HAT_EF_C_CLB_SS_LL;
 const NSInteger RA_HAT_EF_VACATION = HAT_EF_VACATION;
 const NSInteger RA_HAT_EF_C_FH_LOSTWING = HAT_EF_C_FH_LOSTWING;
 const NSInteger RA_FOOTPRINT_EF_DOGFOOT = FOOTPRINT_EF_DOGFOOT;
+const NSInteger RA_HAT_EF_C_AUSPICLOUD = HAT_EF_C_AUSPICLOUD;
+const NSInteger RA_HAT_EF_AURA_OF_GHOST_S = HAT_EF_AURA_OF_GHOST_S;
 const NSInteger RA_PET_CATCH_UNIVERSAL = PET_CATCH_UNIVERSAL;
 const NSInteger RA_PET_CATCH_UNIVERSAL_ITEM = PET_CATCH_UNIVERSAL_ITEM;
 const NSInteger RA_PET_INTIMATE_NONE = PET_INTIMATE_NONE;
@@ -11774,6 +11879,21 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"SC_BATH_FOAM_A": [Constant constantWithName:@"SC_BATH_FOAM_A" value:SC_BATH_FOAM_A],
             @"SC_BATH_FOAM_B": [Constant constantWithName:@"SC_BATH_FOAM_B" value:SC_BATH_FOAM_B],
             @"SC_BATH_FOAM_C": [Constant constantWithName:@"SC_BATH_FOAM_C" value:SC_BATH_FOAM_C],
+            @"SC_BUCHEDENOEL": [Constant constantWithName:@"SC_BUCHEDENOEL" value:SC_BUCHEDENOEL],
+            @"SC_EP16_DEF": [Constant constantWithName:@"SC_EP16_DEF" value:SC_EP16_DEF],
+            @"SC_STR_SCROLL": [Constant constantWithName:@"SC_STR_SCROLL" value:SC_STR_SCROLL],
+            @"SC_INT_SCROLL": [Constant constantWithName:@"SC_INT_SCROLL" value:SC_INT_SCROLL],
+            @"SC_CONTENTS_1": [Constant constantWithName:@"SC_CONTENTS_1" value:SC_CONTENTS_1],
+            @"SC_CONTENTS_2": [Constant constantWithName:@"SC_CONTENTS_2" value:SC_CONTENTS_2],
+            @"SC_CONTENTS_3": [Constant constantWithName:@"SC_CONTENTS_3" value:SC_CONTENTS_3],
+            @"SC_CONTENTS_4": [Constant constantWithName:@"SC_CONTENTS_4" value:SC_CONTENTS_4],
+            @"SC_CONTENTS_5": [Constant constantWithName:@"SC_CONTENTS_5" value:SC_CONTENTS_5],
+            @"SC_CONTENTS_6": [Constant constantWithName:@"SC_CONTENTS_6" value:SC_CONTENTS_6],
+            @"SC_CONTENTS_7": [Constant constantWithName:@"SC_CONTENTS_7" value:SC_CONTENTS_7],
+            @"SC_CONTENTS_8": [Constant constantWithName:@"SC_CONTENTS_8" value:SC_CONTENTS_8],
+            @"SC_CONTENTS_9": [Constant constantWithName:@"SC_CONTENTS_9" value:SC_CONTENTS_9],
+            @"SC_CONTENTS_10": [Constant constantWithName:@"SC_CONTENTS_10" value:SC_CONTENTS_10],
+            @"SC_MYSTERY_POWDER": [Constant constantWithName:@"SC_MYSTERY_POWDER" value:SC_MYSTERY_POWDER],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -13280,6 +13400,8 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"RC2_ILLUSION_LUANDA": [Constant constantWithName:@"RC2_ILLUSION_LUANDA" value:RC2_ILLUSION_LUANDA],
             @"RC2_ILLUSION_FROZEN": [Constant constantWithName:@"RC2_ILLUSION_FROZEN" value:RC2_ILLUSION_FROZEN],
             @"RC2_ILLUSION_MOONLIGHT": [Constant constantWithName:@"RC2_ILLUSION_MOONLIGHT" value:RC2_ILLUSION_MOONLIGHT],
+            @"RC2_EP16_DEF": [Constant constantWithName:@"RC2_EP16_DEF" value:RC2_EP16_DEF],
+            @"RC2_EDDA_ARUNAFELTZ": [Constant constantWithName:@"RC2_EDDA_ARUNAFELTZ" value:RC2_EDDA_ARUNAFELTZ],
             @"RC2_MAX": [Constant constantWithName:@"RC2_MAX" value:RC2_MAX],
             @"MONSTER_TYPE_01": [Constant constantWithName:@"MONSTER_TYPE_01" value:MONSTER_TYPE_01],
             @"MONSTER_TYPE_02": [Constant constantWithName:@"MONSTER_TYPE_02" value:MONSTER_TYPE_02],
@@ -16664,6 +16786,92 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"IG_CLB_SS_REFINE1_PACK": [Constant constantWithName:@"IG_CLB_SS_REFINE1_PACK" value:IG_CLB_SS_REFINE1_PACK],
             @"IG_CLB_SS_REFINE2_PACK": [Constant constantWithName:@"IG_CLB_SS_REFINE2_PACK" value:IG_CLB_SS_REFINE2_PACK],
             @"IG_CLB_SS_EXP_PACK": [Constant constantWithName:@"IG_CLB_SS_EXP_PACK" value:IG_CLB_SS_EXP_PACK],
+            @"IG_RT_EP17_DOUBT_A": [Constant constantWithName:@"IG_RT_EP17_DOUBT_A" value:IG_RT_EP17_DOUBT_A],
+            @"IG_RT_EP17_DOUBT_3": [Constant constantWithName:@"IG_RT_EP17_DOUBT_3" value:IG_RT_EP17_DOUBT_3],
+            @"IG_RT_EP17_DOUBT_C": [Constant constantWithName:@"IG_RT_EP17_DOUBT_C" value:IG_RT_EP17_DOUBT_C],
+            @"IG_RT_EP17_AUTO_A": [Constant constantWithName:@"IG_RT_EP17_AUTO_A" value:IG_RT_EP17_AUTO_A],
+            @"IG_RT_EP17_AUTO_C": [Constant constantWithName:@"IG_RT_EP17_AUTO_C" value:IG_RT_EP17_AUTO_C],
+            @"IG_RT_EP17_SECRET_A": [Constant constantWithName:@"IG_RT_EP17_SECRET_A" value:IG_RT_EP17_SECRET_A],
+            @"IG_RT_EP17_SECRET_C": [Constant constantWithName:@"IG_RT_EP17_SECRET_C" value:IG_RT_EP17_SECRET_C],
+            @"IG_RT_EP17_MUTANT_A": [Constant constantWithName:@"IG_RT_EP17_MUTANT_A" value:IG_RT_EP17_MUTANT_A],
+            @"IG_RT_EP17_MUTANT_C": [Constant constantWithName:@"IG_RT_EP17_MUTANT_C" value:IG_RT_EP17_MUTANT_C],
+            @"IG_RT_EP17_MIGUEL_A": [Constant constantWithName:@"IG_RT_EP17_MIGUEL_A" value:IG_RT_EP17_MIGUEL_A],
+            @"IG_RT_EP17_MIGUEL_C": [Constant constantWithName:@"IG_RT_EP17_MIGUEL_C" value:IG_RT_EP17_MIGUEL_C],
+            @"IG_RT_EP17_MIGUEL_2": [Constant constantWithName:@"IG_RT_EP17_MIGUEL_2" value:IG_RT_EP17_MIGUEL_2],
+            @"IG_RT_EP17_OVERLOAD_A": [Constant constantWithName:@"IG_RT_EP17_OVERLOAD_A" value:IG_RT_EP17_OVERLOAD_A],
+            @"IG_RT_EP17_OVERLOAD_C": [Constant constantWithName:@"IG_RT_EP17_OVERLOAD_C" value:IG_RT_EP17_OVERLOAD_C],
+            @"IG_RT_EP17_OVERLOAD_3": [Constant constantWithName:@"IG_RT_EP17_OVERLOAD_3" value:IG_RT_EP17_OVERLOAD_3],
+            @"IG_RT_EP17_BATH_A": [Constant constantWithName:@"IG_RT_EP17_BATH_A" value:IG_RT_EP17_BATH_A],
+            @"IG_RT_EP17_BATH_C": [Constant constantWithName:@"IG_RT_EP17_BATH_C" value:IG_RT_EP17_BATH_C],
+            @"IG_RT_EP17_GARDEN_A": [Constant constantWithName:@"IG_RT_EP17_GARDEN_A" value:IG_RT_EP17_GARDEN_A],
+            @"IG_RT_EP17_GARDEN_C": [Constant constantWithName:@"IG_RT_EP17_GARDEN_C" value:IG_RT_EP17_GARDEN_C],
+            @"IG_RT_EP17_GARDEN_3": [Constant constantWithName:@"IG_RT_EP17_GARDEN_3" value:IG_RT_EP17_GARDEN_3],
+            @"IG_RT_EP17_GARDEN_5": [Constant constantWithName:@"IG_RT_EP17_GARDEN_5" value:IG_RT_EP17_GARDEN_5],
+            @"IG_RT_EP17_GREEN_A": [Constant constantWithName:@"IG_RT_EP17_GREEN_A" value:IG_RT_EP17_GREEN_A],
+            @"IG_RT_EP17_GREEN_C": [Constant constantWithName:@"IG_RT_EP17_GREEN_C" value:IG_RT_EP17_GREEN_C],
+            @"IG_RT_EP17_GREEN_2": [Constant constantWithName:@"IG_RT_EP17_GREEN_2" value:IG_RT_EP17_GREEN_2],
+            @"IG_RT_EP17_GREEN_4": [Constant constantWithName:@"IG_RT_EP17_GREEN_4" value:IG_RT_EP17_GREEN_4],
+            @"IG_RT_EP17_WING_A": [Constant constantWithName:@"IG_RT_EP17_WING_A" value:IG_RT_EP17_WING_A],
+            @"IG_RT_EP17_WING_C": [Constant constantWithName:@"IG_RT_EP17_WING_C" value:IG_RT_EP17_WING_C],
+            @"IG_RT_EP17_WING_2": [Constant constantWithName:@"IG_RT_EP17_WING_2" value:IG_RT_EP17_WING_2],
+            @"IG_RT_EP17_WING_4": [Constant constantWithName:@"IG_RT_EP17_WING_4" value:IG_RT_EP17_WING_4],
+            @"IG_RT_EP17_HARMFUL_A": [Constant constantWithName:@"IG_RT_EP17_HARMFUL_A" value:IG_RT_EP17_HARMFUL_A],
+            @"IG_RT_EP17_HARMFUL_C": [Constant constantWithName:@"IG_RT_EP17_HARMFUL_C" value:IG_RT_EP17_HARMFUL_C],
+            @"IG_RT_EP17_HARMFUL_2": [Constant constantWithName:@"IG_RT_EP17_HARMFUL_2" value:IG_RT_EP17_HARMFUL_2],
+            @"IG_RT_EP17_HARMFUL_4": [Constant constantWithName:@"IG_RT_EP17_HARMFUL_4" value:IG_RT_EP17_HARMFUL_4],
+            @"IG_RT_EP17_BOSS_A": [Constant constantWithName:@"IG_RT_EP17_BOSS_A" value:IG_RT_EP17_BOSS_A],
+            @"IG_RT_EP17_BOSS_C": [Constant constantWithName:@"IG_RT_EP17_BOSS_C" value:IG_RT_EP17_BOSS_C],
+            @"IG_RT_EP17_BOSS_3": [Constant constantWithName:@"IG_RT_EP17_BOSS_3" value:IG_RT_EP17_BOSS_3],
+            @"IG_RT_EP17_BOSS_5": [Constant constantWithName:@"IG_RT_EP17_BOSS_5" value:IG_RT_EP17_BOSS_5],
+            @"IG_RT_EP17_MALFUN_A": [Constant constantWithName:@"IG_RT_EP17_MALFUN_A" value:IG_RT_EP17_MALFUN_A],
+            @"IG_RT_EP17_MALFUN_C": [Constant constantWithName:@"IG_RT_EP17_MALFUN_C" value:IG_RT_EP17_MALFUN_C],
+            @"IG_RT_EP17_MALFUN_3": [Constant constantWithName:@"IG_RT_EP17_MALFUN_3" value:IG_RT_EP17_MALFUN_3],
+            @"IG_RT_EP18_ARMOR_A": [Constant constantWithName:@"IG_RT_EP18_ARMOR_A" value:IG_RT_EP18_ARMOR_A],
+            @"IG_RT_EP18_ARMOR_C": [Constant constantWithName:@"IG_RT_EP18_ARMOR_C" value:IG_RT_EP18_ARMOR_C],
+            @"IG_RT_EP18_MELEE_A": [Constant constantWithName:@"IG_RT_EP18_MELEE_A" value:IG_RT_EP18_MELEE_A],
+            @"IG_RT_EP18_MAGIC_C": [Constant constantWithName:@"IG_RT_EP18_MAGIC_C" value:IG_RT_EP18_MAGIC_C],
+            @"IG_RT_EP18_MELEE_C": [Constant constantWithName:@"IG_RT_EP18_MELEE_C" value:IG_RT_EP18_MELEE_C],
+            @"IG_RT_EP18_MAGIC_A": [Constant constantWithName:@"IG_RT_EP18_MAGIC_A" value:IG_RT_EP18_MAGIC_A],
+            @"IG_RT_EP18_RANGE_A": [Constant constantWithName:@"IG_RT_EP18_RANGE_A" value:IG_RT_EP18_RANGE_A],
+            @"IG_RT_EP18_RANGE_C": [Constant constantWithName:@"IG_RT_EP18_RANGE_C" value:IG_RT_EP18_RANGE_C],
+            @"IG_RT_EP18_FIELD_A": [Constant constantWithName:@"IG_RT_EP18_FIELD_A" value:IG_RT_EP18_FIELD_A],
+            @"IG_RT_EP18_FIELD_C": [Constant constantWithName:@"IG_RT_EP18_FIELD_C" value:IG_RT_EP18_FIELD_C],
+            @"IG_RT_EP18_FIELD_3": [Constant constantWithName:@"IG_RT_EP18_FIELD_3" value:IG_RT_EP18_FIELD_3],
+            @"IG_RT_EP18_LAVA_A": [Constant constantWithName:@"IG_RT_EP18_LAVA_A" value:IG_RT_EP18_LAVA_A],
+            @"IG_RT_EP18_LAVA_C": [Constant constantWithName:@"IG_RT_EP18_LAVA_C" value:IG_RT_EP18_LAVA_C],
+            @"IG_RT_EP18_LAVA_2": [Constant constantWithName:@"IG_RT_EP18_LAVA_2" value:IG_RT_EP18_LAVA_2],
+            @"IG_RT_EP18_TOTAL_A": [Constant constantWithName:@"IG_RT_EP18_TOTAL_A" value:IG_RT_EP18_TOTAL_A],
+            @"IG_RT_EP18_TOTAL_C": [Constant constantWithName:@"IG_RT_EP18_TOTAL_C" value:IG_RT_EP18_TOTAL_C],
+            @"IG_RT_EP18_TOTAL_3": [Constant constantWithName:@"IG_RT_EP18_TOTAL_3" value:IG_RT_EP18_TOTAL_3],
+            @"IG_RT_EP18_TOTAL_6": [Constant constantWithName:@"IG_RT_EP18_TOTAL_6" value:IG_RT_EP18_TOTAL_6],
+            @"IG_RT_EP18_FANG_A": [Constant constantWithName:@"IG_RT_EP18_FANG_A" value:IG_RT_EP18_FANG_A],
+            @"IG_RT_EP18_FANG_C": [Constant constantWithName:@"IG_RT_EP18_FANG_C" value:IG_RT_EP18_FANG_C],
+            @"IG_RT_EP18_DEMI_A": [Constant constantWithName:@"IG_RT_EP18_DEMI_A" value:IG_RT_EP18_DEMI_A],
+            @"IG_RT_EP18_DEMI_C": [Constant constantWithName:@"IG_RT_EP18_DEMI_C" value:IG_RT_EP18_DEMI_C],
+            @"IG_RT_EP18_DEMI_2": [Constant constantWithName:@"IG_RT_EP18_DEMI_2" value:IG_RT_EP18_DEMI_2],
+            @"IG_YOR_CARD_P_BOX": [Constant constantWithName:@"IG_YOR_CARD_P_BOX" value:IG_YOR_CARD_P_BOX],
+            @"IG_EP21_COSTUME_BOX1": [Constant constantWithName:@"IG_EP21_COSTUME_BOX1" value:IG_EP21_COSTUME_BOX1],
+            @"IG_EP21_COSTUME_BOX2": [Constant constantWithName:@"IG_EP21_COSTUME_BOX2" value:IG_EP21_COSTUME_BOX2],
+            @"IG_AEGIS_103537": [Constant constantWithName:@"IG_AEGIS_103537" value:IG_AEGIS_103537],
+            @"IG_AEGIS_103582": [Constant constantWithName:@"IG_AEGIS_103582" value:IG_AEGIS_103582],
+            @"IG_AEGIS_103617": [Constant constantWithName:@"IG_AEGIS_103617" value:IG_AEGIS_103617],
+            @"IG_IFIRIT_PROMOTION_PACK": [Constant constantWithName:@"IG_IFIRIT_PROMOTION_PACK" value:IG_IFIRIT_PROMOTION_PACK],
+            @"IG_AEGIS_103622": [Constant constantWithName:@"IG_AEGIS_103622" value:IG_AEGIS_103622],
+            @"IG_AEGIS_103623": [Constant constantWithName:@"IG_AEGIS_103623" value:IG_AEGIS_103623],
+            @"IG_AEGIS_103624": [Constant constantWithName:@"IG_AEGIS_103624" value:IG_AEGIS_103624],
+            @"IG_AEGIS_103625": [Constant constantWithName:@"IG_AEGIS_103625" value:IG_AEGIS_103625],
+            @"IG_AEGIS_103626": [Constant constantWithName:@"IG_AEGIS_103626" value:IG_AEGIS_103626],
+            @"IG_AEGIS_103627": [Constant constantWithName:@"IG_AEGIS_103627" value:IG_AEGIS_103627],
+            @"IG_C_CHARSLOT_OPEN_BOX": [Constant constantWithName:@"IG_C_CHARSLOT_OPEN_BOX" value:IG_C_CHARSLOT_OPEN_BOX],
+            @"IG_COSTUMEMILEPACK_36_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_36_1" value:IG_COSTUMEMILEPACK_36_1],
+            @"IG_COSTUMEMILEPACK_36_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_36_2" value:IG_COSTUMEMILEPACK_36_2],
+            @"IG_COSTUMEMILEPACK_36_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_36_3" value:IG_COSTUMEMILEPACK_36_3],
+            @"IG_NYANGVINE_SPECIAL_PACK1": [Constant constantWithName:@"IG_NYANGVINE_SPECIAL_PACK1" value:IG_NYANGVINE_SPECIAL_PACK1],
+            @"IG_NYANGVINE_SPECIAL_PACK2": [Constant constantWithName:@"IG_NYANGVINE_SPECIAL_PACK2" value:IG_NYANGVINE_SPECIAL_PACK2],
+            @"IG_NYANGVINE_SPECIAL_PACK3": [Constant constantWithName:@"IG_NYANGVINE_SPECIAL_PACK3" value:IG_NYANGVINE_SPECIAL_PACK3],
+            @"IG_LI_NYANGVINE_BOX1_37": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX1_37" value:IG_LI_NYANGVINE_BOX1_37],
+            @"IG_LI_NYANGVINE_BOX2_37": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX2_37" value:IG_LI_NYANGVINE_BOX2_37],
+            @"IG_LI_NYANGVINE_BOX3_37": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX3_37" value:IG_LI_NYANGVINE_BOX3_37],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -19358,6 +19566,8 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"HAT_EF_VACATION": [Constant constantWithName:@"HAT_EF_VACATION" value:HAT_EF_VACATION],
             @"HAT_EF_C_FH_LOSTWING": [Constant constantWithName:@"HAT_EF_C_FH_LOSTWING" value:HAT_EF_C_FH_LOSTWING],
             @"FOOTPRINT_EF_DOGFOOT": [Constant constantWithName:@"FOOTPRINT_EF_DOGFOOT" value:FOOTPRINT_EF_DOGFOOT],
+            @"HAT_EF_C_AUSPICLOUD": [Constant constantWithName:@"HAT_EF_C_AUSPICLOUD" value:HAT_EF_C_AUSPICLOUD],
+            @"HAT_EF_AURA_OF_GHOST_S": [Constant constantWithName:@"HAT_EF_AURA_OF_GHOST_S" value:HAT_EF_AURA_OF_GHOST_S],
             @"PET_CATCH_UNIVERSAL": [Constant constantWithName:@"PET_CATCH_UNIVERSAL" value:PET_CATCH_UNIVERSAL],
             @"PET_CATCH_UNIVERSAL_ITEM": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_ITEM" value:PET_CATCH_UNIVERSAL_ITEM],
             @"PET_INTIMATE_NONE": [Constant constantWithName:@"PET_INTIMATE_NONE" value:PET_INTIMATE_NONE],
