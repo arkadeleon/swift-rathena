@@ -16,35 +16,25 @@ enum SQLite3Error: Error {
 final public class ServerResourceManager: Sendable {
     public static let `default` = ServerResourceManager()
 
-    public let baseURL: URL
-
-    public var confURL: URL {
-        baseURL.appending(path: "conf", directoryHint: .isDirectory)
-    }
-
-    public var dbURL: URL {
-        baseURL.appending(path: "db", directoryHint: .isDirectory)
-    }
-
-    public var npcURL: URL {
-        baseURL.appending(path: "npc", directoryHint: .isDirectory)
-    }
+    public let sourceURL: URL
+    public let workingDirectoryURL: URL
 
     public init() {
-        let libraryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        baseURL = libraryURL.appending(path: "rathena", directoryHint: .isDirectory)
+        sourceURL = Bundle.module.resourceURL!
+
+        let libraryDirectoryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        workingDirectoryURL = libraryDirectoryURL.appending(path: "rathena", directoryHint: .isDirectory)
     }
 
-    public func prepareForServers() throws {
+    public func prepareWorkingDirectory() throws {
         let fileManager = FileManager.default
-        try fileManager.createDirectory(at: baseURL, withIntermediateDirectories: true, attributes: nil)
-        fileManager.changeCurrentDirectoryPath(baseURL.path)
+        try fileManager.createDirectory(at: workingDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+        fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
 
-        let sourceURL = Bundle.module.resourceURL!
         let sourceDatabaseURL = sourceURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
 
-        let databaseURL = baseURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
-        let revisionURL = baseURL.appending(path: "revision", directoryHint: .notDirectory)
+        let databaseURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let revisionURL = workingDirectoryURL.appending(path: "revision", directoryHint: .notDirectory)
 
         if !fileManager.fileExists(atPath: databaseURL.path) {
             try fileManager.copyItem(at: sourceDatabaseURL, to: databaseURL)
@@ -64,15 +54,15 @@ final public class ServerResourceManager: Sendable {
             let paths = ["conf", "db", "npc"]
             for path in paths {
                 let sourceURL = sourceURL.appending(path: path, directoryHint: .isDirectory)
-                let url = baseURL.appending(path: path, directoryHint: .isDirectory)
+                let url = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
                 if fileManager.fileExists(atPath: url.path) {
                     try fileManager.removeItem(at: url)
                 }
                 try fileManager.copyItem(at: sourceURL, to: url)
             }
 
-            let sourceImportURL = baseURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
-            let importURL = baseURL.appending(path: "conf/import", directoryHint: .isDirectory)
+            let sourceImportURL = workingDirectoryURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
+            let importURL = workingDirectoryURL.appending(path: "conf/import", directoryHint: .isDirectory)
             try fileManager.moveItem(at: sourceImportURL, to: importURL)
 
             try serverResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)

@@ -11,7 +11,7 @@ import XCTest
 
 final class WebServerTests: XCTestCase {
     override func setUp() async throws {
-        try ServerResourceManager.default.prepareForServers()
+        try ServerResourceManager.default.prepareWorkingDirectory()
     }
 
     func testWebServer() async {
