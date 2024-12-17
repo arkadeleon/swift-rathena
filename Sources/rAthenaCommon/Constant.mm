@@ -1741,6 +1741,10 @@ const NSInteger RA_SC_CONTENTS_8 = SC_CONTENTS_8;
 const NSInteger RA_SC_CONTENTS_9 = SC_CONTENTS_9;
 const NSInteger RA_SC_CONTENTS_10 = SC_CONTENTS_10;
 const NSInteger RA_SC_MYSTERY_POWDER = SC_MYSTERY_POWDER;
+const NSInteger RA_SC_CONTENTS_26 = SC_CONTENTS_26;
+const NSInteger RA_SC_CONTENTS_27 = SC_CONTENTS_27;
+const NSInteger RA_SC_CONTENTS_28 = SC_CONTENTS_28;
+const NSInteger RA_SC_CONTENTS_29 = SC_CONTENTS_29;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -3176,14 +3180,21 @@ const NSInteger RA_EFST_CONTENTS_22 = EFST_CONTENTS_22;
 const NSInteger RA_EFST_CONTENTS_23 = EFST_CONTENTS_23;
 const NSInteger RA_EFST_CONTENTS_24 = EFST_CONTENTS_24;
 const NSInteger RA_EFST_CONTENTS_25 = EFST_CONTENTS_25;
+const NSInteger RA_EFST_CONTENTS_26 = EFST_CONTENTS_26;
+const NSInteger RA_EFST_CONTENTS_27 = EFST_CONTENTS_27;
+const NSInteger RA_EFST_CONTENTS_28 = EFST_CONTENTS_28;
+const NSInteger RA_EFST_CONTENTS_29 = EFST_CONTENTS_29;
+const NSInteger RA_EFST_CONTENTS_30 = EFST_CONTENTS_30;
 const NSInteger RA_EFST_C_BUFF_1 = EFST_C_BUFF_1;
 const NSInteger RA_EFST_C_BUFF_2 = EFST_C_BUFF_2;
 const NSInteger RA_EFST_CHASING = EFST_CHASING;
 const NSInteger RA_EFST_MYSTERY_POWDER = EFST_MYSTERY_POWDER;
+const NSInteger RA_EFST_WILD_WALK = EFST_WILD_WALK;
 const NSInteger RA_EFST_FIRE_CHARM_POWER = EFST_FIRE_CHARM_POWER;
 const NSInteger RA_EFST_WATER_CHARM_POWER = EFST_WATER_CHARM_POWER;
 const NSInteger RA_EFST_WIND_CHARM_POWER = EFST_WIND_CHARM_POWER;
 const NSInteger RA_EFST_GROUND_CHARM_POWER = EFST_GROUND_CHARM_POWER;
+const NSInteger RA_EFST_OVERCOMING_CRISIS = EFST_OVERCOMING_CRISIS;
 const NSInteger RA_EFST_MAX = EFST_MAX;
 const NSInteger RA_ELE_NEUTRAL = ELE_NEUTRAL;
 const NSInteger RA_ELE_WATER = ELE_WATER;
@@ -3993,7 +4004,6 @@ const NSInteger RA_IG_VIOLETBOX = IG_VIOLETBOX;
 const NSInteger RA_IG_CARDALBUM = IG_CARDALBUM;
 const NSInteger RA_IG_GIFTBOX = IG_GIFTBOX;
 const NSInteger RA_IG_SCROLLBOX = IG_SCROLLBOX;
-const NSInteger RA_IG_FINDINGORE = BS_FINDINGORE;
 const NSInteger RA_IG_COOKIEBAG = IG_COOKIEBAG;
 const NSInteger RA_IG_FIRSTAID = IG_FIRSTAID;
 const NSInteger RA_IG_HERB = IG_HERB;
@@ -11894,6 +11904,10 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"SC_CONTENTS_9": [Constant constantWithName:@"SC_CONTENTS_9" value:SC_CONTENTS_9],
             @"SC_CONTENTS_10": [Constant constantWithName:@"SC_CONTENTS_10" value:SC_CONTENTS_10],
             @"SC_MYSTERY_POWDER": [Constant constantWithName:@"SC_MYSTERY_POWDER" value:SC_MYSTERY_POWDER],
+            @"SC_CONTENTS_26": [Constant constantWithName:@"SC_CONTENTS_26" value:SC_CONTENTS_26],
+            @"SC_CONTENTS_27": [Constant constantWithName:@"SC_CONTENTS_27" value:SC_CONTENTS_27],
+            @"SC_CONTENTS_28": [Constant constantWithName:@"SC_CONTENTS_28" value:SC_CONTENTS_28],
+            @"SC_CONTENTS_29": [Constant constantWithName:@"SC_CONTENTS_29" value:SC_CONTENTS_29],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -13329,14 +13343,21 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"EFST_CONTENTS_23": [Constant constantWithName:@"EFST_CONTENTS_23" value:EFST_CONTENTS_23],
             @"EFST_CONTENTS_24": [Constant constantWithName:@"EFST_CONTENTS_24" value:EFST_CONTENTS_24],
             @"EFST_CONTENTS_25": [Constant constantWithName:@"EFST_CONTENTS_25" value:EFST_CONTENTS_25],
+            @"EFST_CONTENTS_26": [Constant constantWithName:@"EFST_CONTENTS_26" value:EFST_CONTENTS_26],
+            @"EFST_CONTENTS_27": [Constant constantWithName:@"EFST_CONTENTS_27" value:EFST_CONTENTS_27],
+            @"EFST_CONTENTS_28": [Constant constantWithName:@"EFST_CONTENTS_28" value:EFST_CONTENTS_28],
+            @"EFST_CONTENTS_29": [Constant constantWithName:@"EFST_CONTENTS_29" value:EFST_CONTENTS_29],
+            @"EFST_CONTENTS_30": [Constant constantWithName:@"EFST_CONTENTS_30" value:EFST_CONTENTS_30],
             @"EFST_C_BUFF_1": [Constant constantWithName:@"EFST_C_BUFF_1" value:EFST_C_BUFF_1],
             @"EFST_C_BUFF_2": [Constant constantWithName:@"EFST_C_BUFF_2" value:EFST_C_BUFF_2],
             @"EFST_CHASING": [Constant constantWithName:@"EFST_CHASING" value:EFST_CHASING],
             @"EFST_MYSTERY_POWDER": [Constant constantWithName:@"EFST_MYSTERY_POWDER" value:EFST_MYSTERY_POWDER],
+            @"EFST_WILD_WALK": [Constant constantWithName:@"EFST_WILD_WALK" value:EFST_WILD_WALK],
             @"EFST_FIRE_CHARM_POWER": [Constant constantWithName:@"EFST_FIRE_CHARM_POWER" value:EFST_FIRE_CHARM_POWER],
             @"EFST_WATER_CHARM_POWER": [Constant constantWithName:@"EFST_WATER_CHARM_POWER" value:EFST_WATER_CHARM_POWER],
             @"EFST_WIND_CHARM_POWER": [Constant constantWithName:@"EFST_WIND_CHARM_POWER" value:EFST_WIND_CHARM_POWER],
             @"EFST_GROUND_CHARM_POWER": [Constant constantWithName:@"EFST_GROUND_CHARM_POWER" value:EFST_GROUND_CHARM_POWER],
+            @"EFST_OVERCOMING_CRISIS": [Constant constantWithName:@"EFST_OVERCOMING_CRISIS" value:EFST_OVERCOMING_CRISIS],
             @"EFST_MAX": [Constant constantWithName:@"EFST_MAX" value:EFST_MAX],
             @"ELE_NEUTRAL": [Constant constantWithName:@"ELE_NEUTRAL" value:ELE_NEUTRAL],
             @"ELE_WATER": [Constant constantWithName:@"ELE_WATER" value:ELE_WATER],
@@ -14154,7 +14175,6 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"IG_CARDALBUM": [Constant constantWithName:@"IG_CARDALBUM" value:IG_CARDALBUM],
             @"IG_GIFTBOX": [Constant constantWithName:@"IG_GIFTBOX" value:IG_GIFTBOX],
             @"IG_SCROLLBOX": [Constant constantWithName:@"IG_SCROLLBOX" value:IG_SCROLLBOX],
-            @"IG_FINDINGORE": [Constant constantWithName:@"IG_FINDINGORE" value:BS_FINDINGORE],
             @"IG_COOKIEBAG": [Constant constantWithName:@"IG_COOKIEBAG" value:IG_COOKIEBAG],
             @"IG_FIRSTAID": [Constant constantWithName:@"IG_FIRSTAID" value:IG_FIRSTAID],
             @"IG_HERB": [Constant constantWithName:@"IG_HERB" value:IG_HERB],
