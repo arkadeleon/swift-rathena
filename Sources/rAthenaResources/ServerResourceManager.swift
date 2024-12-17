@@ -96,6 +96,18 @@ final public class ServerResourceManager: Sendable {
             "20230224": "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';",
             "20240803": "UPDATE `char_reg_num` SET `key` = 'ep18_main' WHERE `key` = 'ep18_1_main';",
             "20240914": "ALTER TABLE `guild_expulsion` ADD COLUMN `char_id` INTEGER NOT NULL DEFAULT '0';",
+            "20241216": """
+            CREATE TABLE IF NOT EXISTS `skillcooldown_homunculus` (
+              `homun_id` INTEGER NOT NULL PRIMARY KEY,
+              `skill` INTEGER NOT NULL DEFAULT '0',
+              `tick` INTEGER NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS `skillcooldown_mercenary` (
+              `mer_id` INTEGER NOT NULL PRIMARY KEY,
+              `skill` INTEGER NOT NULL DEFAULT '0',
+              `tick` INTEGER NOT NULL
+            );
+            """,
         ]
 
         for upgrade in upgrades {
