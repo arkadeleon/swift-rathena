@@ -3,13 +3,7 @@
 
 #include "sql.hpp"
 
-#ifdef WIN32
-#include "winapi.hpp"
-#endif
-
 #include <cstdlib>// strtoul
-
-#include <sqlite3.h>
 
 #include <CommonCrypto/CommonDigest.h>
 #include <CoreFoundation/CoreFoundation.h>
@@ -18,7 +12,6 @@
 #include "cli.hpp"
 #include "malloc.hpp"
 #include "showmsg.hpp"
-#include "strlib.hpp"
 #include "timer.hpp"
 
 // MySQL 8.0 or later removed my_bool typedef.
@@ -53,6 +46,7 @@ struct SqlResult
 };
 
 
+
 /// Sql bind
 struct SqlBind
 {
@@ -72,23 +66,6 @@ struct Sql
 	sqlite3* db;
 	SqlResult* result;
 	int32 keepalive;
-};
-
-
-
-/// Sql statement
-struct SqlStmt
-{
-	StringBuf buf;
-	sqlite3* db;
-	sqlite3_stmt* stmt;
-	SqlResult* result;
-	SqlBind *params;
-	SqlBind *columns;
-	size_t max_params;
-	size_t max_columns;
-	bool bind_params;
-	bool bind_columns;
 };
 
 
@@ -828,38 +805,37 @@ static int Sql_P_BindResult(SqlResult* result, SqlBind* bind)
 
 
 
+/// Reports debug information about a truncated column.
+///
+/// @private
+void SqlStmt::ShowDebugTruncatedColumn( size_t i ){
+}
+
+
+
 /// Allocates and initializes a new SqlStmt handle.
-SqlStmt* SqlStmt_Malloc(Sql* sql)
-{
-	SqlStmt* self;
-
-	if( sql == nullptr )
-		return nullptr;
-
-	CREATE(self, SqlStmt, 1);
-	StringBuf_Init(&self->buf);
-	self->db = sql->db;
-	self->stmt = nullptr;
-	self->params = nullptr;
-	self->columns = nullptr;
-	self->max_params = 0;
-	self->max_columns = 0;
-	self->bind_params = false;
-	self->bind_columns = false;
-
-	return self;
+SqlStmt::SqlStmt( Sql& sql ){
+	StringBuf_Init( &this->buf );
+	this->db = sql.db;
+	this->stmt = nullptr;
+	this->result = nullptr;
+	this->params = nullptr;
+	this->columns = nullptr;
+	this->max_params = 0;
+	this->max_columns = 0;
+	this->bind_params = false;
+	this->bind_columns = false;
 }
 
 
 
 /// Prepares the statement.
-int32 SqlStmt_Prepare(SqlStmt* self, const char* query, ...)
-{
+int32 SqlStmt::Prepare(const char* query, ...){
 	int32 res;
 	va_list args;
 
 	va_start(args, query);
-	res = SqlStmt_PrepareV(self, query, args);
+	res = this->PrepareV(query, args);
 	va_end(args);
 
 	return res;
@@ -868,89 +844,77 @@ int32 SqlStmt_Prepare(SqlStmt* self, const char* query, ...)
 
 
 /// Prepares the statement.
-int32 SqlStmt_PrepareV(SqlStmt* self, const char* query, va_list args)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
+int32 SqlStmt::PrepareV(const char* query, va_list args){
+	this->FreeResult();
+	StringBuf_Clear( &this->buf );
+	StringBuf_Vprintf( &this->buf, query, args );
 
-	SqlStmt_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_Vprintf(&self->buf, query, args);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, nullptr) )
-	{
-		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-		ra_mysql_error_handler(sqlite3_errcode(self->db));
+	if( sqlite3_prepare_v2( this->db, StringBuf_Value( &this->buf ), StringBuf_Length( &this->buf ), &this->stmt, nullptr ) ){
+		ShowSQL( "DB error - %s\n", sqlite3_errmsg( this->db ) );
+		ra_mysql_error_handler( sqlite3_errcode( this->db ) );
 		return SQL_ERROR;
 	}
-	self->bind_params = false;
+
+	this->bind_params = false;
+
 	return SQL_SUCCESS;
 }
 
 
 
 /// Prepares the statement.
-int32 SqlStmt_PrepareStr(SqlStmt* self, const char* query)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
+int32 SqlStmt::PrepareStr(const char* query){
+	this->FreeResult();
+	StringBuf_Clear( &this->buf );
+	StringBuf_AppendStr( &this->buf, query );
 
-	SqlStmt_FreeResult(self);
-	StringBuf_Clear(&self->buf);
-	StringBuf_AppendStr(&self->buf, query);
-	if( sqlite3_prepare_v2(self->db, StringBuf_Value(&self->buf), StringBuf_Length(&self->buf), &self->stmt, nullptr) )
-	{
-		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
-		ra_mysql_error_handler(sqlite3_errcode(self->db));
+	if( sqlite3_prepare_v2( this->db, StringBuf_Value( &this->buf ), StringBuf_Length( &this->buf ), &this->stmt, nullptr ) ){
+		ShowSQL( "DB error - %s\n", sqlite3_errmsg( this->db ) );
+		ra_mysql_error_handler( sqlite3_errcode( this->db ) );
 		return SQL_ERROR;
 	}
-	self->bind_params = false;
+
+	this->bind_params = false;
+
 	return SQL_SUCCESS;
 }
 
 
 
 /// Returns the number of parameters in the prepared statement.
-size_t SqlStmt_NumParams(SqlStmt* self)
-{
-	if( self )
-		return (size_t)sqlite3_bind_parameter_count(self->stmt);
-	else
-		return 0;
+size_t SqlStmt::NumParams(){
+	return (size_t)sqlite3_bind_parameter_count( this->stmt );
 }
 
 
 
 /// Binds a parameter to a buffer.
-int32 SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
+int32 SqlStmt::BindParam(size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len){
+	if( !this->bind_params ){
+		// initialize the bindings
+		size_t count = this->NumParams();
 
-	if( !self->bind_params )
-	{// initialize the bindings
-		size_t i;
-		size_t count;
-
-		count = SqlStmt_NumParams(self);
-		if( self->max_params < count )
-		{
-			self->max_params = count;
-			RECREATE(self->params, SqlBind, count);
+		if( this->max_params < count ){
+			this->max_params = count;
+			RECREATE( this->params, SqlBind, count );
 		}
-		memset(self->params, 0, count*sizeof(SqlBind));
-		for( i = 0; i < count; ++i )
-			self->params[i].buffer_type = SQLDT_NULL;
-		self->bind_params = true;
+
+		memset( this->params, 0, count * sizeof( SqlBind ) );
+
+		for( size_t i = 0; i < count; ++i ){
+			this->params[i].buffer_type = SQLDT_NULL;
+		}
+
+		this->bind_params = true;
 	}
-	if( idx < self->max_params )
-	{
-		self->params[idx].buffer_type = buffer_type;
-		self->params[idx].buffer = buffer;
-		self->params[idx].buffer_length = buffer_len;
+
+	if( idx < this->max_params ){
+		this->params[idx].buffer_type = buffer_type;
+		this->params[idx].buffer = buffer;
+		this->params[idx].buffer_length = buffer_len;
 		return SQL_SUCCESS;
-	}
-	else
-	{
+	}else{
+		// TODO: for real...? Check this! [Lemongrass]
 		return SQL_SUCCESS;// out of range - ignore
 	}
 }
@@ -958,16 +922,19 @@ int32 SqlStmt_BindParam(SqlStmt* self, size_t idx, enum SqlDataType buffer_type,
 
 
 /// Executes the prepared statement.
-int32 SqlStmt_Execute(SqlStmt* self)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
+int32 SqlStmt::Execute(){
+	this->FreeResult();
 
-	SqlStmt_FreeResult(self);
-	if( self->bind_params && Sql_P_BindParam(self->stmt, self->params) == SQL_ERROR )
+	if( this->bind_params && Sql_P_BindParam( this->stmt, this->params ) == SQL_ERROR )
+	{
+		ShowSQL( "DB error - %s\n", sqlite3_errmsg( this->db ) );
+		ra_mysql_error_handler( sqlite3_errcode( this->db ) );
 		return SQL_ERROR;
-	self->bind_columns = false;
-	Sql_P_StmtExecute(self->stmt, &self->result);
+	}
+
+	this->bind_columns = false;
+
+	Sql_P_StmtExecute( this->stmt, &this->result );
 
 	return SQL_SUCCESS;
 }
@@ -975,69 +942,57 @@ int32 SqlStmt_Execute(SqlStmt* self)
 
 
 /// Returns the number of the AUTO_INCREMENT column of the last INSERT/UPDATE statement.
-uint64 SqlStmt_LastInsertId(SqlStmt* self)
-{
-	if( self )
-		return (uint64)sqlite3_last_insert_rowid(self->db);
-	else
-		return 0;
+uint64 SqlStmt::LastInsertId(){
+	return (uint64)sqlite3_last_insert_rowid( this->db );
 }
 
 
 
 /// Returns the number of columns in each row of the result.
-size_t SqlStmt_NumColumns(SqlStmt* self)
-{
-	if( self )
-		return (size_t)sqlite3_column_count(self->stmt);
-	else
-		return 0;
+size_t SqlStmt::NumColumns(){
+	return (size_t)sqlite3_column_count( this->stmt );
 }
 
 
 
 /// Binds the result of a column to a buffer.
-int32 SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len, uint32* out_length, int8* out_is_null)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
-
+int32 SqlStmt::BindColumn(size_t idx, enum SqlDataType buffer_type, void* buffer, size_t buffer_len, uint32* out_length, int8* out_is_null){
 	if( buffer_type == SQLDT_STRING || buffer_type == SQLDT_ENUM )
 	{
 		if( buffer_len < 1 )
 		{
-			ShowDebug("SqlStmt_BindColumn: buffer_len(%" PRIuPTR ") is too small, no room for the nul-terminator\n", buffer_len);
+			ShowDebug("SqlStmt::BindColumn: buffer_len(%" PRIuPTR ") is too small, no room for the nul-terminator\n", buffer_len);
 			return SQL_ERROR;
 		}
 		--buffer_len;// nul-terminator
 	}
-	if( !self->bind_columns )
-	{// initialize the bindings
-		size_t i;
-		size_t cols;
 
-		cols = SqlStmt_NumColumns(self);
-		if( self->max_columns < cols )
-		{
-			self->max_columns = cols;
-			RECREATE(self->columns, SqlBind, cols);
+	if( !this->bind_columns ){
+		// initialize the bindings
+		size_t cols = this->NumColumns();
+
+		if( this->max_columns < cols ){
+			this->max_columns = cols;
+			RECREATE( this->columns, SqlBind, cols );
 		}
-		memset(self->columns, 0, cols*sizeof(SqlBind));
-		for( i = 0; i < cols; ++i )
-			self->columns[i].buffer_type = SQLDT_NULL;
-		self->bind_columns = true;
+		memset( this->columns, 0, cols * sizeof( SqlBind ) );
+
+		for( size_t i = 0; i < cols; ++i ){
+			this->columns[i].buffer_type = SQLDT_NULL;
+		}
+
+		this->bind_columns = true;
 	}
-	if( idx < self->max_columns )
-	{
-		self->columns[idx].buffer_type = buffer_type;
-		self->columns[idx].buffer = buffer;
-		self->columns[idx].buffer_length = buffer_len;
-		self->columns[idx].length = out_length;
-		self->columns[idx].is_null = out_is_null;
+
+	if( idx < this->max_columns ){
+		this->columns[idx].buffer_type = buffer_type;
+		this->columns[idx].buffer = buffer;
+		this->columns[idx].buffer_length = buffer_len;
+		this->columns[idx].length = out_length;
+		this->columns[idx].is_null = out_is_null;
 		return SQL_SUCCESS;
-	}
-	else
-	{
+	}else{
+		// TODO: for real...? Check this! [Lemongrass]
 		return SQL_SUCCESS;// out of range - ignore
 	}
 }
@@ -1045,31 +1000,28 @@ int32 SqlStmt_BindColumn(SqlStmt* self, size_t idx, enum SqlDataType buffer_type
 
 
 /// Returns the number of rows in the result.
-uint64 SqlStmt_NumRows(SqlStmt* self)
-{
-	if( self )
-		return (uint64)self->result->row_count;
-	return 0;
+uint64 SqlStmt::NumRows(){
+	return (uint64)this->result->row_count;
 }
 
 
 
 /// Fetches the next row.
-int32 SqlStmt_NextRow(SqlStmt* self)
-{
-	if( self == nullptr )
-		return SQL_ERROR;
-
-	if( self->bind_columns && self->result )
+int32 SqlStmt::NextRow(){
+	if( this->bind_columns && this->result )
 	{
-		Sql_P_FetchRow(self->result);
-		if( self->result->current_row )
+		Sql_P_FetchRow( this->result );
+
+		if( this->result->current_row )
 		{
-			Sql_P_BindResult(self->result, self->columns);
+			Sql_P_BindResult( this->result, this->columns );
 			return SQL_SUCCESS;
 		}
-		if( self->result->eof )
+
+		if( this->result->eof )
+		{
 			return SQL_NO_DATA;
+		}
 	}
 
 	return SQLITE_ERROR;
@@ -1078,45 +1030,43 @@ int32 SqlStmt_NextRow(SqlStmt* self)
 
 
 /// Frees the result of the statement execution.
-void SqlStmt_FreeResult(SqlStmt* self)
-{
-	if( self )
-	{
-		Sql_P_FreeResult(self->result);
-		self->result = nullptr;
-	}
+void SqlStmt::FreeResult(){
+	Sql_P_FreeResult( this->result );
+	this->result = nullptr;
 }
 
 
 
 /// Shows debug information (with statement).
-void SqlStmt_ShowDebug_(SqlStmt* self, const char* debug_file, const unsigned long debug_line)
-{
-	if( self == nullptr )
-		ShowDebug("at %s:%lu -  self is nullptr\n", debug_file, debug_line);
-	else if( StringBuf_Length(&self->buf) > 0 )
-		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&self->buf));
-	else
+void SqlStmt::ShowDebug_(const char* debug_file, const unsigned long debug_line){
+#if !defined(SQL_REMOVE_SHOWDEBUG)
+	if( StringBuf_Length( &this->buf ) > 0 ){
+		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&this->buf));
+	}else{
 		ShowDebug("at %s:%lu\n", debug_file, debug_line);
+	}
+#endif
 }
 
 
 
-/// Frees a SqlStmt returned by SqlStmt_Malloc.
-void SqlStmt_Free(SqlStmt* self)
-{
-	if( self )
-	{
-		SqlStmt_FreeResult(self);
-		StringBuf_Destroy(&self->buf);
-		sqlite3_finalize(self->stmt);
-		if( self->params )
-			aFree(self->params);
-		if( self->columns )
-		{
-			aFree(self->columns);
-		}
-		aFree(self);
+/// Frees a SqlStmt.
+SqlStmt::~SqlStmt(){
+	this->FreeResult();
+	StringBuf_Destroy( &this->buf );
+	if( this->stmt != nullptr ){
+		sqlite3_finalize( this->stmt );
+		this->stmt = nullptr;
+	}
+
+	if( this->params != nullptr ){
+		aFree( this->params );
+		this->params = nullptr;
+	}
+
+	if( this->columns != nullptr ){
+		aFree( this->columns );
+		this->columns = nullptr;
 	}
 }
 

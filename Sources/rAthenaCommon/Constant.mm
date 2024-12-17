@@ -3993,7 +3993,7 @@ const NSInteger RA_IG_VIOLETBOX = IG_VIOLETBOX;
 const NSInteger RA_IG_CARDALBUM = IG_CARDALBUM;
 const NSInteger RA_IG_GIFTBOX = IG_GIFTBOX;
 const NSInteger RA_IG_SCROLLBOX = IG_SCROLLBOX;
-const NSInteger RA_IG_FINDINGORE = IG_FINDINGORE;
+const NSInteger RA_IG_FINDINGORE = BS_FINDINGORE;
 const NSInteger RA_IG_COOKIEBAG = IG_COOKIEBAG;
 const NSInteger RA_IG_FIRSTAID = IG_FIRSTAID;
 const NSInteger RA_IG_HERB = IG_HERB;
@@ -14154,7 +14154,7 @@ const NSInteger RA_SEARCHSTORE_EFFECT_REMOTE = SEARCHSTORE_EFFECT_REMOTE;
             @"IG_CARDALBUM": [Constant constantWithName:@"IG_CARDALBUM" value:IG_CARDALBUM],
             @"IG_GIFTBOX": [Constant constantWithName:@"IG_GIFTBOX" value:IG_GIFTBOX],
             @"IG_SCROLLBOX": [Constant constantWithName:@"IG_SCROLLBOX" value:IG_SCROLLBOX],
-            @"IG_FINDINGORE": [Constant constantWithName:@"IG_FINDINGORE" value:IG_FINDINGORE],
+            @"IG_FINDINGORE": [Constant constantWithName:@"IG_FINDINGORE" value:BS_FINDINGORE],
             @"IG_COOKIEBAG": [Constant constantWithName:@"IG_COOKIEBAG" value:IG_COOKIEBAG],
             @"IG_FIRSTAID": [Constant constantWithName:@"IG_FIRSTAID" value:IG_FIRSTAID],
             @"IG_HERB": [Constant constantWithName:@"IG_HERB" value:IG_HERB],
