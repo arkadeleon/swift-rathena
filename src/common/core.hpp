@@ -100,7 +100,11 @@ template <typename T> int32 main_core( int32 argc, char *argv[] ){
 
 	global_core = &server;
 
-	return server.start( argc, argv );
+	int32 result = server.start( argc, argv );
+
+	global_core = nullptr;
+
+	return result;
 }
 
 #endif /* CORE_HPP */
