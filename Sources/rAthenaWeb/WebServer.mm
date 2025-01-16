@@ -12,8 +12,6 @@
 
 extern int main (int argc, char **argv);
 
-extern void *tfl_root;
-
 int write_function(void *cookie, const char *buf, int n) {
     NSDictionary *userInfo = @{
         ServerOutputDataKey: [NSData dataWithBytes:buf length:n]
@@ -21,6 +19,11 @@ int write_function(void *cookie, const char *buf, int n) {
     [[NSNotificationCenter defaultCenter] postNotificationName:ServerDidOutputDataNotification object:WebServer.sharedServer userInfo:userInfo];
 
     return n;
+}
+
+TIMER_FUNC(shutdown_timer) {
+    global_core->signal_shutdown();
+    return 0;
 }
 
 @interface WebServer ()
@@ -68,9 +71,7 @@ int write_function(void *cookie, const char *buf, int n) {
 }
 
 - (void)stop {
-    global_core->signal_shutdown();
-
-    tfl_root = nullptr;
+    add_timer(gettick(), shutdown_timer, 0, 0);
 
     // Wait until global_core is null.
     while (global_core != nullptr) {

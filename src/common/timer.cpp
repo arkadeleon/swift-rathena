@@ -533,8 +533,21 @@ void timer_final(void)
 		aFree(tfl->name);	// free structures
 		aFree(tfl);
 	}
+	tfl_root = nullptr;
 
-	if (timer_data) aFree(timer_data);
+	if (timer_data) {
+		aFree(timer_data);
+		timer_data = nullptr;
+	}
+	timer_data_max = 0;
+	timer_data_num = 0;
+
 	BHEAP_CLEAR(timer_heap);
-	if (free_timer_list) aFree(free_timer_list);
+
+	if (free_timer_list) {
+		aFree(free_timer_list);
+		free_timer_list = nullptr;
+	}
+	free_timer_list_max = 0;
+	free_timer_list_pos = 0;
 }
