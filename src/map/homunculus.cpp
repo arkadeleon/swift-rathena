@@ -2060,5 +2060,6 @@ void do_init_homunculus(void){
 }
 
 void do_final_homunculus(void) {
-	//Nothing todo yet
+	homunculus_db.clear();
+	homun_exp_db.clear();
 }

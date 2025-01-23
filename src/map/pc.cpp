@@ -15806,11 +15806,14 @@ void do_final_pc(void) {
 	ers_destroy(num_reg_ers);
 	ers_destroy(str_reg_ers);
 
+	job_db.clear();
 	attendance_db.clear();
 	reputation_db.clear();
 #ifdef MAP_GENERATOR
 	reputationgroup_db.clear();
 #endif
+	statpoint_db.clear();
+	skill_tree_db.clear();
 	penalty_db.clear();
 	captcha_db.clear();
 }

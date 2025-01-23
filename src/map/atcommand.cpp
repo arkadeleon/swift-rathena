@@ -11683,6 +11683,8 @@ void atcommand_db_clear(void) {
 		dbi_destroy(iter);
 
 		db_destroy(atcommand_db);
+
+		atcommand_db = nullptr;
 	}
 
 	atcommand_alias_db.clear();

@@ -2751,5 +2751,7 @@ void do_final_guild(void) {
 	guild_infoevent_db->destroy(guild_infoevent_db,eventlist_db_final);
 	ers_destroy(expcache_ers);
 
+	guild_skill_tree_db.clear();
+
 	aFree(guild_flags);/* never empty; created on boot */
 }

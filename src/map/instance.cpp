@@ -1310,6 +1310,8 @@ void do_init_instance(void) {
  * Finalizes the instances and instance database
  */
 void do_final_instance(void) {
+	instance_db.clear();
+
 	// Since instance_destroy() modifies the unordered_map, make sure iteration always restarts.
 	for (auto it = instances.begin(); it != instances.end(); it = instances.begin())
 		instance_destroy(it->first);

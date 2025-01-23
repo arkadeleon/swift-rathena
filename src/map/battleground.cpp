@@ -1614,4 +1614,8 @@ void do_init_battleground(void)
  */
 void do_final_battleground(void)
 {
+	battleground_db.clear();
+	bg_team_db.clear();
+	bg_queues.clear();
+	bg_queue_count = 1;
 }

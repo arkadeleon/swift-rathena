@@ -4821,10 +4821,23 @@ void do_final_script() {
 		script_free_state(st);
 	dbi_destroy(iter);
 
-	if (str_data)
+	if (str_data) {
 		aFree(str_data);
-	if (str_buf)
+		str_data = nullptr;
+	}
+	str_data_size = 0;
+	str_num = LABEL_START;
+
+	if (str_buf) {
 		aFree(str_buf);
+		str_buf = nullptr;
+	}
+	str_size = 0;
+	str_pos = 0;
+
+	for( i = 0; i < SCRIPT_HASH_SIZE; i++ ) {
+		str_hash[i] = 0;
+	}
 
 	for( i = 0; i < atcmd_binding_count; i++ ) {
 		aFree(atcmd_binding[i]);

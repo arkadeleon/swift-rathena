@@ -4966,6 +4966,8 @@ void MapServer::finalize(){
 		mapdata->damage_adjust = {};
 	}
 
+	map_num = 0;
+
 	mapindex_final();
 	if(enable_grf)
 		grfio_final();
