@@ -184,7 +184,7 @@ struct unit_head {
 	long           checksum;
 };
 
-static struct block* hash_unfill[BLOCK_DATA_COUNT1 + BLOCK_DATA_COUNT2 + 1];
+static struct block* hash_unfill[BLOCK_DATA_COUNT1 + BLOCK_DATA_COUNT2 + 1] = { nullptr };
 static struct block* block_first, *block_last, block_head;
 
 /* Data for areas that do not use the memory be turned */
@@ -658,7 +658,6 @@ static void memmgr_init (void)
 #ifdef LOG_MEMMGR
 	sprintf(memmer_logfile, "log/%s.leaks", SERVER_NAME);
 	ShowStatus("Memory manager initialised: " CL_WHITE "%s" CL_RESET "\n", memmer_logfile);
-	memset(hash_unfill, 0, sizeof(hash_unfill));
 #endif /* LOG_MEMMGR */
 }
 #endif /* USE_MEMMGR */
