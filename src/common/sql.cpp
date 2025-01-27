@@ -647,18 +647,6 @@ static int Sql_P_BindParam(sqlite3_stmt* stmt, SqlBind* bind)
 		case SQLDT_CHAR:
 			sqlite3_bind_int(stmt, (int)(idx + 1), *((char *)buffer));
 			break;
-		case SQLDT_USHORT:
-			sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned short *)buffer));
-			break;
-		case SQLDT_SHORT:
-			sqlite3_bind_int(stmt, (int)(idx + 1), *((short *)buffer));
-			break;
-		case SQLDT_UINT:
-			sqlite3_bind_int(stmt, (int)(idx + 1), *((unsigned int *)buffer));
-			break;
-		case SQLDT_INT:
-			sqlite3_bind_int(stmt, (int)(idx + 1), *((int *)buffer));
-			break;
 		case SQLDT_ULONG:
 			sqlite3_bind_int64(stmt, (int)(idx + 1), *((unsigned long *)buffer));
 			break;
@@ -743,18 +731,6 @@ static int Sql_P_BindResult(SqlResult* result, SqlBind* bind)
 			break;
 		case SQLDT_CHAR:
 			*((char *)buffer) = (char)sqlite3_value_int(value);
-			break;
-		case SQLDT_USHORT:
-			*((unsigned short *)buffer) = (unsigned short)sqlite3_value_int(value);
-			break;
-		case SQLDT_SHORT:
-			*((short *)buffer) = (short)sqlite3_value_int(value);
-			break;
-		case SQLDT_UINT:
-			*((unsigned int *)buffer) = (unsigned int)sqlite3_value_int(value);
-			break;
-		case SQLDT_INT:
-			*((int *)buffer) = (int)sqlite3_value_int(value);
 			break;
 		case SQLDT_ULONG:
 			*((unsigned long *)buffer) = (unsigned long)sqlite3_value_int64(value);
