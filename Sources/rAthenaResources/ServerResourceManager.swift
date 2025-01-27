@@ -118,6 +118,9 @@ final public class ServerResourceManager: Sendable {
                 );
                 """,
             ],
+            "20250126": [
+                "ALTER TABLE `char` ADD COLUMN `disable_partyinvite` INTEGER NOT NULL DEFAULT '0';",
+            ],
         ]
 
         for upgrade in upgrades {
