@@ -80,50 +80,47 @@ final public class ServerResourceManager: Sendable {
             sqlite3_close(db)
         }
 
-        var sql: String?
-        var stmt: OpaquePointer?
-
-        sql = "CREATE TABLE IF NOT EXISTS `upgrades` (`id` TEXT NOT NULL, PRIMARY KEY (id));"
-        guard (sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK) else {
+        let sql = """
+            CREATE TABLE IF NOT EXISTS `upgrades` (
+              `id` TEXT NOT NULL,
+              PRIMARY KEY (id)
+            );
+            """
+        guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
             throw SQLite3Error.prepare
         }
 
-        sqlite3_step(stmt);
-        sqlite3_finalize(stmt);
-        stmt = nil;
-
-        let upgrades: KeyValuePairs<String, [String]> = [
-            "20230224": [
-                "ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';",
-            ],
-            "20240803": [
-                "UPDATE `char_reg_num` SET `key` = 'ep18_main' WHERE `key` = 'ep18_1_main';",
-            ],
-            "20240914": [
-                "ALTER TABLE `guild_expulsion` ADD COLUMN `char_id` INTEGER NOT NULL DEFAULT '0';",
-            ],
-            "20241216": [
-                """
+        let upgrades: KeyValuePairs<String, String> = [
+            "20230224": """
+                ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';
+                """,
+            "20240803": """
+                UPDATE `char_reg_num` SET `key` = 'ep18_main' WHERE `key` = 'ep18_1_main';
+                """,
+            "20240914": """
+                ALTER TABLE `guild_expulsion` ADD COLUMN `char_id` INTEGER NOT NULL DEFAULT '0';
+                """,
+            "20241216": """
                 CREATE TABLE IF NOT EXISTS `skillcooldown_homunculus` (
                   `homun_id` INTEGER NOT NULL PRIMARY KEY,
                   `skill` INTEGER NOT NULL DEFAULT '0',
                   `tick` INTEGER NOT NULL
                 );
-                """,
-                """
                 CREATE TABLE IF NOT EXISTS `skillcooldown_mercenary` (
                   `mer_id` INTEGER NOT NULL PRIMARY KEY,
                   `skill` INTEGER NOT NULL DEFAULT '0',
                   `tick` INTEGER NOT NULL
                 );
                 """,
-            ],
-            "20250126": [
-                "ALTER TABLE `char` ADD COLUMN `disable_partyinvite` INTEGER NOT NULL DEFAULT '0';",
-            ],
+            "20250126": """
+                ALTER TABLE `char` ADD COLUMN `disable_partyinvite` INTEGER NOT NULL DEFAULT '0';
+                """,
         ]
 
         for upgrade in upgrades {
+            var sql: String?
+            var stmt: OpaquePointer?
+
             sql = "SELECT count(*) FROM `upgrades` WHERE `id` = '\(upgrade.key)' LIMIT 1;"
             guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
@@ -138,25 +135,15 @@ final public class ServerResourceManager: Sendable {
                 continue
             }
 
-            let sqls = upgrade.value
-            for sql in sqls {
-                guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
-                    throw SQLite3Error.prepare
-                }
-
-                sqlite3_step(stmt)
-                sqlite3_finalize(stmt)
-                stmt = nil
-            }
-
-            sql = "INSERT INTO `upgrades` VALUES ('\(upgrade.key)')"
-            guard sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK else {
+            sql = upgrade.value
+            guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
             }
 
-            sqlite3_step(stmt)
-            sqlite3_finalize(stmt)
-            stmt = nil
+            sql = "INSERT INTO `upgrades` VALUES ('\(upgrade.key)');"
+            guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
+                throw SQLite3Error.prepare
+            }
         }
     }
 }
