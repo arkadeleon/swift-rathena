@@ -446,6 +446,7 @@ extern const NSInteger RA_MF_NOBUYINGSTORE;
 extern const NSInteger RA_MF_NODYNAMICNPC;
 extern const NSInteger RA_MF_NOBANK;
 extern const NSInteger RA_MF_SPECIALPOPUP;
+extern const NSInteger RA_MF_NOMACROCHECKER;
 extern const NSInteger RA_CELL_WALKABLE;
 extern const NSInteger RA_CELL_SHOOTABLE;
 extern const NSInteger RA_CELL_WATER;

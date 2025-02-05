@@ -463,6 +463,7 @@ const NSInteger RA_MF_NOBUYINGSTORE = MF_NOBUYINGSTORE;
 const NSInteger RA_MF_NODYNAMICNPC = MF_NODYNAMICNPC;
 const NSInteger RA_MF_NOBANK = MF_NOBANK;
 const NSInteger RA_MF_SPECIALPOPUP = MF_SPECIALPOPUP;
+const NSInteger RA_MF_NOMACROCHECKER = MF_NOMACROCHECKER;
 const NSInteger RA_CELL_WALKABLE = CELL_WALKABLE;
 const NSInteger RA_CELL_SHOOTABLE = CELL_SHOOTABLE;
 const NSInteger RA_CELL_WATER = CELL_WATER;
@@ -10667,6 +10668,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"MF_NODYNAMICNPC": [Constant constantWithName:@"MF_NODYNAMICNPC" value:MF_NODYNAMICNPC],
             @"MF_NOBANK": [Constant constantWithName:@"MF_NOBANK" value:MF_NOBANK],
             @"MF_SPECIALPOPUP": [Constant constantWithName:@"MF_SPECIALPOPUP" value:MF_SPECIALPOPUP],
+            @"MF_NOMACROCHECKER": [Constant constantWithName:@"MF_NOMACROCHECKER" value:MF_NOMACROCHECKER],
             @"CELL_WALKABLE": [Constant constantWithName:@"CELL_WALKABLE" value:CELL_WALKABLE],
             @"CELL_SHOOTABLE": [Constant constantWithName:@"CELL_SHOOTABLE" value:CELL_SHOOTABLE],
             @"CELL_WATER": [Constant constantWithName:@"CELL_WATER" value:CELL_WATER],
