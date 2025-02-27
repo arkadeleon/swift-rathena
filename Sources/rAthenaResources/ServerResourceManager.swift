@@ -21,9 +21,7 @@ final public class ServerResourceManager: Sendable {
 
     public init() {
         sourceURL = Bundle.module.resourceURL!
-
-        let libraryDirectoryURL = try! FileManager.default.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        workingDirectoryURL = libraryDirectoryURL.appending(path: "rathena", directoryHint: .isDirectory)
+        workingDirectoryURL = URL.libraryDirectory.appending(path: "rathena", directoryHint: .isDirectory)
     }
 
     public func prepareWorkingDirectory() throws {
