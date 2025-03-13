@@ -675,6 +675,7 @@ const NSInteger RA_SP_MAGIC_SP_GAIN_VALUE = SP_MAGIC_SP_GAIN_VALUE;
 const NSInteger RA_SP_MAGIC_HP_GAIN_VALUE = SP_MAGIC_HP_GAIN_VALUE;
 const NSInteger RA_SP_ADD_MONSTER_ID_DROP_ITEM = SP_ADD_MONSTER_ID_DROP_ITEM;
 const NSInteger RA_SP_EMATK = SP_EMATK;
+const NSInteger RA_SP_EMATK_HIDDEN = SP_EMATK_HIDDEN;
 const NSInteger RA_SP_COMA_CLASS = SP_COMA_CLASS;
 const NSInteger RA_SP_COMA_RACE = SP_COMA_RACE;
 const NSInteger RA_SP_SKILL_USE_SP_RATE = SP_SKILL_USE_SP_RATE;
@@ -1795,6 +1796,8 @@ const NSInteger RA_SC_SHADOW_CLOCK = SC_SHADOW_CLOCK;
 const NSInteger RA_SC_SHINKIROU_CALL = SC_SHINKIROU_CALL;
 const NSInteger RA_SC_NIGHTMARE = SC_NIGHTMARE;
 const NSInteger RA_SC_SBUNSHIN = SC_SBUNSHIN;
+const NSInteger RA_SC_CONTENTS_34 = SC_CONTENTS_34;
+const NSInteger RA_SC_CONTENTS_35 = SC_CONTENTS_35;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -3238,6 +3241,8 @@ const NSInteger RA_EFST_CONTENTS_30 = EFST_CONTENTS_30;
 const NSInteger RA_EFST_CONTENTS_31 = EFST_CONTENTS_31;
 const NSInteger RA_EFST_CONTENTS_32 = EFST_CONTENTS_32;
 const NSInteger RA_EFST_CONTENTS_33 = EFST_CONTENTS_33;
+const NSInteger RA_EFST_CONTENTS_34 = EFST_CONTENTS_34;
+const NSInteger RA_EFST_CONTENTS_35 = EFST_CONTENTS_35;
 const NSInteger RA_EFST_C_BUFF_1 = EFST_C_BUFF_1;
 const NSInteger RA_EFST_C_BUFF_2 = EFST_C_BUFF_2;
 const NSInteger RA_EFST_CHASING = EFST_CHASING;
@@ -3313,6 +3318,8 @@ const NSInteger RA_RC2_ILLUSION_FROZEN = RC2_ILLUSION_FROZEN;
 const NSInteger RA_RC2_ILLUSION_MOONLIGHT = RC2_ILLUSION_MOONLIGHT;
 const NSInteger RA_RC2_EP16_DEF = RC2_EP16_DEF;
 const NSInteger RA_RC2_EDDA_ARUNAFELTZ = RC2_EDDA_ARUNAFELTZ;
+const NSInteger RA_RC2_LASAGNA = RC2_LASAGNA;
+const NSInteger RA_RC2_GLAST_HEIM_ABYSS = RC2_GLAST_HEIM_ABYSS;
 const NSInteger RA_RC2_MAX = RC2_MAX;
 const NSInteger RA_MONSTER_TYPE_01 = MONSTER_TYPE_01;
 const NSInteger RA_MONSTER_TYPE_02 = MONSTER_TYPE_02;
@@ -3556,10 +3563,11 @@ const NSInteger RA_CARD_ENCHANT = CARD_ENCHANT;
 const NSInteger RA_MOB_NAME = MOB_NAME;
 const NSInteger RA_MOB_LV = MOB_LV;
 const NSInteger RA_MOB_MAXHP = MOB_MAXHP;
+const NSInteger RA_MOB_MAXSP = MOB_MAXSP;
 const NSInteger RA_MOB_BASEEXP = MOB_BASEEXP;
 const NSInteger RA_MOB_JOBEXP = MOB_JOBEXP;
-const NSInteger RA_MOB_ATK1 = MOB_ATK1;
-const NSInteger RA_MOB_ATK2 = MOB_ATK2;
+const NSInteger RA_MOB_ATKMIN = MOB_ATKMIN;
+const NSInteger RA_MOB_ATKMAX = MOB_ATKMAX;
 const NSInteger RA_MOB_DEF = MOB_DEF;
 const NSInteger RA_MOB_MDEF = MOB_MDEF;
 const NSInteger RA_MOB_RES = MOB_RES;
@@ -3570,12 +3578,14 @@ const NSInteger RA_MOB_VIT = MOB_VIT;
 const NSInteger RA_MOB_INT = MOB_INT;
 const NSInteger RA_MOB_DEX = MOB_DEX;
 const NSInteger RA_MOB_LUK = MOB_LUK;
-const NSInteger RA_MOB_RANGE = MOB_RANGE;
-const NSInteger RA_MOB_RANGE2 = MOB_RANGE2;
-const NSInteger RA_MOB_RANGE3 = MOB_RANGE3;
+const NSInteger RA_MOB_SPEED = MOB_SPEED;
+const NSInteger RA_MOB_ATKRANGE = MOB_ATKRANGE;
+const NSInteger RA_MOB_SKILLRANGE = MOB_SKILLRANGE;
+const NSInteger RA_MOB_CHASERANGE = MOB_CHASERANGE;
 const NSInteger RA_MOB_SIZE = MOB_SIZE;
 const NSInteger RA_MOB_RACE = MOB_RACE;
 const NSInteger RA_MOB_ELEMENT = MOB_ELEMENT;
+const NSInteger RA_MOB_ELEMENTLV = MOB_ELEMENTLV;
 const NSInteger RA_MOB_MODE = MOB_MODE;
 const NSInteger RA_MOB_MVPEXP = MOB_MVPEXP;
 const NSInteger RA_MOB_ID = MOB_ID;
@@ -6789,6 +6799,61 @@ const NSInteger RA_IG_TRUE_HUNTING_SET = IG_TRUE_HUNTING_SET;
 const NSInteger RA_IG_REGIA_HUNTING_SET = IG_REGIA_HUNTING_SET;
 const NSInteger RA_IG_MYSTERIOUS_FRUIT_BOX = IG_MYSTERIOUS_FRUIT_BOX;
 const NSInteger RA_IG_ZONDA_SUPPORT_PACKAGE = IG_ZONDA_SUPPORT_PACKAGE;
+const NSInteger RA_IG_AEGIS_103871 = IG_AEGIS_103871;
+const NSInteger RA_IG_AEGIS_103872 = IG_AEGIS_103872;
+const NSInteger RA_IG_IFRIT_SCROLL = IG_IFRIT_SCROLL;
+const NSInteger RA_IG_IF_COSTUME_SCROLL = IG_IF_COSTUME_SCROLL;
+const NSInteger RA_IG_AEGIS_103891 = IG_AEGIS_103891;
+const NSInteger RA_IG_AEGIS_103909 = IG_AEGIS_103909;
+const NSInteger RA_IG_AEGIS_103991 = IG_AEGIS_103991;
+const NSInteger RA_IG_NEWSERVER_PACKAGE_1 = IG_NEWSERVER_PACKAGE_1;
+const NSInteger RA_IG_NEWSERVER_PACKAGE_2 = IG_NEWSERVER_PACKAGE_2;
+const NSInteger RA_IG_NEWSERVER_PACKAGE_3 = IG_NEWSERVER_PACKAGE_3;
+const NSInteger RA_IG_NEWSERVER_GROWTHPACK1 = IG_NEWSERVER_GROWTHPACK1;
+const NSInteger RA_IG_NEWSERVER_GROWTHPACK2 = IG_NEWSERVER_GROWTHPACK2;
+const NSInteger RA_IG_NEWSERVER_REFINEPACK1 = IG_NEWSERVER_REFINEPACK1;
+const NSInteger RA_IG_NEWSERVER_REFINEPACK2 = IG_NEWSERVER_REFINEPACK2;
+const NSInteger RA_IG_NEWSERVER_NYANGVINEPACK = IG_NEWSERVER_NYANGVINEPACK;
+const NSInteger RA_IG_COSTUMEMILEPACK_37_1 = IG_COSTUMEMILEPACK_37_1;
+const NSInteger RA_IG_COSTUMEMILEPACK_37_2 = IG_COSTUMEMILEPACK_37_2;
+const NSInteger RA_IG_COSTUMEMILEPACK_37_3 = IG_COSTUMEMILEPACK_37_3;
+const NSInteger RA_IG_IF_COSTUME_BOX = IG_IF_COSTUME_BOX;
+const NSInteger RA_IG_IF_ALMIGHTY100_BOX = IG_IF_ALMIGHTY100_BOX;
+const NSInteger RA_IG_IF_ALMIGHTY_BOX = IG_IF_ALMIGHTY_BOX;
+const NSInteger RA_IG_IF_REFINE_ORE_BOX_SET = IG_IF_REFINE_ORE_BOX_SET;
+const NSInteger RA_IG_IF_REFINE_ORE_BOX = IG_IF_REFINE_ORE_BOX;
+const NSInteger RA_IG_IF_HD_REFINE_ORE_BOX = IG_IF_HD_REFINE_ORE_BOX;
+const NSInteger RA_IG_IF_HD_ELUNIUM_BOX = IG_IF_HD_ELUNIUM_BOX;
+const NSInteger RA_IG_IF_HD_ORIDECON_BOX = IG_IF_HD_ORIDECON_BOX;
+const NSInteger RA_IG_IF_INFINITY_10_BOX = IG_IF_INFINITY_10_BOX;
+const NSInteger RA_IG_IF_INFINITY_BOX = IG_IF_INFINITY_BOX;
+const NSInteger RA_IG_IF_UNLIMITED_10_BOX = IG_IF_UNLIMITED_10_BOX;
+const NSInteger RA_IG_IF_UNLIMITED_BOX = IG_IF_UNLIMITED_BOX;
+const NSInteger RA_IG_EYPGT_COSTUME_BOX1 = IG_EYPGT_COSTUME_BOX1;
+const NSInteger RA_IG_EYPGT_COSTUME_BOX2 = IG_EYPGT_COSTUME_BOX2;
+const NSInteger RA_IG_EYPGT_COSTUME_BOX3 = IG_EYPGT_COSTUME_BOX3;
+const NSInteger RA_IG_IF_SPEED_BOOSTER_10_BOX = IG_IF_SPEED_BOOSTER_10_BOX;
+const NSInteger RA_IG_IF_SPEED_BOOSTER_BOX = IG_IF_SPEED_BOOSTER_BOX;
+const NSInteger RA_IG_IF_FORCE_BOOSTER_10_BOX = IG_IF_FORCE_BOOSTER_10_BOX;
+const NSInteger RA_IG_IF_FORCE_BOOSTER_BOX = IG_IF_FORCE_BOOSTER_BOX;
+const NSInteger RA_IG_IF_3_LIFE_POTION_10PACK = IG_IF_3_LIFE_POTION_10PACK;
+const NSInteger RA_IG_IF_3_LIFE_POTION_PACK = IG_IF_3_LIFE_POTION_PACK;
+const NSInteger RA_IG_IF_HD_HIGH_REFINE_BOX = IG_IF_HD_HIGH_REFINE_BOX;
+const NSInteger RA_IG_IF_HD_CARNIUM_BOX = IG_IF_HD_CARNIUM_BOX;
+const NSInteger RA_IG_IF_HD_BRADIUM_BOX = IG_IF_HD_BRADIUM_BOX;
+const NSInteger RA_IG_IF_LIMITPOWERBOOSTER100 = IG_IF_LIMITPOWERBOOSTER100;
+const NSInteger RA_IG_IF_LIMITPOWERBOOSTER = IG_IF_LIMITPOWERBOOSTER;
+const NSInteger RA_IG_CLB_KP_PACK1 = IG_CLB_KP_PACK1;
+const NSInteger RA_IG_CLB_KP_PACK2 = IG_CLB_KP_PACK2;
+const NSInteger RA_IG_2025_COSTUME_BOX1 = IG_2025_COSTUME_BOX1;
+const NSInteger RA_IG_2025_COSTUME_BOX2 = IG_2025_COSTUME_BOX2;
+const NSInteger RA_IG_IF_CLB_KP_PACK1 = IG_IF_CLB_KP_PACK1;
+const NSInteger RA_IG_IF_CLB_KP_PACK2 = IG_IF_CLB_KP_PACK2;
+const NSInteger RA_IG_IF_2025_COSTUME_BOX1 = IG_IF_2025_COSTUME_BOX1;
+const NSInteger RA_IG_IF_2025_COSTUME_BOX2 = IG_IF_2025_COSTUME_BOX2;
+const NSInteger RA_IG_LI_NYANGVINE_BOX1_38 = IG_LI_NYANGVINE_BOX1_38;
+const NSInteger RA_IG_LI_NYANGVINE_BOX2_38 = IG_LI_NYANGVINE_BOX2_38;
+const NSInteger RA_IG_LI_NYANGVINE_BOX3_38 = IG_LI_NYANGVINE_BOX3_38;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -8111,6 +8176,11 @@ const NSInteger RA_JT_4_CLB_SS_TZ = JT_4_CLB_SS_TZ;
 const NSInteger RA_JT_4_CLB_SS_AJ = JT_4_CLB_SS_AJ;
 const NSInteger RA_JT_4_CLB_SS_LK = JT_4_CLB_SS_LK;
 const NSInteger RA_JT_4_SMART_ANDRE = JT_4_SMART_ANDRE;
+const NSInteger RA_JT_4_ALEXSANDER = JT_4_ALEXSANDER;
+const NSInteger RA_JT_4_KASANDRA = JT_4_KASANDRA;
+const NSInteger RA_JT_4_CLB_KP_P1 = JT_4_CLB_KP_P1;
+const NSInteger RA_JT_4_CLB_KP_SF = JT_4_CLB_KP_SF;
+const NSInteger RA_JT_4_CLB_KP_ZH = JT_4_CLB_KP_ZH;
 const NSInteger RA_JT_ROZ_MQ_XAVIER = JT_ROZ_MQ_XAVIER;
 const NSInteger RA_JT_ROZ_MQ_MOCLORD = JT_ROZ_MQ_MOCLORD;
 const NSInteger RA_JT_ROZ_MQ_SKULD = JT_ROZ_MQ_SKULD;
@@ -9497,6 +9567,7 @@ const NSInteger RA_HAT_EF_MEDJED_TEXT = HAT_EF_MEDJED_TEXT;
 const NSInteger RA_HAT_EF_INKPAINTING_DAY = HAT_EF_INKPAINTING_DAY;
 const NSInteger RA_HAT_EF_INKPAINTING_NIGHT = HAT_EF_INKPAINTING_NIGHT;
 const NSInteger RA_HAT_EF_KUNG_FU_PANDA = HAT_EF_KUNG_FU_PANDA;
+const NSInteger RA_HAT_EF_C_MGSGPH_POTARL = HAT_EF_C_MGSGPH_POTARL;
 const NSInteger RA_PET_CATCH_UNIVERSAL_NO_BOSS = PET_CATCH_UNIVERSAL_NO_BOSS;
 const NSInteger RA_PET_CATCH_UNIVERSAL_ALL = PET_CATCH_UNIVERSAL_ALL;
 const NSInteger RA_PET_INTIMATE_NONE = PET_INTIMATE_NONE;
@@ -10897,6 +10968,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"bMagicHPGainValue": [Constant constantWithName:@"bMagicHPGainValue" value:SP_MAGIC_HP_GAIN_VALUE],
             @"bAddMonsterIdDropItem": [Constant constantWithName:@"bAddMonsterIdDropItem" value:SP_ADD_MONSTER_ID_DROP_ITEM],
             @"bMatk": [Constant constantWithName:@"bMatk" value:SP_EMATK],
+            @"bMatk2": [Constant constantWithName:@"bMatk2" value:SP_EMATK_HIDDEN],
             @"bComaClass": [Constant constantWithName:@"bComaClass" value:SP_COMA_CLASS],
             @"bComaRace": [Constant constantWithName:@"bComaRace" value:SP_COMA_RACE],
             @"bSkillUseSPrate": [Constant constantWithName:@"bSkillUseSPrate" value:SP_SKILL_USE_SP_RATE],
@@ -12053,6 +12125,8 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"SC_SHINKIROU_CALL": [Constant constantWithName:@"SC_SHINKIROU_CALL" value:SC_SHINKIROU_CALL],
             @"SC_NIGHTMARE": [Constant constantWithName:@"SC_NIGHTMARE" value:SC_NIGHTMARE],
             @"SC_SBUNSHIN": [Constant constantWithName:@"SC_SBUNSHIN" value:SC_SBUNSHIN],
+            @"SC_CONTENTS_34": [Constant constantWithName:@"SC_CONTENTS_34" value:SC_CONTENTS_34],
+            @"SC_CONTENTS_35": [Constant constantWithName:@"SC_CONTENTS_35" value:SC_CONTENTS_35],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -13496,6 +13570,8 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EFST_CONTENTS_31": [Constant constantWithName:@"EFST_CONTENTS_31" value:EFST_CONTENTS_31],
             @"EFST_CONTENTS_32": [Constant constantWithName:@"EFST_CONTENTS_32" value:EFST_CONTENTS_32],
             @"EFST_CONTENTS_33": [Constant constantWithName:@"EFST_CONTENTS_33" value:EFST_CONTENTS_33],
+            @"EFST_CONTENTS_34": [Constant constantWithName:@"EFST_CONTENTS_34" value:EFST_CONTENTS_34],
+            @"EFST_CONTENTS_35": [Constant constantWithName:@"EFST_CONTENTS_35" value:EFST_CONTENTS_35],
             @"EFST_C_BUFF_1": [Constant constantWithName:@"EFST_C_BUFF_1" value:EFST_C_BUFF_1],
             @"EFST_C_BUFF_2": [Constant constantWithName:@"EFST_C_BUFF_2" value:EFST_C_BUFF_2],
             @"EFST_CHASING": [Constant constantWithName:@"EFST_CHASING" value:EFST_CHASING],
@@ -13571,6 +13647,8 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"RC2_ILLUSION_MOONLIGHT": [Constant constantWithName:@"RC2_ILLUSION_MOONLIGHT" value:RC2_ILLUSION_MOONLIGHT],
             @"RC2_EP16_DEF": [Constant constantWithName:@"RC2_EP16_DEF" value:RC2_EP16_DEF],
             @"RC2_EDDA_ARUNAFELTZ": [Constant constantWithName:@"RC2_EDDA_ARUNAFELTZ" value:RC2_EDDA_ARUNAFELTZ],
+            @"RC2_LASAGNA": [Constant constantWithName:@"RC2_LASAGNA" value:RC2_LASAGNA],
+            @"RC2_GLAST_HEIM_ABYSS": [Constant constantWithName:@"RC2_GLAST_HEIM_ABYSS" value:RC2_GLAST_HEIM_ABYSS],
             @"RC2_MAX": [Constant constantWithName:@"RC2_MAX" value:RC2_MAX],
             @"MONSTER_TYPE_01": [Constant constantWithName:@"MONSTER_TYPE_01" value:MONSTER_TYPE_01],
             @"MONSTER_TYPE_02": [Constant constantWithName:@"MONSTER_TYPE_02" value:MONSTER_TYPE_02],
@@ -13815,10 +13893,11 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"MOB_NAME": [Constant constantWithName:@"MOB_NAME" value:MOB_NAME],
             @"MOB_LV": [Constant constantWithName:@"MOB_LV" value:MOB_LV],
             @"MOB_MAXHP": [Constant constantWithName:@"MOB_MAXHP" value:MOB_MAXHP],
+            @"MOB_MAXSP": [Constant constantWithName:@"MOB_MAXSP" value:MOB_MAXSP],
             @"MOB_BASEEXP": [Constant constantWithName:@"MOB_BASEEXP" value:MOB_BASEEXP],
             @"MOB_JOBEXP": [Constant constantWithName:@"MOB_JOBEXP" value:MOB_JOBEXP],
-            @"MOB_ATK1": [Constant constantWithName:@"MOB_ATK1" value:MOB_ATK1],
-            @"MOB_ATK2": [Constant constantWithName:@"MOB_ATK2" value:MOB_ATK2],
+            @"MOB_ATKMIN": [Constant constantWithName:@"MOB_ATKMIN" value:MOB_ATKMIN],
+            @"MOB_ATKMAX": [Constant constantWithName:@"MOB_ATKMAX" value:MOB_ATKMAX],
             @"MOB_DEF": [Constant constantWithName:@"MOB_DEF" value:MOB_DEF],
             @"MOB_MDEF": [Constant constantWithName:@"MOB_MDEF" value:MOB_MDEF],
             @"MOB_RES": [Constant constantWithName:@"MOB_RES" value:MOB_RES],
@@ -13829,12 +13908,14 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"MOB_INT": [Constant constantWithName:@"MOB_INT" value:MOB_INT],
             @"MOB_DEX": [Constant constantWithName:@"MOB_DEX" value:MOB_DEX],
             @"MOB_LUK": [Constant constantWithName:@"MOB_LUK" value:MOB_LUK],
-            @"MOB_RANGE": [Constant constantWithName:@"MOB_RANGE" value:MOB_RANGE],
-            @"MOB_RANGE2": [Constant constantWithName:@"MOB_RANGE2" value:MOB_RANGE2],
-            @"MOB_RANGE3": [Constant constantWithName:@"MOB_RANGE3" value:MOB_RANGE3],
+            @"MOB_SPEED": [Constant constantWithName:@"MOB_SPEED" value:MOB_SPEED],
+            @"MOB_ATKRANGE": [Constant constantWithName:@"MOB_ATKRANGE" value:MOB_ATKRANGE],
+            @"MOB_SKILLRANGE": [Constant constantWithName:@"MOB_SKILLRANGE" value:MOB_SKILLRANGE],
+            @"MOB_CHASERANGE": [Constant constantWithName:@"MOB_CHASERANGE" value:MOB_CHASERANGE],
             @"MOB_SIZE": [Constant constantWithName:@"MOB_SIZE" value:MOB_SIZE],
             @"MOB_RACE": [Constant constantWithName:@"MOB_RACE" value:MOB_RACE],
             @"MOB_ELEMENT": [Constant constantWithName:@"MOB_ELEMENT" value:MOB_ELEMENT],
+            @"MOB_ELEMENTLV": [Constant constantWithName:@"MOB_ELEMENTLV" value:MOB_ELEMENTLV],
             @"MOB_MODE": [Constant constantWithName:@"MOB_MODE" value:MOB_MODE],
             @"MOB_MVPEXP": [Constant constantWithName:@"MOB_MVPEXP" value:MOB_MVPEXP],
             @"MOB_ID": [Constant constantWithName:@"MOB_ID" value:MOB_ID],
@@ -17055,6 +17136,61 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"IG_REGIA_HUNTING_SET": [Constant constantWithName:@"IG_REGIA_HUNTING_SET" value:IG_REGIA_HUNTING_SET],
             @"IG_MYSTERIOUS_FRUIT_BOX": [Constant constantWithName:@"IG_MYSTERIOUS_FRUIT_BOX" value:IG_MYSTERIOUS_FRUIT_BOX],
             @"IG_ZONDA_SUPPORT_PACKAGE": [Constant constantWithName:@"IG_ZONDA_SUPPORT_PACKAGE" value:IG_ZONDA_SUPPORT_PACKAGE],
+            @"IG_AEGIS_103871": [Constant constantWithName:@"IG_AEGIS_103871" value:IG_AEGIS_103871],
+            @"IG_AEGIS_103872": [Constant constantWithName:@"IG_AEGIS_103872" value:IG_AEGIS_103872],
+            @"IG_IFRIT_SCROLL": [Constant constantWithName:@"IG_IFRIT_SCROLL" value:IG_IFRIT_SCROLL],
+            @"IG_IF_COSTUME_SCROLL": [Constant constantWithName:@"IG_IF_COSTUME_SCROLL" value:IG_IF_COSTUME_SCROLL],
+            @"IG_AEGIS_103891": [Constant constantWithName:@"IG_AEGIS_103891" value:IG_AEGIS_103891],
+            @"IG_AEGIS_103909": [Constant constantWithName:@"IG_AEGIS_103909" value:IG_AEGIS_103909],
+            @"IG_AEGIS_103991": [Constant constantWithName:@"IG_AEGIS_103991" value:IG_AEGIS_103991],
+            @"IG_NEWSERVER_PACKAGE_1": [Constant constantWithName:@"IG_NEWSERVER_PACKAGE_1" value:IG_NEWSERVER_PACKAGE_1],
+            @"IG_NEWSERVER_PACKAGE_2": [Constant constantWithName:@"IG_NEWSERVER_PACKAGE_2" value:IG_NEWSERVER_PACKAGE_2],
+            @"IG_NEWSERVER_PACKAGE_3": [Constant constantWithName:@"IG_NEWSERVER_PACKAGE_3" value:IG_NEWSERVER_PACKAGE_3],
+            @"IG_NEWSERVER_GROWTHPACK1": [Constant constantWithName:@"IG_NEWSERVER_GROWTHPACK1" value:IG_NEWSERVER_GROWTHPACK1],
+            @"IG_NEWSERVER_GROWTHPACK2": [Constant constantWithName:@"IG_NEWSERVER_GROWTHPACK2" value:IG_NEWSERVER_GROWTHPACK2],
+            @"IG_NEWSERVER_REFINEPACK1": [Constant constantWithName:@"IG_NEWSERVER_REFINEPACK1" value:IG_NEWSERVER_REFINEPACK1],
+            @"IG_NEWSERVER_REFINEPACK2": [Constant constantWithName:@"IG_NEWSERVER_REFINEPACK2" value:IG_NEWSERVER_REFINEPACK2],
+            @"IG_NEWSERVER_NYANGVINEPACK": [Constant constantWithName:@"IG_NEWSERVER_NYANGVINEPACK" value:IG_NEWSERVER_NYANGVINEPACK],
+            @"IG_COSTUMEMILEPACK_37_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_37_1" value:IG_COSTUMEMILEPACK_37_1],
+            @"IG_COSTUMEMILEPACK_37_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_37_2" value:IG_COSTUMEMILEPACK_37_2],
+            @"IG_COSTUMEMILEPACK_37_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_37_3" value:IG_COSTUMEMILEPACK_37_3],
+            @"IG_IF_COSTUME_BOX": [Constant constantWithName:@"IG_IF_COSTUME_BOX" value:IG_IF_COSTUME_BOX],
+            @"IG_IF_ALMIGHTY100_BOX": [Constant constantWithName:@"IG_IF_ALMIGHTY100_BOX" value:IG_IF_ALMIGHTY100_BOX],
+            @"IG_IF_ALMIGHTY_BOX": [Constant constantWithName:@"IG_IF_ALMIGHTY_BOX" value:IG_IF_ALMIGHTY_BOX],
+            @"IG_IF_REFINE_ORE_BOX_SET": [Constant constantWithName:@"IG_IF_REFINE_ORE_BOX_SET" value:IG_IF_REFINE_ORE_BOX_SET],
+            @"IG_IF_REFINE_ORE_BOX": [Constant constantWithName:@"IG_IF_REFINE_ORE_BOX" value:IG_IF_REFINE_ORE_BOX],
+            @"IG_IF_HD_REFINE_ORE_BOX": [Constant constantWithName:@"IG_IF_HD_REFINE_ORE_BOX" value:IG_IF_HD_REFINE_ORE_BOX],
+            @"IG_IF_HD_ELUNIUM_BOX": [Constant constantWithName:@"IG_IF_HD_ELUNIUM_BOX" value:IG_IF_HD_ELUNIUM_BOX],
+            @"IG_IF_HD_ORIDECON_BOX": [Constant constantWithName:@"IG_IF_HD_ORIDECON_BOX" value:IG_IF_HD_ORIDECON_BOX],
+            @"IG_IF_INFINITY_10_BOX": [Constant constantWithName:@"IG_IF_INFINITY_10_BOX" value:IG_IF_INFINITY_10_BOX],
+            @"IG_IF_INFINITY_BOX": [Constant constantWithName:@"IG_IF_INFINITY_BOX" value:IG_IF_INFINITY_BOX],
+            @"IG_IF_UNLIMITED_10_BOX": [Constant constantWithName:@"IG_IF_UNLIMITED_10_BOX" value:IG_IF_UNLIMITED_10_BOX],
+            @"IG_IF_UNLIMITED_BOX": [Constant constantWithName:@"IG_IF_UNLIMITED_BOX" value:IG_IF_UNLIMITED_BOX],
+            @"IG_EYPGT_COSTUME_BOX1": [Constant constantWithName:@"IG_EYPGT_COSTUME_BOX1" value:IG_EYPGT_COSTUME_BOX1],
+            @"IG_EYPGT_COSTUME_BOX2": [Constant constantWithName:@"IG_EYPGT_COSTUME_BOX2" value:IG_EYPGT_COSTUME_BOX2],
+            @"IG_EYPGT_COSTUME_BOX3": [Constant constantWithName:@"IG_EYPGT_COSTUME_BOX3" value:IG_EYPGT_COSTUME_BOX3],
+            @"IG_IF_SPEED_BOOSTER_10_BOX": [Constant constantWithName:@"IG_IF_SPEED_BOOSTER_10_BOX" value:IG_IF_SPEED_BOOSTER_10_BOX],
+            @"IG_IF_SPEED_BOOSTER_BOX": [Constant constantWithName:@"IG_IF_SPEED_BOOSTER_BOX" value:IG_IF_SPEED_BOOSTER_BOX],
+            @"IG_IF_FORCE_BOOSTER_10_BOX": [Constant constantWithName:@"IG_IF_FORCE_BOOSTER_10_BOX" value:IG_IF_FORCE_BOOSTER_10_BOX],
+            @"IG_IF_FORCE_BOOSTER_BOX": [Constant constantWithName:@"IG_IF_FORCE_BOOSTER_BOX" value:IG_IF_FORCE_BOOSTER_BOX],
+            @"IG_IF_3_LIFE_POTION_10PACK": [Constant constantWithName:@"IG_IF_3_LIFE_POTION_10PACK" value:IG_IF_3_LIFE_POTION_10PACK],
+            @"IG_IF_3_LIFE_POTION_PACK": [Constant constantWithName:@"IG_IF_3_LIFE_POTION_PACK" value:IG_IF_3_LIFE_POTION_PACK],
+            @"IG_IF_HD_HIGH_REFINE_BOX": [Constant constantWithName:@"IG_IF_HD_HIGH_REFINE_BOX" value:IG_IF_HD_HIGH_REFINE_BOX],
+            @"IG_IF_HD_CARNIUM_BOX": [Constant constantWithName:@"IG_IF_HD_CARNIUM_BOX" value:IG_IF_HD_CARNIUM_BOX],
+            @"IG_IF_HD_BRADIUM_BOX": [Constant constantWithName:@"IG_IF_HD_BRADIUM_BOX" value:IG_IF_HD_BRADIUM_BOX],
+            @"IG_IF_LIMITPOWERBOOSTER100": [Constant constantWithName:@"IG_IF_LIMITPOWERBOOSTER100" value:IG_IF_LIMITPOWERBOOSTER100],
+            @"IG_IF_LIMITPOWERBOOSTER": [Constant constantWithName:@"IG_IF_LIMITPOWERBOOSTER" value:IG_IF_LIMITPOWERBOOSTER],
+            @"IG_CLB_KP_PACK1": [Constant constantWithName:@"IG_CLB_KP_PACK1" value:IG_CLB_KP_PACK1],
+            @"IG_CLB_KP_PACK2": [Constant constantWithName:@"IG_CLB_KP_PACK2" value:IG_CLB_KP_PACK2],
+            @"IG_2025_COSTUME_BOX1": [Constant constantWithName:@"IG_2025_COSTUME_BOX1" value:IG_2025_COSTUME_BOX1],
+            @"IG_2025_COSTUME_BOX2": [Constant constantWithName:@"IG_2025_COSTUME_BOX2" value:IG_2025_COSTUME_BOX2],
+            @"IG_IF_CLB_KP_PACK1": [Constant constantWithName:@"IG_IF_CLB_KP_PACK1" value:IG_IF_CLB_KP_PACK1],
+            @"IG_IF_CLB_KP_PACK2": [Constant constantWithName:@"IG_IF_CLB_KP_PACK2" value:IG_IF_CLB_KP_PACK2],
+            @"IG_IF_2025_COSTUME_BOX1": [Constant constantWithName:@"IG_IF_2025_COSTUME_BOX1" value:IG_IF_2025_COSTUME_BOX1],
+            @"IG_IF_2025_COSTUME_BOX2": [Constant constantWithName:@"IG_IF_2025_COSTUME_BOX2" value:IG_IF_2025_COSTUME_BOX2],
+            @"IG_LI_NYANGVINE_BOX1_38": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX1_38" value:IG_LI_NYANGVINE_BOX1_38],
+            @"IG_LI_NYANGVINE_BOX2_38": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX2_38" value:IG_LI_NYANGVINE_BOX2_38],
+            @"IG_LI_NYANGVINE_BOX3_38": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX3_38" value:IG_LI_NYANGVINE_BOX3_38],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -18377,6 +18513,11 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"4_CLB_SS_AJ": [Constant constantWithName:@"4_CLB_SS_AJ" value:JT_4_CLB_SS_AJ],
             @"4_CLB_SS_LK": [Constant constantWithName:@"4_CLB_SS_LK" value:JT_4_CLB_SS_LK],
             @"4_SMART_ANDRE": [Constant constantWithName:@"4_SMART_ANDRE" value:JT_4_SMART_ANDRE],
+            @"4_ALEXSANDER": [Constant constantWithName:@"4_ALEXSANDER" value:JT_4_ALEXSANDER],
+            @"4_KASANDRA": [Constant constantWithName:@"4_KASANDRA" value:JT_4_KASANDRA],
+            @"4_CLB_KP_P1": [Constant constantWithName:@"4_CLB_KP_P1" value:JT_4_CLB_KP_P1],
+            @"4_CLB_KP_SF": [Constant constantWithName:@"4_CLB_KP_SF" value:JT_4_CLB_KP_SF],
+            @"4_CLB_KP_ZH": [Constant constantWithName:@"4_CLB_KP_ZH" value:JT_4_CLB_KP_ZH],
             @"ROZ_MQ_XAVIER": [Constant constantWithName:@"ROZ_MQ_XAVIER" value:JT_ROZ_MQ_XAVIER],
             @"ROZ_MQ_MOCLORD": [Constant constantWithName:@"ROZ_MQ_MOCLORD" value:JT_ROZ_MQ_MOCLORD],
             @"ROZ_MQ_SKULD": [Constant constantWithName:@"ROZ_MQ_SKULD" value:JT_ROZ_MQ_SKULD],
@@ -19763,6 +19904,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"HAT_EF_INKPAINTING_DAY": [Constant constantWithName:@"HAT_EF_INKPAINTING_DAY" value:HAT_EF_INKPAINTING_DAY],
             @"HAT_EF_INKPAINTING_NIGHT": [Constant constantWithName:@"HAT_EF_INKPAINTING_NIGHT" value:HAT_EF_INKPAINTING_NIGHT],
             @"HAT_EF_KUNG_FU_PANDA": [Constant constantWithName:@"HAT_EF_KUNG_FU_PANDA" value:HAT_EF_KUNG_FU_PANDA],
+            @"HAT_EF_C_MGSGPH_POTARL": [Constant constantWithName:@"HAT_EF_C_MGSGPH_POTARL" value:HAT_EF_C_MGSGPH_POTARL],
             @"PET_CATCH_UNIVERSAL_NO_BOSS": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_NO_BOSS" value:PET_CATCH_UNIVERSAL_NO_BOSS],
             @"PET_CATCH_UNIVERSAL_ALL": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_ALL" value:PET_CATCH_UNIVERSAL_ALL],
             @"PET_INTIMATE_NONE": [Constant constantWithName:@"PET_INTIMATE_NONE" value:PET_INTIMATE_NONE],

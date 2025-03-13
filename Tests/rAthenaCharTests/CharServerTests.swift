@@ -22,5 +22,9 @@ final class CharServerTests: XCTestCase {
         await charServer.start()
 
         XCTAssertEqual(charServer.status, .running)
+
+        await charServer.stop()
+
+        XCTAssertEqual(charServer.status, .stopped)
     }
 }

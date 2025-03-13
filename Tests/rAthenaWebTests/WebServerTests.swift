@@ -19,8 +19,12 @@ final class WebServerTests: XCTestCase {
         XCTAssertEqual(webServer.name, "Web Server")
         XCTAssertEqual(webServer.status, .notStarted)
 
-//        await webServer.start()
+        await webServer.start()
 
-//        XCTAssertEqual(webServer.status, .running)
+        XCTAssertEqual(webServer.status, .running)
+
+        await webServer.stop()
+
+        XCTAssertEqual(webServer.status, .stopped)
     }
 }

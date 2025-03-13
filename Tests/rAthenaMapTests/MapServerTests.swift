@@ -22,5 +22,9 @@ final class MapServerTests: XCTestCase {
         await mapServer.start()
 
         XCTAssertEqual(mapServer.status, .running)
+
+        await mapServer.stop()
+
+        XCTAssertEqual(mapServer.status, .stopped)
     }
 }
