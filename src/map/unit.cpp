@@ -50,6 +50,12 @@ using namespace rathena;
 	#define MIN_POS_INTERVAL 20
 #endif
 
+// Minimum delay after which new client-sided commands for slaves are accepted
+// Applies to mercenaries and homunculus
+#ifndef MIN_DELAY_SLAVE
+	#define MIN_DELAY_SLAVE MAX_ASPD_NOPC * 2
+#endif
+
 // Directions values
 // 1 0 7
 // 2 . 6
@@ -1828,34 +1834,133 @@ TIMER_FUNC(unit_resume_running){
 
 /**
  * Sets the delays that prevent attacks and skill usage considering the bl type
- * Officially it just remembers the last attack time here and applies the delays during the comparison
- * But we pre-calculate the delays instead and store them in attackabletime and canact_tick
- * Currently these delays are only applied to PCs
- * TODO: This function should also be called on attacks and cast begin
+ * Makes sure that delays are not decreased in case they are already higher
+ * Will also invoke bl type specific delay functions when required
  * @param bl Object to apply attack delay to
  * @param tick Current tick
+ * @param event The event that resulted in calling this function
  */
-void unit_set_attackdelay(block_list& bl, t_tick tick)
+void unit_set_attackdelay(block_list& bl, t_tick tick, e_delay_event event)
 {
 	unit_data* ud = unit_bl2ud(&bl);
 
 	if (ud == nullptr)
 		return;
 
+	t_tick attack_delay = 0;
+	t_tick act_delay = 0;
+
 	switch (bl.type) {
 		case BL_PC:
-			ud->attackabletime = tick + status_get_adelay(&bl);
-			// A fixed delay is added here which is equal to the minimum attack motion you can get
-			// This ensures that at max ASPD attackabletime and canact_tick are equal
-			ud->canact_tick = tick + status_get_amotion(&bl) + (pc_maxaspd(reinterpret_cast<map_session_data*>(&bl)) / AMOTION_DIVIDER_PC);
+			switch (event) {
+				case DELAY_EVENT_CASTBEGIN_ID:
+				case DELAY_EVENT_CASTBEGIN_POS:
+					if (reinterpret_cast<map_session_data*>(&bl)->skillitem == ud->skill_id) {
+						// Skills used from items don't seem to give any attack or act delay
+						return;
+					}
+					[[fallthrough]];
+				case DELAY_EVENT_ATTACK:
+				case DELAY_EVENT_PARRY:
+					// Officially for players it just remembers the last attack time here and applies the delays during the comparison
+					// But we pre-calculate the delays instead and store them in attackabletime and canact_tick
+					attack_delay = status_get_adelay(&bl);
+					// A fixed delay is added here which is equal to the minimum attack motion you can get
+					// This ensures that at max ASPD attackabletime and canact_tick are equal
+					act_delay = status_get_amotion(&bl) + (pc_maxaspd(reinterpret_cast<map_session_data*>(&bl)) / AMOTION_DIVIDER_PC);
+					break;
+			}
+			break;
+		case BL_MOB:
+			switch (event) {
+				case DELAY_EVENT_ATTACK:
+				case DELAY_EVENT_CASTEND:
+				case DELAY_EVENT_CASTCANCEL:
+					// This represents setting of attack delay (recharge time) that happens for non-PCs
+					attack_delay = status_get_adelay(&bl);
+					break;
+				case DELAY_EVENT_CASTBEGIN_ID:
+				case DELAY_EVENT_CASTBEGIN_POS:
+					// When monsters use skills, they only get delays on cast end and cast cancel
+					break;
+			}
+			// Set monster-specific delays (inactive AI time, monster skill delays)
+			mob_set_delay(reinterpret_cast<mob_data&>(bl), tick, event);
+			break;
+		case BL_HOM:
+			switch (event) {
+				case DELAY_EVENT_ATTACK:
+					// This represents setting of attack delay (recharge time) that happens for non-PCs
+					attack_delay = status_get_adelay(&bl);
+					break;
+				case DELAY_EVENT_CASTBEGIN_ID:
+				case DELAY_EVENT_CASTBEGIN_POS:
+					// For non-PCs that can be controlled from the client, there is a security delay of 200ms
+					// However to prevent tricks to use skills faster, we have a config to use amotion instead
+					if (battle_config.amotion_min_skill_delay == 1)
+						act_delay = status_get_amotion(&bl) + MAX_ASPD_NOPC;
+					else
+						act_delay = MIN_DELAY_SLAVE;
+					break;
+			}
 			break;
 		case BL_MER:
-			// TODO: Should set this, but only for ground skills
+			switch (event) {
+				case DELAY_EVENT_ATTACK:
+					// This represents setting of attack delay (recharge time) that happens for non-PCs
+					attack_delay = status_get_adelay(&bl);
+					break;
+				case DELAY_EVENT_CASTBEGIN_ID:
+					// For non-PCs that can be controlled from the client, there is a security delay of 200ms
+					// However to prevent tricks to use skills faster, we have a config to use amotion instead
+					if (battle_config.amotion_min_skill_delay == 1)
+						act_delay = status_get_amotion(&bl) + MAX_ASPD_NOPC;
+					else
+						act_delay = MIN_DELAY_SLAVE;
+					break;
+				case DELAY_EVENT_CASTBEGIN_POS:
+					// For ground skills, mercenaries work similar to players
+					attack_delay = status_get_adelay(&bl);
+					act_delay = status_get_amotion(&bl) + MAX_ASPD_NOPC;
+					break;
+			}
 			break;
 		default:
-			// Not applicable
+			// Fallback to original behavior as unit type is not fully integrated yet
+			switch (event) {
+				case DELAY_EVENT_ATTACK:
+					attack_delay = status_get_adelay(&bl);
+					break;
+				case DELAY_EVENT_CASTBEGIN_ID:
+				case DELAY_EVENT_CASTBEGIN_POS:
+					act_delay = status_get_amotion(&bl);
+					break;
+			}
 			break;
 	}
+
+	// When setting delays, we need to make sure not to decrease them in case they've been set by another source already
+	if (attack_delay > 0)
+		ud->attackabletime = i64max(tick + attack_delay, ud->attackabletime);
+	if (act_delay > 0)
+		ud->canact_tick = i64max(tick + act_delay, ud->canact_tick);
+}
+
+/**
+ * Updates skill delays according to cast time and minimum delay, and applies security casttime
+ * @param bl Object to apply update delay for
+ * @param tick Current tick
+ * @param event The event that resulted in calling this function
+ */
+void unit_set_castdelay(unit_data& ud, t_tick tick, int32 casttime) {
+	// Use casttime or minimum delay, whatever is longer
+	t_tick cast_delay = i64max(casttime, battle_config.min_skill_delay_limit);
+
+	// Only apply the cast delay, if it is longer than the act delay (set by unit_set_attackdelay)
+	ud.canact_tick = i64max(ud.canact_tick, tick + cast_delay);
+
+	// Security delay that will be removed at castend again
+	ud.canact_tick += SECURITY_CASTTIME;
 }
 
 /**
@@ -2216,8 +2321,6 @@ int32 unit_skilluse_id2(struct block_list *src, int32 target_id, uint16 skill_id
 
 	if (!combo) // Stop attack on non-combo skills [Skotlex]
 		unit_stop_attack(src);
-	else if(ud->attacktimer != INVALID_TIMER) // Elsewise, delay current attack sequence
-		ud->attackabletime = tick + status_get_adelay(src);
 
 	ud->state.skillcastcancel = castcancel;
 
@@ -2370,9 +2473,6 @@ int32 unit_skilluse_id2(struct block_list *src, int32 target_id, uint16 skill_id
 	if( casttime <= 0 )
 		ud->state.skillcastcancel = 0;
 
-	if (!sd || sd->skillitem != skill_id || skill_get_cast(skill_id, skill_lv))
-		ud->canact_tick = tick + i64max(casttime, max(status_get_amotion(src), battle_config.min_skill_delay_limit)) + SECURITY_CASTTIME;
-
 	if( sd ) {
 		switch( skill_id ) {
 			case CG_ARROWVULCAN:
@@ -2386,6 +2486,12 @@ int32 unit_skilluse_id2(struct block_list *src, int32 target_id, uint16 skill_id
 	ud->skilly       = 0;
 	ud->skill_id      = skill_id;
 	ud->skill_lv      = skill_lv;
+
+	// Set attack and act delays
+	// Please note that the call below relies on ud->skill_id being set!
+	unit_set_attackdelay(*src, tick, DELAY_EVENT_CASTBEGIN_ID);
+	// Apply cast time and general delays
+	unit_set_castdelay(*ud, tick, (skill_get_cast(skill_id, skill_lv) != 0) ? casttime : 0);
 
 	if( sc ) {
 		// These 3 status do not stack, so it's efficient to use if-else
@@ -2553,8 +2659,6 @@ int32 unit_skilluse_pos2( struct block_list *src, int16 skill_x, int16 skill_y, 
 #endif
 
 	ud->state.skillcastcancel = castcancel&&casttime>0?1:0;
-	if (!sd || sd->skillitem != skill_id || skill_get_cast(skill_id, skill_lv))
-		ud->canact_tick = tick + i64max(casttime, max(status_get_amotion(src), battle_config.min_skill_delay_limit)) + SECURITY_CASTTIME;
 
 // 	if( sd )
 // 	{
@@ -2570,6 +2674,12 @@ int32 unit_skilluse_pos2( struct block_list *src, int16 skill_x, int16 skill_y, 
 	ud->skillx      = skill_x;
 	ud->skilly      = skill_y;
 	ud->skilltarget = 0;
+
+	// Set attack and act delays
+	// Please note that the call below relies on ud->skill_id being set!
+	unit_set_attackdelay(*src, tick, DELAY_EVENT_CASTBEGIN_POS);
+	// Apply cast time and general delays
+	unit_set_castdelay(*ud, tick, (skill_get_cast(skill_id, skill_lv) != 0) ? casttime : 0);
 
 	if( sc ) {
 		// These 3 status do not stack, so it's efficient to use if-else
@@ -3147,20 +3257,15 @@ static int32 unit_attack_timer_sub(struct block_list* src, int32 tid, t_tick tic
 		if( ud->attacktarget_lv == ATK_NONE )
 			return 1;
 
-		ud->attackabletime = tick + sstatus->adelay;
+		unit_set_attackdelay(*src, tick, DELAY_EVENT_ATTACK);
 
 		// Only reset skill_id here if no skilltimer is currently ongoing
 		if (ud->skilltimer == INVALID_TIMER)
 			ud->skill_id = 0;
 
 		// You can't move during your attack motion
-		if (src->type&battle_config.attack_walk_delay) {
-			// Monsters set their AI inactive instead of having a walkdelay
-			if (md != nullptr)
-				md->next_thinktime = tick + status_get_amotion(src);
-			else
-				unit_set_walkdelay(src, tick, sstatus->amotion, 1);
-		}
+		if (src->type&battle_config.attack_walk_delay)
+			unit_set_walkdelay(src, tick, sstatus->amotion, 1);
 	}
 
 	if(ud->state.attack_continue) {
@@ -3286,11 +3391,10 @@ int32 unit_skillcastcancel(struct block_list *bl, char type)
 		}
 	}
 
+	unit_set_attackdelay(*bl, tick, DELAY_EVENT_CASTCANCEL);
+
 	if (bl->type == BL_MOB) {
 		mob_data& md = reinterpret_cast<mob_data&>(*bl);
-		// Sets cooldowns and attack delay
-		// This needs to happen even if the cast was cancelled
-		mobskill_end(md, tick);
 		md.skill_idx = -1;
 	}
 
@@ -3906,7 +4010,6 @@ int32 unit_free(struct block_list *bl, clr_type clrtype)
 
 			skill_clear_unitgroup(bl);
 			status_change_clear(bl,1);
-			pd->~pet_data();
 			break;
 		}
 		case BL_MOB: {
@@ -3971,7 +4074,6 @@ int32 unit_free(struct block_list *bl, clr_type clrtype)
 
 			if( md->tomb_nid )
 				mvptomb_destroy(md);
-			md->~mob_data();
 			break;
 		}
 		case BL_HOM:
@@ -4002,8 +4104,6 @@ int32 unit_free(struct block_list *bl, clr_type clrtype)
 
 			skill_clear_unitgroup(bl);
 			status_change_clear(bl,1);
-
-			hd->~homun_data();
 			break;
 		}
 		case BL_MER: {
@@ -4028,8 +4128,6 @@ int32 unit_free(struct block_list *bl, clr_type clrtype)
 
 			skill_clear_unitgroup(bl);
 			status_change_clear(bl,1);
-
-			md->~s_mercenary_data();
 			break;
 		}
 		case BL_ELEM: {
@@ -4053,6 +4151,8 @@ int32 unit_free(struct block_list *bl, clr_type clrtype)
 
 			skill_clear_unitgroup(bl);
 			status_change_clear(bl,1);
+
+			ed->~s_elemental_data();
 			break;
 		}
 	}

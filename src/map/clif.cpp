@@ -3647,7 +3647,7 @@ static void clif_longlongpar_change(map_session_data& sd, uint16 varId, int64 am
 void clif_updatestatus( map_session_data& sd, enum _sp type ){
 	switch(type){
 		case SP_WEIGHT:
-			pc_updateweightstatus(&sd);
+			pc_updateweightstatus(sd);
 			clif_par_change(sd, type, sd.weight);
 			break;
 		case SP_MAXWEIGHT:
@@ -5853,7 +5853,7 @@ void clif_skillup( map_session_data& sd, uint16 skill_id, uint16 lv, uint16 rang
 /// Updates a skill in the skill tree
 /// 07e1 <skill id>.W <type>.L <level>.W <sp cost>.W <attack range>.W <upgradable>.B (ZC_SKILLINFO_UPDATE2)
 /// 0b33 <skill id>.W <type>.L <level>.W <sp cost>.W <attack range>.W <upgradable>.B <level2>.W (ZC_SKILLINFO_UPDATE3)
-void clif_skillinfo( map_session_data& sd, uint16 skill_id ){
+void clif_skillinfo( map_session_data& sd, uint16 skill_id, int32 inf ){
 #if PACKETVER >= 20090715
 	uint16 idx = skill_get_index(skill_id);
 
@@ -5868,7 +5868,11 @@ void clif_skillinfo( map_session_data& sd, uint16 skill_id ){
 	p.level = sd.status.skill[idx].lv;
 	p.sp = static_cast<decltype(p.sp)>( skill_get_sp( skill_id,sd.status.skill[idx].lv ) );
 	p.range2 = static_cast<decltype(p.range2)>( skill_get_range2( &sd.bl,skill_id,sd.status.skill[idx].lv,false ) );
-	p.inf = skill_get_inf( skill_id );
+	if( inf == INF_PASSIVE_SKILL ){
+		p.inf = skill_get_inf( skill_id );
+	}else{
+		p.inf = inf;
+	}
 
 	if( sd.status.skill[idx].flag == SKILL_FLAG_PERMANENT && sd.status.skill[idx].lv < skill_tree_get_max( skill_id, sd.status.class_ ) ){
 		p.upFlag = true;
@@ -21999,11 +22003,7 @@ void clif_weight_limit( map_session_data* sd ){
 
 	WFIFOHEAD(fd, packet_len(0xADE));
 	WFIFOW(fd, 0) = 0xADE;
-#ifdef RENEWAL
-	WFIFOL(fd, 2) = battle_config.natural_heal_weight_rate_renewal;
-#else
 	WFIFOL(fd, 2) = battle_config.natural_heal_weight_rate;
-#endif
 	WFIFOSET(fd, packet_len(0xADE));
 #endif
 }
@@ -24435,7 +24435,7 @@ void clif_parse_item_reform_start( int32 fd, map_session_data* sd ){
 void clif_enchantwindow_open( map_session_data& sd, uint64 clientLuaIndex ){
 #if PACKETVER_RE_NUM >= 20211103 || PACKETVER_MAIN_NUM >= 20220330
 	// Hardcoded clientside check
-	if( sd.weight > ( ( sd.max_weight * 70 ) / 100 ) ){
+	if( pc_getpercentweight(sd) >= 70 ){
 		clif_msg_color( sd, MSI_ENCHANT_FAILED_OVER_WEIGHT, color_table[COLOR_RED] );
 		sd.state.item_enchant_index = 0;
 		return;

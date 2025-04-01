@@ -750,6 +750,7 @@
 	export_constant2("bUnbreakableArmor",SP_UNBREAKABLE_ARMOR);
 	export_constant2("bUnbreakableHelm",SP_UNBREAKABLE_HELM);
 	export_constant2("bUnbreakableShield",SP_UNBREAKABLE_SHIELD);
+	export_constant2("bSkillRatio", SP_SKILL_RATIO);
 	export_constant2("bShortAtkRate",SP_SHORT_ATK_RATE);
 	export_constant2("bLongAtkRate",SP_LONG_ATK_RATE);
 	export_constant2("bCritAtkRate",SP_CRIT_ATK_RATE);
@@ -3464,7 +3465,7 @@
 	export_constant(RC_PLAYER_DORAM);
 	export_constant(RC_ALL);
 
-	export_constant(RC2_NONE);
+	export_deprecated_constant(RC2_NONE);	// Mar. 2025
 	export_constant(RC2_GOBLIN);
 	export_constant(RC2_KOBOLD);
 	export_constant(RC2_ORC);
@@ -3503,7 +3504,7 @@
 	export_constant(RC2_EDDA_ARUNAFELTZ);
 	export_constant(RC2_LASAGNA);
 	export_constant(RC2_GLAST_HEIM_ABYSS);
-	export_constant(RC2_MAX);
+	export_deprecated_constant(RC2_MAX);	// Mar. 2025
 
 	/* monster ai */
 	export_constant(MONSTER_TYPE_01);
@@ -3527,6 +3528,8 @@
 	export_constant(MONSTER_TYPE_25);
 	export_constant(MONSTER_TYPE_26);
 	export_constant(MONSTER_TYPE_27);
+	export_constant(MONSTER_TYPE_ABR_PASSIVE);
+	export_constant(MONSTER_TYPE_ABR_OFFENSIVE);
 
 	/* classes */
 	export_constant(CLASS_NONE);
