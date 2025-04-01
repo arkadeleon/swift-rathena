@@ -639,6 +639,7 @@ const NSInteger RA_SP_UNBREAKABLE_WEAPON = SP_UNBREAKABLE_WEAPON;
 const NSInteger RA_SP_UNBREAKABLE_ARMOR = SP_UNBREAKABLE_ARMOR;
 const NSInteger RA_SP_UNBREAKABLE_HELM = SP_UNBREAKABLE_HELM;
 const NSInteger RA_SP_UNBREAKABLE_SHIELD = SP_UNBREAKABLE_SHIELD;
+const NSInteger RA_SP_SKILL_RATIO = SP_SKILL_RATIO;
 const NSInteger RA_SP_SHORT_ATK_RATE = SP_SHORT_ATK_RATE;
 const NSInteger RA_SP_LONG_ATK_RATE = SP_LONG_ATK_RATE;
 const NSInteger RA_SP_CRIT_ATK_RATE = SP_CRIT_ATK_RATE;
@@ -3281,7 +3282,6 @@ const NSInteger RA_RC_DRAGON = RC_DRAGON;
 const NSInteger RA_RC_PLAYER_HUMAN = RC_PLAYER_HUMAN;
 const NSInteger RA_RC_PLAYER_DORAM = RC_PLAYER_DORAM;
 const NSInteger RA_RC_ALL = RC_ALL;
-const NSInteger RA_RC2_NONE = RC2_NONE;
 const NSInteger RA_RC2_GOBLIN = RC2_GOBLIN;
 const NSInteger RA_RC2_KOBOLD = RC2_KOBOLD;
 const NSInteger RA_RC2_ORC = RC2_ORC;
@@ -3320,7 +3320,6 @@ const NSInteger RA_RC2_EP16_DEF = RC2_EP16_DEF;
 const NSInteger RA_RC2_EDDA_ARUNAFELTZ = RC2_EDDA_ARUNAFELTZ;
 const NSInteger RA_RC2_LASAGNA = RC2_LASAGNA;
 const NSInteger RA_RC2_GLAST_HEIM_ABYSS = RC2_GLAST_HEIM_ABYSS;
-const NSInteger RA_RC2_MAX = RC2_MAX;
 const NSInteger RA_MONSTER_TYPE_01 = MONSTER_TYPE_01;
 const NSInteger RA_MONSTER_TYPE_02 = MONSTER_TYPE_02;
 const NSInteger RA_MONSTER_TYPE_03 = MONSTER_TYPE_03;
@@ -3342,6 +3341,8 @@ const NSInteger RA_MONSTER_TYPE_24 = MONSTER_TYPE_24;
 const NSInteger RA_MONSTER_TYPE_25 = MONSTER_TYPE_25;
 const NSInteger RA_MONSTER_TYPE_26 = MONSTER_TYPE_26;
 const NSInteger RA_MONSTER_TYPE_27 = MONSTER_TYPE_27;
+const NSInteger RA_MONSTER_TYPE_ABR_PASSIVE = MONSTER_TYPE_ABR_PASSIVE;
+const NSInteger RA_MONSTER_TYPE_ABR_OFFENSIVE = MONSTER_TYPE_ABR_OFFENSIVE;
 const NSInteger RA_CLASS_NONE = CLASS_NONE;
 const NSInteger RA_CLASS_NORMAL = CLASS_NORMAL;
 const NSInteger RA_CLASS_BOSS = CLASS_BOSS;
@@ -10932,6 +10933,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"bUnbreakableArmor": [Constant constantWithName:@"bUnbreakableArmor" value:SP_UNBREAKABLE_ARMOR],
             @"bUnbreakableHelm": [Constant constantWithName:@"bUnbreakableHelm" value:SP_UNBREAKABLE_HELM],
             @"bUnbreakableShield": [Constant constantWithName:@"bUnbreakableShield" value:SP_UNBREAKABLE_SHIELD],
+            @"bSkillRatio": [Constant constantWithName:@"bSkillRatio" value:SP_SKILL_RATIO],
             @"bShortAtkRate": [Constant constantWithName:@"bShortAtkRate" value:SP_SHORT_ATK_RATE],
             @"bLongAtkRate": [Constant constantWithName:@"bLongAtkRate" value:SP_LONG_ATK_RATE],
             @"bCritAtkRate": [Constant constantWithName:@"bCritAtkRate" value:SP_CRIT_ATK_RATE],
@@ -13610,7 +13612,6 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"RC_PLAYER_HUMAN": [Constant constantWithName:@"RC_PLAYER_HUMAN" value:RC_PLAYER_HUMAN],
             @"RC_PLAYER_DORAM": [Constant constantWithName:@"RC_PLAYER_DORAM" value:RC_PLAYER_DORAM],
             @"RC_ALL": [Constant constantWithName:@"RC_ALL" value:RC_ALL],
-            @"RC2_NONE": [Constant constantWithName:@"RC2_NONE" value:RC2_NONE],
             @"RC2_GOBLIN": [Constant constantWithName:@"RC2_GOBLIN" value:RC2_GOBLIN],
             @"RC2_KOBOLD": [Constant constantWithName:@"RC2_KOBOLD" value:RC2_KOBOLD],
             @"RC2_ORC": [Constant constantWithName:@"RC2_ORC" value:RC2_ORC],
@@ -13649,7 +13650,6 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"RC2_EDDA_ARUNAFELTZ": [Constant constantWithName:@"RC2_EDDA_ARUNAFELTZ" value:RC2_EDDA_ARUNAFELTZ],
             @"RC2_LASAGNA": [Constant constantWithName:@"RC2_LASAGNA" value:RC2_LASAGNA],
             @"RC2_GLAST_HEIM_ABYSS": [Constant constantWithName:@"RC2_GLAST_HEIM_ABYSS" value:RC2_GLAST_HEIM_ABYSS],
-            @"RC2_MAX": [Constant constantWithName:@"RC2_MAX" value:RC2_MAX],
             @"MONSTER_TYPE_01": [Constant constantWithName:@"MONSTER_TYPE_01" value:MONSTER_TYPE_01],
             @"MONSTER_TYPE_02": [Constant constantWithName:@"MONSTER_TYPE_02" value:MONSTER_TYPE_02],
             @"MONSTER_TYPE_03": [Constant constantWithName:@"MONSTER_TYPE_03" value:MONSTER_TYPE_03],
@@ -13671,6 +13671,8 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"MONSTER_TYPE_25": [Constant constantWithName:@"MONSTER_TYPE_25" value:MONSTER_TYPE_25],
             @"MONSTER_TYPE_26": [Constant constantWithName:@"MONSTER_TYPE_26" value:MONSTER_TYPE_26],
             @"MONSTER_TYPE_27": [Constant constantWithName:@"MONSTER_TYPE_27" value:MONSTER_TYPE_27],
+            @"MONSTER_TYPE_ABR_PASSIVE": [Constant constantWithName:@"MONSTER_TYPE_ABR_PASSIVE" value:MONSTER_TYPE_ABR_PASSIVE],
+            @"MONSTER_TYPE_ABR_OFFENSIVE": [Constant constantWithName:@"MONSTER_TYPE_ABR_OFFENSIVE" value:MONSTER_TYPE_ABR_OFFENSIVE],
             @"CLASS_NONE": [Constant constantWithName:@"CLASS_NONE" value:CLASS_NONE],
             @"CLASS_NORMAL": [Constant constantWithName:@"CLASS_NORMAL" value:CLASS_NORMAL],
             @"CLASS_BOSS": [Constant constantWithName:@"CLASS_BOSS" value:CLASS_BOSS],
