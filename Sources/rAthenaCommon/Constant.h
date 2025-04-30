@@ -1462,7 +1462,6 @@ extern const NSInteger RA_SC_SPORE_EXPLOSION;
 extern const NSInteger RA_SC_ENTRY_QUEUE_APPLY_DELAY;
 extern const NSInteger RA_SC_ENTRY_QUEUE_NOTIFY_ADMISSION_TIME_OUT;
 extern const NSInteger RA_SC_ADAPTATION;
-extern const NSInteger RA_SC_BASILICA_CELL;
 extern const NSInteger RA_SC_LIGHTOFMOON;
 extern const NSInteger RA_SC_LIGHTOFSUN;
 extern const NSInteger RA_SC_LIGHTOFSTAR;
