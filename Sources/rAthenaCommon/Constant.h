@@ -1781,6 +1781,7 @@ extern const NSInteger RA_SC_NIGHTMARE;
 extern const NSInteger RA_SC_SBUNSHIN;
 extern const NSInteger RA_SC_CONTENTS_34;
 extern const NSInteger RA_SC_CONTENTS_35;
+extern const NSInteger RA_SC_NOACTION;
 extern const NSInteger RA_EFST_BLANK;
 extern const NSInteger RA_EFST_PROVOKE;
 extern const NSInteger RA_EFST_ENDURE;

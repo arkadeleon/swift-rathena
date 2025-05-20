@@ -1798,6 +1798,7 @@ const NSInteger RA_SC_NIGHTMARE = SC_NIGHTMARE;
 const NSInteger RA_SC_SBUNSHIN = SC_SBUNSHIN;
 const NSInteger RA_SC_CONTENTS_34 = SC_CONTENTS_34;
 const NSInteger RA_SC_CONTENTS_35 = SC_CONTENTS_35;
+const NSInteger RA_SC_NOACTION = SC_NOACTION;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -12127,6 +12128,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"SC_SBUNSHIN": [Constant constantWithName:@"SC_SBUNSHIN" value:SC_SBUNSHIN],
             @"SC_CONTENTS_34": [Constant constantWithName:@"SC_CONTENTS_34" value:SC_CONTENTS_34],
             @"SC_CONTENTS_35": [Constant constantWithName:@"SC_CONTENTS_35" value:SC_CONTENTS_35],
+            @"SC_NOACTION": [Constant constantWithName:@"SC_NOACTION" value:SC_NOACTION],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
