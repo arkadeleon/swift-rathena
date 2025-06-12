@@ -39,10 +39,6 @@ let package = Package(
             name: "rAthenaResources",
             targets: ["rAthenaResources"]
         ),
-        .library(
-            name: "ryml",
-            targets: ["ryml"]
-        ),
     ],
     targets: [
         .target(
