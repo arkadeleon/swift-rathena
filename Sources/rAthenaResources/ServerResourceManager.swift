@@ -13,13 +13,13 @@ enum SQLite3Error: Error {
     case prepare
 }
 
-final public class ServerResourceManager: Sendable {
-    public static let `default` = ServerResourceManager()
+public actor ServerResourceManager {
+    public static let `shared` = ServerResourceManager()
 
-    public let sourceURL: URL
-    public let workingDirectoryURL: URL
+    nonisolated public let sourceURL: URL
+    nonisolated public let workingDirectoryURL: URL
 
-    public init() {
+    init() {
         sourceURL = Bundle.module.resourceURL!
         workingDirectoryURL = URL.libraryDirectory.appending(path: "rathena", directoryHint: .isDirectory)
     }
@@ -30,15 +30,13 @@ final public class ServerResourceManager: Sendable {
         fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
 
         let sourceDatabaseURL = sourceURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let workingDatabaseURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
 
-        let databaseURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
-        let revisionURL = workingDirectoryURL.appending(path: "revision", directoryHint: .notDirectory)
-
-        if !fileManager.fileExists(atPath: databaseURL.path) {
-            try fileManager.copyItem(at: sourceDatabaseURL, to: databaseURL)
+        if !fileManager.fileExists(atPath: workingDatabaseURL.path) {
+            try fileManager.copyItem(at: sourceDatabaseURL, to: workingDatabaseURL)
         }
 
-        try upgradeDatabase(at: databaseURL)
+        let revisionURL = workingDirectoryURL.appending(path: "revision", directoryHint: .notDirectory)
 
         var needsUpdate = true
         if fileManager.fileExists(atPath: revisionURL.path) {
@@ -49,19 +47,21 @@ final public class ServerResourceManager: Sendable {
         }
 
         if needsUpdate {
+            try upgradeDatabase(at: workingDatabaseURL)
+
             let paths = ["conf", "db", "npc"]
             for path in paths {
                 let sourceURL = sourceURL.appending(path: path, directoryHint: .isDirectory)
-                let url = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
-                if fileManager.fileExists(atPath: url.path) {
-                    try fileManager.removeItem(at: url)
+                let workingURL = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
+                if fileManager.fileExists(atPath: workingURL.path) {
+                    try fileManager.removeItem(at: workingURL)
                 }
-                try fileManager.copyItem(at: sourceURL, to: url)
+                try fileManager.copyItem(at: sourceURL, to: workingURL)
             }
 
-            let sourceImportURL = workingDirectoryURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
+            let importTemplateURL = workingDirectoryURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
             let importURL = workingDirectoryURL.appending(path: "conf/import", directoryHint: .isDirectory)
-            try fileManager.moveItem(at: sourceImportURL, to: importURL)
+            try fileManager.moveItem(at: importTemplateURL, to: importURL)
 
             try serverResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
         }

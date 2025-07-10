@@ -11,7 +11,7 @@ import XCTest
 
 final class LoginServerTests: XCTestCase {
     override func setUp() async throws {
-        try ServerResourceManager.default.prepareWorkingDirectory()
+        try await ServerResourceManager.shared.prepareWorkingDirectory()
     }
 
     func testLoginServer() async {
