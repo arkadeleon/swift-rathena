@@ -164,6 +164,7 @@ let package = Package(
                 .copy("conf"),
                 .copy("db"),
                 .copy("npc"),
+                .copy("sqlite-files"),
                 .copy("ragnarok.sqlite3"),
             ],
             plugins: [

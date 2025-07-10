@@ -1,0 +1,1 @@
+ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT 0;

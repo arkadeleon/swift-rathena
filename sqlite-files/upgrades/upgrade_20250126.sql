@@ -1,0 +1,1 @@
+ALTER TABLE `char` ADD COLUMN `disable_partyinvite` INTEGER NOT NULL DEFAULT 0;

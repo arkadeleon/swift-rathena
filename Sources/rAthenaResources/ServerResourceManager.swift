@@ -89,51 +89,13 @@ final public class ServerResourceManager: Sendable {
         }
 
         let upgrades: KeyValuePairs<String, String> = [
-            "20230224": """
-                ALTER TABLE `char` ADD COLUMN `last_instanceid` INTEGER NOT NULL DEFAULT '0';
-                """,
-            "20240803": """
-                UPDATE `char_reg_num` SET `key` = 'ep18_main' WHERE `key` = 'ep18_1_main';
-                """,
-            "20240914": """
-                ALTER TABLE `guild_expulsion` ADD COLUMN `char_id` INTEGER NOT NULL DEFAULT '0';
-                """,
-            "20241216": """
-                CREATE TABLE IF NOT EXISTS `skillcooldown_homunculus` (
-                  `homun_id` INTEGER NOT NULL PRIMARY KEY,
-                  `skill` INTEGER NOT NULL DEFAULT '0',
-                  `tick` INTEGER NOT NULL
-                );
-                CREATE TABLE IF NOT EXISTS `skillcooldown_mercenary` (
-                  `mer_id` INTEGER NOT NULL PRIMARY KEY,
-                  `skill` INTEGER NOT NULL DEFAULT '0',
-                  `tick` INTEGER NOT NULL
-                );
-                """,
-            "20250126": """
-                ALTER TABLE `char` ADD COLUMN `disable_partyinvite` INTEGER NOT NULL DEFAULT '0';
-                """,
-            "20250201": """
-                ALTER TABLE `skillcooldown_homunculus` RENAME TO `skillcooldown_homunculus2`;
-                CREATE TABLE IF NOT EXISTS `skillcooldown_homunculus` (
-                  `homun_id` INTEGER NOT NULL,
-                  `skill` INTEGER NOT NULL DEFAULT '0',
-                  `tick` INTEGER NOT NULL,
-                  PRIMARY KEY (`homun_id`, `skill`)
-                );
-                INSERT INTO `skillcooldown_homunculus` SELECT * FROM `skillcooldown_homunculus2`;
-                DROP TABLE `skillcooldown_homunculus2`;
-
-                ALTER TABLE `skillcooldown_mercenary` RENAME TO `skillcooldown_mercenary2`;
-                CREATE TABLE IF NOT EXISTS `skillcooldown_mercenary` (
-                  `mer_id` INTEGER NOT NULL,
-                  `skill` INTEGER NOT NULL DEFAULT '0',
-                  `tick` INTEGER NOT NULL,
-                  PRIMARY KEY (`mer_id`, `skill`)
-                );
-                INSERT INTO `skillcooldown_mercenary` SELECT * FROM `skillcooldown_mercenary2`;
-                DROP TABLE `skillcooldown_mercenary2`;
-                """,
+            "web": "web.sql",
+            "20230224": "upgrades/upgrade_20230224.sql",
+            "20240803": "upgrades/upgrade_20240803.sql",
+            "20240914": "upgrades/upgrade_20240914.sql",
+            "20241216": "upgrades/upgrade_20241216.sql",
+            "20250126": "upgrades/upgrade_20250126.sql",
+            "20250201": "upgrades/upgrade_20250201.sql",
         ]
 
         for upgrade in upgrades {
@@ -154,7 +116,8 @@ final public class ServerResourceManager: Sendable {
                 continue
             }
 
-            sql = upgrade.value
+            let url = Bundle.module.resourceURL!.appending(path: "sqlite-files").appending(path: upgrade.value)
+            sql = try String(contentsOf: url, encoding: .utf8)
             guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare
             }
