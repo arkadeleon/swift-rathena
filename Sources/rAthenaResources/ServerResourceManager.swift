@@ -96,6 +96,7 @@ public actor ServerResourceManager {
             "20241216": "upgrades/upgrade_20241216.sql",
             "20250126": "upgrades/upgrade_20250126.sql",
             "20250201": "upgrades/upgrade_20250201.sql",
+            "20250803": "upgrades/upgrade_20250803.sql",
         ]
 
         for upgrade in upgrades {

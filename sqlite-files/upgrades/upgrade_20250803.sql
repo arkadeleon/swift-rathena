@@ -1,0 +1,1 @@
+ALTER TABLE `char` ADD COLUMN `disable_showcostumes` INTEGER NOT NULL DEFAULT 0;
