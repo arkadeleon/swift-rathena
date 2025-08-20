@@ -584,7 +584,7 @@ void Sql_Free(Sql* self)
 	if( self )
 	{
 		Sql_FreeResult(self);
-		StringBuf_Destroy(&self->buf);
+		self->buf.~StringBuf();
 		if( self->keepalive != INVALID_TIMER ) delete_timer(self->keepalive, Sql_P_KeepaliveTimer);
 		Sql_Close(self);
 		aFree(self);
@@ -1029,7 +1029,6 @@ void SqlStmt::ShowDebug_(const char* debug_file, const unsigned long debug_line)
 /// Frees a SqlStmt.
 SqlStmt::~SqlStmt(){
 	this->FreeResult();
-	StringBuf_Destroy( &this->buf );
 	if( this->stmt != nullptr ){
 		sqlite3_finalize( this->stmt );
 		this->stmt = nullptr;
