@@ -11,6 +11,9 @@
 
 @property (nonatomic, readwrite) ServerStatus status;
 
+@property (nonatomic) dispatch_queue_t startStopQueue;
+@property (nonatomic) dispatch_queue_t outputQueue;
+
 - (void)start;
 - (void)stop;
 

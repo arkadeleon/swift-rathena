@@ -17,18 +17,23 @@ NSString * const ServerOutputDataKey = @"ServerOutputDataKey";
     self = [super init];
     if (self) {
         _status = ServerStatusNotStarted;
+
+        _startStopQueue = dispatch_queue_create("com.github.arkadeleon.swift-rathena.server.start-stop", DISPATCH_QUEUE_SERIAL);
+        _outputQueue = dispatch_queue_create("com.github.arkadeleon.swift-rathena.server.output", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
 
 - (NSString *)name {
-    return @"";
+    return @"Server";
 }
 
 - (void)startWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(self.startStopQueue, ^{
         if (self.status != ServerStatusNotStarted && self.status != ServerStatusStopped) {
-            completionHandler(NO);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(NO);
+            });
             return;
         }
 
@@ -38,14 +43,18 @@ NSString * const ServerOutputDataKey = @"ServerOutputDataKey";
 
         self.status = ServerStatusRunning;
 
-        completionHandler(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(YES);
+        });
     });
 }
 
 - (void)stopWithCompletionHandler:(void (^)(BOOL))completionHandler {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(self.startStopQueue, ^{
         if (self.status != ServerStatusRunning) {
-            completionHandler(NO);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionHandler(NO);
+            });
             return;
         }
 
@@ -55,7 +64,9 @@ NSString * const ServerOutputDataKey = @"ServerOutputDataKey";
 
         self.status = ServerStatusStopped;
 
-        completionHandler(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionHandler(YES);
+        });
     });
 }
 

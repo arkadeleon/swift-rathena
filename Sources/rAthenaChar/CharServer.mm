@@ -13,10 +13,14 @@
 extern int main (int argc, char **argv);
 
 int write_function(void *cookie, const char *buf, int n) {
+    CharServer *server = CharServer.sharedServer;
     NSDictionary *userInfo = @{
         ServerOutputDataKey: [NSData dataWithBytes:buf length:n]
     };
-    [[NSNotificationCenter defaultCenter] postNotificationName:ServerDidOutputDataNotification object:CharServer.sharedServer userInfo:userInfo];
+
+    dispatch_async(server.outputQueue, ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:ServerDidOutputDataNotification object:server userInfo:userInfo];
+    });
 
     return n;
 }

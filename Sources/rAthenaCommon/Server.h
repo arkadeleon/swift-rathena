@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, ServerStatus) {
 extern NSNotificationName const ServerDidOutputDataNotification;
 extern NSString * const ServerOutputDataKey;
 
+NS_SWIFT_SENDABLE
 @interface Server : NSObject
 
 @property (nonatomic, readonly, copy) NSString *name;
