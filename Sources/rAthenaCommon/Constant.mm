@@ -464,6 +464,7 @@ const NSInteger RA_MF_NODYNAMICNPC = MF_NODYNAMICNPC;
 const NSInteger RA_MF_NOBANK = MF_NOBANK;
 const NSInteger RA_MF_SPECIALPOPUP = MF_SPECIALPOPUP;
 const NSInteger RA_MF_NOMACROCHECKER = MF_NOMACROCHECKER;
+const NSInteger RA_MF_INVINCIBLE_TIME = MF_INVINCIBLE_TIME;
 const NSInteger RA_CELL_WALKABLE = CELL_WALKABLE;
 const NSInteger RA_CELL_SHOOTABLE = CELL_SHOOTABLE;
 const NSInteger RA_CELL_WATER = CELL_WATER;
@@ -1810,6 +1811,7 @@ const NSInteger RA_SC_CONTENTS_18 = SC_CONTENTS_18;
 const NSInteger RA_SC_CONTENTS_19 = SC_CONTENTS_19;
 const NSInteger RA_SC_CONTENTS_20 = SC_CONTENTS_20;
 const NSInteger RA_SC_OVERCOMING_CRISIS = SC_OVERCOMING_CRISIS;
+const NSInteger RA_SC_CHASING = SC_CHASING;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -10902,6 +10904,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"MF_NOBANK": [Constant constantWithName:@"MF_NOBANK" value:MF_NOBANK],
             @"MF_SPECIALPOPUP": [Constant constantWithName:@"MF_SPECIALPOPUP" value:MF_SPECIALPOPUP],
             @"MF_NOMACROCHECKER": [Constant constantWithName:@"MF_NOMACROCHECKER" value:MF_NOMACROCHECKER],
+            @"MF_INVINCIBLE_TIME": [Constant constantWithName:@"MF_INVINCIBLE_TIME" value:MF_INVINCIBLE_TIME],
             @"CELL_WALKABLE": [Constant constantWithName:@"CELL_WALKABLE" value:CELL_WALKABLE],
             @"CELL_SHOOTABLE": [Constant constantWithName:@"CELL_SHOOTABLE" value:CELL_SHOOTABLE],
             @"CELL_WATER": [Constant constantWithName:@"CELL_WATER" value:CELL_WATER],
@@ -12284,6 +12287,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"SC_CONTENTS_19": [Constant constantWithName:@"SC_CONTENTS_19" value:SC_CONTENTS_19],
             @"SC_CONTENTS_20": [Constant constantWithName:@"SC_CONTENTS_20" value:SC_CONTENTS_20],
             @"SC_OVERCOMING_CRISIS": [Constant constantWithName:@"SC_OVERCOMING_CRISIS" value:SC_OVERCOMING_CRISIS],
+            @"SC_CHASING": [Constant constantWithName:@"SC_CHASING" value:SC_CHASING],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
