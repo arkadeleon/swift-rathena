@@ -8,32 +8,27 @@
 import Foundation
 import SQLite3
 
+public let serverResourceBaseURL = Bundle.module.resourceURL!
+
 enum SQLite3Error: Error {
     case open
     case prepare
 }
 
-public actor ServerResourceManager {
-    public static let `shared` = ServerResourceManager()
-
-    nonisolated public let sourceURL: URL
-    nonisolated public let workingDirectoryURL: URL
-
-    init() {
-        sourceURL = Bundle.module.resourceURL!
-        workingDirectoryURL = URL.libraryDirectory.appending(path: "rathena", directoryHint: .isDirectory)
+public class ServerResourceManager {
+    public init() {
     }
 
-    public func prepareWorkingDirectory() throws {
+    public func prepareWorkingDirectory(at workingDirectoryURL: URL) async throws {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: workingDirectoryURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
 
-        let sourceDatabaseURL = sourceURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
-        let workingDatabaseURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let databaseSourceURL = serverResourceBaseURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let databaseDestinationURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
 
-        if !fileManager.fileExists(atPath: workingDatabaseURL.path) {
-            try fileManager.copyItem(at: sourceDatabaseURL, to: workingDatabaseURL)
+        if !fileManager.fileExists(atPath: databaseDestinationURL.path) {
+            try fileManager.copyItem(at: databaseSourceURL, to: databaseDestinationURL)
         }
 
         let revisionURL = workingDirectoryURL.appending(path: "revision", directoryHint: .notDirectory)
@@ -47,16 +42,16 @@ public actor ServerResourceManager {
         }
 
         if needsUpdate {
-            try upgradeDatabase(at: workingDatabaseURL)
+            try upgradeDatabase(at: databaseDestinationURL)
 
             let paths = ["conf", "db", "npc"]
             for path in paths {
-                let sourceURL = sourceURL.appending(path: path, directoryHint: .isDirectory)
-                let workingURL = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
-                if fileManager.fileExists(atPath: workingURL.path) {
-                    try fileManager.removeItem(at: workingURL)
+                let sourceURL = serverResourceBaseURL.appending(path: path, directoryHint: .isDirectory)
+                let destinationURL = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
+                if fileManager.fileExists(atPath: destinationURL.path) {
+                    try fileManager.removeItem(at: destinationURL)
                 }
-                try fileManager.copyItem(at: sourceURL, to: workingURL)
+                try fileManager.copyItem(at: sourceURL, to: destinationURL)
             }
 
             let importTemplateURL = workingDirectoryURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)

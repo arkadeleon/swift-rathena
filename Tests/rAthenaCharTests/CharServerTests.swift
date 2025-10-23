@@ -11,7 +11,9 @@ import XCTest
 
 final class CharServerTests: XCTestCase {
     override func setUp() async throws {
-        try await ServerResourceManager.shared.prepareWorkingDirectory()
+        let serverResourceManager = ServerResourceManager()
+        let workingDirectoryURL = URL.libraryDirectory.appending(path: "rathena", directoryHint: .isDirectory)
+        try await serverResourceManager.prepareWorkingDirectory(at: workingDirectoryURL)
     }
 
     func testCharServer() async {
