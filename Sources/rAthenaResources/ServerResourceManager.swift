@@ -92,6 +92,7 @@ public class ServerResourceManager {
             "20250126": "upgrades/upgrade_20250126.sql",
             "20250201": "upgrades/upgrade_20250201.sql",
             "20250803": "upgrades/upgrade_20250803.sql",
+            "20251031": "upgrades/upgrade_20251031.sql",
         ]
 
         for upgrade in upgrades {
