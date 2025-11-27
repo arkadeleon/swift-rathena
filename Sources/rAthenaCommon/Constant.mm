@@ -225,6 +225,19 @@ const NSInteger RA_JOB_NIGHT_WATCH = JOB_NIGHT_WATCH;
 const NSInteger RA_JOB_HYPER_NOVICE = JOB_HYPER_NOVICE;
 const NSInteger RA_JOB_SPIRIT_HANDLER = JOB_SPIRIT_HANDLER;
 const NSInteger RA_JOB_SKY_EMPEROR2 = JOB_SKY_EMPEROR2;
+const NSInteger RA_JOB_RUNE_KNIGHT_2ND = JOB_RUNE_KNIGHT_2ND;
+const NSInteger RA_JOB_MECHANIC_2ND = JOB_MECHANIC_2ND;
+const NSInteger RA_JOB_GUILLOTINE_CROSS_2ND = JOB_GUILLOTINE_CROSS_2ND;
+const NSInteger RA_JOB_WARLOCK_2ND = JOB_WARLOCK_2ND;
+const NSInteger RA_JOB_ARCHBISHOP_2ND = JOB_ARCHBISHOP_2ND;
+const NSInteger RA_JOB_RANGER_2ND = JOB_RANGER_2ND;
+const NSInteger RA_JOB_ROYAL_GUARD_2ND = JOB_ROYAL_GUARD_2ND;
+const NSInteger RA_JOB_GENETIC_2ND = JOB_GENETIC_2ND;
+const NSInteger RA_JOB_SHADOW_CHASER_2ND = JOB_SHADOW_CHASER_2ND;
+const NSInteger RA_JOB_SORCERER_2ND = JOB_SORCERER_2ND;
+const NSInteger RA_JOB_SURA_2ND = JOB_SURA_2ND;
+const NSInteger RA_JOB_MINSTREL_2ND = JOB_MINSTREL_2ND;
+const NSInteger RA_JOB_WANDERER_2ND = JOB_WANDERER_2ND;
 const NSInteger RA_JOBL_2_1 = JOBL_2_1;
 const NSInteger RA_JOBL_2_2 = JOBL_2_2;
 const NSInteger RA_JOBL_2 = JOBL_2;
@@ -1812,6 +1825,10 @@ const NSInteger RA_SC_CONTENTS_19 = SC_CONTENTS_19;
 const NSInteger RA_SC_CONTENTS_20 = SC_CONTENTS_20;
 const NSInteger RA_SC_OVERCOMING_CRISIS = SC_OVERCOMING_CRISIS;
 const NSInteger RA_SC_CHASING = SC_CHASING;
+const NSInteger RA_SC_FIRE_CHARM_POWER = SC_FIRE_CHARM_POWER;
+const NSInteger RA_SC_WATER_CHARM_POWER = SC_WATER_CHARM_POWER;
+const NSInteger RA_SC_WIND_CHARM_POWER = SC_WIND_CHARM_POWER;
+const NSInteger RA_SC_GROUND_CHARM_POWER = SC_GROUND_CHARM_POWER;
 const NSInteger RA_EFST_BLANK = EFST_BLANK;
 const NSInteger RA_EFST_PROVOKE = EFST_PROVOKE;
 const NSInteger RA_EFST_ENDURE = EFST_ENDURE;
@@ -8322,6 +8339,15 @@ const NSInteger RA_JT_4_HM_NONI = JT_4_HM_NONI;
 const NSInteger RA_JT_4_HM_LOLBBY = JT_4_HM_LOLBBY;
 const NSInteger RA_JT_4_HM_YOBBY = JT_4_HM_YOBBY;
 const NSInteger RA_JT_4_HM_MUNCH = JT_4_HM_MUNCH;
+const NSInteger RA_JT_4_F_VACATION_MIRIAM = JT_4_F_VACATION_MIRIAM;
+const NSInteger RA_JT_1_CLB_DT_HICCUP = JT_1_CLB_DT_HICCUP;
+const NSInteger RA_JT_1_CLB_DT_ASTRID = JT_1_CLB_DT_ASTRID;
+const NSInteger RA_JT_1_CLB_DT_RUFFNUT = JT_1_CLB_DT_RUFFNUT;
+const NSInteger RA_JT_1_CLB_DT_TUFFNUT = JT_1_CLB_DT_TUFFNUT;
+const NSInteger RA_JT_1_CLB_DT_TOOTHLESS = JT_1_CLB_DT_TOOTHLESS;
+const NSInteger RA_JT_1_CLB_DT_STORMFLY = JT_1_CLB_DT_STORMFLY;
+const NSInteger RA_JT_1_CLB_DT_BARF_BELCH = JT_1_CLB_DT_BARF_BELCH;
+const NSInteger RA_JT_4_POINT_PURPLE = JT_4_POINT_PURPLE;
 const NSInteger RA_JT_ROZ_MQ_XAVIER = JT_ROZ_MQ_XAVIER;
 const NSInteger RA_JT_ROZ_MQ_MOCLORD = JT_ROZ_MQ_MOCLORD;
 const NSInteger RA_JT_ROZ_MQ_SKULD = JT_ROZ_MQ_SKULD;
@@ -10660,6 +10686,19 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"JOB_HYPER_NOVICE": [Constant constantWithName:@"JOB_HYPER_NOVICE" value:JOB_HYPER_NOVICE],
             @"JOB_SPIRIT_HANDLER": [Constant constantWithName:@"JOB_SPIRIT_HANDLER" value:JOB_SPIRIT_HANDLER],
             @"JOB_SKY_EMPEROR2": [Constant constantWithName:@"JOB_SKY_EMPEROR2" value:JOB_SKY_EMPEROR2],
+            @"JOB_RUNE_KNIGHT_2ND": [Constant constantWithName:@"JOB_RUNE_KNIGHT_2ND" value:JOB_RUNE_KNIGHT_2ND],
+            @"JOB_MECHANIC_2ND": [Constant constantWithName:@"JOB_MECHANIC_2ND" value:JOB_MECHANIC_2ND],
+            @"JOB_GUILLOTINE_CROSS_2ND": [Constant constantWithName:@"JOB_GUILLOTINE_CROSS_2ND" value:JOB_GUILLOTINE_CROSS_2ND],
+            @"JOB_WARLOCK_2ND": [Constant constantWithName:@"JOB_WARLOCK_2ND" value:JOB_WARLOCK_2ND],
+            @"JOB_ARCHBISHOP_2ND": [Constant constantWithName:@"JOB_ARCHBISHOP_2ND" value:JOB_ARCHBISHOP_2ND],
+            @"JOB_RANGER_2ND": [Constant constantWithName:@"JOB_RANGER_2ND" value:JOB_RANGER_2ND],
+            @"JOB_ROYAL_GUARD_2ND": [Constant constantWithName:@"JOB_ROYAL_GUARD_2ND" value:JOB_ROYAL_GUARD_2ND],
+            @"JOB_GENETIC_2ND": [Constant constantWithName:@"JOB_GENETIC_2ND" value:JOB_GENETIC_2ND],
+            @"JOB_SHADOW_CHASER_2ND": [Constant constantWithName:@"JOB_SHADOW_CHASER_2ND" value:JOB_SHADOW_CHASER_2ND],
+            @"JOB_SORCERER_2ND": [Constant constantWithName:@"JOB_SORCERER_2ND" value:JOB_SORCERER_2ND],
+            @"JOB_SURA_2ND": [Constant constantWithName:@"JOB_SURA_2ND" value:JOB_SURA_2ND],
+            @"JOB_MINSTREL_2ND": [Constant constantWithName:@"JOB_MINSTREL_2ND" value:JOB_MINSTREL_2ND],
+            @"JOB_WANDERER_2ND": [Constant constantWithName:@"JOB_WANDERER_2ND" value:JOB_WANDERER_2ND],
             @"EAJL_2_1": [Constant constantWithName:@"EAJL_2_1" value:JOBL_2_1],
             @"EAJL_2_2": [Constant constantWithName:@"EAJL_2_2" value:JOBL_2_2],
             @"EAJL_2": [Constant constantWithName:@"EAJL_2" value:JOBL_2],
@@ -12288,6 +12327,10 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"SC_CONTENTS_20": [Constant constantWithName:@"SC_CONTENTS_20" value:SC_CONTENTS_20],
             @"SC_OVERCOMING_CRISIS": [Constant constantWithName:@"SC_OVERCOMING_CRISIS" value:SC_OVERCOMING_CRISIS],
             @"SC_CHASING": [Constant constantWithName:@"SC_CHASING" value:SC_CHASING],
+            @"SC_FIRE_CHARM_POWER": [Constant constantWithName:@"SC_FIRE_CHARM_POWER" value:SC_FIRE_CHARM_POWER],
+            @"SC_WATER_CHARM_POWER": [Constant constantWithName:@"SC_WATER_CHARM_POWER" value:SC_WATER_CHARM_POWER],
+            @"SC_WIND_CHARM_POWER": [Constant constantWithName:@"SC_WIND_CHARM_POWER" value:SC_WIND_CHARM_POWER],
+            @"SC_GROUND_CHARM_POWER": [Constant constantWithName:@"SC_GROUND_CHARM_POWER" value:SC_GROUND_CHARM_POWER],
             @"EFST_BLANK": [Constant constantWithName:@"EFST_BLANK" value:EFST_BLANK],
             @"EFST_PROVOKE": [Constant constantWithName:@"EFST_PROVOKE" value:EFST_PROVOKE],
             @"EFST_ENDURE": [Constant constantWithName:@"EFST_ENDURE" value:EFST_ENDURE],
@@ -18806,6 +18849,15 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"4_HM_LOLBBY": [Constant constantWithName:@"4_HM_LOLBBY" value:JT_4_HM_LOLBBY],
             @"4_HM_YOBBY": [Constant constantWithName:@"4_HM_YOBBY" value:JT_4_HM_YOBBY],
             @"4_HM_MUNCH": [Constant constantWithName:@"4_HM_MUNCH" value:JT_4_HM_MUNCH],
+            @"4_F_VACATION_MIRIAM": [Constant constantWithName:@"4_F_VACATION_MIRIAM" value:JT_4_F_VACATION_MIRIAM],
+            @"1_CLB_DT_HICCUP": [Constant constantWithName:@"1_CLB_DT_HICCUP" value:JT_1_CLB_DT_HICCUP],
+            @"1_CLB_DT_ASTRID": [Constant constantWithName:@"1_CLB_DT_ASTRID" value:JT_1_CLB_DT_ASTRID],
+            @"1_CLB_DT_RUFFNUT": [Constant constantWithName:@"1_CLB_DT_RUFFNUT" value:JT_1_CLB_DT_RUFFNUT],
+            @"1_CLB_DT_TUFFNUT": [Constant constantWithName:@"1_CLB_DT_TUFFNUT" value:JT_1_CLB_DT_TUFFNUT],
+            @"1_CLB_DT_TOOTHLESS": [Constant constantWithName:@"1_CLB_DT_TOOTHLESS" value:JT_1_CLB_DT_TOOTHLESS],
+            @"1_CLB_DT_STORMFLY": [Constant constantWithName:@"1_CLB_DT_STORMFLY" value:JT_1_CLB_DT_STORMFLY],
+            @"1_CLB_DT_BARF_BELCH": [Constant constantWithName:@"1_CLB_DT_BARF_BELCH" value:JT_1_CLB_DT_BARF_BELCH],
+            @"4_POINT_PURPLE": [Constant constantWithName:@"4_POINT_PURPLE" value:JT_4_POINT_PURPLE],
             @"ROZ_MQ_XAVIER": [Constant constantWithName:@"ROZ_MQ_XAVIER" value:JT_ROZ_MQ_XAVIER],
             @"ROZ_MQ_MOCLORD": [Constant constantWithName:@"ROZ_MQ_MOCLORD" value:JT_ROZ_MQ_MOCLORD],
             @"ROZ_MQ_SKULD": [Constant constantWithName:@"ROZ_MQ_SKULD" value:JT_ROZ_MQ_SKULD],
