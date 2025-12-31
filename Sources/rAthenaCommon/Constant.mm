@@ -369,24 +369,24 @@ const NSInteger RA_MAPID_SUPER_BABY = MAPID_SUPER_BABY;
 const NSInteger RA_MAPID_SUPER_NOVICE_E = MAPID_SUPER_NOVICE_E;
 const NSInteger RA_MAPID_SUPER_BABY_E = MAPID_SUPER_BABY_E;
 const NSInteger RA_MAPID_SUMMONER = MAPID_SUMMONER;
-const NSInteger RA_MAPID_SPIRIT_HANDLER = MAPID_SPIRIT_HANDLER;
-const NSInteger RA_MAPID_HYPER_NOVICE = MAPID_HYPER_NOVICE;
 const NSInteger RA_MAPID_DRAGON_KNIGHT = MAPID_DRAGON_KNIGHT;
 const NSInteger RA_MAPID_ARCH_MAGE = MAPID_ARCH_MAGE;
 const NSInteger RA_MAPID_WINDHAWK = MAPID_WINDHAWK;
 const NSInteger RA_MAPID_CARDINAL = MAPID_CARDINAL;
 const NSInteger RA_MAPID_MEISTER = MAPID_MEISTER;
 const NSInteger RA_MAPID_SHADOW_CROSS = MAPID_SHADOW_CROSS;
-const NSInteger RA_MAPID_SKY_EMPEROR = MAPID_SKY_EMPEROR;
-const NSInteger RA_MAPID_NIGHT_WATCH = MAPID_NIGHT_WATCH;
-const NSInteger RA_MAPID_SHINKIRO_SHIRANUI = MAPID_SHINKIRO_SHIRANUI;
 const NSInteger RA_MAPID_IMPERIAL_GUARD = MAPID_IMPERIAL_GUARD;
 const NSInteger RA_MAPID_ELEMENTAL_MASTER = MAPID_ELEMENTAL_MASTER;
 const NSInteger RA_MAPID_TROUBADOURTROUVERE = MAPID_TROUBADOURTROUVERE;
 const NSInteger RA_MAPID_INQUISITOR = MAPID_INQUISITOR;
 const NSInteger RA_MAPID_BIOLO = MAPID_BIOLO;
 const NSInteger RA_MAPID_ABYSS_CHASER = MAPID_ABYSS_CHASER;
+const NSInteger RA_MAPID_SKY_EMPEROR = MAPID_SKY_EMPEROR;
 const NSInteger RA_MAPID_SOUL_ASCETIC = MAPID_SOUL_ASCETIC;
+const NSInteger RA_MAPID_SHINKIROSHIRANUI = MAPID_SHINKIROSHIRANUI;
+const NSInteger RA_MAPID_NIGHT_WATCH = MAPID_NIGHT_WATCH;
+const NSInteger RA_MAPID_HYPER_NOVICE = MAPID_HYPER_NOVICE;
+const NSInteger RA_MAPID_SPIRIT_HANDLER = MAPID_SPIRIT_HANDLER;
 const NSInteger RA_SEX_FEMALE = SEX_FEMALE;
 const NSInteger RA_SEX_MALE = SEX_MALE;
 const NSInteger RA_SEX_BOTH = SEX_BOTH;
@@ -745,6 +745,7 @@ const NSInteger RA_SP_ABSORB_DMG_MAXHP2 = SP_ABSORB_DMG_MAXHP2;
 const NSInteger RA_SP_ADD_ITEM_SPHEAL_RATE = SP_ADD_ITEM_SPHEAL_RATE;
 const NSInteger RA_SP_ADD_ITEMGROUP_SPHEAL_RATE = SP_ADD_ITEMGROUP_SPHEAL_RATE;
 const NSInteger RA_SP_WEAPON_SUBSIZE = SP_WEAPON_SUBSIZE;
+const NSInteger RA_SP_NON_CRIT_ATK_RATE = SP_NON_CRIT_ATK_RATE;
 const NSInteger RA_EQI_COMPOUND_ON = EQI_COMPOUND_ON;
 const NSInteger RA_EQI_HEAD_TOP = EQI_HEAD_TOP;
 const NSInteger RA_EQI_ARMOR = EQI_ARMOR;
@@ -3295,6 +3296,7 @@ const NSInteger RA_EFST_C_BUFF_6 = EFST_C_BUFF_6;
 const NSInteger RA_EFST_C_BUFF_7 = EFST_C_BUFF_7;
 const NSInteger RA_EFST_C_BUFF_8 = EFST_C_BUFF_8;
 const NSInteger RA_EFST_C_BUFF_9 = EFST_C_BUFF_9;
+const NSInteger RA_EFST_BLOCK = EFST_BLOCK;
 const NSInteger RA_EFST_MAX = EFST_MAX;
 const NSInteger RA_ELE_NEUTRAL = ELE_NEUTRAL;
 const NSInteger RA_ELE_WATER = ELE_WATER;
@@ -6990,6 +6992,111 @@ const NSInteger RA_IG_PET_TICKET_BOX = IG_PET_TICKET_BOX;
 const NSInteger RA_IG_BRILLIANT_HAT_BOX = IG_BRILLIANT_HAT_BOX;
 const NSInteger RA_IG_CHEST_OF_DEATH = IG_CHEST_OF_DEATH;
 const NSInteger RA_IG_SHADOW_CUBE_SAK = IG_SHADOW_CUBE_SAK;
+const NSInteger RA_IG_AEGIS_100582 = IG_AEGIS_100582;
+const NSInteger RA_IG_AEGIS_100584 = IG_AEGIS_100584;
+const NSInteger RA_IG_DT_COLABO_BOX1 = IG_DT_COLABO_BOX1;
+const NSInteger RA_IG_DT_COLABO_BOX2 = IG_DT_COLABO_BOX2;
+const NSInteger RA_IG_CLOUD_COSTUME_PACK = IG_CLOUD_COSTUME_PACK;
+const NSInteger RA_IG_COSTUMEMILEPACK_39_1 = IG_COSTUMEMILEPACK_39_1;
+const NSInteger RA_IG_COSTUMEMILEPACK_39_2 = IG_COSTUMEMILEPACK_39_2;
+const NSInteger RA_IG_COSTUMEMILEPACK_39_3 = IG_COSTUMEMILEPACK_39_3;
+const NSInteger RA_IG_RT_CH01_ARMOR_A = IG_RT_CH01_ARMOR_A;
+const NSInteger RA_IG_RT_CH01_ARMOR_C = IG_RT_CH01_ARMOR_C;
+const NSInteger RA_IG_RT_CH01_DIMEN_A = IG_RT_CH01_DIMEN_A;
+const NSInteger RA_IG_RT_CH01_DIMEN_C = IG_RT_CH01_DIMEN_C;
+const NSInteger RA_IG_RT_CH01_DIMEN_3 = IG_RT_CH01_DIMEN_3;
+const NSInteger RA_IG_RT_CH01_EXTRA_A = IG_RT_CH01_EXTRA_A;
+const NSInteger RA_IG_RT_CH01_EXTRA_C = IG_RT_CH01_EXTRA_C;
+const NSInteger RA_IG_RT_CH01_EXTRA_2 = IG_RT_CH01_EXTRA_2;
+const NSInteger RA_IG_RT_CH01_EXTRA_4 = IG_RT_CH01_EXTRA_4;
+const NSInteger RA_IG_RT_CH01_EXTRA_5 = IG_RT_CH01_EXTRA_5;
+const NSInteger RA_IG_AEGIS_104901 = IG_AEGIS_104901;
+const NSInteger RA_IG_AEGIS_105031 = IG_AEGIS_105031;
+const NSInteger RA_IG_23TH_COSTUME_A = IG_23TH_COSTUME_A;
+const NSInteger RA_IG_23TH_COSTUME_B = IG_23TH_COSTUME_B;
+const NSInteger RA_IG_23TH_COSTUME_C = IG_23TH_COSTUME_C;
+const NSInteger RA_IG_AEGIS_105059 = IG_AEGIS_105059;
+const NSInteger RA_IG_AEGIS_105161 = IG_AEGIS_105161;
+const NSInteger RA_IG_AEGIS_105162 = IG_AEGIS_105162;
+const NSInteger RA_IG_AEGIS_105219 = IG_AEGIS_105219;
+const NSInteger RA_IG_AEGIS_105220 = IG_AEGIS_105220;
+const NSInteger RA_IG_SP_COSTUME_COLLECTION = IG_SP_COSTUME_COLLECTION;
+const NSInteger RA_IG_2025ROS_FOR_OFFLINE = IG_2025ROS_FOR_OFFLINE;
+const NSInteger RA_IG_AEGIS_105518 = IG_AEGIS_105518;
+const NSInteger RA_IG_AEGIS_105715 = IG_AEGIS_105715;
+const NSInteger RA_IG_LI_NYANGVINE_BOX1_40 = IG_LI_NYANGVINE_BOX1_40;
+const NSInteger RA_IG_LI_NYANGVINE_BOX2_40 = IG_LI_NYANGVINE_BOX2_40;
+const NSInteger RA_IG_LI_NYANGVINE_BOX3_40 = IG_LI_NYANGVINE_BOX3_40;
+const NSInteger RA_IG_23TH_COSTUME_PACK_A = IG_23TH_COSTUME_PACK_A;
+const NSInteger RA_IG_23TH_COSTUME_PACK_B = IG_23TH_COSTUME_PACK_B;
+const NSInteger RA_IG_23TH_COSTUME_PACK_C = IG_23TH_COSTUME_PACK_C;
+const NSInteger RA_IG_23TH_PACKAGE_1 = IG_23TH_PACKAGE_1;
+const NSInteger RA_IG_23TH_PACKAGE_2 = IG_23TH_PACKAGE_2;
+const NSInteger RA_IG_23TH_PACKAGE_3 = IG_23TH_PACKAGE_3;
+const NSInteger RA_IG_23TH_PACKAGE_4 = IG_23TH_PACKAGE_4;
+const NSInteger RA_IG_COSTUMEMILEPACK_SP_1 = IG_COSTUMEMILEPACK_SP_1;
+const NSInteger RA_IG_COSTUMEMILEPACK_SP_2 = IG_COSTUMEMILEPACK_SP_2;
+const NSInteger RA_IG_COSTUMEMILEPACK_SP_3 = IG_COSTUMEMILEPACK_SP_3;
+const NSInteger RA_IG_COSTUMEMILEPACK_SP_4 = IG_COSTUMEMILEPACK_SP_4;
+const NSInteger RA_IG_COSTUMEMILEPACK_41_1 = IG_COSTUMEMILEPACK_41_1;
+const NSInteger RA_IG_COSTUMEMILEPACK_41_2 = IG_COSTUMEMILEPACK_41_2;
+const NSInteger RA_IG_COSTUMEMILEPACK_41_3 = IG_COSTUMEMILEPACK_41_3;
+const NSInteger RA_IG_NIFLHEIM_COSTUME_1 = IG_NIFLHEIM_COSTUME_1;
+const NSInteger RA_IG_NIFLHEIM_COSTUME_2 = IG_NIFLHEIM_COSTUME_2;
+const NSInteger RA_IG_NIFLHEIM_COSTUME_3 = IG_NIFLHEIM_COSTUME_3;
+const NSInteger RA_IG_NIFLHEIM_COSTUME_4 = IG_NIFLHEIM_COSTUME_4;
+const NSInteger RA_IG_AEGIS_14622 = IG_AEGIS_14622;
+const NSInteger RA_IG_ROS_FESTA_BOX = IG_ROS_FESTA_BOX;
+const NSInteger RA_IG_R_EP1921_ALBUM = IG_R_EP1921_ALBUM;
+const NSInteger RA_IG_R_EP1921_BOSS = IG_R_EP1921_BOSS;
+const NSInteger RA_IG_RT_EP21_GAEBOLG_A = IG_RT_EP21_GAEBOLG_A;
+const NSInteger RA_IG_RT_EP21_GAEBOLG_C = IG_RT_EP21_GAEBOLG_C;
+const NSInteger RA_IG_RT_EP21_ICY_A = IG_RT_EP21_ICY_A;
+const NSInteger RA_IG_RT_EP21_ICY_C = IG_RT_EP21_ICY_C;
+const NSInteger RA_IG_RT_EP21_ICY_2 = IG_RT_EP21_ICY_2;
+const NSInteger RA_IG_RT_EP21_YORKER_A = IG_RT_EP21_YORKER_A;
+const NSInteger RA_IG_RT_EP21_YORKER_C = IG_RT_EP21_YORKER_C;
+const NSInteger RA_IG_RT_EP21_WORKING_A = IG_RT_EP21_WORKING_A;
+const NSInteger RA_IG_RT_EP21_WORKING_C = IG_RT_EP21_WORKING_C;
+const NSInteger RA_IG_RT_EP21_ADMIN_A = IG_RT_EP21_ADMIN_A;
+const NSInteger RA_IG_RT_EP21_ADMIN_C = IG_RT_EP21_ADMIN_C;
+const NSInteger RA_IG_RT_EP21_ADMIN_2 = IG_RT_EP21_ADMIN_2;
+const NSInteger RA_IG_RT_EP21_PURIFY_A = IG_RT_EP21_PURIFY_A;
+const NSInteger RA_IG_RT_EP21_PURIFY_C = IG_RT_EP21_PURIFY_C;
+const NSInteger RA_IG_RT_EP21_PURIFY_3 = IG_RT_EP21_PURIFY_3;
+const NSInteger RA_IG_RT_EP21_PURIFY_5 = IG_RT_EP21_PURIFY_5;
+const NSInteger RA_IG_RT_EP21_AID_A = IG_RT_EP21_AID_A;
+const NSInteger RA_IG_RT_EP21_AID_C = IG_RT_EP21_AID_C;
+const NSInteger RA_IG_RT_EP21_AID_2 = IG_RT_EP21_AID_2;
+const NSInteger RA_IG_RT_EP21_AID_4 = IG_RT_EP21_AID_4;
+const NSInteger RA_IG_RT_EP21_COMPANY_A = IG_RT_EP21_COMPANY_A;
+const NSInteger RA_IG_RT_EP21_COMPANY_C = IG_RT_EP21_COMPANY_C;
+const NSInteger RA_IG_RT_EP21_COMPANY_3 = IG_RT_EP21_COMPANY_3;
+const NSInteger RA_IG_RT_EP21_COMPANY_5 = IG_RT_EP21_COMPANY_5;
+const NSInteger RA_IG_RT_EP21_HORN_A = IG_RT_EP21_HORN_A;
+const NSInteger RA_IG_RT_EP21_HORN_C = IG_RT_EP21_HORN_C;
+const NSInteger RA_IG_RT_EP21_HORN_3 = IG_RT_EP21_HORN_3;
+const NSInteger RA_IG_RT_EP21_HORN_5 = IG_RT_EP21_HORN_5;
+const NSInteger RA_IG_RT_EP21_TAN_A = IG_RT_EP21_TAN_A;
+const NSInteger RA_IG_RT_EP21_TAN_C = IG_RT_EP21_TAN_C;
+const NSInteger RA_IG_AEGIS_105828 = IG_AEGIS_105828;
+const NSInteger RA_IG_AEGIS_105829 = IG_AEGIS_105829;
+const NSInteger RA_IG_AEGIS_105832 = IG_AEGIS_105832;
+const NSInteger RA_IG_AEGIS_105833 = IG_AEGIS_105833;
+const NSInteger RA_IG_AEGIS_105834 = IG_AEGIS_105834;
+const NSInteger RA_IG_AEGIS_105835 = IG_AEGIS_105835;
+const NSInteger RA_IG_AEGIS_105836 = IG_AEGIS_105836;
+const NSInteger RA_IG_AEGIS_105917 = IG_AEGIS_105917;
+const NSInteger RA_IG_LI_NYANGVINE_BOX1_SP = IG_LI_NYANGVINE_BOX1_SP;
+const NSInteger RA_IG_LI_NYANGVINE_BOX2_SP = IG_LI_NYANGVINE_BOX2_SP;
+const NSInteger RA_IG_LI_NYANGVINE_BOX3_SP = IG_LI_NYANGVINE_BOX3_SP;
+const NSInteger RA_IG_LI_NYANGVINE_BOX4_SP = IG_LI_NYANGVINE_BOX4_SP;
+const NSInteger RA_IG_2025_DEC_PACKAGE1 = IG_2025_DEC_PACKAGE1;
+const NSInteger RA_IG_2025_DEC_PACKAGE2 = IG_2025_DEC_PACKAGE2;
+const NSInteger RA_IG_CASH_BOOSTER_BOX2 = IG_CASH_BOOSTER_BOX2;
+const NSInteger RA_IG_SELECT_DEC_PACK1 = IG_SELECT_DEC_PACK1;
+const NSInteger RA_IG_SELECT_DEC_PACK2 = IG_SELECT_DEC_PACK2;
+const NSInteger RA_IG_SELECT_DEC_PACK3 = IG_SELECT_DEC_PACK3;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -9741,6 +9848,27 @@ const NSInteger RA_FOOTPRINT_EF_BUD = FOOTPRINT_EF_BUD;
 const NSInteger RA_FOOTPRINT_EF_BUTTERFLY_BLUE = FOOTPRINT_EF_BUTTERFLY_BLUE;
 const NSInteger RA_FOOTPRINT_EF_BUTTERFLY_PURPLE = FOOTPRINT_EF_BUTTERFLY_PURPLE;
 const NSInteger RA_FOOTPRINT_EF_BUTTERFLY_YELLOW = FOOTPRINT_EF_BUTTERFLY_YELLOW;
+const NSInteger RA_HAT_EF_HANMAC_MUNCH = HAT_EF_HANMAC_MUNCH;
+const NSInteger RA_FOOTPRINT_EF_VICTORY2025 = FOOTPRINT_EF_VICTORY2025;
+const NSInteger RA_FOOTPRINT_EF_DRAGON_FACE_2D = FOOTPRINT_EF_DRAGON_FACE_2D;
+const NSInteger RA_FOOTPRINT_EF_DRAGON_FACE_3D = FOOTPRINT_EF_DRAGON_FACE_3D;
+const NSInteger RA_HAT_EF_C_OVER_CLOUD = HAT_EF_C_OVER_CLOUD;
+const NSInteger RA_HAT_EF_C_AURORA_ON_CLOUDS = HAT_EF_C_AURORA_ON_CLOUDS;
+const NSInteger RA_HAT_EF_ROS_REDSPIRIT = HAT_EF_ROS_REDSPIRIT;
+const NSInteger RA_HAT_EF_ROS_BLUESPIRIT = HAT_EF_ROS_BLUESPIRIT;
+const NSInteger RA_HAT_EF_DIVINE_SKY_INVITE = HAT_EF_DIVINE_SKY_INVITE;
+const NSInteger RA_FOOTPRINT_EF_DIVINE = FOOTPRINT_EF_DIVINE;
+const NSInteger RA_FOOTPRINT_EF_NYAR_BLUE = FOOTPRINT_EF_NYAR_BLUE;
+const NSInteger RA_FOOTPRINT_EF_NYAR_PURPLE = FOOTPRINT_EF_NYAR_PURPLE;
+const NSInteger RA_HAT_EF_C_NIGHTMARE_CHAIN = HAT_EF_C_NIGHTMARE_CHAIN;
+const NSInteger RA_HAT_EF_C_SPOT_MIKE = HAT_EF_C_SPOT_MIKE;
+const NSInteger RA_HAT_EF_C_SPOT_FLOWER = HAT_EF_C_SPOT_FLOWER;
+const NSInteger RA_HAT_EF_C_2025ROSFESTA = HAT_EF_C_2025ROSFESTA;
+const NSInteger RA_HAT_EF_GOLDEN_AURA_TW = HAT_EF_GOLDEN_AURA_TW;
+const NSInteger RA_HAT_EF_C_S_BEELZEBUB_WING = HAT_EF_C_S_BEELZEBUB_WING;
+const NSInteger RA_FOOTPRINT_EF_FEATHER = FOOTPRINT_EF_FEATHER;
+const NSInteger RA_HAT_EF_SOLID_STATE_RECOGNITION = HAT_EF_SOLID_STATE_RECOGNITION;
+const NSInteger RA_HAT_EF_C_CURSED_SERPENT = HAT_EF_C_CURSED_SERPENT;
 const NSInteger RA_PET_CATCH_UNIVERSAL_NO_BOSS = PET_CATCH_UNIVERSAL_NO_BOSS;
 const NSInteger RA_PET_CATCH_UNIVERSAL_ALL = PET_CATCH_UNIVERSAL_ALL;
 const NSInteger RA_PET_INTIMATE_NONE = PET_INTIMATE_NONE;
@@ -9934,6 +10062,7 @@ const NSInteger RA_INF2_IGNORECICADA = INF2_IGNORECICADA;
 const NSInteger RA_INF2_SHOWSCALE = INF2_SHOWSCALE;
 const NSInteger RA_INF2_IGNOREGTB = INF2_IGNOREGTB;
 const NSInteger RA_INF2_TOGGLEABLE = INF2_TOGGLEABLE;
+const NSInteger RA_INF2_IGNORENONCRITATKBONUS = INF2_IGNORENONCRITATKBONUS;
 const NSInteger RA_SKILL_NONEAR_WARPPORTAL = SKILL_NONEAR_WARPPORTAL;
 const NSInteger RA_SKILL_NONEAR_SHOP = SKILL_NONEAR_SHOP;
 const NSInteger RA_SKILL_NONEAR_NPC = SKILL_NONEAR_NPC;
@@ -10136,10 +10265,11 @@ const NSInteger RA_UNT_B_TRAP = UNT_B_TRAP;
 const NSInteger RA_UNT_FIRE_RAIN = UNT_FIRE_RAIN;
 const NSInteger RA_UNT_CATNIPPOWDER = UNT_CATNIPPOWDER;
 const NSInteger RA_UNT_NYANGGRASS = UNT_NYANGGRASS;
+const NSInteger RA_UNT_GROUNDDRIFT_NEUTRAL = UNT_GROUNDDRIFT_NEUTRAL;
 const NSInteger RA_UNT_CREATINGSTAR = UNT_CREATINGSTAR;
-const NSInteger RA_UNT_DUMMY_0 = UNT_DUMMY_0;
 const NSInteger RA_UNT_RAIN_OF_CRYSTAL = UNT_RAIN_OF_CRYSTAL;
 const NSInteger RA_UNT_MYSTERY_ILLUSION = UNT_MYSTERY_ILLUSION;
+const NSInteger RA_UNT_SEEDTRAP = UNT_SEEDTRAP;
 const NSInteger RA_UNT_STRANTUM_TREMOR = UNT_STRANTUM_TREMOR;
 const NSInteger RA_UNT_VIOLENT_QUAKE = UNT_VIOLENT_QUAKE;
 const NSInteger RA_UNT_ALL_BLOOM = UNT_ALL_BLOOM;
@@ -10156,13 +10286,11 @@ const NSInteger RA_UNT_ACIDIFIED_ZONE_FIRE = UNT_ACIDIFIED_ZONE_FIRE;
 const NSInteger RA_UNT_LIGHTNING_LAND = UNT_LIGHTNING_LAND;
 const NSInteger RA_UNT_VENOM_SWAMP = UNT_VENOM_SWAMP;
 const NSInteger RA_UNT_CONFLAGRATION = UNT_CONFLAGRATION;
-const NSInteger RA_UNT_DEEPBLINDTRAP = UNT_DEEPBLINDTRAP;
-const NSInteger RA_UNT_SOLIDTRAP = UNT_SOLIDTRAP;
-const NSInteger RA_UNT_SWIFTTRAP = UNT_SWIFTTRAP;
-const NSInteger RA_UNT_FLAMETRAP = UNT_FLAMETRAP;
+const NSInteger RA_UNT_CANE_OF_EVIL_EYE = UNT_CANE_OF_EVIL_EYE;
 const NSInteger RA_UNT_TWINKLING_GALAXY = UNT_TWINKLING_GALAXY;
 const NSInteger RA_UNT_STAR_CANNON = UNT_STAR_CANNON;
 const NSInteger RA_UNT_GRENADES_DROPPING = UNT_GRENADES_DROPPING;
+const NSInteger RA_UNT_UNKNOWN_2 = UNT_UNKNOWN_2;
 const NSInteger RA_UNT_FUUMASHOUAKU = UNT_FUUMASHOUAKU;
 const NSInteger RA_UNT_MISSION_BOMBARD = UNT_MISSION_BOMBARD;
 const NSInteger RA_UNT_TOTEM_OF_TUTELARY = UNT_TOTEM_OF_TUTELARY;
@@ -10170,14 +10298,19 @@ const NSInteger RA_UNT_HYUN_ROKS_BREEZE = UNT_HYUN_ROKS_BREEZE;
 const NSInteger RA_UNT_SHINKIROU = UNT_SHINKIROU;
 const NSInteger RA_UNT_JACK_FROST_NOVA = UNT_JACK_FROST_NOVA;
 const NSInteger RA_UNT_GROUND_GRAVITATION = UNT_GROUND_GRAVITATION;
-const NSInteger RA_UNT_KUNAIWAIKYOKU = UNT_KUNAIWAIKYOKU;
-const NSInteger RA_UNT_STAR_BURST = UNT_STAR_BURST;
 const NSInteger RA_UNT_KUNAIKAITEN = UNT_KUNAIKAITEN;
+const NSInteger RA_UNT_KUNAIWAIKYOKU = UNT_KUNAIWAIKYOKU;
+const NSInteger RA_UNT_KUNAIKUSSETSU = UNT_KUNAIKUSSETSU;
+const NSInteger RA_UNT_SEKIENHOU = UNT_SEKIENHOU;
+const NSInteger RA_UNT_STAR_BURST = UNT_STAR_BURST;
+const NSInteger RA_UNT_DEEPBLINDTRAP = UNT_DEEPBLINDTRAP;
+const NSInteger RA_UNT_SOLIDTRAP = UNT_SOLIDTRAP;
+const NSInteger RA_UNT_SWIFTTRAP = UNT_SWIFTTRAP;
+const NSInteger RA_UNT_FLAMETRAP = UNT_FLAMETRAP;
 const NSInteger RA_UNT_GD_LEADERSHIP = UNT_GD_LEADERSHIP;
 const NSInteger RA_UNT_GD_GLORYWOUNDS = UNT_GD_GLORYWOUNDS;
 const NSInteger RA_UNT_GD_SOULCOLD = UNT_GD_SOULCOLD;
 const NSInteger RA_UNT_GD_HAWKEYES = UNT_GD_HAWKEYES;
-const NSInteger RA_UNT_CANE_OF_EVIL_EYE = UNT_CANE_OF_EVIL_EYE;
 const NSInteger RA_BG_INFO_ID = BG_INFO_ID;
 const NSInteger RA_BG_INFO_REQUIRED_PLAYERS = BG_INFO_REQUIRED_PLAYERS;
 const NSInteger RA_BG_INFO_MAX_PLAYERS = BG_INFO_MAX_PLAYERS;
@@ -10835,24 +10968,24 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_SUPER_NOVICE_E": [Constant constantWithName:@"EAJ_SUPER_NOVICE_E" value:MAPID_SUPER_NOVICE_E],
             @"EAJ_SUPER_BABY_E": [Constant constantWithName:@"EAJ_SUPER_BABY_E" value:MAPID_SUPER_BABY_E],
             @"EAJ_SUMMONER": [Constant constantWithName:@"EAJ_SUMMONER" value:MAPID_SUMMONER],
-            @"EAJ_SPIRIT_HANDLER": [Constant constantWithName:@"EAJ_SPIRIT_HANDLER" value:MAPID_SPIRIT_HANDLER],
-            @"EAJ_HYPER_NOVICE": [Constant constantWithName:@"EAJ_HYPER_NOVICE" value:MAPID_HYPER_NOVICE],
             @"EAJ_DRAGON_KNIGHT": [Constant constantWithName:@"EAJ_DRAGON_KNIGHT" value:MAPID_DRAGON_KNIGHT],
             @"EAJ_ARCH_MAGE": [Constant constantWithName:@"EAJ_ARCH_MAGE" value:MAPID_ARCH_MAGE],
             @"EAJ_WINDHAWK": [Constant constantWithName:@"EAJ_WINDHAWK" value:MAPID_WINDHAWK],
             @"EAJ_CARDINAL": [Constant constantWithName:@"EAJ_CARDINAL" value:MAPID_CARDINAL],
             @"EAJ_MEISTER": [Constant constantWithName:@"EAJ_MEISTER" value:MAPID_MEISTER],
             @"EAJ_SHADOW_CROSS": [Constant constantWithName:@"EAJ_SHADOW_CROSS" value:MAPID_SHADOW_CROSS],
-            @"EAJ_SKY_EMPEROR": [Constant constantWithName:@"EAJ_SKY_EMPEROR" value:MAPID_SKY_EMPEROR],
-            @"EAJ_NIGHT_WATCH": [Constant constantWithName:@"EAJ_NIGHT_WATCH" value:MAPID_NIGHT_WATCH],
-            @"EAJ_SHINKIRO_SHIRANUI": [Constant constantWithName:@"EAJ_SHINKIRO_SHIRANUI" value:MAPID_SHINKIRO_SHIRANUI],
             @"EAJ_IMPERIAL_GUARD": [Constant constantWithName:@"EAJ_IMPERIAL_GUARD" value:MAPID_IMPERIAL_GUARD],
             @"EAJ_ELEMENTAL_MASTER": [Constant constantWithName:@"EAJ_ELEMENTAL_MASTER" value:MAPID_ELEMENTAL_MASTER],
             @"EAJ_TROUBADOURTROUVERE": [Constant constantWithName:@"EAJ_TROUBADOURTROUVERE" value:MAPID_TROUBADOURTROUVERE],
             @"EAJ_INQUISITOR": [Constant constantWithName:@"EAJ_INQUISITOR" value:MAPID_INQUISITOR],
             @"EAJ_BIOLO": [Constant constantWithName:@"EAJ_BIOLO" value:MAPID_BIOLO],
             @"EAJ_ABYSS_CHASER": [Constant constantWithName:@"EAJ_ABYSS_CHASER" value:MAPID_ABYSS_CHASER],
+            @"EAJ_SKY_EMPEROR": [Constant constantWithName:@"EAJ_SKY_EMPEROR" value:MAPID_SKY_EMPEROR],
             @"EAJ_SOUL_ASCETIC": [Constant constantWithName:@"EAJ_SOUL_ASCETIC" value:MAPID_SOUL_ASCETIC],
+            @"EAJ_SHINKIROSHIRANUI": [Constant constantWithName:@"EAJ_SHINKIROSHIRANUI" value:MAPID_SHINKIROSHIRANUI],
+            @"EAJ_NIGHT_WATCH": [Constant constantWithName:@"EAJ_NIGHT_WATCH" value:MAPID_NIGHT_WATCH],
+            @"EAJ_HYPER_NOVICE": [Constant constantWithName:@"EAJ_HYPER_NOVICE" value:MAPID_HYPER_NOVICE],
+            @"EAJ_SPIRIT_HANDLER": [Constant constantWithName:@"EAJ_SPIRIT_HANDLER" value:MAPID_SPIRIT_HANDLER],
             @"SEX_FEMALE": [Constant constantWithName:@"SEX_FEMALE" value:SEX_FEMALE],
             @"SEX_MALE": [Constant constantWithName:@"SEX_MALE" value:SEX_MALE],
             @"SEX_BOTH": [Constant constantWithName:@"SEX_BOTH" value:SEX_BOTH],
@@ -11211,6 +11344,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"bAddItemSPHealRate": [Constant constantWithName:@"bAddItemSPHealRate" value:SP_ADD_ITEM_SPHEAL_RATE],
             @"bAddItemGroupSPHealRate": [Constant constantWithName:@"bAddItemGroupSPHealRate" value:SP_ADD_ITEMGROUP_SPHEAL_RATE],
             @"bWeaponSubSize": [Constant constantWithName:@"bWeaponSubSize" value:SP_WEAPON_SUBSIZE],
+            @"bNonCritAtkRate": [Constant constantWithName:@"bNonCritAtkRate" value:SP_NON_CRIT_ATK_RATE],
             @"EQI_COMPOUND_ON": [Constant constantWithName:@"EQI_COMPOUND_ON" value:EQI_COMPOUND_ON],
             @"EQI_HEAD_TOP": [Constant constantWithName:@"EQI_HEAD_TOP" value:EQI_HEAD_TOP],
             @"EQI_ARMOR": [Constant constantWithName:@"EQI_ARMOR" value:EQI_ARMOR],
@@ -13797,6 +13931,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EFST_C_BUFF_7": [Constant constantWithName:@"EFST_C_BUFF_7" value:EFST_C_BUFF_7],
             @"EFST_C_BUFF_8": [Constant constantWithName:@"EFST_C_BUFF_8" value:EFST_C_BUFF_8],
             @"EFST_C_BUFF_9": [Constant constantWithName:@"EFST_C_BUFF_9" value:EFST_C_BUFF_9],
+            @"EFST_BLOCK": [Constant constantWithName:@"EFST_BLOCK" value:EFST_BLOCK],
             @"EFST_MAX": [Constant constantWithName:@"EFST_MAX" value:EFST_MAX],
             @"ELE_NEUTRAL": [Constant constantWithName:@"ELE_NEUTRAL" value:ELE_NEUTRAL],
             @"ELE_WATER": [Constant constantWithName:@"ELE_WATER" value:ELE_WATER],
@@ -17500,6 +17635,111 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"IG_BRILLIANT_HAT_BOX": [Constant constantWithName:@"IG_BRILLIANT_HAT_BOX" value:IG_BRILLIANT_HAT_BOX],
             @"IG_CHEST_OF_DEATH": [Constant constantWithName:@"IG_CHEST_OF_DEATH" value:IG_CHEST_OF_DEATH],
             @"IG_SHADOW_CUBE_SAK": [Constant constantWithName:@"IG_SHADOW_CUBE_SAK" value:IG_SHADOW_CUBE_SAK],
+            @"IG_AEGIS_100582": [Constant constantWithName:@"IG_AEGIS_100582" value:IG_AEGIS_100582],
+            @"IG_AEGIS_100584": [Constant constantWithName:@"IG_AEGIS_100584" value:IG_AEGIS_100584],
+            @"IG_DT_COLABO_BOX1": [Constant constantWithName:@"IG_DT_COLABO_BOX1" value:IG_DT_COLABO_BOX1],
+            @"IG_DT_COLABO_BOX2": [Constant constantWithName:@"IG_DT_COLABO_BOX2" value:IG_DT_COLABO_BOX2],
+            @"IG_CLOUD_COSTUME_PACK": [Constant constantWithName:@"IG_CLOUD_COSTUME_PACK" value:IG_CLOUD_COSTUME_PACK],
+            @"IG_COSTUMEMILEPACK_39_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_39_1" value:IG_COSTUMEMILEPACK_39_1],
+            @"IG_COSTUMEMILEPACK_39_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_39_2" value:IG_COSTUMEMILEPACK_39_2],
+            @"IG_COSTUMEMILEPACK_39_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_39_3" value:IG_COSTUMEMILEPACK_39_3],
+            @"IG_RT_CH01_ARMOR_A": [Constant constantWithName:@"IG_RT_CH01_ARMOR_A" value:IG_RT_CH01_ARMOR_A],
+            @"IG_RT_CH01_ARMOR_C": [Constant constantWithName:@"IG_RT_CH01_ARMOR_C" value:IG_RT_CH01_ARMOR_C],
+            @"IG_RT_CH01_DIMEN_A": [Constant constantWithName:@"IG_RT_CH01_DIMEN_A" value:IG_RT_CH01_DIMEN_A],
+            @"IG_RT_CH01_DIMEN_C": [Constant constantWithName:@"IG_RT_CH01_DIMEN_C" value:IG_RT_CH01_DIMEN_C],
+            @"IG_RT_CH01_DIMEN_3": [Constant constantWithName:@"IG_RT_CH01_DIMEN_3" value:IG_RT_CH01_DIMEN_3],
+            @"IG_RT_CH01_EXTRA_A": [Constant constantWithName:@"IG_RT_CH01_EXTRA_A" value:IG_RT_CH01_EXTRA_A],
+            @"IG_RT_CH01_EXTRA_C": [Constant constantWithName:@"IG_RT_CH01_EXTRA_C" value:IG_RT_CH01_EXTRA_C],
+            @"IG_RT_CH01_EXTRA_2": [Constant constantWithName:@"IG_RT_CH01_EXTRA_2" value:IG_RT_CH01_EXTRA_2],
+            @"IG_RT_CH01_EXTRA_4": [Constant constantWithName:@"IG_RT_CH01_EXTRA_4" value:IG_RT_CH01_EXTRA_4],
+            @"IG_RT_CH01_EXTRA_5": [Constant constantWithName:@"IG_RT_CH01_EXTRA_5" value:IG_RT_CH01_EXTRA_5],
+            @"IG_AEGIS_104901": [Constant constantWithName:@"IG_AEGIS_104901" value:IG_AEGIS_104901],
+            @"IG_AEGIS_105031": [Constant constantWithName:@"IG_AEGIS_105031" value:IG_AEGIS_105031],
+            @"IG_23TH_COSTUME_A": [Constant constantWithName:@"IG_23TH_COSTUME_A" value:IG_23TH_COSTUME_A],
+            @"IG_23TH_COSTUME_B": [Constant constantWithName:@"IG_23TH_COSTUME_B" value:IG_23TH_COSTUME_B],
+            @"IG_23TH_COSTUME_C": [Constant constantWithName:@"IG_23TH_COSTUME_C" value:IG_23TH_COSTUME_C],
+            @"IG_AEGIS_105059": [Constant constantWithName:@"IG_AEGIS_105059" value:IG_AEGIS_105059],
+            @"IG_AEGIS_105161": [Constant constantWithName:@"IG_AEGIS_105161" value:IG_AEGIS_105161],
+            @"IG_AEGIS_105162": [Constant constantWithName:@"IG_AEGIS_105162" value:IG_AEGIS_105162],
+            @"IG_AEGIS_105219": [Constant constantWithName:@"IG_AEGIS_105219" value:IG_AEGIS_105219],
+            @"IG_AEGIS_105220": [Constant constantWithName:@"IG_AEGIS_105220" value:IG_AEGIS_105220],
+            @"IG_SP_COSTUME_COLLECTION": [Constant constantWithName:@"IG_SP_COSTUME_COLLECTION" value:IG_SP_COSTUME_COLLECTION],
+            @"IG_2025ROS_FOR_OFFLINE": [Constant constantWithName:@"IG_2025ROS_FOR_OFFLINE" value:IG_2025ROS_FOR_OFFLINE],
+            @"IG_AEGIS_105518": [Constant constantWithName:@"IG_AEGIS_105518" value:IG_AEGIS_105518],
+            @"IG_AEGIS_105715": [Constant constantWithName:@"IG_AEGIS_105715" value:IG_AEGIS_105715],
+            @"IG_LI_NYANGVINE_BOX1_40": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX1_40" value:IG_LI_NYANGVINE_BOX1_40],
+            @"IG_LI_NYANGVINE_BOX2_40": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX2_40" value:IG_LI_NYANGVINE_BOX2_40],
+            @"IG_LI_NYANGVINE_BOX3_40": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX3_40" value:IG_LI_NYANGVINE_BOX3_40],
+            @"IG_23TH_COSTUME_PACK_A": [Constant constantWithName:@"IG_23TH_COSTUME_PACK_A" value:IG_23TH_COSTUME_PACK_A],
+            @"IG_23TH_COSTUME_PACK_B": [Constant constantWithName:@"IG_23TH_COSTUME_PACK_B" value:IG_23TH_COSTUME_PACK_B],
+            @"IG_23TH_COSTUME_PACK_C": [Constant constantWithName:@"IG_23TH_COSTUME_PACK_C" value:IG_23TH_COSTUME_PACK_C],
+            @"IG_23TH_PACKAGE_1": [Constant constantWithName:@"IG_23TH_PACKAGE_1" value:IG_23TH_PACKAGE_1],
+            @"IG_23TH_PACKAGE_2": [Constant constantWithName:@"IG_23TH_PACKAGE_2" value:IG_23TH_PACKAGE_2],
+            @"IG_23TH_PACKAGE_3": [Constant constantWithName:@"IG_23TH_PACKAGE_3" value:IG_23TH_PACKAGE_3],
+            @"IG_23TH_PACKAGE_4": [Constant constantWithName:@"IG_23TH_PACKAGE_4" value:IG_23TH_PACKAGE_4],
+            @"IG_COSTUMEMILEPACK_SP_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_SP_1" value:IG_COSTUMEMILEPACK_SP_1],
+            @"IG_COSTUMEMILEPACK_SP_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_SP_2" value:IG_COSTUMEMILEPACK_SP_2],
+            @"IG_COSTUMEMILEPACK_SP_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_SP_3" value:IG_COSTUMEMILEPACK_SP_3],
+            @"IG_COSTUMEMILEPACK_SP_4": [Constant constantWithName:@"IG_COSTUMEMILEPACK_SP_4" value:IG_COSTUMEMILEPACK_SP_4],
+            @"IG_COSTUMEMILEPACK_41_1": [Constant constantWithName:@"IG_COSTUMEMILEPACK_41_1" value:IG_COSTUMEMILEPACK_41_1],
+            @"IG_COSTUMEMILEPACK_41_2": [Constant constantWithName:@"IG_COSTUMEMILEPACK_41_2" value:IG_COSTUMEMILEPACK_41_2],
+            @"IG_COSTUMEMILEPACK_41_3": [Constant constantWithName:@"IG_COSTUMEMILEPACK_41_3" value:IG_COSTUMEMILEPACK_41_3],
+            @"IG_NIFLHEIM_COSTUME_1": [Constant constantWithName:@"IG_NIFLHEIM_COSTUME_1" value:IG_NIFLHEIM_COSTUME_1],
+            @"IG_NIFLHEIM_COSTUME_2": [Constant constantWithName:@"IG_NIFLHEIM_COSTUME_2" value:IG_NIFLHEIM_COSTUME_2],
+            @"IG_NIFLHEIM_COSTUME_3": [Constant constantWithName:@"IG_NIFLHEIM_COSTUME_3" value:IG_NIFLHEIM_COSTUME_3],
+            @"IG_NIFLHEIM_COSTUME_4": [Constant constantWithName:@"IG_NIFLHEIM_COSTUME_4" value:IG_NIFLHEIM_COSTUME_4],
+            @"IG_AEGIS_14622": [Constant constantWithName:@"IG_AEGIS_14622" value:IG_AEGIS_14622],
+            @"IG_ROS_FESTA_BOX": [Constant constantWithName:@"IG_ROS_FESTA_BOX" value:IG_ROS_FESTA_BOX],
+            @"IG_R_EP1921_ALBUM": [Constant constantWithName:@"IG_R_EP1921_ALBUM" value:IG_R_EP1921_ALBUM],
+            @"IG_R_EP1921_BOSS": [Constant constantWithName:@"IG_R_EP1921_BOSS" value:IG_R_EP1921_BOSS],
+            @"IG_RT_EP21_GAEBOLG_A": [Constant constantWithName:@"IG_RT_EP21_GAEBOLG_A" value:IG_RT_EP21_GAEBOLG_A],
+            @"IG_RT_EP21_GAEBOLG_C": [Constant constantWithName:@"IG_RT_EP21_GAEBOLG_C" value:IG_RT_EP21_GAEBOLG_C],
+            @"IG_RT_EP21_ICY_A": [Constant constantWithName:@"IG_RT_EP21_ICY_A" value:IG_RT_EP21_ICY_A],
+            @"IG_RT_EP21_ICY_C": [Constant constantWithName:@"IG_RT_EP21_ICY_C" value:IG_RT_EP21_ICY_C],
+            @"IG_RT_EP21_ICY_2": [Constant constantWithName:@"IG_RT_EP21_ICY_2" value:IG_RT_EP21_ICY_2],
+            @"IG_RT_EP21_YORKER_A": [Constant constantWithName:@"IG_RT_EP21_YORKER_A" value:IG_RT_EP21_YORKER_A],
+            @"IG_RT_EP21_YORKER_C": [Constant constantWithName:@"IG_RT_EP21_YORKER_C" value:IG_RT_EP21_YORKER_C],
+            @"IG_RT_EP21_WORKING_A": [Constant constantWithName:@"IG_RT_EP21_WORKING_A" value:IG_RT_EP21_WORKING_A],
+            @"IG_RT_EP21_WORKING_C": [Constant constantWithName:@"IG_RT_EP21_WORKING_C" value:IG_RT_EP21_WORKING_C],
+            @"IG_RT_EP21_ADMIN_A": [Constant constantWithName:@"IG_RT_EP21_ADMIN_A" value:IG_RT_EP21_ADMIN_A],
+            @"IG_RT_EP21_ADMIN_C": [Constant constantWithName:@"IG_RT_EP21_ADMIN_C" value:IG_RT_EP21_ADMIN_C],
+            @"IG_RT_EP21_ADMIN_2": [Constant constantWithName:@"IG_RT_EP21_ADMIN_2" value:IG_RT_EP21_ADMIN_2],
+            @"IG_RT_EP21_PURIFY_A": [Constant constantWithName:@"IG_RT_EP21_PURIFY_A" value:IG_RT_EP21_PURIFY_A],
+            @"IG_RT_EP21_PURIFY_C": [Constant constantWithName:@"IG_RT_EP21_PURIFY_C" value:IG_RT_EP21_PURIFY_C],
+            @"IG_RT_EP21_PURIFY_3": [Constant constantWithName:@"IG_RT_EP21_PURIFY_3" value:IG_RT_EP21_PURIFY_3],
+            @"IG_RT_EP21_PURIFY_5": [Constant constantWithName:@"IG_RT_EP21_PURIFY_5" value:IG_RT_EP21_PURIFY_5],
+            @"IG_RT_EP21_AID_A": [Constant constantWithName:@"IG_RT_EP21_AID_A" value:IG_RT_EP21_AID_A],
+            @"IG_RT_EP21_AID_C": [Constant constantWithName:@"IG_RT_EP21_AID_C" value:IG_RT_EP21_AID_C],
+            @"IG_RT_EP21_AID_2": [Constant constantWithName:@"IG_RT_EP21_AID_2" value:IG_RT_EP21_AID_2],
+            @"IG_RT_EP21_AID_4": [Constant constantWithName:@"IG_RT_EP21_AID_4" value:IG_RT_EP21_AID_4],
+            @"IG_RT_EP21_COMPANY_A": [Constant constantWithName:@"IG_RT_EP21_COMPANY_A" value:IG_RT_EP21_COMPANY_A],
+            @"IG_RT_EP21_COMPANY_C": [Constant constantWithName:@"IG_RT_EP21_COMPANY_C" value:IG_RT_EP21_COMPANY_C],
+            @"IG_RT_EP21_COMPANY_3": [Constant constantWithName:@"IG_RT_EP21_COMPANY_3" value:IG_RT_EP21_COMPANY_3],
+            @"IG_RT_EP21_COMPANY_5": [Constant constantWithName:@"IG_RT_EP21_COMPANY_5" value:IG_RT_EP21_COMPANY_5],
+            @"IG_RT_EP21_HORN_A": [Constant constantWithName:@"IG_RT_EP21_HORN_A" value:IG_RT_EP21_HORN_A],
+            @"IG_RT_EP21_HORN_C": [Constant constantWithName:@"IG_RT_EP21_HORN_C" value:IG_RT_EP21_HORN_C],
+            @"IG_RT_EP21_HORN_3": [Constant constantWithName:@"IG_RT_EP21_HORN_3" value:IG_RT_EP21_HORN_3],
+            @"IG_RT_EP21_HORN_5": [Constant constantWithName:@"IG_RT_EP21_HORN_5" value:IG_RT_EP21_HORN_5],
+            @"IG_RT_EP21_TAN_A": [Constant constantWithName:@"IG_RT_EP21_TAN_A" value:IG_RT_EP21_TAN_A],
+            @"IG_RT_EP21_TAN_C": [Constant constantWithName:@"IG_RT_EP21_TAN_C" value:IG_RT_EP21_TAN_C],
+            @"IG_AEGIS_105828": [Constant constantWithName:@"IG_AEGIS_105828" value:IG_AEGIS_105828],
+            @"IG_AEGIS_105829": [Constant constantWithName:@"IG_AEGIS_105829" value:IG_AEGIS_105829],
+            @"IG_AEGIS_105832": [Constant constantWithName:@"IG_AEGIS_105832" value:IG_AEGIS_105832],
+            @"IG_AEGIS_105833": [Constant constantWithName:@"IG_AEGIS_105833" value:IG_AEGIS_105833],
+            @"IG_AEGIS_105834": [Constant constantWithName:@"IG_AEGIS_105834" value:IG_AEGIS_105834],
+            @"IG_AEGIS_105835": [Constant constantWithName:@"IG_AEGIS_105835" value:IG_AEGIS_105835],
+            @"IG_AEGIS_105836": [Constant constantWithName:@"IG_AEGIS_105836" value:IG_AEGIS_105836],
+            @"IG_AEGIS_105917": [Constant constantWithName:@"IG_AEGIS_105917" value:IG_AEGIS_105917],
+            @"IG_LI_NYANGVINE_BOX1_SP": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX1_SP" value:IG_LI_NYANGVINE_BOX1_SP],
+            @"IG_LI_NYANGVINE_BOX2_SP": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX2_SP" value:IG_LI_NYANGVINE_BOX2_SP],
+            @"IG_LI_NYANGVINE_BOX3_SP": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX3_SP" value:IG_LI_NYANGVINE_BOX3_SP],
+            @"IG_LI_NYANGVINE_BOX4_SP": [Constant constantWithName:@"IG_LI_NYANGVINE_BOX4_SP" value:IG_LI_NYANGVINE_BOX4_SP],
+            @"IG_2025_DEC_PACKAGE1": [Constant constantWithName:@"IG_2025_DEC_PACKAGE1" value:IG_2025_DEC_PACKAGE1],
+            @"IG_2025_DEC_PACKAGE2": [Constant constantWithName:@"IG_2025_DEC_PACKAGE2" value:IG_2025_DEC_PACKAGE2],
+            @"IG_CASH_BOOSTER_BOX2": [Constant constantWithName:@"IG_CASH_BOOSTER_BOX2" value:IG_CASH_BOOSTER_BOX2],
+            @"IG_SELECT_DEC_PACK1": [Constant constantWithName:@"IG_SELECT_DEC_PACK1" value:IG_SELECT_DEC_PACK1],
+            @"IG_SELECT_DEC_PACK2": [Constant constantWithName:@"IG_SELECT_DEC_PACK2" value:IG_SELECT_DEC_PACK2],
+            @"IG_SELECT_DEC_PACK3": [Constant constantWithName:@"IG_SELECT_DEC_PACK3" value:IG_SELECT_DEC_PACK3],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -20251,6 +20491,27 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"FOOTPRINT_EF_BUTTERFLY_BLUE": [Constant constantWithName:@"FOOTPRINT_EF_BUTTERFLY_BLUE" value:FOOTPRINT_EF_BUTTERFLY_BLUE],
             @"FOOTPRINT_EF_BUTTERFLY_PURPLE": [Constant constantWithName:@"FOOTPRINT_EF_BUTTERFLY_PURPLE" value:FOOTPRINT_EF_BUTTERFLY_PURPLE],
             @"FOOTPRINT_EF_BUTTERFLY_YELLOW": [Constant constantWithName:@"FOOTPRINT_EF_BUTTERFLY_YELLOW" value:FOOTPRINT_EF_BUTTERFLY_YELLOW],
+            @"HAT_EF_HANMAC_MUNCH": [Constant constantWithName:@"HAT_EF_HANMAC_MUNCH" value:HAT_EF_HANMAC_MUNCH],
+            @"FOOTPRINT_EF_VICTORY2025": [Constant constantWithName:@"FOOTPRINT_EF_VICTORY2025" value:FOOTPRINT_EF_VICTORY2025],
+            @"FOOTPRINT_EF_DRAGON_FACE_2D": [Constant constantWithName:@"FOOTPRINT_EF_DRAGON_FACE_2D" value:FOOTPRINT_EF_DRAGON_FACE_2D],
+            @"FOOTPRINT_EF_DRAGON_FACE_3D": [Constant constantWithName:@"FOOTPRINT_EF_DRAGON_FACE_3D" value:FOOTPRINT_EF_DRAGON_FACE_3D],
+            @"HAT_EF_C_OVER_CLOUD": [Constant constantWithName:@"HAT_EF_C_OVER_CLOUD" value:HAT_EF_C_OVER_CLOUD],
+            @"HAT_EF_C_AURORA_ON_CLOUDS": [Constant constantWithName:@"HAT_EF_C_AURORA_ON_CLOUDS" value:HAT_EF_C_AURORA_ON_CLOUDS],
+            @"HAT_EF_ROS_REDSPIRIT": [Constant constantWithName:@"HAT_EF_ROS_REDSPIRIT" value:HAT_EF_ROS_REDSPIRIT],
+            @"HAT_EF_ROS_BLUESPIRIT": [Constant constantWithName:@"HAT_EF_ROS_BLUESPIRIT" value:HAT_EF_ROS_BLUESPIRIT],
+            @"HAT_EF_DIVINE_SKY_INVITE": [Constant constantWithName:@"HAT_EF_DIVINE_SKY_INVITE" value:HAT_EF_DIVINE_SKY_INVITE],
+            @"FOOTPRINT_EF_DIVINE": [Constant constantWithName:@"FOOTPRINT_EF_DIVINE" value:FOOTPRINT_EF_DIVINE],
+            @"FOOTPRINT_EF_NYAR_BLUE": [Constant constantWithName:@"FOOTPRINT_EF_NYAR_BLUE" value:FOOTPRINT_EF_NYAR_BLUE],
+            @"FOOTPRINT_EF_NYAR_PURPLE": [Constant constantWithName:@"FOOTPRINT_EF_NYAR_PURPLE" value:FOOTPRINT_EF_NYAR_PURPLE],
+            @"HAT_EF_C_NIGHTMARE_CHAIN": [Constant constantWithName:@"HAT_EF_C_NIGHTMARE_CHAIN" value:HAT_EF_C_NIGHTMARE_CHAIN],
+            @"HAT_EF_C_SPOT_MIKE": [Constant constantWithName:@"HAT_EF_C_SPOT_MIKE" value:HAT_EF_C_SPOT_MIKE],
+            @"HAT_EF_C_SPOT_FLOWER": [Constant constantWithName:@"HAT_EF_C_SPOT_FLOWER" value:HAT_EF_C_SPOT_FLOWER],
+            @"HAT_EF_C_2025ROSFESTA": [Constant constantWithName:@"HAT_EF_C_2025ROSFESTA" value:HAT_EF_C_2025ROSFESTA],
+            @"HAT_EF_GOLDEN_AURA_TW": [Constant constantWithName:@"HAT_EF_GOLDEN_AURA_TW" value:HAT_EF_GOLDEN_AURA_TW],
+            @"HAT_EF_C_S_BEELZEBUB_WING": [Constant constantWithName:@"HAT_EF_C_S_BEELZEBUB_WING" value:HAT_EF_C_S_BEELZEBUB_WING],
+            @"FOOTPRINT_EF_FEATHER": [Constant constantWithName:@"FOOTPRINT_EF_FEATHER" value:FOOTPRINT_EF_FEATHER],
+            @"HAT_EF_SOLID_STATE_RECOGNITION": [Constant constantWithName:@"HAT_EF_SOLID_STATE_RECOGNITION" value:HAT_EF_SOLID_STATE_RECOGNITION],
+            @"HAT_EF_C_CURSED_SERPENT": [Constant constantWithName:@"HAT_EF_C_CURSED_SERPENT" value:HAT_EF_C_CURSED_SERPENT],
             @"PET_CATCH_UNIVERSAL_NO_BOSS": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_NO_BOSS" value:PET_CATCH_UNIVERSAL_NO_BOSS],
             @"PET_CATCH_UNIVERSAL_ALL": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_ALL" value:PET_CATCH_UNIVERSAL_ALL],
             @"PET_INTIMATE_NONE": [Constant constantWithName:@"PET_INTIMATE_NONE" value:PET_INTIMATE_NONE],
@@ -20444,6 +20705,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"INF2_SHOWSCALE": [Constant constantWithName:@"INF2_SHOWSCALE" value:INF2_SHOWSCALE],
             @"INF2_IGNOREGTB": [Constant constantWithName:@"INF2_IGNOREGTB" value:INF2_IGNOREGTB],
             @"INF2_TOGGLEABLE": [Constant constantWithName:@"INF2_TOGGLEABLE" value:INF2_TOGGLEABLE],
+            @"INF2_IGNORENONCRITATKBONUS": [Constant constantWithName:@"INF2_IGNORENONCRITATKBONUS" value:INF2_IGNORENONCRITATKBONUS],
             @"SKILL_NONEAR_WARPPORTAL": [Constant constantWithName:@"SKILL_NONEAR_WARPPORTAL" value:SKILL_NONEAR_WARPPORTAL],
             @"SKILL_NONEAR_SHOP": [Constant constantWithName:@"SKILL_NONEAR_SHOP" value:SKILL_NONEAR_SHOP],
             @"SKILL_NONEAR_NPC": [Constant constantWithName:@"SKILL_NONEAR_NPC" value:SKILL_NONEAR_NPC],
@@ -20646,10 +20908,11 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"UNT_FIRE_RAIN": [Constant constantWithName:@"UNT_FIRE_RAIN" value:UNT_FIRE_RAIN],
             @"UNT_CATNIPPOWDER": [Constant constantWithName:@"UNT_CATNIPPOWDER" value:UNT_CATNIPPOWDER],
             @"UNT_NYANGGRASS": [Constant constantWithName:@"UNT_NYANGGRASS" value:UNT_NYANGGRASS],
+            @"UNT_GROUNDDRIFT_NEUTRAL": [Constant constantWithName:@"UNT_GROUNDDRIFT_NEUTRAL" value:UNT_GROUNDDRIFT_NEUTRAL],
             @"UNT_CREATINGSTAR": [Constant constantWithName:@"UNT_CREATINGSTAR" value:UNT_CREATINGSTAR],
-            @"UNT_DUMMY_0": [Constant constantWithName:@"UNT_DUMMY_0" value:UNT_DUMMY_0],
             @"UNT_RAIN_OF_CRYSTAL": [Constant constantWithName:@"UNT_RAIN_OF_CRYSTAL" value:UNT_RAIN_OF_CRYSTAL],
             @"UNT_MYSTERY_ILLUSION": [Constant constantWithName:@"UNT_MYSTERY_ILLUSION" value:UNT_MYSTERY_ILLUSION],
+            @"UNT_SEEDTRAP": [Constant constantWithName:@"UNT_SEEDTRAP" value:UNT_SEEDTRAP],
             @"UNT_STRANTUM_TREMOR": [Constant constantWithName:@"UNT_STRANTUM_TREMOR" value:UNT_STRANTUM_TREMOR],
             @"UNT_VIOLENT_QUAKE": [Constant constantWithName:@"UNT_VIOLENT_QUAKE" value:UNT_VIOLENT_QUAKE],
             @"UNT_ALL_BLOOM": [Constant constantWithName:@"UNT_ALL_BLOOM" value:UNT_ALL_BLOOM],
@@ -20666,13 +20929,11 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"UNT_LIGHTNING_LAND": [Constant constantWithName:@"UNT_LIGHTNING_LAND" value:UNT_LIGHTNING_LAND],
             @"UNT_VENOM_SWAMP": [Constant constantWithName:@"UNT_VENOM_SWAMP" value:UNT_VENOM_SWAMP],
             @"UNT_CONFLAGRATION": [Constant constantWithName:@"UNT_CONFLAGRATION" value:UNT_CONFLAGRATION],
-            @"UNT_DEEPBLINDTRAP": [Constant constantWithName:@"UNT_DEEPBLINDTRAP" value:UNT_DEEPBLINDTRAP],
-            @"UNT_SOLIDTRAP": [Constant constantWithName:@"UNT_SOLIDTRAP" value:UNT_SOLIDTRAP],
-            @"UNT_SWIFTTRAP": [Constant constantWithName:@"UNT_SWIFTTRAP" value:UNT_SWIFTTRAP],
-            @"UNT_FLAMETRAP": [Constant constantWithName:@"UNT_FLAMETRAP" value:UNT_FLAMETRAP],
+            @"UNT_CANE_OF_EVIL_EYE": [Constant constantWithName:@"UNT_CANE_OF_EVIL_EYE" value:UNT_CANE_OF_EVIL_EYE],
             @"UNT_TWINKLING_GALAXY": [Constant constantWithName:@"UNT_TWINKLING_GALAXY" value:UNT_TWINKLING_GALAXY],
             @"UNT_STAR_CANNON": [Constant constantWithName:@"UNT_STAR_CANNON" value:UNT_STAR_CANNON],
             @"UNT_GRENADES_DROPPING": [Constant constantWithName:@"UNT_GRENADES_DROPPING" value:UNT_GRENADES_DROPPING],
+            @"UNT_UNKNOWN_2": [Constant constantWithName:@"UNT_UNKNOWN_2" value:UNT_UNKNOWN_2],
             @"UNT_FUUMASHOUAKU": [Constant constantWithName:@"UNT_FUUMASHOUAKU" value:UNT_FUUMASHOUAKU],
             @"UNT_MISSION_BOMBARD": [Constant constantWithName:@"UNT_MISSION_BOMBARD" value:UNT_MISSION_BOMBARD],
             @"UNT_TOTEM_OF_TUTELARY": [Constant constantWithName:@"UNT_TOTEM_OF_TUTELARY" value:UNT_TOTEM_OF_TUTELARY],
@@ -20680,14 +20941,19 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"UNT_SHINKIROU": [Constant constantWithName:@"UNT_SHINKIROU" value:UNT_SHINKIROU],
             @"UNT_JACK_FROST_NOVA": [Constant constantWithName:@"UNT_JACK_FROST_NOVA" value:UNT_JACK_FROST_NOVA],
             @"UNT_GROUND_GRAVITATION": [Constant constantWithName:@"UNT_GROUND_GRAVITATION" value:UNT_GROUND_GRAVITATION],
-            @"UNT_KUNAIWAIKYOKU": [Constant constantWithName:@"UNT_KUNAIWAIKYOKU" value:UNT_KUNAIWAIKYOKU],
-            @"UNT_STAR_BURST": [Constant constantWithName:@"UNT_STAR_BURST" value:UNT_STAR_BURST],
             @"UNT_KUNAIKAITEN": [Constant constantWithName:@"UNT_KUNAIKAITEN" value:UNT_KUNAIKAITEN],
+            @"UNT_KUNAIWAIKYOKU": [Constant constantWithName:@"UNT_KUNAIWAIKYOKU" value:UNT_KUNAIWAIKYOKU],
+            @"UNT_KUNAIKUSSETSU": [Constant constantWithName:@"UNT_KUNAIKUSSETSU" value:UNT_KUNAIKUSSETSU],
+            @"UNT_SEKIENHOU": [Constant constantWithName:@"UNT_SEKIENHOU" value:UNT_SEKIENHOU],
+            @"UNT_STAR_BURST": [Constant constantWithName:@"UNT_STAR_BURST" value:UNT_STAR_BURST],
+            @"UNT_DEEPBLINDTRAP": [Constant constantWithName:@"UNT_DEEPBLINDTRAP" value:UNT_DEEPBLINDTRAP],
+            @"UNT_SOLIDTRAP": [Constant constantWithName:@"UNT_SOLIDTRAP" value:UNT_SOLIDTRAP],
+            @"UNT_SWIFTTRAP": [Constant constantWithName:@"UNT_SWIFTTRAP" value:UNT_SWIFTTRAP],
+            @"UNT_FLAMETRAP": [Constant constantWithName:@"UNT_FLAMETRAP" value:UNT_FLAMETRAP],
             @"UNT_GD_LEADERSHIP": [Constant constantWithName:@"UNT_GD_LEADERSHIP" value:UNT_GD_LEADERSHIP],
             @"UNT_GD_GLORYWOUNDS": [Constant constantWithName:@"UNT_GD_GLORYWOUNDS" value:UNT_GD_GLORYWOUNDS],
             @"UNT_GD_SOULCOLD": [Constant constantWithName:@"UNT_GD_SOULCOLD" value:UNT_GD_SOULCOLD],
             @"UNT_GD_HAWKEYES": [Constant constantWithName:@"UNT_GD_HAWKEYES" value:UNT_GD_HAWKEYES],
-            @"UNT_CANE_OF_EVIL_EYE": [Constant constantWithName:@"UNT_CANE_OF_EVIL_EYE" value:UNT_CANE_OF_EVIL_EYE],
             @"BG_INFO_ID": [Constant constantWithName:@"BG_INFO_ID" value:BG_INFO_ID],
             @"BG_INFO_REQUIRED_PLAYERS": [Constant constantWithName:@"BG_INFO_REQUIRED_PLAYERS" value:BG_INFO_REQUIRED_PLAYERS],
             @"BG_INFO_MAX_PLAYERS": [Constant constantWithName:@"BG_INFO_MAX_PLAYERS" value:BG_INFO_MAX_PLAYERS],
