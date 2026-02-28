@@ -15,7 +15,7 @@ enum SQLite3Error: Error {
     case prepare
 }
 
-public class ServerResourceManager {
+final public class ServerResourceManager: Sendable {
     public init() {
     }
 
