@@ -111,6 +111,7 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
+                "map/skills",
             ],
             cxxSettings: [
                 .headerSearchPath(""),

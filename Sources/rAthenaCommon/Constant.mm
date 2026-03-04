@@ -241,12 +241,12 @@ const NSInteger RA_JOB_WANDERER_2ND = JOB_WANDERER_2ND;
 const NSInteger RA_JOBL_2_1 = JOBL_2_1;
 const NSInteger RA_JOBL_2_2 = JOBL_2_2;
 const NSInteger RA_JOBL_2 = JOBL_2;
-const NSInteger RA_JOBL_UPPER = JOBL_UPPER;
-const NSInteger RA_JOBL_BABY = JOBL_BABY;
 const NSInteger RA_JOBL_THIRD = JOBL_THIRD;
 const NSInteger RA_JOBL_FOURTH = JOBL_FOURTH;
-const NSInteger RA_MAPID_BASEMASK = MAPID_BASEMASK;
-const NSInteger RA_MAPID_UPPERMASK = MAPID_UPPERMASK;
+const NSInteger RA_JOBL_UPPER = JOBL_UPPER;
+const NSInteger RA_JOBL_BABY = JOBL_BABY;
+const NSInteger RA_MAPID_FIRSTMASK = MAPID_FIRSTMASK;
+const NSInteger RA_MAPID_SECONDMASK = MAPID_SECONDMASK;
 const NSInteger RA_MAPID_THIRDMASK = MAPID_THIRDMASK;
 const NSInteger RA_MAPID_FOURTHMASK = MAPID_FOURTHMASK;
 const NSInteger RA_MAPID_NOVICE = MAPID_NOVICE;
@@ -259,7 +259,9 @@ const NSInteger RA_MAPID_THIEF = MAPID_THIEF;
 const NSInteger RA_MAPID_TAEKWON = MAPID_TAEKWON;
 const NSInteger RA_MAPID_GUNSLINGER = MAPID_GUNSLINGER;
 const NSInteger RA_MAPID_NINJA = MAPID_NINJA;
+const NSInteger RA_MAPID_SUMMONER = MAPID_SUMMONER;
 const NSInteger RA_MAPID_GANGSI = MAPID_GANGSI;
+const NSInteger RA_MAPID_SUPER_NOVICE = MAPID_SUPER_NOVICE;
 const NSInteger RA_MAPID_KNIGHT = MAPID_KNIGHT;
 const NSInteger RA_MAPID_WIZARD = MAPID_WIZARD;
 const NSInteger RA_MAPID_HUNTER = MAPID_HUNTER;
@@ -269,6 +271,7 @@ const NSInteger RA_MAPID_ASSASSIN = MAPID_ASSASSIN;
 const NSInteger RA_MAPID_STAR_GLADIATOR = MAPID_STAR_GLADIATOR;
 const NSInteger RA_MAPID_REBELLION = MAPID_REBELLION;
 const NSInteger RA_MAPID_KAGEROUOBORO = MAPID_KAGEROUOBORO;
+const NSInteger RA_MAPID_SPIRIT_HANDLER = MAPID_SPIRIT_HANDLER;
 const NSInteger RA_MAPID_DEATH_KNIGHT = MAPID_DEATH_KNIGHT;
 const NSInteger RA_MAPID_CRUSADER = MAPID_CRUSADER;
 const NSInteger RA_MAPID_SAGE = MAPID_SAGE;
@@ -308,6 +311,7 @@ const NSInteger RA_MAPID_BABY_TAEKWON = MAPID_BABY_TAEKWON;
 const NSInteger RA_MAPID_BABY_GUNSLINGER = MAPID_BABY_GUNSLINGER;
 const NSInteger RA_MAPID_BABY_NINJA = MAPID_BABY_NINJA;
 const NSInteger RA_MAPID_BABY_SUMMONER = MAPID_BABY_SUMMONER;
+const NSInteger RA_MAPID_SUPER_BABY = MAPID_SUPER_BABY;
 const NSInteger RA_MAPID_BABY_KNIGHT = MAPID_BABY_KNIGHT;
 const NSInteger RA_MAPID_BABY_WIZARD = MAPID_BABY_WIZARD;
 const NSInteger RA_MAPID_BABY_HUNTER = MAPID_BABY_HUNTER;
@@ -324,6 +328,7 @@ const NSInteger RA_MAPID_BABY_MONK = MAPID_BABY_MONK;
 const NSInteger RA_MAPID_BABY_ALCHEMIST = MAPID_BABY_ALCHEMIST;
 const NSInteger RA_MAPID_BABY_ROGUE = MAPID_BABY_ROGUE;
 const NSInteger RA_MAPID_BABY_SOUL_LINKER = MAPID_BABY_SOUL_LINKER;
+const NSInteger RA_MAPID_SUPER_NOVICE_E = MAPID_SUPER_NOVICE_E;
 const NSInteger RA_MAPID_RUNE_KNIGHT = MAPID_RUNE_KNIGHT;
 const NSInteger RA_MAPID_WARLOCK = MAPID_WARLOCK;
 const NSInteger RA_MAPID_RANGER = MAPID_RANGER;
@@ -350,6 +355,7 @@ const NSInteger RA_MAPID_MINSTRELWANDERER_T = MAPID_MINSTRELWANDERER_T;
 const NSInteger RA_MAPID_SURA_T = MAPID_SURA_T;
 const NSInteger RA_MAPID_GENETIC_T = MAPID_GENETIC_T;
 const NSInteger RA_MAPID_SHADOW_CHASER_T = MAPID_SHADOW_CHASER_T;
+const NSInteger RA_MAPID_SUPER_BABY_E = MAPID_SUPER_BABY_E;
 const NSInteger RA_MAPID_BABY_RUNE_KNIGHT = MAPID_BABY_RUNE_KNIGHT;
 const NSInteger RA_MAPID_BABY_WARLOCK = MAPID_BABY_WARLOCK;
 const NSInteger RA_MAPID_BABY_RANGER = MAPID_BABY_RANGER;
@@ -364,29 +370,23 @@ const NSInteger RA_MAPID_BABY_SURA = MAPID_BABY_SURA;
 const NSInteger RA_MAPID_BABY_GENETIC = MAPID_BABY_GENETIC;
 const NSInteger RA_MAPID_BABY_SHADOW_CHASER = MAPID_BABY_SHADOW_CHASER;
 const NSInteger RA_MAPID_BABY_SOUL_REAPER = MAPID_BABY_SOUL_REAPER;
-const NSInteger RA_MAPID_SUPER_NOVICE = MAPID_SUPER_NOVICE;
-const NSInteger RA_MAPID_SUPER_BABY = MAPID_SUPER_BABY;
-const NSInteger RA_MAPID_SUPER_NOVICE_E = MAPID_SUPER_NOVICE_E;
-const NSInteger RA_MAPID_SUPER_BABY_E = MAPID_SUPER_BABY_E;
-const NSInteger RA_MAPID_SUMMONER = MAPID_SUMMONER;
+const NSInteger RA_MAPID_HYPER_NOVICE = MAPID_HYPER_NOVICE;
 const NSInteger RA_MAPID_DRAGON_KNIGHT = MAPID_DRAGON_KNIGHT;
 const NSInteger RA_MAPID_ARCH_MAGE = MAPID_ARCH_MAGE;
 const NSInteger RA_MAPID_WINDHAWK = MAPID_WINDHAWK;
 const NSInteger RA_MAPID_CARDINAL = MAPID_CARDINAL;
 const NSInteger RA_MAPID_MEISTER = MAPID_MEISTER;
 const NSInteger RA_MAPID_SHADOW_CROSS = MAPID_SHADOW_CROSS;
+const NSInteger RA_MAPID_SKY_EMPEROR = MAPID_SKY_EMPEROR;
+const NSInteger RA_MAPID_NIGHT_WATCH = MAPID_NIGHT_WATCH;
+const NSInteger RA_MAPID_SHINKIROSHIRANUI = MAPID_SHINKIROSHIRANUI;
 const NSInteger RA_MAPID_IMPERIAL_GUARD = MAPID_IMPERIAL_GUARD;
 const NSInteger RA_MAPID_ELEMENTAL_MASTER = MAPID_ELEMENTAL_MASTER;
 const NSInteger RA_MAPID_TROUBADOURTROUVERE = MAPID_TROUBADOURTROUVERE;
 const NSInteger RA_MAPID_INQUISITOR = MAPID_INQUISITOR;
 const NSInteger RA_MAPID_BIOLO = MAPID_BIOLO;
 const NSInteger RA_MAPID_ABYSS_CHASER = MAPID_ABYSS_CHASER;
-const NSInteger RA_MAPID_SKY_EMPEROR = MAPID_SKY_EMPEROR;
 const NSInteger RA_MAPID_SOUL_ASCETIC = MAPID_SOUL_ASCETIC;
-const NSInteger RA_MAPID_SHINKIROSHIRANUI = MAPID_SHINKIROSHIRANUI;
-const NSInteger RA_MAPID_NIGHT_WATCH = MAPID_NIGHT_WATCH;
-const NSInteger RA_MAPID_HYPER_NOVICE = MAPID_HYPER_NOVICE;
-const NSInteger RA_MAPID_SPIRIT_HANDLER = MAPID_SPIRIT_HANDLER;
 const NSInteger RA_SEX_FEMALE = SEX_FEMALE;
 const NSInteger RA_SEX_MALE = SEX_MALE;
 const NSInteger RA_SEX_BOTH = SEX_BOTH;
@@ -10835,12 +10835,12 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJL_2_1": [Constant constantWithName:@"EAJL_2_1" value:JOBL_2_1],
             @"EAJL_2_2": [Constant constantWithName:@"EAJL_2_2" value:JOBL_2_2],
             @"EAJL_2": [Constant constantWithName:@"EAJL_2" value:JOBL_2],
-            @"EAJL_UPPER": [Constant constantWithName:@"EAJL_UPPER" value:JOBL_UPPER],
-            @"EAJL_BABY": [Constant constantWithName:@"EAJL_BABY" value:JOBL_BABY],
             @"EAJL_THIRD": [Constant constantWithName:@"EAJL_THIRD" value:JOBL_THIRD],
             @"EAJL_FOURTH": [Constant constantWithName:@"EAJL_FOURTH" value:JOBL_FOURTH],
-            @"EAJ_BASEMASK": [Constant constantWithName:@"EAJ_BASEMASK" value:MAPID_BASEMASK],
-            @"EAJ_UPPERMASK": [Constant constantWithName:@"EAJ_UPPERMASK" value:MAPID_UPPERMASK],
+            @"EAJL_UPPER": [Constant constantWithName:@"EAJL_UPPER" value:JOBL_UPPER],
+            @"EAJL_BABY": [Constant constantWithName:@"EAJL_BABY" value:JOBL_BABY],
+            @"EAJ_BASEMASK": [Constant constantWithName:@"EAJ_BASEMASK" value:MAPID_FIRSTMASK],
+            @"EAJ_UPPERMASK": [Constant constantWithName:@"EAJ_UPPERMASK" value:MAPID_SECONDMASK],
             @"EAJ_THIRDMASK": [Constant constantWithName:@"EAJ_THIRDMASK" value:MAPID_THIRDMASK],
             @"EAJ_FOURTHMASK": [Constant constantWithName:@"EAJ_FOURTHMASK" value:MAPID_FOURTHMASK],
             @"EAJ_NOVICE": [Constant constantWithName:@"EAJ_NOVICE" value:MAPID_NOVICE],
@@ -10853,7 +10853,10 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_TAEKWON": [Constant constantWithName:@"EAJ_TAEKWON" value:MAPID_TAEKWON],
             @"EAJ_GUNSLINGER": [Constant constantWithName:@"EAJ_GUNSLINGER" value:MAPID_GUNSLINGER],
             @"EAJ_NINJA": [Constant constantWithName:@"EAJ_NINJA" value:MAPID_NINJA],
+            @"EAJ_SUMMONER": [Constant constantWithName:@"EAJ_SUMMONER" value:MAPID_SUMMONER],
             @"EAJ_GANGSI": [Constant constantWithName:@"EAJ_GANGSI" value:MAPID_GANGSI],
+            @"EAJ_SUPER_NOVICE": [Constant constantWithName:@"EAJ_SUPER_NOVICE" value:MAPID_SUPER_NOVICE],
+            @"EAJ_SUPERNOVICE": [Constant constantWithName:@"EAJ_SUPERNOVICE" value:MAPID_SUPER_NOVICE],
             @"EAJ_KNIGHT": [Constant constantWithName:@"EAJ_KNIGHT" value:MAPID_KNIGHT],
             @"EAJ_WIZARD": [Constant constantWithName:@"EAJ_WIZARD" value:MAPID_WIZARD],
             @"EAJ_HUNTER": [Constant constantWithName:@"EAJ_HUNTER" value:MAPID_HUNTER],
@@ -10864,6 +10867,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_STARGLADIATOR": [Constant constantWithName:@"EAJ_STARGLADIATOR" value:MAPID_STAR_GLADIATOR],
             @"EAJ_REBELLION": [Constant constantWithName:@"EAJ_REBELLION" value:MAPID_REBELLION],
             @"EAJ_KAGEROUOBORO": [Constant constantWithName:@"EAJ_KAGEROUOBORO" value:MAPID_KAGEROUOBORO],
+            @"EAJ_SPIRIT_HANDLER": [Constant constantWithName:@"EAJ_SPIRIT_HANDLER" value:MAPID_SPIRIT_HANDLER],
             @"EAJ_DEATH_KNIGHT": [Constant constantWithName:@"EAJ_DEATH_KNIGHT" value:MAPID_DEATH_KNIGHT],
             @"EAJ_DEATHKNIGHT": [Constant constantWithName:@"EAJ_DEATHKNIGHT" value:MAPID_DEATH_KNIGHT],
             @"EAJ_CRUSADER": [Constant constantWithName:@"EAJ_CRUSADER" value:MAPID_CRUSADER],
@@ -10906,6 +10910,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_BABY_GUNSLINGER": [Constant constantWithName:@"EAJ_BABY_GUNSLINGER" value:MAPID_BABY_GUNSLINGER],
             @"EAJ_BABY_NINJA": [Constant constantWithName:@"EAJ_BABY_NINJA" value:MAPID_BABY_NINJA],
             @"EAJ_BABY_SUMMONER": [Constant constantWithName:@"EAJ_BABY_SUMMONER" value:MAPID_BABY_SUMMONER],
+            @"EAJ_SUPER_BABY": [Constant constantWithName:@"EAJ_SUPER_BABY" value:MAPID_SUPER_BABY],
             @"EAJ_BABY_KNIGHT": [Constant constantWithName:@"EAJ_BABY_KNIGHT" value:MAPID_BABY_KNIGHT],
             @"EAJ_BABY_WIZARD": [Constant constantWithName:@"EAJ_BABY_WIZARD" value:MAPID_BABY_WIZARD],
             @"EAJ_BABY_HUNTER": [Constant constantWithName:@"EAJ_BABY_HUNTER" value:MAPID_BABY_HUNTER],
@@ -10922,6 +10927,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_BABY_ALCHEMIST": [Constant constantWithName:@"EAJ_BABY_ALCHEMIST" value:MAPID_BABY_ALCHEMIST],
             @"EAJ_BABY_ROGUE": [Constant constantWithName:@"EAJ_BABY_ROGUE" value:MAPID_BABY_ROGUE],
             @"EAJ_BABY_SOUL_LINKER": [Constant constantWithName:@"EAJ_BABY_SOUL_LINKER" value:MAPID_BABY_SOUL_LINKER],
+            @"EAJ_SUPER_NOVICE_E": [Constant constantWithName:@"EAJ_SUPER_NOVICE_E" value:MAPID_SUPER_NOVICE_E],
             @"EAJ_RUNE_KNIGHT": [Constant constantWithName:@"EAJ_RUNE_KNIGHT" value:MAPID_RUNE_KNIGHT],
             @"EAJ_WARLOCK": [Constant constantWithName:@"EAJ_WARLOCK" value:MAPID_WARLOCK],
             @"EAJ_RANGER": [Constant constantWithName:@"EAJ_RANGER" value:MAPID_RANGER],
@@ -10948,6 +10954,7 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_SURA_T": [Constant constantWithName:@"EAJ_SURA_T" value:MAPID_SURA_T],
             @"EAJ_GENETIC_T": [Constant constantWithName:@"EAJ_GENETIC_T" value:MAPID_GENETIC_T],
             @"EAJ_SHADOW_CHASER_T": [Constant constantWithName:@"EAJ_SHADOW_CHASER_T" value:MAPID_SHADOW_CHASER_T],
+            @"EAJ_SUPER_BABY_E": [Constant constantWithName:@"EAJ_SUPER_BABY_E" value:MAPID_SUPER_BABY_E],
             @"EAJ_BABY_RUNE_KNIGHT": [Constant constantWithName:@"EAJ_BABY_RUNE_KNIGHT" value:MAPID_BABY_RUNE_KNIGHT],
             @"EAJ_BABY_WARLOCK": [Constant constantWithName:@"EAJ_BABY_WARLOCK" value:MAPID_BABY_WARLOCK],
             @"EAJ_BABY_RANGER": [Constant constantWithName:@"EAJ_BABY_RANGER" value:MAPID_BABY_RANGER],
@@ -10962,30 +10969,23 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"EAJ_BABY_GENETIC": [Constant constantWithName:@"EAJ_BABY_GENETIC" value:MAPID_BABY_GENETIC],
             @"EAJ_BABY_SHADOW_CHASER": [Constant constantWithName:@"EAJ_BABY_SHADOW_CHASER" value:MAPID_BABY_SHADOW_CHASER],
             @"EAJ_BABY_SOUL_REAPER": [Constant constantWithName:@"EAJ_BABY_SOUL_REAPER" value:MAPID_BABY_SOUL_REAPER],
-            @"EAJ_SUPER_NOVICE": [Constant constantWithName:@"EAJ_SUPER_NOVICE" value:MAPID_SUPER_NOVICE],
-            @"EAJ_SUPERNOVICE": [Constant constantWithName:@"EAJ_SUPERNOVICE" value:MAPID_SUPER_NOVICE],
-            @"EAJ_SUPER_BABY": [Constant constantWithName:@"EAJ_SUPER_BABY" value:MAPID_SUPER_BABY],
-            @"EAJ_SUPER_NOVICE_E": [Constant constantWithName:@"EAJ_SUPER_NOVICE_E" value:MAPID_SUPER_NOVICE_E],
-            @"EAJ_SUPER_BABY_E": [Constant constantWithName:@"EAJ_SUPER_BABY_E" value:MAPID_SUPER_BABY_E],
-            @"EAJ_SUMMONER": [Constant constantWithName:@"EAJ_SUMMONER" value:MAPID_SUMMONER],
+            @"EAJ_HYPER_NOVICE": [Constant constantWithName:@"EAJ_HYPER_NOVICE" value:MAPID_HYPER_NOVICE],
             @"EAJ_DRAGON_KNIGHT": [Constant constantWithName:@"EAJ_DRAGON_KNIGHT" value:MAPID_DRAGON_KNIGHT],
             @"EAJ_ARCH_MAGE": [Constant constantWithName:@"EAJ_ARCH_MAGE" value:MAPID_ARCH_MAGE],
             @"EAJ_WINDHAWK": [Constant constantWithName:@"EAJ_WINDHAWK" value:MAPID_WINDHAWK],
             @"EAJ_CARDINAL": [Constant constantWithName:@"EAJ_CARDINAL" value:MAPID_CARDINAL],
             @"EAJ_MEISTER": [Constant constantWithName:@"EAJ_MEISTER" value:MAPID_MEISTER],
             @"EAJ_SHADOW_CROSS": [Constant constantWithName:@"EAJ_SHADOW_CROSS" value:MAPID_SHADOW_CROSS],
+            @"EAJ_SKY_EMPEROR": [Constant constantWithName:@"EAJ_SKY_EMPEROR" value:MAPID_SKY_EMPEROR],
+            @"EAJ_NIGHT_WATCH": [Constant constantWithName:@"EAJ_NIGHT_WATCH" value:MAPID_NIGHT_WATCH],
+            @"EAJ_SHINKIROSHIRANUI": [Constant constantWithName:@"EAJ_SHINKIROSHIRANUI" value:MAPID_SHINKIROSHIRANUI],
             @"EAJ_IMPERIAL_GUARD": [Constant constantWithName:@"EAJ_IMPERIAL_GUARD" value:MAPID_IMPERIAL_GUARD],
             @"EAJ_ELEMENTAL_MASTER": [Constant constantWithName:@"EAJ_ELEMENTAL_MASTER" value:MAPID_ELEMENTAL_MASTER],
             @"EAJ_TROUBADOURTROUVERE": [Constant constantWithName:@"EAJ_TROUBADOURTROUVERE" value:MAPID_TROUBADOURTROUVERE],
             @"EAJ_INQUISITOR": [Constant constantWithName:@"EAJ_INQUISITOR" value:MAPID_INQUISITOR],
             @"EAJ_BIOLO": [Constant constantWithName:@"EAJ_BIOLO" value:MAPID_BIOLO],
             @"EAJ_ABYSS_CHASER": [Constant constantWithName:@"EAJ_ABYSS_CHASER" value:MAPID_ABYSS_CHASER],
-            @"EAJ_SKY_EMPEROR": [Constant constantWithName:@"EAJ_SKY_EMPEROR" value:MAPID_SKY_EMPEROR],
             @"EAJ_SOUL_ASCETIC": [Constant constantWithName:@"EAJ_SOUL_ASCETIC" value:MAPID_SOUL_ASCETIC],
-            @"EAJ_SHINKIROSHIRANUI": [Constant constantWithName:@"EAJ_SHINKIROSHIRANUI" value:MAPID_SHINKIROSHIRANUI],
-            @"EAJ_NIGHT_WATCH": [Constant constantWithName:@"EAJ_NIGHT_WATCH" value:MAPID_NIGHT_WATCH],
-            @"EAJ_HYPER_NOVICE": [Constant constantWithName:@"EAJ_HYPER_NOVICE" value:MAPID_HYPER_NOVICE],
-            @"EAJ_SPIRIT_HANDLER": [Constant constantWithName:@"EAJ_SPIRIT_HANDLER" value:MAPID_SPIRIT_HANDLER],
             @"SEX_FEMALE": [Constant constantWithName:@"SEX_FEMALE" value:SEX_FEMALE],
             @"SEX_MALE": [Constant constantWithName:@"SEX_MALE" value:SEX_MALE],
             @"SEX_BOTH": [Constant constantWithName:@"SEX_BOTH" value:SEX_BOTH],
