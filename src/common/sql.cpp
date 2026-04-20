@@ -248,6 +248,20 @@ uint32 Sql_GetError( Sql* self ){
 
 static int32 Sql_P_Keepalive(Sql* self);
 
+static int32 Sql_P_EnableForeignKeys(Sql* self)
+{
+	if( self == nullptr || self->db == nullptr )
+		return SQL_ERROR;
+
+	if( sqlite3_exec(self->db, "PRAGMA foreign_keys = ON;", nullptr, nullptr, nullptr) != SQLITE_OK )
+	{
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(self->db));
+		return SQL_ERROR;
+	}
+
+	return SQL_SUCCESS;
+}
+
 /**
  * Establishes a connection to schema
  * @param self : sql handle
@@ -270,6 +284,13 @@ int32 Sql_Connect(Sql* self, const char* user, const char* passwd, const char* h
 	if( sqlite3_open(filename, &self->db) != SQLITE_OK )
 	{
 		ShowSQL("%s\n", sqlite3_errmsg(self->db));
+		return SQL_ERROR;
+	}
+
+	if( SQL_ERROR == Sql_P_EnableForeignKeys(self) )
+	{
+		sqlite3_close(self->db);
+		self->db = nullptr;
 		return SQL_ERROR;
 	}
 

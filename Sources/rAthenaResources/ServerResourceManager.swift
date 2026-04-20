@@ -73,6 +73,10 @@ final public class ServerResourceManager: Sendable {
             sqlite3_close(db)
         }
 
+        guard sqlite3_exec(db, "PRAGMA foreign_keys = ON;", nil, nil, nil) == SQLITE_OK else {
+            throw SQLite3Error.prepare
+        }
+
         let sql = """
             CREATE TABLE IF NOT EXISTS `upgrades` (
               `id` TEXT NOT NULL,
@@ -93,6 +97,7 @@ final public class ServerResourceManager: Sendable {
             "20250201": "upgrades/upgrade_20250201.sql",
             "20250803": "upgrades/upgrade_20250803.sql",
             "20251031": "upgrades/upgrade_20251031.sql",
+            "20260225": "upgrades/upgrade_20260225.sql",
         ]
 
         for upgrade in upgrades {
