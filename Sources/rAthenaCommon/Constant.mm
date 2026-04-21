@@ -7097,6 +7097,29 @@ const NSInteger RA_IG_CASH_BOOSTER_BOX2 = IG_CASH_BOOSTER_BOX2;
 const NSInteger RA_IG_SELECT_DEC_PACK1 = IG_SELECT_DEC_PACK1;
 const NSInteger RA_IG_SELECT_DEC_PACK2 = IG_SELECT_DEC_PACK2;
 const NSInteger RA_IG_SELECT_DEC_PACK3 = IG_SELECT_DEC_PACK3;
+const NSInteger RA_IG_SPENDID_CAPE_BR = IG_SPENDID_CAPE_BR;
+const NSInteger RA_IG_CHEMICAL_GLOVE_ROC = IG_CHEMICAL_GLOVE_ROC;
+const NSInteger RA_IG_THIRDEYEGOD_ROC = IG_THIRDEYEGOD_ROC;
+const NSInteger RA_IG_RT_CH01_BULGASARI_A = IG_RT_CH01_BULGASARI_A;
+const NSInteger RA_IG_RT_CH01_BULGASARI_C = IG_RT_CH01_BULGASARI_C;
+const NSInteger RA_IG_RT_CH01_GLUTTO_A = IG_RT_CH01_GLUTTO_A;
+const NSInteger RA_IG_RT_CH01_GLUTTO_C = IG_RT_CH01_GLUTTO_C;
+const NSInteger RA_IG_RT_CH01_UNCANNY_A = IG_RT_CH01_UNCANNY_A;
+const NSInteger RA_IG_RT_CH01_UNCANNY_C = IG_RT_CH01_UNCANNY_C;
+const NSInteger RA_IG_RT_CH01_UNCANNY_2 = IG_RT_CH01_UNCANNY_2;
+const NSInteger RA_IG_RT_CH01_CHUNK_A = IG_RT_CH01_CHUNK_A;
+const NSInteger RA_IG_RT_CH01_CHUNK_C = IG_RT_CH01_CHUNK_C;
+const NSInteger RA_IG_RT_CH01_NOISE_A = IG_RT_CH01_NOISE_A;
+const NSInteger RA_IG_RT_CH01_NOISE_C = IG_RT_CH01_NOISE_C;
+const NSInteger RA_IG_RT_CH01_NOISE_2 = IG_RT_CH01_NOISE_2;
+const NSInteger RA_IG_RT_CH01_FLOWERS_A = IG_RT_CH01_FLOWERS_A;
+const NSInteger RA_IG_RT_CH01_FLOWERS_C = IG_RT_CH01_FLOWERS_C;
+const NSInteger RA_IG_RT_CH01_TOXIC_A = IG_RT_CH01_TOXIC_A;
+const NSInteger RA_IG_RT_CH01_TOXIC_C = IG_RT_CH01_TOXIC_C;
+const NSInteger RA_IG_RT_CH01_TOXIC_3 = IG_RT_CH01_TOXIC_3;
+const NSInteger RA_IG_RT_CH01_YGGLEAF_A = IG_RT_CH01_YGGLEAF_A;
+const NSInteger RA_IG_RT_CH01_YGGLEAF_C = IG_RT_CH01_YGGLEAF_C;
+const NSInteger RA_IG_RT_CH01_YGGLEAF_3 = IG_RT_CH01_YGGLEAF_3;
 const NSInteger RA_USW_NONE = USW_NONE;
 const NSInteger RA_USW_FIXPOS = USW_FIXPOS;
 const NSInteger RA_USW_MOVE_ONCE = USW_MOVE_ONCE;
@@ -9877,6 +9900,8 @@ const NSInteger RA_FOOTPRINT_EF_PHOENIX = FOOTPRINT_EF_PHOENIX;
 const NSInteger RA_HAT_EF_C_CLB_GAT_DOC = HAT_EF_C_CLB_GAT_DOC;
 const NSInteger RA_HAT_EF_C_EYE_OF_NECROMANCER = HAT_EF_C_EYE_OF_NECROMANCER;
 const NSInteger RA_HAT_EF_C_JAOW_PIRUN = HAT_EF_C_JAOW_PIRUN;
+const NSInteger RA_FOOTPRINT_EF_FLOWER_GARDEN = FOOTPRINT_EF_FLOWER_GARDEN;
+const NSInteger RA_HAT_EF_C_ANGEL_GIFT = HAT_EF_C_ANGEL_GIFT;
 const NSInteger RA_PET_CATCH_UNIVERSAL_NO_BOSS = PET_CATCH_UNIVERSAL_NO_BOSS;
 const NSInteger RA_PET_CATCH_UNIVERSAL_ALL = PET_CATCH_UNIVERSAL_ALL;
 const NSInteger RA_PET_INTIMATE_NONE = PET_INTIMATE_NONE;
@@ -17748,6 +17773,29 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"IG_SELECT_DEC_PACK1": [Constant constantWithName:@"IG_SELECT_DEC_PACK1" value:IG_SELECT_DEC_PACK1],
             @"IG_SELECT_DEC_PACK2": [Constant constantWithName:@"IG_SELECT_DEC_PACK2" value:IG_SELECT_DEC_PACK2],
             @"IG_SELECT_DEC_PACK3": [Constant constantWithName:@"IG_SELECT_DEC_PACK3" value:IG_SELECT_DEC_PACK3],
+            @"IG_SPENDID_CAPE_BR": [Constant constantWithName:@"IG_SPENDID_CAPE_BR" value:IG_SPENDID_CAPE_BR],
+            @"IG_CHEMICAL_GLOVE_ROC": [Constant constantWithName:@"IG_CHEMICAL_GLOVE_ROC" value:IG_CHEMICAL_GLOVE_ROC],
+            @"IG_THIRDEYEGOD_ROC": [Constant constantWithName:@"IG_THIRDEYEGOD_ROC" value:IG_THIRDEYEGOD_ROC],
+            @"IG_RT_CH01_BULGASARI_A": [Constant constantWithName:@"IG_RT_CH01_BULGASARI_A" value:IG_RT_CH01_BULGASARI_A],
+            @"IG_RT_CH01_BULGASARI_C": [Constant constantWithName:@"IG_RT_CH01_BULGASARI_C" value:IG_RT_CH01_BULGASARI_C],
+            @"IG_RT_CH01_GLUTTO_A": [Constant constantWithName:@"IG_RT_CH01_GLUTTO_A" value:IG_RT_CH01_GLUTTO_A],
+            @"IG_RT_CH01_GLUTTO_C": [Constant constantWithName:@"IG_RT_CH01_GLUTTO_C" value:IG_RT_CH01_GLUTTO_C],
+            @"IG_RT_CH01_UNCANNY_A": [Constant constantWithName:@"IG_RT_CH01_UNCANNY_A" value:IG_RT_CH01_UNCANNY_A],
+            @"IG_RT_CH01_UNCANNY_C": [Constant constantWithName:@"IG_RT_CH01_UNCANNY_C" value:IG_RT_CH01_UNCANNY_C],
+            @"IG_RT_CH01_UNCANNY_2": [Constant constantWithName:@"IG_RT_CH01_UNCANNY_2" value:IG_RT_CH01_UNCANNY_2],
+            @"IG_RT_CH01_CHUNK_A": [Constant constantWithName:@"IG_RT_CH01_CHUNK_A" value:IG_RT_CH01_CHUNK_A],
+            @"IG_RT_CH01_CHUNK_C": [Constant constantWithName:@"IG_RT_CH01_CHUNK_C" value:IG_RT_CH01_CHUNK_C],
+            @"IG_RT_CH01_NOISE_A": [Constant constantWithName:@"IG_RT_CH01_NOISE_A" value:IG_RT_CH01_NOISE_A],
+            @"IG_RT_CH01_NOISE_C": [Constant constantWithName:@"IG_RT_CH01_NOISE_C" value:IG_RT_CH01_NOISE_C],
+            @"IG_RT_CH01_NOISE_2": [Constant constantWithName:@"IG_RT_CH01_NOISE_2" value:IG_RT_CH01_NOISE_2],
+            @"IG_RT_CH01_FLOWERS_A": [Constant constantWithName:@"IG_RT_CH01_FLOWERS_A" value:IG_RT_CH01_FLOWERS_A],
+            @"IG_RT_CH01_FLOWERS_C": [Constant constantWithName:@"IG_RT_CH01_FLOWERS_C" value:IG_RT_CH01_FLOWERS_C],
+            @"IG_RT_CH01_TOXIC_A": [Constant constantWithName:@"IG_RT_CH01_TOXIC_A" value:IG_RT_CH01_TOXIC_A],
+            @"IG_RT_CH01_TOXIC_C": [Constant constantWithName:@"IG_RT_CH01_TOXIC_C" value:IG_RT_CH01_TOXIC_C],
+            @"IG_RT_CH01_TOXIC_3": [Constant constantWithName:@"IG_RT_CH01_TOXIC_3" value:IG_RT_CH01_TOXIC_3],
+            @"IG_RT_CH01_YGGLEAF_A": [Constant constantWithName:@"IG_RT_CH01_YGGLEAF_A" value:IG_RT_CH01_YGGLEAF_A],
+            @"IG_RT_CH01_YGGLEAF_C": [Constant constantWithName:@"IG_RT_CH01_YGGLEAF_C" value:IG_RT_CH01_YGGLEAF_C],
+            @"IG_RT_CH01_YGGLEAF_3": [Constant constantWithName:@"IG_RT_CH01_YGGLEAF_3" value:IG_RT_CH01_YGGLEAF_3],
             @"USW_NONE": [Constant constantWithName:@"USW_NONE" value:USW_NONE],
             @"USW_FIXPOS": [Constant constantWithName:@"USW_FIXPOS" value:USW_FIXPOS],
             @"USW_MOVE_ONCE": [Constant constantWithName:@"USW_MOVE_ONCE" value:USW_MOVE_ONCE],
@@ -20528,6 +20576,8 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"HAT_EF_C_CLB_GAT_DOC": [Constant constantWithName:@"HAT_EF_C_CLB_GAT_DOC" value:HAT_EF_C_CLB_GAT_DOC],
             @"HAT_EF_C_EYE_OF_NECROMANCER": [Constant constantWithName:@"HAT_EF_C_EYE_OF_NECROMANCER" value:HAT_EF_C_EYE_OF_NECROMANCER],
             @"HAT_EF_C_JAOW_PIRUN": [Constant constantWithName:@"HAT_EF_C_JAOW_PIRUN" value:HAT_EF_C_JAOW_PIRUN],
+            @"FOOTPRINT_EF_FLOWER_GARDEN": [Constant constantWithName:@"FOOTPRINT_EF_FLOWER_GARDEN" value:FOOTPRINT_EF_FLOWER_GARDEN],
+            @"HAT_EF_C_ANGEL_GIFT": [Constant constantWithName:@"HAT_EF_C_ANGEL_GIFT" value:HAT_EF_C_ANGEL_GIFT],
             @"PET_CATCH_UNIVERSAL_NO_BOSS": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_NO_BOSS" value:PET_CATCH_UNIVERSAL_NO_BOSS],
             @"PET_CATCH_UNIVERSAL_ALL": [Constant constantWithName:@"PET_CATCH_UNIVERSAL_ALL" value:PET_CATCH_UNIVERSAL_ALL],
             @"PET_INTIMATE_NONE": [Constant constantWithName:@"PET_INTIMATE_NONE" value:PET_INTIMATE_NONE],
