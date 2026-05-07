@@ -12,7 +12,9 @@ import XCTest
 final class MapServerTests: XCTestCase {
     override func setUp() async throws {
         let serverResourceManager = ServerResourceManager()
-        let workingDirectoryURL = URL.libraryDirectory.appending(path: "rathena", directoryHint: .isDirectory)
+        let workingDirectoryURL = FileManager.default
+            .urls(for: .libraryDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("rathena", isDirectory: true)
         try await serverResourceManager.prepareWorkingDirectory(at: workingDirectoryURL)
     }
 

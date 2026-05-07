@@ -24,14 +24,14 @@ final public class ServerResourceManager: Sendable {
         try fileManager.createDirectory(at: workingDirectoryURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
 
-        let databaseSourceURL = serverResourceBaseURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
-        let databaseDestinationURL = workingDirectoryURL.appending(path: "ragnarok.sqlite3", directoryHint: .notDirectory)
+        let databaseSourceURL = serverResourceBaseURL.appendingPathComponent("ragnarok.sqlite3", isDirectory: false)
+        let databaseDestinationURL = workingDirectoryURL.appendingPathComponent("ragnarok.sqlite3", isDirectory: false)
 
         if !fileManager.fileExists(atPath: databaseDestinationURL.path) {
             try fileManager.copyItem(at: databaseSourceURL, to: databaseDestinationURL)
         }
 
-        let revisionURL = workingDirectoryURL.appending(path: "revision", directoryHint: .notDirectory)
+        let revisionURL = workingDirectoryURL.appendingPathComponent("revision", isDirectory: false)
 
         var needsUpdate = true
         if fileManager.fileExists(atPath: revisionURL.path) {
@@ -46,16 +46,16 @@ final public class ServerResourceManager: Sendable {
 
             let paths = ["conf", "db", "npc"]
             for path in paths {
-                let sourceURL = serverResourceBaseURL.appending(path: path, directoryHint: .isDirectory)
-                let destinationURL = workingDirectoryURL.appending(path: path, directoryHint: .isDirectory)
+                let sourceURL = serverResourceBaseURL.appendingPathComponent(path, isDirectory: true)
+                let destinationURL = workingDirectoryURL.appendingPathComponent(path, isDirectory: true)
                 if fileManager.fileExists(atPath: destinationURL.path) {
                     try fileManager.removeItem(at: destinationURL)
                 }
                 try fileManager.copyItem(at: sourceURL, to: destinationURL)
             }
 
-            let importTemplateURL = workingDirectoryURL.appending(path: "conf/import-tmpl", directoryHint: .isDirectory)
-            let importURL = workingDirectoryURL.appending(path: "conf/import", directoryHint: .isDirectory)
+            let importTemplateURL = workingDirectoryURL.appendingPathComponent("conf/import-tmpl", isDirectory: true)
+            let importURL = workingDirectoryURL.appendingPathComponent("conf/import", isDirectory: true)
             try fileManager.moveItem(at: importTemplateURL, to: importURL)
 
             try serverResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
@@ -118,7 +118,9 @@ final public class ServerResourceManager: Sendable {
                 continue
             }
 
-            let url = Bundle.module.resourceURL!.appending(path: "sqlite-files").appending(path: upgrade.value)
+            let url = Bundle.module.resourceURL!
+                .appendingPathComponent("sqlite-files", isDirectory: true)
+                .appendingPathComponent(upgrade.value)
             sql = try String(contentsOf: url, encoding: .utf8)
             guard sqlite3_exec(db, sql, nil, nil, nil) == SQLITE_OK else {
                 throw SQLite3Error.prepare

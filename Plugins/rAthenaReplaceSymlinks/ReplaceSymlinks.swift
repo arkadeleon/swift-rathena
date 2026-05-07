@@ -11,10 +11,10 @@ import PackagePlugin
 @main
 struct ReplaceSymlinks: CommandPlugin {
     func performCommand(context: PluginContext, arguments: [String]) async throws {
-        let loginURL = context.package.directoryURL.appending(path: "Sources/rAthenaLogin")
-        let charURL = context.package.directoryURL.appending(path: "Sources/rAthenaChar")
-        let mapURL = context.package.directoryURL.appending(path: "Sources/rAthenaMap")
-        let webURL = context.package.directoryURL.appending(path: "Sources/rAthenaWeb")
+        let loginURL = context.package.directoryURL.appendingPathComponent("Sources/rAthenaLogin")
+        let charURL = context.package.directoryURL.appendingPathComponent("Sources/rAthenaChar")
+        let mapURL = context.package.directoryURL.appendingPathComponent("Sources/rAthenaMap")
+        let webURL = context.package.directoryURL.appendingPathComponent("Sources/rAthenaWeb")
 
         try replaceSymlinks(at: loginURL)
         try replaceSymlinks(at: charURL)

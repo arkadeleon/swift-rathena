@@ -5,11 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "swift-rathena",
-    platforms: [
-        .macOS(.v13),
-        .iOS(.v16),
-        .visionOS(.v1),
-    ],
     products: [
         .library(
             name: "rAthenaCommon",
@@ -192,6 +187,31 @@ let package = Package(
         .target(
             name: "ryml",
             path: "3rdparty/rapidyaml",
+            exclude: [
+                "ext/c4core/src/c4/ext/debugbreak/.gitignore",
+                "ext/c4core/src/c4/ext/debugbreak/COPYING",
+                "ext/c4core/src/c4/ext/debugbreak/GNUmakefile",
+                "ext/c4core/src/c4/ext/debugbreak/HOW-TO-USE-DEBUGBREAK-GDB-PY.md",
+                "ext/c4core/src/c4/ext/debugbreak/README.md",
+                "ext/c4core/src/c4/ext/debugbreak/debugbreak-gdb.py",
+                "ext/c4core/src/c4/ext/fast_float/.cirrus.yml",
+                "ext/c4core/src/c4/ext/fast_float/.github",
+                "ext/c4core/src/c4/ext/fast_float/.gitignore",
+                "ext/c4core/src/c4/ext/fast_float/.travis.yml",
+                "ext/c4core/src/c4/ext/fast_float/AUTHORS",
+                "ext/c4core/src/c4/ext/fast_float/CMakeLists.txt",
+                "ext/c4core/src/c4/ext/fast_float/CONTRIBUTORS",
+                "ext/c4core/src/c4/ext/fast_float/LICENSE-APACHE",
+                "ext/c4core/src/c4/ext/fast_float/LICENSE-MIT",
+                "ext/c4core/src/c4/ext/fast_float/README.md",
+                "ext/c4core/src/c4/ext/fast_float/ci",
+                "ext/c4core/src/c4/ext/fast_float/cmake",
+                "ext/c4core/src/c4/ext/fast_float/script",
+                "ext/c4core/src/c4/ext/sg14/README.md",
+                "ext/c4core/src/c4/c4core.natvis",
+                "src/ryml.natvis",
+                "src/ryml-gdbtypes.py",
+            ],
             sources: [
                 "ext/c4core/src",
                 "src",
@@ -204,6 +224,10 @@ let package = Package(
         .target(
             name: "yaml-cpp",
             path: "3rdparty/yaml-cpp",
+            exclude: [
+                "src/contrib/yaml-cpp.natvis",
+                "src/contrib/yaml-cpp.natvis.md",
+            ],
             sources: [
                 "src",
             ]

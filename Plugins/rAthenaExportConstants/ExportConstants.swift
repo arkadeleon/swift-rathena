@@ -13,9 +13,9 @@ struct ExportConstants: CommandPlugin {
     typealias Constant = (name: String, value: String)
 
     func performCommand(context: PluginContext, arguments: [String]) async throws {
-        let inputURL = context.package.directoryURL.appending(path: "src/map/script_constants.hpp")
-        let outputURL1 = context.package.directoryURL.appending(path: "Sources/rAthenaCommon/Constant.h")
-        let outputURL2 = context.package.directoryURL.appending(path: "Sources/rAthenaCommon/Constant.mm")
+        let inputURL = context.package.directoryURL.appendingPathComponent("src/map/script_constants.hpp")
+        let outputURL1 = context.package.directoryURL.appendingPathComponent("Sources/rAthenaCommon/Constant.h")
+        let outputURL2 = context.package.directoryURL.appendingPathComponent("Sources/rAthenaCommon/Constant.mm")
 
         var constants = [Constant]()
 
