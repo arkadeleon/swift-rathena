@@ -9,6 +9,7 @@ import Foundation
 import SQLite3
 
 public let serverResourceBaseURL = Bundle.module.resourceURL!
+public let serverResourceSubrevision = "20260508"
 
 enum SQLite3Error: Error {
     case open
@@ -31,12 +32,13 @@ final public class ServerResourceManager: Sendable {
             try fileManager.copyItem(at: databaseSourceURL, to: databaseDestinationURL)
         }
 
+        let latestRevision = "\(serverResourceRevision).\(serverResourceSubrevision)"
         let revisionURL = workingDirectoryURL.appendingPathComponent("revision", isDirectory: false)
 
         var needsUpdate = true
         if fileManager.fileExists(atPath: revisionURL.path) {
             let revision = try String(contentsOf: revisionURL, encoding: .utf8)
-            if revision == serverResourceRevision {
+            if revision == latestRevision {
                 needsUpdate = false
             }
         }
@@ -58,7 +60,7 @@ final public class ServerResourceManager: Sendable {
             let importURL = workingDirectoryURL.appendingPathComponent("conf/import", isDirectory: true)
             try fileManager.moveItem(at: importTemplateURL, to: importURL)
 
-            try serverResourceRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
+            try latestRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
         }
     }
 
