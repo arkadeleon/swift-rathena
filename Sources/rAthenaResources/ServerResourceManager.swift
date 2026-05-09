@@ -9,7 +9,7 @@ import Foundation
 import SQLite3
 
 public let serverResourceBaseURL = Bundle.module.resourceURL!
-public let serverResourceSubrevision = "20260508"
+public let serverResourceSubrevision = "20260509"
 
 enum SQLite3Error: Error {
     case open
