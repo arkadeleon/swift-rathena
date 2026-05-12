@@ -1,2 +1,0 @@
-stdout_with_ansisequence: yes
-new_account: yes

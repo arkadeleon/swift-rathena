@@ -9,7 +9,6 @@ import Foundation
 import SQLite3
 
 public let serverResourceBaseURL = Bundle.module.resourceURL!
-public let serverResourceSubrevision = "20260509"
 
 enum SQLite3Error: Error {
     case open
@@ -20,7 +19,7 @@ final public class ServerResourceManager: Sendable {
     public init() {
     }
 
-    public func prepareWorkingDirectory(at workingDirectoryURL: URL) async throws {
+    public func prepareWorkingDirectory(at workingDirectoryURL: URL, configuration: ServerConfiguration = .default) async throws {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: workingDirectoryURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
@@ -32,7 +31,7 @@ final public class ServerResourceManager: Sendable {
             try fileManager.copyItem(at: databaseSourceURL, to: databaseDestinationURL)
         }
 
-        let latestRevision = "\(serverResourceRevision).\(serverResourceSubrevision)"
+        let latestRevision = serverResourceRevision
         let revisionURL = workingDirectoryURL.appendingPathComponent("revision", isDirectory: false)
 
         var needsUpdate = true
@@ -56,12 +55,15 @@ final public class ServerResourceManager: Sendable {
                 try fileManager.copyItem(at: sourceURL, to: destinationURL)
             }
 
-            let importTemplateURL = workingDirectoryURL.appendingPathComponent("conf/import-tmpl", isDirectory: true)
-            let importURL = workingDirectoryURL.appendingPathComponent("conf/import", isDirectory: true)
-            try fileManager.moveItem(at: importTemplateURL, to: importURL)
-
             try latestRevision.write(to: revisionURL, atomically: true, encoding: .utf8)
         }
+
+        let importURL = workingDirectoryURL.appendingPathComponent("conf/import", isDirectory: true)
+        if fileManager.fileExists(atPath: importURL.path) {
+            try fileManager.removeItem(at: importURL)
+        }
+        try fileManager.createDirectory(at: importURL, withIntermediateDirectories: true, attributes: nil)
+        try configuration.write(to: importURL)
     }
 
     private func upgradeDatabase(at url: URL) throws {
