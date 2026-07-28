@@ -386,6 +386,10 @@ int32 Core::start( int32 argc, char **argv ){
 		if( !this->m_run_once ){
 			// Main runtime cycle
 			while( this->get_status() == e_core_status::RUNNING ){
+				if( this->m_shutdown_requested.exchange( false ) ){
+					this->signal_shutdown();
+				}
+
 				t_tick next = do_timer( gettick_nocache() );
 
 				this->handle_main( next );
@@ -481,4 +485,8 @@ void Core::signal_crash(){
 void Core::signal_shutdown(){
 	this->set_status( e_core_status::STOPPING );
 	this->handle_shutdown();
+}
+
+void Core::request_shutdown(){
+	this->m_shutdown_requested = true;
 }

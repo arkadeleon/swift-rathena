@@ -25,11 +25,6 @@ int write_function(void *cookie, const char *buf, int n) {
     return n;
 }
 
-TIMER_FUNC(shutdown_timer) {
-    global_core->signal_shutdown();
-    return 0;
-}
-
 @interface WebServer ()
 
 @property (nonatomic) NSThread *thread;
@@ -75,7 +70,7 @@ TIMER_FUNC(shutdown_timer) {
 }
 
 - (void)stop {
-    add_timer(gettick(), shutdown_timer, 0, 0);
+    global_core->request_shutdown();
 
     // Wait until global_core is null.
     while (global_core != nullptr) {

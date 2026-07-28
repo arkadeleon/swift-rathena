@@ -4,6 +4,7 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
+#include <atomic>
 #include <functional>
 #include <string>
 #include <vector>
@@ -63,6 +64,7 @@ private:
 	e_core_type m_type;
 	bool m_run_once;
 	bool m_crashed;
+	std::atomic<bool> m_shutdown_requested;
 
 protected:
 	virtual bool initialize( int32 argc, char* argv[] );
@@ -77,6 +79,7 @@ public:
 		this->m_status = e_core_status::NOT_STARTED;
 		this->m_run_once = false;
 		this->m_crashed = false;
+		this->m_shutdown_requested = false;
 		this->m_type = type;
 	}
 
@@ -87,6 +90,7 @@ public:
 	void set_run_once( bool run_once );
 	void signal_crash();
 	void signal_shutdown();
+	void request_shutdown();
 	int32 start( int32 argc, char* argv[] );
 };
 }
