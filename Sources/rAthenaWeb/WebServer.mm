@@ -12,7 +12,7 @@
 
 extern int main (int argc, char **argv);
 
-int write_function(void *cookie, const char *buf, int n) {
+static int write_function(void *cookie, const char *buf, int n) {
     WebServer *server = WebServer.sharedServer;
     NSDictionary *userInfo = @{
         ServerOutputDataKey: [NSData dataWithBytes:buf length:n]
@@ -59,6 +59,7 @@ int write_function(void *cookie, const char *buf, int n) {
         char *args[1] = {arg0};
         main(1, args);
     }];
+    self.thread.name = self.name;
     [self.thread start];
 
     // Wait until global_core is not null.
