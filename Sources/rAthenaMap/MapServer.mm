@@ -47,11 +47,14 @@ int write_function(void *cookie, const char *buf, int n) {
 }
 
 - (void)start {
-    self.thread = [[NSThread alloc] initWithBlock:^{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         FILE *output = fwopen(0, write_function);
         STDOUT = output;
         STDERR = output;
+    });
 
+    self.thread = [[NSThread alloc] initWithBlock:^{
         char arg0[] = "map-server";
         char *args[1] = {arg0};
         main(1, args);
