@@ -128,14 +128,17 @@ void sqlite_uuid(sqlite3_context *context, int argc, sqlite3_value **argv)
 
 
 
-static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
+static void Sql_P_FreeResult(SqlResult* result);
+
+static int32 Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 {
 	int row_count = 0;
 	int column_count = sqlite3_column_count(stmt);
 	SqlRow* first_row = nullptr;
 	SqlRow* last_row = nullptr;
+	int status;
 
-	while( sqlite3_step(stmt) == SQLITE_ROW )
+	while( (status = sqlite3_step(stmt)) == SQLITE_ROW )
 	{
 		sqlite3_value** values;
 		CREATE(values, sqlite3_value*, column_count);
@@ -170,6 +173,18 @@ static void Sql_P_StmtExecute(sqlite3_stmt* stmt, SqlResult** result)
 	(*result)->rows = first_row;
 	(*result)->current_row = nullptr;
 	(*result)->eof = false;
+
+	if( status != SQLITE_DONE )
+	{
+		sqlite3* db = sqlite3_db_handle(stmt);
+		ShowSQL("DB error - %s\n", sqlite3_errmsg(db));
+		ra_mysql_error_handler(sqlite3_errcode(db));
+		Sql_P_FreeResult(*result);
+		*result = nullptr;
+		return SQL_ERROR;
+	}
+
+	return SQL_SUCCESS;
 }
 
 
@@ -286,6 +301,8 @@ int32 Sql_Connect(Sql* self, const char* user, const char* passwd, const char* h
 		ShowSQL("%s\n", sqlite3_errmsg(self->db));
 		return SQL_ERROR;
 	}
+
+	sqlite3_busy_timeout(self->db, 5000);
 
 	if( SQL_ERROR == Sql_P_EnableForeignKeys(self) )
 	{
@@ -458,9 +475,9 @@ int32 Sql_QueryV(Sql* self, const char* query, va_list args)
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-	Sql_P_StmtExecute(stmt, &self->result);
+	int32 res = Sql_P_StmtExecute(stmt, &self->result);
 	sqlite3_finalize(stmt);
-	return SQL_SUCCESS;
+	return res;
 }
 
 
@@ -481,9 +498,9 @@ int32 Sql_QueryStr(Sql* self, const char* query)
 		ra_mysql_error_handler(sqlite3_errcode(self->db));
 		return SQL_ERROR;
 	}
-	Sql_P_StmtExecute(stmt, &self->result);
+	int32 res = Sql_P_StmtExecute(stmt, &self->result);
 	sqlite3_finalize(stmt);
-	return SQL_SUCCESS;
+	return res;
 }
 
 
@@ -548,7 +565,7 @@ int32 Sql_NextRow(Sql* self)
 /// Gets the data of a column.
 int32 Sql_GetData(Sql* self, size_t col, char** out_buf, size_t* out_len)
 {
-	if( self && self->result->current_row )
+	if( self && self->result && self->result->current_row )
 	{
 		if( col < Sql_NumColumns(self) )
 		{
@@ -931,9 +948,7 @@ int32 SqlStmt::Execute(){
 
 	this->bind_columns = false;
 
-	Sql_P_StmtExecute( this->stmt, &this->result );
-
-	return SQL_SUCCESS;
+	return Sql_P_StmtExecute( this->stmt, &this->result );
 }
 
 
@@ -998,7 +1013,9 @@ int32 SqlStmt::BindColumn(size_t idx, enum SqlDataType buffer_type, void* buffer
 
 /// Returns the number of rows in the result.
 uint64 SqlStmt::NumRows(){
-	return (uint64)this->result->row_count;
+	if( this->result )
+		return (uint64)this->result->row_count;
+	return 0;
 }
 
 
@@ -1021,7 +1038,7 @@ int32 SqlStmt::NextRow(){
 		}
 	}
 
-	return SQLITE_ERROR;
+	return SQL_ERROR;
 }
 
 
