@@ -23,12 +23,14 @@ final class MapServerTests: XCTestCase {
         XCTAssertEqual(mapServer.name, "Map Server")
         XCTAssertEqual(mapServer.status, .notStarted)
 
-        await mapServer.start()
+        for _ in 0..<10 {
+            await mapServer.start()
 
-        XCTAssertEqual(mapServer.status, .running)
+            XCTAssertEqual(mapServer.status, .running)
 
-        await mapServer.stop()
+            await mapServer.stop()
 
-        XCTAssertEqual(mapServer.status, .stopped)
+            XCTAssertEqual(mapServer.status, .stopped)
+        }
     }
 }

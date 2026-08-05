@@ -23,12 +23,14 @@ final class LoginServerTests: XCTestCase {
         XCTAssertEqual(loginServer.name, "Login Server")
         XCTAssertEqual(loginServer.status, .notStarted)
 
-        await loginServer.start()
+        for _ in 0..<10 {
+            await loginServer.start()
 
-        XCTAssertEqual(loginServer.status, .running)
+            XCTAssertEqual(loginServer.status, .running)
 
-        await loginServer.stop()
+            await loginServer.stop()
 
-        XCTAssertEqual(loginServer.status, .stopped)
+            XCTAssertEqual(loginServer.status, .stopped)
+        }
     }
 }

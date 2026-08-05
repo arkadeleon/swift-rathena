@@ -23,12 +23,14 @@ final class CharServerTests: XCTestCase {
         XCTAssertEqual(charServer.name, "Char Server")
         XCTAssertEqual(charServer.status, .notStarted)
 
-        await charServer.start()
+        for _ in 0..<10 {
+            await charServer.start()
 
-        XCTAssertEqual(charServer.status, .running)
+            XCTAssertEqual(charServer.status, .running)
 
-        await charServer.stop()
+            await charServer.stop()
 
-        XCTAssertEqual(charServer.status, .stopped)
+            XCTAssertEqual(charServer.status, .stopped)
+        }
     }
 }

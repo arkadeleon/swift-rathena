@@ -5331,6 +5331,11 @@ bool MapServer::initialize( int32 argc, char *argv[] ){
 	GC_enable_incremental();
 #endif
 
+	// Clear leftovers from an earlier run in this process.
+	block_free_count = 0;
+	block_free_lock = 0;
+	bl_list_count = 0;
+
 	safestrncpy(console_log_filepath, "./log/map-msg_log.log", sizeof(console_log_filepath));
 
 	/* Multilanguage */
