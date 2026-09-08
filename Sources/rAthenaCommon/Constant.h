@@ -1578,7 +1578,6 @@ extern const NSInteger RA_SC_COMPETENTIA;
 extern const NSInteger RA_SC_RELIGIO;
 extern const NSInteger RA_SC_BENEDICTUM;
 extern const NSInteger RA_SC_AXE_STOMP;
-extern const NSInteger RA_SC_A_MACHINE;
 extern const NSInteger RA_SC_D_MACHINE;
 extern const NSInteger RA_SC_ABR_BATTLE_WARIOR;
 extern const NSInteger RA_SC_ABR_DUAL_CANNON;

@@ -1595,7 +1595,6 @@ const NSInteger RA_SC_COMPETENTIA = SC_COMPETENTIA;
 const NSInteger RA_SC_RELIGIO = SC_RELIGIO;
 const NSInteger RA_SC_BENEDICTUM = SC_BENEDICTUM;
 const NSInteger RA_SC_AXE_STOMP = SC_AXE_STOMP;
-const NSInteger RA_SC_A_MACHINE = SC_A_MACHINE;
 const NSInteger RA_SC_D_MACHINE = SC_D_MACHINE;
 const NSInteger RA_SC_ABR_BATTLE_WARIOR = SC_ABR_BATTLE_WARIOR;
 const NSInteger RA_SC_ABR_DUAL_CANNON = SC_ABR_DUAL_CANNON;
@@ -12263,7 +12262,6 @@ const NSInteger RA_GUILDINFO_MASTERNAME = GUILDINFO_MASTERNAME;
             @"SC_RELIGIO": [Constant constantWithName:@"SC_RELIGIO" value:SC_RELIGIO],
             @"SC_BENEDICTUM": [Constant constantWithName:@"SC_BENEDICTUM" value:SC_BENEDICTUM],
             @"SC_AXE_STOMP": [Constant constantWithName:@"SC_AXE_STOMP" value:SC_AXE_STOMP],
-            @"SC_A_MACHINE": [Constant constantWithName:@"SC_A_MACHINE" value:SC_A_MACHINE],
             @"SC_D_MACHINE": [Constant constantWithName:@"SC_D_MACHINE" value:SC_D_MACHINE],
             @"SC_ABR_BATTLE_WARIOR": [Constant constantWithName:@"SC_ABR_BATTLE_WARIOR" value:SC_ABR_BATTLE_WARIOR],
             @"SC_ABR_DUAL_CANNON": [Constant constantWithName:@"SC_ABR_DUAL_CANNON" value:SC_ABR_DUAL_CANNON],

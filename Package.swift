@@ -1,7 +1,25 @@
 // swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
+import Foundation
 import PackageDescription
+
+// Match src/map/CMakeLists.txt: job factories include individual skill .cpp files.
+// Compile the factories and shared implementation, excluding the included sources.
+let skillsDirectory = URL(fileURLWithPath: #filePath)
+    .deletingLastPathComponent()
+    .appendingPathComponent("Sources/rAthenaMap/map/skills")
+let excludedSkillSources = try FileManager.default
+    .subpathsOfDirectory(atPath: skillsDirectory.path)
+    .filter { path in
+        let filename = URL(fileURLWithPath: path).lastPathComponent
+        return path.hasSuffix(".cpp")
+            && path != "skill_factory.cpp"
+            && path != "skill_impl.cpp"
+            && !filename.hasPrefix("skill_factory_")
+    }
+    .map { "map/skills/\($0)" }
+    .sorted()
 
 let package = Package(
     name: "swift-rathena",
@@ -110,8 +128,7 @@ let package = Package(
             exclude: [
                 "common/winapi.hpp",
                 "common/winapi.cpp",
-                "map/skills",
-            ],
+            ] + excludedSkillSources,
             cxxSettings: [
                 .headerSearchPath(""),
             ],
