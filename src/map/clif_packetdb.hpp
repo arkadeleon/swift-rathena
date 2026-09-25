@@ -188,7 +188,7 @@
 	parseable_packet(0x019d,6,clif_parse_GMHide,2);
 	parseable_packet(0x019f,6,clif_parse_CatchPet,2);
 	parseable_packet(0x01a1,3,clif_parse_PetMenu,2);
-	packet(0x01a3,5);
+	packet(0x01a3, sizeof( struct PACKET_ZC_FEED_PET ));
 	parseable_packet(0x01a5,26,clif_parse_ChangePetName,2);
 	packet(0x01a6,-1);
 	parseable_packet(0x01a7,4,clif_parse_SelectEgg,2);
@@ -223,7 +223,7 @@
 	packet(0x01cf,28);
 	packet(0x01d0,8);
 	parseable_packet( HEADER_CZ_INPUT_EDITDLGSTR, -1, clif_parse_NpcStringInput, 0 );
-	packet(0x01d7,11);
+	packet(0x01d7, sizeof( struct PACKET_ZC_SPRITE_CHANGE ));
 	packet(0x01d8,54);
 	packet(0x01d9,53);
 	packet(0x01da,60);
@@ -562,7 +562,7 @@
 // 2005-06-08aSakexe
 #if PACKETVER >= 20050608
 	packet(0x0216,6);
-	packet(0x022f,5);
+	packet(0x022f, sizeof( struct PACKET_ZC_FEED_MER ));
 	parseable_packet(0x0231,26,clif_parse_ChangeHomunculusName,2);
 	packet(0x023a,4);
 	parseable_packet(0x023b,36,clif_parse_StoragePassword,2,4,20);
@@ -1709,7 +1709,7 @@
 	parseable_packet(0x0A01,3,clif_parse_HotkeyRowShift,2); // CZ_SHORTCUTKEYBAR_ROTATE
 	packet(0x0A0E,14); // ZC_BATTLEFIELD_NOTIFY_HP2
 	packet(0x09F7,75); // ZC_PROPERTY_HOMUN_2
-	packet(0x09E6,22); // ZC_UPDATE_ITEM_FROM_BUYING_STORE2
+	packet(0x09E6, sizeof( struct PACKET_ZC_UPDATE_ITEM_FROM_BUYING_STORE )); // ZC_UPDATE_ITEM_FROM_BUYING_STORE2
 	// Roulette System [Yommy]
 	parseable_packet(0x0A19,2,clif_parse_roulette_open,0); // CZ_REQ_OPEN_ROULETTE
 	packet(0x0A1A,23); // ZC_ACK_OPEN_ROULETTE
@@ -1918,7 +1918,7 @@
 
 // 2018-04-18bRagexeRE
 #if PACKETVER >= 20180418
-	packet(0x0ADD, 22);
+	packet(0x0ADD, sizeof( struct packet_dropflooritem ));
 #endif
 
 #if PACKETVER >= 20180516
