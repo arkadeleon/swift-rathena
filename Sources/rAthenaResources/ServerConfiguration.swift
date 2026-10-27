@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import rAthenaCommon
 
 public struct ServerConfiguration: Sendable {
     public static let `default` = ServerConfiguration()
@@ -49,6 +50,24 @@ public struct ServerConfiguration: Sendable {
         self.packet_conf = packet_conf
         self.script_conf = script_conf
         self.web_conf = web_conf
+    }
+
+    mutating func updateInterServerConfiguration(for mode: ServerMode) {
+        let databaseName = switch mode {
+        case .prerenewal: "ragnarok-pre"
+        case .renewal: "ragnarok"
+        }
+
+        let databaseConfiguration = """
+            login_server_db: \(databaseName)
+            ipban_db_db: \(databaseName)
+            char_server_db: \(databaseName)
+            map_server_db: \(databaseName)
+            web_server_db: \(databaseName)
+            log_db_db: \(databaseName)
+            """
+
+        inter_conf = (inter_conf?.appending("\n") ?? "") + databaseConfiguration
     }
 
     func write(to url: URL) throws {

@@ -14,8 +14,8 @@ final class CharServerPreTests: XCTestCase {
         let serverResourceManager = ServerResourceManager()
         let workingDirectoryURL = FileManager.default
             .urls(for: .libraryDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("rathena-pre", isDirectory: true)
-        try await serverResourceManager.prepareWorkingDirectory(at: workingDirectoryURL)
+            .appendingPathComponent("rathena", isDirectory: true)
+        try await serverResourceManager.prepareWorkingDirectory(at: workingDirectoryURL, mode: .prerenewal)
     }
 
     func testCharServerPre() async {

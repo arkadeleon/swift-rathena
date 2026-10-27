@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import rAthenaCommon
 import SQLite3
 
 public let serverResourceBaseURL = Bundle.module.resourceURL!
@@ -19,16 +20,19 @@ final public class ServerResourceManager: Sendable {
     public init() {
     }
 
-    public func prepareWorkingDirectory(at workingDirectoryURL: URL, configuration: ServerConfiguration = .default) async throws {
+    public func prepareWorkingDirectory(at workingDirectoryURL: URL, mode: ServerMode = .renewal, configuration: ServerConfiguration = .default) async throws {
         let fileManager = FileManager.default
         try fileManager.createDirectory(at: workingDirectoryURL, withIntermediateDirectories: true, attributes: nil)
         fileManager.changeCurrentDirectoryPath(workingDirectoryURL.path)
 
         let databaseSourceURL = serverResourceBaseURL.appendingPathComponent("ragnarok.sqlite3", isDirectory: false)
-        let databaseDestinationURL = workingDirectoryURL.appendingPathComponent("ragnarok.sqlite3", isDirectory: false)
+        let databaseDestinationURLs = ["ragnarok", "ragnarok-pre"].map {
+            workingDirectoryURL.appendingPathComponent("\($0).sqlite3", isDirectory: false)
+        }
 
-        if !fileManager.fileExists(atPath: databaseDestinationURL.path) {
+        for databaseDestinationURL in databaseDestinationURLs where !fileManager.fileExists(atPath: databaseDestinationURL.path) {
             try fileManager.copyItem(at: databaseSourceURL, to: databaseDestinationURL)
+            try upgradeDatabase(at: databaseDestinationURL)
         }
 
         let latestRevision = serverResourceRevision
@@ -43,7 +47,9 @@ final public class ServerResourceManager: Sendable {
         }
 
         if needsUpdate {
-            try upgradeDatabase(at: databaseDestinationURL)
+            for databaseDestinationURL in databaseDestinationURLs {
+                try upgradeDatabase(at: databaseDestinationURL)
+            }
 
             let paths = ["conf", "db", "npc"]
             for path in paths {
@@ -63,6 +69,9 @@ final public class ServerResourceManager: Sendable {
             try fileManager.removeItem(at: importURL)
         }
         try fileManager.createDirectory(at: importURL, withIntermediateDirectories: true, attributes: nil)
+
+        var configuration = configuration
+        configuration.updateInterServerConfiguration(for: mode)
         try configuration.write(to: importURL)
     }
 

@@ -290,6 +290,9 @@ let package = Package(
         ),
         .target(
             name: "rAthenaResources",
+            dependencies: [
+                "rAthenaCommon",
+            ],
             path: ".",
             exclude: [
                 "3rdparty",
