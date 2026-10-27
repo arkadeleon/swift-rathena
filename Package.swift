@@ -87,6 +87,7 @@ let package = Package(
             ],
             cxxSettings: [
                 .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -109,6 +110,7 @@ let package = Package(
             ],
             cxxSettings: [
                 .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -131,6 +133,7 @@ let package = Package(
             ] + excludedSkillSources,
             cxxSettings: [
                 .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),
@@ -156,6 +159,7 @@ let package = Package(
             ],
             cxxSettings: [
                 .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("CoreFoundation"),

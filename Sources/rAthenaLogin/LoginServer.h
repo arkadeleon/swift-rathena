@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+__attribute__((visibility("default")))
 @interface LoginServer : Server
 
 @property (nonatomic, class, readonly) LoginServer *sharedServer;
