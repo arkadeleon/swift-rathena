@@ -384,9 +384,23 @@ let package = Package(
             ]
         ),
         .testTarget(
+            name: "rAthenaLoginPreTests",
+            dependencies: [
+                "rAthenaLoginPre",
+                "rAthenaResources",
+            ]
+        ),
+        .testTarget(
             name: "rAthenaCharTests",
             dependencies: [
                 "rAthenaChar",
+                "rAthenaResources",
+            ]
+        ),
+        .testTarget(
+            name: "rAthenaCharPreTests",
+            dependencies: [
+                "rAthenaCharPre",
                 "rAthenaResources",
             ]
         ),
@@ -398,9 +412,23 @@ let package = Package(
             ]
         ),
         .testTarget(
+            name: "rAthenaMapPreTests",
+            dependencies: [
+                "rAthenaMapPre",
+                "rAthenaResources",
+            ]
+        ),
+        .testTarget(
             name: "rAthenaWebTests",
             dependencies: [
                 "rAthenaWeb",
+                "rAthenaResources",
+            ]
+        ),
+        .testTarget(
+            name: "rAthenaWebPreTests",
+            dependencies: [
+                "rAthenaWebPre",
                 "rAthenaResources",
             ]
         ),

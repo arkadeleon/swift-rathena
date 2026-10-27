@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 __attribute__((visibility("default")))
 @interface LoginServer : Server
 
-@property (nonatomic, class, readonly) LoginServer *sharedServer;
+@property (nonatomic, class, readonly) LoginServer *sharedServer NS_SWIFT_NAME(shared);
 
 @end
 

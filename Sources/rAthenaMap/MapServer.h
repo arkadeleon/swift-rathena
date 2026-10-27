@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 __attribute__((visibility("default")))
 @interface MapServer : Server
 
-@property (nonatomic, class, readonly) MapServer *sharedServer;
+@property (nonatomic, class, readonly) MapServer *sharedServer NS_SWIFT_NAME(shared);
 
 @end
 

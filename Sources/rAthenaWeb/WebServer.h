@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 __attribute__((visibility("default")))
 @interface WebServer : Server
 
-@property (nonatomic, class, readonly) WebServer *sharedServer;
+@property (nonatomic, class, readonly) WebServer *sharedServer NS_SWIFT_NAME(shared);
 
 @end
 

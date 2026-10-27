@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 __attribute__((visibility("default")))
 @interface CharServer : Server
 
-@property (nonatomic, class, readonly) CharServer *sharedServer;
+@property (nonatomic, class, readonly) CharServer *sharedServer NS_SWIFT_NAME(shared);
 
 @end
 
