@@ -1,0 +1,8 @@
+//
+//  rAthenaCharPre.h
+//  rAthena
+//
+//  Created by Leon Li on 2026/10/27.
+//
+
+#import "../CharServerPre.h"

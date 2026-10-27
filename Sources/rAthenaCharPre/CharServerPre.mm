@@ -1,0 +1,87 @@
+//
+//  CharServerPre.mm
+//  rAthena
+//
+//  Created by Leon Li on 2026/10/27.
+//
+
+#import "CharServerPre.h"
+#import "../rAthenaCommon/ServerPrivate.h"
+#include "common/core.hpp"
+#include "common/showmsg.hpp"
+
+extern int main (int argc, char **argv);
+
+static int write_function(void *cookie, const char *buf, int n) {
+    CharServerPre *server = CharServerPre.sharedServer;
+    NSDictionary *userInfo = @{
+        ServerOutputDataKey: [NSData dataWithBytes:buf length:n]
+    };
+
+    dispatch_async(server.outputQueue, ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:ServerDidOutputDataNotification object:server userInfo:userInfo];
+    });
+
+    return n;
+}
+
+@interface CharServerPre ()
+
+@property (nonatomic) NSThread *thread;
+
+@end
+
+@implementation CharServerPre
+
++ (CharServerPre *)sharedServer {
+    static CharServerPre *sharedServer = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedServer = [[CharServerPre alloc] init];
+    });
+    return sharedServer;
+}
+
+- (NSString *)name {
+    return @"Char Server";
+}
+
+- (void)start {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        FILE *output = fwopen(0, write_function);
+        STDOUT = output;
+        STDERR = output;
+    });
+
+    self.thread = [[NSThread alloc] initWithBlock:^{
+        char arg0[] = "char-server";
+        char *args[1] = {arg0};
+        main(1, args);
+    }];
+    self.thread.name = self.name;
+    [self.thread start];
+
+    // Wait until global_core is not null.
+    while (global_core == nullptr) {
+        usleep(1000);
+    }
+
+    // Wait until global_core status is running.
+    while (global_core->get_status() != rathena::server_core::e_core_status::RUNNING) {
+        usleep(1000);
+    }
+}
+
+- (void)stop {
+    global_core->request_shutdown();
+
+    // Wait until global_core is null.
+    while (global_core != nullptr) {
+        usleep(1000);
+    }
+
+    self.thread = nil;
+}
+
+@end

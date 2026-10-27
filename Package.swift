@@ -38,9 +38,19 @@ let package = Package(
             targets: ["rAthenaLogin"]
         ),
         .library(
+            name: "rAthenaLoginPre",
+            type: .dynamic,
+            targets: ["rAthenaLoginPre"]
+        ),
+        .library(
             name: "rAthenaChar",
             type: .dynamic,
             targets: ["rAthenaChar"]
+        ),
+        .library(
+            name: "rAthenaCharPre",
+            type: .dynamic,
+            targets: ["rAthenaCharPre"]
         ),
         .library(
             name: "rAthenaMap",
@@ -56,6 +66,11 @@ let package = Package(
             name: "rAthenaWeb",
             type: .dynamic,
             targets: ["rAthenaWeb"]
+        ),
+        .library(
+            name: "rAthenaWebPre",
+            type: .dynamic,
+            targets: ["rAthenaWebPre"]
         ),
         .library(
             name: "rAthenaResources",
@@ -103,6 +118,30 @@ let package = Package(
             ]
         ),
         .target(
+            name: "rAthenaLoginPre",
+            dependencies: [
+                "libconfig",
+                "ryml",
+                "rAthenaCommon",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+            ],
+            cxxSettings: [
+                .define("PRERE"),
+                .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
+            ]
+        ),
+        .target(
             name: "rAthenaChar",
             dependencies: [
                 "libconfig",
@@ -114,6 +153,30 @@ let package = Package(
                 "common/winapi.cpp",
             ],
             cxxSettings: [
+                .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
+            ]
+        ),
+        .target(
+            name: "rAthenaCharPre",
+            dependencies: [
+                "libconfig",
+                "ryml",
+                "rAthenaCommon",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+            ],
+            cxxSettings: [
+                .define("PRERE"),
                 .headerSearchPath(""),
                 .unsafeFlags(["-fvisibility=hidden"]),
             ],
@@ -187,6 +250,33 @@ let package = Package(
                 "common/winapi.cpp",
             ],
             cxxSettings: [
+                .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
+            ]
+        ),
+        .target(
+            name: "rAthenaWebPre",
+            dependencies: [
+                "httplib",
+                "json",
+                "libconfig",
+                "ryml",
+                "yaml-cpp",
+                "rAthenaCommon",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+            ],
+            cxxSettings: [
+                .define("PRERE"),
                 .headerSearchPath(""),
                 .unsafeFlags(["-fvisibility=hidden"]),
             ],
