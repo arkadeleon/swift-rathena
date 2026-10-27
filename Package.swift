@@ -48,6 +48,11 @@ let package = Package(
             targets: ["rAthenaMap"]
         ),
         .library(
+            name: "rAthenaMapPre",
+            type: .dynamic,
+            targets: ["rAthenaMapPre"]
+        ),
+        .library(
             name: "rAthenaWeb",
             type: .dynamic,
             targets: ["rAthenaWeb"]
@@ -132,6 +137,30 @@ let package = Package(
                 "common/winapi.cpp",
             ] + excludedSkillSources,
             cxxSettings: [
+                .headerSearchPath(""),
+                .unsafeFlags(["-fvisibility=hidden"]),
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreFoundation"),
+                .linkedFramework("Foundation"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z"),
+                .unsafeFlags(["-fprofile-instr-generate"]),
+            ]
+        ),
+        .target(
+            name: "rAthenaMapPre",
+            dependencies: [
+                "libconfig",
+                "ryml",
+                "rAthenaCommon",
+            ],
+            exclude: [
+                "common/winapi.hpp",
+                "common/winapi.cpp",
+            ] + excludedSkillSources,
+            cxxSettings: [
+                .define("PRERE"),
                 .headerSearchPath(""),
                 .unsafeFlags(["-fvisibility=hidden"]),
             ],
